@@ -20,6 +20,7 @@ import {
   type NiveauEntree,
   type StatutRegroupement,
 } from "@/types/cursus";
+import type { ModaliteAcces } from "@/modele/modalite-acces";
 
 export type ParcoursListe = {
   id: string;
@@ -32,6 +33,8 @@ export type ParcoursListe = {
   competencesCouvertes: string[];
   prixMin: number | null;
   prixMax: number | null;
+  /** Qualification de la gratuité. `null` = non vérifiée. */
+  modaliteAcces: ModaliteAcces | null;
   duree: string | null;
   volumeHoraire: number | null;
   formats: FormatParcours[];
@@ -60,6 +63,8 @@ export type ParcoursFiche = ParcoursListe & {
   sourceInformation: string | null;
   ecartClassification: string | null;
   modalitesPaiement: string | null;
+  /** Source ayant permis d'établir la modalité d'accès. */
+  sourceModaliteAcces: string | null;
   variantes: Array<{
     label: string;
     prix: number | null;
@@ -73,7 +78,7 @@ const COLONNES_LISTE = `
   id, slug, nom, domaine, sujet_principal, competences_couvertes,
   prix_min, prix_max, duree, volume_horaire, formats, lieu, niveau_entree,
   eligible_cpf, financements_acceptes, certification, code_rncp_rs,
-  date_verification, etats, infos_renseignees, infos_applicables,
+  date_verification, etats, infos_renseignees, infos_applicables, modalite_acces,
   statut_regroupement, motif_regroupement, parcours_parent_id,
   organismes ( nom, categorie )
 `;
@@ -94,6 +99,7 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
     competencesCouvertes: (ligne["competences_couvertes"] as string[]) ?? [],
     prixMin: ligne["prix_min"] as number | null,
     prixMax: ligne["prix_max"] as number | null,
+    modaliteAcces: (ligne["modalite_acces"] as ModaliteAcces | null) ?? null,
     duree: ligne["duree"] as string | null,
     volumeHoraire: ligne["volume_horaire"] as number | null,
     formats: (ligne["formats"] as FormatParcours[]) ?? [],
@@ -140,6 +146,7 @@ export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> 
     .select(
       `${COLONNES_LISTE}, prerequis, outils_enseignes, programme, non_couvert,
        site_officiel, source_information, ecart_classification, modalites_paiement,
+       source_modalite_acces,
        variantes ( label, prix, duree, volume_horaire, accompagnement )`,
     )
     .eq("slug", slug)
@@ -162,6 +169,7 @@ export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> 
     sourceInformation: ligne["source_information"] as string | null,
     ecartClassification: ligne["ecart_classification"] as string | null,
     modalitesPaiement: ligne["modalites_paiement"] as string | null,
+    sourceModaliteAcces: ligne["source_modalite_acces"] as string | null,
     variantes: (ligne.variantes ?? []).map((v) => ({
       label: v["label"] as string,
       prix: v["prix"] as number | null,

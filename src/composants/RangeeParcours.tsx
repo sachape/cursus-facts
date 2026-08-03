@@ -10,14 +10,20 @@ import type { ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { useComparaison } from "./comparaison";
+import { libellePrixQualifie, type ModaliteAcces } from "@/modele/modalite-acces";
 
-/** Un prix nul est une information ; un prix inconnu n'en est pas une. */
-export function libellePrix(min: number | null, max: number | null): string {
-  if (min === null) return "Non communiqué";
-  if (min === 0 && (max === null || max === 0)) return "Gratuit";
-  const format = (n: number) => `${n.toLocaleString("fr-FR")} €`;
-  if (max !== null && max !== min) return `${format(min)} – ${format(max)}`;
-  return format(min);
+/**
+ * Prix affiché, qualifié par la modalité d'accès.
+ *
+ * On n'écrit jamais « Gratuit » seul : sans la modalité, la fiche affirmerait
+ * une gratuité qu'elle n'a pas vérifiée sous cette forme.
+ */
+export function libellePrix(
+  min: number | null,
+  max: number | null,
+  modalite: ModaliteAcces | null = null,
+): string {
+  return libellePrixQualifie(min, max, modalite);
 }
 
 const LIBELLES_FORMATS = {
@@ -28,7 +34,7 @@ const LIBELLES_FORMATS = {
 
 export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
   const { ajouter, retirer, contient } = useComparaison();
-  const prixInconnu = parcours.prixMin === null;
+  const prixInconnu = parcours.prixMin === null && parcours.modaliteAcces === null;
   const selectionne = contient(parcours.slug);
 
   return (
@@ -90,7 +96,7 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
 
         <div className="flex items-center justify-between gap-6 sm:flex-col sm:items-end sm:gap-2">
           <p className={`chiffre text-sm ${prixInconnu ? "text-muted-foreground italic" : ""}`}>
-            {libellePrix(parcours.prixMin, parcours.prixMax)}
+            {libellePrix(parcours.prixMin, parcours.prixMax, parcours.modaliteAcces)}
           </p>
           <div className="flex flex-col items-end gap-1">
             <CodeBarres etats={parcours.etats} />

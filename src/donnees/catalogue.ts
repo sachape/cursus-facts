@@ -16,6 +16,7 @@ import type {
   FormatParcours,
   NiveauEntree,
 } from "@/types/cursus";
+import type { ModaliteAcces } from "@/modele/modalite-acces";
 import offresSources from "./offres-sources.json";
 
 /** Une offre telle que collectée, avant classification et regroupement. */
@@ -49,6 +50,13 @@ export type OffreSource = {
    * Sur ces fiches, la déclaration remplace la détection automatique.
    */
   classificationManuelle: boolean;
+  /**
+   * Qualification de la gratuité. `null` tant qu'aucune source officielle ne
+   * l'a établie — la gratuité ne s'affirme jamais par défaut.
+   */
+  modaliteAcces: ModaliteAcces | null;
+  /** Source ayant permis d'établir la modalité, affichée sur la fiche. */
+  sourceModalite?: string | null;
 };
 
 /* -------------------------------------------------------------------------- */

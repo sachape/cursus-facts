@@ -78,7 +78,7 @@ function AideAuChoix() {
             organisme: a.parcours.organismeNom,
             domaine: LIBELLES_DOMAINES[a.parcours.domaine],
             sujetPrincipal: a.parcours.sujetPrincipal,
-            prix: libellePrix(a.parcours.prixMin, a.parcours.prixMax),
+            prix: libellePrix(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces),
             duree: a.parcours.duree ?? "Non communiquée",
             correspond: a.correspond,
             ecarts: a.ecarts,
@@ -178,7 +178,7 @@ function AideAuChoix() {
                 </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{a.parcours.organismeNom}</p>
                 <p className="chiffre mt-2 text-sm">
-                  {libellePrix(a.parcours.prixMin, a.parcours.prixMax)}
+                  {libellePrix(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces)}
                   {a.parcours.duree !== null && (
                     <span className="text-muted-foreground"> · {a.parcours.duree}</span>
                   )}

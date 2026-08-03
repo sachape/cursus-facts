@@ -11,6 +11,7 @@ import { chargerFiche, type ParcoursFiche } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { CodeBarres, CompteurInformations } from "@/composants/CodeBarres";
 import { libellePrix } from "@/composants/RangeeParcours";
+import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
 import type { EtatInformation } from "@/types/cursus";
 
 export const Route = createFileRoute("/parcours/$slug")({
@@ -108,7 +109,9 @@ function Fiche() {
         </p>
 
         <div className="mt-5 flex flex-wrap items-end justify-between gap-4">
-          <p className="chiffre text-xl">{libellePrix(p.prixMin, p.prixMax)}</p>
+          <p className="chiffre text-xl">
+            {libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}
+          </p>
           <div className="flex flex-col items-end gap-1">
             <CodeBarres etats={e} />
             <CompteurInformations
@@ -146,7 +149,7 @@ function Fiche() {
             {p.variantes.map((v, i) => (
               <li key={i} className="flex justify-between gap-4 text-sm">
                 <span>{v.label}</span>
-                <span className="chiffre">{libellePrix(v.prix, null)}</span>
+                <span className="chiffre">{libellePrix(v.prix, null, p.modaliteAcces)}</span>
               </li>
             ))}
           </ul>
@@ -162,7 +165,24 @@ function Fiche() {
 
         <dl className="mt-4">
           <Information libelle="Prix" etat={e.prix}>
-            <span className="chiffre">{libellePrix(p.prixMin, p.prixMax)}</span>
+            <span className="chiffre">{libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}</span>
+            {p.modaliteAcces !== null && (
+              <>
+                <span className="mt-1 block text-xs text-muted-foreground">
+                  {DEFINITIONS_MODALITES[p.modaliteAcces]}
+                </span>
+                {p.modaliteAcces === "freemium" && (
+                  <span className="mt-1 block text-xs text-absent">
+                    Le parcours complet est payant.
+                  </span>
+                )}
+                {p.sourceModaliteAcces !== null && (
+                  <span className="mt-1 block text-xs text-muted-foreground">
+                    Source : {p.sourceModaliteAcces}
+                  </span>
+                )}
+              </>
+            )}
           </Information>
           <Information libelle="Modalités de paiement" etat={e.modalites_paiement}>
             {p.modalitesPaiement}

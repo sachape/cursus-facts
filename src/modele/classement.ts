@@ -19,6 +19,7 @@
  * informations atterrit en page 4. Le référencement est préservé, la visibilité
  * non.
  */
+import { rangPrix, type ModaliteAcces } from "./modalite-acces";
 
 /** Ce dont le classement a besoin de connaître d'un parcours. */
 export type ParcoursClassable = {
@@ -29,6 +30,8 @@ export type ParcoursClassable = {
   dateVerification: string | null;
   prixMin: number | null;
   volumeHoraire: number | null;
+  /** Qualifie la gratuité : une fiche en accès partiel n'est pas gratuite. */
+  modaliteAcces?: ModaliteAcces | null;
 };
 
 export const TRIS = ["informations", "verification", "alphabetique", "prix", "duree"] as const;
@@ -74,7 +77,14 @@ const COMPARATEURS: Record<Tri, (a: ParcoursClassable, b: ParcoursClassable) => 
     b.infosRenseignees - a.infosRenseignees || parFraicheur(a, b) || parIntitule(a, b),
   verification: parFraicheur,
   alphabetique: parIntitule,
-  prix: (a, b) => absentsEnDernier(a.prixMin, b.prixMin, (a.prixMin ?? 0) - (b.prixMin ?? 0)),
+  // Le rang tient compte de la modalité : une fiche en accès partiel gratuit
+  // ne remonte pas en tête comme si le parcours complet ne coûtait rien.
+  prix: (a, b) =>
+    absentsEnDernier(
+      a.prixMin,
+      b.prixMin,
+      rangPrix(a.prixMin, a.modaliteAcces ?? null) - rangPrix(b.prixMin, b.modaliteAcces ?? null),
+    ),
   duree: (a, b) =>
     absentsEnDernier(a.volumeHoraire, b.volumeHoraire, (a.volumeHoraire ?? 0) - (b.volumeHoraire ?? 0)),
 };

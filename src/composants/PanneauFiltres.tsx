@@ -179,12 +179,23 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
           basculer={() => modifier({ eligibleCpf: !filtres.eligibleCpf })}
         />
         <Option
-          id="f-gratuit"
-          libelle="Gratuit"
-          coche={filtres.gratuitSeulement}
-          nombre={compterAvec(parcours, filtres, { gratuitSeulement: true })}
-          basculer={() => modifier({ gratuitSeulement: !filtres.gratuitSeulement })}
+          id="f-sans-frais"
+          libelle="Sans frais pour l'apprenant"
+          coche={filtres.sansFrais}
+          nombre={compterAvec(parcours, filtres, { sansFrais: true })}
+          basculer={() => modifier({ sansFrais: !filtres.sansFrais })}
         />
+        <Option
+          id="f-partiel"
+          libelle="Accès partiel gratuit"
+          coche={filtres.accesPartiel}
+          nombre={compterAvec(parcours, filtres, { accesPartiel: true })}
+          basculer={() => modifier({ accesPartiel: !filtres.accesPartiel })}
+        />
+        <p className="pt-2 text-xs text-muted-foreground">
+          Une gratuité dont la modalité n&apos;a pas été vérifiée sur le site de l&apos;organisme
+          ne remonte dans aucun de ces deux filtres.
+        </p>
       </Groupe>
 
       <Groupe titre="Format">

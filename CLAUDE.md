@@ -141,6 +141,22 @@ lycée public restent gratuits, les certifications éditeurs aussi. Vérifié pa
 `completude.test.ts`, qui n'autorise de baisse par rapport au prototype que sur
 le champ prix, d'exactement un point.
 
+**Qualification de la gratuité — 3 août 2026.** « Gratuit » recouvrait cinq
+réalités écrasées en un prix valant zéro. Le champ `modalite_acces` les
+distingue (`libre`, `compte_requis`, `compte_produit_requis`,
+`certificat_payant`, `freemium`, `pris_en_charge`, ou `null`).
+
+Règle : **la gratuité ne s'affirme jamais par défaut**. Elle n'est renseignée
+que si l'organisme la publie sur son propre site, et la modalité est alors
+précisée ; sinon le prix reste « Non communiqué ». On n'écrit jamais « Gratuit »
+seul. `preparer.test.ts` interdit tout prix nul sans modalité.
+
+Sur les 40 fiches auditées : 14 qualifiées sur source officielle ou fait
+structurel, 26 passées à « Non communiqué » faute de vérification. Informations
+vérifiées 2 368 → 2 340. Le filtre « Gratuit » est devenu « Sans frais pour
+l'apprenant » + « Accès partiel gratuit », et le tri par prix ne remonte plus
+les fiches freemium en tête (`rangPrix`).
+
 ## Dette connue, tracée
 
 - **Éligibilité CPF** : 164 fiches à `cpf: 0`. Le booléen ne distingue pas

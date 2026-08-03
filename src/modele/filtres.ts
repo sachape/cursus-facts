@@ -19,6 +19,7 @@ import type {
   FormatParcours,
   NiveauEntree,
 } from "@/types/cursus";
+import { PARTIELLEMENT_GRATUIT, SANS_FRAIS } from "./modalite-acces";
 
 export type Filtres = {
   recherche: string;
@@ -34,7 +35,17 @@ export type Filtres = {
   budget: number | null;
   eligibleCpf: boolean;
   certifiantSeulement: boolean;
-  gratuitSeulement: boolean;
+  /**
+   * L'apprenant ne débourse rien pour le parcours : accès libre, compte requis,
+   * compte produit requis, ou prise en charge par un tiers.
+   */
+  sansFrais: boolean;
+  /**
+   * Une partie seulement est gratuite : freemium, ou contenu libre à
+   * certification payante. Distinct de « sans frais » — les confondre était
+   * précisément l'ambiguïté du filtre « Gratuit ».
+   */
+  accesPartiel: boolean;
 };
 
 export const FILTRES_VIDES: Filtres = {
@@ -49,7 +60,8 @@ export const FILTRES_VIDES: Filtres = {
   budget: null,
   eligibleCpf: false,
   certifiantSeulement: false,
-  gratuitSeulement: false,
+  sansFrais: false,
+  accesPartiel: false,
 };
 
 /** Texte indexé pour la recherche plein texte. */
@@ -92,7 +104,18 @@ export function correspond(p: ParcoursListe, f: Filtres): boolean {
 
   if (f.eligibleCpf && p.eligibleCpf !== true) return false;
   if (f.certifiantSeulement && p.codeRncpRs === null) return false;
-  if (f.gratuitSeulement && p.prixMin !== 0) return false;
+
+  // Une gratuité non qualifiée n'est pas une gratuité : une fiche dont la
+  // modalité n'a pas été vérifiée ne remonte dans aucun des deux filtres.
+  if (f.sansFrais && (p.modaliteAcces === null || !SANS_FRAIS.includes(p.modaliteAcces))) {
+    return false;
+  }
+  if (
+    f.accesPartiel &&
+    (p.modaliteAcces === null || !PARTIELLEMENT_GRATUIT.includes(p.modaliteAcces))
+  ) {
+    return false;
+  }
 
   return true;
 }
@@ -130,6 +153,7 @@ export function auMoinsUnFiltre(f: Filtres): boolean {
     f.budget !== null ||
     f.eligibleCpf ||
     f.certifiantSeulement ||
-    f.gratuitSeulement
+    f.sansFrais ||
+    f.accesPartiel
   );
 }

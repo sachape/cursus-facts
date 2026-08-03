@@ -14,6 +14,7 @@ const p = (partiel: Partial<ParcoursListe> = {}): ParcoursListe => ({
   competencesCouvertes: [],
   prixMin: null,
   prixMax: null,
+  modaliteAcces: null,
   duree: null,
   volumeHoraire: null,
   formats: [],
@@ -91,11 +92,28 @@ describe("un filtre ne punit jamais une fiche incomplète", () => {
     expect(correspond(p({ prixMin: 490 }), { ...FILTRES_VIDES, budget: 500 })).toBe(true);
   });
 
-  it("ne confond pas un prix nul avec un prix absent sur le filtre gratuit", () => {
-    expect(correspond(p({ prixMin: 0 }), { ...FILTRES_VIDES, gratuitSeulement: true })).toBe(true);
-    expect(correspond(p({ prixMin: null }), { ...FILTRES_VIDES, gratuitSeulement: true })).toBe(
-      false,
-    );
+  it("ne fait remonter aucune fiche dont la gratuité n'est pas qualifiée", () => {
+    // Une gratuité non vérifiée n'est pas une gratuité : elle ne remonte ni
+    // dans « sans frais », ni dans « accès partiel ».
+    const nonQualifie = p({ prixMin: 0, modaliteAcces: null });
+    expect(correspond(nonQualifie, { ...FILTRES_VIDES, sansFrais: true })).toBe(false);
+    expect(correspond(nonQualifie, { ...FILTRES_VIDES, accesPartiel: true })).toBe(false);
+  });
+
+  it("sépare « sans frais » de « accès partiel gratuit »", () => {
+    const libre = p({ prixMin: 0, modaliteAcces: "libre" });
+    const priseEnCharge = p({ prixMin: null, modaliteAcces: "pris_en_charge" });
+    const freemium = p({ prixMin: null, modaliteAcces: "freemium" });
+    const certificat = p({ prixMin: 0, modaliteAcces: "certificat_payant" });
+
+    expect(correspond(libre, { ...FILTRES_VIDES, sansFrais: true })).toBe(true);
+    expect(correspond(priseEnCharge, { ...FILTRES_VIDES, sansFrais: true })).toBe(true);
+    expect(correspond(freemium, { ...FILTRES_VIDES, sansFrais: true })).toBe(false);
+    expect(correspond(certificat, { ...FILTRES_VIDES, sansFrais: true })).toBe(false);
+
+    expect(correspond(freemium, { ...FILTRES_VIDES, accesPartiel: true })).toBe(true);
+    expect(correspond(certificat, { ...FILTRES_VIDES, accesPartiel: true })).toBe(true);
+    expect(correspond(libre, { ...FILTRES_VIDES, accesPartiel: true })).toBe(false);
   });
 
   it("n'assimile pas une éligibilité CPF inconnue à une non-éligibilité affirmée", () => {

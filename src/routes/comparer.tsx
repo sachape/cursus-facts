@@ -17,6 +17,7 @@ import { chargerFiche, type ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "@/composants/comparaison";
 import { libellePrix } from "@/composants/RangeeParcours";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
+import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -70,7 +71,16 @@ export function construireLignes(parcours: readonly ParcoursFiche[]): Ligne[] {
   return [
     { attribut: "Domaine", valeurs: par((p) => LIBELLES_DOMAINES[p.domaine]) },
     { attribut: "Sujet principal", valeurs: par((p) => p.sujetPrincipal) },
-    { attribut: "Prix", valeurs: par((p) => libellePrix(p.prixMin, p.prixMax)) },
+    {
+      attribut: "Prix",
+      valeurs: par((p) => libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)),
+    },
+    {
+      attribut: "Modalité d'accès",
+      valeurs: par((p) =>
+        p.modaliteAcces === null ? NON_COMMUNIQUE : DEFINITIONS_MODALITES[p.modaliteAcces],
+      ),
+    },
     {
       attribut: "Variantes",
       valeurs: par((p) =>

@@ -119,14 +119,25 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 368 informations vérifiées", () => {
-    // 2 401 avant la correction des prix nuls non attestés : 33 parcours
-    // affichaient un prix de 0 € tout en déclarant des frais universitaires ou
-    // un financement par un tiers. Un prix pris en charge n'est pas un prix nul.
+  it("écrit 2 340 informations vérifiées", () => {
+    // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
+    // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus), dont
+    // la modalité n'a pas pu être vérifiée sur le site de l'organisme. La
+    // baisse est le résultat attendu : le compteur cesse de créditer une
+    // gratuité que personne n'a vérifiée.
     const total = preparation.fiches.reduce(
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2368);
+    expect(total).toBe(2340);
+  });
+
+  it("n'écrit jamais un prix nul sans modalité d'accès vérifiée", () => {
+    // La gratuité ne s'affirme pas par défaut : un prix à 0 sans qualification
+    // serait exactement l'information déduite que l'invariant 2 interdit.
+    const nonQualifies = preparation.fiches.filter(
+      (f) => f.colonnes["prix_min"] === 0 && f.colonnes["modalite_acces"] === null,
+    );
+    expect(nonQualifies.map((f) => f.slug)).toEqual([]);
   });
 });

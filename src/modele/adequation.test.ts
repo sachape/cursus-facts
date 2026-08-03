@@ -21,6 +21,7 @@ const p = (partiel: Partial<ParcoursListe> = {}): ParcoursListe => ({
   competencesCouvertes: [],
   prixMin: null,
   prixMax: null,
+  modaliteAcces: null,
   duree: null,
   volumeHoraire: null,
   formats: [],

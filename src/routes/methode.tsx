@@ -22,6 +22,7 @@ import { SEUIL_SUJET_MODULES } from "@/modele/classification";
 import { SEUIL_PROXIMITE_INTITULE, SEUIL_TRONC_COMMUN } from "@/modele/regroupement";
 import { LIBELLES_TRIS, TRIS } from "@/modele/classement";
 import { CHAMPS_INFORMATION, LIBELLES_CHAMPS_INFORMATION } from "@/types/cursus";
+import { DEFINITIONS_MODALITES, LIBELLES_MODALITES } from "@/modele/modalite-acces";
 import ecartes from "@/donnees/acteurs-ecartes.json";
 
 export const Route = createFileRoute("/methode")({
@@ -222,6 +223,38 @@ function Methode() {
             </dd>
           </div>
         </dl>
+      </Section>
+
+      <Section
+        titre="La gratuité ne s'affirme jamais par défaut"
+        intro="« Gratuit » recouvre au moins cinq réalités différentes, et les écraser en un prix valant zéro induit en erreur au moment précis où l'on compare des budgets."
+      >
+        <p className="rounded border border-border bg-muted/40 p-4">
+          <strong className="font-medium">La règle.</strong> La gratuité n&apos;est renseignée que
+          si l&apos;organisme la publie explicitement sur son propre site, et la modalité
+          d&apos;accès est alors précisée. En l&apos;absence de source officielle, le prix reste
+          « Non communiqué ». Un prix absent n&apos;est pas un prix nul.
+        </p>
+
+        <p className="mt-4">Six modalités, publiées sur la fiche à côté du prix :</p>
+        <dl className="mt-2 space-y-2">
+          {(Object.keys(DEFINITIONS_MODALITES) as Array<keyof typeof DEFINITIONS_MODALITES>).map(
+            (modalite) => (
+              <div key={modalite}>
+                <dt className="inline font-medium">{LIBELLES_MODALITES[modalite]} — </dt>
+                <dd className="inline text-muted-foreground">
+                  {DEFINITIONS_MODALITES[modalite]}
+                </dd>
+              </div>
+            ),
+          )}
+        </dl>
+
+        <p className="mt-4 text-muted-foreground">
+          Une fiche dont la modalité n&apos;a pas été vérifiée ne remonte dans aucun des deux
+          filtres de gratuité, et les parcours en accès partiel ne remontent pas en tête du tri
+          par prix croissant : seul leur contenu d&apos;appel est gratuit.
+        </p>
       </Section>
 
       <Section

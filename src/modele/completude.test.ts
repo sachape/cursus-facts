@@ -30,6 +30,7 @@ const offre = (partiel: Partial<OffreNormalisee> = {}): OffreNormalisee => ({
   domaineDeclare: null,
   competencesDeclarees: [],
   classificationManuelle: false,
+  modaliteAcces: null,
   ...partiel,
 });
 

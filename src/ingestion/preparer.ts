@@ -111,6 +111,9 @@ function colonnesDe(
     outils_enseignes: tete.outils,
     programme: tete.programme?.map((titre) => ({ titre })) ?? null,
     non_couvert: tete.nonCouvert,
+    // Qualification de la gratuité : jamais déduite, jamais affirmée par défaut.
+    modalite_acces: tete.modaliteAcces,
+    source_modalite_acces: tete.sourceModalite ?? null,
     site_officiel: tete.url && tete.url !== "—" ? tete.url : null,
     source_information: tete.source,
     date_verification: tete.dateVerification,
