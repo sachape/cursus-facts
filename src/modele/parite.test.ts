@@ -24,9 +24,10 @@
  * 141-143 : les trois formules Amazon Incubator d'AMZ Academy. Prix, volume
  * horaire et programme corrigés le 3 août 2026 d'après le site officiel de
  * l'organisme — le prototype portait un tarif faux de 200 €.
- * 196 : AMZ Révolution, ajoutée par la collecte, absente du prototype.
+ * 196-197 : AMZ Révolution et Digital Ecom Club, ajoutées par la collecte,
+ * absentes du prototype.
  */
-const HORS_PARITE = new Set([141, 142, 143, 196]);
+const HORS_PARITE = new Set([141, 142, 143, 196, 197]);
 import { describe, expect, it } from "vitest";
 import { chargerCatalogue } from "@/donnees/catalogue";
 import { LIBELLES_DOMAINES } from "./vocabulaires";
@@ -118,8 +119,8 @@ describe("parité des distributions publiées dans le brief", () => {
     });
   });
 
-  it("compare 192 offres au prototype, les 4 autres étant tracées hors parité", () => {
-    expect(catalogue).toHaveLength(196);
+  it("compare 192 offres au prototype, les 5 autres étant tracées hors parité", () => {
+    expect(catalogue).toHaveLength(197);
     expect(classes).toHaveLength(192);
     expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(29);
   });
@@ -178,8 +179,8 @@ describe("parité du regroupement sur le catalogue réel", () => {
     expect(groupes.filter((g) => g.issue === "refus")).toHaveLength(0);
   });
 
-  it("ramène 196 offres à 194 entrées de liste", () => {
-    expect(catalogue).toHaveLength(196);
-    expect(groupes).toHaveLength(194);
+  it("ramène 197 offres à 195 entrées de liste", () => {
+    expect(catalogue).toHaveLength(197);
+    expect(groupes).toHaveLength(195);
   });
 });

@@ -7824,5 +7824,54 @@
   "classificationManuelle": true,
   "modaliteAcces": null,
   "sourceModalite": null
+ },
+ {
+  "id": 197,
+  "nom": "Digital Ecom Club",
+  "organisme": "Digital Ecom Club",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "digitalecom.club",
+  "prix": 997,
+  "duree": "Accès à vie",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucune expérience requise. Accessible aux débutants comme aux entrepreneurs disposant déjà d'une boutique.",
+  "cpf": 0,
+  "financements": [
+   "Paiement en 4 fois",
+   "Paiement en 2 fois sans frais"
+  ],
+  "certification": null,
+  "outils": [
+   "Shopify"
+  ],
+  "programme": [
+   "Fondations",
+   "Recherche produit",
+   "Branding",
+   "Création de la boutique Shopify",
+   "Marketing multi-plateformes",
+   "Email et automatisation",
+   "Logistique",
+   "Création de produit en laboratoire",
+   "Fiscalité",
+   "IA appliquée",
+   "Module bonus"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-08-03",
+  "source": "digitalecom.club — page officielle de la formation",
+  "domaineDeclareLibelle": "E-commerce",
+  "competencesDeclarees": [
+   "Shopify"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null
  }
 ]

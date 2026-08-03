@@ -17,16 +17,16 @@ describe("slug", () => {
 });
 
 describe("volume ingéré", () => {
-  it("prépare 194 fiches et 162 organismes à partir de 196 offres", () => {
-    // 196 offres, dont trois fusionnées en une seule fiche : les formules
+  it("prépare 195 fiches et 163 organismes à partir de 197 offres", () => {
+    // 197 offres, dont trois fusionnées en une seule fiche : les formules
     // Builder, Premium et Elite d'Amazon Incubator partagent le même programme.
-    expect(preparation.fiches).toHaveLength(194);
-    expect(preparation.organismes).toHaveLength(162);
+    expect(preparation.fiches).toHaveLength(195);
+    expect(preparation.organismes).toHaveLength(163);
   });
 
   it("conserve une variante par offre, y compris dans une fiche fusionnée", () => {
     const variantes = preparation.fiches.reduce((s, f) => s + f.variantes.length, 0);
-    expect(variantes).toBe(196);
+    expect(variantes).toBe(197);
   });
 
   it("ne laisse plus aucun cas en file d'arbitrage", () => {
@@ -54,9 +54,9 @@ describe("repli des groupes ambigus", () => {
     expect(ambigus).toHaveLength(0);
   });
 
-  it("expose 194 entrées de liste, sans repli", () => {
+  it("expose 195 entrées de liste, sans repli", () => {
     const entrees = preparation.fiches.filter((f) => f.ancreSlug === null);
-    expect(entrees).toHaveLength(194);
+    expect(entrees).toHaveLength(195);
   });
 });
 
@@ -99,10 +99,10 @@ describe("ce qui part en base respecte les invariants", () => {
   });
 
   it("trace l'écart de classification sur les fiches concernées", () => {
-    // Trois indépendants du prototype, plus AMZ Révolution dont le domaine est
-    // déclaré à la main : le classificateur échoue sur ce vocabulaire.
+    // Trois indépendants du prototype, plus AMZ Révolution et Digital Ecom
+    // Club : le classificateur échoue systématiquement sur ce vocabulaire.
     const traces = preparation.fiches.filter((f) => f.colonnes["ecart_classification"] !== null);
-    expect(traces).toHaveLength(4);
+    expect(traces).toHaveLength(5);
     for (const fiche of traces) {
       expect(fiche.colonnes["ecart_classification"]).toContain("règle automatique proposait");
     }
@@ -117,7 +117,7 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 320 informations vérifiées", () => {
+  it("écrit 2 333 informations vérifiées", () => {
     // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
     // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus).
     // 2 340 → 2 320 : fusion des trois formules Amazon Incubator en une fiche,
@@ -127,7 +127,7 @@ describe("ce qui part en base respecte les invariants", () => {
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2320);
+    expect(total).toBe(2333);
   });
 
   it("n'écrit jamais un prix nul sans modalité d'accès vérifiée", () => {
