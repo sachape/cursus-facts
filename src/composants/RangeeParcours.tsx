@@ -9,6 +9,7 @@ import { Link } from "@tanstack/react-router";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
+import { useComparaison } from "./comparaison";
 
 /** Un prix nul est une information ; un prix inconnu n'en est pas une. */
 export function libellePrix(min: number | null, max: number | null): string {
@@ -19,18 +20,30 @@ export function libellePrix(min: number | null, max: number | null): string {
   return format(min);
 }
 
+const LIBELLES_FORMATS = {
+  distanciel: "Distanciel",
+  presentiel: "Présentiel",
+  alternance: "Alternance",
+} as const;
+
 export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
+  const { ajouter, retirer, contient } = useComparaison();
   const prixInconnu = parcours.prixMin === null;
+  const selectionne = contient(parcours.slug);
 
   return (
     <li className="border-b border-border">
-      <Link
-        to="/parcours/$slug"
-        params={{ slug: parcours.slug }}
-        className="grid grid-cols-1 gap-3 px-1 py-5 transition-colors hover:bg-muted/40 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-6"
-      >
+      <div className="grid grid-cols-1 gap-3 px-1 py-5 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-6">
         <div className="min-w-0">
-          <h3 className="font-titre text-base font-medium leading-snug">{parcours.nom}</h3>
+          <h3 className="font-titre text-base font-medium leading-snug">
+            <Link
+              to="/parcours/$slug"
+              params={{ slug: parcours.slug }}
+              className="transition-colors hover:underline hover:underline-offset-4"
+            >
+              {parcours.nom}
+            </Link>
+          </h3>
           <p className="mt-1 text-sm text-muted-foreground">{parcours.organismeNom}</p>
 
           <p className="mt-2 text-xs text-muted-foreground">
@@ -40,9 +53,7 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
             {parcours.formats.length > 0 && (
               <>
                 <span aria-hidden> · </span>
-                {parcours.formats
-                  .map((f) => ({ distanciel: "Distanciel", presentiel: "Présentiel", alternance: "Alternance" })[f])
-                  .join(", ")}
+                {parcours.formats.map((f) => LIBELLES_FORMATS[f]).join(", ")}
               </>
             )}
           </p>
@@ -58,12 +69,27 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
               {parcours.motifRegroupement}
             </p>
           )}
+
+          <button
+            type="button"
+            onClick={() =>
+              selectionne
+                ? retirer(parcours.slug)
+                : ajouter({ slug: parcours.slug, nom: parcours.nom })
+            }
+            aria-pressed={selectionne}
+            className={`mt-3 rounded-md border px-2.5 py-1 text-xs transition-colors ${
+              selectionne
+                ? "border-foreground bg-foreground text-background"
+                : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+            }`}
+          >
+            {selectionne ? "Retirer de la comparaison" : "Ajouter à la comparaison"}
+          </button>
         </div>
 
         <div className="flex items-center justify-between gap-6 sm:flex-col sm:items-end sm:gap-2">
-          <p
-            className={`chiffre text-sm ${prixInconnu ? "text-muted-foreground italic" : ""}`}
-          >
+          <p className={`chiffre text-sm ${prixInconnu ? "text-muted-foreground italic" : ""}`}>
             {libellePrix(parcours.prixMin, parcours.prixMax)}
           </p>
           <div className="flex flex-col items-end gap-1">
@@ -74,7 +100,7 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
             />
           </div>
         </div>
-      </Link>
+      </div>
     </li>
   );
 }

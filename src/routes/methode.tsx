@@ -98,6 +98,71 @@ function Methode() {
       </header>
 
       <Section
+        titre="Les invariants"
+        intro="Huit règles que rien ne peut faire céder — ni un organisme mécontent, ni une opportunité commerciale, ni une contrainte technique. Elles sont publiées ici pour pouvoir nous être opposées."
+      >
+        <ol className="list-decimal space-y-2 pl-5">
+          <li>Aucune note, aucun score de qualité, aucune moyenne, nulle part.</li>
+          <li>
+            Aucune information déduite. Un champ inconnu affiche « Non communiqué ».
+          </li>
+          <li>Une fiche incomplète n&apos;est jamais retirée du catalogue.</li>
+          <li>
+            Le tri décrit l&apos;état des fiches, jamais la qualité, et son libellé est toujours
+            visible.
+          </li>
+          <li>Aucun placement achetable, aucun lien affilié.</li>
+          <li>
+            L&apos;assistant produit une adéquation, jamais un jugement, et énonce toujours les
+            écarts.
+          </li>
+          <li>Toute règle appliquée au catalogue est publiée dans cette page.</li>
+          <li>Toute décision manuelle est journalisée et publique.</li>
+        </ol>
+      </Section>
+
+      <Section
+        titre="Une fiche = un parcours pédagogique distinct"
+        intro="C'est la décision structurante du produit, et l'unité de tout le reste."
+      >
+        <p>
+          Une fiche ne correspond ni à une session, ni à un organisme, ni à une déclinaison
+          marketing. Quatre niveaux se superposent :
+        </p>
+        <dl className="mt-3 space-y-2">
+          <div>
+            <dt className="inline font-medium">Organisme — </dt>
+            <dd className="inline text-muted-foreground">
+              l&apos;acteur qui vend et délivre. Sert à la navigation, et évite qu&apos;un acteur
+              sature les résultats.
+            </dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">Parcours — </dt>
+            <dd className="inline text-muted-foreground">
+              un parcours pédagogique distinct. <strong>C&apos;est la fiche</strong>, et
+              l&apos;unité de comparaison.
+            </dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">Variante — </dt>
+            <dd className="inline text-muted-foreground">
+              une déclinaison commerciale d&apos;un parcours. Affichée dans la fiche, jamais dans
+              la liste. Seuls le prix, l&apos;accompagnement, la durée et les options peuvent
+              varier à l&apos;intérieur d&apos;une fiche : un contenu différent fait une fiche
+              différente.
+            </dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">Session — </dt>
+            <dd className="inline text-muted-foreground">
+              une date, une ville, une promotion. Hors périmètre pour l&apos;instant.
+            </dd>
+          </div>
+        </dl>
+      </Section>
+
+      <Section
         titre="Ce que ce comparateur refuse d'être"
         intro="Le marché français de la formation e-commerce est dominé par des comparatifs rémunérés à l'affiliation. Ce site fait l'inverse."
       >
@@ -260,18 +325,88 @@ function Methode() {
         {arbitrages.length === 0 ? (
           <p className="text-muted-foreground">Aucun cas en attente.</p>
         ) : (
-          <ul className="space-y-3">
-            {arbitrages.map((a) => (
-              <li key={a.id} className="rounded border border-border p-4">
-                <p className="font-medium">{a.regle_muette}</p>
-                <p className="mt-1 text-muted-foreground">{a.preuve_retenue}</p>
-                <p className="mt-2 text-xs text-absent">
-                  {a.decision ?? "En attente d'arbitrage"}
-                </p>
-              </li>
-            ))}
-          </ul>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="border-b border-border text-left text-xs text-muted-foreground">
+                  <th className="p-2 font-normal">Cas</th>
+                  <th className="p-2 font-normal">Règle restée muette</th>
+                  <th className="p-2 font-normal">Preuve retenue</th>
+                  <th className="p-2 font-normal">Statut</th>
+                  <th className="p-2 font-normal">Décidé le</th>
+                </tr>
+              </thead>
+              <tbody>
+                {arbitrages.map((a) => (
+                  <tr key={a.id} className="border-b border-border align-top">
+                    <td className="p-2 font-medium">{a.regle_muette}</td>
+                    <td className="p-2 text-muted-foreground">Fusion automatique</td>
+                    <td className="p-2 text-muted-foreground">{a.preuve_retenue}</td>
+                    <td className="p-2">
+                      <span className={a.decision === null ? "text-absent" : "text-atteste"}>
+                        {a.decision ?? "En attente d'arbitrage"}
+                      </span>
+                    </td>
+                    <td className="chiffre p-2 text-muted-foreground">
+                      {a.date_decision
+                        ? new Date(a.date_decision).toLocaleDateString("fr-FR")
+                        : "—"}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
+
+        <p className="mt-4 rounded border border-absent/30 p-3 text-xs text-absent">
+          Reste à trancher avant d&apos;ouvrir la revendication de fiche : qui arbitre, et sous
+          quel délai. Une file sans engagement de traitement devient une zone grise permanente —
+          et c&apos;est précisément là que la pression commerciale s&apos;exercerait, puisque
+          rester en attente coûte des lignes de résultats à l&apos;organisme.
+        </p>
+      </Section>
+
+      <Section
+        titre="Sources de données"
+        intro="D'où vient chaque information. Un champ non publié par ces sources reste « Non communiqué » : nous ne le complétons pas par recoupement."
+      >
+        <dl className="space-y-2">
+          <div>
+            <dt className="inline font-medium">France Compétences — </dt>
+            <dd className="inline text-muted-foreground">
+              fiches RNCP et RS, certificateurs accrédités, liste des organismes préparant à la
+              certification, dates d&apos;échéance.
+            </dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">Mon Compte Formation — </dt>
+            <dd className="inline text-muted-foreground">
+              catalogue des offres éligibles au CPF.
+            </dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">
+              Liste publique des organismes de formation —{" "}
+            </dt>
+            <dd className="inline text-muted-foreground">déclarations d&apos;activité, SIRET.</dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">Liste des certifiés Qualiopi — </dt>
+            <dd className="inline text-muted-foreground">statut qualité.</dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">Onisep — </dt>
+            <dd className="inline text-muted-foreground">diplômes d&apos;État, BTS, BUT.</dd>
+          </div>
+          <div>
+            <dt className="inline font-medium">Sites officiels des organismes — </dt>
+            <dd className="inline text-muted-foreground">
+              prix réels, programmes, formations indépendantes. La source retenue est affichée sur
+              chaque fiche, avec sa date de vérification.
+            </dd>
+          </div>
+        </dl>
       </Section>
 
       <Section

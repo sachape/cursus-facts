@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Navigation } from "@/composants/Navigation";
+import { BarreComparaison } from "@/composants/BarreComparaison";
+import { FournisseurComparaison } from "@/composants/comparaison";
 
 function NotFoundComponent() {
   return (
@@ -123,8 +126,20 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      {/*
+        La sélection de comparaison vit au-dessus des routes : on choisit des
+        parcours dans Explorer et on les retrouve dans Comparer.
+      */}
+      <FournisseurComparaison>
+        <div className="flex min-h-screen flex-col">
+          <Navigation />
+          <div className="flex-1">
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </div>
+          <BarreComparaison />
+        </div>
+      </FournisseurComparaison>
     </QueryClientProvider>
   );
 }

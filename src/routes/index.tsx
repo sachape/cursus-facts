@@ -18,6 +18,10 @@ import { Input } from "@/components/ui/input";
 import type { DomaineParcours } from "@/types/cursus";
 
 export const Route = createFileRoute("/")({
+  // La vue Organismes renvoie ici avec ?organisme=<nom> : le filtre vit dans
+  // l'URL pour que le lien soit partageable et que le retour arrière marche.
+  validateSearch: (recherche: Record<string, unknown>): { organisme?: string } =>
+    typeof recherche["organisme"] === "string" ? { organisme: recherche["organisme"] } : {},
   loader: () => chargerListe(),
   component: Explorer,
   head: () => ({
@@ -44,7 +48,11 @@ const LIBELLES_TRIS_COURTS: Record<Tri, string> = {
 
 function Explorer() {
   const parcours = Route.useLoaderData();
-  const [filtres, setFiltres] = useState<Filtres>(FILTRES_VIDES);
+  const { organisme } = Route.useSearch();
+  const [filtres, setFiltres] = useState<Filtres>({
+    ...FILTRES_VIDES,
+    organisme: organisme ?? null,
+  });
   const [tri, setTri] = useState<Tri>(TRI_PAR_DEFAUT);
   const [limite, setLimite] = useState(PAR_PAGE);
 
@@ -110,6 +118,12 @@ function Explorer() {
               />
             ))}
           </div>
+
+          {filtres.organisme !== null && (
+            <p className="mt-4 rounded-md border border-border px-3 py-2 text-xs">
+              Catalogue filtré sur <span className="font-medium">{filtres.organisme}</span>
+            </p>
+          )}
 
           {auMoinsUnFiltre(filtres) && (
             <Button

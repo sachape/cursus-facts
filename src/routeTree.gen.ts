@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AideAuChoixRouteImport } from './routes/aide-au-choix'
+import { Route as ComparerRouteImport } from './routes/comparer'
 import { Route as MethodeRouteImport } from './routes/methode'
+import { Route as OrganismesRouteImport } from './routes/organismes'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
 import { Route as ParcoursSlugRouteImport } from './routes/parcours.$slug'
 
@@ -19,9 +22,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AideAuChoixRoute = AideAuChoixRouteImport.update({
+  id: '/aide-au-choix',
+  path: '/aide-au-choix',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComparerRoute = ComparerRouteImport.update({
+  id: '/comparer',
+  path: '/comparer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MethodeRoute = MethodeRouteImport.update({
   id: '/methode',
   path: '/methode',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganismesRoute = OrganismesRouteImport.update({
+  id: '/organismes',
+  path: '/organismes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSeedRoute = AdminSeedRouteImport.update({
@@ -37,34 +55,68 @@ const ParcoursSlugRoute = ParcoursSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aide-au-choix': typeof AideAuChoixRoute
+  '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
+  '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aide-au-choix': typeof AideAuChoixRoute
+  '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
+  '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aide-au-choix': typeof AideAuChoixRoute
+  '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
+  '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/methode' | '/admin/seed' | '/parcours/$slug'
+  fullPaths:
+    | '/'
+    | '/aide-au-choix'
+    | '/comparer'
+    | '/methode'
+    | '/organismes'
+    | '/admin/seed'
+    | '/parcours/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/methode' | '/admin/seed' | '/parcours/$slug'
-  id: '__root__' | '/' | '/methode' | '/admin/seed' | '/parcours/$slug'
+  to:
+    | '/'
+    | '/aide-au-choix'
+    | '/comparer'
+    | '/methode'
+    | '/organismes'
+    | '/admin/seed'
+    | '/parcours/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/aide-au-choix'
+    | '/comparer'
+    | '/methode'
+    | '/organismes'
+    | '/admin/seed'
+    | '/parcours/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AideAuChoixRoute: typeof AideAuChoixRoute
+  ComparerRoute: typeof ComparerRoute
   MethodeRoute: typeof MethodeRoute
+  OrganismesRoute: typeof OrganismesRoute
   AdminSeedRoute: typeof AdminSeedRoute
   ParcoursSlugRoute: typeof ParcoursSlugRoute
 }
@@ -78,11 +130,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aide-au-choix': {
+      id: '/aide-au-choix'
+      path: '/aide-au-choix'
+      fullPath: '/aide-au-choix'
+      preLoaderRoute: typeof AideAuChoixRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/comparer': {
+      id: '/comparer'
+      path: '/comparer'
+      fullPath: '/comparer'
+      preLoaderRoute: typeof ComparerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/methode': {
       id: '/methode'
       path: '/methode'
       fullPath: '/methode'
       preLoaderRoute: typeof MethodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organismes': {
+      id: '/organismes'
+      path: '/organismes'
+      fullPath: '/organismes'
+      preLoaderRoute: typeof OrganismesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/seed': {
@@ -104,7 +177,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AideAuChoixRoute: AideAuChoixRoute,
+  ComparerRoute: ComparerRoute,
   MethodeRoute: MethodeRoute,
+  OrganismesRoute: OrganismesRoute,
   AdminSeedRoute: AdminSeedRoute,
   ParcoursSlugRoute: ParcoursSlugRoute,
 }

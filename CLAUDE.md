@@ -48,9 +48,30 @@ src/modele/        les règles, sans aucune dépendance à l'interface
   regroupement     fusion / refus / ambigu · veto du tronc à 80 %
   completude       état des 18 champs · troisième état d'applicabilité
   classement       5 tris déclarés, libellé publié, jamais un ratio
+  filtres          filtre principal = sujet, jamais compétence couverte
+  adequation       5 critères → correspondances + écarts, déterministe
 src/donnees/       catalogue source + référence de parité avec le prototype
 src/ingestion/     preparer (pur, testable) → ecrire.server (service_role)
+src/composants/    code-barres 18 traits, rangée, filtres, comparaison, nav
+src/routes/        / · /comparer · /aide-au-choix · /organismes · /methode
+                   /parcours/$slug · /admin/seed
 ```
+
+## Assistant d'adéquation
+
+`src/modele/adequation.ts` calcule **tout** : le choix des trois parcours, les
+correspondances et les écarts. Claude n'intervient que pour rédiger une phrase
+factuelle à partir de ces listes — il ne sélectionne rien et n'invente aucun
+écart, qui serait une information déduite.
+
+Sa sortie est vérifiée contre `MOTS_INTERDITS` avant affichage ; une phrase
+contenant du vocabulaire de jugement est **remplacée** par la version
+déterministe, pas corrigée. Sans `ANTHROPIC_API_KEY` côté serveur, le repli
+déterministe s'applique et les faits restent exacts.
+
+Attention aux limites de mot : `\b` en JavaScript est ASCII et ne délimite pas
+un mot finissant par « é ». Le garde-fou utilise `(?<![\p{L}\p{N}])…` avec le
+drapeau `u`, sans quoi « recommandé » passe inaperçu.
 
 ## Ingestion
 

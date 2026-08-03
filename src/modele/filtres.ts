@@ -22,6 +22,8 @@ import type {
 
 export type Filtres = {
   recherche: string;
+  /** Nom exact d'un organisme, tel que passé par la vue Organismes. */
+  organisme: string | null;
   domaine: DomaineParcours | null;
   sujets: string[];
   competences: string[];
@@ -37,6 +39,7 @@ export type Filtres = {
 
 export const FILTRES_VIDES: Filtres = {
   recherche: "",
+  organisme: null,
   domaine: null,
   sujets: [],
   competences: [],
@@ -71,6 +74,7 @@ export function correspond(p: ParcoursListe, f: Filtres): boolean {
     if (!termes.every((t) => texte.includes(t))) return false;
   }
 
+  if (f.organisme !== null && p.organismeNom !== f.organisme) return false;
   if (f.domaine !== null && p.domaine !== f.domaine) return false;
   if (f.sujets.length > 0 && !f.sujets.includes(p.sujetPrincipal)) return false;
   if (f.competences.length > 0 && !f.competences.some((c) => p.competencesCouvertes.includes(c))) {
@@ -116,6 +120,7 @@ export function compterAvec(
 export function auMoinsUnFiltre(f: Filtres): boolean {
   return (
     f.recherche.trim() !== "" ||
+    f.organisme !== null ||
     f.domaine !== null ||
     f.sujets.length > 0 ||
     f.competences.length > 0 ||
