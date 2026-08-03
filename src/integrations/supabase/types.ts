@@ -90,7 +90,7 @@ export type Database = {
           eligible_cpf: boolean | null
           etats: Json
           financements_acceptes: string[] | null
-          format: Database["public"]["Enums"]["format_parcours"] | null
+          formats: Database["public"]["Enums"]["format_parcours"][]
           id: string
           infos_applicables: number
           infos_renseignees: number
@@ -127,7 +127,7 @@ export type Database = {
           eligible_cpf?: boolean | null
           etats?: Json
           financements_acceptes?: string[] | null
-          format?: Database["public"]["Enums"]["format_parcours"] | null
+          formats?: Database["public"]["Enums"]["format_parcours"][]
           id?: string
           infos_applicables?: number
           infos_renseignees?: number
@@ -164,7 +164,7 @@ export type Database = {
           eligible_cpf?: boolean | null
           etats?: Json
           financements_acceptes?: string[] | null
-          format?: Database["public"]["Enums"]["format_parcours"] | null
+          formats?: Database["public"]["Enums"]["format_parcours"][]
           id?: string
           infos_applicables?: number
           infos_renseignees?: number
@@ -322,7 +322,7 @@ export type Database = {
         | "non_communique"
         | "non_applicable"
         | "a_confirmer"
-      format_parcours: "distanciel" | "presentiel" | "alternance" | "hybride"
+      format_parcours: "distanciel" | "presentiel" | "alternance"
       niveau_entree: "aucun_prerequis" | "bac2" | "bac3" | "experience"
       statut_regroupement: "autonome" | "fusionne" | "replie_arbitrage"
     }
@@ -478,7 +478,7 @@ export const Constants = {
         "non_applicable",
         "a_confirmer",
       ],
-      format_parcours: ["distanciel", "presentiel", "alternance", "hybride"],
+      format_parcours: ["distanciel", "presentiel", "alternance"],
       niveau_entree: ["aucun_prerequis", "bac2", "bac3", "experience"],
       statut_regroupement: ["autonome", "fusionne", "replie_arbitrage"],
     },

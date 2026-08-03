@@ -38,7 +38,7 @@ export const DOMAINES_PARCOURS = [
 ] as const;
 export type DomaineParcours = (typeof DOMAINES_PARCOURS)[number];
 
-export const FORMATS_PARCOURS = ["distanciel", "presentiel", "alternance", "hybride"] as const;
+export const FORMATS_PARCOURS = ["distanciel", "presentiel", "alternance"] as const;
 export type FormatParcours = (typeof FORMATS_PARCOURS)[number];
 
 export const NIVEAUX_ENTREE = ["aucun_prerequis", "bac2", "bac3", "experience"] as const;
