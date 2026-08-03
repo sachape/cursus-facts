@@ -1,7 +1,15 @@
 import { describe, expect, it } from "vitest";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { ETATS_PAR_DEFAUT } from "@/types/cursus";
-import { auMoinsUnFiltre, compterAvec, correspond, filtrer, FILTRES_VIDES } from "./filtres";
+import {
+  auMoinsUnFiltre,
+  compterAvec,
+  compterEcartesFauteInformation,
+  correspond,
+  filtrer,
+  FILTRES_VIDES,
+  trancheDe,
+} from "./filtres";
 
 const p = (partiel: Partial<ParcoursListe> = {}): ParcoursListe => ({
   id: "1",
@@ -171,5 +179,65 @@ describe("état des filtres", () => {
     expect(auMoinsUnFiltre({ ...FILTRES_VIDES, domaine: "ecommerce" })).toBe(true);
     expect(auMoinsUnFiltre({ ...FILTRES_VIDES, budget: 1000 })).toBe(true);
     expect(auMoinsUnFiltre({ ...FILTRES_VIDES, eligibleCpf: true })).toBe(true);
+  });
+});
+
+describe("filtres restaurés et nouveaux", () => {
+  it("filtre sur le financement par l'entreprise", () => {
+    const opco = p({ financements: ["OPCO", "CPF"] });
+    const sans = p({ financements: ["Paiement comptant"] });
+    expect(correspond(opco, { ...FILTRES_VIDES, financementEntreprise: true })).toBe(true);
+    expect(correspond(sans, { ...FILTRES_VIDES, financementEntreprise: true })).toBe(false);
+  });
+
+  it("filtre sur le prix effectivement publié", () => {
+    expect(correspond(p({ prixMin: 490 }), { ...FILTRES_VIDES, prixCommunique: true })).toBe(true);
+    expect(correspond(p({ prixMin: null }), { ...FILTRES_VIDES, prixCommunique: true })).toBe(
+      false,
+    );
+  });
+
+  it("range les volumes horaires dans les bonnes tranches", () => {
+    expect(trancheDe(null)).toBe("non_communique");
+    expect(trancheDe(12)).toBe("moins_20h");
+    expect(trancheDe(20)).toBe("de_20_a_100h");
+    expect(trancheDe(100)).toBe("de_20_a_100h");
+    expect(trancheDe(450)).toBe("de_100_a_500h");
+    expect(trancheDe(900)).toBe("plus_500h");
+  });
+
+  it("rend la tranche « non communiqué » sélectionnable", () => {
+    // Une fiche sans volume publié doit pouvoir être cherchée, pas seulement
+    // subie : c'est un état légitime du catalogue.
+    const sansVolume = p({ volumeHoraire: null });
+    expect(correspond(sansVolume, { ...FILTRES_VIDES, durees: ["non_communique"] })).toBe(true);
+    expect(correspond(sansVolume, { ...FILTRES_VIDES, durees: ["moins_20h"] })).toBe(false);
+  });
+});
+
+describe("un filtre n'efface jamais silencieusement les fiches sans information", () => {
+  it("compte les fiches écartées faute d'information publiée", () => {
+    const parcours = [
+      p({ nom: "Éligible", eligibleCpf: true }),
+      p({ nom: "Non éligible", eligibleCpf: false }),
+      p({ nom: "Inconnu", eligibleCpf: null }),
+    ];
+    const filtres = { ...FILTRES_VIDES, eligibleCpf: true };
+    expect(filtrer(parcours, filtres)).toHaveLength(1);
+    // « Non éligible » est écarté sur un fait ; « Inconnu » sur un silence.
+    expect(compterEcartesFauteInformation(parcours, filtres)).toBe(1);
+  });
+
+  it("ne compte pas une fiche qui serait écartée de toute façon", () => {
+    // Elle échoue aussi sur le domaine : ce n'est pas le silence de
+    // l'organisme qui l'exclut.
+    const parcours = [p({ nom: "Autre domaine", domaine: "referencement", eligibleCpf: null })];
+    const filtres = { ...FILTRES_VIDES, eligibleCpf: true, domaine: "ecommerce" as const };
+    expect(compterEcartesFauteInformation(parcours, filtres)).toBe(0);
+  });
+
+  it("ne compte rien quand aucun filtre silencieux n'est actif", () => {
+    const parcours = [p({ eligibleCpf: null })];
+    expect(compterEcartesFauteInformation(parcours, FILTRES_VIDES)).toBe(0);
   });
 });

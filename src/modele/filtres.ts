@@ -21,6 +21,36 @@ import type {
 } from "@/types/cursus";
 import { PARTIELLEMENT_GRATUIT, SANS_FRAIS } from "./modalite-acces";
 
+/** Tranches de volume horaire publiées dans la page Méthode. */
+export const TRANCHES_DUREE = [
+  "moins_20h",
+  "de_20_a_100h",
+  "de_100_a_500h",
+  "plus_500h",
+  "non_communique",
+] as const;
+export type TrancheDuree = (typeof TRANCHES_DUREE)[number];
+
+export const LIBELLES_DUREES: Record<TrancheDuree, string> = {
+  moins_20h: "Moins de 20 h",
+  de_20_a_100h: "20 à 100 h",
+  de_100_a_500h: "100 à 500 h",
+  plus_500h: "Plus de 500 h",
+  non_communique: "Non communiqué",
+};
+
+/** Tranche d'un volume horaire, ou `non_communique` s'il n'est pas publié. */
+export function trancheDe(volumeHoraire: number | null): TrancheDuree {
+  if (volumeHoraire === null) return "non_communique";
+  if (volumeHoraire < 20) return "moins_20h";
+  if (volumeHoraire <= 100) return "de_20_a_100h";
+  if (volumeHoraire <= 500) return "de_100_a_500h";
+  return "plus_500h";
+}
+
+/** Financements qui relèvent d'une prise en charge par l'employeur. */
+const FINANCEMENTS_ENTREPRISE = /OPCO|plan de développement|entreprise|alternance/i;
+
 export type Filtres = {
   recherche: string;
   /** Nom exact d'un organisme, tel que passé par la vue Organismes. */
@@ -40,6 +70,16 @@ export type Filtres = {
    * compte produit requis, ou prise en charge par un tiers.
    */
   sansFrais: boolean;
+  /** Financement par l'employeur : OPCO, plan de développement des compétences. */
+  financementEntreprise: boolean;
+  /** Ne garder que les parcours dont le prix est effectivement publié. */
+  prixCommunique: boolean;
+  /**
+   * Tranches de volume horaire. `non_communique` est une tranche explicite et
+   * sélectionnable : une fiche sans volume publié doit pouvoir être cherchée,
+   * pas seulement subie.
+   */
+  durees: TrancheDuree[];
   /**
    * Une partie seulement est gratuite : freemium, ou contenu libre à
    * certification payante. Distinct de « sans frais » — les confondre était
@@ -61,6 +101,9 @@ export const FILTRES_VIDES: Filtres = {
   eligibleCpf: false,
   certifiantSeulement: false,
   sansFrais: false,
+  financementEntreprise: false,
+  prixCommunique: false,
+  durees: [],
   accesPartiel: false,
 };
 
@@ -101,6 +144,19 @@ export function correspond(p: ParcoursListe, f: Filtres): boolean {
   // Un prix non publié n'exclut pas : l'absence d'information ne doit ni
   // profiter ni nuire. La fiche reste visible, son prix reste inconnu.
   if (f.budget !== null && p.prixMin !== null && p.prixMin > f.budget) return false;
+
+  if (f.durees.length > 0 && !f.durees.includes(trancheDe(p.volumeHoraire))) return false;
+
+  // Un prix non publié n'est pas un prix : ce filtre sert à ne voir que les
+  // fiches sur lesquelles une comparaison budgétaire est possible.
+  if (f.prixCommunique && p.prixMin === null) return false;
+
+  if (
+    f.financementEntreprise &&
+    !(p.financements ?? []).some((x) => FINANCEMENTS_ENTREPRISE.test(x))
+  ) {
+    return false;
+  }
 
   if (f.eligibleCpf && p.eligibleCpf !== true) return false;
   if (f.certifiantSeulement && p.codeRncpRs === null) return false;
@@ -154,6 +210,68 @@ export function auMoinsUnFiltre(f: Filtres): boolean {
     f.eligibleCpf ||
     f.certifiantSeulement ||
     f.sansFrais ||
-    f.accesPartiel
+    f.accesPartiel ||
+    f.financementEntreprise ||
+    f.prixCommunique ||
+    f.durees.length > 0
   );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Écartées faute d'information                                               */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Champs sur lesquels un filtre actif peut écarter une fiche pour la seule
+ * raison que l'organisme ne publie pas l'information.
+ */
+const CHAMPS_SILENCIEUX: Array<{
+  actif: (f: Filtres) => boolean;
+  absent: (p: ParcoursListe) => boolean;
+}> = [
+  { actif: (f) => f.eligibleCpf, absent: (p) => p.eligibleCpf === null },
+  { actif: (f) => f.certifiantSeulement, absent: (p) => p.codeRncpRs === null },
+  { actif: (f) => f.sansFrais || f.accesPartiel, absent: (p) => p.modaliteAcces === null },
+  { actif: (f) => f.financementEntreprise, absent: (p) => (p.financements ?? []).length === 0 },
+  { actif: (f) => f.niveaux.length > 0, absent: (p) => p.niveauEntree === null },
+  { actif: (f) => f.formats.length > 0, absent: (p) => p.formats.length === 0 },
+];
+
+/**
+ * Compte les parcours écartés parce qu'une information manque, et non parce
+ * qu'ils ne correspondent pas.
+ *
+ * Sans ce décompte, le filtrage récompense mécaniquement les organismes qui
+ * publient et efface les autres — ce qui contredit la règle d'exhaustivité et
+ * reproduit, au niveau du filtre, l'incitation inversée que le regroupement
+ * cherche à supprimer.
+ *
+ * La tranche « non communiqué » du filtre de durée est un choix explicite de
+ * l'utilisateur : elle n'entre pas dans ce décompte.
+ */
+export function compterEcartesFauteInformation(
+  parcours: readonly ParcoursListe[],
+  f: Filtres,
+): number {
+  const actifs = CHAMPS_SILENCIEUX.filter((champ) => champ.actif(f));
+  if (actifs.length === 0) return 0;
+
+  // Une fiche n'est comptée que si elle échoue *uniquement* à cause d'un champ
+  // absent : si elle serait écartée de toute façon, ce n'est pas le silence de
+  // l'organisme qui l'exclut.
+  const sansCesFiltres: Filtres = {
+    ...f,
+    eligibleCpf: false,
+    certifiantSeulement: false,
+    sansFrais: false,
+    accesPartiel: false,
+    financementEntreprise: false,
+    niveaux: [],
+    formats: [],
+  };
+
+  return parcours.filter(
+    (p) =>
+      !correspond(p, f) && correspond(p, sansCesFiltres) && actifs.some((champ) => champ.absent(p)),
+  ).length;
 }

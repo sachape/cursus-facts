@@ -12,7 +12,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
-import { auMoinsUnFiltre, filtrer, FILTRES_VIDES, type Filtres } from "@/modele/filtres";
+import {
+  auMoinsUnFiltre,
+  compterEcartesFauteInformation,
+  filtrer,
+  FILTRES_VIDES,
+  type Filtres,
+} from "@/modele/filtres";
 import { classer, LIBELLES_TRIS, TRIS, TRI_PAR_DEFAUT, type Tri } from "@/modele/classement";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { PanneauFiltres } from "@/composants/PanneauFiltres";
@@ -104,6 +110,13 @@ function Explorer() {
   );
 
   const informationsTotales = parcours.reduce((s, p) => s + p.infosRenseignees, 0);
+  // Vérifiable : c'est la date la plus récente réellement portée par une fiche.
+  const derniereVerification = parcours
+    .map((p) => p.dateVerification)
+    .filter((d): d is string => d !== null)
+    .sort()
+    .at(-1) ?? null;
+  const ecartesFauteInfo = compterEcartesFauteInformation(parcours, filtres);
   const organismes = new Set(parcours.map((p) => p.organismeNom)).size;
   const domaines = (Object.keys(LIBELLES_DOMAINES) as DomaineParcours[]).filter((d) =>
     parcours.some((p) => p.domaine === d),
@@ -165,7 +178,7 @@ function Explorer() {
     <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
       <header className="pb-6">
         <h1 className="font-titre text-3xl font-semibold tracking-tight sm:text-4xl">
-          Comparateur de formations e-commerce
+          Comparez les formations avant de dépenser plusieurs milliers d&apos;euros.
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           On vous aide à choisir la bonne formation — pas à vous dire laquelle est la meilleure.
@@ -174,12 +187,38 @@ function Explorer() {
             Comment ce catalogue est construit
           </Link>
         </p>
+        {/*
+          Le titre parle de dépense, mais un tiers du catalogue est gratuit ou
+          pris en charge : sans cette ligne, il laisserait croire que le
+          comparateur ne traite que les formations coûteuses.
+        */}
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Des formations gratuites d&apos;éditeurs aux mastères à plusieurs milliers d&apos;euros,
+          en passant par les diplômes publics en alternance.
+        </p>
 
+        {/*
+          Trois chiffres vrais, et une date vérifiable. Aucune métrique de
+          vanité : « heures analysées » serait le premier chiffre qu'un
+          organisme mécontent attaquerait, et il aurait raison.
+        */}
         <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3 text-sm">
           <Chiffre valeur={parcours.length} libelle="parcours" />
           <Chiffre valeur={organismes} libelle="organismes" />
-          <Chiffre valeur={domaines.length} libelle="domaines" />
           <Chiffre valeur={informationsTotales} libelle="informations vérifiées" />
+          {derniereVerification !== null && (
+            <div>
+              <dt className="sr-only">Dernière vérification du catalogue</dt>
+              <dd className="chiffre text-xl">
+                {new Date(derniereVerification).toLocaleDateString("fr-FR", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </dd>
+              <p className="text-xs text-muted-foreground">dernière vérification</p>
+            </div>
+          )}
         </dl>
       </header>
 
@@ -237,6 +276,36 @@ function Explorer() {
               </select>
             </label>
           </div>
+
+          {ecartesFauteInfo > 0 && (
+            /*
+              Sans ce décompte, le filtrage récompenserait mécaniquement les
+              organismes qui publient et effacerait les autres — ce qui
+              contredit la règle d'exhaustivité.
+            */
+            <p className="mt-3 rounded-md border border-absent/30 px-3 py-2 text-xs text-absent">
+              <span className="chiffre">{ecartesFauteInfo}</span>{" "}
+              {ecartesFauteInfo > 1 ? "parcours ont été écartés" : "parcours a été écarté"} faute
+              d&apos;information publiée, et non parce qu&apos;ils ne correspondent pas.{" "}
+              <button
+                type="button"
+                onClick={() =>
+                  modifier({
+                    eligibleCpf: false,
+                    certifiantSeulement: false,
+                    sansFrais: false,
+                    accesPartiel: false,
+                    financementEntreprise: false,
+                    niveaux: [],
+                    formats: [],
+                  })
+                }
+                className="underline underline-offset-2 hover:text-foreground"
+              >
+                Les réafficher
+              </button>
+            </p>
+          )}
 
           {resultats.length === 0 ? (
             <p className="py-16 text-center text-sm text-muted-foreground">

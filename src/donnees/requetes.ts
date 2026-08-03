@@ -65,6 +65,13 @@ export type ParcoursFiche = ParcoursListe & {
   modalitesPaiement: string | null;
   /** Source ayant permis d'établir la modalité d'accès. */
   sourceModaliteAcces: string | null;
+  /* Provenance — historique de la fiche. */
+  creeeLe: string | null;
+  misAJourLe: string | null;
+  /** Champ concerné par le dernier changement de valeur. */
+  champModifie: string | null;
+  /** Vérification interne, correction signalée, ou déclaration de l'organisme. */
+  origineChangement: string | null;
   variantes: Array<{
     label: string;
     prix: number | null;
@@ -146,7 +153,7 @@ export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> 
     .select(
       `${COLONNES_LISTE}, prerequis, outils_enseignes, programme, non_couvert,
        site_officiel, source_information, ecart_classification, modalites_paiement,
-       source_modalite_acces,
+       source_modalite_acces, created_at, updated_at,
        variantes ( label, prix, duree, volume_horaire, accompagnement )`,
     )
     .eq("slug", slug)
@@ -170,6 +177,12 @@ export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> 
     ecartClassification: ligne["ecart_classification"] as string | null,
     modalitesPaiement: ligne["modalites_paiement"] as string | null,
     sourceModaliteAcces: ligne["source_modalite_acces"] as string | null,
+    creeeLe: ligne["created_at"] as string | null,
+    misAJourLe: ligne["updated_at"] as string | null,
+    // Colonnes prévues pour la revendication de fiche ; absentes du schéma
+    // tant que la migration n'est pas appliquée, d'où la lecture défensive.
+    champModifie: (ligne["champ_modifie"] as string | null) ?? null,
+    origineChangement: (ligne["origine_changement"] as string | null) ?? null,
     variantes: (ligne.variantes ?? []).map((v) => ({
       label: v["label"] as string,
       prix: v["prix"] as number | null,

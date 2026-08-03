@@ -1,16 +1,32 @@
 /**
  * Une rangée de la liste.
  *
+ * Elle doit permettre d'écarter un parcours SANS ouvrir la fiche. C'est le
+ * critère qui décide de ce qu'elle affiche : tout ce sur quoi on renonce
+ * — coût, durée, certification, éligibilité CPF — y figure au niveau décisif,
+ * et tout ce qui précise sans trancher reste au second plan.
+ *
+ * Toute valeur absente affiche « Non communiqué » à son emplacement, jamais un
+ * blanc : l'absence est une information, et le compteur en dépend.
+ *
  * Liste, pas grille de cartes : à 193 entrées, des rangées séparées par des
- * filets se parcourent beaucoup plus vite, et alignent les colonnes de chiffres
- * d'une ligne à l'autre.
+ * filets se parcourent beaucoup plus vite.
  */
 import { Link } from "@tanstack/react-router";
 import type { ParcoursListe } from "@/donnees/requetes";
-import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
+import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { useComparaison } from "./comparaison";
 import { libellePrixQualifie, type ModaliteAcces } from "@/modele/modalite-acces";
+import {
+  certificationCourte,
+  Decisif,
+  GroupeDecisif,
+  ListePastilles,
+  NON_COMMUNIQUE,
+  Pastille,
+  Qualifiant,
+} from "./Niveaux";
 
 /**
  * Prix affiché, qualifié par la modalité d'accès.
@@ -32,6 +48,37 @@ const LIBELLES_FORMATS = {
   alternance: "Alternance",
 } as const;
 
+const LIBELLES_NIVEAUX = {
+  aucun_prerequis: "Aucun prérequis",
+  bac2: "Bac+2",
+  bac3: "Bac+3",
+  experience: "Expérience",
+} as const;
+
+/** Interception du clic qui ouvre la fiche en panneau sans casser le lien. */
+function interception(
+  parcours: ParcoursListe,
+  ouvrirEnPanneau?: (parcours: ParcoursListe, origine: HTMLElement) => void,
+) {
+  return (evenement: React.MouseEvent<HTMLAnchorElement>) => {
+    // On laisse passer les clics qui demandent explicitement une autre cible :
+    // nouvel onglet, nouvelle fenêtre, téléchargement.
+    if (
+      ouvrirEnPanneau === undefined ||
+      evenement.defaultPrevented ||
+      evenement.metaKey ||
+      evenement.ctrlKey ||
+      evenement.shiftKey ||
+      evenement.altKey ||
+      evenement.button !== 0
+    ) {
+      return;
+    }
+    evenement.preventDefault();
+    ouvrirEnPanneau(parcours, evenement.currentTarget);
+  };
+}
+
 export function RangeeParcours({
   parcours,
   ouvrirEnPanneau,
@@ -44,93 +91,131 @@ export function RangeeParcours({
   ouvrirEnPanneau?: (parcours: ParcoursListe, origine: HTMLElement) => void;
 }) {
   const { ajouter, retirer, contient } = useComparaison();
-  const prixInconnu = parcours.prixMin === null && parcours.modaliteAcces === null;
   const selectionne = contient(parcours.slug);
+  const certification = certificationCourte(parcours.certification, parcours.codeRncpRs);
+  const prixInconnu = parcours.prixMin === null && parcours.modaliteAcces === null;
+  const ouvrir = interception(parcours, ouvrirEnPanneau);
 
   return (
     <li className="border-b border-border">
-      <div className="grid grid-cols-1 gap-3 px-1 py-5 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-6">
+      <div className="grid grid-cols-1 gap-5 px-1 py-6 min-[840px]:grid-cols-[1fr_auto] min-[840px]:gap-8">
+        {/* Bloc gauche — ce qu'est le parcours. */}
         <div className="min-w-0">
           <h3 className="font-titre text-base font-medium leading-snug">
             <Link
               to="/parcours/$slug"
               params={{ slug: parcours.slug }}
               className="transition-colors hover:underline hover:underline-offset-4"
-              onClick={(evenement) => {
-                // On laisse passer les clics qui demandent explicitement une
-                // autre cible : nouvel onglet, nouvelle fenêtre, téléchargement.
-                if (
-                  ouvrirEnPanneau === undefined ||
-                  evenement.defaultPrevented ||
-                  evenement.metaKey ||
-                  evenement.ctrlKey ||
-                  evenement.shiftKey ||
-                  evenement.altKey ||
-                  evenement.button !== 0
-                ) {
-                  return;
-                }
-                evenement.preventDefault();
-                ouvrirEnPanneau(parcours, evenement.currentTarget);
-              }}
+              onClick={ouvrir}
             >
               {parcours.nom}
             </Link>
           </h3>
-          <p className="mt-1 text-sm text-muted-foreground">{parcours.organismeNom}</p>
 
-          <p className="mt-2 text-xs text-muted-foreground">
-            {LIBELLES_DOMAINES[parcours.domaine]}
+          <Qualifiant>
+            {parcours.organismeNom}
             <span aria-hidden> · </span>
-            {parcours.sujetPrincipal}
-            {parcours.formats.length > 0 && (
-              <>
-                <span aria-hidden> · </span>
-                {parcours.formats.map((f) => LIBELLES_FORMATS[f]).join(", ")}
-              </>
-            )}
-          </p>
+            {LIBELLES_CATEGORIES[parcours.organismeCategorie]}
+          </Qualifiant>
+
+          <div className="mt-2.5">
+            <ListePastilles>
+              <Pastille>{LIBELLES_DOMAINES[parcours.domaine]}</Pastille>
+              <Pastille appuyee>{parcours.sujetPrincipal}</Pastille>
+              {parcours.competencesCouvertes.slice(0, 4).map((c) => (
+                <Pastille key={c}>{c}</Pastille>
+              ))}
+              {parcours.competencesCouvertes.length > 4 && (
+                <Pastille>+{parcours.competencesCouvertes.length - 4}</Pastille>
+              )}
+            </ListePastilles>
+          </div>
+
+          {/* Ligne de faits : qualifiants, jamais décisifs. */}
+          <div className="mt-2.5">
+            <Qualifiant>
+              {parcours.duree ?? NON_COMMUNIQUE}
+              <span aria-hidden> · </span>
+              {parcours.volumeHoraire !== null ? `${parcours.volumeHoraire} h` : NON_COMMUNIQUE}
+              <span aria-hidden> · </span>
+              {parcours.formats.length > 0
+                ? parcours.formats.map((f) => LIBELLES_FORMATS[f]).join(", ")
+                : NON_COMMUNIQUE}
+              <span aria-hidden> · </span>
+              {parcours.niveauEntree !== null
+                ? LIBELLES_NIVEAUX[parcours.niveauEntree]
+                : NON_COMMUNIQUE}
+            </Qualifiant>
+          </div>
 
           {parcours.offresRepliees > 0 && (
             /*
              * Sans ce repli, un organisme opaque occuperait autant de lignes
-             * qu'il a d'offres. L'ambiguïté n'achète pas de visibilité — et le
-             * motif est affiché plutôt que subi.
+             * qu'il a d'offres. L'ambiguïté n'achète pas de visibilité.
              */
-            <p className="mt-2 rounded border border-absent/30 px-2 py-1 text-xs text-absent">
+            <p className="mt-2.5 rounded border border-absent/30 px-2 py-1 text-xs text-absent">
               {parcours.offresRepliees + 1} offres regroupées, arbitrage en attente.{" "}
               {parcours.motifRegroupement}
             </p>
           )}
-
-          <button
-            type="button"
-            onClick={() =>
-              selectionne
-                ? retirer(parcours.slug)
-                : ajouter({ slug: parcours.slug, nom: parcours.nom })
-            }
-            aria-pressed={selectionne}
-            className={`mt-3 rounded-md border px-2.5 py-1 text-xs transition-colors ${
-              selectionne
-                ? "border-foreground bg-foreground text-background"
-                : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
-            }`}
-          >
-            {selectionne ? "Retirer de la comparaison" : "Ajouter à la comparaison"}
-          </button>
         </div>
 
-        <div className="flex items-center justify-between gap-6 sm:flex-col sm:items-end sm:gap-2">
-          <p className={`chiffre text-sm ${prixInconnu ? "text-muted-foreground italic" : ""}`}>
-            {libellePrix(parcours.prixMin, parcours.prixMax, parcours.modaliteAcces)}
-          </p>
-          <div className="flex flex-col items-end gap-1">
+        {/* Bloc droit — ce sur quoi on renonce ou on poursuit. */}
+        <div className="min-[840px]:w-64 min-[840px]:shrink-0">
+          <GroupeDecisif>
+            <Decisif etiquette="Coût pour l'apprenant" absent={prixInconnu}>
+              {libellePrix(parcours.prixMin, parcours.prixMax, parcours.modaliteAcces)}
+            </Decisif>
+          </GroupeDecisif>
+
+          <div className="mt-3 flex flex-wrap gap-x-7 gap-y-3">
+            <Decisif
+              etiquette="Certification"
+              absent={certification === null}
+              atteste={certification !== null}
+            >
+              {certification ?? NON_COMMUNIQUE}
+            </Decisif>
+            {parcours.eligibleCpf === true && (
+              <Decisif etiquette="Financement" atteste>
+                Éligible CPF
+              </Decisif>
+            )}
+          </div>
+
+          <div className="mt-4 flex flex-col gap-1">
             <CodeBarres etats={parcours.etats} />
             <CompteurInformations
               renseignees={parcours.infosRenseignees}
               applicables={parcours.infosApplicables}
             />
+          </div>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link
+              to="/parcours/$slug"
+              params={{ slug: parcours.slug }}
+              className="rounded-md border border-border px-2.5 py-1 text-xs transition-colors hover:border-foreground/40"
+              onClick={ouvrir}
+            >
+              Fiche
+            </Link>
+            <button
+              type="button"
+              onClick={() =>
+                selectionne
+                  ? retirer(parcours.slug)
+                  : ajouter({ slug: parcours.slug, nom: parcours.nom })
+              }
+              aria-pressed={selectionne}
+              className={`rounded-md border px-2.5 py-1 text-xs transition-colors ${
+                selectionne
+                  ? "border-foreground bg-foreground text-background"
+                  : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+              }`}
+            >
+              {selectionne ? "Retirer" : "Ajouter à la comparaison"}
+            </button>
           </div>
         </div>
       </div>

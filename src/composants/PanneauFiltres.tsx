@@ -9,7 +9,13 @@
  * il se lit comme une navigation en pleine largeur (voir `OngletsDomaines`).
  */
 import type { ParcoursListe } from "@/donnees/requetes";
-import { compterAvec, type Filtres } from "@/modele/filtres";
+import {
+  compterAvec,
+  LIBELLES_DUREES,
+  TRANCHES_DUREE,
+  type Filtres,
+  type TrancheDuree,
+} from "@/modele/filtres";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
 import type { CategorieOrganisme, FormatParcours, NiveauEntree } from "@/types/cursus";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -170,6 +176,23 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         </p>
       </Groupe>
 
+      <Groupe titre="Durée">
+        <p className="mb-2 text-xs text-muted-foreground">
+          Volume horaire total publié. La tranche « Non communiqué » se sélectionne comme les
+          autres.
+        </p>
+        {TRANCHES_DUREE.map((tranche) => (
+          <Option
+            key={tranche}
+            id={`duree-${tranche}`}
+            libelle={LIBELLES_DUREES[tranche]}
+            coche={filtres.durees.includes(tranche)}
+            nombre={compterAvec(parcours, filtres, { durees: [tranche] })}
+            basculer={() => modifier({ durees: basculer<TrancheDuree>(filtres.durees, tranche) })}
+          />
+        ))}
+      </Groupe>
+
       <Groupe titre="Financement">
         <Option
           id="f-cpf"
@@ -184,6 +207,20 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
           coche={filtres.sansFrais}
           nombre={compterAvec(parcours, filtres, { sansFrais: true })}
           basculer={() => modifier({ sansFrais: !filtres.sansFrais })}
+        />
+        <Option
+          id="f-entreprise"
+          libelle="Financé par l'entreprise"
+          coche={filtres.financementEntreprise}
+          nombre={compterAvec(parcours, filtres, { financementEntreprise: true })}
+          basculer={() => modifier({ financementEntreprise: !filtres.financementEntreprise })}
+        />
+        <Option
+          id="f-prix-communique"
+          libelle="Prix communiqué"
+          coche={filtres.prixCommunique}
+          nombre={compterAvec(parcours, filtres, { prixCommunique: true })}
+          basculer={() => modifier({ prixCommunique: !filtres.prixCommunique })}
         />
         <Option
           id="f-partiel"

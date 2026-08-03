@@ -70,6 +70,38 @@ function Information({
   );
 }
 
+/** Une date lisible, ou la mention d'absence — jamais un blanc. */
+function formaterDate(valeur: string | null): string {
+  if (valeur === null) return "Non communiquée";
+  return new Date(valeur).toLocaleDateString("fr-FR", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+function LigneProvenance({
+  libelle,
+  valeur,
+  detail,
+}: {
+  libelle: string;
+  valeur: string;
+  detail?: string | undefined;
+}) {
+  return (
+    <div className="py-2.5 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-4">
+      <dt className="text-sm text-muted-foreground">{libelle}</dt>
+      <dd className="mt-0.5 sm:mt-0">
+        <span className="chiffre text-sm">{valeur}</span>
+        {detail !== undefined && (
+          <span className="mt-0.5 block text-xs text-muted-foreground">{detail}</span>
+        )}
+      </dd>
+    </div>
+  );
+}
+
 function Section({
   titre,
   intro,
@@ -396,24 +428,46 @@ export function ContenuFiche({
         </Section>
       )}
 
+      {/*
+        Historique de provenance.
+
+        « Mise à jour » et « vérification » sont deux faits distincts, et les
+        confondre trompe : une fiche vérifiée le mois dernier sans changement
+        est plus fiable qu'une fiche modifiée il y a un an et jamais
+        recontrôlée depuis.
+
+        Cet historique prépare la revendication de fiche. Le jour où un
+        organisme modifie ses valeurs, il montrera ce qui a changé, quand, et à
+        la demande de qui — un comparateur dont l'historique est public est
+        beaucoup plus difficile à corrompre qu'un comparateur qui n'affiche que
+        son état courant.
+      */}
       <Section titre="Provenance">
-        <dl className="space-y-2 text-sm">
-          <div>
-            <dt className="inline text-muted-foreground">Source : </dt>
-            <dd className="inline">{p.sourceInformation ?? "Non communiquée"}</dd>
-          </div>
-          <div>
-            <dt className="inline text-muted-foreground">Dernière vérification : </dt>
-            <dd className="chiffre inline">
-              {p.dateVerification
-                ? new Date(p.dateVerification).toLocaleDateString("fr-FR", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })
-                : "Non communiquée"}
-            </dd>
-          </div>
+        <dl className="divide-y divide-border text-sm">
+          <LigneProvenance
+            libelle="Créée"
+            valeur={formaterDate(p.creeeLe)}
+            detail="Première entrée au catalogue"
+          />
+          <LigneProvenance
+            libelle="Dernière mise à jour"
+            valeur={formaterDate(p.misAJourLe)}
+            detail={
+              p.champModifie !== null
+                ? `Champ modifié : ${p.champModifie}`
+                : "Aucun changement de valeur enregistré depuis la création"
+            }
+          />
+          <LigneProvenance
+            libelle="Source"
+            valeur={p.sourceInformation ?? "Non communiquée"}
+            detail={p.siteOfficiel ?? undefined}
+          />
+          <LigneProvenance
+            libelle="Dernière vérification"
+            valeur={formaterDate(p.dateVerification)}
+            detail={`Contrôle effectué même sans changement · Origine : ${p.origineChangement ?? "vérification interne"}`}
+          />
         </dl>
       </Section>
 
