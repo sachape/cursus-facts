@@ -9,7 +9,24 @@
  * fiche — sont volontairement HORS de ce fichier. Elles seront introduites
  * ailleurs, une par une, pour que ce test continue de mesurer ce qu'il mesure :
  * l'écart entre le prototype et son portage, et rien d'autre.
+ *
+ * LE CATALOGUE, LUI, A LE DROIT D'ÉVOLUER. Une donnée corrigée sur le site
+ * officiel d'un organisme, ou une fiche ajoutée par la collecte, ne sont pas
+ * des régressions de règle — ce sont exactement le travail attendu. Ces offres
+ * sont donc exclues de la comparaison, nommément et avec leur motif. Ce qui
+ * reste comparé est le socle inchangé depuis le portage : c'est lui qui doit
+ * rester identique au prototype.
  */
+
+/**
+ * Offres exclues de la parité, avec le motif.
+ *
+ * 141-143 : les trois formules Amazon Incubator d'AMZ Academy. Prix, volume
+ * horaire et programme corrigés le 3 août 2026 d'après le site officiel de
+ * l'organisme — le prototype portait un tarif faux de 200 €.
+ * 196 : AMZ Révolution, ajoutée par la collecte, absente du prototype.
+ */
+const HORS_PARITE = new Set([141, 142, 143, 196]);
 import { describe, expect, it } from "vitest";
 import { chargerCatalogue } from "@/donnees/catalogue";
 import { LIBELLES_DOMAINES } from "./vocabulaires";
@@ -20,7 +37,9 @@ import reference from "@/donnees/reference-prototype.json";
 const catalogue = chargerCatalogue();
 
 /** Applique la classification à tout le catalogue, une fois. */
-const classes = catalogue.map((offre) => ({
+const classes = catalogue
+  .filter((offre) => !HORS_PARITE.has(offre.id))
+  .map((offre) => ({
   offre,
   ...classifier({
     nom: offre.nom,
@@ -59,10 +78,8 @@ describe("parité de la classification sur les 195 parcours", () => {
     expect(divergences.map((d) => d.offre.nom)).toEqual([]);
   });
 
-  it("signale les mêmes écarts de classification", () => {
+  it("signale les mêmes écarts de classification sur le socle inchangé", () => {
     const ecarts = classes.filter((c) => c.ecart).map((c) => c.offre.nom);
-    const attendus = reference.parcours.filter((p) => p.ecart).length;
-    expect(ecarts).toHaveLength(attendus);
     expect(ecarts).toHaveLength(3);
   });
 });
@@ -71,23 +88,27 @@ describe("parité des distributions publiées dans le brief", () => {
   const compter = <T extends string>(valeurs: T[]) =>
     valeurs.reduce<Record<string, number>>((acc, v) => ({ ...acc, [v]: (acc[v] ?? 0) + 1 }), {});
 
-  it("reproduit la répartition par domaine", () => {
+  it("reproduit la répartition par domaine sur le socle inchangé", () => {
     expect(compter(classes.map((c) => LIBELLES_DOMAINES[c.domaine]))).toEqual({
       "E-commerce": 65,
       "Marketing digital": 47,
       "Commerce et vente": 28,
       "Publicité payante": 17,
-      Marketplaces: 11,
       "Data et conversion": 9,
+      Marketplaces: 8,
       Référencement: 7,
       "Création de site": 6,
       "Email et CRM": 5,
     });
   });
 
-  it("reproduit la répartition par catégorie d'organisme", () => {
-    expect(compter(catalogue.map((o) => o.categorie))).toEqual({
-      formation_professionnelle: 45,
+  it("reproduit la répartition par catégorie d'organisme sur le socle inchangé", () => {
+    expect(
+      compter(
+        catalogue.filter((o) => !HORS_PARITE.has(o.id)).map((o) => o.categorie),
+      ),
+    ).toEqual({
+      formation_professionnelle: 42,
       ecole: 44,
       universite: 36,
       certification_editeur: 28,
@@ -97,9 +118,9 @@ describe("parité des distributions publiées dans le brief", () => {
     });
   });
 
-  it("compte 195 parcours, 161 organismes et 29 sujets", () => {
-    expect(catalogue).toHaveLength(195);
-    expect(new Set(catalogue.map((o) => o.organisme)).size).toBe(161);
+  it("compare 192 offres au prototype, les 4 autres étant tracées hors parité", () => {
+    expect(catalogue).toHaveLength(196);
+    expect(classes).toHaveLength(192);
     expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(29);
   });
 
@@ -109,8 +130,24 @@ describe("parité des distributions publiées dans le brief", () => {
 });
 
 describe("parité du regroupement sur le catalogue réel", () => {
+  // Le regroupement porte sur TOUT le catalogue, pas seulement le socle :
+  // c'est la fusion des fiches corrigées qu'on veut vérifier ici.
+  const tout = catalogue.map((offre) => ({
+    offre,
+    ...classifier({
+      nom: offre.nom,
+      organisme: offre.organisme,
+      categorie: offre.categorie,
+      outils: offre.outils ?? [],
+      modules: offre.programme ?? [],
+      domaineDeclare: offre.domaineDeclare,
+      competencesDeclarees: offre.competencesDeclarees,
+      classificationManuelle: offre.classificationManuelle,
+    }),
+  }));
+
   const { groupes, arbitrages } = regrouper(
-    classes.map((c) => ({
+    tout.map((c) => ({
       nom: c.offre.nom,
       organisme: c.offre.organisme,
       niveauEntree: c.offre.niveauEntree,
@@ -120,32 +157,29 @@ describe("parité du regroupement sur le catalogue réel", () => {
     })),
   );
 
-  it("produit une seule file d'arbitrage, portant sur AMZ Academy", () => {
-    expect(arbitrages).toHaveLength(1);
-    expect(arbitrages[0]!.organisme).toBe("AMZ Academy");
-    expect(arbitrages[0]!.socle).toBe("Amazon Incubator");
-    expect(arbitrages[0]!.offres).toBe(3);
-    expect(arbitrages[0]!.programmesPublies).toBe(1);
+  it("ne laisse plus aucun cas en file d'arbitrage", () => {
+    // Le cas AMZ Academy est sorti de la file sans arbitrage humain :
+    // l'organisme a publié son programme, le tronc est devenu comparable, et
+    // la règle de fusion s'est appliquée d'elle-même. La file a fonctionné
+    // comme une salle d'attente, pas comme un tribunal.
+    expect(arbitrages).toHaveLength(0);
   });
 
-  it("laisse 192 parcours autonomes et replie les 3 offres ambiguës", () => {
-    const ambigus = groupes.filter((g) => g.issue === "ambigu");
-    expect(ambigus).toHaveLength(1);
-    expect(ambigus[0]!.offres).toHaveLength(3);
-    expect(groupes.filter((g) => g.issue === "unique")).toHaveLength(192);
+  it("fusionne les trois formules Amazon Incubator en une seule fiche", () => {
+    const fusions = groupes.filter((g) => g.issue === "fusion");
+    expect(fusions).toHaveLength(1);
+    expect(fusions[0]!.socle).toBe("Amazon Incubator");
+    expect(fusions[0]!.offres).toHaveLength(3);
   });
 
-  it("ne déclenche aucune fusion ni aucun refus sur le catalogue actuel", () => {
-    // Constat, pas objectif : la règle de fusion n'a encore jamais eu de quoi
-    // s'appliquer. Elle reste couverte par les cas construits de
-    // regroupement.test.ts. Le jour où ce test échoue, le catalogue a changé de
-    // nature — et c'est une information, pas une panne.
-    expect(groupes.filter((g) => g.issue === "fusion")).toHaveLength(0);
+  it("ne déclenche aucun refus sur le catalogue actuel", () => {
+    // Aucune divergence de programme prouvée à ce jour. Le jour où ce test
+    // échoue, le catalogue a changé de nature — et c'est une information.
     expect(groupes.filter((g) => g.issue === "refus")).toHaveLength(0);
   });
 
-  it("le repli ramène le catalogue de 195 offres à 193 entrées de liste", () => {
-    expect(catalogue).toHaveLength(195);
-    expect(groupes).toHaveLength(193);
+  it("ramène 196 offres à 194 entrées de liste", () => {
+    expect(catalogue).toHaveLength(196);
+    expect(groupes).toHaveLength(194);
   });
 });

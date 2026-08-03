@@ -17,50 +17,46 @@ describe("slug", () => {
 });
 
 describe("volume ingéré", () => {
-  it("prépare 195 fiches et 161 organismes", () => {
-    expect(preparation.fiches).toHaveLength(195);
-    expect(preparation.organismes).toHaveLength(161);
+  it("prépare 194 fiches et 162 organismes à partir de 196 offres", () => {
+    // 196 offres, dont trois fusionnées en une seule fiche : les formules
+    // Builder, Premium et Elite d'Amazon Incubator partagent le même programme.
+    expect(preparation.fiches).toHaveLength(194);
+    expect(preparation.organismes).toHaveLength(162);
   });
 
-  it("prépare une variante par offre, jamais moins", () => {
+  it("conserve une variante par offre, y compris dans une fiche fusionnée", () => {
     const variantes = preparation.fiches.reduce((s, f) => s + f.variantes.length, 0);
-    expect(variantes).toBe(195);
+    expect(variantes).toBe(196);
   });
 
-  it("laisse un seul cas en file d'arbitrage", () => {
-    expect(preparation.arbitrages).toHaveLength(1);
-    expect(preparation.arbitrages[0]!.preuve_retenue).toContain("non publié");
+  it("ne laisse plus aucun cas en file d'arbitrage", () => {
+    // Sorti de la file sans arbitrage : l'information manquante a été publiée
+    // et la règle s'est appliquée d'elle-même.
+    expect(preparation.arbitrages).toHaveLength(0);
+  });
+
+  it("porte l'échelle tarifaire complète sur la fiche fusionnée", () => {
+    const fusionnee = preparation.fiches.find((f) => f.variantes.length === 3);
+    expect(fusionnee).toBeDefined();
+    expect(fusionnee!.colonnes["prix_min"]).toBe(690);
+    expect(fusionnee!.colonnes["prix_max"]).toBe(2490);
+    expect(fusionnee!.colonnes["statut_regroupement"]).toBe("fusionne");
   });
 });
 
 describe("repli des groupes ambigus", () => {
-  const ambigus = preparation.fiches.filter(
-    (f) => f.colonnes["statut_regroupement"] === "replie_arbitrage",
-  );
-
-  it("garde les trois offres comme fiches distinctes", () => {
-    expect(ambigus).toHaveLength(3);
+  it("ne replie plus aucune fiche : la file est vide", () => {
+    // Le mécanisme de repli reste couvert par les cas construits de
+    // regroupement.test.ts. Ici, le catalogue n'a plus de cas ambigu.
+    const ambigus = preparation.fiches.filter(
+      (f) => f.colonnes["statut_regroupement"] === "replie_arbitrage",
+    );
+    expect(ambigus).toHaveLength(0);
   });
 
-  it("rattache deux d'entre elles à une ancre commune", () => {
-    const rattachees = ambigus.filter((f) => f.ancreSlug !== null);
-    expect(rattachees).toHaveLength(2);
-    const ancres = new Set(rattachees.map((f) => f.ancreSlug));
-    expect(ancres.size).toBe(1);
-    // L'ancre est bien l'une des trois fiches du groupe.
-    expect(ambigus.map((f) => f.slug)).toContain([...ancres][0]);
-  });
-
-  it("affiche le motif du repli sur chacune", () => {
-    for (const fiche of ambigus) {
-      expect(fiche.colonnes["motif_regroupement"]).toContain("Tronc pédagogique incomparable");
-    }
-  });
-
-  it("ramène le catalogue à 193 entrées de liste", () => {
-    // 195 fiches, dont 2 repliées derrière une ancre.
+  it("expose 194 entrées de liste, sans repli", () => {
     const entrees = preparation.fiches.filter((f) => f.ancreSlug === null);
-    expect(entrees).toHaveLength(193);
+    expect(entrees).toHaveLength(194);
   });
 });
 
@@ -102,9 +98,11 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("trace l'écart de classification sur les trois fiches concernées", () => {
+  it("trace l'écart de classification sur les fiches concernées", () => {
+    // Trois indépendants du prototype, plus AMZ Révolution dont le domaine est
+    // déclaré à la main : le classificateur échoue sur ce vocabulaire.
     const traces = preparation.fiches.filter((f) => f.colonnes["ecart_classification"] !== null);
-    expect(traces).toHaveLength(3);
+    expect(traces).toHaveLength(4);
     for (const fiche of traces) {
       expect(fiche.colonnes["ecart_classification"]).toContain("règle automatique proposait");
     }
@@ -119,17 +117,17 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 340 informations vérifiées", () => {
+  it("écrit 2 320 informations vérifiées", () => {
     // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
-    // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus), dont
-    // la modalité n'a pas pu être vérifiée sur le site de l'organisme. La
-    // baisse est le résultat attendu : le compteur cesse de créditer une
-    // gratuité que personne n'a vérifiée.
+    // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus).
+    // 2 340 → 2 320 : fusion des trois formules Amazon Incubator en une fiche,
+    // moins deux jeux d'informations comptés en double, plus les corrections
+    // vérifiées et la fiche AMZ Révolution.
     const total = preparation.fiches.reduce(
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2340);
+    expect(total).toBe(2320);
   });
 
   it("n'écrit jamais un prix nul sans modalité d'accès vérifiée", () => {

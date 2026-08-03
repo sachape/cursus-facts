@@ -24,6 +24,7 @@ import { LIBELLES_TRIS, TRIS } from "@/modele/classement";
 import { CHAMPS_INFORMATION, LIBELLES_CHAMPS_INFORMATION } from "@/types/cursus";
 import { DEFINITIONS_MODALITES, LIBELLES_MODALITES } from "@/modele/modalite-acces";
 import ecartes from "@/donnees/acteurs-ecartes.json";
+import journal from "@/donnees/journal-arbitrages.json";
 
 export const Route = createFileRoute("/methode")({
   loader: () => chargerArbitrages(),
@@ -391,6 +392,32 @@ function Methode() {
             </table>
           </div>
         )}
+
+        <h3 className="mt-6 font-titre font-medium">Cas clos</h3>
+        <p className="mt-1 text-muted-foreground">
+          Un cas peut sortir de la file sans arbitrage : il suffit que l&apos;information manquante
+          soit publiée pour que la règle automatique s&apos;applique. La file est une salle
+          d&apos;attente, pas un tribunal.
+        </p>
+        <ul className="mt-3 space-y-3">
+          {journal.map((cas) => (
+            <li key={cas.id} className="rounded border border-border p-4">
+              <p className="font-medium">{cas.regleMuette}</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Ouvert le {new Date(cas.ouvertLe).toLocaleDateString("fr-FR")} —{" "}
+                {cas.motifOuverture}
+              </p>
+              <p className="mt-2 text-atteste">
+                {new Date(cas.resoluLe).toLocaleDateString("fr-FR")} · {cas.resolution}
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">{cas.preuveRetenue}</p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Auteur de la décision :{" "}
+                {cas.auteur ?? "aucun — la règle s'est appliquée d'elle-même"}
+              </p>
+            </li>
+          ))}
+        </ul>
 
         <p className="mt-4 rounded border border-absent/30 p-3 text-xs text-absent">
           Reste à trancher avant d&apos;ouvrir la revendication de fiche : qui arbitre, et sous

@@ -157,6 +157,42 @@ vérifiées 2 368 → 2 340. Le filtre « Gratuit » est devenu « Sans frais po
 l'apprenant » + « Accès partiel gratuit », et le tri par prix ne remonte plus
 les fiches freemium en tête (`rangPrix`).
 
+**Corrections AMZ Academy — 3 août 2026.** Prix de la formule Premium
+1 890 € → **1 690 €**, volume horaire → **25 h**, programme des trois formules
+→ **10 modules**, d'après le site officiel de l'organisme. L'écart de 200 €
+venait d'une donnée de comparatif : c'est précisément ce que la règle interdit.
+
+**Arbitrage AMZ Academy résolu sans arbitrage.** Les trois programmes étant
+désormais publiés, le tronc est commun à 100 % et la règle de fusion s'est
+appliquée d'elle-même. Consigné dans `src/donnees/journal-arbitrages.json`,
+publié dans la vue Méthode. La file est une salle d'attente, pas un tribunal —
+et ce cas le démontre. Catalogue : 196 offres → **194 fiches**, 0 cas en file.
+
+## Découverte — deux statuts distincts
+
+Ne jamais confondre :
+
+- **Offre inaccessible** — sessions fermées, page en attente, modèle par
+  ouvertures ponctuelles. C'est une information sur le vendeur.
+- **Non atteint par la collecte** — page nécessitant un rendu JavaScript,
+  domaine injoignable, site non atteint. C'est une information sur notre
+  outillage.
+
+Confondre les deux fait porter au vendeur une opacité qui est peut-être la
+nôtre. Le statut par défaut d'un échec de collecte est le second.
+
+**Source débloquée.** La liste DREETS des organismes de formation déclarés est
+en open data, téléchargeable **sans clé ni inscription** (CSV ~39 Mo, mis à jour
+quotidiennement, 165 726 organismes) :
+`https://www.data.gouv.fr/api/1/datasets/r/ac59a0f5-fa83-4b82-bf12-3c5806d4f19f`
+Elle porte le numéro de déclaration d'activité et le statut Qualiopi — donc la
+bascule entre « Formations indépendantes » et « Formations professionnelles ».
+
+Limite constatée : elle ne porte **pas le code NAF**, et le filtrage par
+dénomination sociale est peu productif (11 correspondances sur 165 726, dont
+la moitié de faux positifs). Les créateurs indépendants n'incorporent pas sous
+un nom contenant « ecom ». Le ciblage NAF 85.59A/B via SIRENE reste nécessaire.
+
 ## Dette connue, tracée
 
 - **Éligibilité CPF** : 164 fiches à `cpf: 0`. Le booléen ne distingue pas

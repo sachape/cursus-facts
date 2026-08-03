@@ -119,7 +119,12 @@ describe("le compteur, rapport de deux entiers", () => {
 });
 
 describe("effet du troisième état sur le catalogue réel", () => {
-  const catalogue = chargerCatalogue();
+  // Seules les offres présentes dans la référence du prototype sont comparables :
+  // les fiches corrigées depuis, et celles ajoutées par la collecte, ne le sont
+  // pas — et n'ont pas à l'être.
+  const catalogue = chargerCatalogue().filter((o) =>
+    referenceProto.parcours.some((p) => p.id === o.id),
+  );
   const compteurs = catalogue.map((o) => compterInformations(determinerEtats(o)));
   /** Nombre d'informations que le prototype comptait, fiche par fiche. */
   const reference = catalogue.map(
@@ -140,6 +145,7 @@ describe("effet du troisième état sur le catalogue réel", () => {
 
   it("laisse toutes les fiches au catalogue, même les moins renseignées", () => {
     expect(compteurs).toHaveLength(195);
+    // 195 offres du prototype ; la 196e est postérieure à la référence.
     expect(compteurs.every((c) => c.applicables > 0)).toBe(true);
   });
 

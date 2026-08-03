@@ -5464,7 +5464,7 @@
   "url": "amzacademy.fr",
   "prix": 690,
   "duree": "Accompagnement individuel",
-  "volumeHoraire": null,
+  "volumeHoraire": 25,
   "formats": [
    "Distanciel",
    "Présentiel"
@@ -5483,18 +5483,23 @@
    "Sonar"
   ],
   "programme": [
-   "Étude de marché et recherche produit",
-   "Sourcing fournisseurs",
-   "Création et optimisation des fiches",
-   "Lancement et publicité Amazon",
-   "Suivi par un mentor individuel"
+   "Tout ce que vous devez savoir avant de commencer",
+   "Optimiser la création de son entreprise",
+   "Trouver une niche viable",
+   "Maîtriser la phase de sourcing et la logistique",
+   "Créer une véritable identité de marque (Private Label)",
+   "Créer des fiches produits optimisées pour la visibilité et les ventes",
+   "Construire son site de marque",
+   "Réussir le lancement de ses produits",
+   "Maîtriser la publicité comme un pro",
+   "Se développer à l'international"
   ],
   "nonCouvert": [
    "Boutique propre",
    "Autres marketplaces"
   ],
-  "dateVerification": "2026-07-24",
-  "source": "amzacademy.fr",
+  "dateVerification": "2026-08-03",
+  "source": "amzacademy.fr — page officielle de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "Amazon FBA",
@@ -5512,9 +5517,9 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "amzacademy.fr",
-  "prix": 1890,
+  "prix": 1690,
   "duree": "Accompagnement individuel",
-  "volumeHoraire": null,
+  "volumeHoraire": 25,
   "formats": [
    "Distanciel",
    "Présentiel"
@@ -5532,12 +5537,23 @@
    "Amazon Seller Central",
    "Sonar"
   ],
-  "programme": null,
+  "programme": [
+   "Tout ce que vous devez savoir avant de commencer",
+   "Optimiser la création de son entreprise",
+   "Trouver une niche viable",
+   "Maîtriser la phase de sourcing et la logistique",
+   "Créer une véritable identité de marque (Private Label)",
+   "Créer des fiches produits optimisées pour la visibilité et les ventes",
+   "Construire son site de marque",
+   "Réussir le lancement de ses produits",
+   "Maîtriser la publicité comme un pro",
+   "Se développer à l'international"
+  ],
   "nonCouvert": [
    "Boutique propre"
   ],
-  "dateVerification": "2026-07-24",
-  "source": "amzacademy.fr",
+  "dateVerification": "2026-08-03",
+  "source": "amzacademy.fr — page officielle de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "Amazon FBA",
@@ -5556,7 +5572,7 @@
   "url": "amzacademy.fr",
   "prix": 2490,
   "duree": "Accompagnement individuel",
-  "volumeHoraire": null,
+  "volumeHoraire": 25,
   "formats": [
    "Distanciel",
    "Présentiel"
@@ -5574,12 +5590,23 @@
    "Amazon Seller Central",
    "Sonar"
   ],
-  "programme": null,
+  "programme": [
+   "Tout ce que vous devez savoir avant de commencer",
+   "Optimiser la création de son entreprise",
+   "Trouver une niche viable",
+   "Maîtriser la phase de sourcing et la logistique",
+   "Créer une véritable identité de marque (Private Label)",
+   "Créer des fiches produits optimisées pour la visibilité et les ventes",
+   "Construire son site de marque",
+   "Réussir le lancement de ses produits",
+   "Maîtriser la publicité comme un pro",
+   "Se développer à l'international"
+  ],
   "nonCouvert": [
    "Boutique propre"
   ],
-  "dateVerification": "2026-07-24",
-  "source": "amzacademy.fr",
+  "dateVerification": "2026-08-03",
+  "source": "amzacademy.fr — page officielle de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "Amazon FBA",
@@ -7765,5 +7792,37 @@
   ],
   "classificationManuelle": true,
   "modaliteAcces": null
+ },
+ {
+  "id": 196,
+  "nom": "AMZ Révolution",
+  "organisme": "Olivier Allain",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "jesuismonpatron.fr",
+  "prix": null,
+  "duree": "6 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-03",
+  "source": "jesuismonpatron.fr — page officielle de la formation",
+  "domaineDeclareLibelle": "Marketplaces",
+  "competencesDeclarees": [
+   "Amazon FBA"
+  ],
+  "classificationManuelle": true,
+  "modaliteAcces": null,
+  "sourceModalite": null
  }
 ]
