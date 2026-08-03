@@ -142,13 +142,40 @@ describe("effet du troisième état sur le catalogue réel", () => {
     expect(compteurs.every((c) => c.applicables > 0)).toBe(true);
   });
 
-  it("ne fait jamais baisser le numérateur d'une fiche par rapport au prototype", () => {
+  it("ne baisse par rapport au prototype que sur les prix corrigés", () => {
     // Garde-fou du troisième état : il bouge le dénominateur, jamais le
     // numérateur. Une fiche ne doit pas perdre une information publiée parce
     // qu'une règle d'applicabilité s'est révélée trop large.
+    //
+    // Seule exception admise, et tracée : la correction des prix nuls non
+    // attestés. Le prototype comptait un prix de 0 € pour 33 parcours qui
+    // déclaraient par ailleurs des frais universitaires ou un financement par
+    // un tiers — un prix nul y était déduit, pas publié. Ces fiches perdent
+    // exactement une information, celle du prix, et aucune autre.
     const perdantes = catalogue
-      .map((o, i) => ({ nom: o.nom, obtenu: compteurs[i]!.renseignees, attendu: reference[i]! }))
-      .filter((x) => x.obtenu < x.attendu);
-    expect(perdantes).toEqual([]);
+      .map((o, i) => ({
+        nom: o.nom,
+        perte: reference[i]! - compteurs[i]!.renseignees,
+        etatPrix: determinerEtats(o).prix,
+      }))
+      .filter((x) => x.perte > 0);
+
+    for (const fiche of perdantes) {
+      expect(fiche.perte).toBe(1);
+      expect(fiche.etatPrix).toBe("non_communique");
+    }
+  });
+
+  it("ne retient un prix nul que s'il est attesté", () => {
+    // Un prix nul est une information ; un prix pris en charge par un tiers
+    // n'en est pas une. « France Travail », « POEI » ou « OPCO » désignent qui
+    // paie, pas l'absence de prix.
+    const gratuits = catalogue.filter((o) => o.prix === 0);
+    for (const offre of gratuits) {
+      const financements = (offre.financements ?? []).join(" ");
+      const gratuiteDeclaree = /gratuit/i.test(financements);
+      const alternanceExclusive = offre.formats.length === 1 && offre.formats[0] === "alternance";
+      expect(gratuiteDeclaree || alternanceExclusive).toBe(true);
+    }
   });
 });

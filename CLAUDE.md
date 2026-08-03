@@ -102,6 +102,24 @@ Lovable dans les deux sens : ne jamais réécrire l'historique publié (pas de
 force push, pas de rebase de commits poussés), et toujours récupérer les commits
 du bot Lovable avant de pousser.
 
+## Corrections de données appliquées
+
+**Prix nuls non attestés — 3 août 2026.** 33 parcours affichaient un prix de 0 €
+tout en déclarant par ailleurs des frais universitaires, ou un financement par
+France Travail, POEI ou OPCO. Un prix pris en charge par un tiers n'est pas un
+prix nul, et 27 de ces fiches se contredisaient explicitement. Le `0` y était
+déduit, pas publié — invariant 2.
+
+Règle retenue, déterministe : **un prix nul n'est retenu que s'il est attesté**,
+c'est-à-dire si les financements déclarés mentionnent la gratuité, ou si le
+parcours est exclusivement en alternance (l'alternant ne paie pas). Sinon le prix
+vaut `non_communique`.
+
+Effet : gratuits 73 → 40, informations vérifiées 2 401 → 2 368. Les BTS et BUT en
+lycée public restent gratuits, les certifications éditeurs aussi. Vérifié par
+`completude.test.ts`, qui n'autorise de baisse par rapport au prototype que sur
+le champ prix, d'exactement un point.
+
 ## Dette connue, tracée
 
 - **Éligibilité CPF** : 164 fiches à `cpf: 0`. Le booléen ne distingue pas

@@ -7,7 +7,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Nouvelle-Aquitaine",
   "url": "univ-larochelle.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -57,7 +57,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Pays de la Loire",
   "url": "iae.univ-nantes.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -107,7 +107,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "u-picardie.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -157,7 +157,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Nouvelle-Aquitaine",
   "url": "u-bordeaux-montaigne.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -207,7 +207,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Auvergne-Rhône-Alpes",
   "url": "univ-lyon1.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -257,7 +257,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "univ-artois.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -307,7 +307,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "univ-evry.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -357,7 +357,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Bretagne",
   "url": "univ-ubs.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -407,7 +407,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Normandie",
   "url": "unicaen.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -457,7 +457,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "univ-lille.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -507,7 +507,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Grand Est",
   "url": "univ-lorraine.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -557,7 +557,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "univ-paris8.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -607,7 +607,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Bretagne",
   "url": "univ-rennes.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -657,7 +657,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Normandie",
   "url": "univ-rouen.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -707,7 +707,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "PACA",
   "url": "univ-tln.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -757,7 +757,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Occitanie",
   "url": "univ-tlse3.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -807,7 +807,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Occitanie",
   "url": "univ-tlse2.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -857,7 +857,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Antilles",
   "url": "univ-ag.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -907,7 +907,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Auvergne-Rhône-Alpes",
   "url": "univ-grenoble-alpes.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -957,7 +957,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "u-paris.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1007,7 +1007,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "u-pec.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1057,7 +1057,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "uphf.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1107,7 +1107,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Auvergne-Rhône-Alpes",
   "url": "univ-smb.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1157,7 +1157,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "uvsq.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1207,7 +1207,7 @@
   "sousFamille": "Diplôme d'État",
   "region": null,
   "url": "onisep.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "3 ans",
   "volumeHoraire": null,
   "formats": [
@@ -1333,7 +1333,7 @@
   "sousFamille": "Diplôme d'État",
   "region": null,
   "url": "u-pec.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -1376,7 +1376,7 @@
   "sousFamille": "Diplôme d'État",
   "region": null,
   "url": "unistra.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -1604,7 +1604,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "iutparis-seine.u-paris.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "Variable",
   "volumeHoraire": null,
   "formats": [
@@ -2704,7 +2704,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "iscod.fr",
-  "prix": 0,
+  "prix": null,
   "duree": "1 à 3 ans",
   "volumeHoraire": null,
   "formats": [
@@ -3087,7 +3087,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "oreegami.com",
-  "prix": 0,
+  "prix": null,
   "duree": "15 mois",
   "volumeHoraire": 400,
   "formats": [
@@ -3132,7 +3132,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "grow.google",
-  "prix": 0,
+  "prix": null,
   "duree": "15 mois",
   "volumeHoraire": null,
   "formats": [
@@ -3205,7 +3205,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "rocket-school.com",
-  "prix": 0,
+  "prix": null,
   "duree": "13 mois",
   "volumeHoraire": null,
   "formats": [
@@ -3247,7 +3247,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "rocket-school.com",
-  "prix": 0,
+  "prix": null,
   "duree": "3 mois",
   "volumeHoraire": null,
   "formats": [

@@ -119,11 +119,14 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("conserve les 2 401 informations vérifiées du catalogue", () => {
+  it("écrit 2 368 informations vérifiées", () => {
+    // 2 401 avant la correction des prix nuls non attestés : 33 parcours
+    // affichaient un prix de 0 € tout en déclarant des frais universitaires ou
+    // un financement par un tiers. Un prix pris en charge n'est pas un prix nul.
     const total = preparation.fiches.reduce(
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2401);
+    expect(total).toBe(2368);
   });
 });
