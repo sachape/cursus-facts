@@ -4,6 +4,10 @@
  * Le tri par défaut classe par nombre d'informations disponibles, et son
  * libellé est affiché sous la liste : un tri dont on ne publie pas la règle est
  * un classement éditorial déguisé.
+ *
+ * Le domaine est traité comme une navigation (onglets pleine largeur), pas
+ * comme un filtre de la colonne de gauche : c'est le premier niveau de la
+ * hiérarchie Domaine → Sujet principal → Compétences couvertes.
  */
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
@@ -12,6 +16,7 @@ import { auMoinsUnFiltre, filtrer, FILTRES_VIDES, type Filtres } from "@/modele/
 import { classer, LIBELLES_TRIS, TRIS, TRI_PAR_DEFAUT, type Tri } from "@/modele/classement";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { PanneauFiltres } from "@/composants/PanneauFiltres";
+import { OngletsDomaines, type OngletDomaine } from "@/composants/OngletsDomaines";
 import { RangeeParcours } from "@/composants/RangeeParcours";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -55,13 +60,18 @@ function Explorer() {
   });
   const [tri, setTri] = useState<Tri>(TRI_PAR_DEFAUT);
   const [limite, setLimite] = useState(PAR_PAGE);
+  // Sous 960 px la colonne devient un panneau dépliable, replié au chargement.
+  const [filtresOuverts, setFiltresOuverts] = useState(false);
 
   const modifier = (patch: Partial<Filtres>) => {
     setFiltres((f) => ({ ...f, ...patch }));
     setLimite(PAR_PAGE);
   };
 
-  const resultats = useMemo(() => classer(filtrer(parcours, filtres), tri), [parcours, filtres, tri]);
+  const resultats = useMemo(
+    () => classer(filtrer(parcours, filtres), tri),
+    [parcours, filtres, tri],
+  );
 
   const informationsTotales = parcours.reduce((s, p) => s + p.infosRenseignees, 0);
   const organismes = new Set(parcours.map((p) => p.organismeNom)).size;
@@ -69,15 +79,67 @@ function Explorer() {
     parcours.some((p) => p.domaine === d),
   );
 
+  // Le décompte des onglets ignore le domaine mais respecte les autres filtres :
+  // un onglet annonce ce qu'il donnerait, pas ce que vaut le catalogue entier.
+  const onglets: OngletDomaine[] = [
+    {
+      domaine: null,
+      libelle: "Tous les domaines",
+      nombre: filtrer(parcours, { ...filtres, domaine: null }).length,
+    },
+    ...domaines.map((domaine) => ({
+      domaine,
+      libelle: LIBELLES_DOMAINES[domaine],
+      nombre: filtrer(parcours, { ...filtres, domaine }).length,
+    })),
+  ];
+
+  const titreListe =
+    filtres.domaine === null ? "Tous les parcours" : LIBELLES_DOMAINES[filtres.domaine];
+
+  const colonneFiltres = (
+    <>
+      <Input
+        type="search"
+        value={filtres.recherche}
+        onChange={(e) => modifier({ recherche: e.target.value })}
+        placeholder="Intitulé, organisme, code RNCP…"
+        aria-label="Rechercher dans le catalogue"
+      />
+
+      {filtres.organisme !== null && (
+        <p className="mt-4 rounded-md border border-border px-3 py-2 text-xs">
+          Catalogue filtré sur <span className="font-medium">{filtres.organisme}</span>
+        </p>
+      )}
+
+      <PanneauFiltres parcours={parcours} filtres={filtres} modifier={modifier} />
+
+      {auMoinsUnFiltre(filtres) && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="mb-2 mt-4 w-full"
+          onClick={() => {
+            setFiltres(FILTRES_VIDES);
+            setLimite(PAR_PAGE);
+          }}
+        >
+          Tout réinitialiser
+        </Button>
+      )}
+    </>
+  );
+
   return (
     <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
-      <header className="border-b border-border pb-8">
+      <header className="pb-6">
         <h1 className="font-titre text-3xl font-semibold tracking-tight sm:text-4xl">
           Comparateur de formations e-commerce
         </h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          On vous aide à choisir la bonne formation — pas à vous dire laquelle est la
-          meilleure. Aucune note, aucun classement par qualité, aucun lien affilié.{" "}
+          On vous aide à choisir la bonne formation — pas à vous dire laquelle est la meilleure.
+          Aucune note, aucun classement par qualité, aucun lien affilié.{" "}
           <Link to="/methode" className="underline underline-offset-4 hover:text-foreground">
             Comment ce catalogue est construit
           </Link>
@@ -91,62 +153,45 @@ function Explorer() {
         </dl>
       </header>
 
-      <div className="mt-8 flex flex-col gap-8 lg:flex-row">
-        <aside className="lg:w-72 lg:shrink-0">
-          <Input
-            type="search"
-            value={filtres.recherche}
-            onChange={(e) => modifier({ recherche: e.target.value })}
-            placeholder="Intitulé, organisme, code RNCP…"
-            aria-label="Rechercher dans le catalogue"
-          />
+      <OngletsDomaines
+        onglets={onglets}
+        actif={filtres.domaine}
+        choisir={(domaine) => modifier({ domaine })}
+      />
 
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            <ChipDomaine
-              actif={filtres.domaine === null}
-              libelle="Tous"
-              nombre={parcours.length}
-              choisir={() => modifier({ domaine: null })}
-            />
-            {domaines.map((domaine) => (
-              <ChipDomaine
-                key={domaine}
-                actif={filtres.domaine === domaine}
-                libelle={LIBELLES_DOMAINES[domaine]}
-                nombre={parcours.filter((p) => p.domaine === domaine).length}
-                choisir={() => modifier({ domaine: filtres.domaine === domaine ? null : domaine })}
-              />
-            ))}
+      <div className="mt-8 flex flex-col gap-8 min-[960px]:flex-row">
+        {/*
+          Au-delà de 960 px la colonne suit le défilement de la liste ; elle
+          défile sur elle-même pour ne jamais couper ses derniers groupes.
+        */}
+        <aside className="min-[960px]:sticky min-[960px]:top-[76px] min-[960px]:max-h-[calc(100vh-96px)] min-[960px]:w-72 min-[960px]:shrink-0 min-[960px]:overflow-y-auto min-[960px]:[scrollbar-width:none] min-[960px]:[&::-webkit-scrollbar]:hidden">
+          {/* Sous 960 px : panneau dépliable, replié au chargement. */}
+          <div className="min-[960px]:hidden">
+            <Button
+              variant="outline"
+              className="w-full justify-between"
+              aria-expanded={filtresOuverts}
+              onClick={() => setFiltresOuverts((ouvert) => !ouvert)}
+            >
+              <span>Filtres</span>
+              <span className="chiffre text-xs text-muted-foreground">
+                {resultats.length} résultats
+              </span>
+            </Button>
+            {filtresOuverts && <div className="mt-4">{colonneFiltres}</div>}
           </div>
 
-          {filtres.organisme !== null && (
-            <p className="mt-4 rounded-md border border-border px-3 py-2 text-xs">
-              Catalogue filtré sur <span className="font-medium">{filtres.organisme}</span>
-            </p>
-          )}
-
-          {auMoinsUnFiltre(filtres) && (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="mt-4 h-8 px-2 text-xs"
-              onClick={() => {
-                setFiltres(FILTRES_VIDES);
-                setLimite(PAR_PAGE);
-              }}
-            >
-              Effacer les filtres
-            </Button>
-          )}
-
-          <PanneauFiltres parcours={parcours} filtres={filtres} modifier={modifier} />
+          <div className="hidden min-[960px]:block">{colonneFiltres}</div>
         </aside>
 
         <main className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-3">
-            <p className="text-sm">
-              <span className="chiffre">{resultats.length}</span> parcours
-            </p>
+            <h2 className="font-titre text-lg font-medium">
+              {titreListe}{" "}
+              <span className="chiffre text-sm font-normal text-muted-foreground">
+                {resultats.length}
+              </span>
+            </h2>
             <label className="flex items-center gap-2 text-sm">
               <span className="text-muted-foreground">Trier par</span>
               <select
@@ -165,8 +210,8 @@ function Explorer() {
 
           {resultats.length === 0 ? (
             <p className="py-16 text-center text-sm text-muted-foreground">
-              Aucun parcours ne correspond à ces critères. Élargissez la recherche — aucune
-              fiche n&apos;est retirée du catalogue, elle ne correspond simplement pas.
+              Aucun parcours ne correspond à ces critères. Élargissez la recherche — aucune fiche
+              n&apos;est retirée du catalogue, elle ne correspond simplement pas.
             </p>
           ) : (
             <ul>
@@ -204,32 +249,5 @@ function Chiffre({ valeur, libelle }: { valeur: number; libelle: string }) {
       <dd className="chiffre text-xl">{valeur.toLocaleString("fr-FR")}</dd>
       <p className="text-xs text-muted-foreground">{libelle}</p>
     </div>
-  );
-}
-
-function ChipDomaine({
-  actif,
-  libelle,
-  nombre,
-  choisir,
-}: {
-  actif: boolean;
-  libelle: string;
-  nombre: number;
-  choisir: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={choisir}
-      aria-pressed={actif}
-      className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${
-        actif
-          ? "border-foreground bg-foreground text-background"
-          : "border-border hover:border-foreground/40"
-      }`}
-    >
-      {libelle} <span className="chiffre opacity-60">{nombre}</span>
-    </button>
   );
 }

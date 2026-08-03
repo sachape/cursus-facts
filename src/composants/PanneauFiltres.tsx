@@ -4,6 +4,9 @@
  * Chaque option affiche son décompte, calculé avec les autres filtres actifs :
  * un filtre dont on ignore le rendement se coche à l'aveugle, et une option à
  * zéro résultat doit se voir avant d'être cliquée.
+ *
+ * Le domaine ne figure pas ici : c'est le premier niveau de la hiérarchie, et
+ * il se lit comme une navigation en pleine largeur (voir `OngletsDomaines`).
  */
 import type { ParcoursListe } from "@/donnees/requetes";
 import { compterAvec, type Filtres } from "@/modele/filtres";
@@ -11,12 +14,17 @@ import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
 import type { CategorieOrganisme, FormatParcours, NiveauEntree } from "@/types/cursus";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
 
 type Props = {
   parcours: readonly ParcoursListe[];
   filtres: Filtres;
   modifier: (patch: Partial<Filtres>) => void;
 };
+
+/** Plafond du curseur de budget. Au-delà, le filtre est retiré. */
+const BUDGET_MAX = 5000;
+const BUDGET_PAS = 250;
 
 const LIBELLES_FORMATS: Record<FormatParcours, string> = {
   distanciel: "Distanciel",
@@ -89,7 +97,7 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         <p className="mb-2 text-xs text-muted-foreground">
           Les parcours dont c&apos;est réellement l&apos;objet.
         </p>
-        <div className="max-h-64 space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[220px] space-y-2 overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {sujets.map((sujet) => (
             <Option
               key={sujet}
@@ -107,7 +115,7 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         <p className="mb-2 text-xs text-muted-foreground">
           Les parcours qui l&apos;abordent, sans en faire leur objet.
         </p>
-        <div className="max-h-56 space-y-2 overflow-y-auto pr-1">
+        <div className="max-h-[220px] space-y-2 overflow-y-auto pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {competences.map((competence) => (
             <Option
               key={competence}
@@ -121,7 +129,7 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         </div>
       </Groupe>
 
-      <Groupe titre="Type d'organisme">
+      <Groupe titre="Catégorie">
         {categories.map((categorie) => (
           <Option
             key={categorie}
@@ -132,6 +140,51 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
             basculer={() => modifier({ categories: basculer(filtres.categories, categorie) })}
           />
         ))}
+      </Groupe>
+
+      <Groupe titre="Budget maximum">
+        <div className="flex items-baseline justify-between">
+          <span className="chiffre text-sm">
+            {filtres.budget === null
+              ? "Sans limite"
+              : `${filtres.budget.toLocaleString("fr-FR")} €`}
+          </span>
+          <span className="chiffre text-xs text-muted-foreground">
+            {compterAvec(parcours, filtres, {})}
+          </span>
+        </div>
+        <Slider
+          value={[filtres.budget ?? BUDGET_MAX]}
+          min={0}
+          max={BUDGET_MAX}
+          step={BUDGET_PAS}
+          onValueChange={([valeur]) =>
+            modifier({ budget: valeur === undefined || valeur >= BUDGET_MAX ? null : valeur })
+          }
+          aria-label="Budget maximum"
+          className="mt-3"
+        />
+        <p className="pt-2 text-xs text-muted-foreground">
+          Les parcours dont le prix n&apos;est pas publié restent affichés quel que soit le
+          budget : ne pas publier son prix ne doit ni profiter ni nuire.
+        </p>
+      </Groupe>
+
+      <Groupe titre="Financement">
+        <Option
+          id="f-cpf"
+          libelle="Éligible CPF"
+          coche={filtres.eligibleCpf}
+          nombre={compterAvec(parcours, filtres, { eligibleCpf: true })}
+          basculer={() => modifier({ eligibleCpf: !filtres.eligibleCpf })}
+        />
+        <Option
+          id="f-gratuit"
+          libelle="Gratuit"
+          coche={filtres.gratuitSeulement}
+          nombre={compterAvec(parcours, filtres, { gratuitSeulement: true })}
+          basculer={() => modifier({ gratuitSeulement: !filtres.gratuitSeulement })}
+        />
       </Groupe>
 
       <Groupe titre="Format">
@@ -160,14 +213,7 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         ))}
       </Groupe>
 
-      <Groupe titre="Financement">
-        <Option
-          id="f-cpf"
-          libelle="Éligible CPF"
-          coche={filtres.eligibleCpf}
-          nombre={compterAvec(parcours, filtres, { eligibleCpf: true })}
-          basculer={() => modifier({ eligibleCpf: !filtres.eligibleCpf })}
-        />
+      <Groupe titre="Certification">
         <Option
           id="f-certif"
           libelle="Certifiant (RNCP ou RS)"
@@ -175,17 +221,6 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
           nombre={compterAvec(parcours, filtres, { certifiantSeulement: true })}
           basculer={() => modifier({ certifiantSeulement: !filtres.certifiantSeulement })}
         />
-        <Option
-          id="f-gratuit"
-          libelle="Gratuit"
-          coche={filtres.gratuitSeulement}
-          nombre={compterAvec(parcours, filtres, { gratuitSeulement: true })}
-          basculer={() => modifier({ gratuitSeulement: !filtres.gratuitSeulement })}
-        />
-        <p className="pt-2 text-xs text-muted-foreground">
-          Les parcours dont le prix n&apos;est pas publié restent affichés quel que soit le
-          budget : ne pas publier son prix ne doit ni profiter ni nuire.
-        </p>
       </Groupe>
     </div>
   );
