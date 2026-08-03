@@ -95,6 +95,7 @@ export type Database = {
           infos_applicables: number
           infos_renseignees: number
           lieu: string | null
+          modalite_acces: Database["public"]["Enums"]["modalite_acces"] | null
           modalites_paiement: string | null
           motif_regroupement: string | null
           niveau_entree: Database["public"]["Enums"]["niveau_entree"] | null
@@ -110,6 +111,7 @@ export type Database = {
           site_officiel: string | null
           slug: string
           source_information: string | null
+          source_modalite_acces: string | null
           statut_regroupement: Database["public"]["Enums"]["statut_regroupement"]
           sujet_principal: string
           updated_at: string
@@ -132,6 +134,7 @@ export type Database = {
           infos_applicables?: number
           infos_renseignees?: number
           lieu?: string | null
+          modalite_acces?: Database["public"]["Enums"]["modalite_acces"] | null
           modalites_paiement?: string | null
           motif_regroupement?: string | null
           niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
@@ -147,6 +150,7 @@ export type Database = {
           site_officiel?: string | null
           slug: string
           source_information?: string | null
+          source_modalite_acces?: string | null
           statut_regroupement?: Database["public"]["Enums"]["statut_regroupement"]
           sujet_principal: string
           updated_at?: string
@@ -169,6 +173,7 @@ export type Database = {
           infos_applicables?: number
           infos_renseignees?: number
           lieu?: string | null
+          modalite_acces?: Database["public"]["Enums"]["modalite_acces"] | null
           modalites_paiement?: string | null
           motif_regroupement?: string | null
           niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
@@ -184,6 +189,7 @@ export type Database = {
           site_officiel?: string | null
           slug?: string
           source_information?: string | null
+          source_modalite_acces?: string | null
           statut_regroupement?: Database["public"]["Enums"]["statut_regroupement"]
           sujet_principal?: string
           updated_at?: string
@@ -323,6 +329,13 @@ export type Database = {
         | "non_applicable"
         | "a_confirmer"
       format_parcours: "distanciel" | "presentiel" | "alternance"
+      modalite_acces:
+        | "libre"
+        | "compte_requis"
+        | "compte_produit_requis"
+        | "certificat_payant"
+        | "freemium"
+        | "pris_en_charge"
       niveau_entree: "aucun_prerequis" | "bac2" | "bac3" | "experience"
       statut_regroupement: "autonome" | "fusionne" | "replie_arbitrage"
     }
@@ -479,6 +492,14 @@ export const Constants = {
         "a_confirmer",
       ],
       format_parcours: ["distanciel", "presentiel", "alternance"],
+      modalite_acces: [
+        "libre",
+        "compte_requis",
+        "compte_produit_requis",
+        "certificat_payant",
+        "freemium",
+        "pris_en_charge",
+      ],
       niveau_entree: ["aucun_prerequis", "bac2", "bac3", "experience"],
       statut_regroupement: ["autonome", "fusionne", "replie_arbitrage"],
     },
