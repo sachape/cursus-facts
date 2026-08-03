@@ -1,0 +1,98 @@
+# Cursus — comparateur de formations e-commerce
+
+Faits durables du projet. La référence produit est le brief de passation et
+`modele-de-donnees.md` : **ce document fait foi, le code l'implémente.**
+
+## Ce que le produit est
+
+Aider quelqu'un à trouver la formation e-commerce adaptée à sa situation en
+comparant des faits vérifiables. Pas en lui disant laquelle est la meilleure.
+
+Le marché est dominé par des comparatifs rémunérés à l'affiliation. Le pari de
+Cursus est l'inverse : ne rien noter, ne rien classer par qualité, ne toucher
+aucune commission, et tirer sa valeur de l'exhaustivité du catalogue et de la
+vérifiabilité de chaque information.
+
+## Les huit invariants — à ne jamais casser
+
+1. Aucune note, aucun score de qualité, aucune moyenne. Nulle part.
+2. Aucune information déduite. Un champ inconnu s'affiche « Non communiqué ».
+3. Une fiche incomplète n'est jamais retirée du catalogue.
+4. Le tri décrit l'état des fiches, jamais la qualité. Son libellé est affiché.
+5. Aucun placement achetable, aucun lien affilié.
+6. L'assistant produit une adéquation, jamais un jugement. « Meilleure », « top »
+   et « recommandée » sont interdits dans ses sorties.
+7. Toute règle appliquée au catalogue est publiée dans la page Méthode.
+8. Toute décision manuelle est journalisée et publique.
+
+Corollaire structurant : **le tronc pédagogique à 80 % est un veto, pas une
+précondition.** On regroupe par défaut, on ne refuse qu'avec la preuve d'une
+divergence réelle. Toute formulation inverse rend le manque d'information
+rentable — c'est le biais que tout le modèle cherche à supprimer.
+
+## Stack
+
+TanStack Start + React 19 + TypeScript, shadcn/ui (Radix) + Tailwind v4,
+Lovable Cloud pour le backend. Gestionnaire : **bun** (`bun.lock` fait foi).
+Alias `@` → `./src`.
+
+`vite.config.ts` est verrouillé par Lovable : ne pas y ajouter de plugins. La
+config de test vit dans `vitest.config.ts`, séparée.
+
+## Architecture
+
+```
+src/modele/        les règles, sans aucune dépendance à l'interface
+  vocabulaires     9 domaines · 22 compétences · 31 sujets · 7 catégories
+  classification   domaine (4 niveaux) · sujet principal (4 niveaux, seuil 40 %)
+  regroupement     fusion / refus / ambigu · veto du tronc à 80 %
+  completude       état des 18 champs · troisième état d'applicabilité
+src/donnees/       catalogue source + référence de parité avec le prototype
+scripts/seed.ts    ingestion vers Lovable Cloud, idempotente
+```
+
+**L'ordre de déclaration des vocabulaires est significatif** : la détermination
+du domaine et du sujet retient le premier motif qui correspond. Réordonner une
+liste change la classification du catalogue — c'est un changement de règle, à
+publier et à vérifier par les tests de parité.
+
+`SUJETS_OUTILS` et `MOTIFS_COMPETENCES` contiennent les mêmes 22 compétences
+dans un ordre volontairement différent. Ne pas aligner les deux listes.
+
+## Commandes de validation
+
+`bun run typecheck` · `bun run test` (vitest, règles uniquement) ·
+`bun run build` · `bun run seed` (nécessite `.env.local`).
+
+Les tests portent sur les règles, jamais sur l'interface. `parite.test.ts`
+verrouille le portage contre le prototype : toute divergence sur les 195
+parcours est une régression de règle.
+
+## Backend
+
+Le backend est **Lovable Cloud**. Ne jamais modifier le schéma, l'auth, les
+secrets ni les jobs depuis le code : passer par un prompt Lovable. Les
+migrations dans `supabase/migrations/` sont écrites par Lovable.
+
+Le seed a besoin de `SUPABASE_SERVICE_ROLE_KEY` dans `.env.local`, que
+`.gitignore` exclut via `*.local`.
+
+## Git
+
+Commits Conventional Commits, courts et atomiques. `main` est synchronisée avec
+Lovable dans les deux sens : ne jamais réécrire l'historique publié (pas de
+force push, pas de rebase de commits poussés), et toujours récupérer les commits
+du bot Lovable avant de pousser.
+
+## Dette connue, tracée
+
+- **Éligibilité CPF** : 164 fiches à `cpf: 0`. Le booléen ne distingue pas
+  « vérifié non éligible » de « non vérifié ». Non corrigé faute de moyen
+  déterministe de trancher — corriger par déduction violerait l'invariant 2.
+- **La fusion ne se déclenche jamais** sur le catalogue actuel (192 fiches
+  autonomes, 3 ambiguës, 0 fusion). La règle reste couverte par des cas
+  construits dans `regroupement.test.ts`.
+- **Dédoublonnage réel** : la règle ne reconnaît que les suffixes de formule.
+  89 parcours sur 195 ne publient aucun programme.
+- **Visibilité contre référencement** : une fiche à 7/18 atterrit en page 4.
+  Non résolu.

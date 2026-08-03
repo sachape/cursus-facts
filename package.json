@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
+    "seed": "bun run scripts/seed.ts",
     "test": "vitest run",
     "test:watch": "vitest"
   },
