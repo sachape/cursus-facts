@@ -47,9 +47,27 @@ src/modele/        les règles, sans aucune dépendance à l'interface
   classification   domaine (4 niveaux) · sujet principal (4 niveaux, seuil 40 %)
   regroupement     fusion / refus / ambigu · veto du tronc à 80 %
   completude       état des 18 champs · troisième état d'applicabilité
+  classement       5 tris déclarés, libellé publié, jamais un ratio
 src/donnees/       catalogue source + référence de parité avec le prototype
-scripts/seed.ts    ingestion vers Lovable Cloud, idempotente
+src/ingestion/     preparer (pur, testable) → ecrire.server (service_role)
 ```
+
+## Ingestion
+
+La clé `service_role` n'est **pas récupérable** sur Lovable Cloud : elle est
+injectée dans l'environnement serveur et ne peut être ni affichée ni copiée.
+L'ingestion tourne donc côté serveur, jamais depuis un script local.
+
+- `bun run ingestion:verifier` — à blanc, sans réseau : affiche ce qui partirait
+  en base. Si un chiffre bouge sans qu'une règle ait changé, c'est le catalogue
+  qui a bougé.
+- `/admin/seed` — écriture réelle, protégée par le secret `SEED_TOKEN` et
+  refusant d'écraser une base peuplée sans demande explicite. Ce second
+  garde-fou compte pour la V2 : une base peuplée contiendra des corrections
+  d'organismes qu'un seed rejoué effacerait.
+
+`preparer.ts` est pur et testé sans accès à la base : c'est là que se vérifie ce
+qui part en base, pas dans un log d'insertion.
 
 **L'ordre de déclaration des vocabulaires est significatif** : la détermination
 du domaine et du sujet retient le premier motif qui correspond. Réordonner une

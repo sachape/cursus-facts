@@ -11,9 +11,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
-    "seed": "bun run scripts/seed.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "ingestion:verifier": "bun run scripts/verifier-ingestion.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
