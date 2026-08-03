@@ -1,14 +1,17 @@
 @import "tailwindcss" source(none);
-@source "../src";
 @import "tw-animate-css";
+@source "../src";
 
 /*
  * Schibsted Grotesk pour les titres, Public Sans pour le texte, DM Mono pour
  * toute donnée chiffrée. Le mono sur les chiffres n'est pas décoratif : il
  * aligne les prix et les compteurs d'une rangée à l'autre, ce qui est la seule
  * façon de comparer une colonne de nombres à l'œil.
+ *
+ * Les polices sont chargées par <link> dans src/routes/__root.tsx : Lightning
+ * CSS résout @import depuis le disque, jamais par le réseau.
  */
-@import url("https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..900&family=Public+Sans:ital,wght@0,300..800;1,300..800&family=DM+Mono:wght@400;500&display=swap");
+
 
 @custom-variant dark (&:is(.dark *));
 
