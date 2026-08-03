@@ -14,7 +14,283 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      arbitrages: {
+        Row: {
+          auteur: string | null
+          created_at: string
+          date_decision: string | null
+          decision: string | null
+          id: string
+          parcours_ids: string[]
+          preuve_retenue: string | null
+          regle_muette: string | null
+        }
+        Insert: {
+          auteur?: string | null
+          created_at?: string
+          date_decision?: string | null
+          decision?: string | null
+          id?: string
+          parcours_ids?: string[]
+          preuve_retenue?: string | null
+          regle_muette?: string | null
+        }
+        Update: {
+          auteur?: string | null
+          created_at?: string
+          date_decision?: string | null
+          decision?: string | null
+          id?: string
+          parcours_ids?: string[]
+          preuve_retenue?: string | null
+          regle_muette?: string | null
+        }
+        Relationships: []
+      }
+      organismes: {
+        Row: {
+          categorie: Database["public"]["Enums"]["categorie_organisme"]
+          certifications_qualite: string[]
+          created_at: string
+          id: string
+          nom: string
+          site: string | null
+          updated_at: string
+        }
+        Insert: {
+          categorie: Database["public"]["Enums"]["categorie_organisme"]
+          certifications_qualite?: string[]
+          created_at?: string
+          id?: string
+          nom: string
+          site?: string | null
+          updated_at?: string
+        }
+        Update: {
+          categorie?: Database["public"]["Enums"]["categorie_organisme"]
+          certifications_qualite?: string[]
+          created_at?: string
+          id?: string
+          nom?: string
+          site?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      parcours: {
+        Row: {
+          certification: string | null
+          code_rncp_rs: string | null
+          competences_couvertes: string[]
+          created_at: string
+          date_verification: string | null
+          domaine: Database["public"]["Enums"]["domaine_parcours"]
+          duree: string | null
+          ecart_classification: string | null
+          eligible_cpf: boolean | null
+          etats: Json
+          financements_acceptes: string[] | null
+          format: Database["public"]["Enums"]["format_parcours"] | null
+          id: string
+          infos_applicables: number
+          infos_renseignees: number
+          lieu: string | null
+          modalites_paiement: string | null
+          motif_regroupement: string | null
+          niveau_entree: Database["public"]["Enums"]["niveau_entree"] | null
+          nom: string
+          non_couvert: string[] | null
+          organisme_id: string
+          outils_enseignes: string[] | null
+          parcours_parent_id: string | null
+          prerequis: string | null
+          prix_max: number | null
+          prix_min: number | null
+          programme: Json | null
+          site_officiel: string | null
+          slug: string
+          source_information: string | null
+          statut_regroupement: Database["public"]["Enums"]["statut_regroupement"]
+          sujet_principal: string
+          updated_at: string
+          volume_horaire: number | null
+        }
+        Insert: {
+          certification?: string | null
+          code_rncp_rs?: string | null
+          competences_couvertes?: string[]
+          created_at?: string
+          date_verification?: string | null
+          domaine: Database["public"]["Enums"]["domaine_parcours"]
+          duree?: string | null
+          ecart_classification?: string | null
+          eligible_cpf?: boolean | null
+          etats?: Json
+          financements_acceptes?: string[] | null
+          format?: Database["public"]["Enums"]["format_parcours"] | null
+          id?: string
+          infos_applicables?: number
+          infos_renseignees?: number
+          lieu?: string | null
+          modalites_paiement?: string | null
+          motif_regroupement?: string | null
+          niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
+          nom: string
+          non_couvert?: string[] | null
+          organisme_id: string
+          outils_enseignes?: string[] | null
+          parcours_parent_id?: string | null
+          prerequis?: string | null
+          prix_max?: number | null
+          prix_min?: number | null
+          programme?: Json | null
+          site_officiel?: string | null
+          slug: string
+          source_information?: string | null
+          statut_regroupement?: Database["public"]["Enums"]["statut_regroupement"]
+          sujet_principal: string
+          updated_at?: string
+          volume_horaire?: number | null
+        }
+        Update: {
+          certification?: string | null
+          code_rncp_rs?: string | null
+          competences_couvertes?: string[]
+          created_at?: string
+          date_verification?: string | null
+          domaine?: Database["public"]["Enums"]["domaine_parcours"]
+          duree?: string | null
+          ecart_classification?: string | null
+          eligible_cpf?: boolean | null
+          etats?: Json
+          financements_acceptes?: string[] | null
+          format?: Database["public"]["Enums"]["format_parcours"] | null
+          id?: string
+          infos_applicables?: number
+          infos_renseignees?: number
+          lieu?: string | null
+          modalites_paiement?: string | null
+          motif_regroupement?: string | null
+          niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
+          nom?: string
+          non_couvert?: string[] | null
+          organisme_id?: string
+          outils_enseignes?: string[] | null
+          parcours_parent_id?: string | null
+          prerequis?: string | null
+          prix_max?: number | null
+          prix_min?: number | null
+          programme?: Json | null
+          site_officiel?: string | null
+          slug?: string
+          source_information?: string | null
+          statut_regroupement?: Database["public"]["Enums"]["statut_regroupement"]
+          sujet_principal?: string
+          updated_at?: string
+          volume_horaire?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "parcours_organisme_id_fkey"
+            columns: ["organisme_id"]
+            isOneToOne: false
+            referencedRelation: "organismes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "parcours_parcours_parent_id_fkey"
+            columns: ["parcours_parent_id"]
+            isOneToOne: false
+            referencedRelation: "parcours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      sessions: {
+        Row: {
+          created_at: string
+          date_debut: string | null
+          id: string
+          places: number | null
+          tarif_promotionnel: number | null
+          updated_at: string
+          variante_id: string
+          ville: string | null
+        }
+        Insert: {
+          created_at?: string
+          date_debut?: string | null
+          id?: string
+          places?: number | null
+          tarif_promotionnel?: number | null
+          updated_at?: string
+          variante_id: string
+          ville?: string | null
+        }
+        Update: {
+          created_at?: string
+          date_debut?: string | null
+          id?: string
+          places?: number | null
+          tarif_promotionnel?: number | null
+          updated_at?: string
+          variante_id?: string
+          ville?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sessions_variante_id_fkey"
+            columns: ["variante_id"]
+            isOneToOne: false
+            referencedRelation: "variantes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      variantes: {
+        Row: {
+          accompagnement: string | null
+          created_at: string
+          duree: string | null
+          id: string
+          label: string
+          parcours_id: string
+          prix: number | null
+          updated_at: string
+          volume_horaire: number | null
+        }
+        Insert: {
+          accompagnement?: string | null
+          created_at?: string
+          duree?: string | null
+          id?: string
+          label: string
+          parcours_id: string
+          prix?: number | null
+          updated_at?: string
+          volume_horaire?: number | null
+        }
+        Update: {
+          accompagnement?: string | null
+          created_at?: string
+          duree?: string | null
+          id?: string
+          label?: string
+          parcours_id?: string
+          prix?: number | null
+          updated_at?: string
+          volume_horaire?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "variantes_parcours_id_fkey"
+            columns: ["parcours_id"]
+            isOneToOne: false
+            referencedRelation: "parcours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +299,32 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      categorie_organisme:
+        | "universite"
+        | "ecole"
+        | "bootcamp"
+        | "formation_professionnelle"
+        | "certification_editeur"
+        | "mooc_plateforme"
+        | "formation_independante"
+      domaine_parcours:
+        | "ecommerce"
+        | "marketplaces"
+        | "publicite_payante"
+        | "referencement"
+        | "email_crm"
+        | "data_conversion"
+        | "creation_site"
+        | "marketing_digital"
+        | "commerce_vente"
+      etat_information:
+        | "renseigne"
+        | "non_communique"
+        | "non_applicable"
+        | "a_confirmer"
+      format_parcours: "distanciel" | "presentiel" | "alternance" | "hybride"
+      niveau_entree: "aucun_prerequis" | "bac2" | "bac3" | "experience"
+      statut_regroupement: "autonome" | "fusionne" | "replie_arbitrage"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +451,36 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      categorie_organisme: [
+        "universite",
+        "ecole",
+        "bootcamp",
+        "formation_professionnelle",
+        "certification_editeur",
+        "mooc_plateforme",
+        "formation_independante",
+      ],
+      domaine_parcours: [
+        "ecommerce",
+        "marketplaces",
+        "publicite_payante",
+        "referencement",
+        "email_crm",
+        "data_conversion",
+        "creation_site",
+        "marketing_digital",
+        "commerce_vente",
+      ],
+      etat_information: [
+        "renseigne",
+        "non_communique",
+        "non_applicable",
+        "a_confirmer",
+      ],
+      format_parcours: ["distanciel", "presentiel", "alternance", "hybride"],
+      niveau_entree: ["aucun_prerequis", "bac2", "bac3", "experience"],
+      statut_regroupement: ["autonome", "fusionne", "replie_arbitrage"],
+    },
   },
 } as const
