@@ -1,0 +1,192 @@
+/**
+ * Panneau de filtres.
+ *
+ * Chaque option affiche son décompte, calculé avec les autres filtres actifs :
+ * un filtre dont on ignore le rendement se coche à l'aveugle, et une option à
+ * zéro résultat doit se voir avant d'être cliquée.
+ */
+import type { ParcoursListe } from "@/donnees/requetes";
+import { compterAvec, type Filtres } from "@/modele/filtres";
+import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
+import type { CategorieOrganisme, FormatParcours, NiveauEntree } from "@/types/cursus";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+
+type Props = {
+  parcours: readonly ParcoursListe[];
+  filtres: Filtres;
+  modifier: (patch: Partial<Filtres>) => void;
+};
+
+const LIBELLES_FORMATS: Record<FormatParcours, string> = {
+  distanciel: "Distanciel",
+  presentiel: "Présentiel",
+  alternance: "Alternance",
+};
+
+const LIBELLES_NIVEAUX: Record<NiveauEntree, string> = {
+  aucun_prerequis: "Aucun prérequis",
+  bac2: "Bac+2",
+  bac3: "Bac+3",
+  experience: "Expérience",
+};
+
+function Groupe({ titre, children }: { titre: string; children: React.ReactNode }) {
+  return (
+    <section className="border-t border-border py-5">
+      <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+        {titre}
+      </h2>
+      <div className="space-y-2">{children}</div>
+    </section>
+  );
+}
+
+function Option({
+  id,
+  libelle,
+  coche,
+  nombre,
+  basculer,
+}: {
+  id: string;
+  libelle: string;
+  coche: boolean;
+  nombre: number;
+  basculer: () => void;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox id={id} checked={coche} onCheckedChange={basculer} disabled={nombre === 0 && !coche} />
+      <Label
+        htmlFor={id}
+        className={`flex-1 justify-between gap-2 font-normal ${nombre === 0 && !coche ? "text-muted-foreground/50" : ""}`}
+      >
+        <span>{libelle}</span>
+        <span className="chiffre text-xs text-muted-foreground">{nombre}</span>
+      </Label>
+    </div>
+  );
+}
+
+/** Ajoute ou retire une valeur d'une liste de filtre. */
+function basculer<T>(liste: T[], valeur: T): T[] {
+  return liste.includes(valeur) ? liste.filter((v) => v !== valeur) : [...liste, valeur];
+}
+
+export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
+  const sujets = [...new Set(parcours.map((p) => p.sujetPrincipal))].sort((a, b) =>
+    a.localeCompare(b, "fr"),
+  );
+  const competences = [...new Set(parcours.flatMap((p) => p.competencesCouvertes))].sort((a, b) =>
+    a.localeCompare(b, "fr"),
+  );
+  const categories = Object.keys(LIBELLES_CATEGORIES) as CategorieOrganisme[];
+
+  return (
+    <div className="text-sm">
+      <Groupe titre="Sujet principal">
+        <p className="mb-2 text-xs text-muted-foreground">
+          Les parcours dont c&apos;est réellement l&apos;objet.
+        </p>
+        <div className="max-h-64 space-y-2 overflow-y-auto pr-1">
+          {sujets.map((sujet) => (
+            <Option
+              key={sujet}
+              id={`sujet-${sujet}`}
+              libelle={sujet}
+              coche={filtres.sujets.includes(sujet)}
+              nombre={compterAvec(parcours, filtres, { sujets: [sujet] })}
+              basculer={() => modifier({ sujets: basculer(filtres.sujets, sujet) })}
+            />
+          ))}
+        </div>
+      </Groupe>
+
+      <Groupe titre="Compétence abordée">
+        <p className="mb-2 text-xs text-muted-foreground">
+          Les parcours qui l&apos;abordent, sans en faire leur objet.
+        </p>
+        <div className="max-h-56 space-y-2 overflow-y-auto pr-1">
+          {competences.map((competence) => (
+            <Option
+              key={competence}
+              id={`comp-${competence}`}
+              libelle={competence}
+              coche={filtres.competences.includes(competence)}
+              nombre={compterAvec(parcours, filtres, { competences: [competence] })}
+              basculer={() => modifier({ competences: basculer(filtres.competences, competence) })}
+            />
+          ))}
+        </div>
+      </Groupe>
+
+      <Groupe titre="Type d'organisme">
+        {categories.map((categorie) => (
+          <Option
+            key={categorie}
+            id={`cat-${categorie}`}
+            libelle={LIBELLES_CATEGORIES[categorie]}
+            coche={filtres.categories.includes(categorie)}
+            nombre={compterAvec(parcours, filtres, { categories: [categorie] })}
+            basculer={() => modifier({ categories: basculer(filtres.categories, categorie) })}
+          />
+        ))}
+      </Groupe>
+
+      <Groupe titre="Format">
+        {(Object.keys(LIBELLES_FORMATS) as FormatParcours[]).map((format) => (
+          <Option
+            key={format}
+            id={`fmt-${format}`}
+            libelle={LIBELLES_FORMATS[format]}
+            coche={filtres.formats.includes(format)}
+            nombre={compterAvec(parcours, filtres, { formats: [format] })}
+            basculer={() => modifier({ formats: basculer(filtres.formats, format) })}
+          />
+        ))}
+      </Groupe>
+
+      <Groupe titre="Niveau d'entrée">
+        {(Object.keys(LIBELLES_NIVEAUX) as NiveauEntree[]).map((niveau) => (
+          <Option
+            key={niveau}
+            id={`niv-${niveau}`}
+            libelle={LIBELLES_NIVEAUX[niveau]}
+            coche={filtres.niveaux.includes(niveau)}
+            nombre={compterAvec(parcours, filtres, { niveaux: [niveau] })}
+            basculer={() => modifier({ niveaux: basculer(filtres.niveaux, niveau) })}
+          />
+        ))}
+      </Groupe>
+
+      <Groupe titre="Financement">
+        <Option
+          id="f-cpf"
+          libelle="Éligible CPF"
+          coche={filtres.eligibleCpf}
+          nombre={compterAvec(parcours, filtres, { eligibleCpf: true })}
+          basculer={() => modifier({ eligibleCpf: !filtres.eligibleCpf })}
+        />
+        <Option
+          id="f-certif"
+          libelle="Certifiant (RNCP ou RS)"
+          coche={filtres.certifiantSeulement}
+          nombre={compterAvec(parcours, filtres, { certifiantSeulement: true })}
+          basculer={() => modifier({ certifiantSeulement: !filtres.certifiantSeulement })}
+        />
+        <Option
+          id="f-gratuit"
+          libelle="Gratuit"
+          coche={filtres.gratuitSeulement}
+          nombre={compterAvec(parcours, filtres, { gratuitSeulement: true })}
+          basculer={() => modifier({ gratuitSeulement: !filtres.gratuitSeulement })}
+        />
+        <p className="pt-2 text-xs text-muted-foreground">
+          Les parcours dont le prix n&apos;est pas publié restent affichés quel que soit le
+          budget : ne pas publier son prix ne doit ni profiter ni nuire.
+        </p>
+      </Groupe>
+    </div>
+  );
+}

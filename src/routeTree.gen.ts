@@ -10,11 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
+import { Route as ParcoursSlugRouteImport } from './routes/parcours.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodeRoute = MethodeRouteImport.update({
+  id: '/methode',
+  path: '/methode',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSeedRoute = AdminSeedRouteImport.update({
@@ -22,31 +29,44 @@ const AdminSeedRoute = AdminSeedRouteImport.update({
   path: '/admin/seed',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParcoursSlugRoute = ParcoursSlugRouteImport.update({
+  id: '/parcours/$slug',
+  path: '/parcours/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/methode': typeof MethodeRoute
   '/admin/seed': typeof AdminSeedRoute
+  '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/methode': typeof MethodeRoute
   '/admin/seed': typeof AdminSeedRoute
+  '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/methode': typeof MethodeRoute
   '/admin/seed': typeof AdminSeedRoute
+  '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin/seed'
+  fullPaths: '/' | '/methode' | '/admin/seed' | '/parcours/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin/seed'
-  id: '__root__' | '/' | '/admin/seed'
+  to: '/' | '/methode' | '/admin/seed' | '/parcours/$slug'
+  id: '__root__' | '/' | '/methode' | '/admin/seed' | '/parcours/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  MethodeRoute: typeof MethodeRoute
   AdminSeedRoute: typeof AdminSeedRoute
+  ParcoursSlugRoute: typeof ParcoursSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +78,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/methode': {
+      id: '/methode'
+      path: '/methode'
+      fullPath: '/methode'
+      preLoaderRoute: typeof MethodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/seed': {
       id: '/admin/seed'
       path: '/admin/seed'
@@ -65,12 +92,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSeedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parcours/$slug': {
+      id: '/parcours/$slug'
+      path: '/parcours/$slug'
+      fullPath: '/parcours/$slug'
+      preLoaderRoute: typeof ParcoursSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  MethodeRoute: MethodeRoute,
   AdminSeedRoute: AdminSeedRoute,
+  ParcoursSlugRoute: ParcoursSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
