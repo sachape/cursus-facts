@@ -1,0 +1,7560 @@
+[
+ {
+  "id": 1,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "La Rochelle Université",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Nouvelle-Aquitaine",
+  "url": "univ-larochelle.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 2,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Nantes Université — IAE Nantes",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Pays de la Loire",
+  "url": "iae.univ-nantes.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 3,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Picardie Jules Verne",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Hauts-de-France",
+  "url": "u-picardie.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 4,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Bordeaux Montaigne",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Nouvelle-Aquitaine",
+  "url": "u-bordeaux-montaigne.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 5,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Claude Bernard Lyon 1",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Auvergne-Rhône-Alpes",
+  "url": "univ-lyon1.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 6,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université d'Artois",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Hauts-de-France",
+  "url": "univ-artois.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 7,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université d'Évry Val d'Essonne",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Île-de-France",
+  "url": "univ-evry.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 8,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Bretagne Sud",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Bretagne",
+  "url": "univ-ubs.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 9,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Caen Normandie",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Normandie",
+  "url": "unicaen.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 10,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Lille — IUT de Lille",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Hauts-de-France",
+  "url": "univ-lille.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 11,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Lorraine",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Grand Est",
+  "url": "univ-lorraine.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 12,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris 8 — IUT de Montreuil",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Île-de-France",
+  "url": "univ-paris8.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 13,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Rennes",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Bretagne",
+  "url": "univ-rennes.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 14,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Rouen-Normandie",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Normandie",
+  "url": "univ-rouen.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 15,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Toulon",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "PACA",
+  "url": "univ-tln.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 16,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Toulouse",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Occitanie",
+  "url": "univ-tlse3.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 17,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Toulouse II Jean Jaurès",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Occitanie",
+  "url": "univ-tlse2.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 18,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université des Antilles",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Antilles",
+  "url": "univ-ag.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 19,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Grenoble Alpes",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Auvergne-Rhône-Alpes",
+  "url": "univ-grenoble-alpes.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 20,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris Cité — IUT Rives de Seine",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Île-de-France",
+  "url": "u-paris.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 21,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris-Est Créteil",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Île-de-France",
+  "url": "u-pec.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 22,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Polytechnique Hauts-de-France",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Hauts-de-France",
+  "url": "uphf.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 23,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Savoie Mont Blanc",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Auvergne-Rhône-Alpes",
+  "url": "univ-smb.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 24,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Versailles Saint-Quentin",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Île-de-France",
+  "url": "uvsq.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "formats": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires",
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Dropshipping",
+   "Marketplaces spécifiques"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "France Compétences, fiche RNCP40509",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 25,
+  "nom": "BUT TC — Marketing digital, e-business et entrepreneuriat",
+  "organisme": "Réseau des IUT",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "onisep.fr",
+  "prix": 0,
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat via Parcoursup. Entrée directe en 3e année après BTS.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires"
+  ],
+  "certification": "Diplôme national niveau 6",
+  "outils": [
+   "Outils analytics",
+   "Outils de gestion commerciale"
+  ],
+  "programme": [
+   "Tronc commun techniques de commercialisation",
+   "Gérer une activité digitale",
+   "Exploiter les données de masse",
+   "Cahier des charges e-business",
+   "Chaîne logistique du e-commerce"
+  ],
+  "nonCouvert": [
+   "Développement technique approfondi"
+  ],
+  "dateVerification": "2026-07-26",
+  "source": "Onisep",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 26,
+  "nom": "BTS NDRC — Négociation et digitalisation de la relation client",
+  "organisme": "Réseau national",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "onisep.fr",
+  "prix": 0,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat via Parcoursup.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Gratuit en public"
+  ],
+  "certification": "Diplôme national niveau 5",
+  "outils": [
+   "CRM",
+   "Outils de prospection digitale"
+  ],
+  "programme": [
+   "Relation client et négociation-vente",
+   "Relation client à distance et digitalisation",
+   "Relation client et animation de réseaux",
+   "Culture économique, juridique et managériale"
+  ],
+  "nonCouvert": [
+   "Création de boutique",
+   "Publicité payante",
+   "Logistique"
+  ],
+  "dateVerification": "2026-07-26",
+  "source": "Onisep",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 27,
+  "nom": "BTS MCO — Management commercial opérationnel",
+  "organisme": "Réseau national",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "onisep.fr",
+  "prix": 0,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat via Parcoursup.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Gratuit en public"
+  ],
+  "certification": "Diplôme national niveau 5",
+  "outils": null,
+  "programme": [
+   "Développement de la relation client",
+   "Animation et dynamisation de l'offre",
+   "Gestion opérationnelle",
+   "Management de l'équipe commerciale"
+  ],
+  "nonCouvert": [
+   "Spécialisation e-commerce"
+  ],
+  "dateVerification": "2026-07-26",
+  "source": "Onisep",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 28,
+  "nom": "Master AEI — Commerce Électronique et Stratégie Digitale",
+  "organisme": "UPEC",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "u-pec.fr",
+  "prix": 0,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Licence, sur dossier via Mon Master.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Frais universitaires"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": [
+   "Outils analytics",
+   "Outils de veille"
+  ],
+  "programme": [
+   "Stratégie de commerce électronique",
+   "Échanges internationaux",
+   "Marketing numérique",
+   "Droit du numérique",
+   "Mémoire de recherche appliquée"
+  ],
+  "nonCouvert": [
+   "Mise en pratique opérationnelle sur boutique"
+  ],
+  "dateVerification": "2026-07-19",
+  "source": "Site UPEC",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 29,
+  "nom": "Master AES — Commerce électronique",
+  "organisme": "Université de Strasbourg",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "unistra.fr",
+  "prix": 0,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Licence, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Frais universitaires"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "Catalogue universitaire",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 30,
+  "nom": "Master 2 Marketing Connecté et Communication Digitale",
+  "organisme": "iaelyon — Université Lyon III",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "iaelyon.univ-lyon3.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "M1 validé, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "Site iaelyon",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 31,
+  "nom": "Master 2 Marketing Digital et Consommateur Connecté",
+  "organisme": "Grenoble IAE — INP, UGA",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "grenoble-iae.fr",
+  "prix": 0,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "M1 validé ou formation continue.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Formation continue"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "Site Grenoble IAE",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 32,
+  "nom": "Master Marketing Vente — Marketing Direct et Digital",
+  "organisme": "IAE de Lille",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "iaelille.fr",
+  "prix": 0,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Licence, sur dossier. Rythme 1 semaine école / 3 semaines entreprise.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": [
+   "Outils UX",
+   "CRM",
+   "Outils analytics",
+   "Outils SEO"
+  ],
+  "programme": [
+   "UX et UI",
+   "Community management",
+   "eCRM",
+   "Analyse de données",
+   "SEO"
+  ],
+  "nonCouvert": [
+   "Logistique"
+  ],
+  "dateVerification": "2026-07-03",
+  "source": "Site FGES / IAE Lille",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 33,
+  "nom": "Master Marketing dans un monde digital",
+  "organisme": "Le Cnam",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "cnam.fr",
+  "prix": null,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Licence ou VAE.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Formation continue",
+   "VAE"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "Catalogue Cnam",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 34,
+  "nom": "Master Marketing et distribution",
+  "organisme": "ICSV — Cnam Paris",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "cnam.fr",
+  "prix": null,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Licence, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "Catalogue Cnam",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 35,
+  "nom": "Master Marketing Vente — Marketing Responsable et Transformation Digitale",
+  "organisme": "IAE Rouen Normandie",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": null,
+  "url": "iae.univ-rouen.fr",
+  "prix": 0,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Licence, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Diplôme national niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "Site IAE Rouen",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 36,
+  "nom": "Licence pro E-commerce et marketing numérique — VAE uniquement",
+  "organisme": "IUT Paris Rives de Seine",
+  "categorieLibelle": "Universités",
+  "sousFamille": "Diplôme d'État",
+  "region": "Île-de-France",
+  "url": "iutparis-seine.u-paris.fr",
+  "prix": 0,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": "Accès par validation des acquis de l'expérience uniquement.",
+  "cpf": 0,
+  "financements": [
+   "VAE"
+  ],
+  "certification": "Diplôme national — RNCP40509",
+  "outils": [
+   "Solutions e-commerce",
+   "Outils SEO",
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Création et mise en place d'un site marchand",
+   "Maintenance technique du site",
+   "Mise à jour des pages produits et optimisation de la conversion",
+   "Référencement et campagnes d'acquisition",
+   "Traitement des commandes et logistique",
+   "Suivi de la satisfaction et des réclamations clients",
+   "Projet tutoré",
+   "Période en entreprise"
+  ],
+  "nonCouvert": [
+   "Parcours en formation initiale"
+  ],
+  "dateVerification": "2026-08-01",
+  "source": "IUT Paris Rives de Seine",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 37,
+  "nom": "MSc Digital Marketing and E-Commerce",
+  "organisme": "INSEEC",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "inseec.com",
+  "prix": 8175,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4, sur dossier et entretien.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": [
+   "Outils analytics",
+   "Outils SEO",
+   "CRM"
+  ],
+  "programme": [
+   "Stratégie digitale et e-business",
+   "Relation client omnicanale",
+   "Campagnes digitales et acquisition",
+   "Analytics et performance",
+   "UX et parcours d'achat",
+   "Mission en entreprise"
+  ],
+  "nonCouvert": [
+   "Développement technique"
+  ],
+  "dateVerification": "2026-06-20",
+  "source": "inseec.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 38,
+  "nom": "MSc Digital Marketing & Sales",
+  "organisme": "KEDGE Business School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "kedge.edu",
+  "prix": null,
+  "duree": "18 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-18",
+  "source": "kedge.edu",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 39,
+  "nom": "Mastère Spécialisé Marketing Digital & Data",
+  "organisme": "KEDGE Business School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "kedge.edu",
+  "prix": null,
+  "duree": "12 à 13 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+5, ou bac+4 avec 3 ans d'expérience.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Mastère Spécialisé CGE — niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-18",
+  "source": "kedge.edu",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 40,
+  "nom": "Mastère Spécialisé Manager Marketing Data et Commerce Électronique",
+  "organisme": "SKEMA Business School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "skema.edu",
+  "prix": null,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+5, ou bac+4 avec 3 ans d'expérience.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Mastère Spécialisé CGE — niveau 7",
+  "outils": [
+   "Outils data",
+   "Outils analytics"
+  ],
+  "programme": [
+   "Data marketing et modélisation",
+   "Stratégie de commerce électronique",
+   "Pilotage de la performance",
+   "Management d'équipe digitale",
+   "Thèse professionnelle"
+  ],
+  "nonCouvert": [
+   "Mise en pratique opérationnelle"
+  ],
+  "dateVerification": "2026-05-08",
+  "source": "skema.edu",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 41,
+  "nom": "Master in Digital Marketing & Customer Experience Management",
+  "organisme": "IESEG School of Management",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "ieseg.fr",
+  "prix": 18800,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4. Programme intégralement en anglais.",
+  "cpf": 0,
+  "financements": [
+   "Prêt étudiant"
+  ],
+  "certification": "Grade de master",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Enseignement en français"
+  ],
+  "dateVerification": "2026-06-05",
+  "source": "ieseg.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 42,
+  "nom": "MSc Digital Marketing and Sales",
+  "organisme": "EM Normandie",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "em-normandie.fr",
+  "prix": 8500,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-05",
+  "source": "em-normandie.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 43,
+  "nom": "Bachelor Digital Marketing et E-Commerce Management",
+  "organisme": "Clermont School of Business",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "esc-clermont.fr",
+  "prix": 8500,
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat via Parcoursup.",
+  "cpf": 0,
+  "financements": [
+   "Prêt étudiant",
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP",
+  "outils": [
+   "Outils analytics",
+   "CRM"
+  ],
+  "programme": [
+   "Fondamentaux du marketing",
+   "E-commerce management",
+   "Marketing digital et acquisition",
+   "Dimension internationale",
+   "Stage et projets professionnels"
+  ],
+  "nonCouvert": [
+   "Alternance non proposée"
+  ],
+  "dateVerification": "2026-06-02",
+  "source": "esc-clermont.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 44,
+  "nom": "Cursus Grande École — économie numérique",
+  "organisme": "ESCEN",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "escen.fr",
+  "prix": 8950,
+  "duree": "5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat sur concours.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP",
+  "outils": [
+   "Outils webmarketing",
+   "Outils data"
+  ],
+  "programme": [
+   "Socle management et commerce",
+   "Webmarketing et acquisition",
+   "Data et intelligence artificielle",
+   "Projets entrepreneuriaux",
+   "Expérience internationale"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-06-10",
+  "source": "escen.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 45,
+  "nom": "MBA Spécialisé Digital Marketing & Business",
+  "organisme": "EFAP",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "efap.com",
+  "prix": null,
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4, sur dossier et entretien.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "efap.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 46,
+  "nom": "MBA Marketing Digital et E-business (MBA MCI)",
+  "organisme": "De Vinci Executive Education",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "devinci.fr",
+  "prix": null,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+4 ou bac+5.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "devinci.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 47,
+  "nom": "MBA Marketing Digital et Intelligence Artificielle",
+  "organisme": "De Vinci Executive Education",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "devinci.fr",
+  "prix": null,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+4 ou bac+5.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "devinci.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 48,
+  "nom": "MSc in Management by Innovation — marketing digital",
+  "organisme": "ICN Business School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "icn-artem.com",
+  "prix": null,
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "icn-artem.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 49,
+  "nom": "Mastère Spécialisé Digital Marketing & Data Analytics",
+  "organisme": "Grenoble École de Management",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "grenoble-em.com",
+  "prix": null,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+5, ou bac+4 avec expérience.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Mastère Spécialisé CGE — niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "grenoble-em.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 50,
+  "nom": "Master Management — Webmarketing et E-commerce",
+  "organisme": "ESC Amiens",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "esc-amiens.com",
+  "prix": null,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "esc-amiens.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 51,
+  "nom": "MSc in AI Marketing & Business",
+  "organisme": "EBS Paris",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "ebs-paris.com",
+  "prix": null,
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4.",
+  "cpf": 0,
+  "financements": [
+   "Prêt étudiant"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "ebs-paris.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 52,
+  "nom": "Programmes licence et mastère business digital",
+  "organisme": "PSB — Paris School of Business",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "psbedu.paris",
+  "prix": 12500,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat ou bac+3/+4.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Prêt étudiant"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-10",
+  "source": "psbedu.paris",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 53,
+  "nom": "Bachelor Marketing et Communication Digitale",
+  "organisme": "IPAG Business School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "ipag.edu",
+  "prix": null,
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat via Parcoursup.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "ipag.edu",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 54,
+  "nom": "MBA Digital Marketing",
+  "organisme": "MBA ESG",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "mba-esg.com",
+  "prix": null,
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "mba-esg.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 55,
+  "nom": "MSc Digital Marketing",
+  "organisme": "Audencia",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "audencia.com",
+  "prix": null,
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 ou bac+4.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "audencia.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 56,
+  "nom": "MSc Marketing Digital",
+  "organisme": "ESDES Lyon",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École de commerce",
+  "region": null,
+  "url": "esdes.fr",
+  "prix": null,
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "esdes.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 57,
+  "nom": "Bachelor E-business",
+  "organisme": "MyDigitalSchool",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "mydigitalschool.com",
+  "prix": 8000,
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat, admission sur dossier et entretien.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP",
+  "outils": [
+   "Outils de gestion de projet",
+   "Suite créative",
+   "Outils analytics"
+  ],
+  "programme": [
+   "Fondamentaux du digital",
+   "Marketing et acquisition",
+   "Gestion de projet web",
+   "Projets collaboratifs et workshops clients",
+   "Alternance"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-06-17",
+  "source": "mydigitalschool.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 58,
+  "nom": "Bachelor Communication Digitale et E-business",
+  "organisme": "IIM Digital School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iim.fr",
+  "prix": null,
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": [
+   "Stratégie digitale",
+   "Social media",
+   "Content marketing",
+   "SEO et SEA",
+   "Analytics"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-06-14",
+  "source": "iim.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 59,
+  "nom": "Mastère E-commerce, Data & IA",
+  "organisme": "IIM Digital School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iim.fr",
+  "prix": null,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-14",
+  "source": "iim.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 60,
+  "nom": "Mastère Marketing et Communication Digitale",
+  "organisme": "IIM Digital School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iim.fr",
+  "prix": null,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-14",
+  "source": "iim.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 61,
+  "nom": "Mastère Digital Marketing & Data Analytics",
+  "organisme": "IIM Digital School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iim.fr",
+  "prix": null,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-14",
+  "source": "iim.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 62,
+  "nom": "Master E-commerce et Marketing Digital",
+  "organisme": "SUPDEWEB",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "supdeweb.com",
+  "prix": 8500,
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": "Bac+3 en webmarketing, communication, commerce ou informatique.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": [
+   "Outils SEO",
+   "Outils analytics",
+   "CMS e-commerce"
+  ],
+  "programme": [
+   "Gestion de projets web",
+   "Génération de trafic SEO et SEA",
+   "Fidélisation client",
+   "Pilotage et optimisation d'un site e-commerce"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-05-21",
+  "source": "supdeweb.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 63,
+  "nom": "Bachelor et Mastère digital",
+  "organisme": "ESD — École Supérieure du Digital",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "ecole-du-digital.com",
+  "prix": 7000,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat ou bac+3.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "ecole-du-digital.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 64,
+  "nom": "Cursus Grande École du web",
+  "organisme": "HETIC",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "hetic.net",
+  "prix": null,
+  "duree": "5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat sur concours.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "hetic.net",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 65,
+  "nom": "Prépa Mastère Digitale",
+  "organisme": "HETIC",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "hetic.net",
+  "prix": null,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2, préparation à l'entrée en mastère.",
+  "cpf": 0,
+  "financements": [
+   "Paiement échelonné"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "hetic.net",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 66,
+  "nom": "Bachelor et Mastère marketing digital",
+  "organisme": "Digital Campus",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "digital-campus.fr",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat ou bac+3.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "digital-campus.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 67,
+  "nom": "Bachelor Internet — Business et Marketing",
+  "organisme": "Sup'Internet",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "supinternet.fr",
+  "prix": null,
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "supinternet.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 68,
+  "nom": "Bachelor Chef de Projets Digitaux — E-Business",
+  "organisme": "EEMI",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "eemi.com",
+  "prix": null,
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "eemi.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 69,
+  "nom": "Bachelor & MBA Marketing digital",
+  "organisme": "ISCOD",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iscod.fr",
+  "prix": 0,
+  "duree": "1 à 3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 minimum. Contrat d'alternance obligatoire.",
+  "cpf": 0,
+  "financements": [
+   "Alternance intégralement financée"
+  ],
+  "certification": "Titre RNCP",
+  "outils": [
+   "Outils marketing digital",
+   "Outils de gestion de projet"
+  ],
+  "programme": [
+   "Fondamentaux marketing et communication",
+   "Webmarketing et réseaux sociaux",
+   "Gestion de projet digital",
+   "Mémoire professionnel"
+  ],
+  "nonCouvert": [
+   "Cours en présentiel",
+   "Spécialisation e-commerce dédiée"
+  ],
+  "dateVerification": "2026-07-02",
+  "source": "iscod.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 70,
+  "nom": "Bachelor et Mastère e-marketing",
+  "organisme": "Sup de Web — Média School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "supdeweb.com",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "supdeweb.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 71,
+  "nom": "Bachelor et Mastère communication digitale",
+  "organisme": "ECV Digital",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "ecv.fr",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "ecv.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 72,
+  "nom": "Bachelor et Mastère marketing digital",
+  "organisme": "Digital College",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "digital-college.fr",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "digital-college.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 73,
+  "nom": "Bachelor et Mastère communication digitale",
+  "organisme": "ECITV",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "ecitv.fr",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "ecitv.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 74,
+  "nom": "Formations commerce et digital à distance",
+  "organisme": "ENACO",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "enaco.fr",
+  "prix": null,
+  "duree": "1 à 3 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "enaco.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 75,
+  "nom": "Bachelor et Mastère transformation digitale",
+  "organisme": "Epitech Digital",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "epitech.digital",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "epitech.digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 76,
+  "nom": "Cursus management et technologies numériques",
+  "organisme": "Web School Factory",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "webschoolfactory.fr",
+  "prix": null,
+  "duree": "5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Baccalauréat, sur dossier.",
+  "cpf": 0,
+  "financements": [
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "webschoolfactory.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 77,
+  "nom": "MBA E-Business",
+  "organisme": "Paris Digital School",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "parisdigitalschool.com",
+  "prix": null,
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+3",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 7",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-12",
+  "source": "parisdigitalschool.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 78,
+  "nom": "Bachelor et Mastère communication digitale",
+  "organisme": "EFFICOM",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "efficom-paris.com",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "efficom-paris.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 79,
+  "nom": "Programmes Sup de Pub — stratégie digitale",
+  "organisme": "Sup de Pub",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "supdepub.com",
+  "prix": null,
+  "duree": "3 à 5 ans",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-08",
+  "source": "supdepub.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 80,
+  "nom": "Titre Chargé de Marketing Digital et E-commerce",
+  "organisme": "EIMP — École Internationale de Management de Paris",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "ema.education",
+  "prix": null,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 ou expérience significative en marketing ou digital. Stage ou emploi obligatoire en fin de parcours.",
+  "cpf": 0,
+  "financements": [
+   "Paiement échelonné"
+  ],
+  "certification": "Titre RNCP niveau 6",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Alternance non proposée"
+  ],
+  "dateVerification": "2026-07-04",
+  "source": "ema.education",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 81,
+  "nom": "Parcours reconversion — bootcamp + alternance",
+  "organisme": "Oreegami",
+  "categorieLibelle": "Bootcamps",
+  "sousFamille": "Bootcamp",
+  "region": null,
+  "url": "oreegami.com",
+  "prix": 0,
+  "duree": "15 mois",
+  "volumeHoraire": 400,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Inscription à France Travail et au moins une expérience professionnelle.",
+  "cpf": 1,
+  "financements": [
+   "France Travail",
+   "POEI",
+   "Alternance"
+  ],
+  "certification": "Titre RNCP",
+  "outils": [
+   "Google Ads",
+   "Meta Ads Manager",
+   "Microsoft Advertising",
+   "LinkedIn Ads"
+  ],
+  "programme": [
+   "Bootcamp intensif de 400 h sur 3 mois",
+   "Alternance de 12 mois",
+   "Coaching individuel",
+   "Challenges et hackathons"
+  ],
+  "nonCouvert": [
+   "Création de boutique e-commerce"
+  ],
+  "dateVerification": "2026-07-10",
+  "source": "oreegami.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 82,
+  "nom": "Bootcamp Numérique Expert Marketing Digital",
+  "organisme": "Oreegami × Google",
+  "categorieLibelle": "Bootcamps",
+  "sousFamille": "Bootcamp",
+  "region": null,
+  "url": "grow.google",
+  "prix": 0,
+  "duree": "15 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Parcours de reconversion, sans frais.",
+  "cpf": 1,
+  "financements": [
+   "Google",
+   "France Travail",
+   "Alternance"
+  ],
+  "certification": "Titre RNCP niveau 6",
+  "outils": [
+   "Google Ads",
+   "Google Analytics"
+  ],
+  "programme": [
+   "Bootcamp co-développé avec Google",
+   "Mentorat 1:1",
+   "Masterclasses",
+   "Alternance"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-07-10",
+  "source": "grow.google",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 83,
+  "nom": "Parcours upskilling entreprises",
+  "organisme": "Oreegami",
+  "categorieLibelle": "Bootcamps",
+  "sousFamille": "Bootcamp",
+  "region": null,
+  "url": "oreegami.com",
+  "prix": null,
+  "duree": "0,5 à 3 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": "Salariés en poste. Formats intra ou inter-entreprises.",
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-10",
+  "source": "oreegami.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 84,
+  "nom": "Bachelor Marketing Digital",
+  "organisme": "Rocket School",
+  "categorieLibelle": "Bootcamps",
+  "sousFamille": "Bootcamp",
+  "region": null,
+  "url": "rocket-school.com",
+  "prix": 0,
+  "duree": "13 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Profils en reconversion. 1 mois de bootcamp puis 12 mois d'alternance, rythme 1 semaine centre / 3 semaines entreprise.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "OPCO",
+   "POEI"
+  ],
+  "certification": "Titre RNCP40377 — niveau 6",
+  "outils": null,
+  "programme": [
+   "Bootcamp immersif d'un mois",
+   "Acquisition et growth",
+   "Ingénierie de l'expérience client omnicanale",
+   "E-merchandising",
+   "Gestion de centre de profit",
+   "Alternance de 12 mois"
+  ],
+  "nonCouvert": [
+   "Création technique de boutique"
+  ],
+  "dateVerification": "2026-07-16",
+  "source": "rocket-school.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 85,
+  "nom": "Bootcamp Business Development",
+  "organisme": "Rocket School",
+  "categorieLibelle": "Bootcamps",
+  "sousFamille": "Bootcamp",
+  "region": null,
+  "url": "rocket-school.com",
+  "prix": 0,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Demandeur d'emploi, dispositif POEI.",
+  "cpf": 0,
+  "financements": [
+   "France Travail",
+   "POEI"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-16",
+  "source": "rocket-school.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 86,
+  "nom": "Formations data et IA",
+  "organisme": "Jedha",
+  "categorieLibelle": "Bootcamps",
+  "sousFamille": "Bootcamp",
+  "region": null,
+  "url": "jedha.co",
+  "prix": null,
+  "duree": "3 à 9 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "France Travail",
+   "OPCO"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Spécialisation e-commerce"
+  ],
+  "dateVerification": "2026-07-16",
+  "source": "jedha.co",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 87,
+  "nom": "Bootcamp data et développement",
+  "organisme": "Le Wagon",
+  "categorieLibelle": "Bootcamps",
+  "sousFamille": "Bootcamp",
+  "region": null,
+  "url": "lewagon.com",
+  "prix": null,
+  "duree": "2 à 6 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "France Travail"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Spécialisation e-commerce"
+  ],
+  "dateVerification": "2026-07-16",
+  "source": "lewagon.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 88,
+  "nom": "Formation E-commerce",
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "Site officiel + fiche Mon Compte Formation",
+  "prix": 1980,
+  "duree": "3 mois",
+  "volumeHoraire": 105,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun. Avoir un projet de boutique est conseillé.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "France Travail",
+   "Paiement en 4 fois"
+  ],
+  "certification": "Certification RS",
+  "outils": [
+   "Shopify",
+   "Meta Ads Manager",
+   "Google Analytics",
+   "Klaviyo"
+  ],
+  "programme": [
+   "Cadrer son projet et choisir son modèle",
+   "Créer sa boutique Shopify",
+   "Sourcing et relation fournisseurs",
+   "Acquisition payante Meta et Google",
+   "Référencement naturel",
+   "Email marketing et fidélisation",
+   "Logistique, expédition, retours",
+   "Pilotage : marge, trésorerie, KPI"
+  ],
+  "nonCouvert": [
+   "Développement et code",
+   "Amazon et marketplaces",
+   "Comptabilité et fiscalité"
+  ],
+  "dateVerification": "2026-07-28",
+  "source": "Site officiel + fiche Mon Compte Formation",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 89,
+  "nom": "Formation Marketing Digital",
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "prix": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "France Travail"
+  ],
+  "certification": "Certification RS",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-28",
+  "source": "livementor.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 90,
+  "nom": "Formation E-commerce certifiante",
+  "organisme": "Digi Atlas",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "digi-atlas.com",
+  "prix": 2390,
+  "duree": "Accès à vie",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Certification RS",
+  "outils": [
+   "Shopify",
+   "Meta Ads Manager",
+   "ChatGPT",
+   "Make",
+   "n8n"
+  ],
+  "programme": [
+   "Fondamentaux du e-commerce",
+   "Construction de la boutique",
+   "Stratégie d'acquisition",
+   "IA appliquée au marketing",
+   "Automatisation et no-code",
+   "Examen final en visio surveillée"
+  ],
+  "nonCouvert": [
+   "Logistique et supply chain",
+   "Marketplaces"
+  ],
+  "dateVerification": "2026-07-12",
+  "source": "digi-atlas.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 91,
+  "nom": "Formation Marketing digital et IA",
+  "organisme": "Digi Atlas",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "digi-atlas.com",
+  "prix": null,
+  "duree": "Accès à vie",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Certification RS7522",
+  "outils": [
+   "ChatGPT",
+   "Gemini",
+   "Perplexity",
+   "Claude",
+   "Mistral",
+   "Zapier",
+   "Make",
+   "n8n"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-12",
+  "source": "digi-atlas.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 92,
+  "nom": "Marketing digital — titre RNCP",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": "9 à 18 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "Bac+2 ou expérience équivalente.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance",
+   "OPCO"
+  ],
+  "certification": "Titre RNCP niveau 6",
+  "outils": [
+   "Google Ads",
+   "Meta Ads Manager",
+   "Google Analytics",
+   "Semrush"
+  ],
+  "programme": [
+   "Stratégie marketing digitale",
+   "Référencement naturel et payant",
+   "Réseaux sociaux et community management",
+   "Analytics et pilotage",
+   "E-commerce et parcours d'achat",
+   "Mémoire professionnel"
+  ],
+  "nonCouvert": [
+   "Création technique de boutique",
+   "Logistique"
+  ],
+  "dateVerification": "2026-06-30",
+  "source": "studi.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 93,
+  "nom": "Formation commerciale à distance",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": "6 à 18 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "France Travail"
+  ],
+  "certification": "Titre RNCP",
+  "outils": [
+   "CRM"
+  ],
+  "programme": [
+   "Techniques de vente",
+   "Relation client",
+   "Argumentation commerciale",
+   "Gestion de portefeuille client"
+  ],
+  "nonCouvert": [
+   "E-commerce technique"
+  ],
+  "dateVerification": "2026-06-30",
+  "source": "studi.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 94,
+  "nom": "Optimisez votre pricing en e-commerce",
+  "organisme": "OpenClassrooms",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "openclassrooms.com",
+  "prix": 0,
+  "duree": "6 h",
+  "volumeHoraire": 6,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation de suivi",
+  "outils": [
+   "Outils de veille tarifaire"
+  ],
+  "programme": [
+   "Comprendre le prix dynamique",
+   "Surveiller la concurrence",
+   "Ajuster selon demande et saisonnalité",
+   "Systèmes d'enchères en ligne"
+  ],
+  "nonCouvert": [
+   "Création de boutique",
+   "Acquisition",
+   "Logistique"
+  ],
+  "dateVerification": "2026-07-05",
+  "source": "openclassrooms.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 95,
+  "nom": "Fondamentaux du design d'une boutique e-commerce",
+  "organisme": "OpenClassrooms",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "openclassrooms.com",
+  "prix": 0,
+  "duree": "8 h",
+  "volumeHoraire": 8,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation de suivi",
+  "outils": [
+   "Shopify"
+  ],
+  "programme": [
+   "Concevoir un site sans coder",
+   "Page d'accueil",
+   "Fiches produits",
+   "Tunnel d'achat"
+  ],
+  "nonCouvert": [
+   "Acquisition payante",
+   "Logistique",
+   "Mise en pratique guidée"
+  ],
+  "dateVerification": "2026-07-05",
+  "source": "openclassrooms.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 96,
+  "nom": "Parcours Chef de projet e-commerce",
+  "organisme": "OpenClassrooms",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "openclassrooms.com",
+  "prix": null,
+  "duree": "6 à 12 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "France Travail"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-05",
+  "source": "openclassrooms.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 97,
+  "nom": "Accompagnement e-commerce individuel",
+  "organisme": "Digital Study",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "digital-study.fr",
+  "prix": null,
+  "duree": "Sur mesure",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": "Avoir une activité e-commerce existante.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Certification RS",
+  "outils": [
+   "Shopify",
+   "Meta Ads Manager"
+  ],
+  "programme": [
+   "Audit de l'activité existante",
+   "Programme construit sur mesure",
+   "Sessions individuelles",
+   "Plan d'action et suivi"
+  ],
+  "nonCouvert": [
+   "Format collectif"
+  ],
+  "dateVerification": "2026-07-20",
+  "source": "digital-study.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 98,
+  "nom": "Formations e-commerce certifiantes",
+  "organisme": "Senza Formations",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "Recherche web",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF"
+  ],
+  "certification": "Certification RS",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-02",
+  "source": "Recherche web",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 99,
+  "nom": "Formations marketing digital certifiantes",
+  "organisme": "Skills4All",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "Recherche web",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Certification RS",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-02",
+  "source": "Recherche web",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 100,
+  "nom": "Créer un site marchand et piloter sa stratégie",
+  "organisme": "ORSYS",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "orsys.fr",
+  "prix": 2100,
+  "duree": "3 jours",
+  "volumeHoraire": 21,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": "Être en poste sur un projet e-commerce.",
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Solutions e-commerce du marché",
+   "Google Analytics"
+  ],
+  "programme": [
+   "Cadrage du projet e-commerce",
+   "Choix de la solution technique",
+   "E-merchandising et parcours d'achat",
+   "Conformité RGPD",
+   "Stratégie multicanale"
+  ],
+  "nonCouvert": [
+   "Mise en pratique sur une boutique réelle",
+   "Publicité payante"
+  ],
+  "dateVerification": "2026-07-08",
+  "source": "orsys.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 101,
+  "nom": "E-merchandising et optimisation du tunnel",
+  "organisme": "ORSYS",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "orsys.fr",
+  "prix": null,
+  "duree": "2 jours",
+  "volumeHoraire": 14,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-08",
+  "source": "orsys.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 102,
+  "nom": "RGPD appliqué au e-commerce",
+  "organisme": "ORSYS",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "orsys.fr",
+  "prix": null,
+  "duree": "1 jour",
+  "volumeHoraire": 7,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-08",
+  "source": "orsys.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 103,
+  "nom": "Développer ses ventes en ligne",
+  "organisme": "Cegos",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "cegos.fr",
+  "prix": 1850,
+  "duree": "2 jours",
+  "volumeHoraire": 14,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": "Fonction commerciale ou marketing.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Plan de développement",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "CRM",
+   "Google Analytics"
+  ],
+  "programme": [
+   "Enjeux du commerce en ligne",
+   "Construire son offre digitale",
+   "Acquisition et conversion",
+   "Relation client digitalisée"
+  ],
+  "nonCouvert": [
+   "Création technique",
+   "Logistique"
+  ],
+  "dateVerification": "2026-06-24",
+  "source": "cegos.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 104,
+  "nom": "Marketing digital : les fondamentaux",
+  "organisme": "Cegos",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "cegos.fr",
+  "prix": null,
+  "duree": "3 jours",
+  "volumeHoraire": 21,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-24",
+  "source": "cegos.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 105,
+  "nom": "Formations digital et multimédia",
+  "organisme": "M2i Formation",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "m2iformation.fr",
+  "prix": null,
+  "duree": "1 à 5 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "Actions collectives"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-24",
+  "source": "m2iformation.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 106,
+  "nom": "Marketing digital et relation client",
+  "organisme": "ISM",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "ism.fr",
+  "prix": null,
+  "duree": "2 à 3 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Expérience",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-24",
+  "source": "ism.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 107,
+  "nom": "Formations e-commerce et CMS",
+  "organisme": "Dawan",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "dawan.fr",
+  "prix": null,
+  "duree": "2 à 5 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "PrestaShop",
+   "WooCommerce",
+   "Magento"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-24",
+  "source": "dawan.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 108,
+  "nom": "Créer et animer une boutique e-commerce",
+  "organisme": "CCI Hauts-de-France",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "formation.hautsdefrance.cci.fr",
+  "prix": 1200,
+  "duree": "4 jours",
+  "volumeHoraire": 28,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Utiliser régulièrement un ordinateur et naviguer sur internet.",
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "OPCO",
+   "Aides régionales"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": [
+   "Solutions et cahier des charges",
+   "Contenus et aspects juridiques",
+   "Animation commerciale",
+   "Développer le chiffre d'affaires"
+  ],
+  "nonCouvert": [
+   "Publicité payante avancée"
+  ],
+  "dateVerification": "2026-05-30",
+  "source": "formation.hautsdefrance.cci.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 109,
+  "nom": "Formations aux métiers du commerce — réseau Negoventis",
+  "organisme": "CCI France",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "cci.fr",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Alternance"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Présent dans 100 CCI, formation initiale et continue.",
+  "cpf": 0,
+  "financements": [
+   "Alternance",
+   "OPCO"
+  ],
+  "certification": "Titre RNCP",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "cci.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 110,
+  "nom": "Formation continue commerce et numérique",
+  "organisme": "Réseau CCI",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "cci.fr",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "186 centres, 300 000 stagiaires par an.",
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "OPCO"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "cci.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 111,
+  "nom": "Numérisation des artisans et commerçants",
+  "organisme": "CMA France",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "artisanat.fr",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Artisans et commerçants.",
+  "cpf": 0,
+  "financements": [
+   "Plan de développement",
+   "Aides régionales"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-15",
+  "source": "artisanat.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 112,
+  "nom": "BUT TC MDEE 3e année en alternance",
+  "organisme": "GRETA Métehor Paris",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "gretametehor.com",
+  "prix": null,
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "formats": [
+   "Alternance"
+  ],
+  "niveauLibelle": "Bac+2",
+  "prerequis": "BTS MCO, NDRC, Commerce international, Communication ou Gestion de la PME, ou L2. En partenariat avec l'IUT Paris-Rives de Seine.",
+  "cpf": 0,
+  "financements": [
+   "Alternance"
+  ],
+  "certification": "Diplôme national niveau 6",
+  "outils": null,
+  "programme": [
+   "Gérer une activité digitale",
+   "Exploiter les données de masse",
+   "Cahier des charges e-business",
+   "Chaîne logistique du e-commerce"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-07-01",
+  "source": "gretametehor.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 113,
+  "nom": "Shopify Academy",
+  "organisme": "Shopify",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "shopify.com",
+  "prix": 0,
+  "duree": "80+ cours",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Badges Verified Skills",
+  "outils": [
+   "Shopify",
+   "Shopify Payments",
+   "Shopify Email"
+  ],
+  "programme": [
+   "Créer sa première boutique",
+   "Design et thèmes",
+   "Fiches produits et collections",
+   "Paiements et livraison",
+   "Marketing et lancement"
+  ],
+  "nonCouvert": [
+   "Publicité payante avancée",
+   "Statut juridique et fiscalité",
+   "Marketplaces tierces"
+  ],
+  "dateVerification": "2026-07-30",
+  "source": "Site officiel Shopify",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 114,
+  "nom": "Ateliers Numériques",
+  "organisme": "Google",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "learndigital.withgoogle.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": 40,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Google",
+  "outils": [
+   "Google Ads",
+   "Google Analytics",
+   "Search Console"
+  ],
+  "programme": [
+   "Principes du marketing numérique",
+   "Référencement naturel",
+   "Publicité sur les moteurs",
+   "Analyse des données"
+  ],
+  "nonCouvert": [
+   "Création de boutique",
+   "Logistique",
+   "Réseaux sociaux payants"
+  ],
+  "dateVerification": "2026-07-22",
+  "source": "Site officiel Google",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 115,
+  "nom": "Google Skillshop",
+  "organisme": "Google",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "skillshop.withgoogle.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Google Ads.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Google",
+  "outils": [
+   "Google Ads",
+   "Google Analytics",
+   "Merchant Center"
+  ],
+  "programme": [
+   "Certifications Google Ads",
+   "Google Analytics 4",
+   "Shopping et Merchant Center"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas Google"
+  ],
+  "dateVerification": "2026-07-22",
+  "source": "Site officiel Google",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 116,
+  "nom": "Meta Blueprint",
+  "organisme": "Meta",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "facebook.com/business/learn",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte publicitaire.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Meta",
+  "outils": [
+   "Meta Ads Manager",
+   "Business Suite",
+   "Pixel Meta"
+  ],
+  "programme": [
+   "Gestionnaire de publicités",
+   "Ciblage et audiences",
+   "Créations publicitaires",
+   "Mesure et attribution"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas Meta"
+  ],
+  "dateVerification": "2026-07-18",
+  "source": "Site officiel Meta",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 117,
+  "nom": "PrestaShop Academy",
+  "organisme": "PrestaShop",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "prestashop.com",
+  "prix": 0,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "PrestaShop"
+  ],
+  "programme": [
+   "Installation et configuration",
+   "Catalogue et commandes",
+   "Modules et extensions",
+   "Référencement"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-05-14",
+  "source": "Site officiel PrestaShop",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 118,
+  "nom": "WiziShop Academy",
+  "organisme": "WiziShop",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "wizishop.fr",
+  "prix": 0,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Créer un compte WiziShop.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Aucune",
+  "outils": [
+   "WiziShop"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-15",
+  "source": "Site officiel WiziShop",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 119,
+  "nom": "Amazon Seller University",
+  "organisme": "Amazon",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "sell.amazon.fr",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte vendeur Amazon.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Amazon Seller Central",
+   "Amazon Ads"
+  ],
+  "programme": [
+   "Ouvrir un compte vendeur",
+   "Créer des fiches produits",
+   "Expédié par Amazon (FBA)",
+   "Publicité Amazon"
+  ],
+  "nonCouvert": [
+   "Boutique propre",
+   "Autres marketplaces"
+  ],
+  "dateVerification": "2026-07-20",
+  "source": "Site officiel Amazon",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 120,
+  "nom": "Klaviyo Academy",
+  "organisme": "Klaviyo",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "klaviyo.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Klaviyo.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Klaviyo",
+  "outils": [
+   "Klaviyo"
+  ],
+  "programme": [
+   "Fondamentaux de l'email marketing",
+   "Segmentation",
+   "Flux automatisés",
+   "Mesure de la performance"
+  ],
+  "nonCouvert": [
+   "Acquisition payante",
+   "Création de boutique"
+  ],
+  "dateVerification": "2026-07-20",
+  "source": "Site officiel Klaviyo",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 121,
+  "nom": "HubSpot Academy",
+  "organisme": "HubSpot",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "academy.hubspot.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification HubSpot",
+  "outils": [
+   "HubSpot"
+  ],
+  "programme": [
+   "Inbound marketing",
+   "Email marketing",
+   "CRM",
+   "Content marketing"
+  ],
+  "nonCouvert": [
+   "E-commerce technique",
+   "Logistique"
+  ],
+  "dateVerification": "2026-07-20",
+  "source": "Site officiel HubSpot",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 122,
+  "nom": "TikTok Ads — centre d'apprentissage",
+  "organisme": "TikTok",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "ads.tiktok.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte TikTok Ads.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "TikTok Ads Manager"
+  ],
+  "programme": [
+   "Créer une campagne",
+   "Formats créatifs",
+   "Ciblage",
+   "Mesure"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas TikTok"
+  ],
+  "dateVerification": "2026-07-20",
+  "source": "Site officiel TikTok",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 123,
+  "nom": "MOOC numérisation des TPE",
+  "organisme": "FUN MOOC",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Public",
+  "region": null,
+  "url": "fun-mooc.fr",
+  "prix": 0,
+  "duree": "4 à 8 semaines",
+  "volumeHoraire": 20,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation de suivi",
+  "outils": [
+   "Outils de diagnostic numérique"
+  ],
+  "programme": [
+   "Diagnostic numérique de l'entreprise",
+   "Présence en ligne",
+   "Vendre sur internet",
+   "Outils et données"
+  ],
+  "nonCouvert": [
+   "Publicité payante",
+   "Développement technique"
+  ],
+  "dateVerification": "2026-06-11",
+  "source": "Site officiel FUN MOOC",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 124,
+  "nom": "Bpifrance Université",
+  "organisme": "Bpifrance",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Public",
+  "region": null,
+  "url": "bpifrance-universite.fr",
+  "prix": 0,
+  "duree": "10 à 60 min par module",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Être dirigeant ou porteur de projet.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Aucune",
+  "outils": null,
+  "programme": [
+   "Diagnostic de maturité numérique",
+   "Fondamentaux du dirigeant",
+   "Bonnes pratiques opérationnelles"
+  ],
+  "nonCouvert": [
+   "Toute mise en pratique technique"
+  ],
+  "dateVerification": "2026-04-29",
+  "source": "Site officiel Bpifrance",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 125,
+  "nom": "Guides et réseau Activateurs",
+  "organisme": "France Num — DGE",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Public",
+  "region": null,
+  "url": "francenum.gouv.fr",
+  "prix": 0,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "TPE et PME. Premier entretien gratuit avec un Activateur référencé.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Aucune",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-06-25",
+  "source": "Site officiel France Num — DGE",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 126,
+  "nom": "Pix — compétences numériques",
+  "organisme": "Pix",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Public",
+  "region": null,
+  "url": "pix.fr",
+  "prix": 0,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification d'État",
+  "outils": null,
+  "programme": [
+   "Évaluation des compétences numériques",
+   "Certification"
+  ],
+  "nonCouvert": [
+   "E-commerce spécifiquement"
+  ],
+  "dateVerification": "2026-06-15",
+  "source": "Site officiel Pix",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 127,
+  "nom": "Ecom Pro",
+  "organisme": "Yomi Denzel",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": "~70 h",
+  "volumeHoraire": 70,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Prévoir un budget publicitaire.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Meta Ads Manager",
+   "AliExpress"
+  ],
+  "programme": [
+   "Choisir sa niche et son produit",
+   "Créer la boutique Shopify",
+   "Sourcing fournisseurs",
+   "Publicité Meta",
+   "Scaling et optimisation"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "Statut juridique et fiscalité",
+   "Marketplaces"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 128,
+  "nom": "Ecom French Touch",
+  "organisme": "Roman de Czerny et Maxime Le Morillon",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Outils de growth hacking"
+  ],
+  "programme": [
+   "Recherche de produits",
+   "Création de boutiques",
+   "Marketing digital",
+   "Service client",
+   "Drop service",
+   "Affiliation"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 129,
+  "nom": "Dropshipping Exponentiel",
+  "organisme": "Guillaume Jacob",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": 147,
+  "duree": "Accès à vie",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Meta Ads Manager"
+  ],
+  "programme": [
+   "Mise en place de la boutique",
+   "Recherche de produits",
+   "Publicité et test",
+   "Gestion des commandes"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "Accompagnement",
+   "Logistique avancée"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 130,
+  "nom": "Dropshipping SEO — de 0 à 600 k€",
+  "organisme": "Kamik",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun budget publicitaire requis.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Outils SEO"
+  ],
+  "programme": [
+   "Référencement naturel appliqué au dropshipping",
+   "Recherche de produits",
+   "Contenu et acquisition organique"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "Publicité payante"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 131,
+  "nom": "Super Seller Academy",
+  "organisme": "Oseille TV",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Prévoir un budget de stock.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Amazon Seller Central",
+   "Helium 10"
+  ],
+  "programme": [
+   "Ouvrir son compte vendeur Amazon",
+   "Recherche produit et sourcing",
+   "Optimisation des fiches produits",
+   "Publicité Amazon",
+   "Gestion des stocks FBA"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "Shopify et boutique propre"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 132,
+  "nom": "Formations dropshipping et SEO",
+  "organisme": "LearnyClub",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Outils SEO"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Comparatifs en ligne",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 133,
+  "nom": "Formations growth et acquisition",
+  "organisme": "Bulldozer",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Recherche web",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 134,
+  "nom": "Formations marketing et business en ligne",
+  "organisme": "Marketing Mania",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Recherche web",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 135,
+  "nom": "FormaFly — Shopify et publicité",
+  "organisme": "FormaFly",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Meta Ads Manager"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Comparatifs en ligne",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 136,
+  "nom": "Formation WooCommerce",
+  "organisme": "La Webeuse",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Connaître WordPress.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "WooCommerce",
+   "WordPress"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "Shopify"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Site officiel",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 137,
+  "nom": "Mini Ecom — print on demand",
+  "organisme": "Growth Hackers",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Print on demand"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Comparatifs en ligne",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 138,
+  "nom": "Business Game",
+  "organisme": "Sokona Diaby Martin",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Comparatifs en ligne",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 139,
+  "nom": "Se lancer en e-commerce",
+  "organisme": "Booster d'activité",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "TikTok Ads Manager"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Comparatifs en ligne",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 140,
+  "nom": "Les petits produits",
+  "organisme": "Antoine BM",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-06-09",
+  "source": "Recherche web",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false
+ },
+ {
+  "id": 141,
+  "nom": "Amazon Incubator — formule Builder",
+  "organisme": "AMZ Academy",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "amzacademy.fr",
+  "prix": 690,
+  "duree": "Accompagnement individuel",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun. Prévoir un budget de stock.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "Paiement échelonné"
+  ],
+  "certification": "Qualiopi — NDA 84380730538",
+  "outils": [
+   "Amazon Seller Central",
+   "Sonar"
+  ],
+  "programme": [
+   "Étude de marché et recherche produit",
+   "Sourcing fournisseurs",
+   "Création et optimisation des fiches",
+   "Lancement et publicité Amazon",
+   "Suivi par un mentor individuel"
+  ],
+  "nonCouvert": [
+   "Boutique propre",
+   "Autres marketplaces"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "amzacademy.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Amazon FBA",
+   "Marketplace",
+   "Logistique"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 142,
+  "nom": "Amazon Incubator — formule Premium",
+  "organisme": "AMZ Academy",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "amzacademy.fr",
+  "prix": 1890,
+  "duree": "Accompagnement individuel",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun. Prévoir un budget de stock.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "Paiement échelonné"
+  ],
+  "certification": "Qualiopi — NDA 84380730538",
+  "outils": [
+   "Amazon Seller Central",
+   "Sonar"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Boutique propre"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "amzacademy.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Amazon FBA",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 143,
+  "nom": "Amazon Incubator — formule Elite",
+  "organisme": "AMZ Academy",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "amzacademy.fr",
+  "prix": 2490,
+  "duree": "Accompagnement individuel",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun. Prévoir un budget de stock.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "Paiement échelonné"
+  ],
+  "certification": "Qualiopi — NDA 84380730538",
+  "outils": [
+   "Amazon Seller Central",
+   "Sonar"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Boutique propre"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "amzacademy.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Amazon FBA",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 144,
+  "nom": "Webmarketing E-commerce",
+  "organisme": "AMZ Academy",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "amzacademy.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi — NDA 84380730538",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "amzacademy.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Meta Ads",
+   "SEO e-commerce",
+   "Dropshipping"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 145,
+  "nom": "Formations e-commerce et webdesign",
+  "organisme": "Voltee",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "voltee.fr",
+  "prix": null,
+  "duree": "Accès libre",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun. Formations accessibles à tout moment.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": [
+   "Marketing",
+   "E-commerce",
+   "Webdesign",
+   "SEO",
+   "Gestion de projet",
+   "Développement",
+   "Modélisation 3D"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "voltee.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "Shopify",
+   "Dropshipping"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 146,
+  "nom": "Formation TikTok Ads",
+  "organisme": "Conversion Boosters",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "conversion-boosters.com",
+  "prix": 690,
+  "duree": "1 jour",
+  "volumeHoraire": 7,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte TikTok Ads.",
+  "cpf": 0,
+  "financements": [
+   "OPCO",
+   "FSE",
+   "Plan de développement"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "TikTok Ads Manager"
+  ],
+  "programme": [
+   "Créer des campagnes TikTok Ads",
+   "Gérer et optimiser les enchères",
+   "Formats créatifs",
+   "Mesure des performances"
+  ],
+  "nonCouvert": [
+   "Organique et création de contenu"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "conversion-boosters.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "TikTok Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 147,
+  "nom": "Formation SEO — 1 jour",
+  "organisme": "Conversion Boosters",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "conversion-boosters.com",
+  "prix": 690,
+  "duree": "1 jour",
+  "volumeHoraire": 7,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO",
+   "FSE",
+   "Plan de développement"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "Google Search Console",
+   "GA4",
+   "Matomo"
+  ],
+  "programme": [
+   "Fondamentaux du référencement naturel",
+   "Audit technique",
+   "Stratégie de contenu"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "conversion-boosters.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 148,
+  "nom": "Formation Meta Ads",
+  "organisme": "Conversion Boosters",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "conversion-boosters.com",
+  "prix": 890,
+  "duree": "1 à 2 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte publicitaire Meta.",
+  "cpf": 0,
+  "financements": [
+   "OPCO",
+   "Plan de développement"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "Meta Ads Manager"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "conversion-boosters.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Meta Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 149,
+  "nom": "Formation Google Ads",
+  "organisme": "Conversion Boosters",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "conversion-boosters.com",
+  "prix": 890,
+  "duree": "1 à 2 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO",
+   "Plan de développement"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "Google Ads"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "conversion-boosters.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Google Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 150,
+  "nom": "Formation Data Analytics — GA4 et Matomo",
+  "organisme": "Conversion Boosters",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "conversion-boosters.com",
+  "prix": null,
+  "duree": "1 à 2 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO",
+   "Plan de développement"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "GA4",
+   "Matomo"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "conversion-boosters.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Analytics"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 151,
+  "nom": "Formation Pinterest Ads individuelle",
+  "organisme": "DGTAL Consulting — Johanna Di Giorgio",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "johannadigiorgio.com",
+  "prix": null,
+  "duree": "Sur mesure",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Formation individuelle, adaptée au niveau et au projet.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "FAF"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "Pinterest Ads"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Format collectif"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "johannadigiorgio.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Pinterest Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 152,
+  "nom": "Formation SEO — E-marketing Academy",
+  "organisme": "Qlik Ads",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "qlikads.com",
+  "prix": null,
+  "duree": "6 jours",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "France Travail"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "Google Analytics",
+   "Google Search Console"
+  ],
+  "programme": [
+   "Fondamentaux SEO",
+   "Audit et technique",
+   "Contenu et netlinking",
+   "Mise en pratique sur son site"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "qlikads.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "Analytics"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 153,
+  "nom": "Formation SEO sur-mesure",
+  "organisme": "Digital Study",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "digital-study.fr",
+  "prix": 1500,
+  "duree": "Sur mesure",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Programme construit après audit du site.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO",
+   "AIF France Travail",
+   "Paiement échelonné"
+  ],
+  "certification": "Qualiopi — certification Compétence SEO & Google",
+  "outils": [
+   "Google Search Console",
+   "GA4"
+  ],
+  "programme": [
+   "Audit SEO complet",
+   "Stratégie éditoriale",
+   "Plan d'action sur 12 mois"
+  ],
+  "nonCouvert": [
+   "Format collectif"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "digital-study.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 154,
+  "nom": "Formation TikTok individuelle",
+  "organisme": "Digital Study",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "digital-study.fr",
+  "prix": null,
+  "duree": "Sur mesure",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Travail sur le compte réel de l'apprenant.",
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "TikTok Ads Manager",
+   "TikTok Shop"
+  ],
+  "programme": [
+   "Stratégie TikTok business",
+   "Algorithme et formats",
+   "Création de contenu vidéo",
+   "TikTok Ads et TikTok Shop",
+   "Analytics et pilotage"
+  ],
+  "nonCouvert": [
+   "Format collectif"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "digital-study.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "TikTok Ads",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 155,
+  "nom": "Formation SEO Shopify",
+  "organisme": "Formation-SEO.org",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "formation-seo.org",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF"
+  ],
+  "certification": null,
+  "outils": [
+   "Shopify",
+   "Google Search Console"
+  ],
+  "programme": [
+   "SEO appliqué à Shopify",
+   "Optimisation des fiches produits"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "formation-seo.org",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "Shopify"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 156,
+  "nom": "Formation SEO WooCommerce",
+  "organisme": "Formation-SEO.org",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "formation-seo.org",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF"
+  ],
+  "certification": null,
+  "outils": [
+   "WooCommerce",
+   "WordPress"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "formation-seo.org",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "WooCommerce"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 157,
+  "nom": "Catalogue formations digitales",
+  "organisme": "Formasuite",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "formasuite.fr",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Contenus personnalisables sans surcoût.",
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "formasuite.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "Meta Ads",
+   "Google Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 158,
+  "nom": "Coaching Amazon individuel",
+  "organisme": "cockpitLAB",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "cockpitlab.io",
+  "prix": 99,
+  "duree": "Par session",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Avoir déjà les bases de la vente Amazon.",
+  "cpf": 0,
+  "financements": [
+   "Paiement à la session"
+  ],
+  "certification": null,
+  "outils": [
+   "Amazon Seller Central"
+  ],
+  "programme": [
+   "Sessions de coaching individuelles"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "Programme structuré"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "cockpitlab.io",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Amazon FBA",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 159,
+  "nom": "Masterclass E-commerce Automation",
+  "organisme": "LearnThings — organismes partenaires",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "learnthings.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF"
+  ],
+  "certification": "Certification RS5210 — Développer son activité avec le webmarketing",
+  "outils": [
+   "Airtable",
+   "Make",
+   "WordPress",
+   "WooCommerce",
+   "Shopify"
+  ],
+  "programme": [
+   "Automatisation des processus",
+   "SEO avancé",
+   "Mise en situation professionnelle et soutenance"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-07-24",
+  "source": "learnthings.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "No-code",
+   "SEO e-commerce",
+   "IA e-commerce"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 160,
+  "nom": "Formations création de contenu et monétisation",
+  "organisme": "dixmilleheures",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "dixmilleheures.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel",
+   "Présentiel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "dixmilleheures.fr",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Copywriting",
+   "Email Marketing"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 161,
+  "nom": "Brevo Academy",
+  "organisme": "Brevo",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "brevo.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Brevo.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Brevo"
+  ],
+  "programme": [
+   "Email marketing",
+   "Automatisation",
+   "SMS et campagnes",
+   "CRM"
+  ],
+  "nonCouvert": [
+   "Publicité payante",
+   "Création de boutique"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Brevo",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Email Marketing",
+   "Brevo"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 162,
+  "nom": "Mailchimp Academy",
+  "organisme": "Mailchimp",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "mailchimp.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Mailchimp.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Mailchimp",
+  "outils": [
+   "Mailchimp"
+  ],
+  "programme": [
+   "Campagnes email",
+   "Automatisations",
+   "Segmentation",
+   "Analytics"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas Mailchimp"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Mailchimp",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Email Marketing"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 163,
+  "nom": "Pinterest Academy",
+  "organisme": "Pinterest",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "business.pinterest.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Pinterest.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Pinterest Ads",
+   "Pinterest Business"
+  ],
+  "programme": [
+   "Fondamentaux Pinterest",
+   "Formats publicitaires",
+   "Ciblage",
+   "Mesure"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas Pinterest"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Pinterest",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Pinterest Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 164,
+  "nom": "Semrush Academy",
+  "organisme": "Semrush",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "semrush.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Semrush.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Semrush",
+  "outils": [
+   "Semrush"
+  ],
+  "programme": [
+   "SEO technique",
+   "Recherche de mots-clés",
+   "Analyse concurrentielle",
+   "Content marketing"
+  ],
+  "nonCouvert": [
+   "Création de boutique",
+   "Logistique"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Semrush",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "Analytics"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 165,
+  "nom": "Ahrefs Academy",
+  "organisme": "Ahrefs",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "ahrefs.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Ahrefs.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Ahrefs"
+  ],
+  "programme": [
+   "Fondamentaux du SEO",
+   "Netlinking",
+   "Audit de site"
+  ],
+  "nonCouvert": [
+   "Publicité payante"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Ahrefs",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 166,
+  "nom": "Microsoft Advertising Learning Lab",
+  "organisme": "Microsoft",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "about.ads.microsoft.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Microsoft.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Microsoft",
+  "outils": [
+   "Microsoft Advertising"
+  ],
+  "programme": [
+   "Campagnes search",
+   "Shopping",
+   "Audience network"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas Microsoft"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Microsoft",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Google Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 167,
+  "nom": "Snapchat Focus",
+  "organisme": "Snap",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "forbusiness.snapchat.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Snap.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Snap",
+  "outils": [
+   "Snapchat Ads Manager"
+  ],
+  "programme": [
+   "Formats publicitaires",
+   "Ciblage",
+   "Mesure"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas Snapchat"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Snap",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Meta Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 168,
+  "nom": "TikTok Academy",
+  "organisme": "TikTok",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "tiktok.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte TikTok.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification TikTok",
+  "outils": [
+   "TikTok",
+   "TikTok Shop"
+  ],
+  "programme": [
+   "Stratégie de contenu",
+   "Algorithme",
+   "TikTok Shop",
+   "Monétisation"
+  ],
+  "nonCouvert": [
+   "Publicité payante avancée"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel TikTok",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "TikTok Ads",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 169,
+  "nom": "Etsy Seller Handbook",
+  "organisme": "Etsy",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "etsy.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Etsy.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Aucune",
+  "outils": [
+   "Etsy Seller"
+  ],
+  "programme": [
+   "Ouvrir sa boutique Etsy",
+   "Fiches produits et référencement interne",
+   "Expédition",
+   "Publicité Etsy"
+  ],
+  "nonCouvert": [
+   "Boutique propre",
+   "Autres marketplaces"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Etsy",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Etsy",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 170,
+  "nom": "Shopify Partner Academy",
+  "organisme": "Shopify",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "shopify.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Shopify.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Shopify Partner",
+  "outils": [
+   "Shopify",
+   "Shopify Plus"
+  ],
+  "programme": [
+   "Écosystème partenaire",
+   "Thèmes et personnalisation",
+   "Applications",
+   "Accompagnement marchand"
+  ],
+  "nonCouvert": [
+   "Publicité payante"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Shopify",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Shopify",
+   "No-code"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 171,
+  "nom": "Wix Learn",
+  "organisme": "Wix",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "wix.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Wix.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Wix",
+   "Wix eCommerce"
+  ],
+  "programme": [
+   "Créer un site Wix",
+   "Boutique en ligne",
+   "Référencement"
+  ],
+  "nonCouvert": [
+   "Publicité payante",
+   "Logistique"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Wix",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "No-code"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 172,
+  "nom": "Adobe Commerce — parcours Magento",
+  "organisme": "Adobe",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "business.adobe.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Adobe.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Adobe",
+  "outils": [
+   "Adobe Commerce",
+   "Magento"
+  ],
+  "programme": [
+   "Architecture Magento",
+   "Catalogue et promotions",
+   "Intégrations"
+  ],
+  "nonCouvert": [
+   "Marketing et acquisition"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Adobe",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Marketplace",
+   "CRO"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 173,
+  "nom": "Odoo eLearning — module e-commerce",
+  "organisme": "Odoo",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "odoo.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Odoo.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Odoo"
+  ],
+  "programme": [
+   "Configuration de la boutique",
+   "Catalogue et stocks",
+   "Paiement et livraison"
+  ],
+  "nonCouvert": [
+   "Acquisition"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Odoo",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Logistique",
+   "No-code"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 174,
+  "nom": "Salesforce Trailhead — Commerce Cloud",
+  "organisme": "Salesforce",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "trailhead.salesforce.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Salesforce.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Badges Trailhead",
+  "outils": [
+   "Salesforce Commerce Cloud"
+  ],
+  "programme": [
+   "Fondamentaux Commerce Cloud",
+   "Parcours client",
+   "Personnalisation"
+  ],
+  "nonCouvert": [
+   "Petites boutiques"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Salesforce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "CRO",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 175,
+  "nom": "Zendesk Training — relation client e-commerce",
+  "organisme": "Zendesk",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "zendesk.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Zendesk.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Zendesk"
+  ],
+  "programme": [
+   "Support client",
+   "Automatisation des réponses",
+   "Mesure de la satisfaction"
+  ],
+  "nonCouvert": [
+   "Acquisition",
+   "Création de boutique"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Zendesk",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Logistique"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 176,
+  "nom": "Google Merchant Center — parcours Skillshop",
+  "organisme": "Google",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "skillshop.withgoogle.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Google.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Google",
+  "outils": [
+   "Merchant Center",
+   "Google Shopping"
+  ],
+  "programme": [
+   "Configurer un flux produits",
+   "Campagnes Shopping",
+   "Performance Max"
+  ],
+  "nonCouvert": [
+   "Tout ce qui n'est pas Google"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Google",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Merchant Center",
+   "Google Ads"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 177,
+  "nom": "Klaviyo Product Certifications",
+  "organisme": "Klaviyo",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "klaviyo.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Klaviyo.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Certification Klaviyo",
+  "outils": [
+   "Klaviyo"
+  ],
+  "programme": [
+   "Flux avancés",
+   "Segmentation prédictive",
+   "Reporting"
+  ],
+  "nonCouvert": [
+   "Acquisition payante"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Klaviyo",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Klaviyo",
+   "Email Marketing"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 178,
+  "nom": "Hotjar Academy",
+  "organisme": "Hotjar",
+  "categorieLibelle": "Certifications éditeurs",
+  "sousFamille": "Éditeur",
+  "region": null,
+  "url": "hotjar.com",
+  "prix": 0,
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Disposer d'un compte Hotjar.",
+  "cpf": 0,
+  "financements": [
+   "Gratuit"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "Hotjar"
+  ],
+  "programme": [
+   "Heatmaps et enregistrements",
+   "Sondages utilisateurs",
+   "Optimisation du taux de conversion"
+  ],
+  "nonCouvert": [
+   "Acquisition",
+   "Logistique"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Site officiel Hotjar",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "CRO",
+   "Analytics"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 179,
+  "nom": "Pack e-commerce — 13 cours",
+  "organisme": "Udemy",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "udemy.com",
+  "prix": 15,
+  "duree": "~29 h",
+  "volumeHoraire": 29,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Certificat de complétion",
+  "outils": [
+   "Shopify",
+   "WooCommerce",
+   "Meta Ads Manager"
+  ],
+  "programme": [
+   "Shopify",
+   "WooCommerce",
+   "Facebook Ads",
+   "SEO e-commerce"
+  ],
+  "nonCouvert": [
+   "Accompagnement",
+   "Suivi",
+   "Valeur officielle du certificat"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue Udemy",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Shopify",
+   "WooCommerce",
+   "Meta Ads",
+   "SEO e-commerce"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 180,
+  "nom": "Cours e-commerce et marketing digital",
+  "organisme": "Coursera",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "coursera.org",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Certificat de plateforme",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Accompagnement individuel"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue Coursera",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "Analytics"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 181,
+  "nom": "Cours création et vente en ligne",
+  "organisme": "Domestika",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "domestika.org",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Certificat de plateforme",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification reconnue",
+   "CPF"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue Domestika",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Etsy",
+   "Copywriting"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 182,
+  "nom": "Cours e-commerce et créativité",
+  "organisme": "Skillshare",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "skillshare.com",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Abonnement mensuel.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Aucune",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification reconnue",
+   "CPF"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue Skillshare",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Copywriting",
+   "Etsy"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 183,
+  "nom": "Parcours marketing digital",
+  "organisme": "LinkedIn Learning",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "linkedin.com",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Abonnement LinkedIn Premium.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Attestation LinkedIn",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Certification reconnue par l'État"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue LinkedIn Learning",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Meta Ads",
+   "Google Ads",
+   "SEO e-commerce"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 184,
+  "nom": "Formations vidéo web et e-commerce",
+  "organisme": "Elephorm",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "elephorm.com",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "WordPress",
+   "WooCommerce",
+   "PrestaShop"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Accompagnement"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue Elephorm",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "WooCommerce",
+   "PrestaShop"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 185,
+  "nom": "Tutoriels e-commerce et CMS",
+  "organisme": "Tuto.com",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "tuto.com",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Attestation",
+  "outils": [
+   "PrestaShop",
+   "WooCommerce",
+   "Shopify"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Accompagnement",
+   "Certification"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue Tuto.com",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "PrestaShop",
+   "WooCommerce",
+   "Shopify"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 186,
+  "nom": "Formations web et marketing",
+  "organisme": "Alphorm",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "alphorm.com",
+  "prix": null,
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Attestation",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": [
+   "Accompagnement individuel"
+  ],
+  "dateVerification": "2026-07-25",
+  "source": "Catalogue Alphorm",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce",
+   "Analytics"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 187,
+  "nom": "WholesaleAMZ",
+  "organisme": "WholesaleAMZ",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Formation Wholesale francophone validée par Amazon.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Amazon Seller Central"
+  ],
+  "programme": [
+   "Modèle Wholesale sur Amazon",
+   "Sourcing auprès de marques",
+   "Gestion des stocks"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "Private label",
+   "Boutique propre"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Amazon FBA",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 188,
+  "nom": "FBA Accélérateur de Liberté Digitale",
+  "organisme": "Sébastien Cerise",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": "80+ h",
+  "volumeHoraire": 80,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Prévoir un budget de stock.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Amazon Seller Central"
+  ],
+  "programme": [
+   "150+ vidéos orientées private label",
+   "Recherche produit",
+   "Lancement et publicité"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Amazon FBA",
+   "Marketplace"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 189,
+  "nom": "Coaching 20 semaines",
+  "organisme": "Je Crée Mon E-Business",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": "20 semaines",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": null,
+  "programme": [
+   "Coaching hebdomadaire sur 20 semaines"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Dropshipping",
+   "Shopify"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 190,
+  "nom": "Mentorat Amazon",
+  "organisme": "Oseille TV",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "—",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Avoir une activité Amazon existante.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Amazon Seller Central"
+  ],
+  "programme": null,
+  "nonCouvert": [
+   "Certification",
+   "CPF"
+  ],
+  "dateVerification": "2026-07-24",
+  "source": "Page de vente publique",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Amazon FBA"
+  ],
+  "classificationManuelle": false
+ },
+ {
+  "id": 191,
+  "nom": "8Lab Ecosystem",
+  "organisme": "8Lab",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "8lab-ecosystem.com",
+  "prix": 990,
+  "duree": "90 jours puis accès à vie",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Ouverture par sessions limitées (drop). Prévoir un budget publicitaire et de sourcing.",
+  "cpf": 0,
+  "financements": [
+   "Paiement comptant"
+  ],
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "Discord",
+   "Infinite Fulfillment"
+  ],
+  "programme": [
+   "Formation e-commerce complète",
+   "Coaching individuel à vie",
+   "Communauté Discord",
+   "Sourcing et logistique intégrés",
+   "Build in public : lancements de boutiques en direct",
+   "Conventions et événements"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "CPF",
+   "Marketplaces"
+  ],
+  "dateVerification": "2026-08-03",
+  "source": "Site officiel + comparatif public",
+  "domaineDeclareLibelle": "E-commerce",
+  "competencesDeclarees": [
+   "Shopify",
+   "Dropshipping",
+   "Logistique",
+   "Meta Ads"
+  ],
+  "classificationManuelle": true
+ },
+ {
+  "id": 192,
+  "nom": "Ecom Sphere",
+  "organisme": "Speed Ecom",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "speed-ecom.eu",
+  "prix": 9,
+  "duree": "Abonnement mensuel",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun. Sans engagement, résiliation depuis Skool.",
+  "cpf": 0,
+  "financements": [
+   "Abonnement mensuel"
+  ],
+  "certification": "Aucune",
+  "outils": [
+   "Skool",
+   "Shopify",
+   "TikTok Shop"
+  ],
+  "programme": [
+   "Formations exclusives",
+   "Lives hebdomadaires",
+   "Fil de discussion privé",
+   "Benchmark et retours terrain"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "CPF",
+   "Accompagnement individuel (offre séparée)"
+  ],
+  "dateVerification": "2026-08-03",
+  "source": "Site officiel",
+  "domaineDeclareLibelle": "E-commerce",
+  "competencesDeclarees": [
+   "Shopify",
+   "TikTok Ads",
+   "Dropshipping",
+   "Marketplace"
+  ],
+  "classificationManuelle": true
+ },
+ {
+  "id": 193,
+  "nom": "Système Sphère",
+  "organisme": "Speed Ecom",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "speed-ecom.eu",
+  "prix": null,
+  "duree": "12 semaines à 4 mois",
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Avoir une boutique en activité. Appel de cadrage préalable.",
+  "cpf": 0,
+  "financements": [
+   "Paiement échelonné"
+  ],
+  "certification": "Aucune",
+  "outils": [
+   "Shopify",
+   "TikTok Shop"
+  ],
+  "programme": [
+   "Audit UX, SEO et conversion de la boutique",
+   "Sessions individuelles hebdomadaires",
+   "Plan de contenu personnalisé",
+   "Accompagnement TikTok",
+   "Développement de la boutique Shopify"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "CPF",
+   "Format collectif"
+  ],
+  "dateVerification": "2026-08-03",
+  "source": "Site officiel",
+  "domaineDeclareLibelle": "E-commerce",
+  "competencesDeclarees": [
+   "Shopify",
+   "TikTok Ads",
+   "CRO",
+   "SEO e-commerce"
+  ],
+  "classificationManuelle": true
+ },
+ {
+  "id": 194,
+  "nom": "Vendeur Pro Amazon",
+  "organisme": "VMD Formation",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "vmdformation.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun prérequis technique. Environ 4 heures par semaine.",
+  "cpf": 0,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "Amazon Seller Central"
+  ],
+  "programme": [
+   "Cinq modules structurés",
+   "Plus de 100 vidéos",
+   "Supports techniques",
+   "Groupe d'entraide",
+   "Sessions de coaching mensuelles",
+   "Suivi individuel"
+  ],
+  "nonCouvert": [
+   "Shopify et boutique propre"
+  ],
+  "dateVerification": "2026-08-03",
+  "source": "Site officiel + fiche organisme",
+  "domaineDeclareLibelle": "Marketplaces",
+  "competencesDeclarees": [
+   "Amazon FBA",
+   "Marketplace",
+   "Logistique"
+  ],
+  "classificationManuelle": true
+ },
+ {
+  "id": 195,
+  "nom": "Ecom Accelerator",
+  "organisme": "Ecom Accelerator",
+  "categorieLibelle": "Formations indépendantes",
+  "sousFamille": "Créateur indépendant",
+  "region": null,
+  "url": "ecomaccelerator.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Ouvert aux débutants comme aux vendeurs confirmés.",
+  "cpf": 0,
+  "financements": null,
+  "certification": "Aucune",
+  "outils": [
+   "Shopify"
+  ],
+  "programme": [
+   "Plan d'action sur mesure",
+   "Coach dédié validant chaque étape",
+   "Accès à une communauté"
+  ],
+  "nonCouvert": [
+   "Certification",
+   "CPF",
+   "Programme public détaillé"
+  ],
+  "dateVerification": "2026-08-03",
+  "source": "Site officiel",
+  "domaineDeclareLibelle": "E-commerce",
+  "competencesDeclarees": [
+   "Shopify",
+   "Dropshipping"
+  ],
+  "classificationManuelle": true
+ }
+]
