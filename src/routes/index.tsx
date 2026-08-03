@@ -9,8 +9,8 @@
  * comme un filtre de la colonne de gauche : c'est le premier niveau de la
  * hiérarchie Domaine → Sujet principal → Compétences couvertes.
  */
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import {
   auMoinsUnFiltre,
@@ -33,8 +33,10 @@ import type { DomaineParcours } from "@/types/cursus";
 export const Route = createFileRoute("/")({
   // La vue Organismes renvoie ici avec ?organisme=<nom> : le filtre vit dans
   // l'URL pour que le lien soit partageable et que le retour arrière marche.
-  validateSearch: (recherche: Record<string, unknown>): { organisme?: string } =>
-    typeof recherche["organisme"] === "string" ? { organisme: recherche["organisme"] } : {},
+  validateSearch: (recherche: Record<string, unknown>): { organisme?: string; fiche?: string } => ({
+    ...(typeof recherche["organisme"] === "string" ? { organisme: recherche["organisme"] } : {}),
+    ...(typeof recherche["fiche"] === "string" ? { fiche: recherche["fiche"] } : {}),
+  }),
   loader: () => chargerListe(),
   component: Explorer,
   head: () => ({
@@ -61,7 +63,8 @@ const LIBELLES_TRIS_COURTS: Record<Tri, string> = {
 
 function Explorer() {
   const parcours = Route.useLoaderData();
-  const { organisme } = Route.useSearch();
+  const { organisme, fiche } = Route.useSearch();
+  const naviguer = useNavigate({ from: "/" });
   const [filtres, setFiltres] = useState<Filtres>({
     ...FILTRES_VIDES,
     organisme: organisme ?? null,
@@ -70,34 +73,35 @@ function Explorer() {
   const [limite, setLimite] = useState(PAR_PAGE);
   // Sous 960 px la colonne devient un panneau dépliable, replié au chargement.
   const [filtresOuverts, setFiltresOuverts] = useState(false);
-  // Fiche ouverte en panneau. L'URL suit, mais la route ne change pas.
-  const [ficheOuverte, setFicheOuverte] = useState<string | null>(null);
+  /*
+   * La fiche ouverte vit dans l'URL, en paramètre de recherche sur la route
+   * courante — surtout pas via `window.history.pushState`.
+   *
+   * @tanstack/history patche `history.pushState` : un appel direct est
+   * interprété par le routeur comme une navigation, qui rendait alors la page
+   * `/parcours/<slug>` par-dessus le panneau. C'était la cause du double
+   * comportement. En passant par le routeur sur la route courante, on ne
+   * change jamais de route.
+   *
+   * Bénéfice : le retour arrière, le partage et l'accès direct sont gérés
+   * nativement — `?fiche=<slug>` rouvre le catalogue avec le panneau déployé,
+   * sans gestionnaire `popstate` à écrire.
+   */
   const origineFocus = useRef<HTMLElement | null>(null);
 
-  const ouvrirEnPanneau = useCallback((parcours: ParcoursListe, origine: HTMLElement) => {
-    origineFocus.current = origine;
-    setFicheOuverte(parcours.slug);
-    // L'adresse devient partageable et le bouton retour referme le panneau.
-    window.history.pushState({ fiche: parcours.slug }, "", `/parcours/${parcours.slug}`);
-  }, []);
+  const ouvrirEnPanneau = useCallback(
+    (parcours: ParcoursListe, origine: HTMLElement) => {
+      origineFocus.current = origine;
+      void naviguer({ search: (actuel) => ({ ...actuel, fiche: parcours.slug }) });
+    },
+    [naviguer],
+  );
 
   const fermerPanneau = useCallback(() => {
-    setFicheOuverte(null);
-    if (window.history.state?.fiche) window.history.back();
+    void naviguer({ search: ({ fiche: _ignore, ...reste }) => reste });
     origineFocus.current?.focus();
     origineFocus.current = null;
-  }, []);
-
-  // Le retour navigateur referme le panneau au lieu de quitter le catalogue.
-  useEffect(() => {
-    function auRetour() {
-      setFicheOuverte(null);
-      origineFocus.current?.focus();
-      origineFocus.current = null;
-    }
-    window.addEventListener("popstate", auRetour);
-    return () => window.removeEventListener("popstate", auRetour);
-  }, []);
+  }, [naviguer]);
 
   const modifier = (patch: Partial<Filtres>) => {
     setFiltres((f) => ({ ...f, ...patch }));
@@ -338,9 +342,9 @@ function Explorer() {
         </main>
       </div>
 
-      {ficheOuverte !== null && (
+      {fiche !== undefined && (
         <PanneauFiche
-          slug={ficheOuverte}
+          slug={fiche}
           autresParcours={parcours}
           fermer={fermerPanneau}
         />

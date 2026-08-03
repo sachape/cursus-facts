@@ -61,16 +61,19 @@ function interception(
   ouvrirEnPanneau?: (parcours: ParcoursListe, origine: HTMLElement) => void,
 ) {
   return (evenement: React.MouseEvent<HTMLAnchorElement>) => {
-    // On laisse passer les clics qui demandent explicitement une autre cible :
-    // nouvel onglet, nouvelle fenêtre, téléchargement.
+    // Le lien n'est neutralisé que pour un clic simple, gauche, sans
+    // modificateur et sans cible explicite. Tout le reste — clic milieu,
+    // Cmd/Ctrl, « ouvrir dans un nouvel onglet » — suit la navigation
+    // normale : c'est un comportement que les utilisateurs attendent.
     if (
       ouvrirEnPanneau === undefined ||
       evenement.defaultPrevented ||
+      evenement.button !== 0 ||
       evenement.metaKey ||
       evenement.ctrlKey ||
       evenement.shiftKey ||
       evenement.altKey ||
-      evenement.button !== 0
+      evenement.currentTarget.hasAttribute("target")
     ) {
       return;
     }
