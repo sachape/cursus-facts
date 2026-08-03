@@ -9,7 +9,7 @@
  * comme un filtre de la colonne de gauche : c'est le premier niveau de la
  * hiérarchie Domaine → Sujet principal → Compétences couvertes.
  */
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { auMoinsUnFiltre, filtrer, FILTRES_VIDES, type Filtres } from "@/modele/filtres";
@@ -18,6 +18,8 @@ import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { PanneauFiltres } from "@/composants/PanneauFiltres";
 import { OngletsDomaines, type OngletDomaine } from "@/composants/OngletsDomaines";
 import { RangeeParcours } from "@/composants/RangeeParcours";
+import { PanneauFiche } from "@/composants/PanneauFiche";
+import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { DomaineParcours } from "@/types/cursus";
@@ -62,6 +64,34 @@ function Explorer() {
   const [limite, setLimite] = useState(PAR_PAGE);
   // Sous 960 px la colonne devient un panneau dépliable, replié au chargement.
   const [filtresOuverts, setFiltresOuverts] = useState(false);
+  // Fiche ouverte en panneau. L'URL suit, mais la route ne change pas.
+  const [ficheOuverte, setFicheOuverte] = useState<string | null>(null);
+  const origineFocus = useRef<HTMLElement | null>(null);
+
+  const ouvrirEnPanneau = useCallback((parcours: ParcoursListe, origine: HTMLElement) => {
+    origineFocus.current = origine;
+    setFicheOuverte(parcours.slug);
+    // L'adresse devient partageable et le bouton retour referme le panneau.
+    window.history.pushState({ fiche: parcours.slug }, "", `/parcours/${parcours.slug}`);
+  }, []);
+
+  const fermerPanneau = useCallback(() => {
+    setFicheOuverte(null);
+    if (window.history.state?.fiche) window.history.back();
+    origineFocus.current?.focus();
+    origineFocus.current = null;
+  }, []);
+
+  // Le retour navigateur referme le panneau au lieu de quitter le catalogue.
+  useEffect(() => {
+    function auRetour() {
+      setFicheOuverte(null);
+      origineFocus.current?.focus();
+      origineFocus.current = null;
+    }
+    window.addEventListener("popstate", auRetour);
+    return () => window.removeEventListener("popstate", auRetour);
+  }, []);
 
   const modifier = (patch: Partial<Filtres>) => {
     setFiltres((f) => ({ ...f, ...patch }));
@@ -216,7 +246,7 @@ function Explorer() {
           ) : (
             <ul>
               {resultats.slice(0, limite).map((p) => (
-                <RangeeParcours key={p.id} parcours={p} />
+                <RangeeParcours key={p.id} parcours={p} ouvrirEnPanneau={ouvrirEnPanneau} />
               ))}
             </ul>
           )}
@@ -238,6 +268,14 @@ function Explorer() {
           </p>
         </main>
       </div>
+
+      {ficheOuverte !== null && (
+        <PanneauFiche
+          slug={ficheOuverte}
+          autresParcours={parcours}
+          fermer={fermerPanneau}
+        />
+      )}
     </div>
   );
 }

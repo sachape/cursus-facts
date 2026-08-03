@@ -32,7 +32,17 @@ const LIBELLES_FORMATS = {
   alternance: "Alternance",
 } as const;
 
-export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
+export function RangeeParcours({
+  parcours,
+  ouvrirEnPanneau,
+}: {
+  parcours: ParcoursListe;
+  /**
+   * Ouvre la fiche en panneau au lieu de naviguer. Le lien reste un vrai
+   * `<a href>` : sans JavaScript, ou sur un robot, il mène à la page complète.
+   */
+  ouvrirEnPanneau?: (parcours: ParcoursListe, origine: HTMLElement) => void;
+}) {
   const { ajouter, retirer, contient } = useComparaison();
   const prixInconnu = parcours.prixMin === null && parcours.modaliteAcces === null;
   const selectionne = contient(parcours.slug);
@@ -46,6 +56,23 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
               to="/parcours/$slug"
               params={{ slug: parcours.slug }}
               className="transition-colors hover:underline hover:underline-offset-4"
+              onClick={(evenement) => {
+                // On laisse passer les clics qui demandent explicitement une
+                // autre cible : nouvel onglet, nouvelle fenêtre, téléchargement.
+                if (
+                  ouvrirEnPanneau === undefined ||
+                  evenement.defaultPrevented ||
+                  evenement.metaKey ||
+                  evenement.ctrlKey ||
+                  evenement.shiftKey ||
+                  evenement.altKey ||
+                  evenement.button !== 0
+                ) {
+                  return;
+                }
+                evenement.preventDefault();
+                ouvrirEnPanneau(parcours, evenement.currentTarget);
+              }}
             >
               {parcours.nom}
             </Link>
