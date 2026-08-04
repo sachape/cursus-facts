@@ -45,7 +45,7 @@ export function OngletsDomaines({
     <nav
       aria-label="Domaines"
       ref={barre}
-      className="sticky top-(--app-header-height) z-40 m-0 w-full max-w-[100vw] border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
+      className="sticky top-(--app-header-height) z-40 m-0 w-full max-w-full border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
     >
       <ul
         className="flex max-w-full min-h-(--nav-hauteur) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

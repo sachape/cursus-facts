@@ -772,7 +772,9 @@ html {
   @media (max-width: 767px) {
     .hero-title {
       width: calc(100% - 32px);
-      max-width: calc(100vw - 32px);
+      /* `100vw` inclut la barre de défilement et déborde donc de la largeur
+         réellement disponible. `100%` suffit et reste exact. */
+      max-width: 100%;
       font-size: clamp(27px, 7.2vw, 34px);
       letter-spacing: -0.045em;
       font-variation-settings: "opsz" var(--opsz-heading);
