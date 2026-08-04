@@ -73,13 +73,18 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
           <SelectTrigger
             id="tri"
             aria-label="Trier les résultats"
-            className="h-(--bouton-hauteur) w-full rounded-(--radius-md) border-(--border-default) bg-(--surface-raised) px-(--space-3) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus:outline-none focus-visible:border-(--border-strong) focus-visible:ring-0 focus-visible:[box-shadow:var(--select-focus)] max-[1023px]:min-h-12 min-[1024px]:h-12"
+            className="h-(--bouton-hauteur) w-full rounded-(--radius-md) border-(--border-default) bg-(--surface-raised) px-(--space-3) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus:outline-none focus:ring-0 focus:[box-shadow:var(--select-focus)] focus-visible:border-(--border-strong) max-[1023px]:min-h-12 min-[1024px]:h-12"
           >
             <SelectValue />
           </SelectTrigger>
           <SelectContent
             position="popper"
+            side="bottom"
+            align="start"
             sideOffset={8}
+            /* Un décalage horizontal appliqué par shadcn en `popper` désalignait
+               le menu de son déclencheur ; il est ramené à zéro. */
+            alignOffset={0}
             /*
               Aucun padding ici : le `Viewport` de shadcn porte déjà `p-1` ET
               `min-w-[--radix-select-trigger-width]`. Ajouter un padding au
@@ -87,7 +92,7 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
               débordait à droite — d'où un fond de sélection collé au bord
               droit alors que la gauche respirait.
             */
-            className="w-(--radix-select-trigger-width) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) shadow-(--elevation-3)"
+            className="w-(--radix-select-trigger-width) min-w-(--radix-select-trigger-width) data-[side=bottom]:translate-y-0 rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) shadow-(--elevation-3)"
           >
             {TRIS.map((t) => (
               <SelectItem
