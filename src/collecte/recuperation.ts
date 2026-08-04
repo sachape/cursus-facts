@@ -158,6 +158,27 @@ export function texteprincipal(html: string): string {
   return html
     .replace(/<(script|style|noscript|svg|template)\b[\s\S]*?<\/\1>/gi, " ")
     .replace(/<!--[\s\S]*?-->/g, " ")
+    // La navigation dilue la page et n'apporte aucun fait sur le parcours.
+    // Trois pages sur trois commençaient par « Go to header », « For
+    // Individuals », « Explore » — du bruit que le modèle doit écarter à nos
+    // frais, et dans lequel il finit par puiser des citations.
+    .replace(/<(nav|header|footer|aside)\b[\s\S]*?<\/\1>/gi, " ")
+    /*
+      RESTITUER LE LIEN ÉTIQUETTE → VALEUR.
+
+      L'information des pages qui résistent — MOOC 64 %, formation continue
+      70 % — ne vit pas en phrases mais en éléments d'interface : « Durée » dans
+      un encart, « 35 h » à côté. Aplatis sans séparateur, les deux se retrouvent
+      collés à du bruit, et le modèle reconstitue une phrase qui n'existe nulle
+      part dans le texte servi. Sa valeur est souvent juste ; c'est sa citation
+      qui est introuvable, et le garde-fou la rejette à raison.
+
+      Rétablir le deux-points entre l'étiquette et sa valeur produit la phrase
+      que le modèle allait écrire de toute façon — mais cette fois elle existe
+      dans la page. On améliore l'entrée du garde-fou, on ne le relâche jamais.
+    */
+    .replace(/<\/(dt|th)>\s*/gi, " : ")
+    .replace(/<\/(dd|td)>\s*/gi, "\n")
     .replace(/<\/(p|div|li|tr|h[1-6]|section|article|br)>/gi, "\n")
     .replace(/<[^>]+>/g, " ")
     .replace(/&nbsp;/gi, " ")

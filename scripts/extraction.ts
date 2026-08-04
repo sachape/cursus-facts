@@ -57,14 +57,70 @@ function fileDeTravail(catalogue: readonly OffreNormalisee[]) {
     .flatMap((d) => d.urls.map((u) => ({ ...u, organisme: d.organisme })))
     .filter((u) => u.id !== null)
     .map((u) => ({ ...u, offre: parId.get(u.id!)! }))
-    .filter((u) => u.offre !== undefined && u.offre.profondeur !== "detail_verifie")
+    .filter((u) => u.offre !== undefined)
     .sort((a, b) => Number(a.offre.prix !== null) - Number(b.offre.prix !== null));
+}
+
+/**
+ * Lot stratifié — un taux de citation mesuré sur une seule strate n'est pas un
+ * taux de catalogue. Une page d'université est longue et verbeuse, une page
+ * d'éditeur courte et dense en chiffres : la moyenne des deux écrase deux
+ * régimes distincts.
+ */
+function stratifier<T extends { offre: { categorie: string } }>(file: T[], taille: number): T[] {
+  const parStrate = new Map<string, T[]>();
+  for (const e of file) {
+    const liste = parStrate.get(e.offre.categorie) ?? [];
+    liste.push(e);
+    parStrate.set(e.offre.categorie, liste);
+  }
+  const lot: T[] = [];
+  let tour = 0;
+  while (lot.length < taille) {
+    let ajoute = false;
+    for (const liste of parStrate.values()) {
+      const e = liste[tour];
+      if (e && lot.length < taille) {
+        lot.push(e);
+        ajoute = true;
+      }
+    }
+    if (!ajoute) break;
+    tour++;
+  }
+  return lot;
 }
 
 async function main() {
   const catalogue = chargerCatalogue();
   const file = fileDeTravail(catalogue);
-  const lot = tout ? file : file.slice(0, taille);
+  /*
+    LOT DE RÉFÉRENCE FIGÉ.
+
+    Sans lui, une partie de chaque écart vient du corpus et non des
+    corrections — et on ne peut jamais savoir laquelle. Le lot est choisi une
+    fois, écrit sur disque, et rejoué à l'identique à chaque mesure.
+
+    Il ne compte pas six pages par strate : la file n'en contient pas assez.
+    Universités 4, bootcamps 3, éditeurs 2, MOOC 2 — c'est le plafond réel, et
+    il vient du taux d'appariement de 25 %, pas d'un choix de mesure.
+  */
+  const REFERENCE = "src/donnees/lot-reference.json";
+  let lot: typeof file;
+  if (process.argv.includes("--reference")) {
+    if (existsSync(REFERENCE)) {
+      const ids = JSON.parse(readFileSync(REFERENCE, "utf8")) as { id: number; url: string }[];
+      const parCle = new Map(file.map((e) => [`${e.id}|${e.url}`, e]));
+      lot = ids.map((r) => parCle.get(`${r.id}|${r.url}`)).filter((e): e is (typeof file)[number] => e !== undefined);
+      console.log(`Lot de référence rejoué : ${lot.length} pages`);
+    } else {
+      lot = stratifier(file, taille);
+      writeFileSync(REFERENCE, JSON.stringify(lot.map((e) => ({ id: e.id, url: e.url })), null, 1));
+      console.log(`Lot de référence figé : ${lot.length} pages → ${REFERENCE}`);
+    }
+  } else {
+    lot = tout ? file : stratifier(file, taille);
+  }
   const client = clientAnthropic();
 
   console.log(`\nExtraction — ${lot.length} page(s) sur ${file.length} en file\n`);
@@ -77,6 +133,7 @@ async function main() {
   let pagesLues = 0;
   let repliNecessaire = 0;
   const fichesTouchees = new Set<number>();
+  const parStrate = new Map<string, { proposes: number; retenus: number; pages: number }>();
 
   await enParallele(lot, 6, async (entree, index) => {
     const etiquette = `${String(index + 1).padStart(3)}/${lot.length}  ${entree.offre.nom.slice(0, 40).padEnd(40)}`;
@@ -115,6 +172,11 @@ async function main() {
 
     proposes += extraction.proposes;
     retenus += Object.keys(extraction.filtrage.retenus).length;
+    const strate = parStrate.get(entree.offre.categorie) ?? { proposes: 0, retenus: 0, pages: 0 };
+    strate.proposes += extraction.proposes;
+    strate.retenus += Object.keys(extraction.filtrage.retenus).length;
+    strate.pages += 1;
+    parStrate.set(entree.offre.categorie, strate);
     rejets.push(...extraction.filtrage.rejets.map((r) => ({ ...r, id: entree.id!, url: entree.url })));
 
     for (const [champ, cite] of Object.entries(extraction.filtrage.retenus)) {
@@ -155,6 +217,15 @@ async function main() {
   console.log(`  Champs rejetés                : ${rejets.length}`);
   for (const [motif, n] of Object.entries(parMotif)) console.log(`      ${String(n).padStart(3)}  ${motif}`);
   console.log(`  Fiches passant à detail_verifie: ${fichesTouchees.size}`);
+  console.log("\n  TAUX DE CITATION PAR STRATE");
+  for (const [strate, v] of parStrate) {
+    const taux = v.proposes === 0 ? 0 : Math.round((v.retenus / v.proposes) * 100);
+    console.log(
+      // Le nombre absolu d'abord : « 2 rejets sur 11 » se discute, « 69 % »
+      // fabrique une fausse précision en cachant la taille de l'échantillon.
+      `      ${strate.padEnd(26)} ${String(v.proposes - v.retenus).padStart(2)} rejet(s) sur ${String(v.proposes).padStart(2)} champs, ${v.pages} page(s)  — ${taux} %`,
+    );
+  }
   console.log(
     `  Gain moyen par fiche          : ${fichesTouchees.size === 0 ? 0 : (retenus / fichesTouchees.size).toFixed(1)} champs`,
   );

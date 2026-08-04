@@ -108,7 +108,12 @@ export const SCHEMA_EXTRACTION = {
     nonCouvert: champCite(liste, "Ce que la formation annonce explicitement ne PAS couvrir."),
     dispoInter: champCite(booleen, "Sessions ouvertes à une inscription individuelle."),
     dispoIntra: champCite(booleen, "Intervention en entreprise, facturée au groupe."),
-    dateVerification: champCite(texte, "Date de mise à jour affichée par la page, format AAAA-MM-JJ."),
+    dateVerification: champCite(
+      texte,
+      "Date de mise à jour, RECOPIÉE TELLE QUE LA PAGE L'ÉCRIT — « 18 juillet 2026 », " +
+        "pas « 2026-07-18 ». La conversion est faite par le code : convertir toi-même " +
+        "produit une valeur que ta citation ne porte pas, et le champ est alors rejeté.",
+    ),
   },
   required: [],
   additionalProperties: false,
@@ -151,9 +156,18 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
 
   return {
     async extraire(texte, url) {
-      // Deux appels plutôt qu'un : la grammaire d'un schéma à 19 champs cités
-      // ne compilait pas. Les deux résultats sont fusionnés, chaque champ
-      // restant vérifié contre le même texte de page.
+      /*
+        PAS DE SORTIE STRUCTURÉE. La grammaire d'un schéma à champs cités ne
+        compile pas — « Schema is too complex » à 19 champs, « Grammar
+        compilation timed out » à 10 : chaque champ est un objet imbriqué
+        {valeur, extrait}, et le coût de compilation explose.
+
+        Ce n'est pas une perte de garantie. La sortie structurée n'aurait
+        garanti que la *forme* ; ce qui protège le catalogue est la
+        vérification programmatique des citations, qui s'applique de la même
+        façon à un JSON libre. Un champ mal formé se perd, ce qui est le
+        comportement voulu : pas de citation, pas d'écriture.
+      */
       const resultats = await Promise.all(
         GROUPES_EXTRACTION.map(async (groupe) => {
           const proprietes = Object.fromEntries(
@@ -164,16 +178,28 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
             max_tokens: 8_000,
             thinking: { type: "adaptive" },
             system: CONSIGNE,
-            output_config: {
-              format: {
-                type: "json_schema",
-                schema: { type: "object", properties: proprietes, additionalProperties: false },
+            messages: [
+              {
+                role: "user",
+                content:
+                  `Champs à localiser, au format JSON :\n${JSON.stringify(proprietes, null, 1)}\n\n` +
+                  `Réponds UNIQUEMENT par un objet JSON dont chaque clé est un champ ci-dessus ` +
+                  `et chaque valeur un objet {"valeur": ..., "extrait": "..."}. ` +
+                  `Omets tout champ que la page ne porte pas littéralement.\n\n` +
+                  `URL : ${url}\n\n---\n${texte}`,
               },
-            },
-            messages: [{ role: "user", content: `URL : ${url}\n\n---\n${texte}` }],
+            ],
           });
           const bloc = message.content.find((c) => c.type === "text");
-          return bloc && "text" in bloc ? JSON.parse(bloc.text) : {};
+          if (!bloc || !("text" in bloc)) return {};
+          // Un JSON mal formé se perd sans bruit : pas de citation, pas
+          // d'écriture. C'est le comportement voulu, pas une dégradation.
+          const json = bloc.text.match(/\{[\s\S]*\}/)?.[0];
+          try {
+            return json ? JSON.parse(json) : {};
+          } catch {
+            return {};
+          }
         }),
       );
       return Object.assign({}, ...resultats);
@@ -188,6 +214,25 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
  * comparer à un texte retraité rendrait le garde-fou inopérant, puisque la
  * citation serait confrontée à une page que le modèle n'a jamais vue.
  */
+const MOIS = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+
+/**
+ * Convertit une date écrite en toutes lettres, APRÈS vérification de citation.
+ *
+ * L'ordre compte : normaliser avant la vérification rendrait la valeur
+ * introuvable dans la citation, ce qui est exactement le rejet qu'on corrige.
+ * Le modèle cite la forme de la page, le code produit la forme du catalogue.
+ */
+export function normaliserDate(valeur: unknown): unknown {
+  if (typeof valeur !== "string") return valeur;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(valeur)) return valeur;
+  const m = valeur.toLowerCase().match(/(\d{1,2})\s+([a-zéûôà]+)\s+(\d{4})/);
+  if (!m) return valeur;
+  const mois = MOIS.findIndex((x) => x.startsWith(m[2]!.slice(0, 4)));
+  if (mois < 0) return valeur;
+  return `${m[3]}-${String(mois + 1).padStart(2, "0")}-${m[1]!.padStart(2, "0")}`;
+}
+
 export async function extrairePage(
   client: ClientExtraction,
   texte: string,
@@ -197,5 +242,8 @@ export async function extrairePage(
   const proposes = Object.values(brut).filter(
     (v) => v !== null && v !== undefined && v.valeur !== null && v.valeur !== undefined,
   ).length;
-  return { url, filtrage: filtrerParCitation(brut, texte), proposes };
+  const filtrage = filtrerParCitation(brut, texte);
+  const date = filtrage.retenus["dateVerification"];
+  if (date) date.valeur = normaliserDate(date.valeur);
+  return { url, filtrage, proposes };
 }
