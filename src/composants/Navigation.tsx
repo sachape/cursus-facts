@@ -7,7 +7,7 @@
  * derrière un bouton reviendrait à masquer les règles.
  */
 import { Link } from "@tanstack/react-router";
-import { MotSymbole } from "./marque/MotSymbole";
+import { MotSymboleHorizontal, Symbole } from "./marque/Marques";
 
 const VUES = [
   { to: "/", libelle: "Explorer" },
@@ -28,10 +28,16 @@ export function Navigation() {
         */}
         <Link
           to="/"
-          aria-label="Cursus — accueil"
+          aria-label="Formlist — accueil"
           className="shrink-0 rounded-(--radius-sm) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--border-strong)"
         >
-          <MotSymbole className="h-(--space-5) w-auto text-(--text-primary)" />
+          {/*
+            Le mot-symbole complet à partir de 1 024 px ; le symbole seul en
+            dessous, où la largeur manque et où le nom figure déjà dans l'onglet
+            du navigateur.
+          */}
+          <MotSymboleHorizontal className="hidden h-(--space-8) w-auto text-(--text-primary) min-[1024px]:block" />
+          <Symbole className="block size-(--space-8) text-(--text-primary) min-[1024px]:hidden" />
         </Link>
 
         <nav aria-label="Navigation principale">

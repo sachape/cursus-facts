@@ -18,6 +18,13 @@ function fichiers(dossier: string): string[] {
   return readdirSync(dossier).flatMap((entree) => {
     const chemin = join(dossier, entree);
     if (statSync(chemin).isDirectory()) return fichiers(chemin);
+    /*
+      `src/composants/marque/` est exclu : une marque porte ses propres couleurs,
+      qui sont une identité et non une décision d'interface. Les y interdire
+      obligerait à inventer des jetons sémantiques pour un logo — et un jeton
+      inventé pour contourner une règle est pire que l'exception assumée.
+    */
+    if (chemin.includes("composants/marque/")) return [];
     return /\.(tsx|ts|css)$/.test(chemin) && chemin !== DEFINITION_JETONS ? [chemin] : [];
   });
 }

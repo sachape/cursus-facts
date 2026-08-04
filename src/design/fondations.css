@@ -331,6 +331,10 @@
   --results-toolbar-height: 60px;
 
   --carte-rayon: var(--radius-xl);
+  /* Couleur de la marque. Identité, pas décision d'interface : elle ne suit
+     pas le thème et ne sert nulle part ailleurs. */
+  --marque-accent: #4ecfa6;
+
   --marque-taille: 44px;
   --marque-rayon: 11px;
   --marque-retrait: 7px;
