@@ -37,7 +37,7 @@ const MAX_NOUVELLES_PAR_ORGANISME = 400;
 type ResultatOrganisme = {
   organisme: string;
   domaine: string;
-  statut: "ok" | "sans_sitemap" | "injoignable" | "interdit_par_robots";
+  statut: "ok" | "sans_sitemap" | "sans_domaine_au_catalogue" | "domaine_muet";
   motif?: string;
   pagesFormation: number;
   rapprochees: number;
@@ -102,8 +102,13 @@ async function main() {
     traites++;
     const base = origine(offres[0]!.url ?? "");
     if (!base) {
+      // Ce n'est pas un domaine injoignable : c'est un domaine que nous n'avons
+      // jamais noté. Confondre les deux ferait chercher une panne là où il n'y
+      // a qu'un champ vide — et attendre indéfiniment un serveur qu'on n'a
+      // jamais interrogé.
       resultats.push({
-        organisme, domaine: "—", statut: "injoignable", motif: "aucun domaine au catalogue",
+        organisme, domaine: "—", statut: "sans_domaine_au_catalogue",
+        motif: "aucune URL d'organisme au catalogue",
         pagesFormation: 0, rapprochees: 0, nouvelles: 0, urls: [],
       });
       continue;

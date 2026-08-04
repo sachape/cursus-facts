@@ -19,7 +19,8 @@
     "collecte:sitemaps": "bun run scripts/decouverte-sitemaps.ts",
     "collecte:extraire": "bun run scripts/extraction.ts",
     "collecte:appliquer": "bun run scripts/appliquer-journal.ts",
-    "collecte:repli": "bun run scripts/repli-decouverte.ts"
+    "collecte:repli": "bun run scripts/repli-decouverte.ts",
+    "collecte:disponibilite": "bun run scripts/disponibilite.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
