@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Formlist — dossier technique et produit</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  :root {
+    --ink: #14191d; --ink2: #59626a; --ink3: #98a0a6;
+    --line: #e8ebec; --line2: #d6dadd;
+    --pine: #14584a; --pine-bg: #edf4f1;
+    --clay: #8a4b3a; --clay-bg: #f8f0ed;
+    --amber: #7f5c0c; --amber-bg: #fbf3e2;
+    --accent: #2c4668; --accent-bg: #eef2f7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font: 400 10.5pt/1.55 "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--ink); margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  h1 { font-size: 26pt; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 4mm; }
+  h2 {
+    font-size: 14pt; letter-spacing: -0.01em; margin: 10mm 0 3mm;
+    padding-bottom: 2mm; border-bottom: 1.5px solid var(--ink);
+    page-break-after: avoid;
+  }
+  h3 { font-size: 11pt; margin: 6mm 0 2mm; page-break-after: avoid; }
+  h4 { font-size: 10pt; margin: 4mm 0 1.5mm; color: var(--ink2); page-break-after: avoid; }
+  p, li { margin: 0 0 2mm; }
+  ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+  code { font: 400 9pt/1.4 "SF Mono", Menlo, monospace; background: #f4f6f7; padding: 0.5mm 1mm; border-radius: 2px; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 4mm; font-size: 9pt; page-break-inside: avoid; }
+  th { text-align: left; font-weight: 600; border-bottom: 1.5px solid var(--ink); padding: 1.5mm 2mm 1.5mm 0; }
+  td { border-bottom: 1px solid var(--line); padding: 1.5mm 2mm 1.5mm 0; vertical-align: top; }
+  .cover { padding-top: 55mm; page-break-after: always; }
+  .cover .sub { font-size: 12pt; color: var(--ink2); margin-bottom: 12mm; }
+  .cover .meta { font-size: 9pt; color: var(--ink3); border-top: 1px solid var(--line2); padding-top: 3mm; }
+  .kpis { display: flex; gap: 8mm; flex-wrap: wrap; margin: 6mm 0; }
+  .kpi { min-width: 30mm; }
+  .kpi b { display: block; font-size: 18pt; letter-spacing: -0.02em; }
+  .kpi span { font-size: 8.5pt; color: var(--ink3); }
+  .note { border-left: 2px solid var(--line2); padding: 1mm 0 1mm 3mm; color: var(--ink2); margin: 0 0 3mm; }
+  .rule { background: var(--accent-bg); border: 1px solid #d3ddea; border-radius: 3px; padding: 3mm; margin: 0 0 3mm; page-break-inside: avoid; }
+  .rule b { color: var(--accent); }
+  .warn { background: var(--clay-bg); border: 1px solid #edd6cc; border-radius: 3px; padding: 3mm; margin: 0 0 3mm; page-break-inside: avoid; }
+  .ok { color: var(--pine); font-weight: 600; }
+  .absent { color: var(--clay); font-weight: 600; }
+  .pending { color: var(--amber); font-weight: 600; }
+  .break { page-break-before: always; }
+  .toc li { margin-bottom: 1mm; }
+  .small { font-size: 8.5pt; color: var(--ink3); }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <h1>Formlist</h1>
+  <p class="sub">Comparateur indépendant de formations e-commerce<br>Dossier technique et produit</p>
+  <p class="meta">
+    État au 4 août 2026 · 232 fiches · 163 organismes · 2 716 informations vérifiées<br>
+    Document généré depuis le dépôt — les chiffres sont lus dans le catalogue, pas recopiés.
+  </p>
+</section>
+
+<h2>1. Ce que le produit est</h2>
+
+<p>Aider quelqu'un à trouver la formation e-commerce adaptée à sa situation en comparant
+des <b>faits vérifiables</b>. Pas en lui disant laquelle est la meilleure.</p>
+
+<p>Le marché français est dominé par des comparatifs rémunérés à l'affiliation. Le pari de
+Formlist est l'inverse : ne rien noter, ne rien classer par qualité, ne toucher aucune
+commission, et tirer sa valeur de l'exhaustivité du catalogue et de la vérifiabilité de
+chaque information.</p>
+
+<div class="kpis">
+  <div class="kpi"><b>232</b><span>parcours au catalogue</span></div>
+  <div class="kpi"><b>163</b><span>organismes</span></div>
+  <div class="kpi"><b>2 716</b><span>informations vérifiées</span></div>
+  <div class="kpi"><b>1 369</b><span>champs non encore collectés</span></div>
+  <div class="kpi"><b>6</b><span>fiches vérifiées en profondeur</span></div>
+</div>
+
+<h3>Les huit invariants</h3>
+<ol>
+  <li>Aucune note, aucun score de qualité, aucune moyenne. Nulle part.</li>
+  <li>Aucune information déduite. Un champ inconnu s'affiche « Non communiqué ».</li>
+  <li>Une fiche incomplète n'est jamais retirée du catalogue.</li>
+  <li>Le tri décrit l'état des fiches, jamais la qualité. Son libellé est affiché.</li>
+  <li>Aucun placement achetable, aucun lien affilié.</li>
+  <li>L'assistant produit une adéquation, jamais un jugement.</li>
+  <li>Toute règle appliquée au catalogue est publiée dans la page Méthode.</li>
+  <li>Toute décision manuelle est journalisée et publique.</li>
+</ol>
+
+<div class="rule">
+  <b>Corollaire structurant.</b> Le tronc pédagogique commun à 80 % est un <b>veto, pas une
+  précondition</b>. On regroupe par défaut ; on ne refuse qu'avec la preuve d'une divergence
+  réelle. La formulation inverse — « fusionner si le tronc dépasse 80 % » — rendrait le manque
+  d'information rentable : un organisme qui ne publie pas son programme obtiendrait autant de
+  lignes qu'il a de formules.
+</div>
+
+<h2>2. Les pages</h2>
+
+<table>
+  <tr><th style="width:26%">Page</th><th>Rôle et mécanique</th></tr>
+  <tr>
+    <td><code>/</code><br><b>Explorer</b></td>
+    <td>La vue principale. Hero avec badge de fraîcheur, recherche à autocomplétion, trois
+    chiffres. Navigation de domaines collante, colonne de filtres collante, liste de cartes.
+    Une fiche s'ouvre en panneau latéral <b>sans quitter la liste</b> — mais chaque rangée
+    reste un vrai lien vers <code>/parcours/&lt;slug&gt;</code>, donc indexable et ouvrable
+    en nouvel onglet.</td>
+  </tr>
+  <tr>
+    <td><code>/parcours/$slug</code><br><b>Fiche</b></td>
+    <td>Page complète d'un parcours, rendue côté serveur : titre, méta-description, canonique
+    auto-référente. C'est la même vue que le panneau latéral, sans son enveloppe.</td>
+  </tr>
+  <tr>
+    <td><code>/comparer</code></td>
+    <td>Tableau comparatif des parcours sélectionnés. Chaque cellule de coût porte sa
+    condition : comparer 0 € et 1 690 € sans dire que l'un suppose un contrat d'alternance
+    serait trompeur.</td>
+  </tr>
+  <tr>
+    <td><code>/aide-au-choix</code></td>
+    <td>Assistant d'adéquation. Cinq critères → correspondances et écarts, calculés
+    <b>entièrement</b> par <code>src/modele/adequation.ts</code>. Le modèle de langage ne
+    sélectionne rien et n'invente aucun écart : il rédige une phrase à partir de listes déjà
+    établies. Sa sortie est vérifiée contre un vocabulaire interdit avant affichage.</td>
+  </tr>
+  <tr>
+    <td><code>/organismes</code></td>
+    <td>Entrée par organisme plutôt que par parcours, avec le nombre de parcours de chacun.</td>
+  </tr>
+  <tr>
+    <td><code>/methode</code></td>
+    <td>Toutes les règles appliquées au catalogue, publiées et contestables : classification,
+    regroupement, états d'absence, dérivations, profondeur de vérification, file d'arbitrage.
+    C'est l'invariant 7 rendu visible.</td>
+  </tr>
+  <tr>
+    <td><code>/admin/seed</code></td>
+    <td>Ingestion réelle, protégée par jeton, refusant d'écraser une base peuplée sans demande
+    explicite.</td>
+  </tr>
+</table>
+
+<h2 class="break">3. La couche modèle</h2>
+
+<p class="note">Tout <code>src/modele/</code> est pur : aucune dépendance à l'interface, aucun
+accès réseau, testé sans base. C'est là que vivent les règles, et nulle part ailleurs.</p>
+
+<h3>Classification</h3>
+<p><b>Domaine</b> en 4 niveaux de preuve, <b>sujet principal</b> en 4 niveaux avec un seuil de
+40 %. L'ordre de déclaration des vocabulaires est <b>significatif</b> : la détection retient le
+premier motif qui correspond, donc réordonner une liste change la classification du catalogue.
+C'est un changement de règle, à publier et à vérifier par les tests de parité.</p>
+
+<h3>Regroupement</h3>
+<p>Hiérarchie de preuves : programme publié des deux côtés → comparaison réelle du tronc ;
+suffixe de formule reconnu ; sinon <b>ambigu</b>, replié derrière une ancre et signalé, jamais
+fusionné en silence.</p>
+
+<h3>Complétude — six états d'absence</h3>
+<table>
+  <tr><th>État</th><th>Signification</th><th style="width:24%">Dénominateur</th></tr>
+  <tr><td><code>renseigne</code></td><td>Publié par l'organisme</td><td class="ok">numérateur</td></tr>
+  <tr><td><code>derive</code></td><td>Produit par une règle publiée</td><td class="ok">numérateur</td></tr>
+  <tr><td><code>a_confirmer</code></td><td>Valeur conservée, non reconfirmée</td><td class="pending">dénominateur seul</td></tr>
+  <tr><td><code>non_communique</code></td><td>Page lue, l'organisme ne publie pas — <b>fait sur lui</b></td><td class="absent">dénominateur seul</td></tr>
+  <tr><td><code>non_collecte</code></td><td>Page jamais lue — <b>fait sur nous</b></td><td>exclu</td></tr>
+  <tr><td><code>non_applicable</code></td><td>Le champ n'a pas d'objet ici</td><td>exclu</td></tr>
+  <tr><td><code>communique_sur_demande</code></td><td>Sur devis, jamais publié</td><td>exclu</td></tr>
+</table>
+
+<div class="rule">
+  <b>L'asymétrie est le cœur du modèle.</b> Ne jamais faire porter à un organisme une opacité
+  qui est la nôtre. Un échec réseau, une page non lue, un rendu JavaScript qui échoue : tous
+  laissent le champ en <code>non_collecte</code>, jamais en « non publié ».
+</div>
+
+<div class="rule">
+  <b><code>non_applicable</code> exige la lecture de la page ET une règle publiée — les deux.</b>
+  C'est le seul état qui <i>ferme</i> un champ : il sort du dénominateur, sort de la file, et
+  n'est jamais revérifié. Une règle publiée ne suffit pas seule, car les deux règles existantes
+  déduisent depuis un autre champ, potentiellement incomplet sur une fiche jamais lue. Publier
+  une règle la rend contestable, pas vraie.
+</div>
+
+<h3>Coût — deux niveaux obligatoires</h3>
+<p>Un montant nu ne permet pas de décider : « 0 € » recouvre l'alternance, le compte requis, le
+certificat payant et l'accès partiel. Toute valeur de coût s'affiche donc avec sa <b>condition
+d'obtention</b>. Quand plusieurs s'appliquent, la plus restrictive pour l'accès l'emporte : un
+parcours en alternance et éligible CPF affiche la condition d'alternance, parce que c'est elle
+qui conditionne l'entrée.</p>
+
+<table>
+  <tr><th style="width:34%">Situation</th><th>Valeur affichée</th><th>Condition</th></tr>
+  <tr><td>Alternance</td><td>Aucun frais pour l'alternant</td><td>Sous réserve de signer un contrat</td></tr>
+  <tr><td>Diplôme public</td><td>Frais d'inscription universitaires</td><td>Montant fixé par arrêté</td></tr>
+  <tr><td>Compte requis</td><td>Gratuit</td><td>Après création d'un compte</td></tr>
+  <tr><td>Certificat payant</td><td>Gratuit à suivre</td><td>Certification payante</td></tr>
+  <tr><td>Freemium</td><td>Accès partiel gratuit</td><td>Parcours complet payant</td></tr>
+  <tr><td>Inter-entreprises</td><td>(montant)</td><td>Tarif par personne, session collective</td></tr>
+  <tr><td>Intra seul</td><td>Réservé aux entreprises</td><td>Non accessible à titre individuel</td></tr>
+</table>
+
+<h3>Dérivations — liste fermée</h3>
+<p>Une dérivation applique une règle de droit publiée, identique pour tous les parcours visés.
+Ce n'est pas une déduction : elle se conteste <b>en tant que règle</b>, jamais en tant que
+décision. Trois conditions obligatoires : la règle est publiée, la valeur porte l'état
+<code>derive</code>, et la fiche affiche la règle qui l'a produite.</p>
+<ul>
+  <li><b>Alternance</b> → coût 0, modalité « pris en charge ». <b>Bloquée</b> si l'organisme
+  publie un tarif : INSEEC vend son MSc 8 175 € en initial et le propose aussi en alternance.</li>
+  <li><b>Déclaration de portée générale</b> → ORSYS publie que <i>toutes</i> ses formations
+  peuvent être organisées en intra. Reportée sur ses fiches, marquée et sourcée.</li>
+</ul>
+
+<h3>Provenance — on n'efface pas, on déclasse</h3>
+<div class="warn">
+  <b>Incident du 3 août 2026.</b> Une consigne d'écriture sans règle d'effacement a supprimé
+  <b>61 prix</b>, dont trois parcours que Google publie « gratuites ». La consigne avait été
+  appliquée à la lettre, et le résultat était faux.
+</div>
+<p>Règle : une valeur qu'on ne peut pas reconfirmer <b>ne devient jamais « non communiqué »</b>.
+Elle conserve sa valeur, passe en <code>a_confirmer</code>, s'affiche signalée, et remonte en
+tête de file. Seule la lecture d'une page constatant l'absence autorise l'effacement.</p>
+<p>Le journal conserve, pour chaque écriture : valeur précédente, nouvelle valeur, URL source,
+extrait cité, horodatage, origine du changement. <b>Toute correction de masse est annulable.</b></p>
+
+<h2 class="break">4. Le pipeline de collecte</h2>
+
+<h3>Découverte</h3>
+<p>Sitemaps des organismes, via <code>robots.txt</code>. 93 organismes sur 143 ayant un domaine
+au catalogue exposent un sitemap exploitable (65 %). Les URL sont filtrées par pertinence
+e-commerce puis rapprochées des parcours fichés.</p>
+
+<div class="rule">
+  <b>Les sitemaps sont un outil de profondeur, jamais de largeur.</b> La découverte part des
+  domaines connus, donc elle ne peut ramener que des parcours d'organismes connus — les 342
+  candidats se répartissent sur 54 organismes, tous déjà au catalogue. Les nouveaux acteurs
+  viendront de SIRENE et DREETS, ou de nulle part.
+</div>
+
+<h3>Extraction — la citation obligatoire</h3>
+<p>Une requête réseau et une requête modèle par page. Chaque valeur extraite s'accompagne de
+l'extrait littéral du texte source, et <b>la vérification est programmatique</b> : on ne demande
+jamais au modèle s'il a bien cité, on compare la valeur à l'extrait par correspondance de
+chaîne après normalisation. Un modèle qui s'auto-évalue valide ses propres hallucinations.</p>
+
+<p>Deuxième vérification, moins évidente : <b>l'extrait doit lui-même figurer dans la page</b>.
+Un modèle fabrique une citation aussi facilement qu'une valeur ; sans ancrage dans le texte
+réellement récupéré, la citation ne prouve rien.</p>
+
+<p>Une liste n'est retenue que si <b>chaque élément</b> est attesté : un programme à moitié
+inventé est pire qu'un programme absent, il a l'air complet.</p>
+
+<div class="rule">
+  « Aucune information déduite » cesse ainsi d'être un principe écrit pour devenir une
+  <b>contrainte technique</b>.
+</div>
+
+<h3>Mesures</h3>
+<table>
+  <tr><th>Mesure</th><th style="width:30%">Valeur</th></tr>
+  <tr><td>Taux de citation valide (lot stratifié figé, 30 pages)</td><td>77 – 83 %</td></tr>
+  <tr><td>Écoles seules — strate la mieux structurée</td><td>94 – 97 %</td></tr>
+  <tr><td>Gain moyen par fiche</td><td>4,6 à 8 champs</td></tr>
+  <tr><td>Extrapolation au catalogue</td><td>~1 060 informations, soit 40 % de l'existant</td></tr>
+</table>
+
+<p class="note"><b>Deux règles de mesure.</b> La ventilation par strate est obligatoire : deux
+corrections tirant dans des directions opposées s'annulent dans un chiffre global. Et le nombre
+absolu précède le pourcentage : « 2 rejets sur 11 » se discute, « 69 % » fabrique une fausse
+précision en cachant la taille de l'échantillon.</p>
+
+<h3>Robustesse</h3>
+<ul>
+  <li><b>Politesse</b> : robots.txt respecté, 1,5 s entre deux requêtes d'un même domaine, le
+  créneau étant réservé <i>avant</i> l'attente — sinon la concurrence transforme la cadence en
+  salve.</li>
+  <li><b>Repli navigateur</b> : une page dont le texte représente moins de 3 % du HTML servi est
+  presque sûrement rendue côté client. Coursera sert 12 360 caractères pour 890 Ko.</li>
+  <li><b>Échec ≠ absence</b> : réseau, rendu, domaine muet — tous laissent le champ en
+  <code>non_collecte</code>.</li>
+  <li><b>Domaine garé</b> détecté (cas d'un organisme disparu dont le domaine a été repris par
+  un revendeur) et distingué d'un serveur qui refuse simplement notre agent.</li>
+</ul>
+
+<h3>Agent de rafraîchissement</h3>
+<table>
+  <tr><th>Catégorie</th><th>Cadence</th></tr>
+  <tr><td>Universités, diplômes d'État</td><td>annuelle</td></tr>
+  <tr><td>Écoles, bootcamps, organismes déclarés</td><td>trimestrielle</td></tr>
+  <tr><td>Éditeurs, plateformes, indépendants</td><td>mensuelle</td></tr>
+</table>
+<p>Déclencheurs événementiels prioritaires sur la cadence : modification signalée par le
+sitemap, signalement d'utilisateur, revendication de fiche. <b>Écriture automatique réservée aux
+valeurs nouvelles et citées</b> ; toute modification d'une valeur existante passe en validation.</p>
+
+<h2 class="break">5. Design system</h2>
+
+<p>Trois niveaux de jetons dans cet ordre de dépendance : <b>primitifs → sémantiques →
+composants</b>. Un composant qui a besoin d'une valeur absente ne l'écrit pas en dur : le jeton
+manquant est ajouté à l'échelle.</p>
+
+<table>
+  <tr><th style="width:26%">Couche</th><th>Contenu</th></tr>
+  <tr><td>Espacement</td><td>Base 4 px. Au-delà de 32 px, uniquement les multiples de 8.</td></tr>
+  <tr><td>Typographie</td><td>Échelle de 11 à 48 px. Bricolage Grotesque sur les titres (axe
+  optique <code>opsz</code>), Geist sur le texte, DM Mono sur les valeurs chiffrées.</td></tr>
+  <tr><td>Couleur</td><td>Dix paliers par teinte. Neutres froids, <span class="ok">pine</span>
+  (vérifié), <span class="absent">clay</span> (absent), <span class="pending">amber</span>
+  (en attente), crimson (défaillance produit uniquement), accent froid (interactif).</td></tr>
+  <tr><td>Élévation</td><td>Cinq niveaux. L'ombre indique la position dans l'espace, jamais
+  l'importance.</td></tr>
+  <tr><td>Motion</td><td>120 à 280 ms. La sortie est toujours plus rapide que l'entrée.</td></tr>
+</table>
+
+<div class="rule">
+  <b>La chrome est achromatique ; la couleur est réservée au sens.</b> Crimson n'est jamais
+  employé pour qualifier une formation : une information absente n'est pas une erreur, c'est
+  clay. Le rouge dit qu'un chargement a échoué, jamais qu'un organisme ne publie pas son prix.
+</div>
+
+<h3>Composants</h3>
+<p class="small">
+OrganizationMark · OrganizationIdentity · SkillTag · MetadataItem · PriceSummary ·
+CertificationBadge · CompletenessIndicator · CatalogFreshnessBadge · SearchField ·
+CompareButton · TrainingResultCard · FilterPanel · FilterAccordion · ActiveFilter ·
+SortSelect · ResultToolbar · EmptyState · ResultSkeleton · PiedFiche
+</p>
+
+<p><b>Le code-barres</b> est l'élément signature : un trait par information suivie, plein si
+renseignée, hachuré si non collectée, effacé si sans objet. Il ne dit rien de la qualité, tout
+de l'état de la fiche. <b>Jamais converti en pourcentage</b> — un chiffre sur 100 se lit comme
+une note.</p>
+
+<h2>6. Garde-fous</h2>
+
+<h3>Invariants de catalogue — <code>bun run invariants</code></h3>
+<ol class="small">
+  <li>Aucune fiche <code>catalogue_seul</code> ne porte un champ « non publié »</li>
+  <li>Aucune fiche <code>detail_verifie</code> ne porte un champ « non collecté »</li>
+  <li>Toute dérivation renvoie à une règle de la liste fermée</li>
+  <li>Aucun coût dérivé à zéro quand l'organisme publie un tarif</li>
+  <li><b>4 bis</b> — aucune fiche n'<i>affiche</i> « aucun frais » avec un tarif publié</li>
+  <li>Toute valeur écrite par le pipeline porte une citation</li>
+  <li>Aucun coût à zéro sans qualification de sa gratuité</li>
+  <li>Le dénominateur exclut les trois états sans objet</li>
+  <li>Toute fiche possède une URL de site officiel</li>
+  <li>Aucune valeur effacée sans passage par « à confirmer »</li>
+  <li>Aucun <code>non_applicable</code> sans lecture de page ET règle publiée</li>
+</ol>
+
+<h3>Invariants de design — <code>bun run invariants:design</code></h3>
+<p class="small">Couleur littérale · dimension hors échelle · durée littérale · syntaxe de
+variable invalide.</p>
+
+<h3>Invariants de rendu — <code>bun run invariants:rendu</code> (Playwright)</h3>
+<p class="small">Écart réel entre éléments de texte adjacents · appartenance des tailles rendues
+à l'échelle · contraste AA · pied de panneau ancré · liste de suggestions dans la fenêtre.</p>
+<p>Ils tournent <b>avant chaque poussée</b> via un crochet Git, jamais automatiquement sur la
+production : ils existent pour attraper une régression avant déploiement, pas pour constater
+qu'elle est en ligne.</p>
+
+<div class="warn">
+  <b>Le motif qui s'est répété six fois.</b> Plafond de découverte, créneau de cadence,
+  garde-fou contourné par l'affichage, <code>non_applicable</code> déduit, syntaxe de variable
+  Tailwind, migration non appliquée. À chaque fois : <b>la règle est juste, la donnée est juste,
+  une couche en aval passe à côté. Rien ne plante, aucun test ne rougit, le résultat est
+  faux.</b><br><br>
+  Deux conséquences : écrire les invariants sur ce que l'<i>interface rend</i>, pas sur ce que le
+  modèle calcule ; et demander à voir des cas réels plutôt qu'un compte-rendu de tests — c'est
+  l'exigence de voir cinq cas concrets qui a fait sortir un défaut pendant que 176 tests étaient
+  au vert.
+</div>
+
+<h2 class="break">7. Pistes fermées, avec leur mesure</h2>
+
+<p class="note">Une piste fermée sans son chiffre se rouvre toujours.</p>
+
+<table>
+  <tr><th style="width:30%">Voie</th><th style="width:18%">Résultat</th><th>Pourquoi</th></tr>
+  <tr>
+    <td>Appariement par score de mots d'URL</td><td>58 / 232 — 25 %</td>
+    <td>À seuil 0,4 on obtiendrait 279 rapprochements, mais l'exemple type rapproche deux
+    diplômes différents. Le seuil reste à 0,6.</td>
+  </tr>
+  <tr>
+    <td>Appariement par libellé de lien exact</td><td>+1</td>
+    <td>Les pages catalogue rendent bien des liens, mais l'égalité exacte entre titre fiché et
+    libellé publié ne se produit presque jamais.</td>
+  </tr>
+  <tr>
+    <td>Appariement par URL déjà fichée</td><td>plafond de 4</td>
+    <td>Le champ <code>url</code> est un domaine d'organisme, pas une adresse de parcours.</td>
+  </tr>
+  <tr>
+    <td>Appariement par domaine inféré</td><td>5, dont ≥3 faux</td>
+    <td>Le domaine de la page est inféré depuis des mots d'URL, pas constaté. Même vice qu'un
+    <code>non_applicable</code> déduit.</td>
+  </tr>
+  <tr>
+    <td>Découverte par comparatifs tiers</td><td>79 % de recouvrement</td>
+    <td>Épuisée. Et aucune donnée n'en est reprise — invariant 5.</td>
+  </tr>
+  <tr>
+    <td>DREETS par dénomination sociale</td><td>11 / 165 726</td>
+    <td>Dont la moitié de faux positifs. Le ciblage NAF via SIRENE reste nécessaire.</td>
+  </tr>
+</table>
+
+<div class="rule">
+  <b>Conclusion structurelle : c'est le crawl qui débloque l'appariement, pas l'inverse.</b>
+  La quatrième voie — le domaine <i>constaté</i> sur la page — exige d'ouvrir la page.
+</div>
+
+<h2>8. Dettes connues, chiffrées</h2>
+
+<table>
+  <tr><th style="width:38%">Dette</th><th style="width:16%">Chiffre</th><th>Note</th></tr>
+  <tr><td>Fiches sans URL de site officiel</td><td>14</td><td>Toutes des créateurs indépendants. Plafond déclaré, ne peut que décroître.</td></tr>
+  <tr><td>Prix déclassés en « à confirmer »</td><td>59</td><td>Restaurés après l'incident du 3 août, en attente de reconfirmation.</td></tr>
+  <tr><td>Éligibilité CPF non tranchée</td><td>164</td><td>Le booléen ne distingue pas « vérifié non éligible » de « non vérifié ».</td></tr>
+  <tr><td>Profondeur du catalogue</td><td>6 / 232</td><td>Bloquée par l'appariement.</td></tr>
+  <tr><td>Intitulés désignant une famille</td><td>~17</td><td>Non traités par motif : seule la lecture tranche.</td></tr>
+  <tr><td>Règles lieu et paiement suspendues</td><td>165 champs</td><td>Elles déduisent depuis un autre champ ; après le crawl, l'entrée sera constatée.</td></tr>
+  <tr><td>Fonction d'enregistrement</td><td>—</td><td>Décision produit en attente : le produit n'a ni comptes ni favoris.</td></tr>
+</table>
+
+<h2>9. Chantier suivant — conflits internes</h2>
+
+<p>Le crawl lira plusieurs pages par organisme et trouvera des contradictions : deux prix, deux
+durées, deux programmes pour un même parcours. <b>Ne jamais trancher automatiquement.</b> Une
+contradiction interne est une information sur l'organisme — et aucun comparatif affilié ne la
+relèvera jamais, puisqu'ils reprennent une seule source.</p>
+
+<ul>
+  <li>Conserver chaque valeur, sa citation, l'URL exacte, la date de lecture. État
+  <code>en_conflit</code>.</li>
+  <li>Hors du numérateur, <b>maintenu au dénominateur</b> : l'information existe, elle n'est pas
+  fiable en l'état.</li>
+  <li>Afficher les valeurs divergentes avec leur source, jamais un montant arbitraire — le plus
+  bas flatterait l'organisme, le plus haut serait injuste, les deux seraient un jugement.</li>
+  <li>File publique dans Méthode, à côté de la file d'arbitrage.</li>
+  <li>Distinguer <b>conflit</b> et <b>obsolescence</b> par les dates de dernière modification du
+  sitemap.</li>
+  <li>Prévoir l'origine de la résolution — arbitrage interne ou déclaration d'organisme — pour
+  le jour où un organisme revendiquera sa fiche.</li>
+</ul>
+
+<h2>10. Stack et frontière</h2>
+
+<p>TanStack Start + React 19 + TypeScript, Tailwind v4, Lovable Cloud pour le backend.
+Gestionnaire <code>bun</code>.</p>
+
+<table>
+  <tr><th style="width:26%">Côté</th><th>Périmètre</th></tr>
+  <tr><td>Nous</td><td>Tout <code>src/</code>, y compris le <code>&lt;head&gt;</code> — ce projet
+  n'a pas d'<code>index.html</code>, le head vit dans <code>src/routes/__root.tsx</code>. Plus
+  les scripts, tests et invariants.</td></tr>
+  <tr><td>Lovable</td><td>Le schéma de base et ses migrations, les secrets serveur,
+  <code>vite.config.ts</code>, le déploiement.</td></tr>
+  <tr><td>Partagé</td><td><code>main</code>. Lovable pousse en direct : <code>git pull</code>
+  avant chaque poussée, jamais de réécriture d'historique.</td></tr>
+</table>
+
+<div class="rule">
+  <b>Le schéma précède le code</b>, et c'est mécanique : une colonne manquante produit un
+  message qui la nomme et porte le prompt à envoyer, au lieu d'une erreur 500 muette.
+</div>
+
+<p class="small" style="margin-top:10mm; border-top:1px solid var(--line2); padding-top:3mm">
+Formlist — dossier technique et produit · état au 4 août 2026 · chiffres lus dans le catalogue
+au moment de la génération.
+</p>
+
+</body>
+</html>
