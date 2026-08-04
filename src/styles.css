@@ -1,5 +1,16 @@
-@import "./design/fondations.css";
+/*
+  L'ORDRE COMPTE, ET IL EST PIÉGEUX.
+
+  Tailwind déclare l'ordre des couches — theme, base, components, utilities —
+  au moment de son import. Importer les fondations AVANT lui déclarait
+  `components` en premier, donc AVANT `base` : le preflight de Tailwind, qui
+  remet `h1 { font-size: inherit }`, l'emportait alors sur nos classes de titre.
+
+  La famille et l'interlettrage s'appliquaient, la taille non — un titre à la
+  bonne police, au bon resserrement, et minuscule.
+*/
 @import "tailwindcss" source(none);
+@import "./design/fondations.css";
 @import "tw-animate-css";
 @source "../src";
 
