@@ -79,7 +79,10 @@ jobs:
             echo "::warning::SEED_TOKEN absent — ingestion ignorée."
             exit 0
           fi
-          reponse=$(curl -sS -w '\n%{http_code}' -X POST "$URL/api/ingestion" \
+          # `--location` : le domaine avec www redirige vers l'apex, et un 307
+          # non suivi était compté comme un échec. Un 307 préserve la méthode et
+          # le corps, donc le POST reste un POST.
+          reponse=$(curl -sS --location -w '\n%{http_code}' -X POST "$URL/api/ingestion" \
             -H "x-seed-token: $JETON" \
             -H "content-type: application/json" \
             -d '{"ecraser":true}')

@@ -53,7 +53,7 @@ export async function rendre(
     const nav = await obtenir();
     const contexte = await nav.newContext({
       userAgent:
-        "FormlistBot/1.0 (+https://www.formlist.fr ; comparateur de formations)",
+        "FormlistBot/1.0 (+https://formlist.fr ; comparateur de formations)",
       // Les images et polices ne portent aucun fait : les charger triplerait le
       // temps de rendu pour rien.
       javaScriptEnabled: true,
