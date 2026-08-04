@@ -12,6 +12,7 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
+import { RechercheHero, type Suggestion } from "@/composants/RechercheHero";
 import {
   auMoinsUnFiltre,
   compterEcartesFauteInformation,
@@ -182,54 +183,107 @@ function Explorer() {
     </>
   );
 
+  /*
+    Les suggestions sont calculées ici, pas dans le champ : il affiche, il
+    n'interroge rien. Trois groupes du plus précis au plus large — un parcours
+    nommé est une réponse, un domaine n'est qu'une piste.
+  */
+  const suggestions: Suggestion[] = useMemo(() => {
+    const q = filtres.recherche.trim().toLowerCase();
+    if (q.length < 3) return [];
+    const correspond = (t: string) => t.toLowerCase().includes(q);
+
+    const parParcours: Suggestion[] = parcours
+      .filter((p) => correspond(p.nom))
+      .map((p) => ({
+        type: "parcours",
+        libelle: p.nom,
+        detail: p.organismeNom,
+        choisir: () => modifier({ recherche: p.nom }),
+      }));
+
+    const organismesTrouves = [...new Set(parcours.map((p) => p.organismeNom))].filter(correspond);
+    const parOrganisme: Suggestion[] = organismesTrouves.map((nom) => ({
+      type: "organisme",
+      libelle: nom,
+      detail: `${parcours.filter((p) => p.organismeNom === nom).length} parcours`,
+      choisir: () => modifier({ recherche: nom }),
+    }));
+
+    const parDomaine: Suggestion[] = onglets
+      .filter((o) => o.domaine !== null && correspond(o.libelle))
+      .map((o) => ({
+        type: "domaine",
+        libelle: o.libelle,
+        detail: `${o.nombre} parcours`,
+        choisir: () => modifier({ domaine: o.domaine, recherche: "" }),
+      }));
+
+    return [...parParcours, ...parOrganisme, ...parDomaine];
+  }, [filtres.recherche, parcours, onglets]);
+
   return (
-    <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
-      <header className="pb-6">
-        <h1 className="font-titre text-3xl font-semibold tracking-tight sm:text-4xl">
+    <div className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) pb-(--space-16)">
+      {/*
+        HERO ALIGNÉ À GAUCHE. Le centrage appartient au registre des pages
+        marketing ; un outil de comparaison commence par se nommer et par dire
+        ce qu'il refuse de faire.
+      */}
+      <header className="pt-(--space-16) pb-(--space-16)">
+        <p className="t-label text-(--text-tertiary)">Comparateur indépendant · France</p>
+
+        <h1 className="mt-(--space-4) max-w-(--titre-largeur-max) t-display-2 min-[960px]:t-display-2 max-[959px]:t-heading-1">
           Comparez les formations avant de dépenser plusieurs milliers d&apos;euros.
         </h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+
+        {/*
+          La proposition de valeur, et ce qui nous sépare des comparatifs
+          affiliés. Ne jamais la retirer : sans elle, le titre seul se lit
+          comme celui de n'importe quel comparateur.
+        */}
+        <p className="mt-(--space-4) max-w-(--sous-titre-largeur-max) t-body-lg text-(--text-secondary)">
           On vous aide à choisir la bonne formation — pas à vous dire laquelle est la meilleure.
           Aucune note, aucun classement par qualité, aucun lien affilié.{" "}
-          <Link to="/methode" className="underline underline-offset-4 hover:text-foreground">
+          <Link to="/methode" className="underline underline-offset-4 hover:text-(--text-primary)">
             Comment ce catalogue est construit
           </Link>
         </p>
-        {/*
-          Le titre parle de dépense, mais un tiers du catalogue est gratuit ou
-          pris en charge : sans cette ligne, il laisserait croire que le
-          comparateur ne traite que les formations coûteuses.
-        */}
-        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Des formations gratuites d&apos;éditeurs aux mastères à plusieurs milliers d&apos;euros,
-          en passant par les diplômes publics en alternance.
-        </p>
+
+        <div className="mt-(--space-8)">
+          <RechercheHero
+            valeur={filtres.recherche}
+            modifier={(v: string) => modifier({ recherche: v })}
+            suggestions={suggestions}
+          />
+        </div>
 
         {/*
-          Trois chiffres vrais, et une date vérifiable. Aucune métrique de
-          vanité : « heures analysées » serait le premier chiffre qu'un
-          organisme mécontent attaquerait, et il aurait raison.
+          Trois chiffres vrais. Aucune métrique de vanité : « heures analysées »
+          serait le premier chiffre qu'un organisme mécontent attaquerait, et il
+          aurait raison. La date de vérification passe en mention sous la ligne —
+          elle est vérifiable, mais elle ne pèse pas comme les trois autres.
         */}
-        <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3 text-sm">
+        <dl className="mt-(--space-10) flex flex-wrap gap-x-(--space-12) gap-y-(--space-6)">
           <Chiffre valeur={parcours.length} libelle="parcours" />
           <Chiffre valeur={organismes} libelle="organismes" />
           <Chiffre valeur={informationsTotales} libelle="informations vérifiées" />
-          {derniereVerification !== null && (
-            <div>
-              <dt className="sr-only">Dernière vérification du catalogue</dt>
-              <dd className="chiffre text-xl">
-                {new Date(derniereVerification).toLocaleDateString("fr-FR", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </dd>
-              <p className="text-xs text-muted-foreground">dernière vérification</p>
-            </div>
-          )}
         </dl>
+
+        {derniereVerification !== null && (
+          <p className="mt-(--space-4) t-caption text-(--text-tertiary)">
+            Dernière vérification du catalogue le{" "}
+            <span className="chiffre">
+              {new Date(derniereVerification).toLocaleDateString("fr-FR", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric",
+              })}
+            </span>
+          </p>
+        )}
       </header>
 
+      {/* space-16 entre les KPIs et la barre de domaines : le hero respire. */}
       <OngletsDomaines
         onglets={onglets}
         actif={filtres.domaine}
@@ -361,8 +415,8 @@ function Chiffre({ valeur, libelle }: { valeur: number; libelle: string }) {
   return (
     <div>
       <dt className="sr-only">{libelle}</dt>
-      <dd className="chiffre text-xl">{valeur.toLocaleString("fr-FR")}</dd>
-      <p className="text-xs text-muted-foreground">{libelle}</p>
+      <dd className="t-data-lg text-(--text-primary)">{valeur.toLocaleString("fr-FR")}</dd>
+      <p className="mt-(--space-1) t-caption text-(--text-tertiary)">{libelle}</p>
     </div>
   );
 }

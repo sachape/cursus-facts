@@ -1,0 +1,36 @@
+# Invariants — exécutés à chaque poussée.
+#
+# Un invariant jamais lancé ne protège de rien. Ceux de rendu ne peuvent pas
+# tourner à la main de façon fiable : ils exigent un serveur démarré, et c'est
+# précisément la friction qui les aurait rendus morts en deux semaines — comme
+# la migration qu'ils étaient censés attraper.
+name: Invariants
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  regles:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck
+      - run: bun run test
+      - name: Invariants du catalogue
+        run: bun run invariants
+      - name: Invariants du design system
+        run: bun run invariants:design
+
+  rendu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps chromium
+      - run: bun run build
+      - name: Invariants de rendu
+        run: bun run invariants:rendu

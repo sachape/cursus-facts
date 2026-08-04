@@ -243,6 +243,11 @@
   --barre-hauteur: 16px;
   --barre-hauteur-reduite: 8px;
   --barre-rayon: 1px;
+  --recherche-largeur: 640px;
+  --recherche-hauteur: 56px;
+  /* 18 caractères par ligne : le titre tient sur deux ou trois lignes. */
+  --titre-largeur-max: 18ch;
+  --sous-titre-largeur-max: 60ch;
   --cible-hauteur-min: 32px;
   --cible-hauteur-min-tactile: 44px;
 }
