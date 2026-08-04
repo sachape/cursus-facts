@@ -122,7 +122,7 @@ function Organismes() {
               <Link
                 to="/"
                 search={{ organisme: organisme.nom }}
-                className="flex h-full flex-col rounded-(--radius-md) border border-(--border-subtle) p-4 transition-colors hover:border-foreground/40"
+                className="flex h-full flex-col rounded-(--carte-rayon) border border-(--border-subtle) bg-(--surface-raised) p-(--space-5) transition-[border-color,box-shadow,transform] duration-(--motion-fast) ease-(--ease-standard) hover:border-(--border-default) hover:shadow-(--elevation-2) motion-safe:hover:-translate-y-px"
               >
                 <h2 className="font-titre t-body-sm font-medium leading-snug">{organisme.nom}</h2>
                 <p className="mt-1 t-caption text-(--text-secondary)">
