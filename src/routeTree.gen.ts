@@ -15,6 +15,7 @@ import { Route as ComparerRouteImport } from './routes/comparer'
 import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as OrganismesRouteImport } from './routes/organismes'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
+import { Route as ApiIngestionRouteImport } from './routes/api/ingestion'
 import { Route as ParcoursSlugRouteImport } from './routes/parcours.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const AdminSeedRoute = AdminSeedRouteImport.update({
   path: '/admin/seed',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiIngestionRoute = ApiIngestionRouteImport.update({
+  id: '/api/ingestion',
+  path: '/api/ingestion',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ParcoursSlugRoute = ParcoursSlugRouteImport.update({
   id: '/parcours/$slug',
   path: '/parcours/$slug',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/methode': typeof MethodeRoute
   '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
+  '/api/ingestion': typeof ApiIngestionRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/methode': typeof MethodeRoute
   '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
+  '/api/ingestion': typeof ApiIngestionRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/methode': typeof MethodeRoute
   '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
+  '/api/ingestion': typeof ApiIngestionRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/methode'
     | '/organismes'
     | '/admin/seed'
+    | '/api/ingestion'
     | '/parcours/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/methode'
     | '/organismes'
     | '/admin/seed'
+    | '/api/ingestion'
     | '/parcours/$slug'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/methode'
     | '/organismes'
     | '/admin/seed'
+    | '/api/ingestion'
     | '/parcours/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   MethodeRoute: typeof MethodeRoute
   OrganismesRoute: typeof OrganismesRoute
   AdminSeedRoute: typeof AdminSeedRoute
+  ApiIngestionRoute: typeof ApiIngestionRoute
   ParcoursSlugRoute: typeof ParcoursSlugRoute
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSeedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/ingestion': {
+      id: '/api/ingestion'
+      path: '/api/ingestion'
+      fullPath: '/api/ingestion'
+      preLoaderRoute: typeof ApiIngestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/parcours/$slug': {
       id: '/parcours/$slug'
       path: '/parcours/$slug'
@@ -182,18 +202,9 @@ const rootRouteChildren: RootRouteChildren = {
   MethodeRoute: MethodeRoute,
   OrganismesRoute: OrganismesRoute,
   AdminSeedRoute: AdminSeedRoute,
+  ApiIngestionRoute: ApiIngestionRoute,
   ParcoursSlugRoute: ParcoursSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
