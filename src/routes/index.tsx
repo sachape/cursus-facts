@@ -27,7 +27,7 @@ import { OngletsDomaines, type OngletDomaine } from "@/composants/OngletsDomaine
 import { TrainingResultCard } from "@/composants/TrainingResultCard";
 import { ResultToolbar } from "@/composants/ResultToolbar";
 import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
-import { HeroBadges } from "@/composants/HeroBadges";
+import { RailCriteres } from "@/composants/HeroBadges";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
@@ -311,8 +311,9 @@ function Explorer() {
         casserait les éléments collants qui le suivent.
       */}
       <header className="relative mx-auto mt-0 w-full min-w-0 overflow-clip pb-(--space-16) pt-(--hero-padding-top) text-center min-[1280px]:min-h-(--hero-min-hauteur) min-[1280px]:pb-(--space-20) min-[1280px]:pt-(--space-16)">
-        <HeroBadges />
-        <div className="relative z-10 mx-auto w-full max-w-(--hero-contenu-largeur)">
+        <div className="hero-layout">
+        <RailCriteres cote="gauche" />
+        <div className="hero-centre">
         <CatalogFreshnessBadge derniereVerification={derniereVerification} />
 
         {/*
@@ -367,6 +368,8 @@ function Explorer() {
         </dl>
 
         {/* La date de vérification vit désormais dans l'infobulle du badge. */}
+        </div>
+        <RailCriteres cote="droite" />
         </div>
       </header>
 

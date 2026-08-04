@@ -356,17 +356,22 @@
      c'est un jeton de composant, nommé plutôt qu'improvisé. */
   --hero-padding-top: 56px;
 
-  /* Couche ambiante du hero — décorative, jamais informative. */
-  --hero-badge-hauteur: 42px;
-  --hero-badge-padding: 14px;
-  --hero-badge-ecart: 9px;
-  --hero-badge-fond: rgb(255 255 255 / 0.94);
-  --hero-badge-bordure: #e3e6ea;
-  --hero-badge-ombre: 0 12px 32px rgb(15 23 42 / 0.07);
-  --hero-badge-icone: #52606d;
-  --hero-badge-texte: #30363d;
+  /* Rails de critères — sobres par construction, jamais des vignettes. */
+  --critere-hauteur: 36px;
+  --critere-padding: 12px;
+  --critere-ecart: 8px;
+  --critere-rayon: 10px;
+  --critere-texte: 12.5px;
+  --critere-bordure: #e5e7eb;
+  --critere-encre: #56616d;
+  --critere-ombre: 0 1px 2px rgb(15 23 42 / 0.03), 0 8px 20px rgb(15 23 42 / 0.05);
+
+  --rail-largeur: 180px;
+  --rail-gap: var(--space-8);
+  --rail-haut: 120px;
+  --rail-bas: 90px;
+  --hero-centre-largeur: 1040px;
   --hero-min-hauteur: 640px;
-  --hero-contenu-largeur: 1160px;
   --domain-navigation-height: 56px;
   --results-toolbar-height: 60px;
 
@@ -431,10 +436,8 @@
   --status-absent-bg: var(--clay-90);
   --status-pending: var(--amber-20);
   --status-pending-bg: var(--amber-70);
-  --hero-badge-fond: rgb(38 45 51 / 0.94);
-  --hero-badge-bordure: var(--neutral-80);
-  --hero-badge-icone: var(--neutral-40);
-  --hero-badge-texte: var(--neutral-20);
+  --critere-bordure: var(--neutral-80);
+  --critere-encre: var(--neutral-40);
   --select-bordure: rgb(232 235 236 / 0.16);
   --badge-compteur-fond: var(--neutral-80);
   --badge-compteur-texte: var(--neutral-40);
@@ -529,28 +532,17 @@ html {
   par `motion-safe` côté composant, donc absent sous prefers-reduced-motion.
 */
 /*
-  Flottement de 4 px, sur des durées différentes par badge. Au-delà, le
-  mouvement se remarque au lieu d'être perçu — et un badge qui attire l'œil
-  concurrence le titre qu'il est censé accompagner.
+  Dérive de 2 px seulement. Au-delà, un badge peut sortir de son rail, et le
+  mouvement se remarque au lieu d'être perçu — un badge qui attire l'œil
+  concurrence le titre qu'il accompagne.
 */
-@keyframes flottement {
+@keyframes derive {
   0%,
   100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-4px);
-  }
-}
-
-@keyframes apparition-badge {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-2px);
   }
 }
 
@@ -698,6 +690,42 @@ html {
     mobile. Les spans héritent tout — leur donner une taille propre briserait
     l'échelle du titre.
   */
+  /*
+    Trois colonnes : rail, contenu, rail. La structure garantit que les badges
+    ne croisent jamais le contenu central — aucune coordonnée à surveiller à
+    chaque changement de taille du titre.
+  */
+  .hero-layout {
+    width: min(100% - 48px, 1680px);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--rail-gap);
+    align-items: stretch;
+  }
+
+  @media (min-width: 1440px) {
+    .hero-layout {
+      grid-template-columns: var(--rail-largeur) minmax(0, 1fr) var(--rail-largeur);
+    }
+  }
+
+  @media (min-width: 1760px) {
+    :root {
+      --rail-largeur: 210px;
+      --rail-gap: var(--space-12);
+      --hero-centre-largeur: 1160px;
+    }
+  }
+
+  .hero-centre {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--hero-centre-largeur);
+    margin-inline: auto;
+  }
+
   .hero-title {
     width: min(960px, calc(100% - 40px));
     margin-inline: auto;

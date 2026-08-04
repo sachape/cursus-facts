@@ -1,81 +1,59 @@
 /**
- * Couche ambiante du hero — ce que Formlist permet de comparer.
+ * Rails de critères — ce que Formlist permet de comparer.
  *
- * Six badges disposés autour du contenu central, qui matérialisent les critères
- * de comparaison sans rien réclamer : ils n'ont ni rôle, ni focus, ni curseur de
- * clic. `aria-hidden` les retire entièrement de l'arbre d'accessibilité — les
- * critères qu'ils illustrent sont déjà nommés dans les filtres, et les répéter
- * à un lecteur d'écran ajouterait six annonces sans valeur.
+ * Quatre badges, deux par rail latéral. Ils vivent dans des colonnes de grille,
+ * jamais en position absolue : c'est la structure qui garantit qu'ils ne
+ * croisent pas le contenu central, pas un jeu de coordonnées à surveiller à
+ * chaque changement de taille de titre.
  *
- * DÉCORATIVE, DONC EFFAÇABLE. Sous 1 280 px la couche disparaît complètement :
- * elle enrichit un espace latéral disponible, elle ne porte aucune information
- * dont l'absence manquerait.
+ * DÉCORATIFS, DONC EFFAÇABLES. Sous 1 440 px les rails disparaissent avec leur
+ * contenu : les critères qu'ils illustrent sont déjà nommés dans les filtres et
+ * sur chaque carte, et `aria-hidden` les retire de l'arbre d'accessibilité —
+ * les répéter ajouterait quatre annonces avant d'atteindre le titre.
  */
 import {
   BadgeCheck,
-  Clock3,
-  GraduationCap,
   ListChecks,
   MonitorSmartphone,
   WalletCards,
   type LucideIcon,
 } from "lucide-react";
 
-type Badge = {
-  libelle: string;
-  Icone: LucideIcon;
-  /** Position dans la zone latérale, en pourcentage du hero. */
-  cote: "gauche" | "droite";
-  haut: string;
-  decalage: string;
-  /** Durée du flottement, différente par badge pour désynchroniser. */
-  duree: string;
-  retard: string;
-  /** Vrai pour les quatre badges conservés entre 1 280 et 1 599 px. */
-  reduit: boolean;
-};
+type Critere = { libelle: string; Icone: LucideIcon; duree: string; retard: string };
 
-/*
-  Positions asymétriques et durées distinctes. Des valeurs régulières
-  produiraient une grille et un mouvement synchronisé — l'inverse de l'effet
-  recherché, qui doit se remarquer sans se voir.
-*/
-const BADGES: Badge[] = [
-  { libelle: "Prix et financement", Icone: WalletCards, cote: "gauche", haut: "18%", decalage: "6%", duree: "9s", retard: "0s", reduit: true },
-  { libelle: "Programmes détaillés", Icone: ListChecks, cote: "gauche", haut: "46%", decalage: "1%", duree: "11s", retard: "1.4s", reduit: true },
-  { libelle: "Durée et rythme", Icone: Clock3, cote: "gauche", haut: "74%", decalage: "9%", duree: "8s", retard: "2.6s", reduit: false },
-  { libelle: "Certification RNCP", Icone: BadgeCheck, cote: "droite", haut: "24%", decalage: "3%", duree: "12s", retard: "0.7s", reduit: true },
-  { libelle: "Formats d'apprentissage", Icone: MonitorSmartphone, cote: "droite", haut: "52%", decalage: "8%", duree: "10s", retard: "2s", reduit: true },
-  { libelle: "Niveau d'entrée", Icone: GraduationCap, cote: "droite", haut: "78%", decalage: "2%", duree: "9.5s", retard: "3.2s", reduit: false },
+const GAUCHE: Critere[] = [
+  { libelle: "Prix & financement", Icone: WalletCards, duree: "10s", retard: "0s" },
+  { libelle: "Programme détaillé", Icone: ListChecks, duree: "12s", retard: "1.6s" },
 ];
 
-export function HeroBadges() {
+const DROITE: Critere[] = [
+  { libelle: "Certification RNCP", Icone: BadgeCheck, duree: "11s", retard: "0.8s" },
+  { libelle: "Formats & rythmes", Icone: MonitorSmartphone, duree: "9s", retard: "2.4s" },
+];
+
+function CriteriaBadge({ critere }: { critere: Critere }) {
+  return (
+    <span
+      style={{ animationDuration: critere.duree, animationDelay: critere.retard }}
+      className="inline-flex h-(--critere-hauteur) select-none items-center gap-(--critere-ecart) whitespace-nowrap rounded-(--critere-rayon) border border-(--critere-bordure) bg-(--surface-raised) px-(--critere-padding) text-(--critere-encre) [font-size:var(--critere-texte)] font-semibold shadow-(--critere-ombre) motion-safe:animate-[derive_ease-in-out_infinite]"
+    >
+      <critere.Icone size={15} strokeWidth={1.75} />
+      {critere.libelle}
+    </span>
+  );
+}
+
+export function RailCriteres({ cote }: { cote: "gauche" | "droite" }) {
+  const criteres = cote === "gauche" ? GAUCHE : DROITE;
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 hidden min-[1280px]:block"
+      className={`pointer-events-none relative z-0 hidden flex-col justify-around pb-(--rail-bas) pt-(--rail-haut) min-[1440px]:flex ${
+        cote === "gauche" ? "items-start" : "items-end"
+      }`}
     >
-      {BADGES.map((badge) => (
-        <span
-          key={badge.libelle}
-          style={{
-            top: badge.haut,
-            [badge.cote === "gauche" ? "left" : "right"]: badge.decalage,
-            /*
-              Deux animations : l'apparition joue une fois, le flottement
-              boucle. Les cumuler sur une seule ferait rejouer l'entrée à chaque
-              cycle.
-            */
-            animationDuration: `500ms, ${badge.duree}`,
-            animationDelay: `0ms, ${badge.retard}`,
-          }}
-          className={`absolute inline-flex h-(--hero-badge-hauteur) select-none items-center gap-(--hero-badge-ecart) whitespace-nowrap rounded-(--radius-xl) border border-(--hero-badge-bordure) bg-(--hero-badge-fond) px-(--hero-badge-padding) text-(--hero-badge-texte) [font-size:var(--body-sm-size)] font-semibold shadow-(--hero-badge-ombre) opacity-0 motion-safe:[animation-name:apparition-badge,flottement] motion-safe:[animation-timing-function:ease-out,ease-in-out] motion-safe:[animation-iteration-count:1,infinite] motion-safe:[animation-fill-mode:forwards,none] motion-reduce:opacity-100 ${
-            badge.reduit ? "" : "hidden min-[1600px]:inline-flex"
-          }`}
-        >
-          <badge.Icone size={16} strokeWidth={1.75} className="text-(--hero-badge-icone)" />
-          {badge.libelle}
-        </span>
+      {criteres.map((critere) => (
+        <CriteriaBadge key={critere.libelle} critere={critere} />
       ))}
     </div>
   );
