@@ -306,11 +306,13 @@ function Explorer() {
           l'élargissement du conteneur. La seconde ligne est insécable : c'est
           elle qui fixe la taille minimale, puisqu'elle doit tenir entière.
         */}
-        <h1 className="mx-auto mt-(--space-4) w-full min-w-0 max-w-(--titre-largeur-max) t-display-1 max-[1023px]:max-w-full max-[1023px]:[font-size:var(--titre-mobile)] max-[1023px]:[letter-spacing:-0.045em] max-[1023px]:[line-height:0.98]">
-          <span className="block max-w-full">Comparez les</span>
-          <span className="block max-w-full max-[1023px]:whitespace-nowrap">
-            formations e-commerce
-          </span>
+        {/*
+          Deux lignes, obtenues par la taille et non par un `nowrap` : forcer
+          l'insécable faisait déborder la seconde ligne sur les petits écrans.
+        */}
+        <h1 className="hero-title mt-(--space-4)">
+          <span>Comparez les</span>
+          <span>formations e-commerce</span>
         </h1>
 
         {/*

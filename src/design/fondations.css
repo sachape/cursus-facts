@@ -446,7 +446,6 @@ html {
 */
 @media (max-width: 1023px) {
   :root {
-    --titre-mobile: clamp(26px, 7.2vw, 56px);
     --app-header-height: 56px;
     --domain-navigation-height: 60px;
     /* 20 + 24 (titre) + 16 (gap) + 48 (select) + 20 */
@@ -463,8 +462,6 @@ html {
 
 @media (max-width: 359px) {
   :root {
-    /* Sous 360 px, « formations e-commerce » insécable impose de descendre. */
-    --titre-mobile: clamp(25px, 7.2vw, 26px);
   }
 }
 
@@ -615,6 +612,50 @@ html {
   .t-data-sm {
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
+  }
+
+
+  /*
+    Titre du hero. Une classe unique plutôt que des utilitaires par palier :
+    empilés, ils s'annulaient en cascade et le bureau héritait de la taille
+    mobile. Les spans héritent tout — leur donner une taille propre briserait
+    l'échelle du titre.
+  */
+  .hero-title {
+    width: min(960px, calc(100% - 40px));
+    margin-inline: auto;
+    font-family: var(--font-display);
+    font-size: clamp(56px, 4.4vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+    font-weight: 750;
+    text-align: center;
+    font-variation-settings: "opsz" var(--opsz-display-1);
+  }
+
+  .hero-title span {
+    display: block;
+    margin: 0;
+    font: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero-title {
+      font-size: clamp(44px, 6vw, 56px);
+      font-variation-settings: "opsz" var(--opsz-display-2);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-title {
+      width: calc(100% - 32px);
+      max-width: calc(100vw - 32px);
+      font-size: clamp(27px, 7.2vw, 34px);
+      letter-spacing: -0.045em;
+      font-variation-settings: "opsz" var(--opsz-heading);
+    }
   }
 
   .t-data-lg {
