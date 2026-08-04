@@ -27,7 +27,6 @@ const LIBELLES_GROUPES: Record<Suggestion["type"], string> = {
 };
 
 const ORDRE: Suggestion["type"][] = ["parcours", "organisme", "domaine"];
-const MAX_PAR_GROUPE = 5;
 const SEUIL_CARACTERES = 3;
 const DEBOUNCE_MS = 150;
 const HAUTEUR_MAX = 400;
@@ -153,7 +152,10 @@ export function RechercheHero({
     if (!assezLong) return [];
     return ORDRE.map((type) => ({
       type,
-      entrees: suggestions.filter((s) => s.type === type).slice(0, MAX_PAR_GROUPE),
+      // Aucun plafond : la liste montre tous les résultats et défile.
+      // Tronquer à cinq cachait 21 des 26 licences sans le dire, et rien à
+      // l'écran ne distinguait « voici tout » de « voici un extrait ».
+      entrees: suggestions.filter((s) => s.type === type),
     })).filter((g) => g.entrees.length > 0);
   }, [assezLong, suggestions]);
 
@@ -353,8 +355,10 @@ export function RechercheHero({
                   En-tête collant : au-delà de quelques entrées, on ne sait plus
                   dans quel groupe on se trouve.
                 */}
-                <p className="sticky top-0 z-10 border-b border-(--border-subtle) bg-(--surface-raised) px-(--space-4) py-(--space-2) t-label text-(--text-tertiary)">
+                <p className="sticky top-0 z-10 flex items-baseline justify-between gap-(--space-4) border-b border-(--border-subtle) bg-(--surface-raised) px-(--space-4) py-(--space-2) t-label text-(--text-tertiary)">
                   {LIBELLES_GROUPES[groupe.type]}
+                  {/* Le compte dit d'emblée l'ampleur de ce qu'on fait défiler. */}
+                  <span className="chiffre">{groupe.entrees.length}</span>
                 </p>
                 <ul>
                   {groupe.entrees.map((entree) => {
