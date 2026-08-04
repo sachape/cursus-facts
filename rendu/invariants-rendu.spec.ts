@@ -173,7 +173,12 @@ test("la liste de suggestions ne déborde pas et suit la sélection", async ({ p
   const boiteListe = await boite(liste);
   expect(boiteListe.x).toBeGreaterThanOrEqual(0);
   expect(boiteListe.x + boiteListe.width).toBeLessThanOrEqual(fenetre.width + 1);
-  expect(boiteListe.height).toBeLessThanOrEqual(fenetre.height);
+  // La liste tient entièrement dans la zone visible, quel que soit le
+  // défilement : c'est la position du champ dans un hero haut qui la faisait
+  // déborder, pas son nombre d'entrées.
+  const defilement = await page.evaluate(() => window.scrollY);
+  expect(boiteListe.y - defilement).toBeGreaterThanOrEqual(0);
+  expect(boiteListe.y - defilement + boiteListe.height).toBeLessThanOrEqual(fenetre.height + 1);
 
   // Descendre jusqu'au dernier élément : il doit rester dans la zone visible
   // de la liste, pas seulement exister dans le document.

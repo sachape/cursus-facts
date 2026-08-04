@@ -30,6 +30,11 @@ const ORDRE: Suggestion["type"][] = ["parcours", "organisme", "domaine"];
 const MAX_PAR_GROUPE = 5;
 const SEUIL_CARACTERES = 3;
 const DEBOUNCE_MS = 150;
+const HAUTEUR_MAX = 400;
+/** Marge conservée entre la liste et le bord de la fenêtre. */
+const MARGE_FENETRE = 24;
+/** En dessous, la liste s'ouvre au-dessus du champ plutôt qu'en dessous. */
+const ESPACE_MINIMAL_DESSOUS = 200;
 
 /** Loupe — trait 1,5 px, grille 20 px, extrémités carrées, aucun remplissage. */
 function Loupe({ className }: { className: string }) {
@@ -109,6 +114,16 @@ export function RechercheHero({
   const [surligne, setSurligne] = useState(0);
   const [saisie, setSaisie] = useState(valeur);
   const [enCours, setEnCours] = useState(false);
+  /*
+    La hauteur de la liste s'adapte à la place réellement disponible sous le
+    champ. Une hauteur fixe de 400 px n'était jamais atteinte par six entrées :
+    le débordement ne venait pas du nombre d'entrées mais de la position du
+    champ, bas dans un hero haut.
+  */
+  const [placement, setPlacement] = useState<{ sens: "bas" | "haut"; hauteur: number }>({
+    sens: "bas",
+    hauteur: HAUTEUR_MAX,
+  });
   const conteneur = useRef<HTMLDivElement>(null);
   const liste = useRef<HTMLDivElement>(null);
   const actifRef = useRef<HTMLButtonElement>(null);
@@ -154,6 +169,55 @@ export function RechercheHero({
   useEffect(() => {
     actifRef.current?.scrollIntoView({ block: "nearest" });
   }, [surligne]);
+
+  /*
+    Placement recalculé à l'ouverture, au défilement et au redimensionnement :
+    le champ bouge avec la page, et une hauteur figée à l'ouverture serait
+    fausse dès le premier cran de molette.
+  */
+  const recalculer = useCallback(() => {
+    const champ = champRef?.current ?? conteneur.current;
+    if (!champ) return;
+    const rect = champ.getBoundingClientRect();
+    const dessous = window.innerHeight - rect.bottom - MARGE_FENETRE;
+    const dessus = rect.top - MARGE_FENETRE;
+    if (dessous < ESPACE_MINIMAL_DESSOUS && dessus > dessous) {
+      setPlacement({ sens: "haut", hauteur: Math.max(0, Math.min(HAUTEUR_MAX, dessus)) });
+    } else {
+      setPlacement({ sens: "bas", hauteur: Math.max(0, Math.min(HAUTEUR_MAX, dessous)) });
+    }
+  }, [champRef]);
+
+  useEffect(() => {
+    if (!ouvert) return;
+    recalculer();
+    window.addEventListener("resize", recalculer);
+    window.addEventListener("scroll", recalculer, true);
+    return () => {
+      window.removeEventListener("resize", recalculer);
+      window.removeEventListener("scroll", recalculer, true);
+    };
+  }, [ouvert, recalculer]);
+
+  /*
+    Défilement de la page verrouillé pendant que la liste est ouverte : ancrée
+    au champ, elle glisserait sur le hero au premier cran de molette. La largeur
+    de la barre de défilement est compensée, sans quoi la page saute
+    latéralement à chaque ouverture.
+  */
+  useEffect(() => {
+    if (!ouvert) return;
+    const { body, documentElement } = document;
+    const compensation = window.innerWidth - documentElement.clientWidth;
+    const overflow = body.style.overflow;
+    const padding = body.style.paddingRight;
+    body.style.overflow = "hidden";
+    if (compensation > 0) body.style.paddingRight = `${compensation}px`;
+    return () => {
+      body.style.overflow = overflow;
+      body.style.paddingRight = padding;
+    };
+  }, [ouvert]);
 
   useEffect(() => {
     const dehors = (e: MouseEvent) => {
@@ -226,6 +290,10 @@ export function RechercheHero({
           onFocus={() => setOuvert(true)}
           onKeyDown={clavier}
           placeholder="Recherche par parcours, organisme, code RNCP…"
+          spellCheck={false}
+          autoCorrect="off"
+          autoCapitalize="off"
+          autoComplete="off"
           className={`h-(--recherche-hauteur) w-full rounded-(--radius-md) border bg-(--surface-raised) pl-(--recherche-retrait) pr-(--space-10) t-body text-(--text-primary) shadow-(--elevation-1) outline-none transition-[border-color,box-shadow] placeholder:text-(--text-tertiary) ${
             ouvert
               ? "border-(--border-strong) shadow-(--elevation-2)"
@@ -254,7 +322,12 @@ export function RechercheHero({
           id={listeId}
           ref={liste}
           role="listbox"
-          className="absolute z-20 mt-(--space-2) max-h-(--suggestions-hauteur-max) w-full overflow-y-auto rounded-(--radius-md) border border-(--border-subtle) bg-(--surface-raised) text-left shadow-(--elevation-3) [scrollbar-width:none] max-[639px]:fixed max-[639px]:inset-x-0 max-[639px]:max-h-[60vh] [&::-webkit-scrollbar]:hidden"
+          style={{ maxHeight: `${placement.hauteur}px` }}
+          className={`absolute z-20 w-full overflow-y-auto rounded-(--radius-md) border border-(--border-subtle) bg-(--surface-raised) text-left shadow-(--elevation-3) [scrollbar-width:none] max-[639px]:fixed max-[639px]:inset-x-0 [&::-webkit-scrollbar]:hidden ${
+            placement.sens === "haut"
+              ? "bottom-full mb-(--space-2)"
+              : "top-full mt-(--space-2)"
+          }`}
         >
           {groupes.length === 0 ? (
             <div className="px-(--space-4) py-(--space-3)">
