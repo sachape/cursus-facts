@@ -12,6 +12,13 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { SearchField } from "./SearchField";
 import { CountBadge } from "./CountBadge";
 import type { Tri } from "@/modele/classement";
@@ -50,8 +57,11 @@ export function ActiveFilter({ libelle, retirer }: { libelle: string; retirer: (
  */
 export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => void }) {
   /*
-    Sous 420 px, « Trier par » passe au-dessus du select : à cette largeur, les
-    garder sur une ligne réduit le select à un moignon illisible.
+    Radix plutôt qu'un `<select>` natif : sur macOS, le menu système est un
+    panneau gris que rien ne permet d'harmoniser, et son contour de focus noir
+    jure avec tout le reste. Le rendu en portail évite aussi qu'un parent en
+    `overflow` ne le coupe — la toolbar est collante, et une liste rendue dans
+    son flux disparaîtrait sous les cartes.
   */
   return (
     <div className="flex min-w-0 flex-1 items-center gap-(--space-3) max-[419px]:flex-col max-[419px]:items-stretch max-[419px]:gap-(--space-2)">
@@ -59,32 +69,30 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
         Trier par
       </label>
       <div className="relative min-w-0 flex-1 min-[768px]:min-w-(--select-largeur-min) min-[1024px]:w-[clamp(280px,24vw,360px)] min-[1024px]:flex-none">
-        <select
-          id="tri"
-          value={tri}
-          onChange={(e) => choisir(e.target.value as Tri)}
-          /*
-            `appearance-none` retire la flèche du système : un contrôle au style
-            natif jure avec le reste et change d'aspect d'un système à l'autre.
-          */
-          className="h-(--bouton-hauteur) w-full max-w-full appearance-none rounded-(--radius-md) max-[1023px]:min-h-12 min-[1024px]:h-12 border border-(--border-default) bg-(--surface-raised) py-(--space-1) pl-(--space-3) pr-(--space-8) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus-visible:border-(--border-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
-        >
-          {TRIS.map((t) => (
-            <option key={t} value={t}>
-              {LIBELLES_TRIS_COURTS[t]}
-            </option>
-          ))}
-        </select>
-        <svg
-          viewBox="0 0 16 16"
-          width="16"
-          height="16"
-          fill="none"
-          aria-hidden
-          className="pointer-events-none absolute inset-y-0 right-(--space-2) my-auto text-(--text-tertiary)"
-        >
-          <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-        </svg>
+        <Select value={tri} onValueChange={(v) => choisir(v as Tri)}>
+          <SelectTrigger
+            id="tri"
+            aria-label="Trier les résultats"
+            className="h-(--bouton-hauteur) w-full rounded-(--radius-md) border-(--border-default) bg-(--surface-raised) px-(--space-3) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus:outline-none focus-visible:border-(--border-strong) focus-visible:ring-0 focus-visible:[box-shadow:var(--select-focus)] max-[1023px]:min-h-12 min-[1024px]:h-12"
+          >
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent
+            position="popper"
+            sideOffset={8}
+            className="w-(--radix-select-trigger-width) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) p-(--space-1) shadow-(--elevation-3)"
+          >
+            {TRIS.map((t) => (
+              <SelectItem
+                key={t}
+                value={t}
+                className="min-h-(--option-hauteur) rounded-(--radius-md) px-(--space-3) t-body-sm data-[state=checked]:bg-(--accent-10) focus:bg-(--surface-hover)"
+              >
+                {LIBELLES_TRIS_COURTS[t]}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );

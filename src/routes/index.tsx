@@ -176,8 +176,14 @@ function Explorer() {
   const titreListe =
     filtres.domaine === null ? "Tous les parcours" : LIBELLES_DOMAINES[filtres.domaine];
 
+  /*
+    Un seul conteneur pour toute la colonne : la recherche et la carte des
+    filtres en sont deux enfants, et c'est LUI qui colle. Coller chacun
+    séparément les faisait se rejoindre au défilement — l'écart n'était qu'une
+    marge, et une marge ne survit pas à deux ancrages indépendants.
+  */
   const colonneFiltres = (
-    <>
+    <div className="flex flex-col gap-(--space-4)">
       <Input
         type="search"
         value={filtres.recherche}
@@ -187,7 +193,7 @@ function Explorer() {
       />
 
       {filtres.organisme !== null && (
-        <p className="mt-4 rounded-md border border-border px-3 py-2 text-xs">
+        <p className="rounded-(--radius-md) border border-(--border-subtle) px-(--space-3) py-(--space-2) t-caption">
           Catalogue filtré sur <span className="font-medium">{filtres.organisme}</span>
         </p>
       )}
@@ -198,7 +204,7 @@ function Explorer() {
         <Button
           variant="outline"
           size="sm"
-          className="mb-2 mt-4 w-full"
+          className="w-full"
           onClick={() => {
             setFiltres(FILTRES_VIDES);
             setLimite(PAR_PAGE);
@@ -207,7 +213,7 @@ function Explorer() {
           Tout réinitialiser
         </Button>
       )}
-    </>
+    </div>
   );
 
   /*

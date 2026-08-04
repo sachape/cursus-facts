@@ -376,6 +376,11 @@
   --badge-padding: 10px;
   --badge-point: 7px;
 
+  /* Bordure du menu déroulant : plus légère que border-subtle, pour un panneau
+     posé au-dessus du contenu plutôt qu'inséré dedans. */
+  --select-bordure: rgb(20 28 40 / 0.1);
+  --select-focus: 0 0 0 3px rgb(69 98 190 / 0.12);
+  --option-hauteur: 42px;
   --bouton-hauteur: 40px;
   --bouton-hauteur-tactile: 44px;
   --cible-hauteur-min: 32px;
@@ -414,6 +419,7 @@
   --status-absent-bg: var(--clay-90);
   --status-pending: var(--amber-20);
   --status-pending-bg: var(--amber-70);
+  --select-bordure: rgb(232 235 236 / 0.16);
   --badge-compteur-fond: var(--neutral-80);
   --badge-compteur-texte: var(--neutral-40);
 
