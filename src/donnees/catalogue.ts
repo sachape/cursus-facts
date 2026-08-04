@@ -17,6 +17,7 @@ import type {
   NiveauEntree,
 } from "@/types/cursus";
 import type { ModaliteAcces } from "@/modele/modalite-acces";
+import type { ModaliteCommerciale } from "@/modele/modalite-commerciale";
 import offresSources from "./offres-sources.json";
 
 /** Une offre telle que collectée, avant classification et regroupement. */
@@ -67,6 +68,13 @@ export type OffreSource = {
   profondeurVerifieeLe?: string | null;
   /** URL de la page de détail, alimentée par la file de collecte. */
   urlDetail?: string | null;
+  /**
+   * Inter-entreprises, intra-entreprise, ou les deux. `null` tant que la page
+   * de détail n'a pas tranché — le prix affiché reste alors à vérifier.
+   */
+  modaliteCommerciale?: ModaliteCommerciale | null;
+  /** Tarif de groupe, affiché sur la fiche mais jamais dans la liste. */
+  prixIntra?: number | null;
 };
 
 /** Niveau de vérification atteint sur une fiche. */
@@ -159,6 +167,10 @@ export function normaliserOffre(offre: OffreSource): OffreNormalisee {
     formats: (formats ?? []).map((f) => traduire(FORMAT_PAR_LIBELLE, f, "format")),
     // Par défaut, une fiche n'a été vue qu'au niveau du catalogue.
     profondeur: offre.profondeur ?? "catalogue_seul",
+    // Tant que la page de détail n'a pas tranché, la modalité reste inconnue :
+    // le prix affiché est alors à vérifier, pas à supprimer.
+    modaliteCommerciale: offre.modaliteCommerciale ?? null,
+    prixIntra: offre.prixIntra ?? null,
     domaineDeclare: domaineDeclareLibelle
       ? traduire(DOMAINE_PAR_LIBELLE, domaineDeclareLibelle, "domaine déclaré")
       : null,

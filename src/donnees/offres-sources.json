@@ -8137,7 +8137,9 @@
   "prix": 890,
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-04",
-  "urlDetail": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
+  "urlDetail": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/",
+  "modaliteCommerciale": "les_deux",
+  "prixIntra": 2670
  },
  {
   "organisme": "M2i Formation",
@@ -8296,7 +8298,9 @@
   "nom": "PrestaShop — Utilisateurs",
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-04",
-  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-utilisateurs"
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-utilisateurs",
+  "modaliteCommerciale": "les_deux",
+  "prixIntra": 1875
  },
  {
   "organisme": "Dawan",
@@ -9204,6 +9208,8 @@
   "sourceModalite": null,
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-04",
-  "urlDetail": "https://www.cegos.fr/formations/marketing/les-cles-du-e-commerce"
+  "urlDetail": "https://www.cegos.fr/formations/marketing/les-cles-du-e-commerce",
+  "modaliteCommerciale": "les_deux",
+  "prixIntra": 4150
  }
 ]

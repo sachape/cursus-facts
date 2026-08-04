@@ -113,6 +113,10 @@ function colonnesDe(
     non_couvert: tete.nonCouvert,
     // Qualification de la gratuité : jamais déduite, jamais affirmée par défaut.
     modalite_acces: tete.modaliteAcces,
+    // Le prix retenu est toujours le tarif inter ; le tarif de groupe est
+    // stocké à part et n'entre ni dans le tri ni dans le filtre budget.
+    modalite_commerciale: tete.modaliteCommerciale ?? null,
+    prix_intra: tete.prixIntra ?? null,
     source_modalite_acces: tete.sourceModalite ?? null,
     site_officiel: tete.url && tete.url !== "—" ? tete.url : null,
     source_information: tete.source,

@@ -22,6 +22,8 @@ const p = (partiel: Partial<ParcoursListe> = {}): ParcoursListe => ({
   prixMin: null,
   prixMax: null,
   modaliteAcces: null,
+  modaliteCommerciale: null,
+  prixIntra: null,
   duree: null,
   volumeHoraire: null,
   formats: [],

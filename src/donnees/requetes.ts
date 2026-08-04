@@ -21,6 +21,7 @@ import {
   type StatutRegroupement,
 } from "@/types/cursus";
 import type { ModaliteAcces } from "@/modele/modalite-acces";
+import type { ModaliteCommerciale } from "@/modele/modalite-commerciale";
 
 export type ParcoursListe = {
   id: string;
@@ -35,6 +36,10 @@ export type ParcoursListe = {
   prixMax: number | null;
   /** Qualification de la gratuité. `null` = non vérifiée. */
   modaliteAcces: ModaliteAcces | null;
+  /** Inter-entreprises, intra, ou les deux. `null` = non tranché. */
+  modaliteCommerciale: ModaliteCommerciale | null;
+  /** Tarif de groupe. Affiché sur la fiche, jamais dans la liste. */
+  prixIntra: number | null;
   duree: string | null;
   volumeHoraire: number | null;
   formats: FormatParcours[];
@@ -86,6 +91,7 @@ const COLONNES_LISTE = `
   prix_min, prix_max, duree, volume_horaire, formats, lieu, niveau_entree,
   eligible_cpf, financements_acceptes, certification, code_rncp_rs,
   date_verification, etats, infos_renseignees, infos_applicables, modalite_acces,
+  modalite_commerciale, prix_intra,
   statut_regroupement, motif_regroupement, parcours_parent_id,
   organismes ( nom, categorie )
 `;
@@ -107,6 +113,8 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
     prixMin: ligne["prix_min"] as number | null,
     prixMax: ligne["prix_max"] as number | null,
     modaliteAcces: (ligne["modalite_acces"] as ModaliteAcces | null) ?? null,
+    modaliteCommerciale: (ligne["modalite_commerciale"] as ModaliteCommerciale | null) ?? null,
+    prixIntra: (ligne["prix_intra"] as number | null) ?? null,
     duree: ligne["duree"] as string | null,
     volumeHoraire: ligne["volume_horaire"] as number | null,
     formats: (ligne["formats"] as FormatParcours[]) ?? [],

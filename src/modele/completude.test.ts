@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compterInformations } from "@/types/cursus";
+import { CHAMPS_INFORMATION, compterInformations } from "@/types/cursus";
 import type { OffreNormalisee } from "@/donnees/catalogue";
 import { chargerCatalogue } from "@/donnees/catalogue";
 import referenceProto from "@/donnees/reference-prototype.json";
@@ -180,13 +180,27 @@ describe("effet du troisième état sur le catalogue réel", () => {
     expect(compteurs.every((c) => c.applicables > 0)).toBe(true);
   });
 
+  it("n'écrit jamais non_collecte sur une fiche vérifiée en profondeur", () => {
+    // L'invariant qui remplace la comparaison au prototype, devenue caduque
+    // avec la profondeur de collecte. Une fiche dont la page de détail a été
+    // lue ne peut plus avoir de champ « pas encore collecté » : chaque absence
+    // y a été constatée, et doit donc être imputée à l'organisme.
+    const verifiees = chargerCatalogue().filter((o) => o.profondeur === "detail_verifie");
+    expect(verifiees.length).toBeGreaterThan(0);
+
+    const fautives = verifiees.flatMap((offre) => {
+      const etats = determinerEtats(offre);
+      return CHAMPS_INFORMATION.filter((champ) => etats[champ] === "non_collecte").map(
+        (champ) => `${offre.nom} → ${champ}`,
+      );
+    });
+    expect(fautives).toEqual([]);
+  });
+
   it.skip("ne baisse par rapport au prototype que sur les prix corrigés", () => {
-    // Neutralisé depuis l'introduction de la profondeur de collecte : le
-    // catalogue est désormais majoritairement en `catalogue_seul`, donc ses
-    // champs vides sont `non_collecte` et sortent du dénominateur. La
-    // comparaison au prototype, qui ignore cette notion, n'a plus de sens sur
-    // ce point précis. Le garde-fou du numérateur reste assuré par le test
-    // « ne retient un prix nul que s'il est attesté ».
+    // Remplacé par le garde-fou ci-dessus : la comparaison au prototype est
+    // caduque depuis la profondeur de collecte, puisque les champs vides d'une
+    // fiche non collectée sortent désormais du dénominateur.
     // Garde-fou du troisième état : il bouge le dénominateur, jamais le
     // numérateur. Une fiche ne doit pas perdre une information publiée parce
     // qu'une règle d'applicabilité s'est révélée trop large.

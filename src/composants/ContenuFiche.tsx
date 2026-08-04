@@ -16,6 +16,7 @@ import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
+import { DEFINITIONS_MODALITES_COMMERCIALES } from "@/modele/modalite-commerciale";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { libellePrix } from "./RangeeParcours";
 import { useComparaison } from "./comparaison";
@@ -277,6 +278,22 @@ export function ContenuFiche({
         <dl>
           <Information libelle="Prix" etat={e.prix}>
             <span className="chiffre">{libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}</span>
+            {p.modaliteCommerciale !== null && (
+              <span className="mt-1 block text-xs text-muted-foreground">
+                {DEFINITIONS_MODALITES_COMMERCIALES[p.modaliteCommerciale]}
+              </span>
+            )}
+            {p.prixIntra !== null && (
+              /*
+                Le tarif de groupe figure sur la fiche mais jamais dans la
+                liste : il ne concerne pas un particulier, et l'afficher au
+                catalogue ferait paraître ces parcours trois fois trop chers.
+              */
+              <span className="mt-1 block text-xs text-muted-foreground">
+                Tarif intra-entreprise (groupe) :{" "}
+                <span className="chiffre">{p.prixIntra.toLocaleString("fr-FR")} €</span>
+              </span>
+            )}
             {p.modaliteAcces !== null && (
               <>
                 <span className="mt-1 block text-xs text-muted-foreground">
