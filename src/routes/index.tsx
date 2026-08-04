@@ -292,7 +292,7 @@ function Explorer() {
         navigation : l'y rappeler ici ajouterait une seconde proposition à
         lire avant la première.
       */}
-      <header className="mx-auto w-full min-w-0 max-w-(--hero-largeur-max) pt-(--space-16) pb-(--space-16) text-center">
+      <header className="mx-auto mt-0 w-full min-w-0 max-w-(--hero-largeur-max) pb-(--space-16) pt-(--hero-padding-top) text-center">
         <CatalogFreshnessBadge derniereVerification={derniereVerification} />
 
         {/*

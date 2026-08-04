@@ -337,7 +337,10 @@
     écrase ces variables sur `documentElement` : elles ne servent qu'avant le
     premier rendu, et pour le rendu serveur.
   */
-  --app-header-height: 64px;
+  --app-header-height: 72px;
+  /* Respiration au-dessus du hero. 56 px n'est pas sur l'échelle d'espacement :
+     c'est un jeton de composant, nommé plutôt qu'improvisé. */
+  --hero-padding-top: 56px;
   --domain-navigation-height: 56px;
   --results-toolbar-height: 60px;
 
@@ -447,6 +450,7 @@ html {
 @media (max-width: 1023px) {
   :root {
     --app-header-height: 56px;
+    --hero-padding-top: var(--space-10);
     --domain-navigation-height: 60px;
     /* 20 + 24 (titre) + 16 (gap) + 48 (select) + 20 */
     --results-toolbar-height: 128px;

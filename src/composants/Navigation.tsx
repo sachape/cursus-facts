@@ -24,8 +24,8 @@ export function Navigation() {
   useHauteurPubliee(barre, "--app-header-height");
 
   return (
-    <header ref={barre} className="sticky top-0 z-50 min-h-(--app-header-height) border-b border-(--border-subtle) bg-(--surface-page)">
-      <div className="mx-auto flex h-full max-w-(--contenu-largeur-max) items-center gap-(--space-8) px-(--space-6)">
+    <header ref={barre} className="sticky top-0 z-50 mb-0 h-(--app-header-height) py-0 border-b border-(--border-subtle) bg-(--surface-page)">
+      <div className="mx-auto flex h-full max-w-(--contenu-largeur-max) items-center gap-(--space-8) px-(--space-6) py-0">
         {/*
           Le mot-symbole précède la navigation et ramène à l'accueil : c'est le
           seul repère qui dit où l'on est quand on arrive par une fiche
