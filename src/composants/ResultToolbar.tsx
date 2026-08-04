@@ -92,7 +92,13 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
               débordait à droite — d'où un fond de sélection collé au bord
               droit alors que la gauche respirait.
             */
-            className="w-(--radix-select-trigger-width) min-w-(--radix-select-trigger-width) data-[side=bottom]:translate-y-0 rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) shadow-(--elevation-3)"
+            /*
+              Le retrait est imposé au VIEWPORT, pas au conteneur, et son
+              `min-w` hérité est neutralisé : c'est lui qui le forçait plus
+              large que l'espace disponible, d'où un fond de sélection collé à
+              un bord et détaché de l'autre. 8 px des deux côtés, sans exception.
+            */
+            className="w-(--radix-select-trigger-width) data-[side=bottom]:translate-y-0 [&_[data-radix-select-viewport]]:min-w-0 [&_[data-radix-select-viewport]]:p-(--space-2) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) shadow-(--elevation-3)"
           >
             {TRIS.map((t) => (
               <SelectItem
