@@ -101,6 +101,14 @@
   /* ---------------------------------------------------------------------- */
   /* SÉMANTIQUES — ce que les composants consomment                         */
   /* ---------------------------------------------------------------------- */
+  /*
+    Fond du catalogue — la surface derrière les cartes.
+    Distinct de `surface-page` : les barres collantes doivent se confondre avec
+    ce qui défile SOUS elles, pas avec le fond général. Employer
+    `surface-page` y dessinait deux rectangles gris.
+  */
+  --catalog-canvas: var(--neutral-0);
+
   --surface-page: var(--neutral-10);
   --surface-raised: var(--neutral-0);
   --surface-hover: var(--neutral-5);
@@ -338,6 +346,8 @@
   serait illisible.
 */
 .dark {
+  --catalog-canvas: var(--neutral-90);
+
   --surface-page: var(--neutral-100);
   --surface-raised: var(--neutral-90);
   --surface-hover: var(--neutral-80);

@@ -118,7 +118,7 @@ export function ResultToolbar({
         les cartes de transparaître pendant le défilement, pas pour recréer un
         bandeau.
       */}
-      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-nav-height))] z-30 flex min-h-(--results-toolbar-height) flex-wrap items-center justify-between gap-(--space-3) border-b border-(--border-subtle) bg-(--surface-page)">
+      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-nav-height))] z-30 flex min-h-(--results-toolbar-height) flex-wrap items-center justify-between gap-(--space-3) border-b border-(--border-subtle) bg-(--catalog-canvas)">
         <h2 className="t-heading-4 text-(--text-primary)">
           {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
         </h2>
