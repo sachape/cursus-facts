@@ -442,19 +442,19 @@
   barres, plus une respiration.
 */
 /*
-  Sécurité, posée APRÈS correction de la cause — des marges négatives sur les
-  barres collantes. Elle ne doit jamais servir à masquer un débordement : elle
-  empêche qu'un futur en crée un silencieusement.
+  PAS D'`overflow` GLOBAL SUR html/body/#root.
 
-  `clip` et non `hidden` : `hidden` sur `html` crée un conteneur de défilement
-  qui casse `position: sticky` sur toute la page.
+  Une sécurité y avait été posée après avoir corrigé la vraie cause d'un
+  débordement — des marges négatives sur les barres collantes. Elle a créé un
+  défaut bien pire : un `overflow` sur ces éléments en fait des conteneurs de
+  défilement, et un élément collant s'ancre à son ancêtre défilant le plus
+  proche. Quand Radix verrouille le défilement du corps à l'ouverture d'un menu,
+  toute la pile collante perd sa référence et le header disparaît.
+
+  Le débordement horizontal se corrige à sa source, jamais par un rognage
+  global : c'est ce que dit déjà l'invariant de rendu qui compare `scrollWidth`
+  à `innerWidth` aux sept largeurs.
 */
-html,
-body,
-#root {
-  max-width: 100%;
-  overflow-x: clip;
-}
 
 html {
   scroll-padding-top: calc(
