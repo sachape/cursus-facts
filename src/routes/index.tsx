@@ -43,11 +43,11 @@ export const Route = createFileRoute("/")({
   component: Explorer,
   head: () => ({
     meta: [
-      { title: "Cursus — comparateur de formations e-commerce" },
+      { title: "Formlist — Comparateur de formations e-commerce en France" },
       {
         name: "description",
         content:
-          "Comparez les formations e-commerce sur des faits vérifiables. Aucune note, aucun classement par qualité, aucun lien affilié.",
+          "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
       },
     ],
   }),
