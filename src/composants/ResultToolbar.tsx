@@ -13,12 +13,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { SearchField } from "./SearchField";
 import { CountBadge } from "./CountBadge";
 import type { Tri } from "@/modele/classement";
@@ -70,56 +70,44 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
       </label>
       <div className="relative min-w-0 flex-1 min-[768px]:min-w-(--select-largeur-min) min-[1024px]:w-[clamp(280px,24vw,360px)] min-[1024px]:flex-none">
         {/*
-          `modal={false}` : en mode modal, Radix verrouille le défilement du
-          corps et pose `overflow: hidden` dessus. Le corps devient alors le
-          conteneur de défilement, les éléments collants perdent leur référence,
-          et toute la pile — header compris — disparaît à l'ouverture du menu.
+          DropdownMenu plutôt que Select : Radix Select n'expose PAS de
+          `modal={false}` et verrouille toujours le défilement du corps. Ce
+          verrou pose `overflow: hidden` sur le corps, qui devient conteneur de
+          défilement — les éléments collants perdent alors leur référence et
+          toute la pile disparaît à l'ouverture du menu.
 
           Un menu de tri n'est pas une boîte de dialogue : il n'a pas à
           confisquer le défilement de la page.
         */}
-        <Select modal={false} value={tri} onValueChange={(v) => choisir(v as Tri)}>
-          <SelectTrigger
+        <DropdownMenu modal={false}>
+          <DropdownMenuTrigger
             id="tri"
             aria-label="Trier les résultats"
-            className="h-(--bouton-hauteur) w-full rounded-(--radius-md) border-(--border-default) bg-(--surface-raised) px-(--space-3) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus:outline-none focus:ring-0 focus:[box-shadow:var(--select-focus)] focus-visible:border-(--border-strong) max-[1023px]:min-h-12 min-[1024px]:h-12"
+            className="flex h-(--bouton-hauteur) w-full items-center justify-between gap-(--space-2) rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) px-(--space-3) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus:outline-none focus:ring-0 focus:[box-shadow:var(--select-focus)] max-[1023px]:min-h-12 min-[1024px]:h-12"
           >
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent
-            position="popper"
-            side="bottom"
+            <span className="truncate">{LIBELLES_TRIS_COURTS[tri]}</span>
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden className="shrink-0 text-(--text-tertiary)">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+            </svg>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
             align="start"
             sideOffset={8}
-            /* Un décalage horizontal appliqué par shadcn en `popper` désalignait
-               le menu de son déclencheur ; il est ramené à zéro. */
-            alignOffset={0}
-            /*
-              Aucun padding ici : le `Viewport` de shadcn porte déjà `p-1` ET
-              `min-w-[--radix-select-trigger-width]`. Ajouter un padding au
-              conteneur lui laissait 8 px de moins que ce minimum, et il
-              débordait à droite — d'où un fond de sélection collé au bord
-              droit alors que la gauche respirait.
-            */
-            /*
-              Le retrait est imposé au VIEWPORT, pas au conteneur, et son
-              `min-w` hérité est neutralisé : c'est lui qui le forçait plus
-              large que l'espace disponible, d'où un fond de sélection collé à
-              un bord et détaché de l'autre. 8 px des deux côtés, sans exception.
-            */
-            className="w-(--radix-select-trigger-width) data-[side=bottom]:translate-y-0 [&_[data-radix-select-viewport]]:min-w-0 [&_[data-radix-select-viewport]]:flex [&_[data-radix-select-viewport]]:flex-col [&_[data-radix-select-viewport]]:gap-(--space-2) [&_[data-radix-select-viewport]]:p-(--space-2) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) shadow-(--elevation-3)"
+            className="w-(--radix-dropdown-menu-trigger-width) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) p-(--space-2) shadow-(--elevation-3)"
           >
-            {TRIS.map((t) => (
-              <SelectItem
-                key={t}
-                value={t}
-                className="min-h-(--option-hauteur) rounded-(--radius-md) px-(--space-3) t-body-sm data-[state=checked]:bg-(--accent-10) focus:bg-(--surface-hover)"
-              >
-                {LIBELLES_TRIS_COURTS[t]}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+            <DropdownMenuRadioGroup value={tri} onValueChange={(v) => choisir(v as Tri)}>
+              {TRIS.map((t) => (
+                <DropdownMenuRadioItem
+                  key={t}
+                  value={t}
+                  className="min-h-(--option-hauteur) rounded-(--radius-md) px-(--space-3) t-body-sm data-[state=checked]:bg-(--accent-10) [&:not(:last-child)]:mb-(--space-2)"
+                >
+                  {LIBELLES_TRIS_COURTS[t]}
+                </DropdownMenuRadioItem>
+              ))}
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );
