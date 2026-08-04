@@ -157,3 +157,34 @@ test("les trois KPIs du hero ne se touchent pas", async ({ page }) => {
   }
   expect(collisions).toEqual([]);
 });
+
+test("la liste de suggestions ne déborde pas et suit la sélection", async ({ page }) => {
+  /*
+    Deux défauts que seul le rendu révèle : une liste qui sort de la fenêtre
+    devient inatteignable, et une sélection clavier qui sort de la zone visible
+    fait piloter une liste qu'on ne voit plus.
+  */
+  const champ = page.getByRole("combobox");
+  await champ.fill("mar");
+  const liste = page.getByRole("listbox");
+  await expect(liste).toBeVisible();
+
+  const fenetre = page.viewportSize()!;
+  const boiteListe = await boite(liste);
+  expect(boiteListe.x).toBeGreaterThanOrEqual(0);
+  expect(boiteListe.x + boiteListe.width).toBeLessThanOrEqual(fenetre.width + 1);
+  expect(boiteListe.height).toBeLessThanOrEqual(fenetre.height);
+
+  // Descendre jusqu'au dernier élément : il doit rester dans la zone visible
+  // de la liste, pas seulement exister dans le document.
+  const options = page.getByRole("option");
+  const total = await options.count();
+  for (let i = 1; i < total; i++) await champ.press("ArrowDown");
+
+  const actif = options.nth(total - 1);
+  const boiteActif = await boite(actif);
+  const visible =
+    boiteActif.y >= boiteListe.y - 1 &&
+    boiteActif.y + boiteActif.height <= boiteListe.y + boiteListe.height + 1;
+  expect(visible).toBe(true);
+});

@@ -245,6 +245,11 @@
   --barre-rayon: 1px;
   --recherche-largeur: 640px;
   --recherche-hauteur: 56px;
+  /* Retrait du texte : padding + largeur de la loupe + écart. */
+  --recherche-retrait: 52px;
+  --suggestions-hauteur-max: 400px;
+  --suggestion-hauteur: 44px;
+  --hero-largeur-max: 720px;
   /* 18 caractères par ligne : le titre tient sur deux ou trois lignes. */
   --titre-largeur-max: 18ch;
   --sous-titre-largeur-max: 60ch;

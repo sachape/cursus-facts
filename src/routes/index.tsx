@@ -89,10 +89,22 @@ function Explorer() {
    * sans gestionnaire `popstate` à écrire.
    */
   const origineFocus = useRef<HTMLElement | null>(null);
+  /** Point de retour du focus quand l'élément d'origine a disparu. */
+  const champRecherche = useRef<HTMLInputElement | null>(null);
 
+  /*
+    L'élément de retour est optionnel.
+
+    Le retour au focus avait été conçu pour un clic sur une rangée, où
+    l'élément d'origine existe toujours à la fermeture. Depuis
+    l'autocomplétion, il a disparu — la liste s'est refermée. Le point de
+    retour par défaut est alors le champ de recherche : il est présent, il est
+    visible, et il correspond à ce que fait la personne — elle referme la fiche
+    et continue sa recherche.
+  */
   const ouvrirEnPanneau = useCallback(
-    (parcours: ParcoursListe, origine: HTMLElement) => {
-      origineFocus.current = origine;
+    (parcours: ParcoursListe, origine?: HTMLElement | null) => {
+      origineFocus.current = origine ?? champRecherche.current;
       void naviguer({
         search: (actuel: { fiche?: string }) => ({ ...actuel, fiche: parcours.slug }),
       });
@@ -104,7 +116,10 @@ function Explorer() {
     void naviguer({
       search: ({ fiche: _ignore, ...reste }: { fiche?: string }) => reste,
     });
-    origineFocus.current?.focus();
+    // Un élément détaché du document ne peut plus recevoir le focus : on
+    // retombe alors sur le champ de recherche plutôt que de le perdre.
+    const cible = origineFocus.current;
+    (cible?.isConnected ? cible : champRecherche.current)?.focus();
     origineFocus.current = null;
   }, [naviguer]);
 
@@ -199,7 +214,10 @@ function Explorer() {
         type: "parcours",
         libelle: p.nom,
         detail: p.organismeNom,
-        choisir: () => modifier({ recherche: p.nom }),
+        // Choisir un parcours nommé dans une liste, c'est vouloir le voir.
+        // Poser la recherche sur son intitulé transformerait l'autocomplétion
+        // en simple aide à la saisie.
+        choisir: () => ouvrirEnPanneau(p),
       }));
 
     const organismesTrouves = [...new Set(parcours.map((p) => p.organismeNom))].filter(correspond);
@@ -225,14 +243,14 @@ function Explorer() {
   return (
     <div className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) pb-(--space-16)">
       {/*
-        HERO ALIGNÉ À GAUCHE. Le centrage appartient au registre des pages
-        marketing ; un outil de comparaison commence par se nommer et par dire
-        ce qu'il refuse de faire.
+        Le hero tient en une idée. La méthode reste accessible par la
+        navigation : l'y rappeler ici ajouterait une seconde proposition à
+        lire avant la première.
       */}
-      <header className="pt-(--space-16) pb-(--space-16)">
+      <header className="mx-auto max-w-(--hero-largeur-max) pt-(--space-16) pb-(--space-16) text-center">
         <p className="t-label text-(--text-tertiary)">Comparateur indépendant · France</p>
 
-        <h1 className="mt-(--space-4) max-w-(--titre-largeur-max) t-display-2 min-[960px]:t-display-2 max-[959px]:t-heading-1">
+        <h1 className="mx-auto mt-(--space-4) max-w-(--titre-largeur-max) t-display-2 max-[959px]:t-heading-1">
           Comparez les formations avant de dépenser plusieurs milliers d&apos;euros.
         </h1>
 
@@ -241,12 +259,8 @@ function Explorer() {
           affiliés. Ne jamais la retirer : sans elle, le titre seul se lit
           comme celui de n'importe quel comparateur.
         */}
-        <p className="mt-(--space-4) max-w-(--sous-titre-largeur-max) t-body-lg text-(--text-secondary)">
+        <p className="mx-auto mt-(--space-4) max-w-(--sous-titre-largeur-max) t-body-lg text-(--text-secondary)">
           On vous aide à choisir la bonne formation — pas à vous dire laquelle est la meilleure.
-          Aucune note, aucun classement par qualité, aucun lien affilié.{" "}
-          <Link to="/methode" className="underline underline-offset-4 hover:text-(--text-primary)">
-            Comment ce catalogue est construit
-          </Link>
         </p>
 
         <div className="mt-(--space-8)">
@@ -254,6 +268,7 @@ function Explorer() {
             valeur={filtres.recherche}
             modifier={(v: string) => modifier({ recherche: v })}
             suggestions={suggestions}
+            champRef={champRecherche}
           />
         </div>
 
@@ -263,7 +278,7 @@ function Explorer() {
           aurait raison. La date de vérification passe en mention sous la ligne —
           elle est vérifiable, mais elle ne pèse pas comme les trois autres.
         */}
-        <dl className="mt-(--space-10) flex flex-wrap gap-x-(--space-12) gap-y-(--space-6)">
+        <dl className="mt-(--space-10) flex flex-wrap justify-center gap-x-(--space-12) gap-y-(--space-6)">
           <Chiffre valeur={parcours.length} libelle="parcours" />
           <Chiffre valeur={organismes} libelle="organismes" />
           <Chiffre valeur={informationsTotales} libelle="informations vérifiées" />

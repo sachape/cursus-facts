@@ -6,15 +6,15 @@
  * promesse — dès trois caractères, des résultats groupés par type, chacun
  * menant directement à sa destination.
  *
- * Les groupes sont ordonnés du plus précis au plus large : un parcours nommé
- * est une réponse, un domaine n'est qu'une piste.
+ * Les groupes vont du plus précis au plus large : un parcours nommé est une
+ * réponse, un domaine n'est qu'une piste.
  */
-import { useEffect, useId, useMemo, useRef, useState } from "react";
-import { normaliser } from "@/collecte/citation";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 export type Suggestion = {
   type: "parcours" | "organisme" | "domaine";
   libelle: string;
+  /** Ligne de contexte : l'organisme, ou le nombre de parcours. */
   detail?: string;
   /** Ce que la sélection déclenche : ouvrir une fiche ou poser un filtre. */
   choisir: () => void;
@@ -29,36 +29,132 @@ const LIBELLES_GROUPES: Record<Suggestion["type"], string> = {
 const ORDRE: Suggestion["type"][] = ["parcours", "organisme", "domaine"];
 const MAX_PAR_GROUPE = 5;
 const SEUIL_CARACTERES = 3;
+const DEBOUNCE_MS = 150;
+
+/** Loupe — trait 1,5 px, grille 20 px, extrémités carrées, aucun remplissage. */
+function Loupe({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden className={className}>
+      <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M13.5 13.5L17 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+    </svg>
+  );
+}
+
+/**
+ * Indicateur de chargement, aux dimensions exactes de la loupe.
+ *
+ * Il la remplace au même emplacement : un indicateur d'une autre taille
+ * décalerait le texte saisi à chaque frappe.
+ */
+function Chargement({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden className={className}>
+      <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" opacity="0.25" />
+      <path d="M10 3a7 7 0 0 1 7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square">
+        <animateTransform
+          attributeName="transform"
+          type="rotate"
+          from="0 10 10"
+          to="360 10 10"
+          dur="0.8s"
+          repeatCount="indefinite"
+        />
+      </path>
+    </svg>
+  );
+}
+
+function Croix({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden className={className}>
+      <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+    </svg>
+  );
+}
+
+/**
+ * Met la portion saisie en évidence dans un libellé.
+ *
+ * Graisse seule, sans couleur ni fond : un surlignage coloré dans une liste de
+ * résultats appartient au registre des moteurs de recherche grand public, et il
+ * concurrencerait les deux couleurs sémantiques du produit.
+ */
+function Surligner({ texte, saisie }: { texte: string; saisie: string }) {
+  const position = texte.toLowerCase().indexOf(saisie.toLowerCase());
+  if (saisie === "" || position < 0) return <>{texte}</>;
+  return (
+    <>
+      {texte.slice(0, position)}
+      <span className="font-medium">{texte.slice(position, position + saisie.length)}</span>
+      {texte.slice(position + saisie.length)}
+    </>
+  );
+}
 
 export function RechercheHero({
   valeur,
   modifier,
   suggestions,
+  champRef,
 }: {
   valeur: string;
   modifier: (v: string) => void;
   /** Calculées par l'appelant : ce composant n'interroge aucune donnée. */
   suggestions: Suggestion[];
+  /** Exposé à l'appelant : c'est le point de retour du focus par défaut. */
+  champRef?: React.RefObject<HTMLInputElement | null>;
 }) {
   const [ouvert, setOuvert] = useState(false);
   const [surligne, setSurligne] = useState(0);
+  const [saisie, setSaisie] = useState(valeur);
+  const [enCours, setEnCours] = useState(false);
   const conteneur = useRef<HTMLDivElement>(null);
+  const liste = useRef<HTMLDivElement>(null);
+  const actifRef = useRef<HTMLButtonElement>(null);
   const listeId = useId();
 
+  /*
+    Débounce de 150 ms, avec annulation de la frappe précédente. La valeur
+    affichée dans le champ reste immédiate — c'est la propagation vers le
+    filtrage qui attend, jamais le retour visuel de la frappe.
+  */
+  useEffect(() => {
+    if (saisie === valeur) {
+      setEnCours(false);
+      return;
+    }
+    setEnCours(true);
+    const minuteur = setTimeout(() => {
+      modifier(saisie);
+      setEnCours(false);
+    }, DEBOUNCE_MS);
+    return () => clearTimeout(minuteur);
+  }, [saisie, valeur, modifier]);
+
+  const assezLong = saisie.trim().length >= SEUIL_CARACTERES;
+
   const groupes = useMemo(() => {
-    if (normaliser(valeur).length < SEUIL_CARACTERES) return [];
+    if (!assezLong) return [];
     return ORDRE.map((type) => ({
       type,
       entrees: suggestions.filter((s) => s.type === type).slice(0, MAX_PAR_GROUPE),
     })).filter((g) => g.entrees.length > 0);
-  }, [valeur, suggestions]);
+  }, [assezLong, suggestions]);
 
   const aplaties = useMemo(() => groupes.flatMap((g) => g.entrees), [groupes]);
 
-  useEffect(() => setSurligne(0), [valeur]);
+  useEffect(() => setSurligne(0), [suggestions]);
 
-  // Un clic hors du champ referme : sans ça, la liste reste ouverte derrière
-  // le contenu et intercepte des clics destinés aux résultats.
+  /*
+    L'élément sélectionné au clavier reste toujours visible. Sans ce
+    défilement, la sélection sort de la zone visible dès le sixième élément et
+    l'utilisateur pilote une liste qu'il ne voit plus.
+  */
+  useEffect(() => {
+    actifRef.current?.scrollIntoView({ block: "nearest" });
+  }, [surligne]);
+
   useEffect(() => {
     const dehors = (e: MouseEvent) => {
       if (!conteneur.current?.contains(e.target as Node)) setOuvert(false);
@@ -67,87 +163,164 @@ export function RechercheHero({
     return () => document.removeEventListener("mousedown", dehors);
   }, []);
 
+  const valider = useCallback(
+    (entree: Suggestion | undefined) => {
+      entree?.choisir();
+      setOuvert(false);
+    },
+    [],
+  );
+
   const clavier = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape") {
+      // Ferme sans effacer : la saisie reste, seule la liste disparaît.
+      setOuvert(false);
+      return;
+    }
+    if (e.key === "Tab") {
+      setOuvert(false);
+      return;
+    }
     if (aplaties.length === 0) return;
     if (e.key === "ArrowDown") {
       e.preventDefault();
+      setOuvert(true);
+      // La navigation boucle, et traverse les groupes sans s'y arrêter.
       setSurligne((i) => (i + 1) % aplaties.length);
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setSurligne((i) => (i - 1 + aplaties.length) % aplaties.length);
     } else if (e.key === "Enter" && ouvert) {
       e.preventDefault();
-      aplaties[surligne]?.choisir();
-      setOuvert(false);
-    } else if (e.key === "Escape") {
-      setOuvert(false);
+      valider(aplaties[surligne]);
     }
   };
 
+  const listeVisible = ouvert && assezLong;
   let index = -1;
 
   return (
-    <div ref={conteneur} className="relative w-full max-w-(--recherche-largeur)">
-      <input
-        type="search"
-        role="combobox"
-        aria-expanded={ouvert && groupes.length > 0}
-        aria-controls={listeId}
-        aria-autocomplete="list"
-        value={valeur}
-        onChange={(e) => {
-          modifier(e.target.value);
-          setOuvert(true);
-        }}
-        onFocus={() => setOuvert(true)}
-        onKeyDown={clavier}
-        placeholder="Recherche par parcours, organisme, code RNCP…"
-        className="h-(--recherche-hauteur) w-full rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) px-(--space-4) t-body text-(--text-primary) placeholder:text-(--text-tertiary) focus:border-(--border-strong) focus:outline-none focus-visible:ring-2 focus-visible:ring-(--border-strong) focus-visible:ring-offset-2"
-      />
+    <div ref={conteneur} className="relative mx-auto w-full max-w-(--recherche-largeur)">
+      <div className="relative">
+        <span
+          className={`pointer-events-none absolute inset-y-0 left-(--space-4) flex items-center transition-colors ${
+            ouvert ? "text-(--text-primary)" : "text-(--text-tertiary)"
+          }`}
+        >
+          {enCours ? <Chargement className="" /> : <Loupe className="" />}
+        </span>
 
-      {ouvert && groupes.length > 0 && (
+        <input
+          ref={champRef}
+          type="text"
+          role="combobox"
+          aria-expanded={listeVisible}
+          aria-controls={listeId}
+          aria-autocomplete="list"
+          aria-activedescendant={listeVisible ? `${listeId}-${surligne}` : undefined}
+          value={saisie}
+          onChange={(e) => {
+            setSaisie(e.target.value);
+            setOuvert(true);
+          }}
+          onFocus={() => setOuvert(true)}
+          onKeyDown={clavier}
+          placeholder="Recherche par parcours, organisme, code RNCP…"
+          className={`h-(--recherche-hauteur) w-full rounded-(--radius-md) border bg-(--surface-raised) pl-(--recherche-retrait) pr-(--space-10) t-body text-(--text-primary) shadow-(--elevation-1) outline-none transition-[border-color,box-shadow] placeholder:text-(--text-tertiary) ${
+            ouvert
+              ? "border-(--border-strong) shadow-(--elevation-2)"
+              : "border-(--border-default)"
+          }`}
+        />
+
+        {saisie !== "" && (
+          <button
+            type="button"
+            aria-label="Effacer la recherche"
+            onClick={() => {
+              setSaisie("");
+              modifier("");
+              champRef?.current?.focus();
+            }}
+            className="absolute inset-y-0 right-(--space-2) my-auto flex size-(--cible-hauteur-min) items-center justify-center text-(--text-tertiary) transition-colors hover:text-(--text-primary)"
+          >
+            <Croix className="" />
+          </button>
+        )}
+      </div>
+
+      {listeVisible && (
         <div
           id={listeId}
+          ref={liste}
           role="listbox"
-          className="absolute z-20 mt-(--space-2) w-full overflow-hidden rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) shadow-(--elevation-2)"
+          className="absolute z-20 mt-(--space-2) max-h-(--suggestions-hauteur-max) w-full overflow-y-auto rounded-(--radius-md) border border-(--border-subtle) bg-(--surface-raised) text-left shadow-(--elevation-3) [scrollbar-width:none] max-[639px]:fixed max-[639px]:inset-x-0 max-[639px]:max-h-[60vh] [&::-webkit-scrollbar]:hidden"
         >
-          {groupes.map((groupe) => (
-            <div key={groupe.type}>
-              <p className="border-b border-(--border-subtle) bg-(--surface-sunken) px-(--space-4) py-(--space-2) t-label text-(--text-tertiary)">
-                {LIBELLES_GROUPES[groupe.type]}
+          {groupes.length === 0 ? (
+            <div className="px-(--space-4) py-(--space-3)">
+              <p className="flex h-(--suggestion-hauteur) items-center t-body text-(--text-secondary)">
+                Aucun résultat pour «&nbsp;{saisie}&nbsp;»
               </p>
-              <ul>
-                {groupe.entrees.map((entree) => {
-                  index++;
-                  const actif = index === surligne;
-                  return (
-                    <li key={`${groupe.type}-${entree.libelle}`}>
-                      <button
-                        type="button"
-                        role="option"
-                        aria-selected={actif}
-                        onMouseEnter={() => setSurligne(aplaties.indexOf(entree))}
-                        onClick={() => {
-                          entree.choisir();
-                          setOuvert(false);
-                        }}
-                        className={`flex w-full items-baseline justify-between gap-(--space-4) px-(--space-4) py-(--space-3) text-left t-body ${
-                          actif ? "bg-(--surface-hover)" : ""
-                        }`}
-                      >
-                        <span className="truncate text-(--text-primary)">{entree.libelle}</span>
-                        {entree.detail !== undefined && (
-                          <span className="shrink-0 t-caption text-(--text-tertiary)">
-                            {entree.detail}
-                          </span>
-                        )}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
+              <button
+                type="button"
+                onClick={() => {
+                  setSaisie("");
+                  modifier("");
+                  setOuvert(false);
+                }}
+                className="t-body-sm text-(--text-primary) underline underline-offset-4"
+              >
+                Parcourir tous les parcours
+              </button>
             </div>
-          ))}
+          ) : (
+            groupes.map((groupe) => (
+              <div key={groupe.type}>
+                {/*
+                  En-tête collant : au-delà de quelques entrées, on ne sait plus
+                  dans quel groupe on se trouve.
+                */}
+                <p className="sticky top-0 z-10 border-b border-(--border-subtle) bg-(--surface-raised) px-(--space-4) py-(--space-2) t-label text-(--text-tertiary)">
+                  {LIBELLES_GROUPES[groupe.type]}
+                </p>
+                <ul>
+                  {groupe.entrees.map((entree) => {
+                    index++;
+                    const position = index;
+                    const actif = position === surligne;
+                    return (
+                      <li key={`${groupe.type}-${entree.libelle}`}>
+                        <button
+                          ref={actif ? actifRef : undefined}
+                          id={`${listeId}-${position}`}
+                          type="button"
+                          role="option"
+                          aria-selected={actif}
+                          onMouseEnter={() => setSurligne(position)}
+                          onClick={() => valider(entree)}
+                          /* Survol et sélection clavier partagent le même
+                             traitement : deux marquages simultanés feraient
+                             croire à deux éléments actifs. */
+                          className={`flex h-(--suggestion-hauteur) w-full flex-col justify-center px-(--space-4) text-left transition-colors ${
+                            actif ? "bg-(--surface-hover)" : ""
+                          } ${enCours ? "text-(--text-disabled)" : ""}`}
+                        >
+                          <span className="truncate t-body text-(--text-primary)">
+                            <Surligner texte={entree.libelle} saisie={saisie.trim()} />
+                          </span>
+                          {entree.detail !== undefined && (
+                            <span className="truncate t-caption text-(--text-tertiary)">
+                              {entree.detail}
+                            </span>
+                          )}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))
+          )}
         </div>
       )}
     </div>
