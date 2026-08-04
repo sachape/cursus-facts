@@ -7,6 +7,7 @@
  * derrière un bouton reviendrait à masquer les règles.
  */
 import { Link } from "@tanstack/react-router";
+import { MotSymbole } from "./marque/MotSymbole";
 
 const VUES = [
   { to: "/", libelle: "Explorer" },
@@ -18,8 +19,21 @@ const VUES = [
 
 export function Navigation() {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
+    <header className="sticky top-0 z-(--z-barre-ancree) border-b border-(--border-subtle) bg-(--surface-page)/95 backdrop-blur">
+      <div className="mx-auto flex max-w-(--contenu-largeur-max) items-center gap-(--space-8) px-(--space-6)">
+        {/*
+          Le mot-symbole précède la navigation et ramène à l'accueil : c'est le
+          seul repère qui dit où l'on est quand on arrive par une fiche
+          indexée.
+        */}
+        <Link
+          to="/"
+          aria-label="Cursus — accueil"
+          className="shrink-0 rounded-(--radius-sm) focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--border-strong)"
+        >
+          <MotSymbole className="h-(--space-5) w-auto text-(--text-primary)" />
+        </Link>
+
         <nav aria-label="Navigation principale">
           <ul className="-mx-1 flex gap-1 overflow-x-auto py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {VUES.map((vue) => (
