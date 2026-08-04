@@ -11,7 +11,9 @@
  * désactive pas : on revient à l'ensemble par « Tous les domaines ». Un onglet
  * de navigation qui se décoche au second clic est une bascule déguisée.
  */
+import { useRef } from "react";
 import type { DomaineParcours } from "@/types/cursus";
+import { useHauteurPubliee } from "./pile-collante";
 
 export type OngletDomaine = {
   /** `null` pour l'onglet « Tous les domaines ». */
@@ -29,6 +31,9 @@ export function OngletsDomaines({
   actif: DomaineParcours | null;
   choisir: (domaine: DomaineParcours | null) => void;
 }) {
+  const barre = useRef<HTMLElement>(null);
+  useHauteurPubliee(barre, "--domain-navigation-height");
+
   return (
     /*
       Collante : le domaine est le premier niveau de navigation, et le perdre
@@ -38,10 +43,11 @@ export function OngletsDomaines({
     */
     <nav
       aria-label="Domaines"
-      className="sticky top-(--app-header-height) z-40 min-h-(--domain-nav-height) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
+      ref={barre}
+      className="sticky top-(--app-header-height) z-40 m-0 w-full max-w-[100vw] border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
     >
       <ul
-        className="-mb-px flex max-w-full min-h-(--domain-nav-height) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mb-px flex max-w-full min-h-(--domain-navigation-height) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {onglets.map((onglet) => {
           const estActif = onglet.domaine === actif;

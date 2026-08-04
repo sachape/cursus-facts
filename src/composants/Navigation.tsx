@@ -6,7 +6,9 @@
  * parcourent plus vite qu'un menu à ouvrir, et masquer la page Méthode
  * derrière un bouton reviendrait à masquer les règles.
  */
+import { useRef } from "react";
 import { Link } from "@tanstack/react-router";
+import { useHauteurPubliee } from "./pile-collante";
 import { MotSymboleHorizontal, Symbole } from "./marque/Marques";
 
 const VUES = [
@@ -18,8 +20,11 @@ const VUES = [
 ] as const;
 
 export function Navigation() {
+  const barre = useRef<HTMLElement>(null);
+  useHauteurPubliee(barre, "--app-header-height");
+
   return (
-    <header className="sticky top-0 z-50 h-(--app-header-height) border-b border-(--border-subtle) bg-(--surface-page)">
+    <header ref={barre} className="sticky top-0 z-50 min-h-(--app-header-height) border-b border-(--border-subtle) bg-(--surface-page)">
       <div className="mx-auto flex h-full max-w-(--contenu-largeur-max) items-center gap-(--space-8) px-(--space-6)">
         {/*
           Le mot-symbole précède la navigation et ramène à l'accueil : c'est le

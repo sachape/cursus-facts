@@ -158,7 +158,7 @@ export function ResultToolbar({
         une largeur de téléphone, les mettre côte à côte écrase le select à
         quelques dizaines de pixels ou le pousse hors de la barre.
       */}
-      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-nav-height))] z-30 flex min-h-(--results-toolbar-height) flex-col gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) py-(--space-5) min-[1024px]:flex-row min-[1024px]:flex-wrap min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-6) min-[1024px]:px-0 min-[1024px]:py-0">
+      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-navigation-height))] z-30 flex m-0 flex-col gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) pb-(--space-5) pt-(--space-4) min-[768px]:py-(--space-5) min-[1024px]:flex-row min-[1024px]:flex-wrap min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-6) min-[1024px]:px-0 min-[1024px]:py-0">
         {actif ? (
           <div className="flex min-h-(--bouton-hauteur-tactile) w-full items-center gap-(--space-2)">
             <div className="min-w-0 flex-1">

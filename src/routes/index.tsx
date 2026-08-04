@@ -354,12 +354,17 @@ function Explorer() {
         choisir={(domaine) => modifier({ domaine })}
       />
 
-      <div className="mt-8 flex flex-col gap-8 min-[960px]:flex-row">
+      {/*
+        Aucune marge au-dessus : la toolbar doit pouvoir venir toucher la
+        navigation quand elle s'ancre. Un `mt-8` ici laissait un vide où les
+        cartes apparaissaient entre deux couches collantes.
+      */}
+      <div className="flex flex-col gap-(--space-6) min-[960px]:flex-row min-[960px]:gap-(--space-8)">
         {/*
           Au-delà de 960 px la colonne suit le défilement de la liste ; elle
           défile sur elle-même pour ne jamais couper ses derniers groupes.
         */}
-        <aside className="min-[960px]:sticky min-[960px]:top-[calc(var(--app-header-height)+var(--domain-nav-height)+var(--space-4))] min-[960px]:max-h-[calc(100vh-var(--app-header-height)-var(--domain-nav-height)-var(--space-8))] min-[960px]:w-72 min-[960px]:shrink-0 min-[960px]:overflow-y-auto min-[960px]:[scrollbar-width:none] min-[960px]:[&::-webkit-scrollbar]:hidden">
+        <aside className="pt-(--space-6) min-[960px]:pt-(--space-8) min-[960px]:sticky min-[960px]:top-[calc(var(--app-header-height)+var(--domain-navigation-height)+var(--space-4))] min-[960px]:max-h-[calc(100vh-var(--app-header-height)-var(--domain-navigation-height)-var(--space-8))] min-[960px]:w-72 min-[960px]:shrink-0 min-[960px]:overflow-y-auto min-[960px]:[scrollbar-width:none] min-[960px]:[&::-webkit-scrollbar]:hidden">
           {/* Sous 960 px : panneau dépliable, replié au chargement. */}
           <div className="min-[960px]:hidden">
             <Button
@@ -434,7 +439,7 @@ function Explorer() {
               négative les fusionnerait en un seul bloc, ce qui annulerait la
               carte.
             */
-            <ul className="flex flex-col gap-(--space-4) pt-(--space-4) min-[768px]:pt-(--space-5) min-[1024px]:pt-0">
+            <ul className="flex flex-col gap-(--space-4) pt-(--space-4) min-[768px]:pt-(--space-5)">
               {resultats.slice(0, limite).map((p) => (
                 <TrainingResultCard key={p.id} parcours={p} ouvrirEnPanneau={ouvrirEnPanneau} />
               ))}

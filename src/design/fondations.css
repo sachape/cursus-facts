@@ -332,8 +332,13 @@
   --select-largeur-min: 280px;
   --select-largeur-max: 320px;
 
+  /*
+    Valeurs de REPLI seulement. `pile-collante.ts` mesure les barres réelles et
+    écrase ces variables sur `documentElement` : elles ne servent qu'avant le
+    premier rendu, et pour le rendu serveur.
+  */
   --app-header-height: 64px;
-  --domain-nav-height: 56px;
+  --domain-navigation-height: 56px;
   --results-toolbar-height: 60px;
 
   --carte-rayon: var(--radius-xl);
@@ -422,7 +427,7 @@ body,
 
 html {
   scroll-padding-top: calc(
-    var(--app-header-height) + var(--domain-nav-height) + var(--results-toolbar-height) +
+    var(--app-header-height) + var(--domain-navigation-height) + var(--results-toolbar-height) +
       var(--space-4)
   );
 }
@@ -443,7 +448,7 @@ html {
   :root {
     --titre-mobile: clamp(26px, 7.2vw, 56px);
     --app-header-height: 56px;
-    --domain-nav-height: 60px;
+    --domain-navigation-height: 60px;
     /* 20 + 24 (titre) + 16 (gap) + 48 (select) + 20 */
     --results-toolbar-height: 128px;
   }
@@ -465,7 +470,7 @@ html {
 
 @media (max-width: 767px) {
   :root {
-    --domain-nav-height: 56px;
+    --domain-navigation-height: 56px;
     --nav-padding: var(--space-5);
     --nav-gap: var(--space-7);
   }
