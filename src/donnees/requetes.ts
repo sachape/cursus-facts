@@ -21,6 +21,7 @@ import {
   type StatutRegroupement,
 } from "@/types/cursus";
 import type { ModaliteAcces } from "@/modele/modalite-acces";
+import { colonneAbsente, diagnostiquer } from "./schema-attendu";
 
 export type ParcoursListe = {
   id: string;
@@ -110,10 +111,7 @@ const COLONNES_LISTE = `
  */
 const COLONNES_DIFFEREES = "dispo_inter, dispo_intra, prix_intra";
 
-/** Vrai si l'erreur PostgREST signale une colonne pas encore migrée. */
-function colonneAbsente(message: string): boolean {
-  return /does not exist|column .* of relation/i.test(message);
-}
+
 
 type LigneBrute = Record<string, unknown> & {
   organismes: { nom: string; categorie: CategorieOrganisme } | null;
@@ -162,7 +160,12 @@ export async function chargerListe(): Promise<ParcoursListe[]> {
   if (error && colonneAbsente(error.message)) {
     ({ data, error } = await supabase.from("parcours").select(COLONNES_LISTE));
   }
-  if (error) throw new Error(`Chargement du catalogue : ${error.message}`);
+  if (error) {
+    // Le message nomme la colonne et porte le prompt à envoyer : un 500 muet
+    // coûte une heure, une erreur qui dit quoi faire coûte une minute.
+    if (colonneAbsente(error.message)) throw new Error(diagnostiquer("parcours", error.message));
+    throw new Error(`Chargement du catalogue : ${error.message}`);
+  }
 
   const lignes = (data ?? []) as unknown as LigneBrute[];
 
@@ -199,7 +202,10 @@ export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> 
       .maybeSingle());
   }
 
-  if (error) throw new Error(`Chargement de la fiche : ${error.message}`);
+  if (error) {
+    if (colonneAbsente(error.message)) throw new Error(diagnostiquer("parcours", error.message));
+    throw new Error(`Chargement de la fiche : ${error.message}`);
+  }
   if (!data) return null;
 
   const ligne = data as unknown as LigneBrute & {
