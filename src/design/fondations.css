@@ -258,6 +258,8 @@
   */
   --titre-largeur-max: 20ch;
   --sous-titre-largeur-max: 60ch;
+  --bouton-hauteur: 40px;
+  --bouton-hauteur-tactile: 44px;
   --cible-hauteur-min: 32px;
   --cible-hauteur-min-tactile: 44px;
 }

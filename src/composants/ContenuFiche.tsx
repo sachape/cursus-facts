@@ -506,39 +506,12 @@ export function ContenuFiche({
         </dl>
       </Section>
 
-      <Section titre="Actions">
-        <div className="flex flex-wrap gap-2">
-          {p.siteOfficiel !== null && (
-            <Button asChild variant="outline" size="sm">
-              {/* Lien sortant non affilié — le seul actif défendable face aux
-                  comparateurs existants. */}
-              <a
-                href={p.siteOfficiel.startsWith("http") ? p.siteOfficiel : `https://${p.siteOfficiel}`}
-                rel="noopener noreferrer nofollow"
-                target="_blank"
-              >
-                Voir le site officiel
-              </a>
-            </Button>
-          )}
-          <Button
-            variant={selectionne ? "default" : "outline"}
-            size="sm"
-            onClick={() =>
-              selectionne ? retirer(p.slug) : ajouter({ slug: p.slug, nom: p.nom })
-            }
-          >
-            {selectionne ? "Retirer de la comparaison" : "Ajouter à la comparaison"}
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <a
-              href={`mailto:corrections@cursus.fr?subject=${encodeURIComponent(`Correction — ${p.nom}`)}&body=${encodeURIComponent(`Fiche concernée : ${p.slug}\n\nInformation à corriger :\n`)}`}
-            >
-              Signaler une correction
-            </a>
-          </Button>
-        </div>
-      </Section>
+      {/*
+        La section « Actions » vivait ici. Elle est passée dans le pied ancré du
+        panneau : sur une fiche longue, elle était à quinze écrans du haut, et
+        l'action que la personne cherche en priorité n'était jamais visible sans
+        défiler jusqu'au bout.
+      */}
     </>
   );
 }

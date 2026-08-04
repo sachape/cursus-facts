@@ -14,6 +14,7 @@
 import { useEffect, useRef, useState } from "react";
 import { chargerFiche, type ParcoursFiche, type ParcoursListe } from "@/donnees/requetes";
 import { ContenuFiche, EnteteFiche } from "./ContenuFiche";
+import { PiedFiche } from "./PiedFiche";
 
 /** Sélecteur des éléments qui peuvent recevoir le focus. */
 const FOCUSABLES =
@@ -139,7 +140,12 @@ export function PanneauFiche({
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto px-5 pb-10 sm:px-6">
+        {/*
+          Seul le corps défile. `min-h-0` est indispensable dans une colonne
+          flex : sans lui l'élément refuse de rétrécir sous sa hauteur de
+          contenu, et le pied sort du panneau au lieu de rester ancré.
+        */}
+        <div className="min-h-0 flex-1 overflow-y-auto px-5 pb-(--space-6) sm:px-6">
           {erreur !== null && (
             <p className="mt-6 rounded-md border border-destructive/40 p-4 text-sm text-destructive">
               {erreur}
@@ -150,6 +156,8 @@ export function PanneauFiche({
           )}
           {fiche !== null && <ContenuFiche p={fiche} autresParcours={autres} />}
         </div>
+
+        {fiche !== null && <PiedFiche p={fiche} />}
       </div>
     </div>
   );

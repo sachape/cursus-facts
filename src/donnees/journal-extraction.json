@@ -1,12 +1,192 @@
 [
  {
+  "id": 33,
+  "champ": "duree",
+  "valeurPrecedente": "2 ans",
+  "valeurNouvelle": "50 heures (+/- 10%)",
+  "sort": "remplace",
+  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+  "extrait": "Durée : 50 heures (+/- 10%)",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 33,
+  "champ": "volumeHoraire",
+  "valeurPrecedente": null,
+  "valeurNouvelle": 50,
+  "sort": "remplace",
+  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+  "extrait": "Durée : 50 heures (+/- 10%)",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 33,
+  "champ": "formats",
+  "valeurPrecedente": [
+   "distanciel",
+   "presentiel"
+  ],
+  "valeurNouvelle": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+  "extrait": "Hybride (présentiel et distanciel)",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 33,
+  "champ": "region",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "Paris",
+  "sort": "remplace",
+  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+  "extrait": "2 rue Conté - 75003 Paris",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 33,
+  "champ": "prerequis",
+  "valeurPrecedente": "Licence ou VAE.",
+  "valeurNouvelle": "Notions de base en marketing fondamental",
+  "sort": "remplace",
+  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+  "extrait": "- Notions de base en marketing fondamental",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 33,
+  "champ": "dateVerification",
+  "valeurPrecedente": "2026-06-15",
+  "valeurNouvelle": "2026-07-18",
+  "sort": "remplace",
+  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+  "extrait": "Mis à jour le 18 juillet 2026",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 91,
+  "champ": "prix",
+  "valeurPrecedente": null,
+  "valeurNouvelle": 1499,
+  "sort": "remplace",
+  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
+  "extrait": "1499€ TTC, finançable via votre Compte Personnel de Formation , votre  OPCO , ainsi que  France Travail  et vos  fonds propres .",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 91,
+  "champ": "duree",
+  "valeurPrecedente": "Accès à vie",
+  "valeurNouvelle": "3 mois",
+  "sort": "remplace",
+  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
+  "extrait": "3 mois de formation avec un  accès à vie , incluant des contenus  régulièrement mis à jour .",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 91,
+  "champ": "certification",
+  "valeurPrecedente": "Certification RS7522",
+  "valeurNouvelle": "Certificat de réussite délivré",
+  "sort": "remplace",
+  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
+  "extrait": "Certificat de réussite délivré",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
   "id": 34,
   "champ": "dateVerification",
   "valeurPrecedente": "2026-06-15",
   "valeurNouvelle": "2026-07-18",
   "sort": "remplace",
   "urlSource": "https://www.cnam.fr/formation/commerce-marketing-finance/commerce/vente-distribution",
-  "extrait": "18 juillet 2026",
+  "extrait": "Mis à jour le \n 18 juillet 2026",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 164,
+  "champ": "prerequis",
+  "valeurPrecedente": "Disposer d'un compte Semrush.",
+  "valeurNouvelle": "While having a basic understanding of digital marketing concepts can be helpful, Semrush Academy courses are designed to cater to learners at all levels.",
+  "sort": "remplace",
+  "urlSource": "https://www.semrush.com/academy/courses/semrush-tools/",
+  "extrait": "While having a basic understanding of digital marketing concepts can be helpful, Semrush Academy courses are designed to cater to learners at all levels.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 164,
+  "champ": "certification",
+  "valeurPrecedente": "Certification Semrush",
+  "valeurNouvelle": "Certification",
+  "sort": "remplace",
+  "urlSource": "https://www.semrush.com/academy/courses/semrush-tools/",
+  "extrait": "Semrush Academy offers certification courses that validate your proficiency in using Semrush tools.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 93,
+  "champ": "cpf",
+  "valeurPrecedente": 1,
+  "valeurNouvelle": true,
+  "sort": "remplace",
+  "urlSource": "https://www.studi.com/fr/formation-a-distance/commerciale",
+  "extrait": "Toutes nos formations sont 100 % en ligne et éligibles au CPF ou disponibles en alternance.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 93,
+  "champ": "financements",
+  "valeurPrecedente": [
+   "CPF",
+   "France Travail"
+  ],
+  "valeurNouvelle": [
+   "CPF",
+   "France Travail"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.studi.com/fr/formation-a-distance/commerciale",
+  "extrait": "En choisissant une formation diplômante ou une certification professionnelle inscrite au RNCP, vous obtenez un titre reconnu, souvent éligible à un financement de la formation par le CPF - Compte Personnel de Formation - ou France Travail.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 180,
+  "champ": "modaliteAcces",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "purchase the Certificate experience",
+  "sort": "remplace",
+  "urlSource": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies",
+  "extrait": "To access course materials, assignments, and earn a Certificate, you'll need to purchase the Certificate experience when you enroll in a course.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -15,7 +195,7 @@
   "id": 180,
   "champ": "duree",
   "valeurPrecedente": "Variable",
-  "valeurNouvelle": "7 hours to complete",
+  "valeurNouvelle": "7 hours",
   "sort": "remplace",
   "urlSource": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies",
   "extrait": "7 hours to complete",
@@ -62,503 +242,58 @@
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 33,
+  "id": 165,
+  "champ": "modaliteAcces",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "No sign-up required",
+  "sort": "remplace",
+  "urlSource": "https://ahrefs.com/academy/how-to-use-ahrefs",
+  "extrait": "No sign-up required, and absolutely free of charge",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 165,
   "champ": "duree",
-  "valeurPrecedente": "2 ans",
-  "valeurNouvelle": "50 heures (+/- 10%)",
+  "valeurPrecedente": "Modules courts",
+  "valeurNouvelle": "3h 18m",
   "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "Durée : 50 heures (+/- 10%)",
+  "urlSource": "https://ahrefs.com/academy/how-to-use-ahrefs",
+  "extrait": "3h 18m \n Total length",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 33,
-  "champ": "volumeHoraire",
-  "valeurPrecedente": null,
-  "valeurNouvelle": 50,
-  "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "Durée : 50 heures (+/- 10%)",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 33,
-  "champ": "formats",
-  "valeurPrecedente": [
-   "distanciel",
-   "presentiel"
-  ],
-  "valeurNouvelle": [
-   "présentiel",
-   "distanciel"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "Hybride (présentiel et distanciel)",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 33,
-  "champ": "region",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "Paris",
-  "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "Adresse : \n 2 rue Conté - 75003 Paris",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 33,
-  "champ": "prerequis",
-  "valeurPrecedente": "Licence ou VAE.",
-  "valeurNouvelle": "Notions de base en marketing fondamental",
-  "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "- Notions de base en marketing fondamental",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 33,
-  "champ": "outils",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Meta",
-   "TikTok",
-   "LinkedIn"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "Le Social Ads : Ciblage publicitaire et formats créatifs sur Meta, TikTok et LinkedIn.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 33,
-  "champ": "programme",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Partie 1 : Stratégie et Écosystème Web"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "Partie 1 : Stratégie et Écosystème Web",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 33,
-  "champ": "dateVerification",
-  "valeurPrecedente": "2026-06-15",
-  "valeurNouvelle": "2026-07-18",
-  "sort": "remplace",
-  "urlSource": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
-  "extrait": "Mis à jour le 18 juillet 2026",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 164,
-  "champ": "prerequis",
-  "valeurPrecedente": "Disposer d'un compte Semrush.",
-  "valeurNouvelle": "While having a basic understanding of digital marketing concepts can be helpful, Semrush Academy courses are designed to cater to learners at all levels.",
-  "sort": "remplace",
-  "urlSource": "https://www.semrush.com/academy/courses/semrush-tools/",
-  "extrait": "While having a basic understanding of digital marketing concepts can be helpful, Semrush Academy courses are designed to cater to learners at all levels.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 164,
+  "id": 165,
   "champ": "certification",
-  "valeurPrecedente": "Certification Semrush",
-  "valeurNouvelle": "Certification",
+  "valeurPrecedente": "Attestation",
+  "valeurNouvelle": "Get Ahrefs certified",
   "sort": "remplace",
-  "urlSource": "https://www.semrush.com/academy/courses/semrush-tools/",
-  "extrait": "Semrush Academy offers certification courses that validate your proficiency in using Semrush tools.",
+  "urlSource": "https://ahrefs.com/academy/how-to-use-ahrefs",
+  "extrait": "Get Ahrefs certified\n Turn your Ahrefs knowledge into a tangible asset that opens doors to better roles, bigger clients, and lasting marketing success.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 164,
+  "id": 165,
   "champ": "outils",
   "valeurPrecedente": [
-   "Semrush"
+   "Ahrefs"
   ],
   "valeurNouvelle": [
-   "Semrush"
+   "Site Explorer",
+   "Brand Radar",
+   "Keywords Explorer",
+   "Site Audit",
+   "Rank Tracker",
+   "Content Explorer"
   ],
   "sort": "remplace",
-  "urlSource": "https://www.semrush.com/academy/courses/semrush-tools/",
-  "extrait": "Semrush’s product courses are the best way to discover the full potential of our top tools.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 93,
-  "champ": "formats",
-  "valeurPrecedente": [
-   "distanciel"
-  ],
-  "valeurNouvelle": [
-   "en ligne",
-   "alternance"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.studi.com/fr/formation-a-distance/commerciale",
-  "extrait": "Toutes nos formations sont 100 % en ligne et éligibles au CPF ou disponibles en alternance.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 93,
-  "champ": "cpf",
-  "valeurPrecedente": 1,
-  "valeurNouvelle": true,
-  "sort": "remplace",
-  "urlSource": "https://www.studi.com/fr/formation-a-distance/commerciale",
-  "extrait": "Toutes nos formations sont 100 % en ligne et éligibles au CPF ou disponibles en alternance.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 93,
-  "champ": "financements",
-  "valeurPrecedente": [
-   "CPF",
-   "France Travail"
-  ],
-  "valeurNouvelle": [
-   "CPF",
-   "France Travail"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.studi.com/fr/formation-a-distance/commerciale",
-  "extrait": "En choisissant une formation diplômante ou une certification professionnelle inscrite au RNCP, vous obtenez un titre reconnu, souvent éligible à un financement de la formation par le CPF - Compte Personnel de Formation - ou France Travail.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "prix",
-  "valeurPrecedente": 0,
-  "valeurNouvelle": 6990,
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "La formation en initial coûte 6990 euros.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "duree",
-  "valeurPrecedente": "13 mois",
-  "valeurNouvelle": "13 mois",
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "Un parcours de 13 mois accéléré et immersif : propulsez rapidement votre employabilité grâce à un format court et intensif.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "volumeHoraire",
-  "valeurPrecedente": null,
-  "valeurNouvelle": 476,
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "Le programme est articulé autour de 3 blocs de compétences conformément au référentiel de certification pour un volume horaire de 476 heures sur l’année du cycle.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "formats",
-  "valeurPrecedente": [
-   "presentiel",
-   "alternance"
-  ],
-  "valeurNouvelle": [
-   "Présentiel",
-   "Distanciel"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "Le meilleur du présentiel et du distanciel : La formation se déroule principalement sur nos campus pour favoriser l’intelligence collective, rythmée par quelques séquences stratégiques à distance.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "niveauEntree",
-  "valeurPrecedente": "aucun_prerequis",
-  "valeurNouvelle": "Bac +2",
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "Cette formation est accessible en 3ème année après l'obtention d'un Bac +2 ou la validation de 120 crédits ECTS.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "certification",
-  "valeurPrecedente": "Titre RNCP40377 — niveau 6",
-  "valeurNouvelle": "Responsable d'établissement marchand",
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "Titre RNCP 38666 &#8211; Responsable d'établissement marchand",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "outils",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "HubSpot",
-   "Salesforce",
-   "outils de Growth Hacking",
-   "IA générative"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "Maîtrise des outils standards du marché : L'apprentissage se fait directement sur les logiciels utilisés au quotidien par les équipes professionnelles (HubSpot, Salesforce, outils de Growth Hacking, IA générative).",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 84,
-  "champ": "nonCouvert",
-  "valeurPrecedente": [
-   "Création technique de boutique"
-  ],
-  "valeurNouvelle": [
-   "Aucune correspondance"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
-  "extrait": "Liens avec d’autres certifications professionnelles, certifications ou habilitations :\nAucune correspondance.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 91,
-  "champ": "prix",
-  "valeurPrecedente": null,
-  "valeurNouvelle": 1499,
-  "sort": "remplace",
-  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
-  "extrait": "1499€ TTC, finançable via votre Compte Personnel de Formation , votre  OPCO , ainsi que  France Travail  et vos  fonds propres .",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 91,
-  "champ": "duree",
-  "valeurPrecedente": "Accès à vie",
-  "valeurNouvelle": "3 mois",
-  "sort": "remplace",
-  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
-  "extrait": "Formation sur 3 mois modulables",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 91,
-  "champ": "prerequis",
-  "valeurPrecedente": "Aucun.",
-  "valeurNouvelle": "possèdent déjà une boutique en ligne ou qui sont en train de la lancer",
-  "sort": "remplace",
-  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
-  "extrait": "Cette formation est destinée à toutes celles et ceux qui possèdent déjà une boutique en ligne ou qui sont en train de la lancer .",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 91,
-  "champ": "financements",
-  "valeurPrecedente": [
-   "CPF",
-   "OPCO"
-  ],
-  "valeurNouvelle": [
-   "Compte Personnel de Formation",
-   "OPCO",
-   "France Travail",
-   "fonds propres"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
-  "extrait": "1499€ TTC, finançable via votre Compte Personnel de Formation , votre  OPCO , ainsi que  France Travail  et vos  fonds propres .",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 91,
-  "champ": "certification",
-  "valeurPrecedente": "Certification RS7522",
-  "valeurNouvelle": "Certificat de réussite délivré",
-  "sort": "remplace",
-  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
-  "extrait": "Certificat de réussite délivré",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 91,
-  "champ": "outils",
-  "valeurPrecedente": [
-   "ChatGPT",
-   "Gemini",
-   "Perplexity",
-   "Claude",
-   "Mistral",
-   "Zapier",
-   "Make",
-   "n8n"
-  ],
-  "valeurNouvelle": [
-   "Google Analytics"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
-  "extrait": "10. Analyser les performances de son site avec Google Analytics",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "volumeHoraire",
-  "valeurPrecedente": null,
-  "valeurNouvelle": 400,
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "Prochaine rentrée: octobre 2026 › 6 mois de formation académique (+/- 400h de face à face) › 6 mois de mission en entreprise",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "formats",
-  "valeurPrecedente": [
-   "alternance"
-  ],
-  "valeurNouvelle": [
-   "Présentiel"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "Formation délivrée en présentiel et disponible à :",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "niveauEntree",
-  "valeurPrecedente": "bac3",
-  "valeurNouvelle": "Bac+4/+5",
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "Pour être admissible à notre formation marketing digital, vous devez être titulaire d'un diplôme Bac+4/+5 :",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "prerequis",
-  "valeurPrecedente": "Bac+3 ou bac+4, sur dossier et entretien.",
-  "valeurNouvelle": "titulaire d'un diplôme Bac+4/+5",
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "Pour être admissible à notre formation marketing digital, vous devez être titulaire d'un diplôme Bac+4/+5 :",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "certification",
-  "valeurPrecedente": "Titre RNCP niveau 7",
-  "valeurNouvelle": "Titre RNCP « Manager du marketing et de la transformation digitale» Niveau 7 (équiv. Bac+5) délivré par L'EFAP",
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "› Titre RNCP « Manager du marketing et de la transformation digitale» Niveau 7 (équiv. Bac+5) délivré par L’EFAP : certification professionnelle enregistrée au RNCP par décision de France Compétences le 26/01/2022 pour une durée de 5 ans (RNCP 36119).",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "codeRncpRs",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "RNCP 36119",
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "La révolution numérique du commerce global ! Titre RNCP « Manager du marketing et de la transformation digitale » (RNCP 36119).",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "outils",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Google Analytics",
-   "Prestashop"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "E-business & Data world › Manager un site e-commerce (certification Prestashop) › Paiement électronique › Comprendre la démarche omnicanal › CRM et marketing client › Droit du commerce numérique › Analyse de la data : Google Analytics, datavisualisation › Data science & big data › Définition et pilotage des indicateurs de performance du digital › Blockchain, bitcoin › Intelligence artificielle, machine learning, robots, IoT Projet start-up ou consultant junior › Réalisation d’un projet de conseil digital pour une entreprise › Les étudiants entrepreneurs peuvent intégrer leur projet dans cette période",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 45,
-  "champ": "nonCouvert",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Pas de suite de parcours / Pas de passerelle"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
-  "extrait": "› Pas de suite de parcours / Pas de passerelle.",
+  "urlSource": "https://ahrefs.com/academy/how-to-use-ahrefs",
+  "extrait": "How to analyze yours and your competitors’ websites with Site Explorer \n How to increase your AI visibility in LLMs with Brand Radar \n How to master keyword research with Keywords Explorer \n How to improve your on-page and technical SEO with Site Audit \n How to track and improve your Google rankings with Rank Tracker \n How to find untapped keyword and link building opportunities with Content Explorer",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -567,10 +302,10 @@
   "id": 184,
   "champ": "prix",
   "valeurPrecedente": null,
-  "valeurNouvelle": 59.9,
+  "valeurNouvelle": 29.95,
   "sort": "remplace",
   "urlSource": "https://www.elephorm.com/formation/apprendre-html-5-et-css3-tutoriel-video-avec-un-expert-du-web",
-  "extrait": "59,90€",
+  "extrait": "29,95€",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -589,48 +324,12 @@
  },
  {
   "id": 184,
-  "champ": "outils",
-  "valeurPrecedente": [
-   "WordPress",
-   "WooCommerce",
-   "PrestaShop"
-  ],
-  "valeurNouvelle": [
-   "CSS3",
-   "HTML5"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.elephorm.com/formation/apprendre-html-5-et-css3-tutoriel-video-avec-un-expert-du-web",
-  "extrait": "Ce tutoriel CSS3 et HTML5 de plus de 8 heures vous permettra d'apprendre en vidéos ces deux langages et standards qui sont déjà devenus les références de tous les prochains sites Web.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 184,
   "champ": "dateVerification",
   "valeurPrecedente": "2026-07-25",
   "valeurNouvelle": "30/05/2011",
   "sort": "remplace",
   "urlSource": "https://www.elephorm.com/formation/apprendre-html-5-et-css3-tutoriel-video-avec-un-expert-du-web",
   "extrait": "Mise à jour : 30/05/2011",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 85,
-  "champ": "formats",
-  "valeurPrecedente": [
-   "presentiel"
-  ],
-  "valeurNouvelle": [
-   "Alternance",
-   "présentiel"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://rocket-school.com/formations/business-development/",
-  "extrait": "Découvrez le Bachelor Rocket School en alternance alliant bootcamp intensif, cours en présentiel, e-learning et missions concrètes en entreprise.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -680,7 +379,7 @@
   "id": 2,
   "champ": "niveauEntree",
   "valeurPrecedente": "bac2",
-  "valeurNouvelle": "Bac + 2 minimum : Licence 2, DUT/BUT, BTS.",
+  "valeurNouvelle": "Bac + 2 minimum",
   "sort": "remplace",
   "urlSource": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique",
   "extrait": "Bac + 2 minimum : Licence 2, DUT/BUT, BTS.",
@@ -692,10 +391,10 @@
   "id": 2,
   "champ": "prerequis",
   "valeurPrecedente": "Bac+2 : BTS, BUT ou L2 en commerce, communication, marketing ou informatique.",
-  "valeurNouvelle": "Bac + 2 minimum : Licence 2, DUT/BUT, BTS. En sciences économiques, gestion, commerce, communication ou informatique de gestion.",
+  "valeurNouvelle": "Bac + 2 minimum : Licence 2, DUT/BUT, BTS.",
   "sort": "remplace",
   "urlSource": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique",
-  "extrait": "Bac + 2 minimum : Licence 2, DUT/BUT, BTS. \nEn sciences économiques, gestion, commerce, communication ou informatique de gestion.",
+  "extrait": "Bac + 2 minimum : Licence 2, DUT/BUT, BTS.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -714,12 +413,148 @@
  },
  {
   "id": 2,
+  "champ": "codeRncpRs",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "40509",
+  "sort": "remplace",
+  "urlSource": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique",
+  "extrait": "Consulter la fiche RNCP nationale n°40509 relative à ce diplôme",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 2,
   "champ": "dateVerification",
   "valeurPrecedente": "2026-08-01",
   "valeurNouvelle": "2026-06-29",
   "sort": "remplace",
   "urlSource": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique",
   "extrait": "Mis à jour le 29 juin 2026.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 85,
+  "champ": "formats",
+  "valeurPrecedente": [
+   "presentiel"
+  ],
+  "valeurNouvelle": [
+   "Alternance",
+   "Présentiel"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://rocket-school.com/formations/business-development/",
+  "extrait": "Découvrez le Bachelor Rocket School en alternance alliant bootcamp intensif, cours en présentiel, e-learning et missions concrètes en entreprise.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 85,
+  "champ": "prerequis",
+  "valeurPrecedente": "Demandeur d'emploi, dispositif POEI.",
+  "valeurNouvelle": "Accessible dès post-bac",
+  "sort": "remplace",
+  "urlSource": "https://rocket-school.com/formations/business-development/",
+  "extrait": "Découvrez le Bachelor Rocket School en alternance alliant bootcamp intensif, cours en présentiel, e-learning et missions concrètes en entreprise. Accessible dès post-bac.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 53,
+  "champ": "prix",
+  "valeurPrecedente": null,
+  "valeurNouvelle": 8950,
+  "sort": "remplace",
+  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+  "extrait": "Les tarifs pour l’entrée en 1re, 2e, 3e année sont de 8 950 € par an en cas de paiement comptant et de 9 350 € en cas de paiement fractionné.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 53,
+  "champ": "duree",
+  "valeurPrecedente": "3 ans",
+  "valeurNouvelle": "trois ans",
+  "sort": "remplace",
+  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+  "extrait": "Un parcours en trois ans pour construire progressivement ses compétences managériales.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 53,
+  "champ": "formats",
+  "valeurPrecedente": [
+   "presentiel",
+   "alternance"
+  ],
+  "valeurNouvelle": [
+   "alternance",
+   "à distance"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+  "extrait": "Les formations sont proposées en initiale, en alternance ou à distance*.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 53,
+  "champ": "prerequis",
+  "valeurPrecedente": "Baccalauréat via Parcoursup.",
+  "valeurNouvelle": "Pour suivre cette formation en alternance ou en initial, plusieurs voies d'admission sont possibles",
+  "sort": "remplace",
+  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+  "extrait": "Pour suivre cette formation en alternance ou en initial, plusieurs voies d'admission sont possibles :",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 53,
+  "champ": "financements",
+  "valeurPrecedente": [
+   "Alternance"
+  ],
+  "valeurNouvelle": [
+   "paiement comptant",
+   "paiement fractionné"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+  "extrait": "Les tarifs pour l’entrée en 1re, 2e, 3e année sont de 8 950 € par an en cas de paiement comptant et de 9 350 € en cas de paiement fractionné.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 53,
+  "champ": "certification",
+  "valeurPrecedente": "Titre RNCP",
+  "valeurNouvelle": "grade de Licence",
+  "sort": "remplace",
+  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+  "extrait": "Le Bachelor Marketing & Communication Digitale de l'IPAG Business School est une formation reconnue qui confère le grade de Licence.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 53,
+  "champ": "codeRncpRs",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "RNCP 37968",
+  "sort": "remplace",
+  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+  "extrait": "Ces modules rejoignent les compétences de la fiche RNCP 37968 reconnue par France Compétences :",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -743,7 +578,7 @@
   "valeurNouvelle": "12 mois",
   "sort": "remplace",
   "urlSource": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique",
-  "extrait": "La formation dure 12 mois, comprenant des périodes de cours, de mission en entreprise ainsi qu’une thèse professionnelle.",
+  "extrait": "12 mois – 448h de cours / an",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -792,10 +627,10 @@
   "id": 40,
   "champ": "niveauEntree",
   "valeurPrecedente": "bac3",
-  "valeurNouvelle": "Bac +5 ou Bac +4",
+  "valeurNouvelle": "Bac+4, Bac+5",
   "sort": "remplace",
   "urlSource": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique",
-  "extrait": "Le Mastère Spécialisé s’adresse aux jeunes diplômés ou aux professionnels titulaires d’un Bac +5 ou Bac +4 justifiant d’au moins trois ans d’expérience professionnelle.",
+  "extrait": "Bac+4, Bac+5",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -816,10 +651,10 @@
   "id": 40,
   "champ": "certification",
   "valeurPrecedente": "Mastère Spécialisé CGE — niveau 7",
-  "valeurNouvelle": "Certifié RNCP niveau 7 (Répertoire National des Certifications Professionnelles)",
+  "valeurNouvelle": "Mastère Spécialisé® (MS) accrédité par la Conférence des Grandes Ecoles (CGE)",
   "sort": "remplace",
   "urlSource": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique",
-  "extrait": "Certifié RNCP niveau 7 (Répertoire National des Certifications Professionnelles) n° RNCP37332",
+  "extrait": "Mastère Spécialisé® (MS) accrédité par la Conférence des Grandes Ecoles (CGE)",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -848,11 +683,11 @@
    "Google Cloud",
    "Google Ads",
    "Opquast",
-   "Hubspot (Content et Inbound Marketing)",
-   "Trailhead de Salesforce",
+   "Hubspot",
    "Mailchimp",
    "SEMRush",
-   "Shopify Marketing Fundamentals"
+   "Salesforce",
+   "Shopify"
   ],
   "sort": "remplace",
   "urlSource": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique",
@@ -878,145 +713,198 @@
    "UX Design / Figma",
    "Compte d'Exploitation Web & Marketing Metrics",
    "Design Thinking",
-   "Droit de l'Internet & du E-commerce",
-   "Stratégie e-business expertise Shopify",
-   "Emailing & Certification Mailchimp",
-   "Media Buying 360° certifications Google : Google Ads, Google Ads Measurement, AI-Powered Performance Ads Certification, Google Ads Video Certification, Media Buying de ADES Bootcamp",
-   "AGILE Project Management (certification)",
-   "Stratégie Omnicanale & Commer Unifié",
-   "Certifications Google Analytics & Tag Manager",
-   "Fondamentaux du Data Scientist",
-   "Social Media Optimisation / Community Management / Certifications associé·e en Marketing Digital META & Linkedin Ads",
-   "Strategic Consulting Week"
+   "Droit de l'Internet & du E-commerce"
   ],
   "sort": "remplace",
   "urlSource": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique",
-  "extrait": "E-business model & e-business plan Crédits : 2 / Heures : 24 Certification Google cloud Crédits : 1 / Heures : 10 Référencement naturel / IA (SEO, GEO) & certification SEMRush Crédits : 2 / Heures : 16 UX Design / Figma Crédits : 2 / Heures : 16 Compte d'Exploitation Web & Marketing Metrics Crédits : 1 / Heures : 8 Design Thinking Crédits : 2 / Heures : 16 Droit de l'Internet & du E-commerce Crédits : 1 / Heures : 8 Stratégie e-business expertise Shopify 3 24 Crédits : 3 / Heures : 24 Emailing & Certification Mailchimp Crédits : 1 / Heures : 8 Media Buying 360° certifications Google : Google Ads, Google Ads Measurement, AI-Powered Performance Ads Certification, Google Ads Video Certification, Media Buying de ADES Bootcamp Crédits : 3 / Heures : 24 AGILE Project Management (certification) Crédits : 3 / Heures : 24 Stratégie Omnicanale & Commer Unifié Crédits : 2 / Heures : 16 Certifications Google Analytics & Tag Manager Crédits : 2 / Heures : 16 Fondamentaux du Data Scientist Crédits : 1 / Heures : 8 Social Media Optimisation / Community Management / Certifications associé·e en Marketing Digital META & Linkedin Ads Crédits : 4 / Heures : 40 Strategic Consulting Week Crédits : 2 (Paris), 4 (Lille/Blended) / Heures : 14",
+  "extrait": "E-business model & e-business plan Crédits : 2 / Heures : 24 Certification Google cloud Crédits : 1 / Heures : 10 Référencement naturel / IA (SEO, GEO) & certification SEMRush Crédits : 2 / Heures : 16 UX Design / Figma Crédits : 2 / Heures : 16 Compte d'Exploitation Web & Marketing Metrics Crédits : 1 / Heures : 8 Design Thinking Crédits : 2 / Heures : 16 Droit de l'Internet & du E-commerce Crédits : 1 / Heures : 8",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
+  "id": 40,
+  "champ": "nonCouvert",
+  "valeurPrecedente": [
+   "Mise en pratique opérationnelle"
+  ],
+  "valeurNouvelle": [
+   "Ce programme n'ouvre pas droit aux bourses délivrées par le CROUS"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique",
+  "extrait": "* Ce programme n'ouvre pas droit aux bourses délivrées par le CROUS",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 84,
   "champ": "prix",
+  "valeurPrecedente": 0,
+  "valeurNouvelle": 6990,
+  "sort": "remplace",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "La formation en initial coûte 6990 euros.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 84,
+  "champ": "modaliteAcces",
   "valeurPrecedente": null,
-  "valeurNouvelle": 8950,
+  "valeurNouvelle": "prises en charge par l’OPCO de l’entreprise",
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Les tarifs pour l’entrée en 1re, 2e, 3e année sont de 8 950 € par an en cas de paiement comptant et de 9 350 € en cas de paiement fractionné.",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Nos formations Rocket School se déroulent en alternance et sont prises en charge par l’OPCO de l’entreprise (Opérateurs de Compétences).",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
+  "id": 84,
   "champ": "duree",
-  "valeurPrecedente": "3 ans",
-  "valeurNouvelle": "trois ans",
+  "valeurPrecedente": "13 mois",
+  "valeurNouvelle": "13 mois",
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Ce programme opérationnel en trois ans permet aux étudiants de développer des compétences solides en marketing et communication, essentielles pour intégrer le marché du travail actuel ou poursuivre des études supérieures.",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "En 13 mois, ce parcours certifiant de Niveau 6 combine un bootcamp intensif de 1 mois en ouverture et une alternance de 12 mois en entreprise (rythme d’1 semaine en centre, 3 semaines en entreprise).",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
+  "id": 84,
+  "champ": "volumeHoraire",
+  "valeurPrecedente": null,
+  "valeurNouvelle": 476,
+  "sort": "remplace",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Le programme est articulé autour de 3 blocs de compétences conformément au référentiel de certification pour un volume horaire de 476 heures sur l’année du cycle.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 84,
   "champ": "formats",
   "valeurPrecedente": [
    "presentiel",
    "alternance"
   ],
   "valeurNouvelle": [
-   "alternance",
-   "à distance"
+   "présentiel",
+   "distanciel"
   ],
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Les formations sont proposées en initiale, en alternance ou à distance*.",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Le meilleur du présentiel et du distanciel : La formation se déroule principalement sur nos campus pour favoriser l’intelligence collective, rythmée par quelques séquences stratégiques à distance.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
-  "champ": "region",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "Paris",
+  "id": 84,
+  "champ": "niveauEntree",
+  "valeurPrecedente": "aucun_prerequis",
+  "valeurNouvelle": "Bac +2",
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Cette spécialisation est disponible sur les campus de Paris , Nice ainsi qu'en ligne via IPAG Online .",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Cette formation est accessible en 3ème année après l'obtention d'un Bac +2 ou la validation de 120 crédits ECTS.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
+  "id": 84,
   "champ": "prerequis",
-  "valeurPrecedente": "Baccalauréat via Parcoursup.",
-  "valeurNouvelle": "En 1re année Titulaire d’un diplôme français • Parcoursup + entretien de motivation en français Titulaire d’un diplôme étranger • Sur dossier + entretien de motivation en français",
+  "valeurPrecedente": "Profils en reconversion. 1 mois de bootcamp puis 12 mois d'alternance, rythme 1 semaine centre / 3 semaines entreprise.",
+  "valeurNouvelle": "Titulaires d’un BTS : MCO (Management Commercial Opérationnel), NDRC (Négociation et Digitalisation de la Relation Client), Commerce International, GPME (Gestion de la PME), ou Communication.",
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "En 1re année Titulaire d’un diplôme français • Parcoursup + entretien de motivation en français Titulaire d’un diplôme étranger • Sur dossier + entretien de motivation en français",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Titulaires d’un BTS : MCO (Management Commercial Opérationnel), NDRC (Négociation et Digitalisation de la Relation Client), Commerce International, GPME (Gestion de la PME), ou Communication.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
+  "id": 84,
   "champ": "financements",
   "valeurPrecedente": [
-   "Alternance"
+   "Alternance",
+   "OPCO",
+   "POEI"
   ],
   "valeurNouvelle": [
-   "paiement fractionné"
+   "OPCO"
   ],
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Les tarifs pour l’entrée en 1re, 2e, 3e année sont de 8 950 € par an en cas de paiement comptant et de 9 350 € en cas de paiement fractionné.",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Nos formations Rocket School se déroulent en alternance et sont prises en charge par l’OPCO de l’entreprise (Opérateurs de Compétences).",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
+  "id": 84,
   "champ": "certification",
-  "valeurPrecedente": "Titre RNCP",
-  "valeurNouvelle": "grade de Licence",
+  "valeurPrecedente": "Titre RNCP40377 — niveau 6",
+  "valeurNouvelle": "Responsable d’établissement marchand",
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Le Bachelor Marketing & Communication Digitale de l'IPAG Business School est une formation reconnue qui confère le grade de Licence.",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Titre RNCP 38666 – Responsable d’établissement marchand",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
+  "id": 84,
   "champ": "codeRncpRs",
   "valeurPrecedente": null,
-  "valeurNouvelle": "RNCP 37968",
+  "valeurNouvelle": "RNCP 38666",
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Ces modules rejoignent les compétences de la fiche RNCP 37968 reconnue par France Compétences :",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Titre RNCP 38666 – Responsable d’établissement marchand",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 53,
-  "champ": "programme",
+  "id": 84,
+  "champ": "outils",
   "valeurPrecedente": null,
   "valeurNouvelle": [
-   "Certification professionnelle au choix",
-   "CRM",
-   "Digital Marketing",
-   "Publicité & Communication",
-   "Community Management",
-   "Site d'e-commerce et stratégie digitale"
+   "HubSpot",
+   "Salesforce",
+   "outils de Growth Hacking",
+   "IA générative"
   ],
   "sort": "remplace",
-  "urlSource": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
-  "extrait": "Certification professionnelle au choix\n CRM\n Digital Marketing\n Publicité & Communication\n Community Management\n Site d'e-commerce et stratégie digitale",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Maîtrise des outils standards du marché : L’apprentissage se fait directement sur les logiciels utilisés au quotidien par les équipes professionnelles (HubSpot, Salesforce, outils de Growth Hacking, IA générative).",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 84,
+  "champ": "programme",
+  "valeurPrecedente": [
+   "Bootcamp immersif d'un mois",
+   "Acquisition et growth",
+   "Ingénierie de l'expérience client omnicanale",
+   "E-merchandising",
+   "Gestion de centre de profit",
+   "Alternance de 12 mois"
+  ],
+  "valeurNouvelle": [
+   "bootcamp immersif de 1 mois",
+   "alternance en entreprise de 12 mois"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+  "extrait": "Conçu spécifiquement pour des profils en reconversion, il allie un bootcamp immersif de 1 mois et une alternance en entreprise de 12 mois (rythme d’1 semaine en centre, 3 semaines en entreprise), selon une pédagogie active fondée sur le learning by doing.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -1065,55 +953,143 @@
   "id": 32,
   "champ": "prerequis",
   "valeurPrecedente": "Licence, sur dossier. Rythme 1 semaine école / 3 semaines entreprise.",
-  "valeurNouvelle": "Bac+3 (180 crédits après le bac) ou titre jugé équivalent. Une première expérience en marketing ou marketing digital serait appréciée.",
+  "valeurNouvelle": "Bac+3 (180 crédits après le bac) ou titre jugé équivalent.",
   "sort": "remplace",
   "urlSource": "https://iaelille.fr/nos-formations/master-marketing-digital/",
-  "extrait": "Bac+3 (180 crédits après le bac) ou titre jugé équivalent.\nUne première expérience en marketing ou marketing digital serait appréciée.",
+  "extrait": "Bac+3 (180 crédits après le bac) ou titre jugé équivalent.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 165,
-  "champ": "modaliteAcces",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "No sign-up required",
-  "sort": "remplace",
-  "urlSource": "https://ahrefs.com/academy/how-to-use-ahrefs",
-  "extrait": "No sign-up required, and absolutely free of charge",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 165,
+  "id": 32,
   "champ": "certification",
-  "valeurPrecedente": "Attestation",
-  "valeurNouvelle": "Ahrefs certified",
+  "valeurPrecedente": "Diplôme national niveau 7",
+  "valeurNouvelle": "Master Marketing Digital (MD)",
   "sort": "remplace",
-  "urlSource": "https://ahrefs.com/academy/how-to-use-ahrefs",
-  "extrait": "Get Ahrefs certified",
+  "urlSource": "https://iaelille.fr/nos-formations/master-marketing-digital/",
+  "extrait": "Master Marketing Digital (MD)",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 165,
-  "champ": "outils",
+  "id": 45,
+  "champ": "duree",
+  "valeurPrecedente": "1 à 2 ans",
+  "valeurNouvelle": "6 mois",
+  "sort": "remplace",
+  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "extrait": "Prochaine rentrée: octobre 2026 › 6 mois de formation académique (+/- 400h de face à face) › 6 mois de mission en entreprise",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 45,
+  "champ": "formats",
   "valeurPrecedente": [
-   "Ahrefs"
+   "alternance"
   ],
   "valeurNouvelle": [
-   "Site Explorer",
-   "Brand Radar",
-   "Keywords Explorer",
-   "Site Audit",
-   "Rank Tracker",
-   "Content Explorer"
+   "présentiel"
   ],
   "sort": "remplace",
-  "urlSource": "https://ahrefs.com/academy/how-to-use-ahrefs",
-  "extrait": "How to analyze yours and your competitors’ websites with Site Explorer \nHow to increase your AI visibility in LLMs with Brand Radar \nHow to master keyword research with Keywords Explorer \nHow to improve your on-page and technical SEO with Site Audit \nHow to track and improve your Google rankings with Rank Tracker \nHow to find untapped keyword and link building opportunities with Content Explorer",
+  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "extrait": "Formation délivrée en présentiel et disponible à :",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 45,
+  "champ": "region",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "Paris",
+  "sort": "remplace",
+  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "extrait": "Formation délivrée en présentiel et disponible à : \nParis",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 45,
+  "champ": "niveauEntree",
+  "valeurPrecedente": "bac3",
+  "valeurNouvelle": "Bac+4/+5",
+  "sort": "remplace",
+  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "extrait": "Pour être admissible à notre formation marketing digital, vous devez être titulaire d'un diplôme Bac+4/+5 :",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 45,
+  "champ": "certification",
+  "valeurPrecedente": "Titre RNCP niveau 7",
+  "valeurNouvelle": "Titre RNCP « Manager du marketing et de la transformation digitale» Niveau 7 (équiv. Bac+5) délivré par L'EFAP",
+  "sort": "remplace",
+  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "extrait": "› Titre RNCP « Manager du marketing et de la transformation digitale» Niveau 7 (équiv. Bac+5) délivré par L’EFAP : certification professionnelle enregistrée au RNCP par décision de France Compétences le 26/01/2022 pour une durée de 5 ans (RNCP 36119).",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 45,
+  "champ": "codeRncpRs",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "RNCP 36119",
+  "sort": "remplace",
+  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "extrait": "› Titre RNCP « Manager du marketing et de la transformation digitale» Niveau 7 (équiv. Bac+5) délivré par L’EFAP : certification professionnelle enregistrée au RNCP par décision de France Compétences le 26/01/2022 pour une durée de 5 ans (RNCP 36119).",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 45,
+  "champ": "outils",
+  "valeurPrecedente": null,
+  "valeurNouvelle": [
+   "Prestashop",
+   "Google Analytics"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "extrait": "Manager un site e-commerce (certification Prestashop) › Paiement électronique › Comprendre la démarche omnicanal › CRM et marketing client › Droit du commerce numérique › Analyse de la data : Google Analytics, datavisualisation",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 232,
+  "champ": "formats",
+  "valeurPrecedente": [
+   "presentiel",
+   "distanciel"
+  ],
+  "valeurNouvelle": [
+   "Présentiel",
+   "À distance"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.ism.fr/formations/marketing-digital",
+  "extrait": "Présentiel, À distance",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 232,
+  "champ": "region",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "Paris",
+  "sort": "remplace",
+  "urlSource": "https://www.ism.fr/formations/marketing-digital",
+  "extrait": "Avec Abilways, vous bénéficiez d’une formation flexible, dont les cours peuvent être suivis à distance (en ligne) ou en présentiel, souvent à Paris.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -1125,7 +1101,7 @@
   "valeurNouvelle": true,
   "sort": "remplace",
   "urlSource": "https://www.ism.fr/formations/marketing-digital",
-  "extrait": "Éligibles au financement CPF",
+  "extrait": "À la fois en quête d'excellence et de facilité pour ses apprenants, ISM propose plusieurs formations, éligibles au financement du Compte Personnel de Formation (CPF).",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -1159,7 +1135,7 @@
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 233,
+  "id": 231,
   "champ": "formats",
   "valeurPrecedente": [
    "presentiel",
@@ -1170,8 +1146,8 @@
    "À distance"
   ],
   "sort": "remplace",
-  "urlSource": "https://www.ism.fr/formations/marketing-digital/reseaux-sociaux",
-  "extrait": "2 jours - 14 heures\nPrésentiel, À distance",
+  "urlSource": "https://www.ism.fr/formations/marketing-digital/strategie-digitale",
+  "extrait": "Présentiel, À distance",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -1231,6 +1207,24 @@
   "motif": "Passe d'extraction automatisée"
  },
  {
+  "id": 233,
+  "champ": "formats",
+  "valeurPrecedente": [
+   "presentiel",
+   "distanciel"
+  ],
+  "valeurNouvelle": [
+   "Présentiel",
+   "À distance"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.ism.fr/formations/marketing-digital/reseaux-sociaux",
+  "extrait": "Présentiel, À distance",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
   "id": 106,
   "champ": "prix",
   "valeurPrecedente": null,
@@ -1246,7 +1240,7 @@
   "id": 106,
   "champ": "duree",
   "valeurPrecedente": "2 à 3 jours",
-  "valeurNouvelle": "2 jours - 14 heures",
+  "valeurNouvelle": "2 jours",
   "sort": "remplace",
   "urlSource": "https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client",
   "extrait": "2 jours - 14 heures",
@@ -1291,7 +1285,7 @@
   "valeurNouvelle": "Paris",
   "sort": "remplace",
   "urlSource": "https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client",
-  "extrait": "Paris",
+  "extrait": "17 et 18 sept. 2026 \nParis",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -1350,198 +1344,13 @@
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 59,
-  "champ": "duree",
-  "valeurPrecedente": "2 ans",
-  "valeurNouvelle": "deux ans",
-  "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
-  "extrait": "420 heures de formation par an sur deux ans, en pr&eacute;sentiel et distanciel",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 59,
-  "champ": "volumeHoraire",
-  "valeurPrecedente": null,
-  "valeurNouvelle": 420,
-  "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
-  "extrait": "420 heures de formation par an sur deux ans, en pr&eacute;sentiel et distanciel",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 59,
-  "champ": "region",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "Paris, Nantes et Montpellier",
-  "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
-  "extrait": "Première école à avoir été créée en 1995 autour des nouveaux métiers du numérique, l’IIM forme des chefs de projets et des managers du numérique qui allient une triple compétence à la fois technique, créative et managériale, à Paris, Nantes et Montpellier",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 59,
+  "id": 58,
   "champ": "niveauEntree",
-  "valeurPrecedente": "bac3",
-  "valeurNouvelle": "Bac+3",
+  "valeurPrecedente": "aucun_prerequis",
+  "valeurNouvelle": "post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2",
   "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
-  "extrait": "Bac+3 (bachelor, licence, titre niveau II) en sciences, Web et multim&eacute;dia, informatique.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 59,
-  "champ": "dateVerification",
-  "valeurPrecedente": "2026-06-14",
-  "valeurNouvelle": "2026-07-22",
-  "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
-  "extrait": "Informations mises &agrave; jour le 22 Juil 2026",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "duree",
-  "valeurPrecedente": "1 à 2 ans",
-  "valeurNouvelle": "2 ans",
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Toutes les spécialisations du Master de l'Esdes s'étendent sur 2 ans et mènent au Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master  » Diplôme en management et gestion des entreprises  » &#8211; enregistré de droit au RNCP sous le n° 36271 le 15/07/2021 &#8211; codes NSF 314 / 310m / 312",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "formats",
-  "valeurPrecedente": [
-   "presentiel",
-   "alternance"
-  ],
-  "valeurNouvelle": [
-   "Alternance"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Cette spécialisation est en alternance, en contrat de professionnalisation, d’apprentissage ou en stage alterné.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "region",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "Lyon",
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Formation Bac +5 Marketing Digital en alternance à Lyon",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "niveauEntree",
-  "valeurPrecedente": "bac3",
-  "valeurNouvelle": "Bac+3",
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Pour candidater au Master en marketing, il est nécessaire de justifier d’un diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital, souvent attestée par un portfolio professionnel ou des stages significatifs.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "prerequis",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital",
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Pour candidater au Master en marketing, il est nécessaire de justifier d’un diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital, souvent attestée par un portfolio professionnel ou des stages significatifs.",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "certification",
-  "valeurPrecedente": "Titre RNCP niveau 7",
-  "valeurNouvelle": "Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master",
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Toutes les spécialisations du Master de l'Esdes s'étendent sur 2 ans et mènent au Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master  » Diplôme en management et gestion des entreprises  » &#8211; enregistré de droit au RNCP sous le n° 36271 le 15/07/2021 &#8211; codes NSF 314 / 310m / 312",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "codeRncpRs",
-  "valeurPrecedente": null,
-  "valeurNouvelle": "36271",
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Toutes les spécialisations du Master de l'Esdes s'étendent sur 2 ans et mènent au Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master  » Diplôme en management et gestion des entreprises  » &#8211; enregistré de droit au RNCP sous le n° 36271 le 15/07/2021 &#8211; codes NSF 314 / 310m / 312",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "outils",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Adobe Photoshop",
-   "Illustrator",
-   "Premiere"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "La maîtrise d'outils de création graphique et montage vidéo professionnels, tels qu'Adobe Photoshop, Illustrator et Premiere",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 56,
-  "champ": "programme",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Codage développement WEB",
-   "Digital project management",
-   "Graphisme Design",
-   "Hands-on Digital project",
-   "Analyse et reporting avec Excel",
-   "Graphisme design expert",
-   "Hands-on digital project",
-   "Outils de communication vidéo",
-   "Digital project management &#8211; Digi'Days",
-   "Search Engine Marketing (SEM)",
-   "Financing digital ventures",
-   "Data analysis",
-   "Digital Marketing Strategy",
-   "Blockchain & Cryptocurrencies",
-   "Programmatic Advertising",
-   "UX Design",
-   "Marketing Automation Platform",
-   "Markstrat online (Business Game)",
-   "Droit de l'internet"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
-  "extrait": "Semestre 7 \nCodage développement WEB \nDigital project management \nGraphisme Design \nHands-on Digital project\nTélécharger le détail des cours \nSemestre 8 \nAnalyse et reporting avec Excel \nGraphisme design expert \nHands-on digital project \nOutils de communication vidéo\nTélécharger le détail des cours \nSemestre 9 \nDigital project management &#8211; Digi'Days \nSearch Engine Marketing (SEM) \nFinancing digital ventures \nData analysis \nDigital Marketing Strategy\nTélécharger le détail des cours \nSemestre 10 \nBlockchain & Cryptocurrencies \nProgrammatic Advertising \nUX Design \nMarketing Automation Platform \nMarkstrat online (Business Game) \nDroit de l'internet",
+  "urlSource": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/",
+  "extrait": "Les bachelors IIM sont accessibles post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -1709,6 +1518,143 @@
   "motif": "Passe d'extraction automatisée"
  },
  {
+  "id": 56,
+  "champ": "duree",
+  "valeurPrecedente": "1 à 2 ans",
+  "valeurNouvelle": "2 ans",
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Toutes les spécialisations du Master de l'Esdes s'étendent sur 2 ans et mènent au Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master  » Diplôme en management et gestion des entreprises  » &#8211; enregistré de droit au RNCP sous le n° 36271 le 15/07/2021 &#8211; codes NSF 314 / 310m / 312",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "formats",
+  "valeurPrecedente": [
+   "presentiel",
+   "alternance"
+  ],
+  "valeurNouvelle": [
+   "Alternance"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Cette spécialisation est en alternance, en contrat de professionnalisation, d’apprentissage ou en stage alterné.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "region",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "Lyon",
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Formation Bac +5 Marketing Digital en alternance à Lyon",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "niveauEntree",
+  "valeurPrecedente": "bac3",
+  "valeurNouvelle": "Bac+3",
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Pour candidater au Master en marketing, il est nécessaire de justifier d’un diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital, souvent attestée par un portfolio professionnel ou des stages significatifs.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "prerequis",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "justifier d’un diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital, souvent attestée par un portfolio professionnel ou des stages significatifs",
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Pour candidater au Master en marketing, il est nécessaire de justifier d’un diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital, souvent attestée par un portfolio professionnel ou des stages significatifs.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "certification",
+  "valeurPrecedente": "Titre RNCP niveau 7",
+  "valeurNouvelle": "Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master",
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Toutes les spécialisations du Master de l'Esdes s'étendent sur 2 ans et mènent au Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master  » Diplôme en management et gestion des entreprises  » &#8211; enregistré de droit au RNCP sous le n° 36271 le 15/07/2021 &#8211; codes NSF 314 / 310m / 312",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "codeRncpRs",
+  "valeurPrecedente": null,
+  "valeurNouvelle": "36271",
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Toutes les spécialisations du Master de l'Esdes s'étendent sur 2 ans et mènent au Diplôme Bac+5 (niveau 7) visé par le Ministère de l'Enseignement Supérieur et de la Recherche et conférant le Grade de Master  » Diplôme en management et gestion des entreprises  » &#8211; enregistré de droit au RNCP sous le n° 36271 le 15/07/2021 &#8211; codes NSF 314 / 310m / 312",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "outils",
+  "valeurPrecedente": null,
+  "valeurNouvelle": [
+   "Adobe Photoshop",
+   "Illustrator",
+   "Premiere"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "La maîtrise d'outils de création graphique et montage vidéo professionnels, tels qu'Adobe Photoshop, Illustrator et Premiere",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 56,
+  "champ": "programme",
+  "valeurPrecedente": null,
+  "valeurNouvelle": [
+   "Codage développement WEB",
+   "Digital project management",
+   "Graphisme Design",
+   "Hands-on Digital project",
+   "Analyse et reporting avec Excel",
+   "Graphisme design expert",
+   "Hands-on digital project",
+   "Outils de communication vidéo",
+   "Digital project management &#8211; Digi'Days",
+   "Search Engine Marketing (SEM)",
+   "Financing digital ventures",
+   "Data analysis",
+   "Digital Marketing Strategy",
+   "Blockchain & Cryptocurrencies",
+   "Programmatic Advertising",
+   "UX Design",
+   "Marketing Automation Platform",
+   "Markstrat online (Business Game)",
+   "Droit de l'internet"
+  ],
+  "sort": "remplace",
+  "urlSource": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+  "extrait": "Semestre 7 \nCodage développement WEB \nDigital project management \nGraphisme Design \nHands-on Digital project\nTélécharger le détail des cours \nSemestre 8 \nAnalyse et reporting avec Excel \nGraphisme design expert \nHands-on digital project \nOutils de communication vidéo\nTélécharger le détail des cours \nSemestre 9 \nDigital project management &#8211; Digi'Days \nSearch Engine Marketing (SEM) \nFinancing digital ventures \nData analysis \nDigital Marketing Strategy\nTélécharger le détail des cours \nSemestre 10 \nBlockchain & Cryptocurrencies \nProgrammatic Advertising \nUX Design \nMarketing Automation Platform \nMarkstrat online (Business Game) \nDroit de l'internet",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
   "id": 200,
   "champ": "prix",
   "valeurPrecedente": null,
@@ -1752,7 +1698,7 @@
   "id": 200,
   "champ": "niveauEntree",
   "valeurPrecedente": "aucun_prerequis",
-  "valeurNouvelle": "Aucun prérequis technique",
+  "valeurNouvelle": "Aucun prérequis technique n'est nécessaire",
   "sort": "remplace",
   "urlSource": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce",
   "extrait": "Aucun prérequis technique n’est nécessaire, et chaque étape est expliquée de manière simple et claire.",
@@ -1827,25 +1773,41 @@
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 70,
-  "champ": "dateVerification",
-  "valeurPrecedente": "2026-06-08",
-  "valeurNouvelle": "17/11/2025",
+  "id": 61,
+  "champ": "duree",
+  "valeurPrecedente": "2 ans",
+  "valeurNouvelle": "13 semaines de cours par an",
   "sort": "remplace",
-  "urlSource": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital",
-  "extrait": "Mis à jour le 17/11/2025",
+  "urlSource": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/",
+  "extrait": "En alternance, 13 semaines de cours par an (une semaine sur 4 en moyenne).",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 58,
-  "champ": "niveauEntree",
-  "valeurPrecedente": "aucun_prerequis",
-  "valeurNouvelle": "post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2",
+  "id": 61,
+  "champ": "formats",
+  "valeurPrecedente": [
+   "alternance"
+  ],
+  "valeurNouvelle": [
+   "Alternance"
+  ],
   "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/",
-  "extrait": "Les bachelors IIM sont accessibles post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2.",
+  "urlSource": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/",
+  "extrait": "En alternance",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 61,
+  "champ": "niveauEntree",
+  "valeurPrecedente": "bac3",
+  "valeurNouvelle": "Bac+3",
+  "sort": "remplace",
+  "urlSource": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/",
+  "extrait": "Bac+3 (bachelor, licence, titre niveau II) en en management, marketing, communication, web ou informatique.",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -1854,7 +1816,7 @@
   "id": 65,
   "champ": "duree",
   "valeurPrecedente": "1 an",
-  "valeurNouvelle": "1 an",
+  "valeurNouvelle": "1 an en initial avec stage",
   "sort": "remplace",
   "urlSource": "https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale",
   "extrait": "Durée : 1 an en initial avec stage",
@@ -1875,63 +1837,37 @@
   "motif": "Passe d'extraction automatisée"
  },
  {
-  "id": 65,
-  "champ": "outils",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Linux et bash",
-   "Github pages – Hugo",
-   "HTML – CSS",
-   "Javascript"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale",
-  "extrait": "Linux et bash\n Github pages – Hugo\n Algorithmique\n Développement et programmation \n HTML – CSS\n Javascript",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 65,
-  "champ": "programme",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "Culture Tech",
-   "Développement et programmation",
-   "Manipuler la donnée",
-   "Marketing et produit",
-   "Design & UX",
-   "Culture métier",
-   "Savoir devenir",
-   "Professionnalisation"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale",
-  "extrait": "Culture Tech \n Hackathon\n Outils du numérique\n Fondamentaux professionnels de la tech\n Devenir \"Power User\"\n Linux et bash\n Github pages – Hugo\n Algorithmique\n Développement et programmation \n HTML – CSS\n Javascript\n Projet mixte de développement web\n Manipuler la donnée \n Mathématiques : remise à niveau\n Marketing et produit \n Gestion de produit en environnement agile\n Simulation entreprise\n Design & UX\n Workshop UX-UI\n No code - Low code\n Design system\n Culture métier \n Méthodologie, veille et autoformation\n Communication professionnelle\n Savoir devenir \n Prise de conscience\n Citoyenneté et diversité\n Résilience et préparation mentale\n Professionnalisation \n Rentrée\n Accompagnement Alternance/Stage\n Focus suivi apprenant",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 61,
-  "champ": "duree",
-  "valeurPrecedente": "2 ans",
-  "valeurNouvelle": "13 semaines de cours par an",
-  "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/",
-  "extrait": "En alternance, 13 semaines de cours par an (une semaine sur 4 en moyenne).",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 61,
+  "id": 59,
   "champ": "niveauEntree",
   "valeurPrecedente": "bac3",
   "valeurNouvelle": "Bac+3",
   "sort": "remplace",
-  "urlSource": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/",
-  "extrait": "Bac+3 (bachelor, licence, titre niveau II) en en management, marketing, communication, web ou informatique.",
+  "urlSource": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
+  "extrait": "Bac+3 (bachelor, licence, titre niveau II) en sciences, Web et multim&eacute;dia, informatique.",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 59,
+  "champ": "dateVerification",
+  "valeurPrecedente": "2026-06-14",
+  "valeurNouvelle": "2026-07-22",
+  "sort": "remplace",
+  "urlSource": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
+  "extrait": "Informations mises &agrave; jour le 22 Juil 2026",
+  "le": "2026-08-04",
+  "origine": "extraction_automatique",
+  "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 70,
+  "champ": "dateVerification",
+  "valeurPrecedente": "2026-06-08",
+  "valeurNouvelle": "17/11/2025",
+  "sort": "remplace",
+  "urlSource": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital",
+  "extrait": "Mis à jour le 17/11/2025",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
@@ -2060,27 +1996,6 @@
   "sort": "remplace",
   "urlSource": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/",
   "extrait": "Panorama Matomo Analytics vs Matomo Tag Manager",
-  "le": "2026-08-04",
-  "origine": "extraction_automatique",
-  "motif": "Passe d'extraction automatisée"
- },
- {
-  "id": 150,
-  "champ": "programme",
-  "valeurPrecedente": null,
-  "valeurNouvelle": [
-   "1 - Introduction & fondamentaux de Matomo",
-   "2 - Installation et configuration initiale",
-   "3 - Prise en main de l'interface Analytics",
-   "4 - Analyse des performances & optimisation",
-   "5 - Module RGPD & privacy by design",
-   "6 - Présentation de Matomo Tag Manager & différents plugins",
-   "7 - Suivi des campagnes marketing, du moteur de recherche interne et du commerce électronique",
-   "8 - Bonus IA avec Matomo"
-  ],
-  "sort": "remplace",
-  "urlSource": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/",
-  "extrait": "1 - Introduction & fondamentaux de Matomo\nComprendre Matomo : open-source, auto-hébergement, alternatives à Google Analytics \nStructure de la plateforme : vues, propriétés, utilisateurs \nPanorama Matomo Analytics vs Matomo Tag Manager \n2 - Installation et configuration initiale \nInstallation sur serveur ou via hébergement cloud \nAjout du code de suivi (JavaScript Tracking Code) \nParamétrage de base : fuseaux horaires, campagnes, cookies, exclusions \nConfiguration des objectifs de conversion \n3 - Prise en main de l'interface Analytics\nLecture des rapports d'audience : visiteurs, sessions, provenance \nAnalyse comportementale : pages vues, chemins, événements \nComprendre les segments et périodes \nCréation de rapports personnalisés \n4 - Analyse des performances & optimisation \nSuivi des campagnes marketing (UTM/ campagnes Matomo) \nAnalyse du contenu et des landing pages \nStatistiques e-commerce de base \nIdentifier les zones d'amélioration du site \n5 - Module RGPD & privacy by design\nPourquoi Matomo est compatible RGPD \nParamètres essentiels : anonymisation IP, cookies, consentement \nMise en conformité : bannières, logo, durée de conservation \nProtection des visiteurs & bonnes pratiques légales \n6 - Présentation de Matomo Tag Manager & différents plugins \nDéfinir et mettre en place des objectifs pour mesurer le retour de vos actions de communication dans Matomo \nCréer et appliquer un segment à vos rapports permettant de sélectionner et d’étudier une population précise d’utilisateurs \nMise en place d'événements permettant de mesurer des interactions spécifiques des utilisateurs de votre site web \nApprendre à créer et déployer des dimensions personnalisées afin de faire remonter les données de votre choix dans l'interface de Matomo Analytics \nMettre en place un code de suivi des événements sur une interaction spécifique \nÊtre en mesure de définir et mettre en place une alerte personnalisée en toute autonomie afin de recevoir un message lorsqu'un comportement que vous avez défini vient d'apparaître dans Matomo \nAtelier de mise en pratique \n7 - Suivi des campagnes marketing, du moteur de recherche interne et du commerce électronique \nAfin que Matomo puisse identifier la provenance du trafic il faut que votre référent contienne certains paramètres dans des URLs \nLa mise en place du suivi du moteur de recherche interne permet d’identifier ce que les utilisateurs recherchent activement sur votre site web \nLe suivi du commerce électronique permet d’identifier facilement les utilisateurs qui ont effectué une transaction sur votre site web et ainsi d’identifier facilement les sources de trafic à forte valeur ajoutée \nMettre en place ces différents types de suivi \nAtelier de mise en pratique \n8 - Bonus IA avec Matomo",
   "le": "2026-08-04",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"

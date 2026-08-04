@@ -193,3 +193,33 @@ test("la liste de suggestions ne déborde pas et suit la sélection", async ({ p
     boiteActif.y + boiteActif.height <= boiteListe.y + boiteListe.height + 1;
   expect(visible).toBe(true);
 });
+
+test("le pied du panneau reste visible et ne recouvre aucun contenu", async ({ page }) => {
+  /*
+    Trois défauts que seul le rendu révèle : un pied poussé hors du panneau par
+    un corps trop haut, un pied qui recouvre la dernière section, et un corps
+    qui entraîne l'en-tête ou le pied en défilant.
+  */
+  for (const rang of [0, 1]) {
+    await page.getByRole("listitem").nth(rang).getByRole("link").first().click();
+    const panneau = page.getByRole("dialog");
+    await expect(panneau).toBeVisible();
+
+    const bPanneau = await boite(panneau);
+    const bPied = await boite(panneau.locator("footer"));
+    const corps = panneau.locator("div.overflow-y-auto");
+    const bCorps = await boite(corps);
+
+    // Le pied tient dans le panneau, sans défilement.
+    expect(bPied.y + bPied.height).toBeLessThanOrEqual(bPanneau.y + bPanneau.height + 1);
+    // Il ne recouvre pas le corps : leurs rectangles ne se chevauchent pas.
+    expect(bCorps.y + bCorps.height).toBeLessThanOrEqual(bPied.y + 1);
+
+    // Le corps défile seul : le pied ne bouge pas d'un pixel.
+    await corps.evaluate((e) => e.scrollTo(0, e.scrollHeight));
+    const bPiedApres = await boite(panneau.locator("footer"));
+    expect(Math.abs(bPiedApres.y - bPied.y)).toBeLessThanOrEqual(1);
+
+    await page.keyboard.press("Escape");
+  }
+});
