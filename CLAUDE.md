@@ -3,6 +3,10 @@
 Faits durables du projet. La référence produit est le brief de passation et
 `modele-de-donnees.md` : **ce document fait foi, le code l'implémente.**
 
+**État des lieux : [`ETAT-DES-LIEUX.md`](ETAT-DES-LIEUX.md).** Ce qui est en
+cours, les dettes chiffrées, et surtout **les pistes fermées avec la mesure qui
+les a fermées** — une piste fermée sans son chiffre se rouvre toujours.
+
 ## Ce que le produit est
 
 Aider quelqu'un à trouver la formation e-commerce adaptée à sa situation en

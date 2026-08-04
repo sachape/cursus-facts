@@ -292,7 +292,8 @@ function Explorer() {
           comme celui de n'importe quel comparateur.
         */}
         <p className="mx-auto mt-(--space-4) max-w-(--sous-titre-largeur-max) t-body-lg text-(--text-secondary)">
-          On vous aide à choisir la bonne formation — pas à vous dire laquelle est la meilleure.
+          Trouvez la formation adaptée à votre projet grâce à des informations claires et
+          vérifiées.
         </p>
 
         <div className="mt-(--space-8)">
