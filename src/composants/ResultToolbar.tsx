@@ -100,7 +100,13 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
                 <DropdownMenuRadioItem
                   key={t}
                   value={t}
-                  className="min-h-(--option-hauteur) rounded-(--radius-md) px-(--space-3) t-body-sm data-[state=checked]:bg-(--accent-10) [&:not(:last-child)]:mb-(--space-2)"
+                  /*
+                    L'indicateur radio de shadcn est positionné en absolu à
+                    gauche, où il chevauche le texte dès qu'on retire le retrait
+                    de 32 px qu'il attend. Le fond de sélection dit déjà ce qui
+                    est choisi : un second marqueur n'ajoute rien.
+                  */
+                  className="min-h-(--option-hauteur) rounded-(--radius-md) px-(--space-3) t-body-sm data-[state=checked]:bg-(--accent-10) [&:not(:last-child)]:mb-(--space-2) [&>span:first-child]:hidden"
                 >
                   {LIBELLES_TRIS_COURTS[t]}
                 </DropdownMenuRadioItem>
