@@ -92,13 +92,17 @@ function Explorer() {
   const ouvrirEnPanneau = useCallback(
     (parcours: ParcoursListe, origine: HTMLElement) => {
       origineFocus.current = origine;
-      void naviguer({ search: (actuel) => ({ ...actuel, fiche: parcours.slug }) });
+      void naviguer({
+        search: (actuel: { fiche?: string }) => ({ ...actuel, fiche: parcours.slug }),
+      });
     },
     [naviguer],
   );
 
   const fermerPanneau = useCallback(() => {
-    void naviguer({ search: ({ fiche: _ignore, ...reste }) => reste });
+    void naviguer({
+      search: ({ fiche: _ignore, ...reste }: { fiche?: string }) => reste,
+    });
     origineFocus.current?.focus();
     origineFocus.current = null;
   }, [naviguer]);
