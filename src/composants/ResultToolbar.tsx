@@ -22,7 +22,7 @@ import {
 import { SearchField } from "./SearchField";
 import { CountBadge } from "./CountBadge";
 import type { Tri } from "@/modele/classement";
-import { LIBELLES_TRIS, LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
+import { LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
 
 /* -------------------------------------------------------------------------- */
 /* ActiveFilter — un filtre posé, retirable d'un clic                         */
@@ -283,9 +283,12 @@ export function ResultToolbar({
         </div>
       )}
 
-      <p className="mb-(--space-5) mt-(--space-3) t-caption text-(--text-tertiary) min-[1024px]:mb-(--space-4)">
-        {LIBELLES_TRIS[tri]}
-      </p>
+      {/*
+        La phrase explicative du tri a été retirée de la liste. L'invariant 4
+        reste tenu : le LIBELLÉ du tri est affiché — dans le déclencheur — et la
+        règle complète, avec ce qu'elle décrit et ce qu'elle ne décrit pas, est
+        publiée dans la vue Méthode.
+      */}
     </>
   );
 }
