@@ -62,7 +62,7 @@ const LIBELLES_TRIS_COURTS: Record<Tri, string> = {
 };
 
 function Explorer() {
-  const parcours = Route.useLoaderData();
+  const parcours = Route.useLoaderData() as ParcoursListe[];
   const { organisme, fiche } = Route.useSearch();
   const naviguer = useNavigate({ from: "/" });
   const [filtres, setFiltres] = useState<Filtres>({
