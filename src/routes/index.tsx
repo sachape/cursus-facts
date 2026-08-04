@@ -183,7 +183,12 @@ function Explorer() {
     marge, et une marge ne survit pas à deux ancrages indépendants.
   */
   const colonneFiltres = (
-    <div className="flex flex-col gap-(--space-4)">
+    /*
+      Le retrait intérieur laisse la place au halo de focus du champ. Sans lui,
+      la colonne défilante le rogne au ras du champ — le composant paraît coupé
+      alors qu'il est simplement au bord de la zone qui défile.
+    */
+    <div className="flex flex-col gap-(--space-4) px-(--space-2) py-(--space-3)">
       <Input
         type="search"
         value={filtres.recherche}
