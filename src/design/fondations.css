@@ -120,22 +120,61 @@
   /* vérifiée. Prix, volumes, compteurs, identifiants, dates. Jamais un      */
   /* libellé, jamais une phrase.                                            */
   /* ---------------------------------------------------------------------- */
-  --font-display: "Schibsted Grotesk", system-ui, sans-serif;
-  --font-texte: "Public Sans", system-ui, sans-serif;
-  --font-donnees: "DM Mono", ui-monospace, monospace;
+  /*
+    Bricolage Grotesque n'est employé QUE sur display-1/2 et heading-1 à 4.
+    Il ne descend jamais dans le texte courant : sa chasse large et sa hauteur
+    d'x généreuse en font une police de titre, pas de lecture.
+  */
+  --font-display: "Bricolage Grotesque", system-ui, sans-serif;
+  --font-body: "Geist", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
 
+  /*
+    ÉCHELLE RECALÉE SUR BRICOLAGE. Les tailles du document de fondations ont
+    été posées sur Schibsted Grotesk. Bricolage a une hauteur d'x plus généreuse
+    et une chasse plus large : à taille égale il occupe davantage, et un titre
+    qui tenait sur une ligne peut en réclamer deux.
+
+    Les tailles sont conservées — c'est la hiérarchie du document, et la changer
+    reviendrait à refaire l'échelle. Ce qui bouge, ce sont les interlignes, qui
+    gagnent 4 px là où la hauteur d'x le réclame, en restant sur le rythme de
+    4 px.
+  */
   --display-1-size: 48px;
-  --display-1-line: 52px;
+  --display-1-line: 56px;
   --display-2-size: 36px;
-  --display-2-line: 40px;
+  --display-2-line: 44px;
   --heading-1-size: 28px;
   --heading-1-line: 36px;
   --heading-2-size: 22px;
-  --heading-2-line: 28px;
+  --heading-2-line: 32px;
   --heading-3-size: 18px;
   --heading-3-line: 24px;
   --heading-4-size: 16px;
   --heading-4-line: 24px;
+
+  /*
+    INTERLETTRAGE. Bricolage supporte moins de resserrement que Schibsted aux
+    grandes tailles : au-delà de −0,02em ses jonctions se ferment et les
+    contreformes se bouchent. Les valeurs du document — −0,03em sur display-1 —
+    sont donc relevées.
+  */
+  --display-1-tracking: -0.02em;
+  --display-2-tracking: -0.02em;
+  --heading-1-tracking: -0.018em;
+  --heading-2-tracking: -0.015em;
+  --heading-3-tracking: -0.01em;
+  --heading-4-tracking: 0;
+
+  /*
+    AXE OPTIQUE. Bricolage Grotesque est variable sur `opsz`. Calé sur la taille
+    de rendu, il épaissit les fûts aux petites tailles et affine les jonctions
+    aux grandes — sans quoi un grand titre paraît mou et un petit titre paraît
+    serré. Ce n'est pas un effet : c'est ce que le dessin de la police attend.
+  */
+  --opsz-display-1: 96;
+  --opsz-display-2: 48;
+  --opsz-heading: 24;
   --body-lg-size: 17px;
   --body-lg-line: 28px;
   --body-size: 15px;
@@ -244,6 +283,126 @@
 */
 .chiffre,
 [data-donnee] {
-  font-family: var(--font-donnees);
+  font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Classes de l'échelle typographique                                          */
+/*                                                                             */
+/* Un composant n'écrit jamais une taille : il porte une classe de l'échelle.  */
+/* C'est ce qui rend l'invariant de design vérifiable — une taille en dur      */
+/* devient visible au lieu de se fondre dans une classe utilitaire.            */
+/* -------------------------------------------------------------------------- */
+
+.t-display-1,
+.t-display-2,
+.t-heading-1,
+.t-heading-2,
+.t-heading-3,
+.t-heading-4 {
+  font-family: var(--font-display);
+}
+
+.t-display-1 {
+  font-size: var(--display-1-size);
+  line-height: var(--display-1-line);
+  font-weight: 800;
+  letter-spacing: var(--display-1-tracking);
+  font-variation-settings: "opsz" var(--opsz-display-1);
+}
+
+.t-display-2 {
+  font-size: var(--display-2-size);
+  line-height: var(--display-2-line);
+  font-weight: 800;
+  letter-spacing: var(--display-2-tracking);
+  font-variation-settings: "opsz" var(--opsz-display-2);
+}
+
+.t-heading-1 {
+  font-size: var(--heading-1-size);
+  line-height: var(--heading-1-line);
+  font-weight: 600;
+  letter-spacing: var(--heading-1-tracking);
+  font-variation-settings: "opsz" var(--opsz-heading);
+}
+
+.t-heading-2 {
+  font-size: var(--heading-2-size);
+  line-height: var(--heading-2-line);
+  font-weight: 600;
+  letter-spacing: var(--heading-2-tracking);
+  font-variation-settings: "opsz" var(--opsz-heading);
+}
+
+.t-heading-3 {
+  font-size: var(--heading-3-size);
+  line-height: var(--heading-3-line);
+  font-weight: 600;
+  letter-spacing: var(--heading-3-tracking);
+  font-variation-settings: "opsz" var(--opsz-heading);
+}
+
+.t-heading-4 {
+  font-size: var(--heading-4-size);
+  line-height: var(--heading-4-line);
+  font-weight: 600;
+  letter-spacing: var(--heading-4-tracking);
+  font-variation-settings: "opsz" var(--opsz-heading);
+}
+
+.t-body-lg,
+.t-body,
+.t-body-sm,
+.t-caption,
+.t-label {
+  font-family: var(--font-body);
+}
+
+.t-body-lg {
+  font-size: var(--body-lg-size);
+  line-height: var(--body-lg-line);
+}
+.t-body {
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+}
+.t-body-sm {
+  font-size: var(--body-sm-size);
+  line-height: var(--body-sm-line);
+}
+.t-caption {
+  font-size: var(--caption-size);
+  line-height: var(--caption-line);
+}
+.t-label {
+  font-size: var(--label-size);
+  line-height: var(--label-line);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.t-data-lg,
+.t-data,
+.t-data-sm {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.t-data-lg {
+  font-size: var(--data-lg-size);
+  line-height: var(--data-lg-line);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.t-data {
+  font-size: var(--data-size);
+  line-height: var(--data-line);
+}
+.t-data-sm {
+  font-size: var(--data-sm-size);
+  line-height: var(--data-sm-line);
+  letter-spacing: 0.02em;
 }
