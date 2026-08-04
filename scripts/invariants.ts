@@ -89,12 +89,14 @@ verifier("4 bis. Aucune fiche n'affiche « aucun frais » avec un tarif publié"
   règle « volume horaire sur mesure », écrite et révoquée le 4 août.
 */
 const CHAMPS_A_REGLE_PUBLIEE = new Set(["lieu", "modalites_paiement"]);
-verifier("10. Aucun non_applicable hors de la liste fermée de règles", (o) => {
+verifier("10. Aucun non_applicable sans lecture de page ET règle publiée", (o) => {
   const etats = determinerEtats(o);
-  const horsListe = CHAMPS_INFORMATION.filter(
-    (c) => etats[c] === "non_applicable" && !CHAMPS_A_REGLE_PUBLIEE.has(c),
+  const fautifs = CHAMPS_INFORMATION.filter(
+    (c) =>
+      etats[c] === "non_applicable" &&
+      (!CHAMPS_A_REGLE_PUBLIEE.has(c) || o.profondeur !== "detail_verifie"),
   );
-  return horsListe.length > 0 ? `${nom(o)} → ${horsListe.join(", ")}` : null;
+  return fautifs.length > 0 ? `${nom(o)} → ${fautifs.join(", ")}` : null;
 });
 
 verifier("5. Toute valeur écrite par le pipeline porte une citation", (o) =>

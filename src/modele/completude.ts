@@ -166,7 +166,21 @@ export function determinerEtats(offre: OffreNormalisee): EtatsInformation {
     // Une règle publiée comble l'absence. La valeur est exacte, mais elle vient
     // de nous : l'état le dit, et la fiche affiche la règle.
     else if (deriver(offre).some((d) => d.champ === champ)) etat = "derive";
-    else if (!(APPLICABILITE[champ]?.(offre) ?? true)) etat = "non_applicable";
+    /*
+      `non_applicable` EXIGE LES DEUX : la page lue ET une règle publiée.
+
+      C'est le seul état qui **ferme** un champ — il sort du dénominateur, sort
+      de la file de collecte, et n'est jamais revérifié. Le fermer sans avoir
+      regardé est ce qui a produit l'erreur Digital Study, où « Sur mesure »
+      avait été lu comme une absence de durée alors que la page publie 10 h.
+
+      Une règle publiée ne suffit pas seule. Les deux règles de la liste fermée
+      déduisent depuis un autre champ : le lieu depuis `formats`, le paiement
+      depuis `prix`. Sur une fiche jamais lue, `formats` est peut-être
+      incomplet — le vice est identique, la publication le rend contestable,
+      pas vrai.
+    */
+    else if (detailVerifie && !(APPLICABILITE[champ]?.(offre) ?? true)) etat = "non_applicable";
     // Sans lecture de la page de détail, l'absence n'est pas constatée.
     else if (!detailVerifie) etat = "non_collecte";
     else etat = "non_communique";
