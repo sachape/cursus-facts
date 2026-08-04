@@ -36,7 +36,7 @@ const COULEUR = /#[0-9a-f]{3,8}\b|\b(rgb|rgba|hsl|hsla|oklch)\s*\(/i;
  * les dimensions ; les fractions d'unité relative (`w-[calc(...)]`) restent
  * hors de portée de cette règle, faute de pouvoir les rattacher à une échelle.
  */
-const ARBITRAIRE = /\b(p|m|gap|w|h|text|leading|top|left|right|bottom|inset)[a-z]*-\[[\d.]+(px|rem)\]/;
+const ARBITRAIRE = /\b(p|m|gap|w|h|text|leading|top|left|right|bottom|inset)[a-z]*-\[[\d.]+(px|rem)\](?!:)/;
 
 /** Durées d'animation littérales. */
 const DUREE = /duration-\[?\d+m?s?\]?|transition-duration:\s*\d/;

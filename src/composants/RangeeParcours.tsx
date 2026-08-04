@@ -110,7 +110,7 @@ export function RangeeParcours({
 
   return (
     <li className="border-b border-border">
-      <div className="grid grid-cols-1 gap-5 px-1 py-6 min-[840px]:grid-cols-[1fr_auto] min-[840px]:gap-8">
+      <div className="grid grid-cols-1 gap-[--space-5] px-[--space-1] py-[--space-6] min-[840px]:grid-cols-[1fr_auto] min-[840px]:gap-[--space-8]">
         {/* Bloc gauche — ce qu'est le parcours. */}
         <div className="min-w-0">
           <h3 className="font-titre text-base font-medium leading-snug">

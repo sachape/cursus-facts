@@ -64,7 +64,7 @@ const LIBELLES_NIVEAUX: Record<NiveauEntree, string> = {
 /** Le décompte, en badge aligné à droite plutôt qu'accolé au libellé. */
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="chiffre shrink-0 rounded-[4px] bg-muted px-1.5 py-0.5 text-[10.5px] text-muted-foreground">
+    <span className="chiffre shrink-0 rounded-[--radius-sm] bg-muted px-1.5 py-0.5 t-data-sm text-muted-foreground">
       {children}
     </span>
   );
@@ -103,13 +103,13 @@ function Groupe({
             {/* Le badge survit au repli : un filtre actif ne doit jamais
                 disparaître de la vue. */}
             {actifs > 0 && (
-              <span className="chiffre rounded-[4px] bg-foreground px-1.5 py-0.5 text-[10.5px] text-background">
+              <span className="chiffre rounded-[--radius-sm] bg-foreground px-1.5 py-0.5 t-data-sm text-background">
                 {actifs}
               </span>
             )}
             <span
               aria-hidden
-              className={`text-muted-foreground transition-transform motion-safe:duration-150 ${
+              className={`text-muted-foreground transition-transform motion-safe:duration-[--motion-base] ${
                 ouvert ? "rotate-180" : ""
               }`}
             >
@@ -120,7 +120,7 @@ function Groupe({
       </h2>
 
       {ouvert && (
-        <div className="pb-5 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-1 motion-safe:duration-150">
+        <div className="pb-5 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-1 motion-safe:duration-[--motion-base]">
           {description !== undefined && (
             /* 8 px sous l'intitulé : les deux étaient collés. */
             <p className="mb-3 mt-2 text-xs leading-relaxed text-muted-foreground">{description}</p>

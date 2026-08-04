@@ -232,6 +232,17 @@
   --grille-gouttiere: var(--space-6);
   --grille-marge: var(--space-6);
   --panneau-largeur: 560px;
+  /*
+    Le code-barres travaille sous l'échelle d'espacement : un trait de 3 px et
+    un écart de 2 px ne sont pas de la mise en page, ce sont les dimensions
+    propres d'un signe. La règle veut qu'on étende l'échelle plutôt que
+    d'improviser — ces jetons sont cette extension, nommés et bornés.
+  */
+  --barre-largeur: 3px;
+  --barre-ecart: 2px;
+  --barre-hauteur: 16px;
+  --barre-hauteur-reduite: 8px;
+  --barre-rayon: 1px;
   --cible-hauteur-min: 32px;
   --cible-hauteur-min-tactile: 44px;
 }
