@@ -96,6 +96,7 @@ export type Database = {
           infos_renseignees: number
           lieu: string | null
           modalite_acces: Database["public"]["Enums"]["modalite_acces"] | null
+          modalite_commerciale: string | null
           modalites_paiement: string | null
           motif_regroupement: string | null
           niveau_entree: Database["public"]["Enums"]["niveau_entree"] | null
@@ -105,8 +106,11 @@ export type Database = {
           outils_enseignes: string[] | null
           parcours_parent_id: string | null
           prerequis: string | null
+          prix_intra: number | null
           prix_max: number | null
           prix_min: number | null
+          profondeur: string
+          profondeur_verifiee_le: string | null
           programme: Json | null
           site_officiel: string | null
           slug: string
@@ -135,6 +139,7 @@ export type Database = {
           infos_renseignees?: number
           lieu?: string | null
           modalite_acces?: Database["public"]["Enums"]["modalite_acces"] | null
+          modalite_commerciale?: string | null
           modalites_paiement?: string | null
           motif_regroupement?: string | null
           niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
@@ -144,8 +149,11 @@ export type Database = {
           outils_enseignes?: string[] | null
           parcours_parent_id?: string | null
           prerequis?: string | null
+          prix_intra?: number | null
           prix_max?: number | null
           prix_min?: number | null
+          profondeur?: string
+          profondeur_verifiee_le?: string | null
           programme?: Json | null
           site_officiel?: string | null
           slug: string
@@ -174,6 +182,7 @@ export type Database = {
           infos_renseignees?: number
           lieu?: string | null
           modalite_acces?: Database["public"]["Enums"]["modalite_acces"] | null
+          modalite_commerciale?: string | null
           modalites_paiement?: string | null
           motif_regroupement?: string | null
           niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
@@ -183,8 +192,11 @@ export type Database = {
           outils_enseignes?: string[] | null
           parcours_parent_id?: string | null
           prerequis?: string | null
+          prix_intra?: number | null
           prix_max?: number | null
           prix_min?: number | null
+          profondeur?: string
+          profondeur_verifiee_le?: string | null
           programme?: Json | null
           site_officiel?: string | null
           slug?: string

@@ -10,7 +10,7 @@
  * Méthode qui diverge du code est pire que pas de page Méthode.
  */
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { chargerArbitrages } from "@/donnees/requetes";
+import { chargerArbitrages, type ArbitrageLigne } from "@/donnees/requetes";
 import {
   LIBELLES_CATEGORIES,
   LIBELLES_DOMAINES,
@@ -79,7 +79,7 @@ function Section({
 }
 
 function Methode() {
-  const arbitrages = Route.useLoaderData();
+  const arbitrages = Route.useLoaderData() as ArbitrageLigne[];
   const pourcentSujet = Math.round(SEUIL_SUJET_MODULES * 100);
   const pourcentIntitule = Math.round(SEUIL_PROXIMITE_INTITULE * 100);
   const pourcentTronc = Math.round(SEUIL_TRONC_COMMUN * 100);
