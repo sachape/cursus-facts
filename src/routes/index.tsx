@@ -250,8 +250,14 @@ function Explorer() {
       <header className="mx-auto max-w-(--hero-largeur-max) pt-(--space-16) pb-(--space-16) text-center">
         <p className="t-label text-(--text-tertiary)">Comparateur indépendant · France</p>
 
-        <h1 className="mx-auto mt-(--space-4) max-w-(--titre-largeur-max) t-display-2 max-[959px]:t-heading-1">
-          Comparez les formations avant de dépenser plusieurs milliers d&apos;euros.
+        {/*
+          Titre court : il supporte davantage de corps qu'un titre long, et le
+          hero a besoin d'un point d'ancrage visuel. `text-wrap: balance`
+          répartit les deux lignes plutôt que d'isoler « e-commerce » seul en
+          bas.
+        */}
+        <h1 className="mx-auto mt-(--space-4) max-w-(--titre-largeur-max) text-balance t-display-1 max-[639px]:t-heading-1">
+          Comparez les formations e-commerce
         </h1>
 
         {/*

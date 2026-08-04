@@ -250,8 +250,13 @@
   --suggestions-hauteur-max: 400px;
   --suggestion-hauteur: 44px;
   --hero-largeur-max: 720px;
-  /* 18 caractères par ligne : le titre tient sur deux ou trois lignes. */
-  --titre-largeur-max: 18ch;
+  /*
+    Le titre court tient sur deux lignes, une seule au-delà de 1 100 px.
+    L'ancienne borne de 18 caractères — posée pour un titre long — le cassait
+    en quatre lignes une fois raccourci : une contrainte de mise en page
+    survit rarement au texte pour lequel elle a été écrite.
+  */
+  --titre-largeur-max: 20ch;
   --sous-titre-largeur-max: 60ch;
   --cible-hauteur-min: 32px;
   --cible-hauteur-min-tactile: 44px;
@@ -287,6 +292,13 @@
   --status-absent-bg: var(--clay-90);
   --status-pending: var(--amber-20);
   --status-pending-bg: var(--amber-70);
+}
+
+/* Au-delà de 1 100 px, le titre tient sur une seule ligne. */
+@media (min-width: 1100px) {
+  :root {
+    --titre-largeur-max: 34ch;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
