@@ -48,7 +48,7 @@ export function OngletsDomaines({
       className="sticky top-(--app-header-height) z-40 m-0 w-full max-w-[100vw] border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
     >
       <ul
-        className="flex max-w-full min-h-(--domain-navigation-height) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex max-w-full min-h-(--nav-hauteur) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {onglets.map((onglet) => {
           const estActif = onglet.domaine === actif;
@@ -64,7 +64,7 @@ export function OngletsDomaines({
                 type="button"
                 aria-current={estActif ? "true" : undefined}
                 onClick={() => choisir(onglet.domaine)}
-                className={`relative inline-flex min-h-(--domain-navigation-height) items-center gap-(--space-2) whitespace-nowrap t-body-sm transition-colors after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:content-[''] ${
+                className={`relative inline-flex min-h-(--nav-hauteur) items-center gap-(--space-2) whitespace-nowrap t-body-sm transition-colors after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:content-[''] ${
                   estActif
                     ? "font-medium text-(--text-primary) after:bg-(--text-primary)"
                     : "text-(--text-secondary) after:bg-transparent hover:text-(--text-primary)"

@@ -337,6 +337,20 @@
     écrase ces variables sur `documentElement` : elles ne servent qu'avant le
     premier rendu, et pour le rendu serveur.
   */
+  /*
+    DEUX FAMILLES DE VARIABLES, ET LES CONFONDRE BOUCLE.
+
+    `--header-hauteur` et `--nav-hauteur` DIMENSIONNENT les barres.
+    `--app-header-height` et `--domain-navigation-height` reçoivent leur hauteur
+    MESURÉE et servent d'offsets aux barres suivantes.
+
+    Une seule famille pour les deux rôles crée une rétroaction : l'observateur
+    publie la hauteur, la variable la redonne en min-height, l'élément grandit,
+    l'observateur publie à nouveau. La page grandit sans fin.
+  */
+  --header-hauteur: 72px;
+  --nav-hauteur: 56px;
+
   --app-header-height: 72px;
   /* Respiration au-dessus du hero. 56 px n'est pas sur l'échelle d'espacement :
      c'est un jeton de composant, nommé plutôt qu'improvisé. */
@@ -457,6 +471,8 @@ html {
 */
 @media (max-width: 1023px) {
   :root {
+    --header-hauteur: 56px;
+    --nav-hauteur: 60px;
     --app-header-height: 56px;
     --hero-padding-top: var(--space-10);
     --domain-navigation-height: 60px;
@@ -479,6 +495,7 @@ html {
 
 @media (max-width: 767px) {
   :root {
+    --nav-hauteur: 56px;
     --domain-navigation-height: 56px;
     --nav-padding: var(--space-5);
     --nav-gap: var(--space-7);
