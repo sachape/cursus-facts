@@ -631,8 +631,14 @@ html {
     font-family: var(--font-display);
     font-size: clamp(56px, 4.4vw, 72px);
     line-height: 0.98;
-    letter-spacing: -0.055em;
-    font-weight: 750;
+    /*
+      −0,055em fermait les contreformes de Bricolage et collait « Comparez les »
+      en un seul mot. La graisse 750 n'était pas chargée — seuls 600 et 800
+      l'étaient — et retombait donc sur 800, d'où un titre bien plus lourd que
+      demandé. La plage variable 600..800 est désormais chargée.
+    */
+    letter-spacing: -0.03em;
+    font-weight: 700;
     text-align: center;
     font-variation-settings: "opsz" var(--opsz-display-1);
   }

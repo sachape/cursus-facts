@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           réglage sans produire la moindre erreur — le titre paraîtrait
           simplement mou, sans qu'on sache pourquoi.
         */
-        href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500&family=DM+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Geist:wght@400;500&family=DM+Mono:wght@400;500&display=swap",
       },
       {
         rel: "stylesheet",
