@@ -1,4 +1,4 @@
-# Cursus — comparateur de formations e-commerce
+# Formlist — comparateur de formations e-commerce
 
 Faits durables du projet. La référence produit est le brief de passation et
 `modele-de-donnees.md` : **ce document fait foi, le code l'implémente.**
@@ -13,7 +13,7 @@ Aider quelqu'un à trouver la formation e-commerce adaptée à sa situation en
 comparant des faits vérifiables. Pas en lui disant laquelle est la meilleure.
 
 Le marché est dominé par des comparatifs rémunérés à l'affiliation. Le pari de
-Cursus est l'inverse : ne rien noter, ne rien classer par qualité, ne toucher
+Formlist est l'inverse : ne rien noter, ne rien classer par qualité, ne toucher
 aucune commission, et tirer sa valeur de l'exhaustivité du catalogue et de la
 vérifiabilité de chaque information.
 

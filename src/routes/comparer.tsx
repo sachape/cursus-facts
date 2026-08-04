@@ -27,7 +27,7 @@ export const Route = createFileRoute("/comparer")({
   component: Comparer,
   head: () => ({
     meta: [
-      { title: "Comparer des formations e-commerce | Cursus" },
+      { title: "Comparer des formations e-commerce | Formlist" },
       {
         name: "description",
         content:

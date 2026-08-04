@@ -10,7 +10,7 @@
 
 const CADENCE_PAR_DOMAINE_MS = 1_500;
 const TENTATIVES = 3;
-const AGENT = "CursusBot/1.0 (+https://cursus-facts-only.lovable.app ; comparateur de formations)";
+const AGENT = "FormlistBot/1.0 (+https://cursus-facts-only.lovable.app ; comparateur de formations)";
 
 /** Dernier appel par domaine, pour espacer les requêtes. */
 const dernierAppel = new Map<string, number>();

@@ -186,7 +186,7 @@ identiquement à du JSON libre. Un JSON mal formé ne produit rien.
 | Éligibilité CPF | 164 fiches à `cpf: 0` | Le booléen ne distingue pas « vérifié non éligible » de « non vérifié ». Corriger par déduction violerait l'invariant 2. |
 | Profondeur du catalogue | 9 / 232 | Bloquée par l'appariement (§3). |
 | Fusion jamais déclenchée | 0 fusion | Règle couverte par des cas construits dans `regroupement.test.ts`. |
-| Intitulés désignant une famille | ~17 candidats | Non traités **par motif** : « Cursus Grande École » ressemble au patron et est un produit unique. Seule la lecture tranche. |
+| Intitulés désignant une famille | ~17 candidats | Non traités **par motif** : « Formlist Grande École » ressemble au patron et est un produit unique. Seule la lecture tranche. |
 | `SaveButton` | — | **Décision produit en attente** : le produit n'a ni comptes ni favoris. Un bouton sans mécanisme serait une promesse non tenue. |
 | Règles `lieu` et `paiement` | 165 champs suspendus | Elles déduisent depuis un autre champ. Après le crawl, l'entrée sera constatée — la déduction reste, son entrée s'améliore. Même logique que le garde-fou de citation. |
 

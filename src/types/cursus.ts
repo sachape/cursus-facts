@@ -1,5 +1,5 @@
 /**
- * Types métier Cursus.
+ * Types métier Formlist.
  *
  * Principe non négociable : aucun score, aucune note, aucune moyenne, aucun
  * pourcentage. La complétude d'une fiche est un rapport de deux entiers

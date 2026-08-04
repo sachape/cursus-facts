@@ -33,7 +33,7 @@ export const Route = createFileRoute("/methode")({
   component: Methode,
   head: () => ({
     meta: [
-      { title: "Méthode — comment ce catalogue est construit | Cursus" },
+      { title: "Méthode — comment ce catalogue est construit | Formlist" },
       {
         name: "description",
         content:

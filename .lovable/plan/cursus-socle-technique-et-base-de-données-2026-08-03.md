@@ -1,4 +1,4 @@
-# Cursus — socle technique et base de données
+# Formlist — socle technique et base de données
 
 Aucune interface dans cette étape. Uniquement le backend (Lovable Cloud) et les types TypeScript.
 

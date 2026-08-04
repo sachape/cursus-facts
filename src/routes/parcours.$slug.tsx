@@ -35,7 +35,7 @@ export const Route = createFileRoute("/parcours/$slug")({
     const { fiche } = loaderData;
     return {
       meta: [
-        { title: `${fiche.nom} — ${fiche.organismeNom} | Cursus` },
+        { title: `${fiche.nom} — ${fiche.organismeNom} | Formlist` },
         {
           name: "description",
           content: `${fiche.nom} par ${fiche.organismeNom}. ${fiche.infosRenseignees} informations vérifiées sur ${fiche.infosApplicables} applicables. Faits comparables, sans note ni classement.`,

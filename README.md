@@ -1,6 +1,6 @@
-# Cursus Facts
+# Formlist Facts
 
-Je construis Cursus, un comparateur de formations e-commerce français.
+Je construis Formlist, un comparateur de formations e-commerce français.
 
 Principe non négociable : ce produit ne note rien, ne classe rien par qualité, ne
 

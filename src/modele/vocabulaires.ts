@@ -1,5 +1,5 @@
 /**
- * Vocabulaires fermés du modèle Cursus.
+ * Vocabulaires fermés du modèle Formlist.
  *
  * Toutes les règles de classification sont déterministes et publiées : un
  * organisme mécontent de son classement doit pouvoir contester la règle, pas

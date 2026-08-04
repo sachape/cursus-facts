@@ -18,7 +18,7 @@ export const Route = createFileRoute("/organismes")({
   component: Organismes,
   head: () => ({
     meta: [
-      { title: "Organismes de formation e-commerce | Cursus" },
+      { title: "Organismes de formation e-commerce | Formlist" },
       {
         name: "description",
         content:

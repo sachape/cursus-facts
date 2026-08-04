@@ -26,7 +26,7 @@ export const Route = createFileRoute("/aide-au-choix")({
   component: AideAuChoix,
   head: () => ({
     meta: [
-      { title: "Aide au choix — quelle formation pour votre situation | Cursus" },
+      { title: "Aide au choix — quelle formation pour votre situation | Formlist" },
       {
         name: "description",
         content:
