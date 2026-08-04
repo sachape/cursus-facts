@@ -241,7 +241,7 @@ function Explorer() {
           Au-delà de 960 px la colonne suit le défilement de la liste ; elle
           défile sur elle-même pour ne jamais couper ses derniers groupes.
         */}
-        <aside className="min-[960px]:sticky min-[960px]:top-[--space-6] min-[960px]:max-h-[calc(100vh-96px)] min-[960px]:w-72 min-[960px]:shrink-0 min-[960px]:overflow-y-auto min-[960px]:[scrollbar-width:none] min-[960px]:[&::-webkit-scrollbar]:hidden">
+        <aside className="min-[960px]:sticky min-[960px]:top-(--space-6) min-[960px]:max-h-[calc(100vh-96px)] min-[960px]:w-72 min-[960px]:shrink-0 min-[960px]:overflow-y-auto min-[960px]:[scrollbar-width:none] min-[960px]:[&::-webkit-scrollbar]:hidden">
           {/* Sous 960 px : panneau dépliable, replié au chargement. */}
           <div className="min-[960px]:hidden">
             <Button

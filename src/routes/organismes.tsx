@@ -141,7 +141,7 @@ function Organismes() {
                   {organisme.sujets.map((sujet) => (
                     <li
                       key={sujet}
-                      className="rounded-full border border-border px-3 py-1 t-caption text-[--text-secondary]"
+                      className="rounded-full border border-border px-3 py-1 t-caption text-(--text-secondary)"
                     >
                       {sujet}
                     </li>

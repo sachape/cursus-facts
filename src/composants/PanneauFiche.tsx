@@ -107,7 +107,7 @@ export function PanneauFiche({
       <div
         onClick={fermer}
         aria-hidden="true"
-        className="absolute inset-0 bg-[--neutral-100]/30 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-[--motion-panel]"
+        className="absolute inset-0 bg-(--neutral-100)/30 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-(--motion-panel)"
       />
 
       <div
@@ -115,7 +115,7 @@ export function PanneauFiche({
         role="dialog"
         aria-modal="true"
         aria-label={fiche?.nom ?? "Fiche parcours"}
-        className="absolute inset-y-0 right-0 flex w-full max-w-[--panneau-largeur] flex-col bg-background shadow-2xl motion-safe:animate-in motion-safe:slide-in-from-right motion-safe:duration-[--motion-panel] motion-safe:[animation-timing-function:cubic-bezier(.22,.8,.28,1)]"
+        className="absolute inset-y-0 right-0 flex w-full max-w-(--panneau-largeur) flex-col bg-background shadow-2xl motion-safe:animate-in motion-safe:slide-in-from-right motion-safe:duration-(--motion-panel) motion-safe:[animation-timing-function:cubic-bezier(.22,.8,.28,1)]"
       >
         <header className="sticky top-0 z-10 border-b border-border bg-background px-5 py-4 sm:px-6">
           <div className="flex items-start justify-between gap-4">

@@ -32,7 +32,7 @@ export const NON_COMMUNIQUE = "Non communiqué";
 export function ConditionCout({ children }: { children: React.ReactNode }) {
   if (!children) return null;
   return (
-    <p className="mt-1 max-w-prose t-body-sm text-[--text-secondary]">
+    <p className="mt-1 max-w-prose t-body-sm text-(--text-secondary)">
       {children}
     </p>
   );
@@ -48,7 +48,7 @@ export function ConditionCout({ children }: { children: React.ReactNode }) {
 export function MentionDerivation({ children }: { children: React.ReactNode }) {
   if (!children) return null;
   return (
-    <p className="mt-2 max-w-prose border-l border-[--border-subtle] pl-2 t-caption text-[--text-tertiary]">
+    <p className="mt-2 max-w-prose border-l border-(--border-subtle) pl-2 t-caption text-(--text-tertiary)">
       {children}
     </p>
   );
@@ -69,7 +69,7 @@ export function Decisif({
 }) {
   return (
     <div>
-      <p className="t-label text-[--text-tertiary]">
+      <p className="t-label text-(--text-tertiary)">
         {etiquette}
       </p>
       <p
@@ -93,7 +93,7 @@ export function GroupeDecisif({ children }: { children: React.ReactNode }) {
  * Ce qui précise la nature du parcours sans décider à sa place.
  */
 export function Qualifiant({ children }: { children: React.ReactNode }) {
-  return <p className="t-body-sm text-[--text-secondary]">{children}</p>;
+  return <p className="t-body-sm text-(--text-secondary)">{children}</p>;
 }
 
 /**
@@ -113,7 +113,7 @@ export function Pastille({
       className={
         appuyee
           ? "rounded-full border border-foreground bg-foreground px-3 py-1 t-caption font-medium text-background"
-          : "rounded-full border border-[--border-default] px-3 py-1 t-caption text-[--text-secondary]"
+          : "rounded-full border border-(--border-default) px-3 py-1 t-caption text-(--text-secondary)"
       }
     >
       {children}

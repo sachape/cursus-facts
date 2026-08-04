@@ -35,7 +35,7 @@ export function CodeBarres({
 }) {
   return (
     <div
-      className={`flex items-end gap-[--barre-ecart] ${className}`}
+      className={`flex items-end gap-(--barre-ecart) ${className}`}
       role="img"
       aria-label={`État de la fiche : ${
         CHAMPS_INFORMATION.filter((c) => etats[c] === "renseigne").length
@@ -50,14 +50,14 @@ export function CodeBarres({
             key={champ}
             title={`${LIBELLES_CHAMPS_INFORMATION[champ]} — ${TITRE_ETAT[etat] ?? etat}`}
             className={[
-              "h-[--barre-hauteur] w-[--barre-largeur] rounded-[--barre-rayon]",
+              "h-(--barre-hauteur) w-(--barre-largeur) rounded-(--barre-rayon)",
               etat === "renseigne" ? "bg-foreground" : "",
               // Absence constatée : l'organisme ne publie pas. C'est un fait
               // sur lui, et le trait creux le dit.
               etat === "non_communique" ? "bg-border" : "",
               // Un champ sans objet ne se lit pas comme un manque : il s'efface
               // au lieu de creuser le code-barres.
-              etat === "non_applicable" ? "bg-[--border-subtle] h-[--barre-hauteur-reduite]" : "",
+              etat === "non_applicable" ? "bg-(--border-subtle) h-(--barre-hauteur-reduite)" : "",
               // Absence non constatée : c'est notre collecte qui manque, pas
               // l'information. Le trait est hachuré, ni plein ni creux.
               etat === "non_collecte"
@@ -66,10 +66,10 @@ export function CodeBarres({
               etat === "a_confirmer" ? "bg-foreground/40" : "",
               // Dérivé : plein, mais légèrement plus court — la valeur est
               // exacte et opposable, elle ne vient simplement pas de l'organisme.
-              etat === "derive" ? "bg-[--text-primary] h-[--barre-hauteur-reduite]" : "",
+              etat === "derive" ? "bg-(--text-primary) h-(--barre-hauteur-reduite)" : "",
               // Communiqué sur demande : comme un champ sans objet, il s'efface
               // au lieu de creuser le code-barres. Ce n'est pas un manque.
-              etat === "communique_sur_demande" ? "bg-[--border-subtle] h-[--barre-hauteur-reduite]" : "",
+              etat === "communique_sur_demande" ? "bg-(--border-subtle) h-(--barre-hauteur-reduite)" : "",
             ].join(" ")}
           />
         );
@@ -99,16 +99,16 @@ export function CompteurInformations({
   className?: string;
 }) {
   return (
-    <span className={`t-data-sm text-[--text-tertiary] ${className}`}>
+    <span className={`t-data-sm text-(--text-tertiary) ${className}`}>
       {renseignees} sur {applicables}
       {applicables < 18 && nonCollectes === 0 && (
-        <span className="ml-1 t-data-sm" title="Certains champs ne s'appliquent pas à ce parcours">
+        <span className="ml-2 t-data-sm" title="Certains champs ne s'appliquent pas à ce parcours">
           applicables
         </span>
       )}
       {nonCollectes > 0 && (
         <span
-          className="ml-1 t-data-sm"
+          className="ml-2 t-data-sm"
           title={`${nonCollectes} champs pas encore collectés : leur absence n'a pas été vérifiée`}
         >
           · {nonCollectes} à vérifier

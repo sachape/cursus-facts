@@ -38,6 +38,20 @@ const COULEUR = /#[0-9a-f]{3,8}\b|\b(rgb|rgba|hsl|hsla|oklch)\s*\(/i;
  */
 const ARBITRAIRE = /\b(p|m|gap|w|h|text|leading|top|left|right|bottom|inset)[a-z]*-\[[\d.]+(px|rem)\](?!:)/;
 
+/**
+ * Syntaxe de variable invalide en Tailwind v4.
+ *
+ * `mr-[--space-6]` n'est pas une valeur : entre crochets, le double tiret est
+ * lu comme une déclaration de propriété personnalisée. La classe est
+ * silencieusement ignorée et l'élément perd tout style — c'est ce qui a collé
+ * les onglets de domaines les uns aux autres, avec sept invariants au vert.
+ *
+ * La forme correcte est `mr-(--space-6)`. Cet invariant existe parce que
+ * l'erreur ne produit aucun message : ni erreur de compilation, ni avertissement,
+ * ni style. Elle ne se voit qu'à l'écran.
+ */
+const VARIABLE_INVALIDE = /\b[a-z][a-z0-9:-]*-\[--[a-z0-9-]+\]/;
+
 /** Durées d'animation littérales. */
 const DUREE = /duration-\[?\d+m?s?\]?|transition-duration:\s*\d/;
 
@@ -57,6 +71,7 @@ for (const racine of RACINES) {
       if (COULEUR.test(nu)) ajouter("couleur littérale hors jeton");
       if (ARBITRAIRE.test(nu)) ajouter("dimension arbitraire hors échelle");
       if (DUREE.test(nu)) ajouter("durée littérale hors jeton");
+      if (VARIABLE_INVALIDE.test(nu)) ajouter("syntaxe de variable invalide (crochets au lieu de parenthèses)");
     });
   }
 }
@@ -67,7 +82,12 @@ for (const i of infractions) {
   parRegle.set(i.regle, [...(parRegle.get(i.regle) ?? []), i]);
 }
 
-for (const regle of ["couleur littérale hors jeton", "dimension arbitraire hors échelle", "durée littérale hors jeton"]) {
+for (const regle of [
+  "couleur littérale hors jeton",
+  "dimension arbitraire hors échelle",
+  "durée littérale hors jeton",
+  "syntaxe de variable invalide (crochets au lieu de parenthèses)",
+]) {
   const liste = parRegle.get(regle) ?? [];
   console.log(`${liste.length === 0 ? "  ✓" : "  ✗"} ${regle}`);
   console.log(`      ${liste.length} occurrence(s)`);

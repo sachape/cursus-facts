@@ -37,19 +37,19 @@ export function OngletsDomaines({
         {onglets.map((onglet) => {
           const estActif = onglet.domaine === actif;
           return (
-            <li key={onglet.domaine ?? "tous"} className="shrink-0 mr-[--space-6] last:mr-0">
+            <li key={onglet.domaine ?? "tous"} className="shrink-0 mr-(--space-6) last:mr-0">
               <button
                 type="button"
                 aria-current={estActif ? "true" : undefined}
                 onClick={() => choisir(onglet.domaine)}
-                className={`whitespace-nowrap border-b-2 py-[--space-3] t-body-sm transition-colors ${
+                className={`whitespace-nowrap border-b-2 py-(--space-3) t-body-sm transition-colors ${
                   estActif
                     ? "border-foreground font-medium text-foreground"
                     : "border-transparent text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {onglet.libelle}
-                <span className="chiffre ml-1.5 text-xs text-muted-foreground/60">
+                <span className="t-data-sm ml-2 text-(--text-tertiary)">
                   {onglet.nombre}
                 </span>
               </button>
