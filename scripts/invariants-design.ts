@@ -64,15 +64,27 @@ const DUREE = /duration-\[?\d+m?s?\]?|transition-duration:\s*\d/;
 
 for (const racine of RACINES) {
   for (const fichier of fichiers(racine)) {
-    const lignes = readFileSync(fichier, "utf8").split("\n");
+    /*
+      Les commentaires sont retirés sur le FICHIER entier, pas ligne par ligne :
+      un bloc `/* … *\/` sur plusieurs lignes échappait au dépouillement, et
+      citer une classe pour l'expliquer déclenchait une infraction. Un invariant
+      qui signale du bruit finit par être ignoré.
+
+      Les lignes sont conservées — remplacées par du vide — pour que les
+      numéros restent justes.
+    */
+    const brut = readFileSync(fichier, "utf8");
+    const lignes = brut
+      .replace(/\/\*[\s\S]*?\*\//g, (bloc) => bloc.replace(/[^\n]/g, " "))
+      .split("\n");
     lignes.forEach((ligne, index) => {
       // Les commentaires citent souvent des valeurs pour expliquer une règle.
-      const nu = ligne.replace(/\/\/.*$|\/\*[\s\S]*?\*\//g, "");
+      const nu = ligne.replace(/\/\/.*$/, "");
       const ajouter = (regle: string) =>
         infractions.push({
           fichier,
           ligne: index + 1,
-          extrait: ligne.trim().slice(0, 76),
+          extrait: brut.split("\n")[index]?.trim().slice(0, 76) ?? "",
           regle,
         });
       if (COULEUR.test(nu)) ajouter("couleur littérale hors jeton");

@@ -674,6 +674,16 @@ html {
     font-variation-settings: "opsz" var(--opsz-display-1);
   }
 
+  /*
+    « e-commerce » ne se coupe pas sur son trait d'union : le navigateur y voit
+    une occasion de césure légitime, et le titre passait à trois lignes dans un
+    conteneur trop étroit. Ce `nowrap` ne porte que sur la seconde ligne, jamais
+    sur le titre entier — l'ensemble doit rester libre de se réduire.
+  */
+  .hero-title span:last-child {
+    white-space: nowrap;
+  }
+
   .hero-title span {
     display: block;
     margin: 0;
