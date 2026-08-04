@@ -10,6 +10,9 @@
  * tri ajoutait une surface de plus dans une vue qui en compte déjà deux — la
  * colonne de filtres et les cartes. La hiérarchie se fait par l'espacement.
  */
+import { useEffect, useRef, useState } from "react";
+import { Search } from "lucide-react";
+import { SearchField } from "./SearchField";
 import type { Tri } from "@/modele/classement";
 import { LIBELLES_TRIS, LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
 
@@ -100,6 +103,9 @@ export function ResultToolbar({
   tri,
   choisirTri,
   comparateur,
+  recherche,
+  modifierRecherche,
+  declencheurVisible = false,
 }: {
   titre: string;
   nombre: number;
@@ -109,7 +115,32 @@ export function ResultToolbar({
   choisirTri: (t: Tri) => void;
   /** Rendu du comparateur, quand des parcours sont sélectionnés. */
   comparateur?: React.ReactNode;
+  /** LA MÊME requête que le hero : aucune seconde logique de recherche. */
+  recherche: string;
+  modifierRecherche: (v: string) => void;
+  /** Vrai quand la recherche du hero a quitté la fenêtre. */
+  declencheurVisible?: boolean;
 }) {
+  /*
+    Le champ compact remplace la ligne de titre, à hauteur constante. Il reste
+    ouvert tant qu'une requête est active : la refermer en défilant ferait
+    disparaître le seul rappel de ce qui filtre la liste.
+  */
+  const [ouvert, setOuvert] = useState(false);
+  const declencheur = useRef<HTMLButtonElement>(null);
+  const champ = useRef<HTMLInputElement>(null);
+  const actif = ouvert || recherche.trim() !== "";
+
+  useEffect(() => {
+    if (ouvert) champ.current?.focus();
+  }, [ouvert]);
+
+  const fermer = () => {
+    setOuvert(false);
+    // Le focus revient d'où il venait : sans ça, il retombe sur le document et
+    // la navigation au clavier repart du haut de la page.
+    declencheur.current?.focus();
+  };
   return (
     <>
       {/*
@@ -128,9 +159,65 @@ export function ResultToolbar({
         quelques dizaines de pixels ou le pousse hors de la barre.
       */}
       <div className="sticky top-[calc(var(--app-header-height)+var(--domain-nav-height))] z-30 flex min-h-(--results-toolbar-height) flex-col gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) py-(--space-5) max-[1023px]:mx-[calc(-1*var(--space-6))] min-[1024px]:flex-row min-[1024px]:flex-wrap min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-6) min-[1024px]:px-0 min-[1024px]:py-0">
-        <h2 className="m-0 t-heading-4 leading-[1.2] text-(--text-primary)">
-          {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
-        </h2>
+        {actif ? (
+          <div className="flex min-h-(--bouton-hauteur-tactile) w-full items-center gap-(--space-2)">
+            <div className="min-w-0 flex-1">
+              <SearchField
+                ref={champ}
+                taille="sm"
+                valeur={recherche}
+                modifier={modifierRecherche}
+                placeholder="Rechercher une formation"
+                actif
+                champProps={{
+                  onKeyDown: (e) => {
+                    if (e.key === "Escape") fermer();
+                  },
+                }}
+              />
+            </div>
+            {/*
+              Fermer le mode recherche est distinct d'effacer la requête : la
+              croix du champ vide la saisie, ce bouton referme sans la perdre.
+            */}
+            <button
+              type="button"
+              onClick={fermer}
+              aria-label="Fermer la recherche"
+              className="flex size-(--bouton-hauteur-tactile) shrink-0 items-center justify-center rounded-(--radius-md) text-(--text-secondary) transition-colors duration-(--motion-fast) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+            >
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden>
+                <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+              </svg>
+            </button>
+          </div>
+        ) : (
+          <div className="flex min-h-(--bouton-hauteur-tactile) w-full items-center justify-between gap-(--space-3) min-[1024px]:w-auto">
+            <h2 className="m-0 t-heading-4 leading-[1.2] text-(--text-primary)">
+              {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
+            </h2>
+            {/*
+              L'emplacement est toujours réservé — seule l'opacité change. Le
+              faire apparaître par affichage conditionnel décalerait le titre à
+              chaque franchissement du seuil.
+            */}
+            <button
+              ref={declencheur}
+              type="button"
+              onClick={() => setOuvert(true)}
+              aria-label="Rechercher une formation"
+              tabIndex={declencheurVisible ? 0 : -1}
+              className={`flex size-(--bouton-hauteur-tactile) shrink-0 items-center justify-center gap-(--space-2) rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) text-(--text-secondary) transition-[opacity,transform,color] duration-(--motion-exit) ease-(--ease-standard) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) min-[768px]:w-auto min-[768px]:px-(--space-3) ${
+                declencheurVisible
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none -translate-y-1 opacity-0"
+              }`}
+            >
+              <Search size={19} strokeWidth={1.75} aria-hidden />
+              <span className="hidden t-body-sm min-[768px]:inline">Rechercher</span>
+            </button>
+          </div>
+        )}
         <div className="flex min-w-0 items-center gap-(--space-3) max-[1023px]:w-full">
           {comparateur}
           <SortSelect tri={tri} choisir={choisirTri} />

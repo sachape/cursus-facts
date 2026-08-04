@@ -9,7 +9,7 @@
  * comme un filtre de la colonne de gauche : c'est le premier niveau de la
  * hiérarchie Domaine → Sujet principal → Compétences couvertes.
  */
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { RechercheHero, type Suggestion } from "@/composants/RechercheHero";
@@ -85,6 +85,24 @@ function Explorer() {
   const origineFocus = useRef<HTMLElement | null>(null);
   /** Point de retour du focus quand l'élément d'origine a disparu. */
   const champRecherche = useRef<HTMLInputElement | null>(null);
+  /*
+    Le déclencheur de recherche de la toolbar n'apparaît que lorsque la
+    recherche du hero a quitté la fenêtre : tant qu'elle est visible, un second
+    champ ferait doublon à l'écran.
+  */
+  const zoneRecherche = useRef<HTMLDivElement | null>(null);
+  const [heroHorsEcran, setHeroHorsEcran] = useState(false);
+
+  useEffect(() => {
+    const cible = zoneRecherche.current;
+    if (cible === null) return;
+    const observateur = new IntersectionObserver(
+      ([entree]) => setHeroHorsEcran(!(entree?.isIntersecting ?? true)),
+      { threshold: 0 },
+    );
+    observateur.observe(cible);
+    return () => observateur.disconnect();
+  }, []);
 
   /*
     L'élément de retour est optionnel.
@@ -283,8 +301,16 @@ function Explorer() {
           répartit les deux lignes plutôt que d'isoler « e-commerce » seul en
           bas.
         */}
-        <h1 className="mx-auto mt-(--space-4) max-w-(--titre-largeur-max) text-balance t-display-1 max-[639px]:t-heading-1">
-          Comparez les formations e-commerce
+        <h1 className="mx-auto mt-(--space-4) max-w-(--titre-largeur-max) text-balance t-display-1 max-[1023px]:w-full max-[1023px]:max-w-[calc(100vw-2rem)] max-[1023px]:[font-size:var(--titre-mobile)] max-[1023px]:[letter-spacing:-0.045em] max-[1023px]:[line-height:0.98]">
+          Comparez les{" "}
+          {/*
+            Insécable : la coupure doit tomber après « les », jamais entre
+            « formations » et « e-commerce ». Sans ça, le titre passe à trois
+            lignes et repousse la recherche hors de l'écran sur un téléphone.
+          */}
+          <span className="max-[1023px]:block max-[1023px]:whitespace-nowrap">
+            formations e-commerce
+          </span>
         </h1>
 
         {/*
@@ -297,7 +323,7 @@ function Explorer() {
           vérifiées.
         </p>
 
-        <div className="mt-(--space-8)">
+        <div ref={zoneRecherche} className="mt-(--space-8)">
           <RechercheHero
             valeur={filtres.recherche}
             modifier={(v: string) => modifier({ recherche: v })}
@@ -361,6 +387,9 @@ function Explorer() {
             toutRetirer={() => setFiltres(FILTRES_VIDES)}
             tri={tri}
             choisirTri={setTri}
+            recherche={filtres.recherche}
+            modifierRecherche={(v: string) => modifier({ recherche: v })}
+            declencheurVisible={heroHorsEcran}
           />
 
           {ecartesFauteInfo > 0 && (

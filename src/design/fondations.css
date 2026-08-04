@@ -419,8 +419,14 @@ html {
   de ses paddings, de ses deux lignes et de leur écart. Une hauteur sous-estimée
   ferait passer les cartes derrière la barre au défilement.
 */
+/*
+  Titre sur deux lignes exactement, jusqu'à 1 023 px. La seconde ligne est
+  insécable : « formations e-commerce » cassait en trois lignes, et une
+  troisième ligne repousse la recherche hors de l'écran sur un téléphone.
+*/
 @media (max-width: 1023px) {
   :root {
+    --titre-mobile: clamp(38px, 7vw, 56px);
     --app-header-height: 56px;
     --domain-nav-height: 60px;
     /* 20 + 24 (titre) + 16 (gap) + 48 (select) + 20 */
@@ -432,6 +438,13 @@ html {
   :root {
     --nav-padding: var(--space-6);
     --nav-gap: var(--space-7);
+  }
+}
+
+@media (max-width: 379px) {
+  :root {
+    /* Sous 380 px, « formations e-commerce » insécable impose de descendre. */
+    --titre-mobile: clamp(34px, 8.6vw, 38px);
   }
 }
 
