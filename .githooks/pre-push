@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# Contrôle avant poussée.
+#
+# Les invariants de rendu ne tournent pas en CI — la base n'y est pas
+# disponible. S'ils ne tournent nulle part, ils ne protègent de rien : c'est
+# donc ici qu'ils s'exécutent, avec un serveur local qui a les identifiants.
+#
+# Installation : git config core.hooksPath .githooks
+#
+# Contournement, pour une poussée qui ne touche pas l'interface :
+#   SAUTER_RENDU=1 git push
+set -e
+
+echo "→ typecheck"
+bun run typecheck
+echo "→ tests de règles"
+bun run test
+echo "→ invariants du catalogue"
+bun run invariants
+echo "→ invariants du design"
+bun run invariants:design
+
+if [ -n "$SAUTER_RENDU" ]; then
+  echo "→ invariants de rendu : sautés (SAUTER_RENDU)"
+  exit 0
+fi
+
+if [ ! -f .env.local ]; then
+  echo "→ invariants de rendu : sautés (.env.local absent, le serveur ne démarrerait pas)"
+  exit 0
+fi
+
+echo "→ invariants de rendu"
+bun run invariants:rendu

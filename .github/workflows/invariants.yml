@@ -9,6 +9,13 @@ name: Invariants
 on:
   push:
   pull_request:
+  # Les invariants de rendu se lancent à la demande, depuis l'onglet Actions.
+  workflow_dispatch:
+    inputs:
+      url_test:
+        description: "URL à tester (laisser vide pour ignorer le rendu)"
+        required: false
+        type: string
 
 jobs:
   regles:
@@ -24,17 +31,20 @@ jobs:
       - name: Invariants du design system
         run: bun run invariants:design
 
-  # Les tests de rendu exigent une application qui démarre, donc une base.
-  # La CI n'a pas les identifiants Lovable Cloud : le serveur de développement
-  # n'y démarre jamais, et le travail échouait sur un délai d'attente — un échec
-  # de notre outillage, pas une régression du produit.
+  # Les tests de rendu exigent une application qui démarre, donc une base. La CI
+  # n'a pas les identifiants Lovable Cloud : le serveur n'y démarre jamais.
   #
-  # Ils tournent donc contre une URL déployée, quand elle est fournie. Sans
-  # `URL_TEST`, le travail est simplement ignoré : mieux vaut pas de signal
-  # qu'un signal faux.
+  # Ils ne tournent PAS sur la production. Ils existent pour attraper une
+  # régression avant déploiement, pas pour constater qu'elle est en ligne — et
+  # la production étant en retard sur la branche poussée, ils produiraient des
+  # échecs sans rapport avec le dernier commit. Exactement le signal qu'on cesse
+  # de lire.
+  #
+  # En sommeil, donc, et lançables à la demande sur une URL choisie. Le jour où
+  # une prévisualisation par branche existera, ils reprendront leur vraie place.
   rendu:
     runs-on: ubuntu-latest
-    if: vars.URL_TEST != ''
+    if: inputs.url_test != ''
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -42,5 +52,5 @@ jobs:
       - run: bunx playwright install --with-deps chromium
       - name: Invariants de rendu
         env:
-          URL_TEST: ${{ vars.URL_TEST }}
+          URL_TEST: ${{ inputs.url_test }}
         run: bun run invariants:rendu
