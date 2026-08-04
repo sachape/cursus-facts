@@ -25,6 +25,7 @@ import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { PanneauFiltres } from "@/composants/PanneauFiltres";
 import { OngletsDomaines, type OngletDomaine } from "@/composants/OngletsDomaines";
 import { TrainingResultCard } from "@/composants/TrainingResultCard";
+import { ResultToolbar } from "@/composants/ResultToolbar";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
@@ -53,14 +54,6 @@ export const Route = createFileRoute("/")({
 });
 
 const PAR_PAGE = 25;
-
-const LIBELLES_TRIS_COURTS: Record<Tri, string> = {
-  informations: "Informations disponibles",
-  verification: "Dernière vérification",
-  alphabetique: "Ordre alphabétique",
-  prix: "Prix croissant",
-  duree: "Volume horaire",
-};
 
 function Explorer() {
   const parcours = Route.useLoaderData() as ParcoursListe[];
@@ -240,6 +233,39 @@ function Explorer() {
     return [...parParcours, ...parOrganisme, ...parDomaine];
   }, [filtres.recherche, parcours, onglets]);
 
+  /*
+    Les filtres posés, à plat et retirables. Construits ici parce que seule
+    cette vue connaît la forme de `Filtres` ; la toolbar ne fait que les
+    restituer.
+  */
+  const filtresActifs = [
+    ...filtres.sujets.map((v) => ({
+      libelle: v,
+      retirer: () => modifier({ sujets: filtres.sujets.filter((x) => x !== v) }),
+    })),
+    ...filtres.competences.map((v) => ({
+      libelle: v,
+      retirer: () => modifier({ competences: filtres.competences.filter((x) => x !== v) }),
+    })),
+    ...(filtres.recherche.trim() !== ""
+      ? [{ libelle: `« ${filtres.recherche} »`, retirer: () => modifier({ recherche: "" }) }]
+      : []),
+    ...(filtres.budget !== null
+      ? [
+          {
+            libelle: `Jusqu'à ${filtres.budget} €`,
+            retirer: () => modifier({ budget: null }),
+          },
+        ]
+      : []),
+    ...(filtres.certifiantSeulement
+      ? [{ libelle: "Certifiant", retirer: () => modifier({ certifiantSeulement: false }) }]
+      : []),
+    ...(filtres.eligibleCpf
+      ? [{ libelle: "Éligible CPF", retirer: () => modifier({ eligibleCpf: false }) }]
+      : []),
+  ];
+
   return (
     <div className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) pb-(--space-16)">
       {/*
@@ -337,28 +363,14 @@ function Explorer() {
         </aside>
 
         <main className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-3">
-            <h2 className="font-titre text-lg font-medium">
-              {titreListe}{" "}
-              <span className="chiffre text-sm font-normal text-muted-foreground">
-                {resultats.length}
-              </span>
-            </h2>
-            <label className="flex items-center gap-2 text-sm">
-              <span className="text-muted-foreground">Trier par</span>
-              <select
-                value={tri}
-                onChange={(e) => setTri(e.target.value as Tri)}
-                className="rounded-md border border-input bg-background px-2 py-1 text-sm"
-              >
-                {TRIS.map((t) => (
-                  <option key={t} value={t}>
-                    {LIBELLES_TRIS_COURTS[t]}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
+          <ResultToolbar
+            titre={titreListe}
+            nombre={resultats.length}
+            filtresActifs={filtresActifs}
+            toutRetirer={() => setFiltres(FILTRES_VIDES)}
+            tri={tri}
+            choisirTri={setTri}
+          />
 
           {ecartesFauteInfo > 0 && (
             /*

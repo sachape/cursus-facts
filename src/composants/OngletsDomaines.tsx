@@ -30,7 +30,16 @@ export function OngletsDomaines({
   choisir: (domaine: DomaineParcours | null) => void;
 }) {
   return (
-    <nav aria-label="Domaines" className="border-t border-border">
+    /*
+      Collante : le domaine est le premier niveau de navigation, et le perdre
+      en défilant oblige à remonter pour savoir dans quel rayon on se trouve.
+      Défilable horizontalement — neuf domaines ne tiennent pas sous 960 px, et
+      un retour à la ligne casserait la lecture en une seule bande.
+    */
+    <nav
+      aria-label="Domaines"
+      className="sticky top-0 z-(--z-collant) border-y border-(--border-subtle) bg-(--surface-page)/95 backdrop-blur-sm"
+    >
       <ul
         className="-mb-px flex overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >

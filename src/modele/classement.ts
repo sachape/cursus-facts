@@ -46,6 +46,21 @@ export const TRI_PAR_DEFAUT: Tri = "informations";
  * Libellés publiés sous la liste. Ils énoncent la règle, pas une promesse de
  * pertinence, et disent explicitement ce que le tri ne signifie pas.
  */
+/**
+ * Libellés courts, pour le contrôle de tri lui-même.
+ *
+ * Le libellé long les accompagne toujours à l'affichage : un tri qui ne dit pas
+ * ce qu'il ordonne se lit comme un classement par qualité, et ce produit n'en
+ * fait aucun.
+ */
+export const LIBELLES_TRIS_COURTS: Record<Tri, string> = {
+  informations: "Informations disponibles",
+  verification: "Dernière vérification",
+  alphabetique: "Ordre alphabétique",
+  prix: "Prix croissant",
+  duree: "Volume horaire",
+};
+
 export const LIBELLES_TRIS: Record<Tri, string> = {
   informations:
     "Tri par défaut : les parcours dont le plus d'informations sont disponibles apparaissent en premier, puis les plus récemment vérifiés. Ce tri décrit l'état des fiches, pas la qualité des formations. Aucune fiche n'est retirée du catalogue parce qu'elle est incomplète.",
