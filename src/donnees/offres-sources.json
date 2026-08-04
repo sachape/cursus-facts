@@ -3962,7 +3962,9 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "dispoInter": true,
+  "dispoIntra": true
  },
  {
   "id": 101,
@@ -4073,7 +4075,9 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "dispoInter": true,
+  "dispoIntra": true
  },
  {
   "id": 104,
@@ -8179,7 +8183,9 @@
   "volumeHoraire": null,
   "id": 205,
   "nom": "WordPress et WooCommerce — Créez facilement votre boutique en ligne",
-  "prix": 1495
+  "prix": 1495,
+  "dispoInter": true,
+  "dispoIntra": true
  },
  {
   "organisme": "M2i Formation",
