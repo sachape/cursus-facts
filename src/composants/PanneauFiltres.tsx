@@ -18,6 +18,7 @@ import { useState } from "react";
 import type { ParcoursListe } from "@/donnees/requetes";
 import {
   compterAvec,
+  FILTRES_VIDES,
   LIBELLES_DUREES,
   TRANCHES_DUREE,
   type Filtres,
@@ -70,16 +71,27 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
+/**
+ * FilterAccordion — un groupe de filtres repliable.
+ *
+ * Il porte un **résumé des sélections** plutôt qu'un simple compteur : replié,
+ * « Sujet · Amazon FBA, Shopify » dit ce qui est filtré, là où « 2 » oblige à
+ * déplier pour le savoir. Le compteur seul transforme chaque vérification en
+ * ouverture d'accordéon.
+ */
 function Groupe({
   titre,
   description,
   actifs,
+  resume,
   children,
 }: {
   titre: string;
   description?: string;
   /** Nombre de sélections actives dans ce groupe. */
   actifs: number;
+  /** Ce qui est sélectionné, en clair. Affiché quand le groupe est replié. */
+  resume?: string;
   children: React.ReactNode;
 }) {
   // `null` tant que l'utilisateur n'a rien décidé : le groupe suit alors la
@@ -88,42 +100,52 @@ function Groupe({
   const ouvert = choixManuel ?? actifs > 0;
 
   return (
-    <section className="border-t border-border">
+    <section className="border-t border-(--border-subtle) first:border-t-0">
       <h2>
         <button
           type="button"
           onClick={() => setChoixManuel(!ouvert)}
           aria-expanded={ouvert}
-          className="flex min-h-10 w-full items-center justify-between gap-2 py-2.5 text-left"
+          className="flex w-full items-start justify-between gap-(--space-3) py-(--space-3) text-left transition-colors duration-(--motion-fast) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
         >
-          <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            {titre}
+          <span className="min-w-0 flex-1">
+            <span className="block t-label text-(--text-tertiary)">{titre}</span>
+            {/* Le résumé ne s'affiche que replié : déplié, la liste le dit
+                déjà, et le répéter doublerait l'information. */}
+            {!ouvert && resume !== undefined && resume !== "" && (
+              <span className="mt-(--space-1) block truncate t-body-sm text-(--text-primary)">
+                {resume}
+              </span>
+            )}
           </span>
-          <span className="flex shrink-0 items-center gap-2">
-            {/* Le badge survit au repli : un filtre actif ne doit jamais
+          <span className="flex shrink-0 items-center gap-(--space-2) pt-(--space-1)">
+            {/* Le compteur survit au repli : un filtre actif ne doit jamais
                 disparaître de la vue. */}
             {actifs > 0 && (
-              <span className="chiffre rounded-(--radius-sm) bg-foreground px-1.5 py-0.5 t-data-sm text-background">
+              <span className="rounded-(--radius-sm) bg-(--accent-surface) px-(--space-2) py-(--space-1) t-data-sm text-(--accent-default)">
                 {actifs}
               </span>
             )}
-            <span
+            <svg
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+              fill="none"
               aria-hidden
-              className={`text-muted-foreground transition-transform motion-safe:duration-(--motion-base) ${
+              className={`text-(--text-tertiary) transition-transform duration-(--motion-base) ease-(--ease-standard) ${
                 ouvert ? "rotate-180" : ""
               }`}
             >
-              ⌄
-            </span>
+              <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+            </svg>
           </span>
         </button>
       </h2>
 
       {ouvert && (
-        <div className="pb-5 motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-1 motion-safe:duration-(--motion-base)">
+        <div className="pb-(--space-5) motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-top-1 motion-safe:duration-(--motion-base)">
           {description !== undefined && (
-            /* 8 px sous l'intitulé : les deux étaient collés. */
-            <p className="mb-3 mt-2 text-xs leading-relaxed text-muted-foreground">{description}</p>
+            <p className="mb-(--space-3) t-caption text-(--text-secondary)">{description}</p>
           )}
           {children}
         </div>
@@ -153,13 +175,17 @@ function Option({
      */
     <label
       htmlFor={id}
-      className={`flex min-h-10 cursor-pointer items-center gap-2 sm:min-h-8 ${
-        inactive ? "cursor-not-allowed text-muted-foreground/50" : ""
+      className={`flex min-h-(--cible-hauteur-min-tactile) cursor-pointer items-center gap-(--space-3) rounded-(--radius-sm) px-(--space-2) transition-colors duration-(--motion-fast) sm:min-h-(--cible-hauteur-min) ${
+        inactive
+          ? "cursor-not-allowed text-(--text-disabled)"
+          : coche
+            ? "bg-(--accent-surface) text-(--text-primary)"
+            : "text-(--text-secondary) hover:bg-(--surface-hover) hover:text-(--text-primary)"
       }`}
     >
       <Checkbox id={id} checked={coche} onCheckedChange={basculer} disabled={inactive} />
-      <span className="flex-1 text-sm">{libelle}</span>
-      <Badge>{nombre}</Badge>
+      <span className="flex-1 t-body-sm">{libelle}</span>
+      <span className="t-data-sm text-(--text-tertiary)">{nombre}</span>
     </label>
   );
 }
@@ -197,12 +223,52 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
     Number(filtres.financementEntreprise) +
     Number(filtres.prixCommunique);
 
+  /* Nombre total de sélections, tous groupes confondus. */
+  const totalActifs =
+    filtres.sujets.length +
+    filtres.competences.length +
+    filtres.categories.length +
+    filtres.formats.length +
+    filtres.niveaux.length +
+    filtres.durees.length +
+    filtres.conditionsAcces.length +
+    financementsActifs +
+    Number(filtres.certifiantSeulement) +
+    Number(filtres.accessibleIndividuellement) +
+    Number(filtres.budget !== null) +
+    Number(filtres.recherche.trim() !== "");
+
   return (
-    <div className="text-sm">
+    <div className="rounded-(--carte-rayon) border border-(--border-subtle) bg-(--surface-raised) px-(--space-4) py-(--space-2)">
+      {/*
+        En-tête du panneau : compteur global et réinitialisation. Sans lui, le
+        seul moyen de savoir combien de filtres sont posés est de déplier chaque
+        groupe — et le seul moyen de tout retirer est de les décocher un par un.
+      */}
+      <div className="flex items-center justify-between gap-(--space-3) border-b border-(--border-subtle) py-(--space-3)">
+        <p className="t-body-sm font-medium text-(--text-primary)">
+          Filtres
+          {totalActifs > 0 && (
+            <span className="ml-(--space-2) rounded-(--radius-sm) bg-(--accent-surface) px-(--space-2) py-(--space-1) t-data-sm text-(--accent-default)">
+              {totalActifs}
+            </span>
+          )}
+        </p>
+        <button
+          type="button"
+          onClick={() => modifier(FILTRES_VIDES)}
+          disabled={totalActifs === 0}
+          className="rounded-(--radius-sm) px-(--space-2) py-(--space-1) t-body-sm text-(--text-secondary) transition-colors duration-(--motion-fast) hover:text-(--text-primary) disabled:cursor-not-allowed disabled:text-(--text-disabled) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+        >
+          Réinitialiser
+        </button>
+      </div>
+
       <Groupe
         titre="Sujet principal"
         description="Les parcours dont c'est réellement l'objet."
         actifs={filtres.sujets.length}
+        resume={filtres.sujets.join(", ")}
       >
         <ListeDefilante>
           {sujets.map((sujet) => (
@@ -222,6 +288,7 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         titre="Compétence abordée"
         description="Les parcours qui l'abordent, sans en faire leur objet."
         actifs={filtres.competences.length}
+        resume={filtres.competences.join(", ")}
       >
         <ListeDefilante>
           {competences.map((competence) => (
@@ -237,7 +304,11 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         </ListeDefilante>
       </Groupe>
 
-      <Groupe titre="Catégorie" actifs={filtres.categories.length}>
+      <Groupe
+        titre="Catégorie"
+        actifs={filtres.categories.length}
+        resume={filtres.categories.map((c) => LIBELLES_CATEGORIES[c]).join(", ")}
+      >
         <div className="space-y-2">
           {categories.map((categorie) => (
             <Option
@@ -359,7 +430,11 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         </div>
       </Groupe>
 
-      <Groupe titre="Condition d'accès" actifs={filtres.conditionsAcces.length}>
+      <Groupe
+        titre="Condition d'accès"
+        actifs={filtres.conditionsAcces.length}
+        resume={filtres.conditionsAcces.map((c) => LIBELLES_FILTRES_CONDITION[c]).join(", ")}
+      >
         <div className="space-y-2">
           {FILTRES_CONDITION.map((condition) => (
             <Option
@@ -376,7 +451,11 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         </div>
       </Groupe>
 
-      <Groupe titre="Format" actifs={filtres.formats.length}>
+      <Groupe
+        titre="Format"
+        actifs={filtres.formats.length}
+        resume={filtres.formats.map((f) => LIBELLES_FORMATS[f]).join(", ")}
+      >
         <div className="space-y-2">
           {(Object.keys(LIBELLES_FORMATS) as FormatParcours[]).map((format) => (
             <Option
@@ -391,7 +470,11 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         </div>
       </Groupe>
 
-      <Groupe titre="Niveau d'entrée" actifs={filtres.niveaux.length}>
+      <Groupe
+        titre="Niveau d'entrée"
+        actifs={filtres.niveaux.length}
+        resume={filtres.niveaux.map((n) => LIBELLES_NIVEAUX[n]).join(", ")}
+      >
         <div className="space-y-2">
           {(Object.keys(LIBELLES_NIVEAUX) as NiveauEntree[]).map((niveau) => (
             <Option
