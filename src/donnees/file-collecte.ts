@@ -111,7 +111,28 @@ export type Avancement = {
   restants: number;
   /** Part du catalogue vérifiée en profondeur, en pourcentage entier. */
   pourcentage: number;
+  /**
+   * Part vérifiée **depuis moins de six mois**. C'est ce chiffre qui est publié.
+   *
+   * « 100 % vérifié » commence à mentir le jour où il est atteint : il dira que
+   * tout a été vérifié alors qu'une partie l'aura été il y a un an. Cette
+   * mesure-ci redescend toute seule si l'entretien cesse, reste vraie en
+   * permanence, et se défend publiquement — personne ne peut reprocher un 82 %
+   * daté, quand un 100 % figé serait attaquable au premier prix périmé.
+   */
+  pourcentageFrais: number;
 };
+
+/** Au-delà, une vérification ne prouve plus l'état actuel de la page. */
+export const FRAICHEUR_MOIS = 6;
+
+/** Vrai si la vérification est encore fraîche à la date donnée. */
+export function estFraiche(verifieeLe: string | null, aujourdhui: string): boolean {
+  if (verifieeLe === null) return false;
+  const limite = new Date(aujourdhui);
+  limite.setMonth(limite.getMonth() - FRAICHEUR_MOIS);
+  return new Date(verifieeLe) >= limite;
+}
 
 /**
  * Avancement de la collecte en profondeur.
@@ -120,17 +141,38 @@ export type Avancement = {
  * commission n'affichera jamais quelle part de son catalogue il a réellement
  * vérifiée.
  */
-export function avancement(file: readonly EntreeFile[]): Avancement {
+export function avancement(
+  file: readonly EntreeFile[],
+  aujourdhui = new Date().toISOString().slice(0, 10),
+): Avancement {
   const total = file.length;
   const traites = file.filter((e) => e.statut === "traite").length;
   const injoignables = file.filter((e) => e.statut === "injoignable").length;
+  const frais = file.filter(
+    (e) => e.statut === "traite" && estFraiche(e.dernierPassage, aujourdhui),
+  ).length;
   return {
     total,
     traites,
     injoignables,
     restants: total - traites - injoignables,
     pourcentage: total === 0 ? 0 : Math.round((traites / total) * 100),
+    pourcentageFrais: total === 0 ? 0 : Math.round((frais / total) * 100),
   };
+}
+
+/**
+ * Taux de fiches dont le prix ou la modalité d'accès est vérifié.
+ *
+ * L'indicateur d'ouverture au public, publié à côté de la fraîcheur : c'est le
+ * champ dont l'absence fait réellement partir un utilisateur.
+ */
+export function tauxPrixVerifie(catalogue: readonly OffreNormalisee[]): number {
+  if (catalogue.length === 0) return 0;
+  const ouverts = catalogue.filter(
+    (o) => (o.prix !== null || o.modaliteAcces !== null) && !o.aConfirmer.includes("prix"),
+  ).length;
+  return Math.round((ouverts / catalogue.length) * 100);
 }
 
 export const fileDeCollecte = fileBrute as EntreeFile[];

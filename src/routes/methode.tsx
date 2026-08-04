@@ -25,7 +25,8 @@ import { CHAMPS_INFORMATION, LIBELLES_CHAMPS_INFORMATION } from "@/types/cursus"
 import { DEFINITIONS_MODALITES, LIBELLES_MODALITES } from "@/modele/modalite-acces";
 import ecartes from "@/donnees/acteurs-ecartes.json";
 import journal from "@/donnees/journal-arbitrages.json";
-import { avancement, fileDeCollecte } from "@/donnees/file-collecte";
+import { avancement, fileDeCollecte, tauxPrixVerifie } from "@/donnees/file-collecte";
+import { chargerCatalogue } from "@/donnees/catalogue";
 
 export const Route = createFileRoute("/methode")({
   loader: () => chargerArbitrages(),
@@ -430,16 +431,30 @@ function Methode() {
 
       <Section
         titre="Profondeur de vérification"
-        intro="Quelle part du catalogue a été vérifiée sur la page de détail de chaque parcours, et non seulement sur la page catalogue de l'organisme."
+        intro="Quelle part du catalogue a été vérifiée sur la page de détail de chaque parcours, et non seulement sur la page catalogue de l'organisme. Le chiffre publié est celui des vérifications de moins de six mois : au-delà, une vérification ne prouve plus l'état actuel de la page."
       >
         {(() => {
           const etat = avancement(fileDeCollecte);
           return (
             <>
               <dl className="flex flex-wrap gap-x-10 gap-y-3">
+                {/*
+                  On publie la fraîcheur, pas le cumul. « 100 % vérifié »
+                  commence à mentir le jour où il est atteint : il dirait que
+                  tout a été vérifié alors qu'une partie l'aurait été il y a un
+                  an. Cette mesure-ci redescend seule si l'entretien cesse.
+                */}
                 <div>
-                  <dd className="chiffre text-xl">{etat.pourcentage} %</dd>
-                  <dt className="text-xs text-muted-foreground">du catalogue vérifié en profondeur</dt>
+                  <dd className="chiffre text-xl">{etat.pourcentageFrais} %</dd>
+                  <dt className="text-xs text-muted-foreground">
+                    vérifié en profondeur depuis moins de 6 mois
+                  </dt>
+                </div>
+                <div>
+                  <dd className="chiffre text-xl">{tauxPrixVerifie(chargerCatalogue())} %</dd>
+                  <dt className="text-xs text-muted-foreground">
+                    avec prix ou modalité d'accès vérifié
+                  </dt>
                 </div>
                 <div>
                   <dd className="chiffre text-xl">{etat.traites}</dd>
