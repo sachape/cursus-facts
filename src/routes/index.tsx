@@ -49,24 +49,7 @@ export const Route = createFileRoute("/")({
         content:
           "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
       },
-      {
-        property: "og:title",
-        content: "Formlist — Comparateur de formations e-commerce en France",
-      },
-      {
-        property: "og:description",
-        content:
-          "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
-      },
-      { property: "og:url", content: "https://formlist.fr/" },
-      { property: "og:image", content: "https://formlist.fr/og-formlist.jpg" },
-      {
-        property: "og:image:alt",
-        content: "Formlist, comparateur indépendant de formations e-commerce en France.",
-      },
-      { name: "twitter:image", content: "https://formlist.fr/og-formlist.jpg" },
     ],
-    links: [{ rel: "canonical", href: "https://formlist.fr/" }],
   }),
 });
 
