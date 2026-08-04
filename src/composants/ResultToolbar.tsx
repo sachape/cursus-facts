@@ -57,7 +57,7 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
       <label htmlFor="tri" className="shrink-0 t-body-sm text-(--text-secondary)">
         Trier par
       </label>
-      <div className="relative min-w-0 flex-1 min-[1024px]:max-w-(--select-largeur-max) min-[768px]:min-w-(--select-largeur-min)">
+      <div className="relative min-w-0 flex-1 min-[768px]:min-w-(--select-largeur-min) min-[1024px]:w-[clamp(280px,24vw,360px)] min-[1024px]:flex-none">
         <select
           id="tri"
           value={tri}
@@ -66,7 +66,7 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
             `appearance-none` retire la flèche du système : un contrôle au style
             natif jure avec le reste et change d'aspect d'un système à l'autre.
           */
-          className="h-(--bouton-hauteur) w-full max-w-full appearance-none rounded-(--radius-md) max-[1023px]:min-h-12 border border-(--border-default) bg-(--surface-raised) py-(--space-1) pl-(--space-3) pr-(--space-8) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus-visible:border-(--border-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+          className="h-(--bouton-hauteur) w-full max-w-full appearance-none rounded-(--radius-md) max-[1023px]:min-h-12 min-[1024px]:h-12 border border-(--border-default) bg-(--surface-raised) py-(--space-1) pl-(--space-3) pr-(--space-8) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus-visible:border-(--border-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
         >
           {TRIS.map((t) => (
             <option key={t} value={t}>
@@ -158,7 +158,13 @@ export function ResultToolbar({
         une largeur de téléphone, les mettre côte à côte écrase le select à
         quelques dizaines de pixels ou le pousse hors de la barre.
       */}
-      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-navigation-height))] z-30 flex m-0 flex-col gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) pb-(--space-5) pt-(--space-4) min-[768px]:py-(--space-5) min-[1024px]:flex-row min-[1024px]:flex-wrap min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-6) min-[1024px]:px-0 min-[1024px]:py-0">
+      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-navigation-height))] z-30 flex m-0 flex-col gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) pb-(--space-5) pt-(--space-4) min-[768px]:py-(--space-5) min-[1024px]:w-full min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-12) min-[1024px]:px-0 min-[1024px]:pb-(--space-6) min-[1024px]:pt-(--space-5) min-[1024px]:flex-row min-[1024px]:flex-wrap min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-6) min-[1024px]:px-0 min-[1024px]:py-0">
+        {/*
+          La recherche compacte est réservée au mobile et à la tablette. Sur
+          bureau, elle vit dans la colonne de filtres, toujours visible : un
+          second point d'entrée y ferait doublon.
+        */}
+        <div className="flex w-full flex-col gap-(--space-4) min-[1024px]:hidden">
         {actif ? (
           <div className="flex min-h-(--bouton-hauteur-tactile) w-full items-center gap-(--space-2)">
             <div className="min-w-0 flex-1">
@@ -218,7 +224,17 @@ export function ResultToolbar({
             </button>
           </div>
         )}
-        <div className="flex min-w-0 items-center gap-(--space-3) max-[1023px]:w-full">
+          <div className="flex min-w-0 w-full items-center gap-(--space-3)">
+            {comparateur}
+            <SortSelect tri={tri} choisir={choisirTri} />
+          </div>
+        </div>
+
+        {/* Bureau : titre à gauche, tri à droite, rien d'autre. */}
+        <h2 className="m-0 hidden shrink-0 t-heading-4 leading-[1.2] text-(--text-primary) min-[1024px]:block">
+          {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
+        </h2>
+        <div className="ml-auto hidden shrink-0 items-center gap-(--space-4) min-[1024px]:flex">
           {comparateur}
           <SortSelect tri={tri} choisir={choisirTri} />
         </div>
@@ -243,7 +259,7 @@ export function ResultToolbar({
         </div>
       )}
 
-      <p className="mb-(--space-5) mt-(--space-3) t-caption text-(--text-tertiary)">
+      <p className="mb-(--space-5) mt-(--space-3) t-caption text-(--text-tertiary) min-[1024px]:mb-(--space-4)">
         {LIBELLES_TRIS[tri]}
       </p>
     </>
