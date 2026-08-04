@@ -26,6 +26,7 @@ import { PanneauFiltres } from "@/composants/PanneauFiltres";
 import { OngletsDomaines, type OngletDomaine } from "@/composants/OngletsDomaines";
 import { TrainingResultCard } from "@/composants/TrainingResultCard";
 import { ResultToolbar } from "@/composants/ResultToolbar";
+import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
@@ -274,7 +275,7 @@ function Explorer() {
         lire avant la première.
       */}
       <header className="mx-auto max-w-(--hero-largeur-max) pt-(--space-16) pb-(--space-16) text-center">
-        <p className="t-label text-(--text-tertiary)">Comparateur indépendant · France</p>
+        <CatalogFreshnessBadge derniereVerification={derniereVerification} />
 
         {/*
           Titre court : il supporte davantage de corps qu'un titre long, et le
@@ -311,24 +312,13 @@ function Explorer() {
           aurait raison. La date de vérification passe en mention sous la ligne —
           elle est vérifiable, mais elle ne pèse pas comme les trois autres.
         */}
-        <dl className="mt-(--space-10) flex flex-wrap justify-center gap-x-(--space-12) gap-y-(--space-6)">
+        <dl className="mt-(--space-8) flex flex-wrap justify-center gap-x-(--space-12) gap-y-(--space-6)">
           <Chiffre valeur={parcours.length} libelle="parcours" />
           <Chiffre valeur={organismes} libelle="organismes" />
           <Chiffre valeur={informationsTotales} libelle="informations vérifiées" />
         </dl>
 
-        {derniereVerification !== null && (
-          <p className="mt-(--space-4) t-caption text-(--text-tertiary)">
-            Dernière vérification du catalogue le{" "}
-            <span className="chiffre">
-              {new Date(derniereVerification).toLocaleDateString("fr-FR", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-              })}
-            </span>
-          </p>
-        )}
+        {/* La date de vérification vit désormais dans l'infobulle du badge. */}
       </header>
 
       {/* space-16 entre les KPIs et la barre de domaines : le hero respire. */}

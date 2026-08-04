@@ -338,6 +338,10 @@
   --marque-taille: 44px;
   --marque-rayon: 11px;
   --marque-retrait: 7px;
+  --badge-hauteur: 28px;
+  --badge-padding: 10px;
+  --badge-point: 7px;
+
   --bouton-hauteur: 40px;
   --bouton-hauteur-tactile: 44px;
   --cible-hauteur-min: 32px;
@@ -409,6 +413,22 @@ html {
     --app-header-height: 56px;
     --domain-nav-height: 48px;
     --results-toolbar-height: 52px;
+  }
+}
+
+/*
+  Halo de fraîcheur — le point ne bouge pas, son ombre respire. Neutralisé
+  par `motion-safe` côté composant, donc absent sous prefers-reduced-motion.
+*/
+@keyframes halo {
+  0% {
+    box-shadow: 0 0 0 0 rgb(42 122 100 / 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgb(42 122 100 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(42 122 100 / 0);
   }
 }
 
