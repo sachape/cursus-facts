@@ -61,6 +61,88 @@ export function liensInternes(html: string, base: string): string[] {
   return [...trouves];
 }
 
+/**
+ * Liens d'une page, avec leur libellé.
+ *
+ * Le libellé est ce qui rend l'appariement exact : sur une page catalogue, le
+ * texte du lien EST le titre du parcours. Pas de score, pas de seuil, pas de
+ * rapprochement approché — c'est gratuit et fiable, là où le score d'URL
+ * plafonnait à 25 %.
+ */
+export function liensAvecLibelle(html: string, base: string): { url: string; libelle: string }[] {
+  let origine: string;
+  try {
+    origine = new URL(base).origin;
+  } catch {
+    return [];
+  }
+
+  const trouves = new Map<string, string>();
+  for (const m of html.matchAll(/<a\b[^>]*\bhref\s*=\s*["']([^"'#]+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const brut = m[1]!.trim();
+    if (brut === "" || /^(mailto:|tel:|javascript:)/i.test(brut)) continue;
+    const libelle = m[2]!
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&amp;/gi, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (libelle.length < 6) continue;
+    try {
+      const url = new URL(brut, base);
+      if (url.origin !== origine) continue;
+      url.hash = "";
+      // Le premier libellé rencontré fait foi : les menus répètent souvent le
+      // même lien sous un intitulé générique après l'avoir donné en clair.
+      if (!trouves.has(url.toString())) trouves.set(url.toString(), libelle);
+    } catch {
+      /* href malformé : ignoré, ce n'est pas une erreur de collecte */
+    }
+  }
+  return [...trouves].map(([url, libelle]) => ({ url, libelle }));
+}
+
+/** Réduit un intitulé à sa forme comparable, sans rien rendre égal à tort. */
+export function formeComparable(texte: string): string {
+  return texte
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+/**
+ * Apparie un libellé de lien à un parcours fiché, par égalité exacte de forme.
+ *
+ * Pas de seuil : soit les intitulés se correspondent, soit ils ne se
+ * correspondent pas. On accepte l'inclusion dans un sens seulement — le lien
+ * peut porter un suffixe de formule (« … — Premium ») que l'intitulé fiché n'a
+ * pas, l'inverse signalerait un parcours plus précis que ce qu'on croit.
+ */
+export function apparierParLibelle(
+  liens: readonly { url: string; libelle: string }[],
+  fiches: readonly { id: number; nom: string }[],
+): { id: number; url: string; libelle: string }[] {
+  const pris = new Set<number>();
+  const resultats: { id: number; url: string; libelle: string }[] = [];
+
+  for (const fiche of fiches) {
+    if (pris.has(fiche.id)) continue;
+    const attendu = formeComparable(fiche.nom);
+    if (attendu.length < 8) continue;
+    const trouve = liens.find((l) => {
+      const observe = formeComparable(l.libelle);
+      return observe === attendu || observe.startsWith(attendu);
+    });
+    if (trouve) {
+      pris.add(fiche.id);
+      resultats.push({ id: fiche.id, url: trouve.url, libelle: trouve.libelle });
+    }
+  }
+  return resultats;
+}
+
 export type Strategie = "sitemap" | "plan_html" | "exploration" | "recherche_domaine";
 
 export type PlanDeRepli = {

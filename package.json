@@ -21,7 +21,8 @@
     "collecte:appliquer": "bun run scripts/appliquer-journal.ts",
     "collecte:repli": "bun run scripts/repli-decouverte.ts",
     "collecte:disponibilite": "bun run scripts/disponibilite.ts",
-    "invariants": "bun run scripts/invariants.ts"
+    "invariants": "bun run scripts/invariants.ts",
+    "collecte:apparier": "bun run scripts/appariement.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

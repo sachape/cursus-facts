@@ -116,10 +116,29 @@ function valeurDuChamp(offre: OffreNormalisee, champ: ChampInformation): unknown
   }
 }
 
+/**
+ * Le volume horaire n'a pas de sens pour un parcours sur mesure.
+ *
+ * Digital Study publie « Sur mesure » comme durée : le volume est fixé avec
+ * chaque apprenant, il n'existe pas avant. Afficher « Non communiqué » à côté
+ * accusait l'organisme de taire une information qu'il ne peut pas publier — et
+ * creusait son code-barres pour un champ sans objet.
+ *
+ * Restreint aux formulations qui disent explicitement la variabilité : une
+ * durée absente reste un manque, et une durée chiffrée n'ouvre aucune
+ * exception.
+ */
+export function volumeHoraireApplicable(offre: OffreNormalisee): boolean {
+  const duree = offre.duree;
+  if (duree === null) return true;
+  return !/sur[- ]mesure|variable|selon|adapt|à la carte|illimit/i.test(duree);
+}
+
 /** Les champs dont l'applicabilité dépend du parcours. */
 const APPLICABILITE: Partial<Record<ChampInformation, (offre: OffreNormalisee) => boolean>> = {
   lieu: lieuApplicable,
   modalites_paiement: paiementApplicable,
+  volume_horaire: volumeHoraireApplicable,
 };
 
 /**
