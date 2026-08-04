@@ -1,0 +1,249 @@
+/**
+ * Fondations du design system — version 1, août 2026.
+ *
+ * Ce fichier est la traduction du document de référence. Il définit les trois
+ * niveaux de jetons dans leur ordre de dépendance :
+ *
+ *   PRIMITIFS   valeurs brutes — jamais consommées par un composant
+ *   SÉMANTIQUES ce que les composants consomment
+ *   COMPOSANTS  dérivés des sémantiques, jamais des primitifs
+ *
+ * TROIS RÈGLES QUI PRIMENT SUR TOUTES LES AUTRES
+ *   1. La chrome est achromatique. La couleur est réservée au sens.
+ *   2. La hiérarchie se construit par l'échelle, jamais par la décoration.
+ *   3. Toute valeur appartient à une échelle. Si une valeur manque, on étend
+ *      l'échelle — on n'improvise pas.
+ */
+
+:root {
+  /* ---------------------------------------------------------------------- */
+  /* PRIMITIFS — espacement, base 4 px                                      */
+  /* Au-delà de 32 px, uniquement les multiples de 8. Les valeurs 4 et 12    */
+  /* sont réservées aux ajustements internes, jamais à la mise en page.      */
+  /* ---------------------------------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  /* ---------------------------------------------------------------------- */
+  /* PRIMITIFS — neutres froids. Le palier 100 est le plus sombre.          */
+  /* ---------------------------------------------------------------------- */
+  --neutral-0: #ffffff;
+  --neutral-5: #fafbfb;
+  --neutral-10: #f4f6f7;
+  --neutral-20: #e8ebec;
+  --neutral-30: #d6dadd;
+  --neutral-40: #b9bfc4;
+  --neutral-50: #98a0a6;
+  --neutral-60: #767f87;
+  --neutral-70: #59626a;
+  --neutral-80: #3c444b;
+  --neutral-90: #262d33;
+  --neutral-100: #14191d;
+
+  /* Pine — certifié, finançable, confirmé */
+  --pine-10: #edf4f1;
+  --pine-20: #cfe3db;
+  --pine-40: #6fa694;
+  --pine-60: #2a7a64;
+  --pine-70: #14584a;
+  --pine-80: #0e4238;
+  --pine-90: #082c25;
+
+  /* Clay — absent, non couvert, non publié */
+  --clay-10: #f8f0ed;
+  --clay-20: #edd6cc;
+  --clay-40: #c08872;
+  --clay-60: #a05b45;
+  --clay-70: #8a4b3a;
+  --clay-80: #6b392c;
+  --clay-90: #472519;
+
+  /* Amber — en attente, à confirmer, en conflit */
+  --amber-10: #fbf3e2;
+  --amber-20: #f2deb4;
+  --amber-60: #a87b14;
+  --amber-70: #7f5c0c;
+
+  /*
+    Crimson — défaillance du produit UNIQUEMENT.
+    Jamais employé pour qualifier une formation : une information absente n'est
+    pas une erreur, c'est clay. Le rouge dit qu'un chargement a échoué ou qu'un
+    formulaire est invalide — jamais qu'un organisme ne publie pas son prix.
+  */
+  --crimson-10: #fbedec;
+  --crimson-60: #b3261e;
+  --crimson-70: #8c1d18;
+
+  /* ---------------------------------------------------------------------- */
+  /* SÉMANTIQUES — ce que les composants consomment                         */
+  /* ---------------------------------------------------------------------- */
+  --surface-page: var(--neutral-10);
+  --surface-raised: var(--neutral-0);
+  --surface-hover: var(--neutral-5);
+  --surface-sunken: var(--neutral-20);
+
+  --border-subtle: var(--neutral-20);
+  --border-default: var(--neutral-30);
+  --border-strong: var(--neutral-100);
+
+  --text-primary: var(--neutral-100);
+  --text-secondary: var(--neutral-70);
+  --text-tertiary: var(--neutral-50);
+  --text-disabled: var(--neutral-40);
+  --text-on-inverse: var(--neutral-0);
+
+  --interactive-default: var(--neutral-100);
+  --interactive-hover: var(--neutral-90);
+
+  --status-verified: var(--pine-70);
+  --status-verified-bg: var(--pine-10);
+  --status-absent: var(--clay-70);
+  --status-absent-bg: var(--clay-10);
+  --status-pending: var(--amber-70);
+  --status-pending-bg: var(--amber-10);
+  --status-error: var(--crimson-60);
+  --status-error-bg: var(--crimson-10);
+
+  /* ---------------------------------------------------------------------- */
+  /* PRIMITIFS — typographie                                                */
+  /* Le mono n'est pas décoratif : il signale qu'une valeur est une donnée   */
+  /* vérifiée. Prix, volumes, compteurs, identifiants, dates. Jamais un      */
+  /* libellé, jamais une phrase.                                            */
+  /* ---------------------------------------------------------------------- */
+  --font-display: "Schibsted Grotesk", system-ui, sans-serif;
+  --font-texte: "Public Sans", system-ui, sans-serif;
+  --font-donnees: "DM Mono", ui-monospace, monospace;
+
+  --display-1-size: 48px;
+  --display-1-line: 52px;
+  --display-2-size: 36px;
+  --display-2-line: 40px;
+  --heading-1-size: 28px;
+  --heading-1-line: 36px;
+  --heading-2-size: 22px;
+  --heading-2-line: 28px;
+  --heading-3-size: 18px;
+  --heading-3-line: 24px;
+  --heading-4-size: 16px;
+  --heading-4-line: 24px;
+  --body-lg-size: 17px;
+  --body-lg-line: 28px;
+  --body-size: 15px;
+  --body-line: 24px;
+  --body-sm-size: 13px;
+  --body-sm-line: 20px;
+  --caption-size: 12px;
+  --caption-line: 16px;
+  --label-size: 11px;
+  --label-line: 16px;
+  --data-lg-size: 20px;
+  --data-lg-line: 28px;
+  --data-size: 14px;
+  --data-line: 20px;
+  --data-sm-size: 11px;
+  --data-sm-line: 16px;
+
+  /* ---------------------------------------------------------------------- */
+  /* PRIMITIFS — rayons. Aucun rayon supérieur à 8 px sur une surface :     */
+  /* les grands arrondis appartiennent au registre grand public.            */
+  /* ---------------------------------------------------------------------- */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-full: 999px;
+
+  /* ---------------------------------------------------------------------- */
+  /* PRIMITIFS — élévation.                                                 */
+  /* L'ombre indique la position dans l'espace, jamais l'importance. Une    */
+  /* information décisive ne reçoit pas d'ombre : elle reçoit une taille et  */
+  /* un contraste.                                                          */
+  /* ---------------------------------------------------------------------- */
+  --elevation-0: none;
+  --elevation-1: none;
+  --elevation-2: 0 1px 2px rgb(20 25 29 / 0.05), 0 2px 8px rgb(20 25 29 / 0.04);
+  --elevation-3: 0 2px 4px rgb(20 25 29 / 0.06), 0 12px 32px rgb(20 25 29 / 0.1);
+  --elevation-4: 0 4px 8px rgb(20 25 29 / 0.08), 0 24px 64px rgb(20 25 29 / 0.14);
+
+  /* ---------------------------------------------------------------------- */
+  /* PRIMITIFS — motion. La sortie est toujours plus rapide que l'entrée.   */
+  /* ---------------------------------------------------------------------- */
+  --motion-fast: 120ms;
+  --motion-base: 180ms;
+  --motion-panel: 280ms;
+  --motion-exit: 160ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --ease-panel: cubic-bezier(0.22, 0.8, 0.28, 1);
+  --ease-exit: cubic-bezier(0.4, 0.14, 1, 1);
+
+  /* ---------------------------------------------------------------------- */
+  /* COMPOSANTS — dérivés des sémantiques, jamais des primitifs             */
+  /* ---------------------------------------------------------------------- */
+  --contenu-largeur-max: 1240px;
+  --lecture-largeur-max: 72ch;
+  --grille-gouttiere: var(--space-6);
+  --grille-marge: var(--space-6);
+  --panneau-largeur: 560px;
+  --cible-hauteur-min: 32px;
+  --cible-hauteur-min-tactile: 44px;
+}
+
+/*
+  THÈME SOMBRE. Les paliers s'inversent. Les teintes sémantiques remontent de
+  deux paliers pour conserver leur contraste : sur fond neutral-100, pine-70
+  serait illisible.
+*/
+.dark {
+  --surface-page: var(--neutral-100);
+  --surface-raised: var(--neutral-90);
+  --surface-hover: var(--neutral-80);
+  --surface-sunken: var(--neutral-100);
+
+  --border-subtle: var(--neutral-80);
+  --border-default: var(--neutral-70);
+  --border-strong: var(--neutral-10);
+
+  --text-primary: var(--neutral-10);
+  --text-secondary: var(--neutral-40);
+  --text-tertiary: var(--neutral-50);
+  --text-disabled: var(--neutral-60);
+  --text-on-inverse: var(--neutral-100);
+
+  --interactive-default: var(--neutral-10);
+  --interactive-hover: var(--neutral-20);
+
+  --status-verified: var(--pine-40);
+  --status-verified-bg: var(--pine-90);
+  --status-absent: var(--clay-40);
+  --status-absent-bg: var(--clay-90);
+  --status-pending: var(--amber-20);
+  --status-pending-bg: var(--amber-70);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-panel: 0ms;
+    --motion-exit: 0ms;
+  }
+}
+
+/*
+  Chiffres tabulaires partout où des nombres s'empilent verticalement : sans
+  eux, une colonne de prix ne s'aligne pas et se lit moins vite.
+*/
+.chiffre,
+[data-donnee] {
+  font-family: var(--font-donnees);
+  font-variant-numeric: tabular-nums;
+}
