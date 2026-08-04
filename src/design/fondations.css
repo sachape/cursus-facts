@@ -313,6 +313,15 @@
   */
   --titre-largeur-max: 20ch;
   --sous-titre-largeur-max: 60ch;
+  /*
+    Pile collante. Les hauteurs sont déclarées plutôt que mesurées : chaque
+    barre s'ancre sous la somme de celles qui la précèdent, et une hauteur
+    devinée décalerait toute la pile sans rien casser visiblement.
+  */
+  --app-header-height: 64px;
+  --domain-nav-height: 56px;
+  --results-toolbar-height: 60px;
+
   --carte-rayon: var(--radius-xl);
   --marque-taille: 44px;
   --marque-rayon: 11px;
@@ -364,6 +373,28 @@
 @media (min-width: 1100px) {
   :root {
     --titre-largeur-max: 34ch;
+  }
+}
+
+/*
+  Une ancre visée par le navigateur — lien interne, retour au focus — atterrit
+  sinon SOUS la pile collante, invisible. Le décalage vaut la hauteur des trois
+  barres, plus une respiration.
+*/
+html {
+  scroll-padding-top: calc(
+    var(--app-header-height) + var(--domain-nav-height) + var(--results-toolbar-height) +
+      var(--space-4)
+  );
+}
+
+/* Sous 1024 px, les barres se compactent : la pile complète mangerait une part
+   excessive d'un écran de téléphone. */
+@media (max-width: 1023px) {
+  :root {
+    --app-header-height: 56px;
+    --domain-nav-height: 48px;
+    --results-toolbar-height: 52px;
   }
 }
 

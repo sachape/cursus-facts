@@ -107,8 +107,18 @@ export function ResultToolbar({
   comparateur?: React.ReactNode;
 }) {
   return (
-    <div className="pb-(--space-5) pt-(--space-6)">
-      <div className="flex flex-wrap items-center justify-between gap-(--space-3)">
+    <>
+      {/*
+        Collante sous la navigation des domaines. Elle ne porte que le titre, le
+        compteur et le tri : y garder les filtres actifs ferait varier sa
+        hauteur au fil des sélections, et une barre collante dont la hauteur
+        change décale toute la pile sous elle.
+
+        Le fond est exactement celui de la page — il n'existe que pour empêcher
+        les cartes de transparaître pendant le défilement, pas pour recréer un
+        bandeau.
+      */}
+      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-nav-height))] z-30 flex min-h-(--results-toolbar-height) flex-wrap items-center justify-between gap-(--space-3) border-b border-(--border-subtle) bg-(--surface-page)">
         <h2 className="t-heading-4 text-(--text-primary)">
           {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
         </h2>
@@ -119,9 +129,8 @@ export function ResultToolbar({
       </div>
 
       {/*
-        Les filtres posés s'affichent ici, retirables d'un clic. Les garder
-        uniquement dans la colonne latérale oblige à remonter pour savoir ce
-        qui est appliqué, et à y redescendre pour en retirer un.
+        Hors de la barre collante, dans le flux normal : ils disparaissent
+        d'eux-mêmes en défilant, sans qu'aucun JavaScript ne les masque.
       */}
       {filtresActifs.length > 0 && (
         <div className="mt-(--space-3) flex flex-wrap items-center gap-(--space-2)">
@@ -138,7 +147,9 @@ export function ResultToolbar({
         </div>
       )}
 
-      <p className="mt-(--space-3) t-caption text-(--text-tertiary)">{LIBELLES_TRIS[tri]}</p>
-    </div>
+      <p className="mb-(--space-5) mt-(--space-3) t-caption text-(--text-tertiary)">
+        {LIBELLES_TRIS[tri]}
+      </p>
+    </>
   );
 }

@@ -38,10 +38,10 @@ export function OngletsDomaines({
     */
     <nav
       aria-label="Domaines"
-      className="sticky top-0 z-(--z-collant) border-b border-(--border-subtle)"
+      className="sticky top-(--app-header-height) z-40 h-(--domain-nav-height) border-b border-(--border-subtle) bg-(--surface-page)"
     >
       <ul
-        className="-mb-px flex overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mb-px flex h-full items-stretch overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {onglets.map((onglet) => {
           const estActif = onglet.domaine === actif;

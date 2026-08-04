@@ -19,8 +19,8 @@ const VUES = [
 
 export function Navigation() {
   return (
-    <header className="sticky top-0 z-(--z-barre-ancree) border-b border-(--border-subtle) bg-(--surface-page)/95 backdrop-blur">
-      <div className="mx-auto flex max-w-(--contenu-largeur-max) items-center gap-(--space-8) px-(--space-6)">
+    <header className="sticky top-0 z-50 h-(--app-header-height) border-b border-(--border-subtle) bg-(--surface-page)">
+      <div className="mx-auto flex h-full max-w-(--contenu-largeur-max) items-center gap-(--space-8) px-(--space-6)">
         {/*
           Le mot-symbole précède la navigation et ramène à l'accueil : c'est le
           seul repère qui dit où l'on est quand on arrive par une fiche
