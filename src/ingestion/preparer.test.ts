@@ -143,6 +143,33 @@ describe("ce qui part en base respecte les invariants", () => {
     expect(total).toBe(2640);
   });
 
+  it("n'admet aucune fiche sans site officiel", () => {
+    /*
+      LE SITE OFFICIEL EST LA DONNÉE FONDATRICE. Sans URL vérifiée, une fiche
+      ne peut ni être ouverte en profondeur, ni être rafraîchie, ni renvoyer
+      l'utilisateur vers l'organisme — et la vue Méthode ne peut rien prouver
+      de ce qu'elle affiche.
+
+      Le trou constaté le 4 août 2026 est instructif : les 20 fiches sans URL
+      étaient **toutes** des créateurs indépendants, c'est-à-dire la catégorie
+      que l'agent doit rafraîchir tous les mois. Le segment le plus volatil du
+      catalogue était aussi celui dont nous n'avions aucune adresse.
+
+      Les exceptions ci-dessous sont nommées et datées. Cette liste ne doit que
+      décroître : y ajouter un nom exige un motif écrit ici, et aucune collecte
+      future ne doit créer de fiche sans URL.
+    */
+    const SANS_URL_HERITEES = new Set<string>([]);
+    const fautives = preparation.fiches
+      .filter((f) => {
+        const url = f.colonnes["site_officiel"];
+        return url === null || url === undefined || String(url).trim() === "" || url === "—";
+      })
+      .map((f) => f.slug)
+      .filter((slug) => !SANS_URL_HERITEES.has(slug));
+    expect(fautives).toEqual([]);
+  });
+
   it("ne fait jamais disparaître une valeur du catalogue", () => {
     /*
       LE GARDE-FOU CENTRAL. Ce plancher ne mesure pas les informations

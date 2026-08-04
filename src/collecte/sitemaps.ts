@@ -73,9 +73,39 @@ function decoderEntites(texte: string): string {
 const MOTIFS_FORMATION =
   /\/(formation|formations|cours|cursus|programme|programmes|parcours|training|course|courses|stage|stages|bootcamp|certification|diplome|diplomes|master|licence|bachelor|mastere|mba|bts|but|dut|academy|apprendre)[s]?[/-]/i;
 
-/** Motifs d'URL qui ne peuvent pas être une page de formation. */
+/**
+ * Motifs d'URL qui ne peuvent pas être une page de parcours.
+ *
+ * L'exclusion est plus fiable que l'inclusion sur ce bruit-là : une page
+ * d'actualité peut porter un titre de formation parfaitement crédible, mais son
+ * chemin la trahit toujours. L'échantillon du 4 août a ramené un article
+ * Parcoursup d'Audencia, une page « les métiers » d'EM Normandie et une
+ * actualité de MBA ESG — trois faux positifs qu'aucun filtre d'inclusion
+ * n'aurait écartés.
+ */
 const MOTIFS_EXCLUS =
-  /\/(blog|actualite|actualites|news|article|articles|auteur|author|tag|tags|categorie|category|mentions|cgv|cgu|politique|privacy|contact|recrutement|carriere|presse|plan-du-site|panier|compte|login|connexion|wp-content|wp-json|feed)[/-]?|\.(jpg|jpeg|png|gif|svg|pdf|css|js|xml)$/i;
+  /\/(blog|actualite|actualites|news|article|articles|auteur|author|tag|tags|categorie|category|metier|metiers|parcoursup|admission|admissions|evenement|evenements|mentions|cgv|cgu|politique|privacy|contact|recrutement|carriere|presse|plan-du-site|panier|compte|login|connexion|wp-content|wp-json|feed)[/-]?|\.(jpg|jpeg|png|gif|svg|pdf|css|js|xml)$/i;
+
+/**
+ * Marqueurs réellement discriminants du périmètre e-commerce.
+ *
+ * « Commerce » seul en est absent, et c'est le point : sur vingt candidats
+ * tirés au hasard le 4 août, il ramenait du commerce international, du commerce
+ * circulaire et des écoles de commerce — soit une bonne moitié de faux
+ * positifs. Un mot générique ne discrimine rien.
+ *
+ * « Marketing digital » est admis mais reste le maillon faible : il ramènera de
+ * la communication et de la publicité qui ne relèvent pas de nos neuf domaines.
+ * La classification tranchera en aval ; ce filtre-ci ne fait que réduire le
+ * volume à lire.
+ */
+const MARQUEURS_ECOMMERCE =
+  /(e-?commerce|dropshipping|shopify|prestashop|woo-?commerce|magento|marketplace|amazon|fba|vente-en-ligne|boutique-en-ligne|marketing-digital)/i;
+
+/** Vrai si l'URL relève du périmètre e-commerce, et pas seulement du commerce. */
+export function estPertinentEcommerce(url: string): boolean {
+  return MARQUEURS_ECOMMERCE.test(cheminDe(url));
+}
 
 /** Vrai si l'URL ressemble à une page de détail de formation. */
 export function estPageFormation(url: string): boolean {

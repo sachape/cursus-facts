@@ -5370,7 +5370,7 @@
   "categorieLibelle": "Formations indépendantes",
   "sousFamille": "Créateur indépendant",
   "region": null,
-  "url": "—",
+  "url": "yomi-denzel.fr",
   "prix": null,
   "duree": "~70 h",
   "volumeHoraire": 70,
@@ -5404,7 +5404,15 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "url",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Site officiel retrouvé et vérifié le 4 août 2026. La fiche était entrée au catalogue sans URL — impossible à ouvrir en profondeur, à rafraîchir ou à renvoyer vers l organisme."
+   }
+  ]
  },
  {
   "id": 128,
@@ -5645,7 +5653,7 @@
   "categorieLibelle": "Formations indépendantes",
   "sousFamille": "Créateur indépendant",
   "region": null,
-  "url": "—",
+  "url": "marketingmania.fr",
   "prix": null,
   "duree": null,
   "volumeHoraire": null,
@@ -5668,7 +5676,15 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "url",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Site officiel retrouvé et vérifié le 4 août 2026. La fiche était entrée au catalogue sans URL — impossible à ouvrir en profondeur, à rafraîchir ou à renvoyer vers l organisme."
+   }
+  ]
  },
  {
   "id": 135,
@@ -5712,7 +5728,7 @@
   "categorieLibelle": "Formations indépendantes",
   "sousFamille": "Créateur indépendant",
   "region": null,
-  "url": "—",
+  "url": "school.la-webeuse.com",
   "prix": null,
   "duree": null,
   "volumeHoraire": null,
@@ -5738,7 +5754,15 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "url",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Site officiel retrouvé et vérifié le 4 août 2026. La fiche était entrée au catalogue sans URL — impossible à ouvrir en profondeur, à rafraîchir ou à renvoyer vers l organisme."
+   }
+  ]
  },
  {
   "id": 137,
@@ -5848,7 +5872,7 @@
   "categorieLibelle": "Formations indépendantes",
   "sousFamille": "Créateur indépendant",
   "region": null,
-  "url": "—",
+  "url": "school.antoinebm.com",
   "prix": null,
   "duree": null,
   "volumeHoraire": null,
@@ -5871,7 +5895,15 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "url",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Site officiel retrouvé et vérifié le 4 août 2026."
+   }
+  ]
  },
  {
   "id": 141,

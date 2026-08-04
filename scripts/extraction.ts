@@ -18,6 +18,7 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { chargerCatalogue, type OffreNormalisee } from "../src/donnees/catalogue";
 import {
+  enParallele,
   exigeRepliNavigateur,
   recuperer,
   texteprincipal,
@@ -77,7 +78,7 @@ async function main() {
   let repliNecessaire = 0;
   const fichesTouchees = new Set<number>();
 
-  for (const [index, entree] of lot.entries()) {
+  await enParallele(lot, 6, async (entree, index) => {
     const etiquette = `${String(index + 1).padStart(3)}/${lot.length}  ${entree.offre.nom.slice(0, 40).padEnd(40)}`;
 
     const reponse = await recuperer(entree.url);
@@ -85,7 +86,7 @@ async function main() {
       // Un échec réseau n'est jamais une absence d'information.
       echecs.push({ id: entree.id!, url: entree.url, motif: reponse.motif });
       console.log(`${etiquette} ✗ ${reponse.motif}`);
-      continue;
+      return;
     }
 
     const texte = texteprincipal(reponse.texte);
@@ -95,7 +96,7 @@ async function main() {
       repliNecessaire++;
       echecs.push({ id: entree.id!, url: entree.url, motif: "page_vide_repli_navigateur_requis" });
       console.log(`${etiquette} ⟳ page vide (${texte.length} car.) — repli requis`);
-      continue;
+      return;
     }
 
     pagesLues++;
@@ -109,7 +110,7 @@ async function main() {
         motif: erreur instanceof Error ? erreur.message.slice(0, 120) : "erreur_extraction",
       });
       console.log(`${etiquette} ✗ extraction`);
-      continue;
+      return;
     }
 
     proposes += extraction.proposes;
@@ -135,7 +136,7 @@ async function main() {
     console.log(
       `${etiquette} ✓ ${String(Object.keys(extraction.filtrage.retenus).length).padStart(2)}/${String(extraction.proposes).padStart(2)} champs cités`,
     );
-  }
+  });
 
   writeFileSync(JOURNAL, JSON.stringify(journal, null, 1));
   writeFileSync(REJETS, JSON.stringify({ rejets, echecs }, null, 1));

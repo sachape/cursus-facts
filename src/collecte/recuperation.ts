@@ -17,14 +17,46 @@ const dernierAppel = new Map<string, number>();
 
 const attendre = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-/** Espace les requêtes d'un même domaine, sans ralentir les autres. */
+/**
+ * Espace les requêtes d'un même domaine, sans ralentir les autres.
+ *
+ * La réservation du créneau est faite **avant** l'attente, pas après : sans ça,
+ * deux appels concurrents sur le même domaine liraient la même date, dormiraient
+ * la même durée et repartiraient ensemble — la concurrence transformerait la
+ * politesse en martèlement chez un seul organisme.
+ */
 async function respecterCadence(domaine: string, horloge: () => number): Promise<void> {
-  const precedent = dernierAppel.get(domaine);
-  if (precedent !== undefined) {
-    const attente = CADENCE_PAR_DOMAINE_MS - (horloge() - precedent);
-    if (attente > 0) await attendre(attente);
-  }
-  dernierAppel.set(domaine, horloge());
+  const maintenant = horloge();
+  const prochainCreneau = Math.max(maintenant, (dernierAppel.get(domaine) ?? 0) + CADENCE_PAR_DOMAINE_MS);
+  dernierAppel.set(domaine, prochainCreneau);
+  const attente = prochainCreneau - maintenant;
+  if (attente > 0) await attendre(attente);
+}
+
+/**
+ * Exécute des tâches avec un nombre borné en vol.
+ *
+ * L'extraction est dominée par l'attente, pas par le calcul : 20 pages en
+ * 32 minutes séquentielles, dont l'essentiel passé à attendre le modèle sur des
+ * pages universitaires de plusieurs dizaines de milliers de caractères. Six en
+ * vol ramènent la passe complète de sept heures à un peu plus d'une, sans
+ * toucher à la cadence par domaine, qui reste appliquée en dessous.
+ */
+export async function enParallele<T, R>(
+  items: readonly T[],
+  limite: number,
+  travail: (item: T, index: number) => Promise<R>,
+): Promise<R[]> {
+  const resultats = new Array<R>(items.length);
+  let curseur = 0;
+  const ouvriers = Array.from({ length: Math.min(limite, items.length) }, async () => {
+    while (curseur < items.length) {
+      const index = curseur++;
+      resultats[index] = await travail(items[index]!, index);
+    }
+  });
+  await Promise.all(ouvriers);
+  return resultats;
 }
 
 export type Reponse =
