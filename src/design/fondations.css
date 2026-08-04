@@ -509,119 +509,123 @@ html {
 /* -------------------------------------------------------------------------- */
 /* Classes de l'échelle typographique                                          */
 /*                                                                             */
-/* Un composant n'écrit jamais une taille : il porte une classe de l'échelle.  */
-/* C'est ce qui rend l'invariant de design vérifiable — une taille en dur      */
-/* devient visible au lieu de se fondre dans une classe utilitaire.            */
+/* EN @layer components, ET C'EST DÉCISIF. Du CSS hors couche l'emporte sur    */
+/* @layer utilities : ces classes battaient alors toute taille responsive      */
+/* écrite en utilitaire Tailwind, silencieusement. Le titre restait à 48 px    */
+/* sur un téléphone et débordait, alors que la règle de réduction existait.    */
 /* -------------------------------------------------------------------------- */
 
-.t-display-1,
-.t-display-2,
-.t-heading-1,
-.t-heading-2,
-.t-heading-3,
-.t-heading-4 {
-  font-family: var(--font-display);
+@layer components {
+  .t-display-1,
+  .t-display-2,
+  .t-heading-1,
+  .t-heading-2,
+  .t-heading-3,
+  .t-heading-4 {
+    font-family: var(--font-display);
+  }
+
+  .t-display-1 {
+    font-size: var(--display-1-size);
+    line-height: var(--display-1-line);
+    font-weight: 800;
+    letter-spacing: var(--display-1-tracking);
+    font-variation-settings: "opsz" var(--opsz-display-1);
+  }
+
+  .t-display-2 {
+    font-size: var(--display-2-size);
+    line-height: var(--display-2-line);
+    font-weight: 800;
+    letter-spacing: var(--display-2-tracking);
+    font-variation-settings: "opsz" var(--opsz-display-2);
+  }
+
+  .t-heading-1 {
+    font-size: var(--heading-1-size);
+    line-height: var(--heading-1-line);
+    font-weight: 600;
+    letter-spacing: var(--heading-1-tracking);
+    font-variation-settings: "opsz" var(--opsz-heading);
+  }
+
+  .t-heading-2 {
+    font-size: var(--heading-2-size);
+    line-height: var(--heading-2-line);
+    font-weight: 600;
+    letter-spacing: var(--heading-2-tracking);
+    font-variation-settings: "opsz" var(--opsz-heading);
+  }
+
+  .t-heading-3 {
+    font-size: var(--heading-3-size);
+    line-height: var(--heading-3-line);
+    font-weight: 600;
+    letter-spacing: var(--heading-3-tracking);
+    font-variation-settings: "opsz" var(--opsz-heading);
+  }
+
+  .t-heading-4 {
+    font-size: var(--heading-4-size);
+    line-height: var(--heading-4-line);
+    font-weight: 600;
+    letter-spacing: var(--heading-4-tracking);
+    font-variation-settings: "opsz" var(--opsz-heading);
+  }
+
+  .t-body-lg,
+  .t-body,
+  .t-body-sm,
+  .t-caption,
+  .t-label {
+    font-family: var(--font-body);
+  }
+
+  .t-body-lg {
+    font-size: var(--body-lg-size);
+    line-height: var(--body-lg-line);
+  }
+  .t-body {
+    font-size: var(--body-size);
+    line-height: var(--body-line);
+  }
+  .t-body-sm {
+    font-size: var(--body-sm-size);
+    line-height: var(--body-sm-line);
+  }
+  .t-caption {
+    font-size: var(--caption-size);
+    line-height: var(--caption-line);
+  }
+  .t-label {
+    font-size: var(--label-size);
+    line-height: var(--label-line);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .t-data-lg,
+  .t-data,
+  .t-data-sm {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .t-data-lg {
+    font-size: var(--data-lg-size);
+    line-height: var(--data-lg-line);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .t-data {
+    font-size: var(--data-size);
+    line-height: var(--data-line);
+  }
+  .t-data-sm {
+    font-size: var(--data-sm-size);
+    line-height: var(--data-sm-line);
+    letter-spacing: 0.02em;
+  }
 }
 
-.t-display-1 {
-  font-size: var(--display-1-size);
-  line-height: var(--display-1-line);
-  font-weight: 800;
-  letter-spacing: var(--display-1-tracking);
-  font-variation-settings: "opsz" var(--opsz-display-1);
-}
-
-.t-display-2 {
-  font-size: var(--display-2-size);
-  line-height: var(--display-2-line);
-  font-weight: 800;
-  letter-spacing: var(--display-2-tracking);
-  font-variation-settings: "opsz" var(--opsz-display-2);
-}
-
-.t-heading-1 {
-  font-size: var(--heading-1-size);
-  line-height: var(--heading-1-line);
-  font-weight: 600;
-  letter-spacing: var(--heading-1-tracking);
-  font-variation-settings: "opsz" var(--opsz-heading);
-}
-
-.t-heading-2 {
-  font-size: var(--heading-2-size);
-  line-height: var(--heading-2-line);
-  font-weight: 600;
-  letter-spacing: var(--heading-2-tracking);
-  font-variation-settings: "opsz" var(--opsz-heading);
-}
-
-.t-heading-3 {
-  font-size: var(--heading-3-size);
-  line-height: var(--heading-3-line);
-  font-weight: 600;
-  letter-spacing: var(--heading-3-tracking);
-  font-variation-settings: "opsz" var(--opsz-heading);
-}
-
-.t-heading-4 {
-  font-size: var(--heading-4-size);
-  line-height: var(--heading-4-line);
-  font-weight: 600;
-  letter-spacing: var(--heading-4-tracking);
-  font-variation-settings: "opsz" var(--opsz-heading);
-}
-
-.t-body-lg,
-.t-body,
-.t-body-sm,
-.t-caption,
-.t-label {
-  font-family: var(--font-body);
-}
-
-.t-body-lg {
-  font-size: var(--body-lg-size);
-  line-height: var(--body-lg-line);
-}
-.t-body {
-  font-size: var(--body-size);
-  line-height: var(--body-line);
-}
-.t-body-sm {
-  font-size: var(--body-sm-size);
-  line-height: var(--body-sm-line);
-}
-.t-caption {
-  font-size: var(--caption-size);
-  line-height: var(--caption-line);
-}
-.t-label {
-  font-size: var(--label-size);
-  line-height: var(--label-line);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.t-data-lg,
-.t-data,
-.t-data-sm {
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-}
-
-.t-data-lg {
-  font-size: var(--data-lg-size);
-  line-height: var(--data-lg-line);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-.t-data {
-  font-size: var(--data-size);
-  line-height: var(--data-line);
-}
-.t-data-sm {
-  font-size: var(--data-sm-size);
-  line-height: var(--data-sm-line);
-  letter-spacing: 0.02em;
-}
