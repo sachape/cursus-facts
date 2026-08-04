@@ -276,10 +276,32 @@
   --barre-hauteur: 16px;
   --barre-hauteur-reduite: 8px;
   --barre-rayon: 1px;
-  --recherche-largeur: 640px;
-  --recherche-hauteur: 56px;
-  /* Retrait du texte : padding + largeur de la loupe + écart. */
-  --recherche-retrait: 52px;
+  /*
+    Champ de recherche principal. Le retrait du texte est calculé, pas choisi :
+    padding horizontal + largeur de l'icône + écart icône/texte. L'écrire en dur
+    le désynchroniserait du premier changement de padding.
+  */
+  --recherche-largeur: 1040px;
+  --recherche-hauteur: 68px;
+  --recherche-rayon: 14px;
+  --recherche-padding: 20px;
+  --recherche-icone: 20px;
+  --recherche-ecart: 14px;
+  --recherche-retrait: 54px;
+  --recherche-texte: 17px;
+  --recherche-interligne: 24px;
+
+  --recherche-hauteur-mobile: 56px;
+  --recherche-rayon-mobile: 12px;
+  --recherche-padding-mobile: 16px;
+  --recherche-icone-mobile: 18px;
+  --recherche-retrait-mobile: 48px;
+  --recherche-texte-mobile: 16px;
+
+  /* Ombre propre au champ : plus basse et plus diffuse que l'élévation 2. */
+  --recherche-ombre: 0 1px 2px rgb(16 24 40 / 0.04), 0 8px 24px rgb(16 24 40 / 0.035);
+  /* Anneau de focus : 3 px à 8 % — présent sans cerner. */
+  --recherche-anneau: 0 0 0 3px rgb(20 25 29 / 0.08);
   --suggestions-hauteur-max: 400px;
   --suggestion-hauteur: 44px;
   --hero-largeur-max: 720px;

@@ -10,6 +10,7 @@
  * réponse, un domaine n'est qu'une piste.
  */
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { Search } from "lucide-react";
 
 export type Suggestion = {
   type: "parcours" | "organisme" | "domaine";
@@ -35,13 +36,20 @@ const MARGE_FENETRE = 24;
 /** En dessous, la liste s'ouvre au-dessus du champ plutôt qu'en dessous. */
 const ESPACE_MINIMAL_DESSOUS = 200;
 
-/** Loupe — trait 1,5 px, grille 20 px, extrémités carrées, aucun remplissage. */
+/**
+ * Loupe — posée nue à gauche du texte, sans carré ni cercle décoratif.
+ *
+ * 20 px sur bureau, 18 px sous 640 px : les deux tailles sont rendues et l'une
+ * est masquée, plutôt qu'une seule redimensionnée. Redimensionner un trait de
+ * 1,75 px l'épaissit ou l'amincit proportionnellement, ce qui casse
+ * l'homogénéité avec les autres icônes.
+ */
 function Loupe({ className }: { className: string }) {
   return (
-    <svg viewBox="0 0 20 20" width="20" height="20" fill="none" aria-hidden className={className}>
-      <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M13.5 13.5L17 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-    </svg>
+    <span className={className}>
+      <Search size={20} strokeWidth={1.75} aria-hidden className="max-[639px]:hidden" />
+      <Search size={18} strokeWidth={1.75} aria-hidden className="hidden max-[639px]:block" />
+    </span>
   );
 }
 
@@ -269,8 +277,8 @@ export function RechercheHero({
     <div ref={conteneur} className="relative mx-auto w-full max-w-(--recherche-largeur)">
       <div className="relative">
         <span
-          className={`pointer-events-none absolute inset-y-0 left-(--space-4) flex items-center transition-colors ${
-            ouvert ? "text-(--text-primary)" : "text-(--text-tertiary)"
+          className={`pointer-events-none absolute inset-y-0 left-(--recherche-padding) flex items-center transition-colors duration-(--motion-exit) max-[639px]:left-(--recherche-padding-mobile) ${
+            ouvert ? "text-(--accent-default)" : "text-(--text-secondary)"
           }`}
         >
           {enCours ? <Chargement className="" /> : <Loupe className="" />}
@@ -291,15 +299,20 @@ export function RechercheHero({
           }}
           onFocus={() => setOuvert(true)}
           onKeyDown={clavier}
-          placeholder="Recherche par parcours, organisme, code RNCP…"
+          placeholder="Rechercher un parcours, un organisme ou un code RNCP…"
           spellCheck={false}
           autoCorrect="off"
           autoCapitalize="off"
           autoComplete="off"
-          className={`h-(--recherche-hauteur) w-full rounded-(--radius-md) border bg-(--surface-raised) pl-(--recherche-retrait) pr-(--space-10) t-body text-(--text-primary) shadow-(--elevation-1) outline-none transition-[border-color,box-shadow] placeholder:text-(--text-tertiary) ${
+          /*
+            L'anneau de focus est une ombre, pas un contour : un `outline`
+            déplacerait la mise en page de 3 px à chaque focus, et un `border`
+            plus épais ferait sauter la hauteur du champ.
+          */
+          className={`h-(--recherche-hauteur) w-full rounded-(--recherche-rayon) border bg-(--surface-raised) pl-(--recherche-retrait) pr-(--space-10) text-(--text-primary) outline-none transition-[border-color,box-shadow] duration-(--motion-exit) ease-(--ease-standard) placeholder:text-(--text-tertiary) [font-size:var(--recherche-texte)] [line-height:var(--recherche-interligne)] max-[639px]:h-(--recherche-hauteur-mobile) max-[639px]:rounded-(--recherche-rayon-mobile) max-[639px]:pl-(--recherche-retrait-mobile) max-[639px]:[font-size:var(--recherche-texte-mobile)] disabled:opacity-60 ${
             ouvert
-              ? "border-(--border-strong) shadow-(--elevation-2)"
-              : "border-(--border-default)"
+              ? "border-(--border-strong) [box-shadow:var(--recherche-ombre),var(--recherche-anneau)]"
+              : "border-(--border-default) [box-shadow:var(--recherche-ombre)] hover:border-(--border-strong)"
           }`}
         />
 
