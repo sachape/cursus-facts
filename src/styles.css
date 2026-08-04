@@ -4,7 +4,7 @@
 @source "../src";
 
 /*
- * Schibsted Grotesk pour les titres, Public Sans pour le texte, DM Mono pour
+ * Bricolage Grotesque pour les titres, Geist pour le texte, DM Mono pour
  * toute donnée chiffrée. Le mono sur les chiffres n'est pas décoratif : il
  * aligne les prix et les compteurs d'une rangée à l'autre, ce qui est la seule
  * façon de comparer une colonne de nombres à l'œil.
@@ -89,8 +89,9 @@
   --color-atteste: var(--atteste);
   --color-absent: var(--absent);
 
-  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-titre: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+  /* Aliasés sur les jetons de fondation : une seule source pour les familles. */
+  --font-sans: var(--font-body);
+  --font-titre: var(--font-display);
   --font-mono: "DM Mono", ui-monospace, monospace;
 }
 

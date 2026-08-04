@@ -98,7 +98,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..900&family=Public+Sans:ital,wght@0,300..800;1,300..800&family=DM+Mono:wght@400;500&display=swap",
+        /*
+          Trois familles, et seulement les graisses employées.
+
+          Bricolage Grotesque est chargé en variable sur l'axe `opsz` (12 à 96) :
+          les classes .t-display-* et .t-heading-* le pilotent via
+          `font-variation-settings`, et une version statique annulerait ce
+          réglage sans produire la moindre erreur — le titre paraîtrait
+          simplement mou, sans qu'on sache pourquoi.
+        */
+        href: "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Geist:wght@400;500&family=DM+Mono:wght@400;500&display=swap",
       },
       {
         rel: "stylesheet",
