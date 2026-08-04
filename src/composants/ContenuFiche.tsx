@@ -16,7 +16,10 @@ import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
-import { DEFINITIONS_MODALITES_COMMERCIALES } from "@/modele/modalite-commerciale";
+import {
+  DETAIL_RESERVE_AUX_ENTREPRISES,
+  reserveAuxEntreprises,
+} from "@/modele/modalite-commerciale";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { libellePrix } from "./RangeeParcours";
 import { useComparaison } from "./comparaison";
@@ -278,9 +281,9 @@ export function ContenuFiche({
         <dl>
           <Information libelle="Prix" etat={e.prix}>
             <span className="chiffre">{libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}</span>
-            {p.modaliteCommerciale !== null && (
+            {reserveAuxEntreprises(p) && (
               <span className="mt-1 block text-xs text-muted-foreground">
-                {DEFINITIONS_MODALITES_COMMERCIALES[p.modaliteCommerciale]}
+                {DETAIL_RESERVE_AUX_ENTREPRISES}
               </span>
             )}
             {p.prixIntra !== null && (

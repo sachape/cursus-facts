@@ -20,6 +20,7 @@
  * non.
  */
 import { rangPrix, type ModaliteAcces } from "./modalite-acces";
+import { prixAffichable } from "./modalite-commerciale";
 
 /** Ce dont le classement a besoin de connaître d'un parcours. */
 export type ParcoursClassable = {
@@ -29,6 +30,7 @@ export type ParcoursClassable = {
   /** Date de dernière vérification, au format ISO. */
   dateVerification: string | null;
   prixMin: number | null;
+  dispoInter?: boolean | null;
   volumeHoraire: number | null;
   /** Qualifie la gratuité : une fiche en accès partiel n'est pas gratuite. */
   modaliteAcces?: ModaliteAcces | null;
@@ -71,6 +73,9 @@ const parFraicheur = (a: ParcoursClassable, b: ParcoursClassable) =>
 const absentsEnDernier = (a: number | null, b: number | null, comparaison: number) =>
   Number(a === null) - Number(b === null) || comparaison;
 
+const tarifIndividuel = (p: ParcoursClassable) =>
+  prixAffichable(p.prixMin, { dispoInter: p.dispoInter ?? null, dispoIntra: null });
+
 const COMPARATEURS: Record<Tri, (a: ParcoursClassable, b: ParcoursClassable) => number> = {
   // Les trois critères successifs du modèle : informations, fraîcheur, alphabétique.
   informations: (a, b) =>
@@ -79,12 +84,18 @@ const COMPARATEURS: Record<Tri, (a: ParcoursClassable, b: ParcoursClassable) => 
   alphabetique: parIntitule,
   // Le rang tient compte de la modalité : une fiche en accès partiel gratuit
   // ne remonte pas en tête comme si le parcours complet ne coûtait rien.
-  prix: (a, b) =>
-    absentsEnDernier(
-      a.prixMin,
-      b.prixMin,
-      rangPrix(a.prixMin, a.modaliteAcces ?? null) - rangPrix(b.prixMin, b.modaliteAcces ?? null),
-    ),
+  prix: (a, b) => {
+    // Le tri porte sur le tarif individuel. Un parcours réservé aux entreprises
+    // n'a pas de prix comparable pour une personne : il rejoint les prix
+    // inconnus en fin de tri, plutôt que de s'insérer avec un tarif de groupe.
+    const prixA = tarifIndividuel(a);
+    const prixB = tarifIndividuel(b);
+    return absentsEnDernier(
+      prixA,
+      prixB,
+      rangPrix(prixA, a.modaliteAcces ?? null) - rangPrix(prixB, b.modaliteAcces ?? null),
+    );
+  },
   duree: (a, b) =>
     absentsEnDernier(a.volumeHoraire, b.volumeHoraire, (a.volumeHoraire ?? 0) - (b.volumeHoraire ?? 0)),
 };

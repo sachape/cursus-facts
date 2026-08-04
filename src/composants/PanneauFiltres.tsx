@@ -338,6 +338,26 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
         </div>
       </Groupe>
 
+      {/*
+        L'accessibilité précède le format : savoir si l'on peut acheter le
+        parcours soi-même conditionne tout le reste. Un parcours réservé aux
+        entreprises reste au catalogue et reste visible sans ce filtre — il
+        intéresse un dirigeant qui forme son équipe.
+      */}
+      <Groupe titre="Accessibilité" actifs={filtres.accessibleIndividuellement ? 1 : 0}>
+        <div className="space-y-2">
+          <Option
+            id="f-individuel"
+            libelle="Accessible à titre individuel"
+            coche={filtres.accessibleIndividuellement}
+            nombre={compterAvec(parcours, filtres, { accessibleIndividuellement: true })}
+            basculer={() =>
+              modifier({ accessibleIndividuellement: !filtres.accessibleIndividuellement })
+            }
+          />
+        </div>
+      </Groupe>
+
       <Groupe titre="Format" actifs={filtres.formats.length}>
         <div className="space-y-2">
           {(Object.keys(LIBELLES_FORMATS) as FormatParcours[]).map((format) => (

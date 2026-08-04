@@ -18,6 +18,7 @@ import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { useComparaison } from "./comparaison";
 import { libellePrixQualifie, type ModaliteAcces } from "@/modele/modalite-acces";
+import { prixAffichable, reserveAuxEntreprises } from "@/modele/modalite-commerciale";
 import {
   certificationCourte,
   Decisif,
@@ -96,7 +97,11 @@ export function RangeeParcours({
   const { ajouter, retirer, contient } = useComparaison();
   const selectionne = contient(parcours.slug);
   const certification = certificationCourte(parcours.certification, parcours.codeRncpRs);
-  const prixInconnu = parcours.prixMin === null && parcours.modaliteAcces === null;
+  // Un parcours sans tarif individuel n'a pas de prix comparable pour une
+  // personne : afficher son tarif de groupe la ferait renoncer sur un chiffre
+  // qui ne la concerne pas.
+  const prixListe = prixAffichable(parcours.prixMin, parcours);
+  const prixInconnu = prixListe === null && parcours.modaliteAcces === null;
   const ouvrir = interception(parcours, ouvrirEnPanneau);
 
   return (
@@ -167,7 +172,7 @@ export function RangeeParcours({
         <div className="min-[840px]:w-64 min-[840px]:shrink-0">
           <GroupeDecisif>
             <Decisif etiquette="Coût pour l'apprenant" absent={prixInconnu}>
-              {libellePrix(parcours.prixMin, parcours.prixMax, parcours.modaliteAcces)}
+              {libellePrix(prixListe, parcours.prixMax, parcours.modaliteAcces)}
             </Decisif>
           </GroupeDecisif>
 
@@ -182,6 +187,18 @@ export function RangeeParcours({
             {parcours.eligibleCpf === true && (
               <Decisif etiquette="Financement" atteste>
                 Éligible CPF
+              </Decisif>
+            )}
+            {/*
+              L'accessibilité n'est pas un attribut de prix, c'est un critère de
+              même ordre que l'éligibilité CPF : un parcours réservé aux
+              entreprises n'est pas achetable par une personne, quel que soit
+              son budget. Le laisser enfoui dans la fiche ferait perdre à
+              quelqu'un en reconversion le temps de l'ouvrir pour rien.
+            */}
+            {reserveAuxEntreprises(parcours) && (
+              <Decisif etiquette="Accès" absent>
+                Réservé aux entreprises
               </Decisif>
             )}
           </div>

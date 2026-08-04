@@ -17,7 +17,6 @@ import type {
   NiveauEntree,
 } from "@/types/cursus";
 import type { ModaliteAcces } from "@/modele/modalite-acces";
-import type { ModaliteCommerciale } from "@/modele/modalite-commerciale";
 import offresSources from "./offres-sources.json";
 
 /** Une offre telle que collectée, avant classification et regroupement. */
@@ -68,11 +67,10 @@ export type OffreSource = {
   profondeurVerifieeLe?: string | null;
   /** URL de la page de détail, alimentée par la file de collecte. */
   urlDetail?: string | null;
-  /**
-   * Inter-entreprises, intra-entreprise, ou les deux. `null` tant que la page
-   * de détail n'a pas tranché — le prix affiché reste alors à vérifier.
-   */
-  modaliteCommerciale?: ModaliteCommerciale | null;
+  /** Sessions collectives ouvertes à une inscription individuelle. */
+  dispoInter?: boolean | null;
+  /** Intervention en entreprise, facturée au groupe. */
+  dispoIntra?: boolean | null;
   /** Tarif de groupe, affiché sur la fiche mais jamais dans la liste. */
   prixIntra?: number | null;
 };
@@ -147,6 +145,12 @@ export type OffreNormalisee = Omit<
   niveauEntree: NiveauEntree | null;
   formats: FormatParcours[];
   domaineDeclare: DomaineParcours | null;
+  // Optionnels dans la source, toujours renseignés après normalisation : les
+  // règles peuvent donc les lire sans avoir à distinguer `undefined` de `null`,
+  // distinction qui n'a aucun sens ici — les deux veulent dire « non tranché ».
+  dispoInter: boolean | null;
+  dispoIntra: boolean | null;
+  prixIntra: number | null;
 };
 
 export function normaliserOffre(offre: OffreSource): OffreNormalisee {
@@ -167,9 +171,10 @@ export function normaliserOffre(offre: OffreSource): OffreNormalisee {
     formats: (formats ?? []).map((f) => traduire(FORMAT_PAR_LIBELLE, f, "format")),
     // Par défaut, une fiche n'a été vue qu'au niveau du catalogue.
     profondeur: offre.profondeur ?? "catalogue_seul",
-    // Tant que la page de détail n'a pas tranché, la modalité reste inconnue :
-    // le prix affiché est alors à vérifier, pas à supprimer.
-    modaliteCommerciale: offre.modaliteCommerciale ?? null,
+    // Tant que la page de détail n'a pas tranché, la disponibilité reste
+    // inconnue : le prix affiché est alors à vérifier, pas à supprimer.
+    dispoInter: offre.dispoInter ?? null,
+    dispoIntra: offre.dispoIntra ?? null,
     prixIntra: offre.prixIntra ?? null,
     domaineDeclare: domaineDeclareLibelle
       ? traduire(DOMAINE_PAR_LIBELLE, domaineDeclareLibelle, "domaine déclaré")

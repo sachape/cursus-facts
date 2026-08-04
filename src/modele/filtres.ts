@@ -20,6 +20,7 @@ import type {
   NiveauEntree,
 } from "@/types/cursus";
 import { PARTIELLEMENT_GRATUIT, SANS_FRAIS } from "./modalite-acces";
+import { accessibleIndividuellement, prixAffichable } from "./modalite-commerciale";
 
 /** Tranches de volume horaire publiées dans la page Méthode. */
 export const TRANCHES_DUREE = [
@@ -75,6 +76,14 @@ export type Filtres = {
   /** Ne garder que les parcours dont le prix est effectivement publié. */
   prixCommunique: boolean;
   /**
+   * Ne retenir que les parcours qu'une personne peut acheter elle-même.
+   *
+   * Critère d'accessibilité, pas de budget : un parcours réservé aux
+   * entreprises reste au catalogue et reste visible sans ce filtre — il
+   * intéresse un dirigeant qui forme son équipe.
+   */
+  accessibleIndividuellement: boolean;
+  /**
    * Tranches de volume horaire. `non_communique` est une tranche explicite et
    * sélectionnable : une fiche sans volume publié doit pouvoir être cherchée,
    * pas seulement subie.
@@ -103,6 +112,7 @@ export const FILTRES_VIDES: Filtres = {
   sansFrais: false,
   financementEntreprise: false,
   prixCommunique: false,
+  accessibleIndividuellement: false,
   durees: [],
   accesPartiel: false,
 };
@@ -143,13 +153,21 @@ export function correspond(p: ParcoursListe, f: Filtres): boolean {
 
   // Un prix non publié n'exclut pas : l'absence d'information ne doit ni
   // profiter ni nuire. La fiche reste visible, son prix reste inconnu.
-  if (f.budget !== null && p.prixMin !== null && p.prixMin > f.budget) return false;
+  // Le budget porte toujours sur le tarif individuel : un parcours sans tarif
+  // inter n'a pas de prix comparable, et le filtrer sur son tarif de groupe
+  // l'écarterait sur un chiffre qui ne concerne pas l'acheteur.
+  const prixIndividuel = prixAffichable(p.prixMin, p);
+  if (f.budget !== null && prixIndividuel !== null && prixIndividuel > f.budget) return false;
 
   if (f.durees.length > 0 && !f.durees.includes(trancheDe(p.volumeHoraire))) return false;
 
   // Un prix non publié n'est pas un prix : ce filtre sert à ne voir que les
   // fiches sur lesquelles une comparaison budgétaire est possible.
-  if (f.prixCommunique && p.prixMin === null) return false;
+  if (f.prixCommunique && prixIndividuel === null) return false;
+
+  // Ne promet que ce qui a été constaté : une disponibilité non tranchée ne
+  // vaut pas une disponibilité vérifiée.
+  if (f.accessibleIndividuellement && !accessibleIndividuellement(p)) return false;
 
   if (
     f.financementEntreprise &&
@@ -213,6 +231,7 @@ export function auMoinsUnFiltre(f: Filtres): boolean {
     f.accesPartiel ||
     f.financementEntreprise ||
     f.prixCommunique ||
+    f.accessibleIndividuellement ||
     f.durees.length > 0
   );
 }

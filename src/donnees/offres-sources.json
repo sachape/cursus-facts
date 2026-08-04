@@ -8138,8 +8138,9 @@
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-04",
   "urlDetail": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/",
-  "modaliteCommerciale": "les_deux",
-  "prixIntra": 2670
+  "prixIntra": 2670,
+  "dispoInter": true,
+  "dispoIntra": true
  },
  {
   "organisme": "M2i Formation",
@@ -8299,8 +8300,9 @@
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-04",
   "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-utilisateurs",
-  "modaliteCommerciale": "les_deux",
-  "prixIntra": 1875
+  "prixIntra": 1875,
+  "dispoInter": true,
+  "dispoIntra": true
  },
  {
   "organisme": "Dawan",
@@ -9209,7 +9211,8 @@
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-04",
   "urlDetail": "https://www.cegos.fr/formations/marketing/les-cles-du-e-commerce",
-  "modaliteCommerciale": "les_deux",
-  "prixIntra": 4150
+  "prixIntra": 4150,
+  "dispoInter": true,
+  "dispoIntra": true
  }
 ]

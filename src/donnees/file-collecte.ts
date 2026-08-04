@@ -44,7 +44,7 @@ export function coutDuManque(offre: OffreNormalisee): number {
   // qu'un prix absent : il s'affiche, il trie, il filtre — et il peut être
   // trois fois trop élevé. L'incertitude silencieuse passe donc devant le
   // manque déclaré.
-  if (offre.prix !== null && offre.modaliteCommerciale === null) cout += 3;
+  if (offre.prix !== null && offre.dispoInter === null) cout += 3;
   if (offre.programme === null || offre.programme.length === 0) cout += 1;
   if (offre.nonCouvert === null || offre.nonCouvert.length === 0) cout += 1;
   if (offre.volumeHoraire === null) cout += 1;

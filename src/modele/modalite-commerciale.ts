@@ -1,56 +1,78 @@
 /**
- * Modalité commerciale — inter-entreprises ou intra-entreprise.
+ * Disponibilité commerciale — inter-entreprises, intra-entreprise, ou les deux.
  *
  * C'est une distinction structurante de tout le marché de la formation
  * professionnelle, et ce ne sont PAS deux tarifs d'un même produit :
  *
- *   - **inter** : une personne s'inscrit à une session collective. C'est ce que
- *     notre utilisateur cherche.
+ *   - **inter** : une personne s'inscrit à une session collective.
  *   - **intra** : une entreprise fait venir le formateur pour ses équipes. Le
  *     tarif est celui du groupe entier, souvent trois à cinq fois le tarif
- *     inter, et l'offre ne s'adresse pas à un particulier.
+ *     inter, et il ne s'adresse pas à un particulier.
  *
- * Confondre les deux fait afficher des prix trois fois trop élevés et écarte
- * ces parcours du filtre budget où ils avaient leur place. ORSYS, Cegos, M2i,
- * ISM et Dawan publient tous les deux tarifs.
+ * DEUX BOOLÉENS, PAS UNE ÉNUMÉRATION. La plupart des organismes de formation
+ * continue proposent les deux : une valeur `les_deux` serait la réponse par
+ * défaut de fait et n'apprendrait rien. La question qui décide est unique —
+ * **existe-t-il un tarif inter, oui ou non** — et elle mérite son propre champ.
+ * `null` signifie non tranché : la page de détail n'a pas été lue.
  *
- * RÈGLE. Le prix affiché, le tri et le filtre budget portent toujours sur le
- * tarif inter. Le tarif intra figure sur la fiche, clairement étiqueté, jamais
- * dans la liste. Un parcours proposé uniquement en intra sort du périmètre :
- * il ne concerne pas un particulier qui cherche à se former.
+ * CE N'EST PAS UN ATTRIBUT DE PRIX, C'EST UN CRITÈRE D'ACCESSIBILITÉ, du même
+ * ordre que l'éligibilité CPF. Un parcours en intra seul n'est pas achetable
+ * par une personne, quel que soit son budget. L'information s'affiche donc sur
+ * la rangée, pas seulement dans la fiche.
  */
 
-export const MODALITES_COMMERCIALES = ["inter", "intra", "les_deux"] as const;
-export type ModaliteCommerciale = (typeof MODALITES_COMMERCIALES)[number];
-
-export const LIBELLES_MODALITES_COMMERCIALES: Record<ModaliteCommerciale, string> = {
-  inter: "Inter-entreprises",
-  intra: "Intra-entreprise",
-  les_deux: "Inter et intra-entreprises",
+export type DisponibiliteCommerciale = {
+  /** Sessions collectives ouvertes à une inscription individuelle. */
+  dispoInter: boolean | null;
+  /** Intervention chez le client, facturée au groupe. */
+  dispoIntra: boolean | null;
 };
 
-export const DEFINITIONS_MODALITES_COMMERCIALES: Record<ModaliteCommerciale, string> = {
-  inter: "Session collective à laquelle une personne s'inscrit individuellement",
-  intra: "L'organisme intervient chez une entreprise pour ses équipes ; le tarif est celui du groupe",
-  les_deux: "Proposé en session collective comme en intervention chez le client",
-};
+/**
+ * Vrai si une personne peut s'inscrire elle-même.
+ *
+ * Prudent par construction : une disponibilité non tranchée ne vaut pas une
+ * disponibilité constatée. Le filtre « Accessible à titre individuel » ne doit
+ * jamais promettre ce qui n'a pas été vérifié.
+ */
+export function accessibleIndividuellement(d: DisponibiliteCommerciale): boolean {
+  return d.dispoInter === true;
+}
+
+/**
+ * Vrai si le parcours est réservé aux entreprises.
+ *
+ * Exige les deux constats : l'absence d'inter **et** la présence d'intra. Un
+ * parcours dont rien n'est tranché n'est pas réservé aux entreprises, il est
+ * simplement non collecté — et l'étiqueter serait déduire.
+ */
+export function reserveAuxEntreprises(d: DisponibiliteCommerciale): boolean {
+  return d.dispoInter === false && d.dispoIntra === true;
+}
 
 /**
  * Le prix retenu pour l'affichage, le tri et le filtre budget.
  *
- * Toujours le tarif inter. Un parcours dont seul le tarif intra est connu n'a
- * pas de prix affichable pour un particulier : renvoyer `null` est plus exact
- * que d'afficher un tarif de groupe.
+ * Toujours le tarif inter. Un parcours sans tarif individuel n'a pas de prix
+ * comparable pour une personne : renvoyer `null` est plus exact que d'afficher
+ * un tarif de groupe, qui la ferait renoncer sur un chiffre qui ne la concerne
+ * pas.
  */
-export function prixAffichable(
-  prixInter: number | null,
-  modalite: ModaliteCommerciale | null,
-): number | null {
-  if (modalite === "intra") return null;
-  return prixInter;
+export function prixAffichable(prix: number | null, d: DisponibiliteCommerciale): number | null {
+  return d.dispoInter === false ? null : prix;
 }
 
-/** Vrai si le parcours sort du périmètre : réservé aux entreprises. */
-export function horsPerimetre(modalite: ModaliteCommerciale | null): boolean {
-  return modalite === "intra";
+/**
+ * Libellé porté par la rangée et par la fiche.
+ *
+ * `null` quand rien n'est à signaler — inutile d'étiqueter le cas courant, qui
+ * n'apprendrait rien et alourdirait chaque rangée.
+ */
+export function marqueurAccessibilite(d: DisponibiliteCommerciale): string | null {
+  if (reserveAuxEntreprises(d)) return "Réservé aux entreprises";
+  return null;
 }
+
+export const DETAIL_RESERVE_AUX_ENTREPRISES =
+  "Réservé aux entreprises — non accessible à titre individuel. " +
+  "L'organisme intervient chez le client et facture le groupe.";

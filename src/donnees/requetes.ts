@@ -21,7 +21,6 @@ import {
   type StatutRegroupement,
 } from "@/types/cursus";
 import type { ModaliteAcces } from "@/modele/modalite-acces";
-import type { ModaliteCommerciale } from "@/modele/modalite-commerciale";
 
 export type ParcoursListe = {
   id: string;
@@ -36,8 +35,10 @@ export type ParcoursListe = {
   prixMax: number | null;
   /** Qualification de la gratuité. `null` = non vérifiée. */
   modaliteAcces: ModaliteAcces | null;
-  /** Inter-entreprises, intra, ou les deux. `null` = non tranché. */
-  modaliteCommerciale: ModaliteCommerciale | null;
+  /** Sessions individuelles disponibles. `null` = non tranché. */
+  dispoInter: boolean | null;
+  /** Intervention en entreprise disponible. `null` = non tranché. */
+  dispoIntra: boolean | null;
   /** Tarif de groupe. Affiché sur la fiche, jamais dans la liste. */
   prixIntra: number | null;
   duree: string | null;
@@ -91,10 +92,28 @@ const COLONNES_LISTE = `
   prix_min, prix_max, duree, volume_horaire, formats, lieu, niveau_entree,
   eligible_cpf, financements_acceptes, certification, code_rncp_rs,
   date_verification, etats, infos_renseignees, infos_applicables, modalite_acces,
-  modalite_commerciale, prix_intra,
   statut_regroupement, motif_regroupement, parcours_parent_id,
   organismes ( nom, categorie )
 `;
+
+/**
+ * Colonnes déployées par une migration plus récente que ce code.
+ *
+ * Le schéma et le code ne franchissent jamais la même porte au même instant :
+ * une migration Lovable s'applique quand elle s'applique, et un déploiement
+ * front qui la précède fait tomber tout le catalogue en 500 pour une colonne
+ * manquante. Ce qui doit céder, c'est la colonne — pas la page.
+ *
+ * Ces champs sont donc demandés à part, et leur absence dégrade au lieu de
+ * casser : `null` avant migration, la vraie valeur après, sans second
+ * déploiement.
+ */
+const COLONNES_DIFFEREES = "dispo_inter, dispo_intra, prix_intra";
+
+/** Vrai si l'erreur PostgREST signale une colonne pas encore migrée. */
+function colonneAbsente(message: string): boolean {
+  return /does not exist|column .* of relation/i.test(message);
+}
 
 type LigneBrute = Record<string, unknown> & {
   organismes: { nom: string; categorie: CategorieOrganisme } | null;
@@ -113,7 +132,8 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
     prixMin: ligne["prix_min"] as number | null,
     prixMax: ligne["prix_max"] as number | null,
     modaliteAcces: (ligne["modalite_acces"] as ModaliteAcces | null) ?? null,
-    modaliteCommerciale: (ligne["modalite_commerciale"] as ModaliteCommerciale | null) ?? null,
+    dispoInter: (ligne["dispo_inter"] as boolean | null) ?? null,
+    dispoIntra: (ligne["dispo_intra"] as boolean | null) ?? null,
     prixIntra: (ligne["prix_intra"] as number | null) ?? null,
     duree: ligne["duree"] as string | null,
     volumeHoraire: ligne["volume_horaire"] as number | null,
@@ -136,7 +156,12 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
 
 /** Charge les entrées de la liste : tout le catalogue, replis exclus. */
 export async function chargerListe(): Promise<ParcoursListe[]> {
-  const { data, error } = await supabase.from("parcours").select(COLONNES_LISTE);
+  let { data, error } = await supabase
+    .from("parcours")
+    .select(`${COLONNES_LISTE}, ${COLONNES_DIFFEREES}`);
+  if (error && colonneAbsente(error.message)) {
+    ({ data, error } = await supabase.from("parcours").select(COLONNES_LISTE));
+  }
   if (error) throw new Error(`Chargement du catalogue : ${error.message}`);
 
   const lignes = (data ?? []) as unknown as LigneBrute[];
@@ -156,16 +181,23 @@ export async function chargerListe(): Promise<ParcoursListe[]> {
 
 /** Charge une fiche complète par son slug. */
 export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> {
-  const { data, error } = await supabase
-    .from("parcours")
-    .select(
-      `${COLONNES_LISTE}, prerequis, outils_enseignes, programme, non_couvert,
+  const champsFiche = `prerequis, outils_enseignes, programme, non_couvert,
        site_officiel, source_information, ecart_classification, modalites_paiement,
        source_modalite_acces, created_at, updated_at,
-       variantes ( label, prix, duree, volume_horaire, accompagnement )`,
-    )
+       variantes ( label, prix, duree, volume_horaire, accompagnement )`;
+
+  let { data, error } = await supabase
+    .from("parcours")
+    .select(`${COLONNES_LISTE}, ${COLONNES_DIFFEREES}, ${champsFiche}`)
     .eq("slug", slug)
     .maybeSingle();
+  if (error && colonneAbsente(error.message)) {
+    ({ data, error } = await supabase
+      .from("parcours")
+      .select(`${COLONNES_LISTE}, ${champsFiche}`)
+      .eq("slug", slug)
+      .maybeSingle());
+  }
 
   if (error) throw new Error(`Chargement de la fiche : ${error.message}`);
   if (!data) return null;
