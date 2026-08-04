@@ -15,6 +15,8 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerFiche, type ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "@/composants/comparaison";
+import { ConditionCout } from "@/composants/Niveaux";
+import { coutDuParcours } from "@/modele/condition-cout";
 import { libellePrix } from "@/composants/RangeeParcours";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
@@ -62,18 +64,31 @@ function liste(valeurs: readonly string[] | null | undefined): string {
   return valeurs.join(" · ");
 }
 
-type Ligne = { attribut: string; valeurs: string[] };
+type Ligne = { attribut: string; valeurs: (string | React.ReactNode)[] };
 
 /** Les 21 attributs comparés, dans l'ordre. */
 export function construireLignes(parcours: readonly ParcoursFiche[]): Ligne[] {
-  const par = (f: (p: ParcoursFiche) => string) => parcours.map(f);
+  const par = <T,>(f: (p: ParcoursFiche) => T) => parcours.map(f);
 
   return [
     { attribut: "Domaine", valeurs: par((p) => LIBELLES_DOMAINES[p.domaine]) },
     { attribut: "Sujet principal", valeurs: par((p) => p.sujetPrincipal) },
     {
       attribut: "Prix",
-      valeurs: par((p) => libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)),
+      // La condition figure sous la valeur, dans la même cellule : comparer
+      // 0 € et 1 690 € sans leurs conditions serait trompeur — l'un suppose un
+      // contrat d'alternance, l'autre non.
+      valeurs: par((p) => {
+        const cout = coutDuParcours(p);
+        return (
+          <>
+            <span className="chiffre">
+              {cout.valeur ?? libellePrix(cout.montant, p.prixMax, p.modaliteAcces)}
+            </span>
+            <ConditionCout>{cout.condition}</ConditionCout>
+          </>
+        );
+      }),
     },
     {
       attribut: "Modalité d'accès",

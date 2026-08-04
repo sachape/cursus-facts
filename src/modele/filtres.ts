@@ -21,6 +21,7 @@ import type {
 } from "@/types/cursus";
 import { PARTIELLEMENT_GRATUIT, SANS_FRAIS } from "./modalite-acces";
 import { accessibleIndividuellement, prixAffichable } from "./modalite-commerciale";
+import { coutDuParcours, filtreDe, type FiltreCondition } from "./condition-cout";
 
 /** Tranches de volume horaire publiées dans la page Méthode. */
 export const TRANCHES_DUREE = [
@@ -84,6 +85,11 @@ export type Filtres = {
    */
   accessibleIndividuellement: boolean;
   /**
+   * Conditions d'accès retenues. Critère de faisabilité, pas de prix : pour
+   * beaucoup, trouver un contrat d'alternance est plus difficile que payer.
+   */
+  conditionsAcces: FiltreCondition[];
+  /**
    * Tranches de volume horaire. `non_communique` est une tranche explicite et
    * sélectionnable : une fiche sans volume publié doit pouvoir être cherchée,
    * pas seulement subie.
@@ -113,6 +119,7 @@ export const FILTRES_VIDES: Filtres = {
   financementEntreprise: false,
   prixCommunique: false,
   accessibleIndividuellement: false,
+  conditionsAcces: [],
   durees: [],
   accesPartiel: false,
 };
@@ -168,6 +175,11 @@ export function correspond(p: ParcoursListe, f: Filtres): boolean {
   // Ne promet que ce qui a été constaté : une disponibilité non tranchée ne
   // vaut pas une disponibilité vérifiée.
   if (f.accessibleIndividuellement && !accessibleIndividuellement(p)) return false;
+
+  if (f.conditionsAcces.length > 0) {
+    const condition = filtreDe(coutDuParcours(p).cle);
+    if (condition === null || !f.conditionsAcces.includes(condition)) return false;
+  }
 
   if (
     f.financementEntreprise &&
@@ -232,6 +244,7 @@ export function auMoinsUnFiltre(f: Filtres): boolean {
     f.financementEntreprise ||
     f.prixCommunique ||
     f.accessibleIndividuellement ||
+    f.conditionsAcces.length > 0 ||
     f.durees.length > 0
   );
 }

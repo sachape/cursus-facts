@@ -18,8 +18,8 @@ import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { useComparaison } from "./comparaison";
 import { libellePrixQualifie, type ModaliteAcces } from "@/modele/modalite-acces";
-import { prixAffichable, reserveAuxEntreprises } from "@/modele/modalite-commerciale";
-import { conditionDuCout } from "@/modele/condition-cout";
+import { reserveAuxEntreprises } from "@/modele/modalite-commerciale";
+import { coutDuParcours } from "@/modele/condition-cout";
 import {
   certificationCourte,
   ConditionCout,
@@ -102,18 +102,10 @@ export function RangeeParcours({
   // Un parcours sans tarif individuel n'a pas de prix comparable pour une
   // personne : afficher son tarif de groupe la ferait renoncer sur un chiffre
   // qui ne la concerne pas.
-  const prixListe = prixAffichable(parcours.prixMin, parcours);
-  // Le second niveau : la valeur seule ne permet pas de décider.
-  const cout = conditionDuCout({
-    prix: prixListe,
-    modaliteAcces: parcours.modaliteAcces,
-    formats: parcours.formats,
-    categorie: parcours.organismeCategorie,
-    eligibleCpf: parcours.eligibleCpf,
-    dispoInter: parcours.dispoInter,
-    dispoIntra: parcours.dispoIntra,
-  });
-  const prixInconnu = cout.valeur === null && prixListe === null && parcours.modaliteAcces === null;
+  // Une seule source produit la valeur, sa condition et sa mention. La rangée
+  // restitue, elle ne conclut pas.
+  const cout = coutDuParcours(parcours);
+  const prixInconnu = cout.valeur === null && cout.montant === null;
   const ouvrir = interception(parcours, ouvrirEnPanneau);
 
   return (
@@ -184,7 +176,7 @@ export function RangeeParcours({
         <div className="min-[840px]:w-64 min-[840px]:shrink-0">
           <GroupeDecisif>
             <Decisif etiquette="Coût pour l'apprenant" absent={prixInconnu}>
-              {cout.valeur ?? libellePrix(prixListe, parcours.prixMax, parcours.modaliteAcces)}
+              {cout.valeur ?? libellePrix(cout.montant, parcours.prixMax, parcours.modaliteAcces)}
             </Decisif>
             <ConditionCout>{cout.condition}</ConditionCout>
           </GroupeDecisif>

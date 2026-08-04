@@ -17,8 +17,7 @@ import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
 import { ConditionCout, MentionDerivation } from "./Niveaux";
-import { prixAffichable } from "@/modele/modalite-commerciale";
-import { conditionDuCout } from "@/modele/condition-cout";
+import { coutDuParcours } from "@/modele/condition-cout";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { libellePrix } from "./RangeeParcours";
 import { useComparaison } from "./comparaison";
@@ -280,20 +279,11 @@ export function ContenuFiche({
         <dl>
           <Information libelle="Prix" etat={e.prix}>
             {(() => {
-              const cout = conditionDuCout({
-                prix: prixAffichable(p.prixMin, p),
-                modaliteAcces: p.modaliteAcces,
-                formats: p.formats,
-                categorie: p.organismeCategorie,
-                eligibleCpf: p.eligibleCpf,
-                dispoInter: p.dispoInter,
-                dispoIntra: p.dispoIntra,
-                derive: e.prix === "derive",
-              });
+              const cout = coutDuParcours({ ...p, etats: e });
               return (
                 <>
                   <span className="chiffre">
-                    {cout.valeur ?? libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}
+                    {cout.valeur ?? libellePrix(cout.montant, p.prixMax, p.modaliteAcces)}
                   </span>
                   <ConditionCout>{cout.condition}</ConditionCout>
                   <MentionDerivation>{cout.derivation}</MentionDerivation>

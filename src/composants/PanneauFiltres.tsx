@@ -25,6 +25,7 @@ import {
 } from "@/modele/filtres";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
 import type { CategorieOrganisme, FormatParcours, NiveauEntree } from "@/types/cursus";
+import { FILTRES_CONDITION, LIBELLES_FILTRES_CONDITION } from "@/modele/condition-cout";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 
@@ -355,6 +356,23 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
               modifier({ accessibleIndividuellement: !filtres.accessibleIndividuellement })
             }
           />
+        </div>
+      </Groupe>
+
+      <Groupe titre="Condition d'accès" actifs={filtres.conditionsAcces.length}>
+        <div className="space-y-2">
+          {FILTRES_CONDITION.map((condition) => (
+            <Option
+              key={condition}
+              id={`cond-${condition}`}
+              libelle={LIBELLES_FILTRES_CONDITION[condition]}
+              coche={filtres.conditionsAcces.includes(condition)}
+              nombre={compterAvec(parcours, filtres, { conditionsAcces: [condition] })}
+              basculer={() =>
+                modifier({ conditionsAcces: basculer(filtres.conditionsAcces, condition) })
+              }
+            />
+          ))}
         </div>
       </Groupe>
 

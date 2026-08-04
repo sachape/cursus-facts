@@ -55,7 +55,7 @@ export const REGLE_ALTERNANCE =
  * Le signal est ailleurs : un prix déjà publié pour ce parcours. S'il existe,
  * l'organisme vend bien une voie payante, et c'est lui qui a raison.
  */
-export function deuxVoiesTarifaires(offre: OffreNormalisee): boolean {
+export function deuxVoiesTarifaires(offre: { prix: number | null }): boolean {
   return offre.prix !== null && offre.prix > 0;
 }
 
@@ -67,9 +67,28 @@ export function deuxVoiesTarifaires(offre: OffreNormalisee): boolean {
  */
 export function deriverPrix(offre: OffreNormalisee): Derivation | null {
   if (offre.prix !== null) return null;
-  if (!offre.formats.includes("alternance")) return null;
-  if (deuxVoiesTarifaires(offre)) return null;
+  if (!alternanceSansTarifPublie(offre)) return null;
   return { champ: "prix", valeur: 0, regle: REGLE_ALTERNANCE };
+}
+
+/**
+ * LA décision d'alternance, en un seul endroit.
+ *
+ * Elle avait été dupliquée : la dérivation vérifiait qu'aucun tarif n'était
+ * publié, l'affichage se contentait de `formats.includes("alternance")`. INSEEC,
+ * master à 8 175 € proposé aussi en alternance, affichait donc « aucun frais
+ * pour l'alternant » — avec 176 tests au vert, parce que chaque module avait
+ * raison de son côté.
+ *
+ * Aucune couche en aval ne doit reposer cette question. Si une couche de
+ * présentation peut interroger `formats` par elle-même, la divergence
+ * reviendra sur un autre champ.
+ */
+export function alternanceSansTarifPublie(entree: {
+  formats: readonly string[];
+  prix: number | null;
+}): boolean {
+  return entree.formats.includes("alternance") && !deuxVoiesTarifaires(entree);
 }
 
 /**
@@ -83,8 +102,7 @@ export function deriverPrix(offre: OffreNormalisee): Derivation | null {
  */
 export function deriverModaliteAcces(offre: OffreNormalisee): Derivation | null {
   if (offre.modaliteAcces !== null) return null;
-  if (!offre.formats.includes("alternance")) return null;
-  if (deuxVoiesTarifaires(offre)) return null;
+  if (!alternanceSansTarifPublie(offre)) return null;
   return { champ: "modalite_acces", valeur: "pris_en_charge", regle: REGLE_ALTERNANCE };
 }
 

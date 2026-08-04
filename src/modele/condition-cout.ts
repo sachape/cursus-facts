@@ -21,7 +21,7 @@
  */
 import type { CategorieOrganisme, FormatParcours } from "@/types/cursus";
 import type { ModaliteAcces } from "./modalite-acces";
-import { REGLE_ALTERNANCE } from "./derivation";
+import { alternanceSansTarifPublie, REGLE_ALTERNANCE } from "./derivation";
 
 export const CONDITIONS_ACCES = [
   "alternance_requise",
@@ -101,12 +101,10 @@ export function conditionDuCout(entree: EntreeCout): Cout {
   }
 
   // 2. Alternance : conditionne l'entrée, pas seulement le paiement.
-  //
-  // Sauf si l'organisme publie un tarif. INSEEC vend son MSc 8 175 € en
-  // formation initiale et le propose aussi en alternance : afficher « aucun
-  // frais » y serait faux pour la moitié des candidats. Le garde-fou existait
-  // dans la dérivation ; il manquait ici, et l'affichage l'aurait contourné.
-  if (entree.formats.includes("alternance") && !(entree.prix !== null && entree.prix > 0)) {
+  //    La question n'est pas reposée ici — elle appartient à la dérivation,
+  //    seule autorité sur ce point. C'est en la reposant que l'affichage avait
+  //    contourné le garde-fou des deux voies tarifaires.
+  if (alternanceSansTarifPublie(entree)) {
     return {
       valeur: "Aucun frais pour l'alternant",
       condition: "Sous réserve de signer un contrat d'alternance",
@@ -189,6 +187,40 @@ export function conditionDuCout(entree: EntreeCout): Cout {
   }
 
   return { valeur: null, condition: null, derivation: null, cle: "sans_condition" };
+}
+
+/**
+ * Le coût complet d'un parcours de liste — l'unique entrée de l'affichage.
+ *
+ * La rangée, la fiche et le tableau comparatif appellent ceci et restituent le
+ * résultat. Aucun d'eux ne lit `formats`, `modaliteAcces` ou `dispoInter` pour
+ * en tirer une conclusion : c'est en le faisant que l'affichage avait contourné
+ * le garde-fou des deux voies tarifaires, avec 176 tests au vert.
+ */
+export function coutDuParcours(p: {
+  prixMin: number | null;
+  prixMax: number | null;
+  modaliteAcces: ModaliteAcces | null;
+  formats: readonly FormatParcours[];
+  organismeCategorie: CategorieOrganisme;
+  eligibleCpf: boolean | null;
+  dispoInter: boolean | null;
+  dispoIntra: boolean | null;
+  etats?: Partial<Record<"prix", string>>;
+}): Cout & { montant: number | null } {
+  // Le tarif de groupe n'est jamais le prix d'une personne.
+  const montant = p.dispoInter === false ? null : p.prixMin;
+  const cout = conditionDuCout({
+    prix: montant,
+    modaliteAcces: p.modaliteAcces,
+    formats: p.formats,
+    categorie: p.organismeCategorie,
+    eligibleCpf: p.eligibleCpf,
+    dispoInter: p.dispoInter,
+    dispoIntra: p.dispoIntra,
+    derive: p.etats?.prix === "derive",
+  });
+  return { ...cout, montant };
 }
 
 /** Rattache une condition à la valeur proposée au filtre, ou `null`. */
