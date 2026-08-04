@@ -29,8 +29,22 @@
  * peut pas être comparé à une référence qui l'ignore.
  */
 const CORRIGEES = new Set([141, 142, 143]);
+
+/**
+ * Offres retirées du catalogue, avec le motif.
+ *
+ * 105 et 107 : « Formations digital et multimédia » (M2i) et « Formations
+ * e-commerce et CMS » (Dawan). Ce sont des pages catalogue d'organisme, pas
+ * des parcours. Elles portaient des durées en fourchette — « 1 à 5 jours » —
+ * et un « Aucun prérequis » démenti par les cours qu'elles résumaient. Une
+ * moyenne de catalogue présentée comme un fait sur un parcours est une
+ * information déduite : invariant 2. Les parcours qu'elles recouvraient sont
+ * fichés séparément, donc le catalogue ne perd rien.
+ */
+const RETIREES = new Set([105, 107]);
 const DERNIER_ID_PROTOTYPE = 195;
-const horsParite = (id: number) => CORRIGEES.has(id) || id > DERNIER_ID_PROTOTYPE;
+const horsParite = (id: number) =>
+  CORRIGEES.has(id) || RETIREES.has(id) || id > DERNIER_ID_PROTOTYPE;
 import { describe, expect, it } from "vitest";
 import { chargerCatalogue } from "@/donnees/catalogue";
 import { LIBELLES_DOMAINES } from "./vocabulaires";
@@ -94,8 +108,11 @@ describe("parité des distributions publiées dans le brief", () => {
 
   it("reproduit la répartition par domaine sur le socle inchangé", () => {
     expect(compter(classes.map((c) => LIBELLES_DOMAINES[c.domaine]))).toEqual({
-      "E-commerce": 65,
-      "Marketing digital": 47,
+      // 65 → 64 et 47 → 46 : retrait des deux pages catalogue d'organisme
+      // (Dawan en e-commerce, M2i en marketing digital). Aucune autre cellule
+      // ne bouge, ce qui confirme que le retrait n'a pas déplacé de règle.
+      "E-commerce": 64,
+      "Marketing digital": 46,
       "Commerce et vente": 28,
       "Publicité payante": 17,
       "Data et conversion": 9,
@@ -112,7 +129,7 @@ describe("parité des distributions publiées dans le brief", () => {
         catalogue.filter((o) => !horsParite(o.id)).map((o) => o.categorie),
       ),
     ).toEqual({
-      formation_professionnelle: 42,
+      formation_professionnelle: 40,
       ecole: 44,
       universite: 36,
       certification_editeur: 28,
@@ -122,8 +139,8 @@ describe("parité des distributions publiées dans le brief", () => {
     });
   });
 
-  it("compare au prototype les 192 offres du socle inchangé", () => {
-    expect(classes).toHaveLength(192);
+  it("compare au prototype les 190 offres du socle inchangé", () => {
+    expect(classes).toHaveLength(190);
     expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(29);
   });
 

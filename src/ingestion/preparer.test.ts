@@ -17,16 +17,16 @@ describe("slug", () => {
 });
 
 describe("volume ingéré", () => {
-  it("prépare 232 fiches et 163 organismes à partir de 234 offres", () => {
+  it("prépare 230 fiches et 161 organismes à partir de 232 offres", () => {
     // 234 offres, dont trois fusionnées en une seule fiche : les formules
     // Builder, Premium et Elite d'Amazon Incubator partagent le même programme.
-    expect(preparation.fiches).toHaveLength(232);
+    expect(preparation.fiches).toHaveLength(230);
     expect(preparation.organismes).toHaveLength(163);
   });
 
   it("conserve une variante par offre, y compris dans une fiche fusionnée", () => {
     const variantes = preparation.fiches.reduce((s, f) => s + f.variantes.length, 0);
-    expect(variantes).toBe(234);
+    expect(variantes).toBe(232);
   });
 
   it("ne laisse plus aucun cas en file d'arbitrage", () => {
@@ -54,9 +54,9 @@ describe("repli des groupes ambigus", () => {
     expect(ambigus).toHaveLength(0);
   });
 
-  it("expose 232 entrées de liste, sans repli", () => {
+  it("expose 230 entrées de liste, sans repli", () => {
     const entrees = preparation.fiches.filter((f) => f.ancreSlug === null);
-    expect(entrees).toHaveLength(232);
+    expect(entrees).toHaveLength(230);
   });
 });
 
@@ -117,7 +117,7 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 657 informations vérifiées", () => {
+  it("écrit 2 638 informations vérifiées", () => {
     // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
     // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus).
     // 2 340 → 2 320 : fusion des trois formules Amazon Incubator en une fiche,
@@ -125,13 +125,17 @@ describe("ce qui part en base respecte les invariants", () => {
     // vérifiées et la fiche AMZ Révolution.
     // 2 644 → 2 657 : collecte en profondeur, trois pages de détail lues —
     // Dawan PrestaShop Développeurs et Webmasters, ORSYS PrestaShop.
+    // 2 657 → 2 638 : retrait de deux pages catalogue d'organisme fichées
+    // comme des parcours. Les 19 informations perdues décrivaient une famille
+    // de cours, pas un parcours achetable — une baisse qui vaut mieux que le
+    // chiffre qu'elle remplace.
     // Ce compteur ne doit monter que par lecture d'une page de détail : une
     // hausse sans passage en collecte signalerait une information déduite.
     const total = preparation.fiches.reduce(
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2657);
+    expect(total).toBe(2638);
   });
 
   it("n'écrit jamais un prix nul sans modalité d'accès vérifiée", () => {

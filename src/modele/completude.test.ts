@@ -178,8 +178,9 @@ describe("effet du troisième état sur le catalogue réel", () => {
   });
 
   it("laisse toutes les fiches au catalogue, même les moins renseignées", () => {
-    expect(compteurs).toHaveLength(195);
-    // 195 offres du prototype ; la 196e est postérieure à la référence.
+    expect(compteurs).toHaveLength(193);
+    // 195 offres du prototype, moins les deux pages catalogue d'organisme
+    // retirées ; les suivantes sont postérieures à la référence.
     expect(compteurs.every((c) => c.applicables > 0)).toBe(true);
   });
 

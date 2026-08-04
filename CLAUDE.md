@@ -168,6 +168,58 @@ appliquée d'elle-même. Consigné dans `src/donnees/journal-arbitrages.json`,
 publié dans la vue Méthode. La file est une salle d'attente, pas un tribunal —
 et ce cas le démontre. Catalogue : 196 offres → **194 fiches**, 0 cas en file.
 
+## Une fiche décrit un parcours achetable, pas une famille de parcours
+
+**Retrait de deux pages catalogue — 4 août 2026.** « Formations digital et
+multimédia » (M2i) et « Formations e-commerce et CMS » (Dawan) étaient des pages
+catalogue d'organisme fichées comme des parcours. Le problème n'était pas
+qu'elles soient vides : elles portaient des champs **remplis de valeurs vraies
+d'aucun cours**. « 1 à 5 jours » n'est la durée de rien ; « Aucun prérequis »
+était démenti par PrestaShop Développeurs, qui exige PHP et l'orienté objet.
+
+Une moyenne de catalogue présentée comme un fait sur un parcours est une
+information déduite — invariant 2. Ces fiches plafonnaient aussi mécaniquement
+le pourcentage de profondeur publié dans Méthode, puisqu'aucune page n'existait
+qui aurait pu les compléter.
+
+Règle : **une fiche décrit un parcours qu'on peut acheter**, avec un prix, une
+durée et un programme qui lui sont propres. Une famille de parcours n'est pas
+une fiche. Les parcours recouverts sont fichés séparément, donc le catalogue ne
+perd rien — on retire un résumé de ce qu'il contient déjà.
+
+Les retraits sont déclarés dans `parite.test.ts` (`RETIREES`), avec leur motif,
+comme les corrections. Effet : 234 → 232 offres, 232 → 230 fiches, informations
+vérifiées 2 657 → 2 638. Une baisse qui vaut mieux que le chiffre qu'elle
+remplace.
+
+**À trancher au cas par cas, jamais par motif.** Une durée en fourchette ne
+suffit pas à disqualifier : « 12 à 13 mois » pour un Mastère Spécialisé décrit un
+seul programme. Seule la lecture de la page de l'organisme dit si l'intitulé
+désigne un produit ou une famille — c'est donc le travail de la file de collecte,
+pas d'une règle automatique.
+
+## Trois façons de tarifer, pas deux
+
+Constaté en collecte le 4 août 2026 :
+
+- **M2i, Cegos** publient un couple inter/intra sur la même page (890 / 2 670 €,
+  1 690 / 4 150 €, « groupe de 12 personnes max »). C'est là que le risque de
+  confusion existe.
+- **ORSYS** publie l'inter seul, l'intra étant sur devis. Son prix affiché ne
+  peut structurellement pas être un tarif de groupe.
+- **Dawan** ignore la distinction et tarife **par format** : distanciel 1 500 €,
+  présentiel 1 875 €, tutorat 1 000 €, avec un tarif journalier étiqueté INTER.
+
+Piège vécu : le 1 875 € de Dawan a d'abord été enregistré comme tarif intra
+alors que c'est le prix présentiel — exactement la confusion que le champ existe
+pour empêcher. `dispo_intra` reste `null` quand rien n'est publié : **non
+établi, pas inexistant.**
+
+Deux booléens (`dispo_inter`, `dispo_intra`) absorbent les trois cas ; une
+énumération `inter | intra | les_deux` n'y arrivait pas, et `les_deux` aurait
+été la valeur par défaut de fait — ORSYS écrit que *toutes* ses formations
+peuvent être organisées en intra.
+
 ## Découverte — deux statuts distincts
 
 Ne jamais confondre :

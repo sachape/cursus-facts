@@ -4113,40 +4113,6 @@
   "modaliteAcces": null
  },
  {
-  "id": 105,
-  "nom": "Formations digital et multimédia",
-  "organisme": "M2i Formation",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Formation continue",
-  "region": null,
-  "url": "m2iformation.fr",
-  "prix": null,
-  "duree": "1 à 5 jours",
-  "volumeHoraire": null,
-  "formats": [
-   "Présentiel",
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 1,
-  "financements": [
-   "CPF",
-   "OPCO",
-   "Actions collectives"
-  ],
-  "certification": "Attestation",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-06-24",
-  "source": "m2iformation.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
   "id": 106,
   "nom": "Marketing digital et relation client",
   "organisme": "ISM",
@@ -4174,43 +4140,6 @@
   "nonCouvert": null,
   "dateVerification": "2026-06-24",
   "source": "ism.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 107,
-  "nom": "Formations e-commerce et CMS",
-  "organisme": "Dawan",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Formation continue",
-  "region": null,
-  "url": "dawan.fr",
-  "prix": null,
-  "duree": "2 à 5 jours",
-  "volumeHoraire": null,
-  "formats": [
-   "Présentiel",
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 1,
-  "financements": [
-   "CPF",
-   "OPCO"
-  ],
-  "certification": "Attestation",
-  "outils": [
-   "PrestaShop",
-   "WooCommerce",
-   "Magento"
-  ],
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-06-24",
-  "source": "dawan.fr",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,

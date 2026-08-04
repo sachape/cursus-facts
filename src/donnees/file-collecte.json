@@ -168,25 +168,9 @@
   "dernierPassage": null
  },
  {
-  "id": 105,
-  "nom": "Formations digital et multimédia",
-  "organisme": "M2i Formation",
-  "urlDetail": null,
-  "statut": "a_traiter",
-  "dernierPassage": null
- },
- {
   "id": 106,
   "nom": "Marketing digital et relation client",
   "organisme": "ISM",
-  "urlDetail": null,
-  "statut": "a_traiter",
-  "dernierPassage": null
- },
- {
-  "id": 107,
-  "nom": "Formations e-commerce et CMS",
-  "organisme": "Dawan",
   "urlDetail": null,
   "statut": "a_traiter",
   "dernierPassage": null
