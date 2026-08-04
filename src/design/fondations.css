@@ -355,6 +355,18 @@
   /* Respiration au-dessus du hero. 56 px n'est pas sur l'échelle d'espacement :
      c'est un jeton de composant, nommé plutôt qu'improvisé. */
   --hero-padding-top: 56px;
+
+  /* Couche ambiante du hero — décorative, jamais informative. */
+  --hero-badge-hauteur: 42px;
+  --hero-badge-padding: 14px;
+  --hero-badge-ecart: 9px;
+  --hero-badge-fond: rgb(255 255 255 / 0.94);
+  --hero-badge-bordure: #e3e6ea;
+  --hero-badge-ombre: 0 12px 32px rgb(15 23 42 / 0.07);
+  --hero-badge-icone: #52606d;
+  --hero-badge-texte: #30363d;
+  --hero-min-hauteur: 640px;
+  --hero-contenu-largeur: 1160px;
   --domain-navigation-height: 56px;
   --results-toolbar-height: 60px;
 
@@ -419,6 +431,10 @@
   --status-absent-bg: var(--clay-90);
   --status-pending: var(--amber-20);
   --status-pending-bg: var(--amber-70);
+  --hero-badge-fond: rgb(38 45 51 / 0.94);
+  --hero-badge-bordure: var(--neutral-80);
+  --hero-badge-icone: var(--neutral-40);
+  --hero-badge-texte: var(--neutral-20);
   --select-bordure: rgb(232 235 236 / 0.16);
   --badge-compteur-fond: var(--neutral-80);
   --badge-compteur-texte: var(--neutral-40);
@@ -512,6 +528,32 @@ html {
   Halo de fraîcheur — le point ne bouge pas, son ombre respire. Neutralisé
   par `motion-safe` côté composant, donc absent sous prefers-reduced-motion.
 */
+/*
+  Flottement de 4 px, sur des durées différentes par badge. Au-delà, le
+  mouvement se remarque au lieu d'être perçu — et un badge qui attire l'œil
+  concurrence le titre qu'il est censé accompagner.
+*/
+@keyframes flottement {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes apparition-badge {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes halo {
   0% {
     box-shadow: 0 0 0 0 rgb(42 122 100 / 0.35);

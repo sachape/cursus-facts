@@ -27,6 +27,7 @@ import { OngletsDomaines, type OngletDomaine } from "@/composants/OngletsDomaine
 import { TrainingResultCard } from "@/composants/TrainingResultCard";
 import { ResultToolbar } from "@/composants/ResultToolbar";
 import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
+import { HeroBadges } from "@/composants/HeroBadges";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
@@ -303,7 +304,15 @@ function Explorer() {
         navigation : l'y rappeler ici ajouterait une seconde proposition à
         lire avant la première.
       */}
-      <header className="mx-auto mt-0 w-full min-w-0 pb-(--space-16) pt-(--hero-padding-top) text-center">
+      {/*
+        `overflow-clip` : la couche ambiante déborde volontairement des marges
+        latérales, et sans rognage elle créerait un défilement horizontal. Clip
+        plutôt que hidden — hidden ferait du hero un conteneur de défilement et
+        casserait les éléments collants qui le suivent.
+      */}
+      <header className="relative mx-auto mt-0 w-full min-w-0 overflow-clip pb-(--space-16) pt-(--hero-padding-top) text-center min-[1280px]:min-h-(--hero-min-hauteur) min-[1280px]:pb-(--space-20) min-[1280px]:pt-(--space-16)">
+        <HeroBadges />
+        <div className="relative z-10 mx-auto w-full max-w-(--hero-contenu-largeur)">
         <CatalogFreshnessBadge derniereVerification={derniereVerification} />
 
         {/*
@@ -358,6 +367,7 @@ function Explorer() {
         </dl>
 
         {/* La date de vérification vit désormais dans l'infobulle du badge. */}
+        </div>
       </header>
 
       {/* space-16 entre les KPIs et la barre de domaines : le hero respire. */}
