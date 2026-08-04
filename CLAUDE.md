@@ -220,6 +220,48 @@ Deux booléens (`dispo_inter`, `dispo_intra`) absorbent les trois cas ; une
 été la valeur par défaut de fait — ORSYS écrit que *toutes* ses formations
 peuvent être organisées en intra.
 
+## On n'efface pas une valeur, on la déclasse
+
+**Incident du 3 août 2026, corrigé le 4.** La consigne « n'affirme pas la
+gratuité sans vérifier » a été appliquée à la lettre, et le résultat était faux :
+**61 prix effacés**, dont les trois parcours Google que Google publie lui-même
+« gratuites » / « at no cost ». Une règle d'écriture sans règle d'effacement
+produit une dérive silencieuse — face à une valeur qu'on ne peut pas confirmer,
+on la supprime.
+
+Règle, dans `src/modele/provenance.ts` : **une valeur existante qu'on ne peut pas
+reconfirmer ne devient jamais « non communiqué »**. Elle conserve sa valeur,
+passe en `a_confirmer`, s'affiche signalée, et entre en tête de file (4 points
+par champ, plus qu'un prix absent). Seule la lecture d'une page officielle
+**constatant l'absence** autorise l'effacement — `arbitrerEcriture` n'a pas
+d'autre chemin.
+
+Une disparition d'information est un **événement suspect, pas une mise à jour**.
+Vaut pour toute correction manuelle comme pour un futur agent de rafraîchissement,
+qui reproduirait le même comportement à l'échelle.
+
+**Le garde-fou** est dans `preparer.test.ts` : un plancher sur les *valeurs
+présentes* (`renseignees + aConfirmer`), pas sur les valeurs vérifiées. Déclasser
+ne le fait pas bouger ; effacer le fait tomber et le test échoue. Le baisser
+exige un motif écrit dans le test, et vaut autorisation explicite.
+
+`historique` conserve pour chaque champ la valeur précédente, la date et le
+motif : toute correction de masse est annulable.
+
+## Un état renseigné ne doit jamais s'afficher « Non communiqué »
+
+`certificationCourte()` renvoyait `null` dès que le code RNCP manquait —
+effaçant à l'écran **180 des 208 certifications** du catalogue :
+« Certification Google », « Attestation », « Qualiopi », « Aucune » (un fait
+publié), et jusqu'à « Titre RNCP » quand l'organisme publie le libellé sans le
+numéro.
+
+Le code-barres comptait le trait plein pendant que la rangée disait « Non
+communiqué » : **l'interface contredisait son propre compteur**. Sur un produit
+dont la valeur est la vérifiabilité, c'est l'incohérence la plus coûteuse. Tout
+écart entre `etats[champ] === "renseigne"` et ce que la rangée affiche est un
+bug, jamais un choix d'affichage.
+
 ## Découverte — deux statuts distincts
 
 Ne jamais confondre :

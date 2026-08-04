@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { preparerIngestion, slugifier } from "./preparer";
+import {
+  compterInformations,
+  valeursPresentes,
+  type EtatsInformation,
+} from "@/types/cursus";
 
 const preparation = preparerIngestion();
 
@@ -117,7 +122,7 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 638 informations vérifiées", () => {
+  it("écrit 2 640 informations vérifiées", () => {
     // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
     // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus).
     // 2 340 → 2 320 : fusion des trois formules Amazon Incubator en une fiche,
@@ -135,15 +140,49 @@ describe("ce qui part en base respecte les invariants", () => {
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2638);
+    expect(total).toBe(2640);
   });
 
-  it("n'écrit jamais un prix nul sans modalité d'accès vérifiée", () => {
-    // La gratuité ne s'affirme pas par défaut : un prix à 0 sans qualification
-    // serait exactement l'information déduite que l'invariant 2 interdit.
-    const nonQualifies = preparation.fiches.filter(
-      (f) => f.colonnes["prix_min"] === 0 && f.colonnes["modalite_acces"] === null,
+  it("ne fait jamais disparaître une valeur du catalogue", () => {
+    /*
+      LE GARDE-FOU CENTRAL. Ce plancher ne mesure pas les informations
+      vérifiées — c'est le rôle du compteur voisin — mais les valeurs
+      **présentes**, confirmées ou non. Il ne doit jamais baisser.
+
+      Une valeur déclassée en « à confirmer » reste présente : la déclasser ne
+      fait pas bouger ce nombre. Une valeur effacée le fait tomber, et ce test
+      échoue. C'est exactement ce qu'il fallait pour attraper l'incident du
+      3 août 2026, où une consigne d'écriture sans règle d'effacement a supprimé
+      61 prix — dont trois parcours que Google publie « Free ».
+
+      Le baisser exige donc un motif écrit ici, et vaut autorisation explicite.
+      Une disparition d'information est un événement suspect, pas une mise à
+      jour : cette règle vaut pour toute correction manuelle comme pour un futur
+      agent de rafraîchissement, qui reproduirait le même comportement à
+      l'échelle.
+
+      Seule baisse autorisée à ce jour : le retrait des deux pages catalogue
+      d'organisme du 4 août 2026, qui ne décrivaient aucun parcours achetable.
+    */
+    const PLANCHER = 2699;
+    const total = preparation.fiches.reduce(
+      (s, f) => s + valeursPresentes(compterInformations(f.colonnes["etats"] as EtatsInformation)),
+      0,
     );
-    expect(nonQualifies.map((f) => f.slug)).toEqual([]);
+    expect(total).toBeGreaterThanOrEqual(PLANCHER);
+  });
+
+  it("n'affirme jamais un prix nul sans modalité d'accès vérifiée", () => {
+    // La gratuité ne s'affirme pas par défaut : un prix à 0 présenté comme
+    // vérifié sans qualification serait l'information déduite que l'invariant 2
+    // interdit. Mais il ne s'efface pas non plus — il se déclasse. Ce qui est
+    // interdit, c'est l'état `renseigne` sans modalité, pas la valeur.
+    const affirmes = preparation.fiches.filter(
+      (f) =>
+        f.colonnes["prix_min"] === 0 &&
+        f.colonnes["modalite_acces"] === null &&
+        (f.colonnes["etats"] as Record<string, string>)["prix"] === "renseigne",
+    );
+    expect(affirmes.map((f) => f.slug)).toEqual([]);
   });
 });

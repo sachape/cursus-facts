@@ -103,7 +103,13 @@ export function certificationCourte(
   certification: string | null,
   codeRncpRs: string | null,
 ): string | null {
-  if (codeRncpRs === null) return null;
+  // Une certification publiée sans code RNCP reste une certification. Exiger
+  // le code effaçait à l'écran 180 des 208 certifications du catalogue —
+  // « Certification Google », « Attestation », « Qualiopi », et même « Titre
+  // RNCP » quand l'organisme publie le libellé sans le numéro. La rangée
+  // affichait « Non communiqué » pendant que le code-barres comptait le trait
+  // plein : l'interface contredisait son propre compteur.
+  if (codeRncpRs === null) return certification;
 
   if (codeRncpRs.startsWith("RS")) return "Certification RS";
 

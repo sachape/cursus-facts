@@ -7,7 +7,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Nouvelle-Aquitaine",
   "url": "univ-larochelle.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -48,7 +48,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 2,
@@ -58,7 +69,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Pays de la Loire",
   "url": "iae.univ-nantes.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -99,7 +110,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 3,
@@ -109,7 +131,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "u-picardie.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -150,7 +172,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 4,
@@ -160,7 +193,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Nouvelle-Aquitaine",
   "url": "u-bordeaux-montaigne.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -201,7 +234,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 5,
@@ -211,7 +255,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Auvergne-Rhône-Alpes",
   "url": "univ-lyon1.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -252,7 +296,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 6,
@@ -262,7 +317,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "univ-artois.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -303,7 +358,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 7,
@@ -313,7 +379,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "univ-evry.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -354,7 +420,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 8,
@@ -364,7 +441,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Bretagne",
   "url": "univ-ubs.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -405,7 +482,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 9,
@@ -415,7 +503,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Normandie",
   "url": "unicaen.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -456,7 +544,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 10,
@@ -466,7 +565,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "univ-lille.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -507,7 +606,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 11,
@@ -517,7 +627,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Grand Est",
   "url": "univ-lorraine.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -558,7 +668,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 12,
@@ -568,7 +689,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "univ-paris8.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -609,7 +730,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 13,
@@ -619,7 +751,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Bretagne",
   "url": "univ-rennes.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -660,7 +792,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 14,
@@ -670,7 +813,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Normandie",
   "url": "univ-rouen.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -711,7 +854,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 15,
@@ -721,7 +875,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "PACA",
   "url": "univ-tln.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -762,7 +916,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 16,
@@ -772,7 +937,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Occitanie",
   "url": "univ-tlse3.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -813,7 +978,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 17,
@@ -823,7 +999,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Occitanie",
   "url": "univ-tlse2.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -864,7 +1040,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 18,
@@ -874,7 +1061,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Antilles",
   "url": "univ-ag.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -915,7 +1102,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 19,
@@ -925,7 +1123,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Auvergne-Rhône-Alpes",
   "url": "univ-grenoble-alpes.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -966,7 +1164,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 20,
@@ -976,7 +1185,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "u-paris.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1017,7 +1226,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 21,
@@ -1027,7 +1247,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "u-pec.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1068,7 +1288,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 22,
@@ -1078,7 +1309,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Hauts-de-France",
   "url": "uphf.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1119,7 +1350,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 23,
@@ -1129,7 +1371,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Auvergne-Rhône-Alpes",
   "url": "univ-smb.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1170,7 +1412,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 24,
@@ -1180,7 +1433,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "uvsq.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 an",
   "volumeHoraire": 450,
   "formats": [
@@ -1221,7 +1474,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 25,
@@ -1231,7 +1495,7 @@
   "sousFamille": "Diplôme d'État",
   "region": null,
   "url": "onisep.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "3 ans",
   "volumeHoraire": null,
   "formats": [
@@ -1265,7 +1529,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 26,
@@ -1362,7 +1637,7 @@
   "sousFamille": "Diplôme d'État",
   "region": null,
   "url": "u-pec.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -1396,7 +1671,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 29,
@@ -1406,7 +1692,7 @@
   "sousFamille": "Diplôme d'État",
   "region": null,
   "url": "unistra.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -1427,7 +1713,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 30,
@@ -1645,7 +1942,7 @@
   "sousFamille": "Diplôme d'État",
   "region": "Île-de-France",
   "url": "iutparis-seine.u-paris.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "Variable",
   "volumeHoraire": null,
   "formats": [
@@ -1682,7 +1979,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 37,
@@ -2778,7 +3086,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "iscod.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "1 à 3 ans",
   "volumeHoraire": null,
   "formats": [
@@ -2811,7 +3119,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 70,
@@ -3173,7 +3492,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "oreegami.com",
-  "prix": null,
+  "prix": 0,
   "duree": "15 mois",
   "volumeHoraire": 400,
   "formats": [
@@ -3209,7 +3528,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 82,
@@ -3219,7 +3549,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "grow.google",
-  "prix": null,
+  "prix": 0,
   "duree": "15 mois",
   "volumeHoraire": null,
   "formats": [
@@ -3251,7 +3581,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 83,
@@ -3294,7 +3635,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "rocket-school.com",
-  "prix": null,
+  "prix": 0,
   "duree": "13 mois",
   "volumeHoraire": null,
   "formats": [
@@ -3327,7 +3668,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 85,
@@ -3337,7 +3689,7 @@
   "sousFamille": "Bootcamp",
   "region": null,
   "url": "rocket-school.com",
-  "prix": null,
+  "prix": 0,
   "duree": "3 mois",
   "volumeHoraire": null,
   "formats": [
@@ -3359,7 +3711,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 86,
@@ -3704,7 +4067,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "openclassrooms.com",
-  "prix": null,
+  "prix": 0,
   "duree": "6 h",
   "volumeHoraire": 6,
   "formats": [
@@ -3737,7 +4100,18 @@
   "competencesDeclarees": [],
   "classificationManuelle": false,
   "modaliteAcces": "freemium",
-  "sourceModalite": "Modèle freemium déclaré ; tarif de la strate payante non vérifié"
+  "sourceModalite": "Modèle freemium déclaré ; tarif de la strate payante non vérifié",
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 95,
@@ -3747,7 +4121,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "openclassrooms.com",
-  "prix": null,
+  "prix": 0,
   "duree": "8 h",
   "volumeHoraire": 8,
   "formats": [
@@ -3780,7 +4154,18 @@
   "competencesDeclarees": [],
   "classificationManuelle": false,
   "modaliteAcces": "freemium",
-  "sourceModalite": "Modèle freemium déclaré ; tarif de la strate payante non vérifié"
+  "sourceModalite": "Modèle freemium déclaré ; tarif de la strate payante non vérifié",
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 96,
@@ -4372,8 +4757,8 @@
   "categorieLibelle": "Certifications éditeurs",
   "sousFamille": "Éditeur",
   "region": null,
-  "url": "learndigital.withgoogle.com",
-  "prix": null,
+  "url": "grow.google",
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": 40,
   "formats": [
@@ -4403,11 +4788,29 @@
    "Réseaux sociaux payants"
   ],
   "dateVerification": "2026-07-22",
-  "source": "Site officiel Google",
+  "source": "grow.google — site officiel Google (ex-Ateliers Numériques)",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   },
+   {
+    "champ": "url",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "learndigital.withgoogle.com redirigeait en 301 vers grow.google : URL d'origine périmée."
+   }
+  ],
+  "urlDetail": "https://grow.google/"
  },
  {
   "id": 115,
@@ -4417,7 +4820,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "skillshop.withgoogle.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -4448,7 +4851,24 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": "compte_requis",
+  "aConfirmer": [],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Gratuité constatée sur les pages d'aide officielles de Google le 4 août 2026. Les certifications fondamentales restent gratuites ; Google annonce un tarif à venir sur les certifications professionnelles."
+   }
+  ],
+  "sourceModalite": "support.google.com/skillshop — « access to the Skillshop platform, awards and most certifications are available at no cost »",
+  "urlDetail": "https://support.google.com/skillshop/answer/7378254"
  },
  {
   "id": 116,
@@ -4501,7 +4921,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "prestashop.com",
-  "prix": null,
+  "prix": 0,
   "duree": null,
   "volumeHoraire": null,
   "formats": [
@@ -4529,7 +4949,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 118,
@@ -4539,7 +4970,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "wizishop.fr",
-  "prix": null,
+  "prix": 0,
   "duree": null,
   "volumeHoraire": null,
   "formats": [
@@ -4562,7 +4993,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 119,
@@ -4615,7 +5057,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "klaviyo.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -4646,7 +5088,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 121,
@@ -4698,7 +5151,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "ads.tiktok.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -4728,7 +5181,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 123,
@@ -4780,7 +5244,7 @@
   "sousFamille": "Public",
   "region": null,
   "url": "bpifrance-universite.fr",
-  "prix": null,
+  "prix": 0,
   "duree": "10 à 60 min par module",
   "volumeHoraire": null,
   "formats": [
@@ -4807,7 +5271,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 125,
@@ -4817,7 +5292,7 @@
   "sousFamille": "Public",
   "region": null,
   "url": "francenum.gouv.fr",
-  "prix": null,
+  "prix": 0,
   "duree": null,
   "volumeHoraire": null,
   "formats": [
@@ -4838,7 +5313,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 126,
@@ -6257,7 +6743,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "brevo.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6291,7 +6777,18 @@
    "Brevo"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 162,
@@ -6301,7 +6798,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "mailchimp.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6333,7 +6830,18 @@
    "Email Marketing"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 163,
@@ -6343,7 +6851,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "business.pinterest.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6376,7 +6884,18 @@
    "Pinterest Ads"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 164,
@@ -6386,7 +6905,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "semrush.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6420,7 +6939,18 @@
    "Analytics"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 165,
@@ -6430,7 +6960,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "ahrefs.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6461,7 +6991,18 @@
    "SEO e-commerce"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 166,
@@ -6471,7 +7012,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "about.ads.microsoft.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6502,7 +7043,18 @@
    "Google Ads"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 167,
@@ -6512,7 +7064,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "forbusiness.snapchat.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6543,7 +7095,18 @@
    "Meta Ads"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 168,
@@ -6553,7 +7116,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "tiktok.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6587,7 +7150,18 @@
    "Marketplace"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 169,
@@ -6597,7 +7171,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "etsy.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6631,7 +7205,18 @@
    "Marketplace"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 170,
@@ -6641,7 +7226,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "shopify.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6675,7 +7260,18 @@
    "No-code"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 171,
@@ -6685,7 +7281,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "wix.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6718,7 +7314,18 @@
    "No-code"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 172,
@@ -6728,7 +7335,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "business.adobe.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6761,7 +7368,18 @@
    "CRO"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 173,
@@ -6771,7 +7389,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "odoo.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6803,7 +7421,18 @@
    "No-code"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 174,
@@ -6813,7 +7442,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "trailhead.salesforce.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6845,7 +7474,18 @@
    "Marketplace"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 175,
@@ -6855,7 +7495,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "zendesk.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6887,7 +7527,18 @@
    "Logistique"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 176,
@@ -6897,7 +7548,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "skillshop.withgoogle.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6930,7 +7581,24 @@
    "Google Ads"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": "compte_requis",
+  "aConfirmer": [],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Gratuité constatée sur les pages d'aide officielles de Google le 4 août 2026. Les certifications fondamentales restent gratuites ; Google annonce un tarif à venir sur les certifications professionnelles."
+   }
+  ],
+  "sourceModalite": "support.google.com/skillshop — « access to the Skillshop platform, awards and most certifications are available at no cost »",
+  "urlDetail": "https://support.google.com/skillshop/answer/7378254"
  },
  {
   "id": 177,
@@ -6940,7 +7608,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "klaviyo.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -6972,7 +7640,18 @@
    "Email Marketing"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 178,
@@ -6982,7 +7661,7 @@
   "sousFamille": "Éditeur",
   "region": null,
   "url": "hotjar.com",
-  "prix": null,
+  "prix": 0,
   "duree": "Modules courts",
   "volumeHoraire": null,
   "formats": [
@@ -7015,7 +7694,18 @@
    "Analytics"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "aConfirmer": [
+   "prix"
+  ],
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   }
+  ]
  },
  {
   "id": 179,

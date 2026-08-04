@@ -195,7 +195,19 @@ export type CompteurInformations = {
   applicables: number;
   /** Champs dont l'absence n'a pas encore été vérifiée. */
   nonCollectes: number;
+  /** Champs dont la valeur est conservée mais non reconfirmée. */
+  aConfirmer: number;
 };
+
+/**
+ * Valeurs présentes, confirmées ou non.
+ *
+ * C'est ce compteur, et non `renseignees`, qui ne doit jamais baisser sans
+ * autorisation explicite : déclasser une valeur en « à confirmer » la conserve,
+ * l'effacer la perd. Le premier est une mise à jour honnête, le second est un
+ * incident.
+ */
+export const valeursPresentes = (c: CompteurInformations) => c.renseignees + c.aConfirmer;
 
 /**
  * Calcule le compteur à partir des états, sans jamais produire de ratio.
@@ -213,5 +225,10 @@ export function compterInformations(etats: EtatsInformation): CompteurInformatio
       (etat) => etat !== "non_applicable" && etat !== "non_collecte",
     ).length,
     nonCollectes: valeurs.filter((etat) => etat === "non_collecte").length,
+    // Valeurs présentes mais non reconfirmées. Elles ne comptent pas comme
+    // renseignées — ce serait affirmer une vérification qui n'a pas eu lieu —
+    // mais elles restent affichées : une valeur ancienne et signalée comme
+    // telle est plus utile qu'un vide.
+    aConfirmer: valeurs.filter((etat) => etat === "a_confirmer").length,
   };
 }

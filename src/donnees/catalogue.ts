@@ -16,6 +16,8 @@ import type {
   FormatParcours,
   NiveauEntree,
 } from "@/types/cursus";
+import type { ChampInformation } from "@/types/cursus";
+import type { ChangementValeur } from "@/modele/provenance";
 import type { ModaliteAcces } from "@/modele/modalite-acces";
 import offresSources from "./offres-sources.json";
 
@@ -73,6 +75,13 @@ export type OffreSource = {
   dispoIntra?: boolean | null;
   /** Tarif de groupe, affiché sur la fiche mais jamais dans la liste. */
   prixIntra?: number | null;
+  /**
+   * Champs dont la valeur est conservée mais non reconfirmée.
+   * Ils s'affichent avec leur valeur et passent en tête de file de collecte.
+   */
+  aConfirmer?: ChampInformation[];
+  /** Changements de valeur conservés, pour que toute correction soit annulable. */
+  historique?: ChangementValeur[];
 };
 
 /** Niveau de vérification atteint sur une fiche. */
@@ -151,6 +160,8 @@ export type OffreNormalisee = Omit<
   dispoInter: boolean | null;
   dispoIntra: boolean | null;
   prixIntra: number | null;
+  aConfirmer: ChampInformation[];
+  historique: ChangementValeur[];
 };
 
 export function normaliserOffre(offre: OffreSource): OffreNormalisee {
@@ -176,6 +187,8 @@ export function normaliserOffre(offre: OffreSource): OffreNormalisee {
     dispoInter: offre.dispoInter ?? null,
     dispoIntra: offre.dispoIntra ?? null,
     prixIntra: offre.prixIntra ?? null,
+    aConfirmer: offre.aConfirmer ?? [],
+    historique: offre.historique ?? [],
     domaineDeclare: domaineDeclareLibelle
       ? traduire(DOMAINE_PAR_LIBELLE, domaineDeclareLibelle, "domaine déclaré")
       : null,

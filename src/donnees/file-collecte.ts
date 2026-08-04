@@ -45,6 +45,10 @@ export function coutDuManque(offre: OffreNormalisee): number {
   // trois fois trop élevé. L'incertitude silencieuse passe donc devant le
   // manque déclaré.
   if (offre.prix !== null && offre.dispoInter === null) cout += 3;
+  // Une valeur déclassée est une dette contractée par nous : elle est affichée
+  // sans être confirmée. Elle passe donc devant tout le reste — 4 points par
+  // champ, plus qu'un prix absent.
+  cout += (offre.aConfirmer?.length ?? 0) * 4;
   if (offre.programme === null || offre.programme.length === 0) cout += 1;
   if (offre.nonCouvert === null || offre.nonCouvert.length === 0) cout += 1;
   if (offre.volumeHoraire === null) cout += 1;

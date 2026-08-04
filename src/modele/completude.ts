@@ -136,7 +136,12 @@ export function determinerEtats(offre: OffreNormalisee): EtatsInformation {
     // pertinence. Une licence pro à distance qui publie sa région a bien un
     // lieu, quoi qu'en dise la règle. L'inapplicabilité ne peut donc retirer
     // qu'un champ vide — elle bouge le dénominateur, jamais le numérateur.
-    if (estRenseigne(valeurDuChamp(offre, champ))) etat = "renseigne";
+    // Une valeur conservée mais non reconfirmée reste affichée : elle sert
+    // encore à décider. Elle ne compte pas comme vérifiée pour autant — ce
+    // serait affirmer un contrôle qui n'a pas eu lieu.
+    if (estRenseigne(valeurDuChamp(offre, champ))) {
+      etat = offre.aConfirmer?.includes(champ) ? "a_confirmer" : "renseigne";
+    }
     else if (!(APPLICABILITE[champ]?.(offre) ?? true)) etat = "non_applicable";
     // Sans lecture de la page de détail, l'absence n'est pas constatée.
     else if (!detailVerifie) etat = "non_collecte";

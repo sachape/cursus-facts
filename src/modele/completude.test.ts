@@ -13,6 +13,8 @@ const offre = (partiel: Partial<OffreNormalisee> = {}): OffreNormalisee => ({
   dispoInter: null,
   dispoIntra: null,
   prixIntra: null,
+  aConfirmer: [],
+  historique: [],
   sousFamille: null,
   region: null,
   url: null,
@@ -119,7 +121,12 @@ describe("le compteur, rapport de deux entiers", () => {
 
   it("ne produit jamais de pourcentage ni de score", () => {
     const compteur = compterInformations(determinerEtats(offre()));
-    expect(Object.keys(compteur).sort()).toEqual(["applicables", "nonCollectes", "renseignees"]);
+    expect(Object.keys(compteur).sort()).toEqual([
+      "aConfirmer",
+      "applicables",
+      "nonCollectes",
+      "renseignees",
+    ]);
     expect(Number.isInteger(compteur.renseignees)).toBe(true);
     expect(Number.isInteger(compteur.applicables)).toBe(true);
   });
@@ -228,16 +235,27 @@ describe("effet du troisième état sur le catalogue réel", () => {
     }
   });
 
-  it("ne retient un prix nul que s'il est attesté", () => {
+  it("n'affirme un prix nul que s'il est attesté, et le déclasse sinon", () => {
     // Un prix nul est une information ; un prix pris en charge par un tiers
     // n'en est pas une. « France Travail », « POEI » ou « OPCO » désignent qui
     // paie, pas l'absence de prix.
-    const gratuits = catalogue.filter((o) => o.prix === 0);
-    for (const offre of gratuits) {
+    //
+    // La règle a changé le 4 août 2026 sur ce qu'on fait du non-attesté. Elle
+    // disait « efface » ; elle dit maintenant « déclasse ». Effacer avait
+    // supprimé 61 prix, dont trois parcours que Google publie « Free » : la
+    // consigne était appliquée à la lettre et le résultat était faux. Un prix
+    // nul non attesté conserve donc sa valeur en `a_confirmer` — visible,
+    // signalé, en tête de file — au lieu de disparaître.
+    for (const offre of catalogue.filter((o) => o.prix === 0)) {
       const financements = (offre.financements ?? []).join(" ");
       const gratuiteDeclaree = /gratuit/i.test(financements);
       const alternanceExclusive = offre.formats.length === 1 && offre.formats[0] === "alternance";
-      expect(gratuiteDeclaree || alternanceExclusive).toBe(true);
+      const declasse = offre.aConfirmer.includes("prix");
+      expect(gratuiteDeclaree || alternanceExclusive || declasse).toBe(true);
+      // Et l'état suit : jamais « renseigné » sans attestation.
+      if (!gratuiteDeclaree && !alternanceExclusive) {
+        expect(determinerEtats(offre).prix).toBe("a_confirmer");
+      }
     }
   });
 });
