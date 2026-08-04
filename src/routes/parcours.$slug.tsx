@@ -14,7 +14,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { chargerFiche, chargerListe } from "@/donnees/requetes";
 import { ContenuFiche, EnteteFiche } from "@/composants/ContenuFiche";
 
-const SITE = "https://cursus-facts-only.lovable.app";
+const SITE = "https://www.formlist.fr";
 
 export const Route = createFileRoute("/parcours/$slug")({
   loader: async ({ params }) => {

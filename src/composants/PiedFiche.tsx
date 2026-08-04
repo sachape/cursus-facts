@@ -18,7 +18,7 @@ export function PiedFiche({ p }: { p: ParcoursFiche }) {
   const selectionne = contient(p.slug);
 
   const lienCorrection =
-    `mailto:corrections@cursus.fr` +
+    `mailto:corrections@formlist.fr` +
     `?subject=${encodeURIComponent(`Correction — ${p.nom}`)}` +
     `&body=${encodeURIComponent(`Fiche concernée : ${p.slug}\n\nInformation à corriger :\n`)}`;
 
