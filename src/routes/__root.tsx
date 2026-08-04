@@ -90,8 +90,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Formlist — Comparateur de formations e-commerce en France" },
       { name: "twitter:description", content: "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/28d62114-bdc7-4bd7-a1fb-775957332ce8/id-preview-33a06688--8b38a3e4-b91e-4362-b24d-95bd509d4400.lovable.app-1785771219082.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/28d62114-bdc7-4bd7-a1fb-775957332ce8/id-preview-33a06688--8b38a3e4-b91e-4362-b24d-95bd509d4400.lovable.app-1785771219082.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/8ugvYgRNSJP2AoOZxjHZbLTpsnm2/social-images/social-1785852317026-social-image.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/8ugvYgRNSJP2AoOZxjHZbLTpsnm2/social-images/social-1785852317026-social-image.webp" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
