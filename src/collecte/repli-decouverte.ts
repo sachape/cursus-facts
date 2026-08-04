@@ -143,6 +143,50 @@ export function apparierParLibelle(
   return resultats;
 }
 
+/**
+ * Apparie par l'URL de site officiel déjà fichée.
+ *
+ * C'est l'appariement le plus sûr du dispositif : si le lien pointe l'adresse
+ * que nous détenons déjà pour ce parcours, ce n'est pas une ressemblance, c'est
+ * la même page. Aucun score, aucun seuil, aucun risque de mésattribution — et
+ * un mauvais rattachement écrirait les données d'une formation sur la fiche
+ * d'une autre, sans que personne le voie jamais.
+ *
+ * Comparaison sur l'hôte et le chemin seulement : le protocole, le `www`, la
+ * barre finale et les paramètres de campagne varient d'un lien à l'autre sans
+ * désigner autre chose.
+ */
+export function cleUrl(url: string): string | null {
+  try {
+    const u = new URL(url.startsWith("http") ? url : `https://${url}`);
+    const hote = u.host.replace(/^www\./, "");
+    const chemin = u.pathname.replace(/\/+$/, "");
+    return chemin === "" ? null : `${hote}${chemin}`.toLowerCase();
+  } catch {
+    return null;
+  }
+}
+
+export function apparierParUrl(
+  liens: readonly { url: string; libelle: string }[],
+  fiches: readonly { id: number; urlDetail: string | null }[],
+): { id: number; url: string }[] {
+  const parCle = new Map<string, string>();
+  for (const lien of liens) {
+    const cle = cleUrl(lien.url);
+    if (cle && !parCle.has(cle)) parCle.set(cle, lien.url);
+  }
+
+  const resultats: { id: number; url: string }[] = [];
+  for (const fiche of fiches) {
+    if (!fiche.urlDetail) continue;
+    const cle = cleUrl(fiche.urlDetail);
+    const trouve = cle ? parCle.get(cle) : undefined;
+    if (trouve) resultats.push({ id: fiche.id, url: trouve });
+  }
+  return resultats;
+}
+
 export type Strategie = "sitemap" | "plan_html" | "exploration" | "recherche_domaine";
 
 export type PlanDeRepli = {

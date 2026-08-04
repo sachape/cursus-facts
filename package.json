@@ -23,7 +23,8 @@
     "collecte:disponibilite": "bun run scripts/disponibilite.ts",
     "invariants": "bun run scripts/invariants.ts",
     "collecte:apparier": "bun run scripts/appariement.ts",
-    "invariants:design": "bun run scripts/invariants-design.ts"
+    "invariants:design": "bun run scripts/invariants-design.ts",
+    "invariants:rendu": "playwright test"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
@@ -84,6 +85,7 @@
   "devDependencies": {
     "@eslint/js": "^9.32.0",
     "@lovable.dev/vite-tanstack-config": "^2.8.5",
+    "@playwright/test": "^1.62.1",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
