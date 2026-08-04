@@ -124,17 +124,49 @@ verifier("6. Aucun coût à zéro sans qualification de sa gratuité", (o) => {
   return cout.valeur === null && cout.condition === null ? nom(o) : null;
 });
 
-verifier("7. Le dénominateur exclut non_applicable, sur_demande et non_collecte", (o) => {
+/*
+  7. LE COMPTEUR AFFICHÉ DIT QUELQUE CHOSE.
+
+  L'ancienne version comparait `compterInformations` à un recalcul des mêmes
+  états par la même fonction : elle vérifiait une cohérence interne, jamais que
+  le compteur voulait dire quelque chose. Elle est restée verte pendant que 167
+  fiches sur 232 affichaient « 13 sur 13 » avec cinq champs vides.
+
+  Celle-ci interroge le RÉSULTAT : une fiche dont des champs sont vides ne peut
+  pas afficher un compteur plein. C'est vérifiable sans connaître la mécanique
+  qui l'a produit — donc une régression de cette mécanique ne peut pas
+  l'échapper.
+*/
+verifier("7. Aucun compteur plein sur une fiche aux champs vides", (o) => {
   const etats = determinerEtats(o);
   const c = compterInformations(etats);
-  const exclus = CHAMPS_INFORMATION.filter((x) =>
-    ["non_applicable", "non_collecte", "communique_sur_demande"].includes(etats[x]),
+  const vides = CHAMPS_INFORMATION.filter(
+    (x) => !["renseigne", "derive", "a_confirmer"].includes(etats[x]),
+  );
+  const aDesVides = vides.length > 0;
+  const compteurPlein = c.renseignees >= c.applicables;
+  return aDesVides && compteurPlein
+    ? `${nom(o)} → ${c.renseignees}/${c.applicables} alors que ${vides.length} champ(s) sont vides`
+    : null;
+});
+
+/*
+  7 bis. Le dénominateur n'exclut QUE ce qui n'a pas d'objet.
+
+  Complément du précédent, et sur la même sortie : si le dénominateur descend
+  sous 18 sans qu'aucun champ ne soit déclaré sans objet, c'est qu'une règle a
+  recommencé à en retirer en silence.
+*/
+verifier("7 bis. Le dénominateur n'exclut que les champs sans objet", (o) => {
+  const etats = determinerEtats(o);
+  const c = compterInformations(etats);
+  const sansObjet = CHAMPS_INFORMATION.filter((x) =>
+    ["non_applicable", "communique_sur_demande"].includes(etats[x]),
   ).length;
-  const attendu = CHAMPS_INFORMATION.length - exclus;
-  const renseignes = CHAMPS_INFORMATION.filter((x) =>
-    ["renseigne", "derive"].includes(etats[x]),
-  ).length;
-  return c.applicables !== attendu || c.renseignees !== renseignes ? nom(o) : null;
+  const attendu = CHAMPS_INFORMATION.length - sansObjet;
+  return c.applicables !== attendu
+    ? `${nom(o)} → dénominateur ${c.applicables}, attendu ${attendu}`
+    : null;
 });
 
 verifier("8. Toute fiche possède une URL de site officiel", (o) =>

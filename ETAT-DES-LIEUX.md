@@ -284,6 +284,30 @@ autre champ, syntaxe de variable Tailwind, migration de carte non appliquée.
 **À chaque fois : la règle est juste, la donnée est juste, une couche en aval
 passe à côté. Rien ne plante, aucun test ne rougit, le résultat est faux.**
 
+### Et un second motif, distinct : deux règles correctes, incohérentes ensemble
+
+Le 4 août, `non_collecte` sortait du dénominateur — « on ne reproche pas une
+absence non vérifiée » — et `non_applicable` exigeait une lecture de page. Les
+deux sont justes **séparément**.
+
+Ensemble, elles ne laissaient plus que deux états possibles sur une fiche non
+lue : renseigné, ou non collecté. Le dénominateur se réduisait aux champs déjà
+remplis, et **167 fiches sur 232 affichaient un compteur plein** — « 13 sur 13 »
+avec cinq champs vides. Le code-barres ne montrait jamais de creux.
+
+**Aucun invariant ne pouvait le voir, puisque chacune des deux règles était
+respectée.** C'est un mode de défaillance différent du précédent : là, une
+couche contournait une règle ; ici, deux règles conformes produisent ensemble un
+résultat faux.
+
+La parade est la même : **interroger la sortie**. Un invariant qui demande « une
+fiche aux champs vides peut-elle afficher un compteur plein ? » l'attrape sans
+rien savoir de la mécanique qui l'a produit.
+
+Corollaire : l'argument « ne pas reprocher » porte sur le **numérateur**, jamais
+sur le dénominateur. « 18 informations comptent, nous en connaissons 13 » est
+honnête et n'accuse personne.
+
 Deux conséquences pratiques :
 
 1. **Écrire les invariants sur ce que l'interface rend, pas sur ce que le modèle

@@ -140,16 +140,33 @@ describe("le compteur, rapport de deux entiers", () => {
 });
 
 describe("profondeur de collecte", () => {
-  it("sort les champs non collectés du dénominateur", () => {
-    // On ne peut pas reprocher à un organisme une absence qu'on n'a pas
-    // vérifiée : elle ne doit donc pas peser dans son compteur.
+  it("garde les champs non collectés au dénominateur", () => {
+    /*
+      RÈGLE INVERSÉE LE 4 AOÛT 2026, ET VOICI POURQUOI.
+
+      Le test disait auparavant que `non_collecte` sortait du dénominateur : on
+      ne reproche pas une absence non vérifiée. L'argument est juste, mais il
+      porte sur le NUMÉRATEUR. Appliqué au dénominateur, et combiné à la règle
+      qui exige une lecture de page pour déclarer un champ sans objet, il ne
+      laissait plus que deux états sur une fiche non lue — renseigné ou non
+      collecté — donc `renseignees === applicables` toujours. 167 fiches sur 232
+      affichaient un compteur plein et le code-barres ne montrait jamais de
+      creux.
+
+      Deux règles correctes séparément, incohérentes ensemble. Aucun invariant
+      ne pouvait le voir : chacune était respectée.
+    */
     const surface = compterInformations(determinerEtats(offre({ profondeur: "catalogue_seul" })));
     expect(surface.renseignees).toBe(0);
-    expect(surface.applicables).toBe(0);
+    expect(surface.applicables).toBe(CHAMPS_INFORMATION.length);
     expect(surface.nonCollectes).toBeGreaterThan(0);
   });
 
-  it("ne pénalise pas une fiche non collectée comme une fiche opaque", () => {
+  it.skip("ne pénalise pas une fiche non collectée comme une fiche opaque", () => {
+    // Neutralisé : la distinction ne passe plus par le dénominateur, mais par
+    // l'ÉTAT de chaque champ — `non_collecte` est un fait sur nous, affiché
+    // comme tel, quand `non_communique` en est un sur l'organisme. Le compteur
+    // ne les sépare plus, et c'est ce qui le rend enfin lisible.
     const opaque = compterInformations(determinerEtats(offre({ profondeur: "detail_verifie" })));
     const nonCollectee = compterInformations(
       determinerEtats(offre({ profondeur: "catalogue_seul" })),
@@ -172,11 +189,19 @@ describe("effet du troisième état sur le catalogue réel", () => {
     (o) => referenceProto.parcours.find((p) => p.id === o.id)!.filled,
   );
 
-  it("rend le dénominateur variable d'une fiche à l'autre", () => {
+  it("ne fait varier le dénominateur que pour un champ sans objet", () => {
+    /*
+      Le dénominateur vaut 18 partout tant qu'aucune page n'a été lue : c'est
+      attendu, puisque déclarer un champ sans objet exige désormais cette
+      lecture. Sa variabilité reviendra avec le crawl, constatée plutôt que
+      déduite.
+
+      Ce qui doit rester vrai en permanence : il ne dépasse jamais 18, et il ne
+      descend jamais en dessous sans qu'un champ ait été déclaré sans objet.
+    */
     const denominateurs = new Set(compteurs.map((c) => c.applicables));
-    expect(denominateurs.size).toBeGreaterThan(1);
-    // Plus aucune fiche n'est évaluée sur des champs qui ne la concernent pas.
     expect(Math.max(...denominateurs)).toBeLessThanOrEqual(18);
+    expect(Math.min(...denominateurs)).toBeGreaterThan(0);
   });
 
   it("ne renseigne jamais plus de champs qu'il n'y en a d'applicables", () => {

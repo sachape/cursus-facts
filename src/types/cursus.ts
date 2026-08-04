@@ -247,11 +247,23 @@ export function compterInformations(etats: EtatsInformation): CompteurInformatio
     // Une valeur dérivée compte comme renseignée : elle est exacte et
     // opposable. C'est son affichage qui doit la distinguer, pas le compteur.
     renseignees: valeurs.filter((etat) => etat === "renseigne" || etat === "derive").length,
+    /*
+      `non_collecte` RESTE au dénominateur.
+
+      L'en sortir paraissait juste — on ne reproche pas une absence non
+      vérifiée — mais cet argument porte sur le NUMÉRATEUR, pas sur le
+      dénominateur. Combiné à la règle qui exige une lecture de page pour
+      déclarer un champ sans objet, il ne laissait plus que deux états possibles
+      sur une fiche non lue : renseigné, ou non collecté. Le dénominateur se
+      réduisait donc aux champs déjà remplis, et 167 fiches sur 232 affichaient
+      un compteur plein — le code-barres ne montrait plus jamais de creux.
+
+      « 18 informations comptent, nous en connaissons 13 » est honnête et
+      n'accuse personne. Seuls sortent les champs qui n'ont réellement pas
+      d'objet.
+    */
     applicables: valeurs.filter(
-      (etat) =>
-        etat !== "non_applicable" &&
-        etat !== "non_collecte" &&
-        etat !== "communique_sur_demande",
+      (etat) => etat !== "non_applicable" && etat !== "communique_sur_demande",
     ).length,
     nonCollectes: valeurs.filter((etat) => etat === "non_collecte").length,
     // Valeurs présentes mais non reconfirmées. Elles ne comptent pas comme
