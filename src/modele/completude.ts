@@ -34,6 +34,7 @@ import {
   type EtatsInformation,
 } from "@/types/cursus";
 import type { OffreNormalisee } from "@/donnees/catalogue";
+import { deriver } from "./derivation";
 
 /** Vrai si une valeur collectée compte comme publiée. */
 function estRenseigne(valeur: unknown): boolean {
@@ -142,6 +143,9 @@ export function determinerEtats(offre: OffreNormalisee): EtatsInformation {
     if (estRenseigne(valeurDuChamp(offre, champ))) {
       etat = offre.aConfirmer?.includes(champ) ? "a_confirmer" : "renseigne";
     }
+    // Une règle publiée comble l'absence. La valeur est exacte, mais elle vient
+    // de nous : l'état le dit, et la fiche affiche la règle.
+    else if (deriver(offre).some((d) => d.champ === champ)) etat = "derive";
     else if (!(APPLICABILITE[champ]?.(offre) ?? true)) etat = "non_applicable";
     // Sans lecture de la page de détail, l'absence n'est pas constatée.
     else if (!detailVerifie) etat = "non_collecte";

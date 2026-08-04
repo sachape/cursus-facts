@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { exigeRepliNavigateur, lireRobots, texteprincipal } from "./recuperation";
+import {
+  enParallele,
+  exigeRepliNavigateur,
+  lireRobots,
+  recuperer,
+  texteprincipal,
+} from "./recuperation";
 
 describe("récupération", () => {
   it("n'applique que les règles qui nous concernent", () => {
@@ -43,4 +49,31 @@ Sitemap: https://x.fr/sitemap.xml`;
     );
     expect(exigeRepliNavigateur("x".repeat(1000))).toBe(false);
   });
+});
+
+describe("cadence sous concurrence", () => {
+  it("espace réellement deux requêtes vers un même domaine", async () => {
+    // Le bug attrapé le 4 août : le créneau était enregistré APRÈS l'attente.
+    // En séquentiel, indifférent. En concurrent, six appels lisaient la même
+    // date, dormaient la même durée et repartaient ensemble — la politesse de
+    // 1,5 s devenait une salve. Rien ne plantait, la variable existait, la
+    // consigne semblait respectée, et le résultat était faux.
+    const debuts: number[] = [];
+    const faux: typeof fetch = async () => {
+      debuts.push(Date.now());
+      return new Response("ok", { status: 200 });
+    };
+
+    const t0 = Date.now();
+    await enParallele([1, 2, 3], 3, () =>
+      recuperer("https://exemple.fr/a", { fetchImpl: faux }),
+    );
+
+    expect(debuts).toHaveLength(3);
+    const ecarts = debuts.slice(1).map((t, i) => t - debuts[i]!);
+    // Chacun attend son tour : au moins une seconde entre deux départs.
+    for (const ecart of ecarts) expect(ecart).toBeGreaterThanOrEqual(1_000);
+    // Et la troisième requête part bien après deux créneaux, pas après un seul.
+    expect(Date.now() - t0).toBeGreaterThanOrEqual(2_000);
+  }, 20_000);
 });

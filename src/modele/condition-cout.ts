@@ -101,7 +101,12 @@ export function conditionDuCout(entree: EntreeCout): Cout {
   }
 
   // 2. Alternance : conditionne l'entrée, pas seulement le paiement.
-  if (entree.formats.includes("alternance")) {
+  //
+  // Sauf si l'organisme publie un tarif. INSEEC vend son MSc 8 175 € en
+  // formation initiale et le propose aussi en alternance : afficher « aucun
+  // frais » y serait faux pour la moitié des candidats. Le garde-fou existait
+  // dans la dérivation ; il manquait ici, et l'affichage l'aurait contourné.
+  if (entree.formats.includes("alternance") && !(entree.prix !== null && entree.prix > 0)) {
     return {
       valeur: "Aucun frais pour l'alternant",
       condition: "Sous réserve de signer un contrat d'alternance",

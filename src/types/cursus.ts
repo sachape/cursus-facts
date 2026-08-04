@@ -57,6 +57,16 @@ export const ETATS_INFORMATION = [
    */
   "non_collecte",
   "a_confirmer",
+  /**
+   * Valeur produite par une règle publiée, pas par l'organisme.
+   *
+   * Ce n'est pas une déduction : la règle est publiée, vérifiable, et identique
+   * pour tous les parcours qu'elle vise — un lecteur peut la contester en tant
+   * que règle, jamais en tant que décision le concernant. Mais elle ne doit
+   * jamais s'afficher comme une information publiée : la fiche porte la mention
+   * de dérivation, sans quoi le catalogue affirmerait en son propre nom.
+   */
+  "derive",
 ] as const;
 export type EtatInformation = (typeof ETATS_INFORMATION)[number];
 
@@ -220,7 +230,9 @@ export const valeursPresentes = (c: CompteurInformations) => c.renseignees + c.a
 export function compterInformations(etats: EtatsInformation): CompteurInformations {
   const valeurs = CHAMPS_INFORMATION.map((champ) => etats[champ]);
   return {
-    renseignees: valeurs.filter((etat) => etat === "renseigne").length,
+    // Une valeur dérivée compte comme renseignée : elle est exacte et
+    // opposable. C'est son affichage qui doit la distinguer, pas le compteur.
+    renseignees: valeurs.filter((etat) => etat === "renseigne" || etat === "derive").length,
     applicables: valeurs.filter(
       (etat) => etat !== "non_applicable" && etat !== "non_collecte",
     ).length,

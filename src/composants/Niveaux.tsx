@@ -21,6 +21,39 @@ export const NON_COMMUNIQUE = "Non communiqué";
  * Niveau 1 — décisif. Coût, durée, certification reconnue, éligibilité CPF.
  * Ce sont les informations sur lesquelles on renonce ou on poursuit.
  */
+/**
+ * La condition d'obtention d'un coût, sous sa valeur.
+ *
+ * Un montant nu ne permet pas de décider : « 0 € » recouvre l'alternance, le
+ * compte requis, le certificat payant et l'accès partiel. La condition se place
+ * immédiatement sous la valeur — assez lisible pour être lue, assez discrète
+ * pour ne pas la concurrencer. Aucune couleur nouvelle, aucun pictogramme.
+ */
+export function ConditionCout({ children }: { children: React.ReactNode }) {
+  if (!children) return null;
+  return (
+    <p className="mt-0.5 max-w-[22rem] text-[11.5px] leading-[1.4] text-muted-foreground">
+      {children}
+    </p>
+  );
+}
+
+/**
+ * La mention de dérivation, en retrait sous la condition.
+ *
+ * Sans elle, une valeur produite par une règle serait indiscernable d'une
+ * valeur publiée par l'organisme — et le catalogue affirmerait en son propre
+ * nom une information que personne n'a publiée.
+ */
+export function MentionDerivation({ children }: { children: React.ReactNode }) {
+  if (!children) return null;
+  return (
+    <p className="mt-1 max-w-[22rem] border-l border-border pl-2 text-[11px] leading-[1.4] text-muted-foreground/80">
+      {children}
+    </p>
+  );
+}
+
 export function Decisif({
   etiquette,
   children,

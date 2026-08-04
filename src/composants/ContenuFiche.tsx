@@ -16,10 +16,9 @@ import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
-import {
-  DETAIL_RESERVE_AUX_ENTREPRISES,
-  reserveAuxEntreprises,
-} from "@/modele/modalite-commerciale";
+import { ConditionCout, MentionDerivation } from "./Niveaux";
+import { prixAffichable } from "@/modele/modalite-commerciale";
+import { conditionDuCout } from "@/modele/condition-cout";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { libellePrix } from "./RangeeParcours";
 import { useComparaison } from "./comparaison";
@@ -280,12 +279,29 @@ export function ContenuFiche({
       >
         <dl>
           <Information libelle="Prix" etat={e.prix}>
-            <span className="chiffre">{libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}</span>
-            {reserveAuxEntreprises(p) && (
-              <span className="mt-1 block text-xs text-muted-foreground">
-                {DETAIL_RESERVE_AUX_ENTREPRISES}
-              </span>
-            )}
+            {(() => {
+              const cout = conditionDuCout({
+                prix: prixAffichable(p.prixMin, p),
+                modaliteAcces: p.modaliteAcces,
+                formats: p.formats,
+                categorie: p.organismeCategorie,
+                eligibleCpf: p.eligibleCpf,
+                dispoInter: p.dispoInter,
+                dispoIntra: p.dispoIntra,
+                derive: e.prix === "derive",
+              });
+              return (
+                <>
+                  <span className="chiffre">
+                    {cout.valeur ?? libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}
+                  </span>
+                  <ConditionCout>{cout.condition}</ConditionCout>
+                  <MentionDerivation>{cout.derivation}</MentionDerivation>
+                </>
+              );
+            })()}
+            <span className="hidden">
+            </span>
             {p.prixIntra !== null && (
               /*
                 Le tarif de groupe figure sur la fiche mais jamais dans la

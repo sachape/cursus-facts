@@ -77,3 +77,20 @@ describe("condition d'obtention du coût", () => {
     expect(filtreDe("frais_inscription")).toBeNull();
   });
 });
+
+describe("garde-fou des deux voies tarifaires", () => {
+  it("n'annonce jamais « aucun frais » quand un tarif est publié", () => {
+    // INSEEC vend son MSc 8 175 € en initial et le propose en alternance.
+    // L'afficher « aucun frais pour l'alternant » serait faux pour la moitié
+    // des candidats. Le garde-fou existait dans la dérivation et manquait dans
+    // l'affichage, qui l'aurait donc contourné.
+    const cout = conditionDuCout(e({ prix: 8175, formats: ["alternance", "presentiel"] }));
+    expect(cout.valeur).not.toBe("Aucun frais pour l'alternant");
+    expect(cout.cle).not.toBe("alternance_requise");
+  });
+
+  it("l'annonce quand aucun tarif n'est publié", () => {
+    expect(conditionDuCout(e({ prix: 0, formats: ["alternance"] })).cle).toBe("alternance_requise");
+    expect(conditionDuCout(e({ prix: null, formats: ["alternance"] })).cle).toBe("alternance_requise");
+  });
+});

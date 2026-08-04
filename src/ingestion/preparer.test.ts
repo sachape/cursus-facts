@@ -122,7 +122,7 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 640 informations vérifiées", () => {
+  it("écrit 2 684 informations vérifiées", () => {
     // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
     // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus).
     // 2 340 → 2 320 : fusion des trois formules Amazon Incubator en une fiche,
@@ -140,7 +140,7 @@ describe("ce qui part en base respecte les invariants", () => {
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2640);
+    expect(total).toBe(2684);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
@@ -159,7 +159,29 @@ describe("ce qui part en base respecte les invariants", () => {
       décroître : y ajouter un nom exige un motif écrit ici, et aucune collecte
       future ne doit créer de fiche sans URL.
     */
-    const SANS_URL_HERITEES = new Set<string>([]);
+    /*
+      Les 14 fiches héritées, toutes des créateurs indépendants entrés au
+      catalogue avant que cette règle existe. Quatre de leurs pairs ont déjà été
+      résolus le 4 août — LiveMentor, Yomi Denzel, Marketing Mania, La Webeuse,
+      Antoine BM. Cette liste ne doit que décroître ; aucune collecte future ne
+      doit créer de fiche sans URL vérifiée.
+    */
+    const SANS_URL_HERITEES = new Set<string>([
+      "roman-de-czerny-et-maxime-le-morillon-ecom-french-touch-128",
+      "guillaume-jacob-dropshipping-exponentiel-129",
+      "kamik-dropshipping-seo-de-0-a-600-k-130",
+      "oseille-tv-super-seller-academy-131",
+      "oseille-tv-mentorat-amazon-190",
+      "learnyclub-formations-dropshipping-et-seo-132",
+      "bulldozer-formations-growth-et-acquisition-133",
+      "formafly-formafly-shopify-et-publicite-135",
+      "growth-hackers-mini-ecom-print-on-demand-137",
+      "sokona-diaby-martin-business-game-138",
+      "booster-d-activite-se-lancer-en-e-commerce-139",
+      "wholesaleamz-wholesaleamz-187",
+      "sebastien-cerise-fba-accelerateur-de-liberte-digitale-188",
+      "je-cree-mon-e-business-coaching-20-semaines-189",
+    ]);
     const fautives = preparation.fiches
       .filter((f) => {
         const url = f.colonnes["site_officiel"];

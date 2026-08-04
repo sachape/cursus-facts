@@ -19,8 +19,10 @@ import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { useComparaison } from "./comparaison";
 import { libellePrixQualifie, type ModaliteAcces } from "@/modele/modalite-acces";
 import { prixAffichable, reserveAuxEntreprises } from "@/modele/modalite-commerciale";
+import { conditionDuCout } from "@/modele/condition-cout";
 import {
   certificationCourte,
+  ConditionCout,
   Decisif,
   GroupeDecisif,
   ListePastilles,
@@ -101,7 +103,17 @@ export function RangeeParcours({
   // personne : afficher son tarif de groupe la ferait renoncer sur un chiffre
   // qui ne la concerne pas.
   const prixListe = prixAffichable(parcours.prixMin, parcours);
-  const prixInconnu = prixListe === null && parcours.modaliteAcces === null;
+  // Le second niveau : la valeur seule ne permet pas de décider.
+  const cout = conditionDuCout({
+    prix: prixListe,
+    modaliteAcces: parcours.modaliteAcces,
+    formats: parcours.formats,
+    categorie: parcours.organismeCategorie,
+    eligibleCpf: parcours.eligibleCpf,
+    dispoInter: parcours.dispoInter,
+    dispoIntra: parcours.dispoIntra,
+  });
+  const prixInconnu = cout.valeur === null && prixListe === null && parcours.modaliteAcces === null;
   const ouvrir = interception(parcours, ouvrirEnPanneau);
 
   return (
@@ -172,8 +184,9 @@ export function RangeeParcours({
         <div className="min-[840px]:w-64 min-[840px]:shrink-0">
           <GroupeDecisif>
             <Decisif etiquette="Coût pour l'apprenant" absent={prixInconnu}>
-              {libellePrix(prixListe, parcours.prixMax, parcours.modaliteAcces)}
+              {cout.valeur ?? libellePrix(prixListe, parcours.prixMax, parcours.modaliteAcces)}
             </Decisif>
+            <ConditionCout>{cout.condition}</ConditionCout>
           </GroupeDecisif>
 
           <div className="mt-3 flex flex-wrap gap-x-7 gap-y-3">
