@@ -22,7 +22,7 @@ import type { ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { coutDuParcours } from "@/modele/condition-cout";
 import { libellePrixQualifie } from "@/modele/modalite-acces";
-import { useComparaison } from "./comparaison";
+import { CompareButton } from "./CompareButton";
 import { OrganizationIdentity } from "./OrganizationIdentity";
 import {
   CertificationBadge,
@@ -85,8 +85,6 @@ export function TrainingResultCard({
   parcours: ParcoursListe;
   ouvrirEnPanneau?: (parcours: ParcoursListe, origine?: HTMLElement | null) => void;
 }) {
-  const { ajouter, retirer, contient } = useComparaison();
-  const selectionne = contient(parcours.slug);
   const certification = certificationCourte(parcours.certification, parcours.codeRncpRs);
   const cout = coutDuParcours(parcours);
   const prixInconnu = cout.valeur === null && cout.montant === null;
@@ -197,23 +195,12 @@ export function TrainingResultCard({
             quand la fiche est sélectionnée : la faire disparaître au survol
             priverait de l'action de retrait.
           */}
+          {/*
+            Actions au-dessus de l'ancre de carte, par leur propre plan : sans
+            lui, l'ancre qui couvre la surface les avalerait.
+          */}
           <div className="relative z-(--z-collant) mt-auto flex items-center gap-(--space-2)">
-            <button
-              type="button"
-              aria-pressed={selectionne}
-              onClick={() =>
-                selectionne
-                  ? retirer(parcours.slug)
-                  : ajouter({ slug: parcours.slug, nom: parcours.nom })
-              }
-              className={`h-(--bouton-hauteur) rounded-(--radius-md) border px-(--space-3) t-body-sm transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) ${
-                selectionne
-                  ? "border-(--accent-border) bg-(--accent-surface) text-(--accent-default)"
-                  : "border-(--border-default) text-(--text-secondary) hover:border-(--border-strong) hover:text-(--text-primary) min-[840px]:opacity-0 min-[840px]:group-hover:opacity-100 min-[840px]:group-focus-within:opacity-100"
-              }`}
-            >
-              {selectionne ? "Retiré de la comparaison" : "Comparer"}
-            </button>
+            <CompareButton slug={parcours.slug} nom={parcours.nom} discretHorsSurvol />
           </div>
         </div>
       </div>
