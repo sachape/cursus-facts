@@ -45,12 +45,16 @@ export function ActiveFilter({ libelle, retirer }: { libelle: string; retirer: (
  * aucun.
  */
 export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => void }) {
+  /*
+    Sous 420 px, « Trier par » passe au-dessus du select : à cette largeur, les
+    garder sur une ligne réduit le select à un moignon illisible.
+  */
   return (
-    <div className="flex items-center gap-(--space-2)">
-      <label htmlFor="tri" className="t-body-sm text-(--text-secondary)">
+    <div className="flex min-w-0 flex-1 items-center gap-(--space-3) max-[419px]:flex-col max-[419px]:items-stretch max-[419px]:gap-(--space-2)">
+      <label htmlFor="tri" className="shrink-0 t-body-sm text-(--text-secondary)">
         Trier par
       </label>
-      <div className="relative">
+      <div className="relative min-w-0 flex-1 min-[1024px]:max-w-(--select-largeur-max) min-[768px]:min-w-(--select-largeur-min)">
         <select
           id="tri"
           value={tri}
@@ -59,7 +63,7 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
             `appearance-none` retire la flèche du système : un contrôle au style
             natif jure avec le reste et change d'aspect d'un système à l'autre.
           */
-          className="h-(--bouton-hauteur) appearance-none rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) py-(--space-1) pl-(--space-3) pr-(--space-8) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus-visible:border-(--border-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+          className="h-(--bouton-hauteur) w-full max-w-full appearance-none rounded-(--radius-md) max-[1023px]:min-h-12 border border-(--border-default) bg-(--surface-raised) py-(--space-1) pl-(--space-3) pr-(--space-8) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus-visible:border-(--border-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
         >
           {TRIS.map((t) => (
             <option key={t} value={t}>
@@ -118,11 +122,16 @@ export function ResultToolbar({
         les cartes de transparaître pendant le défilement, pas pour recréer un
         bandeau.
       */}
-      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-nav-height))] z-30 flex min-h-(--results-toolbar-height) flex-wrap items-center justify-between gap-(--space-3) border-b border-(--border-subtle) bg-(--catalog-canvas)">
-        <h2 className="t-heading-4 text-(--text-primary)">
+      {/*
+        Sous 1024 px, la barre passe en colonne : titre puis ligne de tri. Sur
+        une largeur de téléphone, les mettre côte à côte écrase le select à
+        quelques dizaines de pixels ou le pousse hors de la barre.
+      */}
+      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-nav-height))] z-30 flex min-h-(--results-toolbar-height) flex-col gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) py-(--space-5) max-[1023px]:mx-[calc(-1*var(--space-6))] min-[1024px]:flex-row min-[1024px]:flex-wrap min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-6) min-[1024px]:px-0 min-[1024px]:py-0">
+        <h2 className="m-0 t-heading-4 leading-[1.2] text-(--text-primary)">
           {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
         </h2>
-        <div className="flex items-center gap-(--space-3)">
+        <div className="flex min-w-0 items-center gap-(--space-3) max-[1023px]:w-full">
           {comparateur}
           <SortSelect tri={tri} choisir={choisirTri} />
         </div>

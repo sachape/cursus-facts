@@ -38,15 +38,15 @@ export function OngletsDomaines({
     */
     <nav
       aria-label="Domaines"
-      className="sticky top-(--app-header-height) z-40 h-(--domain-nav-height) border-b border-(--border-subtle) bg-(--catalog-canvas)"
+      className="sticky top-(--app-header-height) z-40 min-h-(--domain-nav-height) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) max-[1023px]:mx-[calc(-1*var(--space-6))]"
     >
       <ul
-        className="-mb-px flex h-full items-stretch overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mb-px flex min-h-(--domain-nav-height) items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {onglets.map((onglet) => {
           const estActif = onglet.domaine === actif;
           return (
-            <li key={onglet.domaine ?? "tous"} className="shrink-0 mr-(--space-6) last:mr-0">
+            <li key={onglet.domaine ?? "tous"} className="shrink-0">
               <button
                 type="button"
                 aria-current={estActif ? "true" : undefined}

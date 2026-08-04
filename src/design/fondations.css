@@ -326,6 +326,12 @@
     barre s'ancre sous la somme de celles qui la précèdent, et une hauteur
     devinée décalerait toute la pile sans rien casser visiblement.
   */
+  /* Retraits latéraux des barres, par palier. */
+  --nav-padding: var(--space-6);
+  --nav-gap: var(--space-6);
+  --select-largeur-min: 280px;
+  --select-largeur-max: 320px;
+
   --app-header-height: 64px;
   --domain-nav-height: 56px;
   --results-toolbar-height: 60px;
@@ -406,13 +412,34 @@ html {
   );
 }
 
-/* Sous 1024 px, les barres se compactent : la pile complète mangerait une part
-   excessive d'un écran de téléphone. */
+/*
+  Sous 1024 px, les hauteurs de la pile changent — et elles doivent suivre la
+  hauteur RÉELLE des barres, pas une valeur souhaitée. Sur mobile la toolbar
+  passe en colonne : titre, puis ligne de tri. Sa hauteur devient donc la somme
+  de ses paddings, de ses deux lignes et de leur écart. Une hauteur sous-estimée
+  ferait passer les cartes derrière la barre au défilement.
+*/
 @media (max-width: 1023px) {
   :root {
     --app-header-height: 56px;
-    --domain-nav-height: 48px;
-    --results-toolbar-height: 52px;
+    --domain-nav-height: 60px;
+    /* 20 + 24 (titre) + 16 (gap) + 48 (select) + 20 */
+    --results-toolbar-height: 128px;
+  }
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --nav-padding: var(--space-6);
+    --nav-gap: var(--space-7);
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --domain-nav-height: 56px;
+    --nav-padding: var(--space-5);
+    --nav-gap: var(--space-7);
   }
 }
 
