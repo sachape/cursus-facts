@@ -17,7 +17,8 @@
     "collecte:file": "bun run scripts/file-collecte.ts",
     "collecte:lot": "bun run scripts/file-collecte.ts --lot",
     "collecte:sitemaps": "bun run scripts/decouverte-sitemaps.ts",
-    "collecte:extraire": "bun run scripts/extraction.ts"
+    "collecte:extraire": "bun run scripts/extraction.ts",
+    "collecte:appliquer": "bun run scripts/appliquer-journal.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",
