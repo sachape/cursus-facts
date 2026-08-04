@@ -46,8 +46,16 @@ export type NiveauEntree = (typeof NIVEAUX_ENTREE)[number];
 
 export const ETATS_INFORMATION = [
   "renseigne",
+  /** Page de détail ouverte et vérifiée : l'organisme ne publie pas ce champ. */
   "non_communique",
+  /** Le champ n'a pas de sens pour ce parcours. */
   "non_applicable",
+  /**
+   * La page de détail n'a pas encore été lue. C'est un fait sur NOUS, jamais
+   * sur l'organisme : le confondre avec « non publié » ferait porter au vendeur
+   * une opacité qui est la nôtre.
+   */
+  "non_collecte",
   "a_confirmer",
 ] as const;
 export type EtatInformation = (typeof ETATS_INFORMATION)[number];
@@ -185,13 +193,25 @@ export function normaliserParcours(row: ParcoursRow): Parcours {
 export type CompteurInformations = {
   renseignees: number;
   applicables: number;
+  /** Champs dont l'absence n'a pas encore été vérifiée. */
+  nonCollectes: number;
 };
 
-/** Calcule le compteur à partir des états, sans jamais produire de ratio. */
+/**
+ * Calcule le compteur à partir des états, sans jamais produire de ratio.
+ *
+ * Un champ non collecté sort du dénominateur au même titre qu'un champ sans
+ * objet : on ne peut pas reprocher à un organisme une absence qu'on n'a pas
+ * vérifiée. Il est compté à part, pour que la fiche puisse dire ce qui reste
+ * à vérifier plutôt que de le passer sous silence.
+ */
 export function compterInformations(etats: EtatsInformation): CompteurInformations {
   const valeurs = CHAMPS_INFORMATION.map((champ) => etats[champ]);
   return {
     renseignees: valeurs.filter((etat) => etat === "renseigne").length,
-    applicables: valeurs.filter((etat) => etat !== "non_applicable").length,
+    applicables: valeurs.filter(
+      (etat) => etat !== "non_applicable" && etat !== "non_collecte",
+    ).length,
+    nonCollectes: valeurs.filter((etat) => etat === "non_collecte").length,
   };
 }

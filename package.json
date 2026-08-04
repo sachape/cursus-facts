@@ -13,7 +13,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "ingestion:verifier": "bun run scripts/verifier-ingestion.ts"
+    "ingestion:verifier": "bun run scripts/verifier-ingestion.ts",
+    "collecte:file": "bun run scripts/file-collecte.ts",
+    "collecte:lot": "bun run scripts/file-collecte.ts --lot"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.115.0",

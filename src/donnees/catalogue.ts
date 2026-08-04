@@ -57,6 +57,25 @@ export type OffreSource = {
   modaliteAcces: ModaliteAcces | null;
   /** Source ayant permis d'établir la modalité, affichée sur la fiche. */
   sourceModalite?: string | null;
+  /**
+   * Profondeur de collecte atteinte sur ce parcours.
+   * `catalogue_seul` : seule la page catalogue de l'organisme a été lue.
+   * `detail_verifie` : la page de détail du parcours a été ouverte.
+   */
+  profondeur?: ProfondeurCollecte;
+  /** Date du passage sur la page de détail. */
+  profondeurVerifieeLe?: string | null;
+  /** URL de la page de détail, alimentée par la file de collecte. */
+  urlDetail?: string | null;
+};
+
+/** Niveau de vérification atteint sur une fiche. */
+export const PROFONDEURS = ["catalogue_seul", "detail_verifie"] as const;
+export type ProfondeurCollecte = (typeof PROFONDEURS)[number];
+
+export const LIBELLES_PROFONDEUR: Record<ProfondeurCollecte, string> = {
+  catalogue_seul: "Page catalogue seulement",
+  detail_verifie: "Page de détail vérifiée",
 };
 
 /* -------------------------------------------------------------------------- */
@@ -138,6 +157,8 @@ export function normaliserOffre(offre: OffreSource): OffreNormalisee {
       ? traduire(NIVEAU_PAR_LIBELLE, niveauLibelle, "niveau d'entrée")
       : null,
     formats: (formats ?? []).map((f) => traduire(FORMAT_PAR_LIBELLE, f, "format")),
+    // Par défaut, une fiche n'a été vue qu'au niveau du catalogue.
+    profondeur: offre.profondeur ?? "catalogue_seul",
     domaineDeclare: domaineDeclareLibelle
       ? traduire(DOMAINE_PAR_LIBELLE, domaineDeclareLibelle, "domaine déclaré")
       : null,

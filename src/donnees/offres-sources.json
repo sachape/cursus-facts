@@ -8100,8 +8100,8 @@
    "Présentiel",
    "Distanciel"
   ],
-  "niveauLibelle": null,
-  "prerequis": null,
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Être à l'aise avec la navigation web. Aucune connaissance en développement requise.",
   "cpf": 1,
   "financements": [
    "CPF",
@@ -8111,10 +8111,18 @@
   "outils": [
    "Shopify"
   ],
-  "programme": null,
+  "programme": [
+   "Prise en main du tableau de bord Shopify",
+   "Création des produits et des déclinaisons",
+   "Organisation en collections",
+   "Construction des pages essentielles",
+   "Configuration des paiements et de la livraison",
+   "Checklist avant lancement",
+   "Accompagnement personnalisé 30 jours (M2i BOOST)"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-08-04",
-  "source": "m2iformation.fr — pages catalogue e-commerce",
+  "source": "m2iformation.fr — page de détail de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "Shopify"
@@ -8122,11 +8130,14 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
+  "duree": "1 jour",
+  "volumeHoraire": 7,
   "id": 204,
   "nom": "Shopify — Créez facilement votre boutique en ligne",
-  "prix": 2670
+  "prix": 890,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-04",
+  "urlDetail": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
  },
  {
   "organisme": "M2i Formation",
@@ -8245,20 +8256,32 @@
    "Présentiel",
    "Distanciel"
   ],
-  "niveauLibelle": null,
-  "prerequis": null,
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Savoir naviguer sur le Web. Formation ouverte à tous les niveaux.",
   "cpf": 0,
   "financements": [
+   "CPF",
    "OPCO"
   ],
-  "certification": null,
+  "certification": "Attestation de fin de formation",
   "outils": [
    "PrestaShop"
   ],
-  "programme": null,
+  "programme": [
+   "Introduction et installation",
+   "Gestion du catalogue produits",
+   "Traitement des commandes",
+   "Gestion des clients",
+   "Promotions et réductions",
+   "Configuration des livraisons",
+   "Paramètres de localisation",
+   "Configuration du site",
+   "Comptes administrateurs",
+   "Gestion des modules"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-08-04",
-  "source": "dawan.fr — pages catalogue e-commerce",
+  "source": "dawan.fr — page de détail de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "PrestaShop"
@@ -8266,11 +8289,14 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "prix": null,
+  "duree": "3 jours",
+  "volumeHoraire": 21,
+  "prix": 1500,
   "id": 208,
-  "nom": "PrestaShop — Utilisateurs"
+  "nom": "PrestaShop — Utilisateurs",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-04",
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-utilisateurs"
  },
  {
   "organisme": "Dawan",
@@ -9137,5 +9163,47 @@
   "prix": null,
   "id": 233,
   "nom": "Le marketing digital, ça s'apprend"
+ },
+ {
+  "id": 234,
+  "nom": "Les clés du e-commerce",
+  "organisme": "Cegos",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "cegos.fr",
+  "prix": 1690,
+  "duree": "2 jours",
+  "volumeHoraire": 14,
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": "Aucun prérequis. Responsables marketing ou commercial, responsables de site, chefs de projet, marchands en ligne.",
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": "Certification DiGiTT (optionnelle)",
+  "outils": null,
+  "programme": [
+   "Fondamentaux du e-commerce : tendances, cadre légal, choix du CMS",
+   "Construction du modèle économique : personas, analyse concurrentielle, positionnement",
+   "Génération de trafic : SEO, SEM, segmentation, marketing automation",
+   "Stratégie réseaux sociaux : plateformes, publicité payante, campagnes email",
+   "Optimisation de la conversion : UX, vente additionnelle, tests A/B"
+  ],
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "cegos.fr — page de détail de la formation",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-04",
+  "urlDetail": "https://www.cegos.fr/formations/marketing/les-cles-du-e-commerce"
  }
 ]

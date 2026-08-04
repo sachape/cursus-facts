@@ -62,8 +62,17 @@ function Information({
           </>
         ) : etat === "non_applicable" ? (
           <span className="italic text-muted-foreground/70">Ne s&apos;applique pas à ce parcours</span>
+        ) : etat === "non_collecte" ? (
+          /*
+            L'absence n'a pas été constatée : c'est notre collecte qui manque,
+            pas nécessairement l'information. Le dire autrement ferait porter à
+            l'organisme une opacité qui est peut-être la nôtre.
+          */
+          <span className="italic text-muted-foreground/70">
+            Pas encore collecté — nous n&apos;avons pas ouvert la page de détail
+          </span>
         ) : (
-          <span className="text-absent">Non communiqué</span>
+          <span className="text-absent">Non publié par l&apos;organisme</span>
         )}
       </dd>
     </div>

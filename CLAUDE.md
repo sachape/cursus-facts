@@ -193,6 +193,29 @@ dénomination sociale est peu productif (11 correspondances sur 165 726, dont
 la moitié de faux positifs). Les créateurs indépendants n'incorporent pas sous
 un nom contenant « ecom ». Le ciblage NAF 85.59A/B via SIRENE reste nécessaire.
 
+## Profondeur de collecte
+
+Un champ vide ne dit pas la même chose selon la profondeur atteinte :
+
+- **`non_collecte`** — la page de détail n'a pas été ouverte. **Fait sur nous.**
+  Sort du dénominateur : on ne reproche pas une absence non vérifiée.
+- **`non_communique`** — page de détail lue, l'organisme ne publie pas. Fait sur
+  lui, critère de comparaison légitime.
+- **`non_applicable`** — le champ n'a pas de sens pour ce parcours.
+
+`determinerEtats` bascule entre les deux premiers selon `offre.profondeur`
+(`catalogue_seul` | `detail_verifie`). Le pourcentage vérifié en profondeur est
+publié dans la vue Méthode — aucun comparatif affilié ne publiera ce chiffre.
+
+**La file de collecte est un pipeline, pas une tâche de session.** 232 pages
+aujourd'hui, plusieurs milliers à terme. Son état est persisté dans
+`src/donnees/file-collecte.json` ; `bun run collecte:file` la reconstruit,
+`bun run collecte:lot` sort les 20 fiches dont le manque coûte le plus (prix
+absent = 2 points, programme, non-couvert, volume, prérequis = 1 chacun).
+
+Le catalogue fait foi sur la profondeur : `construireFile` réconcilie le statut
+à chaque passage, sinon les mêmes pages seraient retraitées indéfiniment.
+
 ## Dette connue, tracée
 
 - **Éligibilité CPF** : 164 fiches à `cpf: 0`. Le booléen ne distingue pas

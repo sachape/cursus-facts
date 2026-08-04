@@ -19,6 +19,13 @@
  * Les règles d'inapplicabilité ci-dessous sont déterministes et publiées. Elles
  * ne reposent sur aucune appréciation : un organisme peut les contester en tant
  * que règles, pas en tant que décisions le concernant.
+ *
+ * PROFONDEUR DE COLLECTE. Un champ vide ne dit pas la même chose selon qu'on a
+ * lu la page de détail du parcours ou seulement la page catalogue de
+ * l'organisme. Tant que le détail n'a pas été ouvert, l'absence est
+ * `non_collecte` — un fait sur nous. Une fois ouvert, elle devient
+ * `non_communique` — un fait sur l'organisme, et un critère de comparaison
+ * légitime.
  */
 import {
   CHAMPS_INFORMATION,
@@ -121,6 +128,8 @@ const APPLICABILITE: Partial<Record<ChampInformation, (offre: OffreNormalisee) =
  * `non_communique`, et cette absence ne retire jamais la fiche du catalogue.
  */
 export function determinerEtats(offre: OffreNormalisee): EtatsInformation {
+  const detailVerifie = offre.profondeur === "detail_verifie";
+
   return CHAMPS_INFORMATION.reduce((etats, champ) => {
     let etat: EtatInformation;
     // Un champ publié est toujours applicable : la publication prouve la
@@ -129,6 +138,8 @@ export function determinerEtats(offre: OffreNormalisee): EtatsInformation {
     // qu'un champ vide — elle bouge le dénominateur, jamais le numérateur.
     if (estRenseigne(valeurDuChamp(offre, champ))) etat = "renseigne";
     else if (!(APPLICABILITE[champ]?.(offre) ?? true)) etat = "non_applicable";
+    // Sans lecture de la page de détail, l'absence n'est pas constatée.
+    else if (!detailVerifie) etat = "non_collecte";
     else etat = "non_communique";
     etats[champ] = etat;
     return etats;

@@ -25,6 +25,7 @@ import { CHAMPS_INFORMATION, LIBELLES_CHAMPS_INFORMATION } from "@/types/cursus"
 import { DEFINITIONS_MODALITES, LIBELLES_MODALITES } from "@/modele/modalite-acces";
 import ecartes from "@/donnees/acteurs-ecartes.json";
 import journal from "@/donnees/journal-arbitrages.json";
+import { avancement, fileDeCollecte } from "@/donnees/file-collecte";
 
 export const Route = createFileRoute("/methode")({
   loader: () => chargerArbitrages(),
@@ -425,6 +426,47 @@ function Methode() {
           et c&apos;est précisément là que la pression commerciale s&apos;exercerait, puisque
           rester en attente coûte des lignes de résultats à l&apos;organisme.
         </p>
+      </Section>
+
+      <Section
+        titre="Profondeur de vérification"
+        intro="Quelle part du catalogue a été vérifiée sur la page de détail de chaque parcours, et non seulement sur la page catalogue de l'organisme."
+      >
+        {(() => {
+          const etat = avancement(fileDeCollecte);
+          return (
+            <>
+              <dl className="flex flex-wrap gap-x-10 gap-y-3">
+                <div>
+                  <dd className="chiffre text-xl">{etat.pourcentage} %</dd>
+                  <dt className="text-xs text-muted-foreground">du catalogue vérifié en profondeur</dt>
+                </div>
+                <div>
+                  <dd className="chiffre text-xl">{etat.traites}</dd>
+                  <dt className="text-xs text-muted-foreground">pages de détail lues</dt>
+                </div>
+                <div>
+                  <dd className="chiffre text-xl">{etat.restants}</dd>
+                  <dt className="text-xs text-muted-foreground">restant à vérifier</dt>
+                </div>
+              </dl>
+
+              <p className="mt-4 text-muted-foreground">
+                Un champ vide ne dit pas la même chose selon qu&apos;on a lu la page de détail du
+                parcours ou seulement la page catalogue de l&apos;organisme. Tant que le détail
+                n&apos;a pas été ouvert, la fiche affiche « pas encore collecté » — un fait sur
+                nous. Une fois ouvert, elle affiche « non publié par l&apos;organisme » — un fait
+                sur lui, et un critère de comparaison légitime.
+              </p>
+              <p className="mt-3 text-muted-foreground">
+                Les champs non collectés sortent du dénominateur : on ne peut pas reprocher à un
+                organisme une absence qu&apos;on n&apos;a pas vérifiée. Le tri par informations
+                disponibles ne pénalise donc pas une fiche encore à vérifier au même titre
+                qu&apos;une fiche opaque.
+              </p>
+            </>
+          );
+        })()}
       </Section>
 
       <Section

@@ -18,8 +18,9 @@ import {
 
 const TITRE_ETAT: Record<string, string> = {
   renseigne: "renseigné",
-  non_communique: "non communiqué",
+  non_communique: "non publié par l'organisme",
   non_applicable: "ne s'applique pas à ce parcours",
+  non_collecte: "pas encore collecté par nos soins",
   a_confirmer: "à confirmer",
 };
 
@@ -49,10 +50,17 @@ export function CodeBarres({
             className={[
               "h-4 w-[3px] rounded-[1px]",
               etat === "renseigne" ? "bg-foreground" : "",
+              // Absence constatée : l'organisme ne publie pas. C'est un fait
+              // sur lui, et le trait creux le dit.
               etat === "non_communique" ? "bg-border" : "",
               // Un champ sans objet ne se lit pas comme un manque : il s'efface
               // au lieu de creuser le code-barres.
               etat === "non_applicable" ? "bg-border/30 h-2" : "",
+              // Absence non constatée : c'est notre collecte qui manque, pas
+              // l'information. Le trait est hachuré, ni plein ni creux.
+              etat === "non_collecte"
+                ? "bg-[repeating-linear-gradient(45deg,var(--color-border)_0px,var(--color-border)_1px,transparent_1px,transparent_3px)]"
+                : "",
               etat === "a_confirmer" ? "bg-foreground/40" : "",
             ].join(" ")}
           />
@@ -73,18 +81,29 @@ export function CodeBarres({
 export function CompteurInformations({
   renseignees,
   applicables,
+  nonCollectes = 0,
   className = "",
 }: {
   renseignees: number;
   applicables: number;
+  /** Champs dont l'absence n'a pas encore été vérifiée. */
+  nonCollectes?: number;
   className?: string;
 }) {
   return (
     <span className={`chiffre text-xs text-muted-foreground ${className}`}>
       {renseignees} sur {applicables}
-      {applicables < 18 && (
+      {applicables < 18 && nonCollectes === 0 && (
         <span className="ml-1 text-[10px]" title="Certains champs ne s'appliquent pas à ce parcours">
           applicables
+        </span>
+      )}
+      {nonCollectes > 0 && (
+        <span
+          className="ml-1 text-[10px]"
+          title={`${nonCollectes} champs pas encore collectés : leur absence n'a pas été vérifiée`}
+        >
+          · {nonCollectes} à vérifier
         </span>
       )}
     </span>

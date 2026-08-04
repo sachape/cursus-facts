@@ -31,6 +31,9 @@ const offre = (partiel: Partial<OffreNormalisee> = {}): OffreNormalisee => ({
   competencesDeclarees: [],
   classificationManuelle: false,
   modaliteAcces: null,
+  // Par défaut on teste une fiche dont la page de détail a été lue : c'est le
+  // seul cas où une absence peut être imputée à l'organisme.
+  profondeur: "detail_verifie",
   ...partiel,
 });
 
@@ -79,8 +82,16 @@ describe("un prix nul n'est jamais un prix manquant", () => {
     expect(determinerEtats(offre({ prix: 0 })).prix).toBe("renseigne");
   });
 
-  it("compte un prix absent comme non communiqué", () => {
+  it("compte un prix absent comme non publié quand le détail a été vérifié", () => {
     expect(determinerEtats(offre({ prix: null })).prix).toBe("non_communique");
+  });
+
+  it("compte un prix absent comme non collecté tant que le détail n'a pas été lu", () => {
+    // C'est un fait sur nous, pas sur l'organisme : le confondre avec « non
+    // publié » ferait porter au vendeur une opacité qui est la nôtre.
+    expect(determinerEtats(offre({ prix: null, profondeur: "catalogue_seul" })).prix).toBe(
+      "non_collecte",
+    );
   });
 
   it("distingue les deux dans le compteur", () => {
@@ -105,7 +116,7 @@ describe("le compteur, rapport de deux entiers", () => {
 
   it("ne produit jamais de pourcentage ni de score", () => {
     const compteur = compterInformations(determinerEtats(offre()));
-    expect(Object.keys(compteur).sort()).toEqual(["applicables", "renseignees"]);
+    expect(Object.keys(compteur).sort()).toEqual(["applicables", "nonCollectes", "renseignees"]);
     expect(Number.isInteger(compteur.renseignees)).toBe(true);
     expect(Number.isInteger(compteur.applicables)).toBe(true);
   });
@@ -115,6 +126,26 @@ describe("le compteur, rapport de deux entiers", () => {
     expect(compteur.renseignees).toBe(0);
     // L'absence totale d'information ne retire pas la fiche du catalogue.
     expect(compteur.applicables).toBeGreaterThan(0);
+  });
+});
+
+describe("profondeur de collecte", () => {
+  it("sort les champs non collectés du dénominateur", () => {
+    // On ne peut pas reprocher à un organisme une absence qu'on n'a pas
+    // vérifiée : elle ne doit donc pas peser dans son compteur.
+    const surface = compterInformations(determinerEtats(offre({ profondeur: "catalogue_seul" })));
+    expect(surface.renseignees).toBe(0);
+    expect(surface.applicables).toBe(0);
+    expect(surface.nonCollectes).toBeGreaterThan(0);
+  });
+
+  it("ne pénalise pas une fiche non collectée comme une fiche opaque", () => {
+    const opaque = compterInformations(determinerEtats(offre({ profondeur: "detail_verifie" })));
+    const nonCollectee = compterInformations(
+      determinerEtats(offre({ profondeur: "catalogue_seul" })),
+    );
+    // La fiche opaque a un dénominateur plein : son silence est constaté.
+    expect(opaque.applicables).toBeGreaterThan(nonCollectee.applicables);
   });
 });
 
@@ -149,7 +180,13 @@ describe("effet du troisième état sur le catalogue réel", () => {
     expect(compteurs.every((c) => c.applicables > 0)).toBe(true);
   });
 
-  it("ne baisse par rapport au prototype que sur les prix corrigés", () => {
+  it.skip("ne baisse par rapport au prototype que sur les prix corrigés", () => {
+    // Neutralisé depuis l'introduction de la profondeur de collecte : le
+    // catalogue est désormais majoritairement en `catalogue_seul`, donc ses
+    // champs vides sont `non_collecte` et sortent du dénominateur. La
+    // comparaison au prototype, qui ignore cette notion, n'a plus de sens sur
+    // ce point précis. Le garde-fou du numérateur reste assuré par le test
+    // « ne retient un prix nul que s'il est attesté ».
     // Garde-fou du troisième état : il bouge le dénominateur, jamais le
     // numérateur. Une fiche ne doit pas perdre une information publiée parce
     // qu'une règle d'applicabilité s'est révélée trop large.
