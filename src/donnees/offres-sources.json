@@ -5625,10 +5625,9 @@
   "url": "amzacademy.fr",
   "prix": null,
   "duree": null,
-  "volumeHoraire": null,
+  "volumeHoraire": 35,
   "formats": [
-   "Distanciel",
-   "Présentiel"
+   "Distanciel"
   ],
   "niveauLibelle": "Aucun prérequis",
   "prerequis": null,
@@ -5641,8 +5640,8 @@
   "outils": null,
   "programme": null,
   "nonCouvert": null,
-  "dateVerification": "2026-07-24",
-  "source": "amzacademy.fr",
+  "dateVerification": "2026-08-04",
+  "source": "amzacademy.fr — page catalogue des formations",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "Meta Ads",
@@ -7873,5 +7872,1270 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null
+ },
+ {
+  "organisme": "AMZ Academy",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "amzacademy.fr",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "AGEFICE",
+   "FIFPL",
+   "OPCO"
+  ],
+  "certification": "Qualiopi — NDA 84380730538",
+  "outils": [
+   "Shopify"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "amzacademy.fr — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Shopify"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "prix": null,
+  "id": 198,
+  "nom": "Shopify 2026",
+  "volumeHoraire": 30,
+  "duree": null
+ },
+ {
+  "organisme": "AMZ Academy",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "amzacademy.fr",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "AGEFICE",
+   "FIFPL",
+   "OPCO"
+  ],
+  "certification": "Qualiopi — NDA 84380730538",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "amzacademy.fr — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "prix": null,
+  "id": 199,
+  "nom": "Définir et mettre en place une stratégie e-commerce",
+  "volumeHoraire": 35,
+  "duree": null
+ },
+ {
+  "organisme": "AMZ Academy",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "amzacademy.fr",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "AGEFICE",
+   "FIFPL",
+   "OPCO"
+  ],
+  "certification": "Qualiopi — NDA 84380730538",
+  "outils": [
+   "WordPress",
+   "WooCommerce"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "amzacademy.fr — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "WooCommerce"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "prix": null,
+  "id": 200,
+  "nom": "WordPress & WooCommerce 2026",
+  "volumeHoraire": 30,
+  "duree": null
+ },
+ {
+  "organisme": "ORSYS",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "orsys.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "PrestaShop"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "orsys.fr — page catalogue formations e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "PrestaShop"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "prix": null,
+  "id": 201,
+  "nom": "PrestaShop, créer un site e-commerce",
+  "duree": "3 jours",
+  "volumeHoraire": 21
+ },
+ {
+  "organisme": "ORSYS",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "orsys.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "orsys.fr — page catalogue formations e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "prix": null,
+  "id": 202,
+  "nom": "Maîtriser les aspects juridiques du e-commerce",
+  "duree": "2 jours",
+  "volumeHoraire": 14
+ },
+ {
+  "organisme": "ORSYS",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "orsys.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "orsys.fr — page catalogue formations e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "prix": null,
+  "id": 203,
+  "nom": "L'essentiel du digital et des réseaux sociaux pour PME",
+  "duree": "2 jours",
+  "volumeHoraire": 14
+ },
+ {
+  "organisme": "M2i Formation",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "m2iformation.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "Shopify"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "m2iformation.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Shopify"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "id": 204,
+  "nom": "Shopify — Créez facilement votre boutique en ligne",
+  "prix": 2670
+ },
+ {
+  "organisme": "M2i Formation",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "m2iformation.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "WordPress",
+   "WooCommerce"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "m2iformation.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "WooCommerce"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "id": 205,
+  "nom": "WordPress et WooCommerce — Créez facilement votre boutique en ligne",
+  "prix": 1495
+ },
+ {
+  "organisme": "M2i Formation",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "m2iformation.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "m2iformation.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "id": 206,
+  "nom": "E-commerce — Concevoir votre boutique et booster vos ventes",
+  "prix": 890
+ },
+ {
+  "organisme": "M2i Formation",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "m2iformation.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "m2iformation.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "id": 207,
+  "nom": "E-commerce — Enjeux, usages et solutions",
+  "prix": null
+ },
+ {
+  "organisme": "Dawan",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "dawan.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "PrestaShop"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "dawan.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "PrestaShop"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 208,
+  "nom": "PrestaShop — Utilisateurs"
+ },
+ {
+  "organisme": "Dawan",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "dawan.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "PrestaShop"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "dawan.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "PrestaShop"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 209,
+  "nom": "PrestaShop — Développeurs"
+ },
+ {
+  "organisme": "Dawan",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "dawan.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "PrestaShop"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "dawan.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "PrestaShop"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 210,
+  "nom": "PrestaShop — Webmasters"
+ },
+ {
+  "organisme": "Dawan",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "dawan.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "PrestaShop"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "dawan.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "PrestaShop"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 211,
+  "nom": "PrestaShop — Créer et gérer le site e-commerce de sa TPE"
+ },
+ {
+  "organisme": "Dawan",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "dawan.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": [
+   "PrestaShop"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "dawan.fr — pages catalogue e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "PrestaShop"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 212,
+  "nom": "PrestaShop — Finaliser, mettre en ligne et piloter sa boutique"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Copywriting"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 213,
+  "nom": "Formation Copywriting"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "SEO e-commerce"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 214,
+  "nom": "Formation SEO"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": [
+   "WordPress"
+  ],
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "WooCommerce"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 215,
+  "nom": "Formation WordPress"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Google Ads"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 216,
+  "nom": "Formation Google Ads"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Meta Ads"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 217,
+  "nom": "Formation Instagram"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "Meta Ads"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 218,
+  "nom": "Formation Facebook"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "TikTok Ads"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 219,
+  "nom": "Formation TikTok"
+ },
+ {
+  "organisme": "LiveMentor",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "livementor.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": "Aucun prérequis",
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "OPCO"
+  ],
+  "certification": "Qualiopi",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "livementor.com — page catalogue des formations",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [
+   "No-code"
+  ],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 220,
+  "nom": "Formation No-code et automatisation"
+ },
+ {
+  "organisme": "OpenClassrooms",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "openclassrooms.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "certification": "Diplôme niveau 6 (Bac+3)",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "openclassrooms.com — page catalogue des parcours",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": "freemium",
+  "sourceModalite": "Modèle freemium déclaré ; tarif de la strate payante non vérifié",
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 221,
+  "nom": "Parcours Digital Marketer"
+ },
+ {
+  "organisme": "OpenClassrooms",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "openclassrooms.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "openclassrooms.com — page catalogue des parcours",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": "freemium",
+  "sourceModalite": "Modèle freemium déclaré ; tarif de la strate payante non vérifié",
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 222,
+  "nom": "Parcours Chargé de marketing"
+ },
+ {
+  "organisme": "OpenClassrooms",
+  "categorieLibelle": "MOOC et plateformes",
+  "sousFamille": "Plateforme et MOOC",
+  "region": null,
+  "url": "openclassrooms.com",
+  "formats": [
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "openclassrooms.com — page catalogue des parcours",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": "freemium",
+  "sourceModalite": "Modèle freemium déclaré ; tarif de la strate payante non vérifié",
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 223,
+  "nom": "Parcours Expert en stratégie marketing et communication"
+ },
+ {
+  "organisme": "Studi",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "studi.com",
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "studi.com — page catalogue marketing digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "niveauLibelle": "Aucun prérequis",
+  "certification": "Diplôme national niveau 5",
+  "id": 224,
+  "nom": "BTS Management commercial opérationnel"
+ },
+ {
+  "organisme": "Studi",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "studi.com",
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "studi.com — page catalogue marketing digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "niveauLibelle": "Aucun prérequis",
+  "certification": "Diplôme national niveau 5",
+  "id": 225,
+  "nom": "BTS Commerce international"
+ },
+ {
+  "organisme": "Studi",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "studi.com",
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "studi.com — page catalogue marketing digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "niveauLibelle": "Aucun prérequis",
+  "certification": "Diplôme national niveau 5",
+  "id": 226,
+  "nom": "BTS Négociation et digitalisation de la relation client"
+ },
+ {
+  "organisme": "Studi",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "studi.com",
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "studi.com — page catalogue marketing digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "niveauLibelle": "Bac+2",
+  "certification": "Titre RNCP niveau 6",
+  "id": 227,
+  "nom": "Bachelor Chargé de marketing et communication"
+ },
+ {
+  "organisme": "Studi",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "studi.com",
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "studi.com — page catalogue marketing digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "niveauLibelle": "Bac+2",
+  "certification": "Titre RNCP niveau 6",
+  "id": 228,
+  "nom": "Bachelor Chef de projet marketing digital"
+ },
+ {
+  "organisme": "Studi",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "studi.com",
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "studi.com — page catalogue marketing digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "niveauLibelle": "Bac+2",
+  "certification": "Diplôme national niveau 6",
+  "id": 229,
+  "nom": "Licence professionnelle E-commerce et marketing numérique"
+ },
+ {
+  "organisme": "Studi",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "studi.com",
+  "formats": [
+   "Distanciel",
+   "Alternance"
+  ],
+  "prerequis": null,
+  "cpf": 1,
+  "financements": [
+   "CPF",
+   "Alternance"
+  ],
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "studi.com — page catalogue marketing digital",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "niveauLibelle": "Bac+3",
+  "certification": "Titre RNCP niveau 7",
+  "id": 230,
+  "nom": "Master Marketing digital"
+ },
+ {
+  "organisme": "ISM",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "ism.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": "Certification ISM",
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "ism.fr — page catalogue marketing digital et e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 231,
+  "nom": "Parcours certifiant — Marketing digital"
+ },
+ {
+  "organisme": "ISM",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "ism.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "ism.fr — page catalogue marketing digital et e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 232,
+  "nom": "Les fondamentaux du marketing digital"
+ },
+ {
+  "organisme": "ISM",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Formation continue",
+  "region": null,
+  "url": "ism.fr",
+  "formats": [
+   "Présentiel",
+   "Distanciel"
+  ],
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": 0,
+  "financements": [
+   "OPCO"
+  ],
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-04",
+  "source": "ism.fr — page catalogue marketing digital et e-commerce",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "sourceModalite": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "prix": null,
+  "id": 233,
+  "nom": "Le marketing digital, ça s'apprend"
  }
 ]

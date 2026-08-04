@@ -24,10 +24,13 @@
  * 141-143 : les trois formules Amazon Incubator d'AMZ Academy. Prix, volume
  * horaire et programme corrigés le 3 août 2026 d'après le site officiel de
  * l'organisme — le prototype portait un tarif faux de 200 €.
- * 196-197 : AMZ Révolution et Digital Ecom Club, ajoutées par la collecte,
- * absentes du prototype.
+ * Au-delà de 195 : toutes les offres ajoutées par la collecte, absentes du
+ * prototype par construction — le moissonnage des catalogues d'organismes ne
+ * peut pas être comparé à une référence qui l'ignore.
  */
-const HORS_PARITE = new Set([141, 142, 143, 196, 197]);
+const CORRIGEES = new Set([141, 142, 143]);
+const DERNIER_ID_PROTOTYPE = 195;
+const horsParite = (id: number) => CORRIGEES.has(id) || id > DERNIER_ID_PROTOTYPE;
 import { describe, expect, it } from "vitest";
 import { chargerCatalogue } from "@/donnees/catalogue";
 import { LIBELLES_DOMAINES } from "./vocabulaires";
@@ -39,7 +42,7 @@ const catalogue = chargerCatalogue();
 
 /** Applique la classification à tout le catalogue, une fois. */
 const classes = catalogue
-  .filter((offre) => !HORS_PARITE.has(offre.id))
+  .filter((offre) => !horsParite(offre.id))
   .map((offre) => ({
   offre,
   ...classifier({
@@ -106,7 +109,7 @@ describe("parité des distributions publiées dans le brief", () => {
   it("reproduit la répartition par catégorie d'organisme sur le socle inchangé", () => {
     expect(
       compter(
-        catalogue.filter((o) => !HORS_PARITE.has(o.id)).map((o) => o.categorie),
+        catalogue.filter((o) => !horsParite(o.id)).map((o) => o.categorie),
       ),
     ).toEqual({
       formation_professionnelle: 42,
@@ -119,8 +122,7 @@ describe("parité des distributions publiées dans le brief", () => {
     });
   });
 
-  it("compare 192 offres au prototype, les 5 autres étant tracées hors parité", () => {
-    expect(catalogue).toHaveLength(197);
+  it("compare au prototype les 192 offres du socle inchangé", () => {
     expect(classes).toHaveLength(192);
     expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(29);
   });
@@ -179,8 +181,8 @@ describe("parité du regroupement sur le catalogue réel", () => {
     expect(groupes.filter((g) => g.issue === "refus")).toHaveLength(0);
   });
 
-  it("ramène 197 offres à 195 entrées de liste", () => {
-    expect(catalogue).toHaveLength(197);
-    expect(groupes).toHaveLength(195);
+  it("ramène le catalogue à autant d'entrées que de fiches, moins la fusion", () => {
+    // Une seule fusion à ce jour : les trois formules Amazon Incubator.
+    expect(groupes).toHaveLength(catalogue.length - 2);
   });
 });
