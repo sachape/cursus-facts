@@ -232,14 +232,6 @@
   "dernierPassage": null
  },
  {
-  "id": 209,
-  "nom": "PrestaShop — Développeurs",
-  "organisme": "Dawan",
-  "urlDetail": null,
-  "statut": "a_traiter",
-  "dernierPassage": null
- },
- {
   "id": 210,
   "nom": "PrestaShop — Webmasters",
   "organisme": "Dawan",
@@ -1860,6 +1852,14 @@
   "nom": "PrestaShop — Utilisateurs",
   "organisme": "Dawan",
   "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-utilisateurs",
+  "statut": "traite",
+  "dernierPassage": "2026-08-04"
+ },
+ {
+  "id": 209,
+  "nom": "PrestaShop — Développeurs",
+  "organisme": "Dawan",
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-developpeurs",
   "statut": "traite",
   "dernierPassage": "2026-08-04"
  },

@@ -8306,9 +8306,9 @@
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-04",
   "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-utilisateurs",
-  "prixIntra": 1875,
+  "prixIntra": null,
   "dispoInter": true,
-  "dispoIntra": true
+  "dispoIntra": null
  },
  {
   "organisme": "Dawan",
@@ -8317,11 +8317,11 @@
   "region": null,
   "url": "dawan.fr",
   "formats": [
-   "Présentiel",
-   "Distanciel"
+   "Distanciel",
+   "Présentiel"
   ],
   "niveauLibelle": null,
-  "prerequis": null,
+  "prerequis": "Maîtrise de HTML, CSS, PHP et de la syntaxe de la programmation orientée objet",
   "cpf": 0,
   "financements": [
    "OPCO"
@@ -8330,10 +8330,19 @@
   "outils": [
    "PrestaShop"
   ],
-  "programme": null,
+  "programme": [
+   "Introduction — HTML, CSS, PHP, normes de nommage",
+   "Créer et positionner un module",
+   "Créer une page de configuration",
+   "Le Front Office",
+   "Aller plus loin dans le Front Office",
+   "Créer une page d'administration",
+   "Aller plus loin dans l'administration",
+   "Étendre le formulaire d'administration"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-08-04",
-  "source": "dawan.fr — pages catalogue e-commerce",
+  "source": "dawan.fr — page de détail de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "PrestaShop"
@@ -8341,11 +8350,16 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "prix": null,
+  "duree": "2 jours",
+  "volumeHoraire": 14,
+  "prix": 1180,
   "id": 209,
-  "nom": "PrestaShop — Développeurs"
+  "nom": "PrestaShop — Développeurs",
+  "dispoInter": true,
+  "dispoIntra": null,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-04",
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-developpeurs"
  },
  {
   "organisme": "Dawan",

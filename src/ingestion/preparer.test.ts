@@ -117,17 +117,21 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 644 informations vérifiées", () => {
+  it("écrit 2 649 informations vérifiées", () => {
     // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
     // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus).
     // 2 340 → 2 320 : fusion des trois formules Amazon Incubator en une fiche,
     // moins deux jeux d'informations comptés en double, plus les corrections
     // vérifiées et la fiche AMZ Révolution.
+    // 2 644 → 2 649 : collecte en profondeur, fiche Dawan PrestaShop
+    // Développeurs (prix, durée, volume horaire, prérequis, programme).
+    // Ce compteur ne doit monter que par lecture d'une page de détail : une
+    // hausse sans passage en collecte signalerait une information déduite.
     const total = preparation.fiches.reduce(
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2644);
+    expect(total).toBe(2649);
   });
 
   it("n'écrit jamais un prix nul sans modalité d'accès vérifiée", () => {
