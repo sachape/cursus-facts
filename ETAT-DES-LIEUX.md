@@ -192,6 +192,22 @@ identiquement à du JSON libre. Un JSON mal formé ne produit rien.
 
 ---
 
+### Ingestion — automatique, et sa limite datée
+
+Depuis le 4 août, l'intégration continue appelle `POST /api/ingestion` sur
+l'application déployée quand `offres-sources.json` change, après les invariants.
+Elle passe `ecraser: true`, donc elle **contourne par construction** le garde-fou
+« refuse d'écraser une base peuplée ».
+
+C'est sûr tant que la base ne contient que ce que le dépôt produit. **Ça cessera
+de l'être le jour où un organisme pourra corriger sa fiche** : la base portera
+alors des données que le dépôt ignore, et un seed rejoué les effacerait — la
+règle de non-effacement, appliquée à la base elle-même.
+
+À ce moment-là, il faudra un seed qui **fusionne** au lieu d'écraser, avec la
+même hiérarchie qu'ailleurs : une déclaration d'organisme l'emporte sur une
+valeur extraite, une valeur extraite l'emporte sur un vide.
+
 ## 6. Conflits internes — périmètre défini, non commencé
 
 Le crawl lira plusieurs pages par organisme et trouvera des contradictions. **Ne

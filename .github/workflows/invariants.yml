@@ -31,6 +31,53 @@ jobs:
       - name: Invariants du design system
         run: bun run invariants:design
 
+  # Ingestion automatique du catalogue.
+  #
+  # Elle ne part que si les données ont changé — inutile de réécrire la base
+  # pour un ajustement d'interface — et seulement après les invariants : envoyer
+  # en base un catalogue qui viole un invariant y installerait le défaut.
+  #
+  # L'écriture exige la clé service_role, non récupérable : elle vit dans
+  # l'environnement serveur de Lovable. Le déclenchement passe donc par
+  # l'application déployée, jamais par un script.
+  ingestion:
+    needs: regles
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Le catalogue a-t-il changé ?
+        id: donnees
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -qE '^src/donnees/(offres-sources|journal-arbitrages)\.json$'; then
+            echo "change=oui" >> "$GITHUB_OUTPUT"
+          else
+            echo "change=non" >> "$GITHUB_OUTPUT"
+            echo "Catalogue inchangé — ingestion ignorée."
+          fi
+      - name: Envoi en base
+        if: steps.donnees.outputs.change == 'oui' && vars.URL_PROD != ''
+        env:
+          JETON: ${{ secrets.SEED_TOKEN }}
+          URL: ${{ vars.URL_PROD }}
+        run: |
+          if [ -z "$JETON" ]; then
+            echo "::warning::SEED_TOKEN absent — ingestion ignorée."
+            exit 0
+          fi
+          reponse=$(curl -sS -w '\n%{http_code}' -X POST "$URL/api/ingestion" \
+            -H "x-seed-token: $JETON" \
+            -H "content-type: application/json" \
+            -d '{"ecraser":true}')
+          corps=$(echo "$reponse" | sed '$d')
+          code=$(echo "$reponse" | tail -n1)
+          echo "$corps"
+          # Un code non 2xx doit faire échouer : une ingestion silencieusement
+          # refusée laisserait la base diverger du dépôt sans que personne le voie.
+          [ "$code" -ge 200 ] && [ "$code" -lt 300 ]
+
   # Les tests de rendu exigent une application qui démarre, donc une base. La CI
   # n'a pas les identifiants Lovable Cloud : le serveur n'y démarre jamais.
   #
