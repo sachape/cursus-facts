@@ -24,7 +24,7 @@ import { classer, LIBELLES_TRIS, TRIS, TRI_PAR_DEFAUT, type Tri } from "@/modele
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { PanneauFiltres } from "@/composants/PanneauFiltres";
 import { OngletsDomaines, type OngletDomaine } from "@/composants/OngletsDomaines";
-import { RangeeParcours } from "@/composants/RangeeParcours";
+import { TrainingResultCard } from "@/composants/TrainingResultCard";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
@@ -398,7 +398,7 @@ function Explorer() {
           ) : (
             <ul>
               {resultats.slice(0, limite).map((p) => (
-                <RangeeParcours key={p.id} parcours={p} ouvrirEnPanneau={ouvrirEnPanneau} />
+                <TrainingResultCard key={p.id} parcours={p} ouvrirEnPanneau={ouvrirEnPanneau} />
               ))}
             </ul>
           )}
