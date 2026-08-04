@@ -69,7 +69,16 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
         Trier par
       </label>
       <div className="relative min-w-0 flex-1 min-[768px]:min-w-(--select-largeur-min) min-[1024px]:w-[clamp(280px,24vw,360px)] min-[1024px]:flex-none">
-        <Select value={tri} onValueChange={(v) => choisir(v as Tri)}>
+        {/*
+          `modal={false}` : en mode modal, Radix verrouille le défilement du
+          corps et pose `overflow: hidden` dessus. Le corps devient alors le
+          conteneur de défilement, les éléments collants perdent leur référence,
+          et toute la pile — header compris — disparaît à l'ouverture du menu.
+
+          Un menu de tri n'est pas une boîte de dialogue : il n'a pas à
+          confisquer le défilement de la page.
+        */}
+        <Select modal={false} value={tri} onValueChange={(v) => choisir(v as Tri)}>
           <SelectTrigger
             id="tri"
             aria-label="Trier les résultats"
