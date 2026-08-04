@@ -16,6 +16,11 @@ on:
         description: "URL à tester (laisser vide pour ignorer le rendu)"
         required: false
         type: string
+      ingerer:
+        description: "Envoyer le catalogue en base, même sans changement de données"
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   regles:
@@ -42,7 +47,7 @@ jobs:
   # l'application déployée, jamais par un script.
   ingestion:
     needs: regles
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -50,8 +55,15 @@ jobs:
           fetch-depth: 2
       - name: Le catalogue a-t-il changé ?
         id: donnees
+        env:
+          FORCE: ${{ inputs.ingerer }}
         run: |
-          if git diff --name-only HEAD~1 HEAD | grep -qE '^src/donnees/(offres-sources|journal-arbitrages)\.json$'; then
+          # Le déclenchement manuel court-circuite la détection : il sert à
+          # rattraper un retard, quand justement rien n'a changé au dernier commit.
+          if [ "$FORCE" = "true" ]; then
+            echo "change=oui" >> "$GITHUB_OUTPUT"
+            echo "Ingestion forcée."
+          elif git diff --name-only HEAD~1 HEAD | grep -qE '^src/donnees/(offres-sources|journal-arbitrages)\.json$'; then
             echo "change=oui" >> "$GITHUB_OUTPUT"
           else
             echo "change=non" >> "$GITHUB_OUTPUT"
