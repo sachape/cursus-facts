@@ -53,15 +53,40 @@ export async function ecrireIngestion(
     organisme_id: idParNom.get(fiche.organismeNom),
   }));
 
-  const { data: ecrits, error: erreurParcours } = await db
-    .from("parcours")
-    // @ts-expect-error — colonnes construites dynamiquement par la préparation,
-    // dont le contenu est verrouillé par preparer.test.ts.
-    .upsert(lignes, { onConflict: "slug" })
-    .select("id, slug");
-  if (erreurParcours) throw new Error(`Écriture des parcours : ${erreurParcours.message}`);
+  /*
+    ÉCRITURE PAR LOTS.
 
-  const idParSlug = new Map((ecrits ?? []).map((p) => [p.slug, p.id]));
+    Un upsert unique de 232 fiches à dix-huit colonnes dépassait le délai de la
+    passerelle : la requête n'échouait pas, elle était coupée, et le client
+    recevait une page d'erreur HTML au lieu d'une réponse. Rien dans le rapport
+    ne l'indiquait — la base restait simplement en retard.
+
+    Chaque lot est une transaction pour lui-même. Un lot qui échoue interrompt,
+    et les précédents restent écrits : ce n'est pas de l'atomicité, mais un
+    catalogue partiellement à jour vaut mieux qu'un catalogue jamais à jour, et
+    l'ingestion est idempotente — la rejouer reprend là où elle en était.
+  */
+  const TAILLE_LOT = 50;
+  const ecrits: { id: string; slug: string }[] = [];
+
+  for (let debut = 0; debut < lignes.length; debut += TAILLE_LOT) {
+    const lot = lignes.slice(debut, debut + TAILLE_LOT);
+    const { data, error } = await db
+      .from("parcours")
+      // @ts-expect-error — colonnes construites dynamiquement par la préparation,
+      // dont le contenu est verrouillé par preparer.test.ts.
+      .upsert(lot, { onConflict: "slug" })
+      .select("id, slug");
+    if (error) {
+      throw new Error(
+        `Écriture des parcours, lot ${debut / TAILLE_LOT + 1} ` +
+          `(fiches ${debut + 1} à ${debut + lot.length}) : ${error.message}`,
+      );
+    }
+    ecrits.push(...((data ?? []) as { id: string; slug: string }[]));
+  }
+
+  const idParSlug = new Map(ecrits.map((p) => [p.slug, p.id]));
 
   // 3. Repli d'arbitrage — les fiches restent distinctes et consultables, mais
   //    n'occupent qu'une seule entrée dans la liste.
@@ -89,9 +114,16 @@ export async function ecrireIngestion(
     return fiche.variantes.map((v) => ({ ...v, parcours_id: parcoursId }));
   });
 
-  if (variantes.length > 0) {
-    const { error } = await db.from("variantes").insert(variantes);
-    if (error) throw new Error(`Écriture des variantes : ${error.message}`);
+  // Même découpage que les parcours : les variantes sont plus nombreuses
+  // qu'eux, et c'est cette insertion qui coupait en second.
+  for (let debut = 0; debut < variantes.length; debut += TAILLE_LOT) {
+    const lot = variantes.slice(debut, debut + TAILLE_LOT);
+    const { error } = await db.from("variantes").insert(lot);
+    if (error) {
+      throw new Error(
+        `Écriture des variantes, lot ${debut / TAILLE_LOT + 1} : ${error.message}`,
+      );
+    }
   }
 
   // 5. File d'arbitrage — publique, rejouée à l'identique.
