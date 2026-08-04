@@ -24,13 +24,23 @@ jobs:
       - name: Invariants du design system
         run: bun run invariants:design
 
+  # Les tests de rendu exigent une application qui démarre, donc une base.
+  # La CI n'a pas les identifiants Lovable Cloud : le serveur de développement
+  # n'y démarre jamais, et le travail échouait sur un délai d'attente — un échec
+  # de notre outillage, pas une régression du produit.
+  #
+  # Ils tournent donc contre une URL déployée, quand elle est fournie. Sans
+  # `URL_TEST`, le travail est simplement ignoré : mieux vaut pas de signal
+  # qu'un signal faux.
   rendu:
     runs-on: ubuntu-latest
+    if: vars.URL_TEST != ''
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bunx playwright install --with-deps chromium
-      - run: bun run build
       - name: Invariants de rendu
+        env:
+          URL_TEST: ${{ vars.URL_TEST }}
         run: bun run invariants:rendu
