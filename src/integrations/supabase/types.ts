@@ -84,6 +84,8 @@ export type Database = {
           competences_couvertes: string[]
           created_at: string
           date_verification: string | null
+          dispo_inter: boolean | null
+          dispo_intra: boolean | null
           domaine: Database["public"]["Enums"]["domaine_parcours"]
           duree: string | null
           ecart_classification: string | null
@@ -96,7 +98,6 @@ export type Database = {
           infos_renseignees: number
           lieu: string | null
           modalite_acces: Database["public"]["Enums"]["modalite_acces"] | null
-          modalite_commerciale: string | null
           modalites_paiement: string | null
           motif_regroupement: string | null
           niveau_entree: Database["public"]["Enums"]["niveau_entree"] | null
@@ -127,6 +128,8 @@ export type Database = {
           competences_couvertes?: string[]
           created_at?: string
           date_verification?: string | null
+          dispo_inter?: boolean | null
+          dispo_intra?: boolean | null
           domaine: Database["public"]["Enums"]["domaine_parcours"]
           duree?: string | null
           ecart_classification?: string | null
@@ -139,7 +142,6 @@ export type Database = {
           infos_renseignees?: number
           lieu?: string | null
           modalite_acces?: Database["public"]["Enums"]["modalite_acces"] | null
-          modalite_commerciale?: string | null
           modalites_paiement?: string | null
           motif_regroupement?: string | null
           niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
@@ -170,6 +172,8 @@ export type Database = {
           competences_couvertes?: string[]
           created_at?: string
           date_verification?: string | null
+          dispo_inter?: boolean | null
+          dispo_intra?: boolean | null
           domaine?: Database["public"]["Enums"]["domaine_parcours"]
           duree?: string | null
           ecart_classification?: string | null
@@ -182,7 +186,6 @@ export type Database = {
           infos_renseignees?: number
           lieu?: string | null
           modalite_acces?: Database["public"]["Enums"]["modalite_acces"] | null
-          modalite_commerciale?: string | null
           modalites_paiement?: string | null
           motif_regroupement?: string | null
           niveau_entree?: Database["public"]["Enums"]["niveau_entree"] | null
