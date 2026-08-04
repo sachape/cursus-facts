@@ -78,6 +78,25 @@ verifier("4 bis. Aucune fiche n'affiche « aucun frais » avec un tarif publié"
   return annonceGratuit && o.prix !== null && o.prix > 0 ? `${nom(o)} (${o.prix} €)` : null;
 });
 
+/*
+  10. `non_applicable` n'est jamais déduit hors de la liste fermée.
+
+  Version vérifiable de la règle. L'énoncé « aucun non_applicable sur une fiche
+  catalogue_seul » signalerait les 165 champs produits par les deux règles
+  publiées (lieu, modalités de paiement) — qui sont légitimes par la seconde
+  branche de la règle. Ce que l'invariant doit attraper, c'est un
+  `non_applicable` qui ne remonte à AUCUNE règle publiée : c'était le cas de la
+  règle « volume horaire sur mesure », écrite et révoquée le 4 août.
+*/
+const CHAMPS_A_REGLE_PUBLIEE = new Set(["lieu", "modalites_paiement"]);
+verifier("10. Aucun non_applicable hors de la liste fermée de règles", (o) => {
+  const etats = determinerEtats(o);
+  const horsListe = CHAMPS_INFORMATION.filter(
+    (c) => etats[c] === "non_applicable" && !CHAMPS_A_REGLE_PUBLIEE.has(c),
+  );
+  return horsListe.length > 0 ? `${nom(o)} → ${horsListe.join(", ")}` : null;
+});
+
 verifier("5. Toute valeur écrite par le pipeline porte une citation", (o) =>
   // Le pipeline n'écrit qu'après `filtrerParCitation`, et l'application au
   // catalogue journalise l'extrait dans `historique`. Une valeur d'origine

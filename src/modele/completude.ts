@@ -116,29 +116,30 @@ function valeurDuChamp(offre: OffreNormalisee, champ: ChampInformation): unknown
   }
 }
 
-/**
- * Le volume horaire n'a pas de sens pour un parcours sur mesure.
- *
- * Digital Study publie « Sur mesure » comme durée : le volume est fixé avec
- * chaque apprenant, il n'existe pas avant. Afficher « Non communiqué » à côté
- * accusait l'organisme de taire une information qu'il ne peut pas publier — et
- * creusait son code-barres pour un champ sans objet.
- *
- * Restreint aux formulations qui disent explicitement la variabilité : une
- * durée absente reste un manque, et une durée chiffrée n'ouvre aucune
- * exception.
- */
-export function volumeHoraireApplicable(offre: OffreNormalisee): boolean {
-  const duree = offre.duree;
-  if (duree === null) return true;
-  return !/sur[- ]mesure|variable|selon|adapt|à la carte|illimit/i.test(duree);
-}
+/*
+  RÉVOQUÉE — 4 août 2026. Une règle « volume horaire sans objet si la durée est
+  sur mesure » a été écrite ici puis retirée le jour même.
+
+  Elle déduisait `non_applicable` d'un autre champ, sur des fiches en
+  `catalogue_seul` dont la page n'avait jamais été lue. Digital Study publie
+  « 10 h » et « 1 200 € » : « Sur mesure » qualifiait l'adaptation du contenu,
+  pas l'absence de durée.
+
+  Et l'erreur était d'une classe pire que celles qui l'ont précédée. Laisser un
+  champ vide à tort le laisse collectable ; écrire `non_applicable` affirme
+  qu'il n'y a rien à collecter — le champ sort du dénominateur, sort de la file,
+  et n'est jamais revérifié. C'est une information rendue définitivement
+  invisible.
+
+  RÈGLE : `non_applicable` ne se déduit jamais d'un autre champ. Il exige une
+  lecture de page constatant l'absence d'objet, ou une règle de la liste fermée
+  publiée dans la vue Méthode.
+*/
 
 /** Les champs dont l'applicabilité dépend du parcours. */
 const APPLICABILITE: Partial<Record<ChampInformation, (offre: OffreNormalisee) => boolean>> = {
   lieu: lieuApplicable,
   modalites_paiement: paiementApplicable,
-  volume_horaire: volumeHoraireApplicable,
 };
 
 /**

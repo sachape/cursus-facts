@@ -4239,7 +4239,15 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volume_horaire",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Champ rouvert : une règle non publiée l avait classé « sans objet » par déduction depuis la durée « Sur mesure », sans lecture de page. L organisme publie un volume horaire."
+   }
+  ]
  },
  {
   "id": 98,
@@ -6477,7 +6485,15 @@
    "SEO e-commerce"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volume_horaire",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Champ rouvert : une règle non publiée l avait classé « sans objet » par déduction depuis la durée « Sur mesure », sans lecture de page. L organisme publie un volume horaire."
+   }
+  ]
  },
  {
   "id": 154,
@@ -6524,7 +6540,15 @@
    "Marketplace"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volume_horaire",
+    "valeurPrecedente": null,
+    "le": "2026-08-04",
+    "motif": "Champ rouvert : une règle non publiée l avait classé « sans objet » par déduction depuis la durée « Sur mesure », sans lecture de page. L organisme publie un volume horaire."
+   }
+  ]
  },
  {
   "id": 155,
