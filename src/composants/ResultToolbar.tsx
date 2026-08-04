@@ -6,9 +6,9 @@
  * dans la colonne de filtres pour savoir ce qui est appliqué — et à y
  * redescendre pour en retirer un.
  *
- * COLLANTE. Elle reste disponible pendant le défilement de la liste : c'est là
- * qu'on décide de changer de tri ou de retirer un filtre, et ces décisions se
- * prennent en lisant les résultats, pas avant.
+ * POSÉE SUR LA PAGE, sans fond ni conteneur : un bandeau autour du titre et du
+ * tri ajoutait une surface de plus dans une vue qui en compte déjà deux — la
+ * colonne de filtres et les cartes. La hiérarchie se fait par l'espacement.
  */
 import type { Tri } from "@/modele/classement";
 import { LIBELLES_TRIS, LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
@@ -107,7 +107,7 @@ export function ResultToolbar({
   comparateur?: React.ReactNode;
 }) {
   return (
-    <div className="sticky top-0 z-(--z-collant) -mx-(--space-1) bg-(--surface-page)/95 px-(--space-1) pb-(--space-3) pt-(--space-3) backdrop-blur-sm">
+    <div className="pb-(--space-5) pt-(--space-6)">
       <div className="flex flex-wrap items-center justify-between gap-(--space-3)">
         <h2 className="t-heading-4 text-(--text-primary)">
           {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
@@ -138,7 +138,7 @@ export function ResultToolbar({
         </div>
       )}
 
-      <p className="mt-(--space-2) t-caption text-(--text-tertiary)">{LIBELLES_TRIS[tri]}</p>
+      <p className="mt-(--space-3) t-caption text-(--text-tertiary)">{LIBELLES_TRIS[tri]}</p>
     </div>
   );
 }

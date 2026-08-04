@@ -408,7 +408,13 @@ function Explorer() {
               n&apos;est retirée du catalogue, elle ne correspond simplement pas.
             </p>
           ) : (
-            <ul>
+            /*
+              Les cartes sont des surfaces autonomes : chacune garde sa bordure
+              complète, son rayon et son fond. Un `divide-y` ou une marge
+              négative les fusionnerait en un seul bloc, ce qui annulerait la
+              carte.
+            */
+            <ul className="flex flex-col gap-(--space-3) min-[640px]:gap-(--space-4)">
               {resultats.slice(0, limite).map((p) => (
                 <TrainingResultCard key={p.id} parcours={p} ouvrirEnPanneau={ouvrirEnPanneau} />
               ))}

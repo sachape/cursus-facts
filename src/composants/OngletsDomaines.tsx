@@ -38,7 +38,7 @@ export function OngletsDomaines({
     */
     <nav
       aria-label="Domaines"
-      className="sticky top-0 z-(--z-collant) border-y border-(--border-subtle) bg-(--surface-page)/95 backdrop-blur-sm"
+      className="sticky top-0 z-(--z-collant) border-b border-(--border-subtle)"
     >
       <ul
         className="-mb-px flex overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
