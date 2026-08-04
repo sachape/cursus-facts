@@ -201,11 +201,21 @@ export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> 
   };
 }
 
+export type ArbitrageLigne = {
+  id: string;
+  regle_muette: string | null;
+  preuve_retenue: string | null;
+  decision: string | null;
+  auteur: string | null;
+  date_decision: string | null;
+  created_at: string;
+};
+
 /** Charge la file d'arbitrage, publique par principe. */
-export async function chargerArbitrages() {
+export async function chargerArbitrages(): Promise<ArbitrageLigne[]> {
   const { data, error } = await supabase
     .from("arbitrages")
     .select("id, regle_muette, preuve_retenue, decision, auteur, date_decision, created_at");
   if (error) throw new Error(`Chargement des arbitrages : ${error.message}`);
-  return data ?? [];
+  return (data ?? []) as ArbitrageLigne[];
 }
