@@ -38,10 +38,10 @@ export function OngletsDomaines({
     */
     <nav
       aria-label="Domaines"
-      className="sticky top-(--app-header-height) z-40 min-h-(--domain-nav-height) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) max-[1023px]:mx-[calc(-1*var(--space-6))]"
+      className="sticky top-(--app-header-height) z-40 min-h-(--domain-nav-height) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
     >
       <ul
-        className="-mb-px flex min-h-(--domain-nav-height) items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mb-px flex max-w-full min-h-(--domain-nav-height) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {onglets.map((onglet) => {
           const estActif = onglet.domaine === actif;

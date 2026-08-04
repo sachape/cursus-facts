@@ -405,6 +405,21 @@
   sinon SOUS la pile collante, invisible. Le décalage vaut la hauteur des trois
   barres, plus une respiration.
 */
+/*
+  Sécurité, posée APRÈS correction de la cause — des marges négatives sur les
+  barres collantes. Elle ne doit jamais servir à masquer un débordement : elle
+  empêche qu'un futur en crée un silencieusement.
+
+  `clip` et non `hidden` : `hidden` sur `html` crée un conteneur de défilement
+  qui casse `position: sticky` sur toute la page.
+*/
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 html {
   scroll-padding-top: calc(
     var(--app-header-height) + var(--domain-nav-height) + var(--results-toolbar-height) +
@@ -426,7 +441,7 @@ html {
 */
 @media (max-width: 1023px) {
   :root {
-    --titre-mobile: clamp(38px, 7vw, 56px);
+    --titre-mobile: clamp(26px, 7.2vw, 56px);
     --app-header-height: 56px;
     --domain-nav-height: 60px;
     /* 20 + 24 (titre) + 16 (gap) + 48 (select) + 20 */
@@ -441,10 +456,10 @@ html {
   }
 }
 
-@media (max-width: 379px) {
+@media (max-width: 359px) {
   :root {
-    /* Sous 380 px, « formations e-commerce » insécable impose de descendre. */
-    --titre-mobile: clamp(34px, 8.6vw, 38px);
+    /* Sous 360 px, « formations e-commerce » insécable impose de descendre. */
+    --titre-mobile: clamp(25px, 7.2vw, 26px);
   }
 }
 

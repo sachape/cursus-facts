@@ -292,7 +292,7 @@ function Explorer() {
         navigation : l'y rappeler ici ajouterait une seconde proposition à
         lire avant la première.
       */}
-      <header className="mx-auto max-w-(--hero-largeur-max) pt-(--space-16) pb-(--space-16) text-center">
+      <header className="mx-auto w-full min-w-0 max-w-(--hero-largeur-max) pt-(--space-16) pb-(--space-16) text-center">
         <CatalogFreshnessBadge derniereVerification={derniereVerification} />
 
         {/*
@@ -301,14 +301,14 @@ function Explorer() {
           répartit les deux lignes plutôt que d'isoler « e-commerce » seul en
           bas.
         */}
-        <h1 className="mx-auto mt-(--space-4) max-w-(--titre-largeur-max) text-balance t-display-1 max-[1023px]:w-full max-[1023px]:max-w-[calc(100vw-2rem)] max-[1023px]:[font-size:var(--titre-mobile)] max-[1023px]:[letter-spacing:-0.045em] max-[1023px]:[line-height:0.98]">
-          Comparez les{" "}
-          {/*
-            Insécable : la coupure doit tomber après « les », jamais entre
-            « formations » et « e-commerce ». Sans ça, le titre passe à trois
-            lignes et repousse la recherche hors de l'écran sur un téléphone.
-          */}
-          <span className="max-[1023px]:block max-[1023px]:whitespace-nowrap">
+        {/*
+          Deux lignes, obtenues par la RÉDUCTION DE LA TAILLE et non par
+          l'élargissement du conteneur. La seconde ligne est insécable : c'est
+          elle qui fixe la taille minimale, puisqu'elle doit tenir entière.
+        */}
+        <h1 className="mx-auto mt-(--space-4) w-full min-w-0 max-w-(--titre-largeur-max) t-display-1 max-[1023px]:max-w-full max-[1023px]:[font-size:var(--titre-mobile)] max-[1023px]:[letter-spacing:-0.045em] max-[1023px]:[line-height:0.98]">
+          <span className="block max-w-full">Comparez les</span>
+          <span className="block max-w-full max-[1023px]:whitespace-nowrap">
             formations e-commerce
           </span>
         </h1>

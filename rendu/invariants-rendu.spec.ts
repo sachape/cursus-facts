@@ -223,3 +223,42 @@ test("le pied du panneau reste visible et ne recouvre aucun contenu", async ({ p
     await page.keyboard.press("Escape");
   }
 });
+
+const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
+
+test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {
+  /*
+    Le critère est mesurable et sans appel : la largeur défilable du document
+    doit égaler celle de la fenêtre. Un débordement de quelques pixels ne se
+    voit pas sur une capture, mais il fait glisser la page entière sous le
+    doigt.
+  */
+  const debordements: string[] = [];
+  for (const largeur of LARGEURS) {
+    await page.setViewportSize({ width: largeur, height: 900 });
+    await page.waitForTimeout(120);
+    const { defilable, fenetre } = await page.evaluate(() => ({
+      defilable: document.documentElement.scrollWidth,
+      fenetre: window.innerWidth,
+    }));
+    if (defilable > fenetre) debordements.push(`${largeur}px → ${defilable} > ${fenetre}`);
+  }
+  expect(debordements).toEqual([]);
+});
+
+test("le titre tient sur exactement deux lignes jusqu'à 1023 px", async ({ page }) => {
+  // Mesuré par la hauteur rendue rapportée à l'interligne : compter les lignes
+  // depuis le texte serait faux, c'est la mise en page qui décide où ça casse.
+  const fautifs: string[] = [];
+  for (const largeur of LARGEURS.filter((l) => l < 1024)) {
+    await page.setViewportSize({ width: largeur, height: 900 });
+    await page.waitForTimeout(120);
+    const titre = page.locator("h1").first();
+    const lignes = await titre.evaluate((e) => {
+      const style = getComputedStyle(e);
+      return Math.round(e.getBoundingClientRect().height / parseFloat(style.lineHeight));
+    });
+    if (lignes !== 2) fautifs.push(`${largeur}px → ${lignes} ligne(s)`);
+  }
+  expect(fautifs).toEqual([]);
+});
