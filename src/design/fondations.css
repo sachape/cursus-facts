@@ -50,6 +50,20 @@
   --neutral-90: #262d33;
   --neutral-100: #14191d;
 
+  /*
+    Accent — une seule teinte froide, et elle ne qualifie jamais une formation.
+    Elle marque l'interactif : sélection, focus, état actif d'un filtre. Les
+    couleurs sémantiques (pine, clay, amber) restent réservées au sens porté par
+    la donnée, et les confondre ferait lire un choix d'interface comme un
+    jugement sur un organisme.
+  */
+  --accent-10: #eef2f7;
+  --accent-20: #d3ddea;
+  --accent-40: #7d95b5;
+  --accent-60: #3f5f8a;
+  --accent-70: #2c4668;
+  --accent-80: #1e3149;
+
   /* Pine — certifié, finançable, confirmé */
   --pine-10: #edf4f1;
   --pine-20: #cfe3db;
@@ -111,6 +125,11 @@
   --status-absent-bg: var(--clay-10);
   --status-pending: var(--amber-70);
   --status-pending-bg: var(--amber-10);
+  --accent-default: var(--accent-70);
+  --accent-hover: var(--accent-80);
+  --accent-surface: var(--accent-10);
+  --accent-border: var(--accent-20);
+
   --status-error: var(--crimson-60);
   --status-error-bg: var(--crimson-10);
 
@@ -199,7 +218,21 @@
   --radius-sm: 4px;
   --radius-md: 6px;
   --radius-lg: 8px;
+  /* Rayon des surfaces composées : carte, panneau de filtres. */
+  --radius-xl: 14px;
   --radius-full: 999px;
+
+  /* ---------------------------------------------------------------------- */
+  /* PRIMITIFS — plans de superposition                                     */
+  /* Nommés et bornés : un z-index écrit au jugé finit toujours par en       */
+  /* dépasser un autre, et le conflit ne se voit qu'à l'écran.              */
+  /* ---------------------------------------------------------------------- */
+  --z-base: 0;
+  --z-collant: 10;
+  --z-suggestions: 20;
+  --z-barre-ancree: 30;
+  --z-voile: 40;
+  --z-panneau: 50;
 
   /* ---------------------------------------------------------------------- */
   /* PRIMITIFS — élévation.                                                 */
@@ -258,6 +291,8 @@
   */
   --titre-largeur-max: 20ch;
   --sous-titre-largeur-max: 60ch;
+  --carte-rayon: var(--radius-xl);
+  --monogramme-taille: 40px;
   --bouton-hauteur: 40px;
   --bouton-hauteur-tactile: 44px;
   --cible-hauteur-min: 32px;
@@ -294,6 +329,11 @@
   --status-absent-bg: var(--clay-90);
   --status-pending: var(--amber-20);
   --status-pending-bg: var(--amber-70);
+
+  --accent-default: var(--accent-40);
+  --accent-hover: var(--accent-20);
+  --accent-surface: var(--accent-80);
+  --accent-border: var(--accent-70);
 }
 
 /* Au-delà de 1 100 px, le titre tient sur une seule ligne. */

@@ -5,10 +5,7 @@
    "motif": "valeur_absente_de_l_extrait",
    "valeur": [
     "Google Ads",
-    "Google Analytics 4 (GA4)",
-    "Meta",
-    "TikTok",
-    "LinkedIn"
+    "Google Analytics 4 (GA4)"
    ],
    "extrait": "SEA (Référencement Payant) : Fonctionnement de Google Ads, système d'enchères et Quality Score.",
    "id": 33,
@@ -62,7 +59,7 @@
     "TikTok",
     "Google Ads",
     "Facebook Ads",
-    "Instagram Ads"
+    "Facebook Ads Manager"
    ],
    "extrait": "Les fondamentaux de l’outil de création Canva",
    "id": 91,
@@ -97,7 +94,7 @@
    "champ": "prix",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": 0,
-   "extrait": "All Semrush Academy courses are free of charge.",
+   "extrait": "All Semrush Academy courses are free of charge. You can access high-quality educational resources and certifications without any cost.",
    "id": 164,
    "url": "https://www.semrush.com/academy/courses/semrush-tools/"
   },
@@ -110,33 +107,22 @@
    "url": "https://www.semrush.com/academy/courses/semrush-tools/"
   },
   {
-   "champ": "outils",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Semrush",
-    "AI PR Toolkit",
-    "Traffic & Market Toolkit"
-   ],
-   "extrait": "This crash course shows you exactly how to use Semrush's AI PR Toolkit to find the right journalists, craft pitches that land, and monitor every brand mention — so you stop guessing and start getting covered.",
-   "id": 164,
-   "url": "https://www.semrush.com/academy/courses/semrush-tools/"
-  },
-  {
-   "champ": "formats",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Distanciel",
-    "Alternance"
-   ],
-   "extrait": "Toutes nos formations sont 100 % en ligne et éligibles au CPF ou disponibles en alternance.",
-   "id": 93,
-   "url": "https://www.studi.com/fr/formation-a-distance/commerciale"
-  },
-  {
    "champ": "prix",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": 0,
    "extrait": "Enroll for free Starts Aug 4",
+   "id": 180,
+   "url": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Digital Marketing Foundations",
+    "Strategy, Analysis & Audit",
+    "Channel Implementation & Performance Analysis"
+   ],
+   "extrait": "There are 3 modules in this course",
    "id": 180,
    "url": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies"
   },
@@ -149,48 +135,28 @@
    "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
   },
   {
-   "champ": "programme",
+   "champ": "prerequis",
    "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Module 1. Ahrefs’ Crawler and Index",
-    "Module 2. Ahrefs SEO metrics",
-    "Module 3. Exploring your Ahrefs account",
-    "Module 4. Dashboard",
-    "Module 5. Site Explorer",
-    "Module 6. Keywords Explorer",
-    "Module 7. Site Audit",
-    "Module 8. Rank Tracker",
-    "Module 9. Content Explorer",
-    "Module 10. Competitive Analysis",
-    "Module 11. Alerts",
-    "Module 12. Toolbar"
-   ],
-   "extrait": "Course breakdown\n Module 1. Ahrefs’ Crawler and Index",
-   "id": 165,
-   "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
+   "valeur": "Candidats de 16 à 29 ans révolus en contrat d’apprentissage ou en stage alterné ; Diplôme Bac+5 ; Diplôme Bac+4 ou équivalent universitaire en faculté avec trois ans d’expérience professionnelle",
+   "extrait": "Candidats de 16 à 29 ans révolus (30 ans moins 1 jour à la date de signature du contrat d’apprentissage) en contrat d’apprentissage ou en stage alterné.",
+   "id": 40,
+   "url": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique"
   },
   {
-   "champ": "region",
+   "champ": "prerequis",
    "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Paris, Nice",
-   "extrait": "Cette spécialisation est disponible sur les campus de Paris , Nice ainsi qu'en ligne via IPAG Online .",
-   "id": 53,
-   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
+   "valeur": "Bac +2 ou validation de 120 crédits ECTS",
+   "extrait": "Cette formation est accessible en 3ème année après l'obtention d'un Bac +2 ou la validation de 120 crédits ECTS.",
+   "id": 84,
+   "url": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/"
   },
   {
-   "champ": "programme",
+   "champ": "cpf",
    "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Certification professionnelle au choix",
-    "CRM",
-    "Digital Marketing",
-    "Publicité & Communication",
-    "Community Management",
-    "Site d'e-commerce et stratégie digitale"
-   ],
-   "extrait": "Les modules de la spécialisation Marketing & Communication Digitale incluent :",
-   "id": 53,
-   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
+   "valeur": true,
+   "extrait": "Pour nos formations professionnelles , sachez que vous pouvez également financer nos formations via votre CPF (Compte Professionnel de Formation), via votre financement personnel .",
+   "id": 84,
+   "url": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/"
   },
   {
    "champ": "dispoInter",
@@ -211,10 +177,26 @@
   {
    "champ": "prerequis",
    "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Être titulaire d'un diplôme Bac+4/+5 (Écoles de management, de communication, d'ingénieurs, IEP ; Master de l'enseignement supérieur) ou justifier d'un parcours et d'une expérience significative dans le cadre d'une VAP",
+   "valeur": "Bac+3 (180 crédits après le bac) ou titre jugé équivalent. Une première expérience en marketing ou marketing digital serait appréciée.",
+   "extrait": "Bac+3 (180 crédits après le bac) ou titre jugé équivalent.",
+   "id": 32,
+   "url": "https://iaelille.fr/nos-formations/master-marketing-digital/"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Être titulaire d'un diplôme Bac+4/+5 (Écoles de management, de communication, d'ingénieurs, IEP ; Master de l'enseignement supérieur) ; les professionnels justifiant d'un parcours et d'une expérience significative peuvent postuler dans le cadre d'une VAP",
    "extrait": "Les professionnels justifiant d'un parcours et d'une expérience significative sont également habilités à postuler au MBA Spécialisé dans le cadre d'une VAP.",
    "id": 45,
    "url": "https://www.efap.com/formation-communication/mba-marketing-digital"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "En 1re année : Parcoursup + entretien de motivation en français (diplôme français) ; sur dossier + entretien de motivation en français (diplôme étranger)",
+   "extrait": "En 1re année Titulaire d’un diplôme français • Parcoursup + entretien de motivation en français Titulaire d’un diplôme étranger • Sur dossier + entretien de motivation en français",
+   "id": 53,
+   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
   },
   {
    "champ": "programme",
@@ -235,14 +217,6 @@
    "motif": "extrait_absent_de_la_page",
    "valeur": "3 ans",
    "extrait": "Le Bachelor Marketing & Communication Digitale de l'IIM est une formation de 3 ans post-bac qui forme des profils hybrides alliant vision stratégique, compétences en marketing digital et maîtrise des outils numériques.",
-   "id": 58,
-   "url": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
-  },
-  {
-   "champ": "volumeHoraire",
-   "motif": "extrait_absent_de_la_page",
-   "valeur": 455,
-   "extrait": "455 heures de formation par an sur trois ans, en présentiel et distanciel",
    "id": 58,
    "url": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
   },
@@ -268,7 +242,7 @@
   {
    "champ": "prerequis",
    "motif": "extrait_absent_de_la_page",
-   "valeur": "Accessibles post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2. La sélection est faite sur dossier, épreuves puis entretien.",
+   "valeur": "Les bachelors IIM sont accessibles post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2. La sélection est faite sur dossier, épreuves puis entretien.",
    "extrait": "Les bachelors IIM sont accessibles post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2. La sélection est faite sur dossier, épreuves puis entretien.",
    "id": 58,
    "url": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
@@ -277,7 +251,7 @@
    "champ": "certification",
    "motif": "extrait_absent_de_la_page",
    "valeur": "titre RNCP de niveau 6 « Chef de projet digital »",
-   "extrait": "Préparation au titre RNCP de niveau 6 « Chef de projet digital »",
+   "extrait": "Le Bachelor Marketing & Communication Digitale prépare au titre RNCP de niveau 6 « Chef de projet digital », certifié par l'État.",
    "id": 58,
    "url": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
   },
@@ -303,7 +277,7 @@
     "SEO/SEA",
     "data marketing",
     "branding",
-    "gestion de projet"
+    "gestion de projet digital"
    ],
    "extrait": "Sur trois années, les étudiants développent des compétences en content marketing, social media, SEO/SEA, data marketing, branding et gestion de projet digital.",
    "id": 58,
@@ -321,7 +295,7 @@
    "champ": "prerequis",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": "Maîtrise des outils bureautiques-traitement de texte, traitement des images, navigation internet, tableur ; Aisance dans le rédactionnel et le traitement de données chiffrées ; Un entretien téléphonique est obligatoire avant toute inscription",
-   "extrait": "Maîtrise des outils bureautiques-traitement de texte, traitement des images, navigation internet, tableur\nAisance dans le rédactionnel et le traitement de données chiffrées\nUn entretien téléphonique est obligatoire avant toute inscription",
+   "extrait": "Prérequis\nMaîtrise des outils bureautiques-traitement de texte, traitement des images, navigation internet, tableur\nAisance dans le rédactionnel et le traitement de données chiffrées\nUn entretien téléphonique est obligatoire avant toute inscription",
    "id": 200,
    "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
   },
@@ -365,38 +339,36 @@
    "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
   },
   {
-   "champ": "prerequis",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Bac+3 (bachelor, licence, titre niveau II) en management, marketing, communication, web ou informatique",
-   "extrait": "Bac+3 (bachelor, licence, titre niveau II) en en management, marketing, communication, web ou informatique.",
+   "champ": "formats",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": [
+    "Alternance"
+   ],
+   "extrait": "Oui, la formation se déroule intégralement en alternance, à raison d'une semaine de cours sur quatre (13 semaines par an, 420 heures de formation annuelles).",
    "id": 61,
    "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
   },
   {
    "champ": "certification",
-   "motif": "extrait_absent_de_la_page",
-   "valeur": "Titre « Manager de la communication numérique », Titre de niveau 7 inscrit au RNCP et diplôme visé BAC+5 conférant le grade master de l'EMLV",
-   "extrait": "A l'issue de ce cursus, obtention du titre « Manager de la communication numérique » Titre de niveau 7 inscrit au RNCP et diplôme visé BAC+5 conférant le grade master de l'EMLV (Ecole de Management Léonard de Vinci)",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "titre « Manager de la communication numérique » Titre de niveau 7 inscrit au RNCP",
+   "extrait": "A l'issue de ce cursus, obtention du titre &laquo; Manager de la communication num&eacute;rique &raquo; Titre de niveau 7 inscrit au RNCP et dipl&ocirc;me vis&eacute; BAC+5 conf&eacute;rant le grade master de l'EMLV (Ecole de Management L&eacute;onard de Vinci)",
    "id": 61,
    "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
   },
   {
-   "champ": "outils",
-   "motif": "extrait_absent_de_la_page",
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
    "valeur": [
-    "Excel",
+    "web analytics (Google Analytics avec certification)",
     "SQL",
-    "Python"
+    "Python",
+    "Excel avancé",
+    "SEO/SEA",
+    "publicité digitale",
+    "storytelling data"
    ],
-   "extrait": "Utiliser des outils techniques comme Excel, SQL et Python pour le traitement de données",
-   "id": 61,
-   "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
-  },
-  {
-   "champ": "dateVerification",
-   "motif": "extrait_absent_de_la_page",
-   "valeur": "22 Juil 2026",
-   "extrait": "Informations mises à jour le 22 Juil 2026",
+   "extrait": "En 4e ann&eacute;e, les &eacute;tudiants d&eacute;veloppent des comp&eacute;tences en web analytics (Google Analytics avec certification), SQL, Python, Excel avanc&eacute;, SEO/SEA, publicit&eacute; digitale et storytelling data.",
    "id": 61,
    "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
   },
@@ -439,143 +411,108 @@
    "url": "https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale"
   },
   {
-   "champ": "duree",
-   "motif": "extrait_absent_de_la_page",
-   "valeur": "deux ans",
-   "extrait": "420 heures de formation par an sur deux ans, en présentiel et distanciel",
-   "id": 59,
-   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
-  },
-  {
-   "champ": "volumeHoraire",
-   "motif": "extrait_absent_de_la_page",
-   "valeur": 420,
-   "extrait": "420 heures de formation par an sur deux ans, en présentiel et distanciel",
-   "id": 59,
-   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
-  },
-  {
    "champ": "formats",
-   "motif": "extrait_absent_de_la_page",
+   "motif": "valeur_absente_de_l_extrait",
    "valeur": [
     "présentiel",
     "distanciel"
    ],
-   "extrait": "420 heures de formation par an sur deux ans, en présentiel et distanciel",
-   "id": 59,
-   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
-  },
-  {
-   "champ": "prerequis",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Bac+3 (bachelor, licence, titre niveau II) en sciences, Web et multimédia, informatique.",
-   "extrait": "Bac+3 (bachelor, licence, titre niveau II) en sciences, Web et multim&eacute;dia, informatique.",
-   "id": 59,
-   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
-  },
-  {
-   "champ": "certification",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "titre RNCP de niveau 7 « Manager du Marketing Digital »",
-   "extrait": "Pr&eacute;paration au titre RNCP de niveau 7 &laquo; Manager du Marketing Digital &raquo;",
-   "id": 59,
-   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
-  },
-  {
-   "champ": "outils",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Python",
-    "R",
-    "Power BI",
-    "Shopify",
-    "SQL"
-   ],
-   "extrait": "Un volet sp&eacute;cifique couvre la data science avec Python, R et Power BI pour extraire des insights strat&eacute;giques &agrave; partir de volumes de donn&eacute;es massifs, le tout en tenant compte des enjeux &eacute;thiques et l&eacute;gaux li&eacute;s &agrave; l'utilisation de ces technologies.",
-   "id": 59,
-   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
-  },
-  {
-   "champ": "programme",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Analytics Dashboard & Data Visualization : Création de tableaux de bord pour analyser et piloter la performance e-commerce.",
-    "Dev for Marketers – SQL : Initiation aux bases de données et à l'analyse de données via SQL.",
-    "SEO Advanced : Optimisation avancée du référencement naturel pour les sites e-commerce.",
-    "Email Marketing : Mise en place de campagnes d'emailing performantes.",
-    "UX Design : Conception de parcours utilisateurs optimisés pour la conversion.",
-    "Copywriting : Rédaction de contenus engageants et orientés conversion.",
-    "Social Content : Création de contenus adaptés aux réseaux sociaux.",
-    "Performance Marketing : Gestion des leviers d'acquisition payants (SEA, social ads).",
-    "Ecommerce Shopify : Création et gestion de boutiques en ligne avec Shopify.",
-    "Ecommerce & Retail Marketing : Stratégies marketing adaptées au commerce en ligne et omnicanal.",
-    "Gestion de projet agile & Scrum : Organisation et pilotage de projets digitaux en mode agile.",
-    "Missions de conseils opérationnels : Réalisation de projets pour des entreprises partenaires.",
-    "Digital Business English : Développement des compétences professionnelles en anglais.",
-    "Culture Digitale : Analyse des tendances et des enjeux du digital.",
-    "Masterclass & conférences : Interventions de professionnels du secteur.",
-    "Parcours à la carte : Personnalisation du parcours selon les objectifs.",
-    "Hackathon A4 : Projet intensif en équipe sur une problématique e-commerce.",
-    "Mission en entreprise : Immersion professionnelle en alternance.",
-    "Outils d'intelligence artificielle : Utilisation des outils d'IA pour optimiser les stratégies marketing et e-commerce.",
-    "Data Strategy : Définition de stratégies data pour piloter la performance.",
-    "Data Analytics Certification : Préparation à des certifications professionnelles en data.",
-    "GDPR & E-privacy for Marketers : Maîtrise du cadre légal lié à l'utilisation des données.",
-    "Dataviz & Reporting : Création de rapports et visualisation des performances.",
-    "CRM Advanced : Gestion avancée de la relation client et segmentation.",
-    "AB Testing : Optimisation des performances grâce aux tests utilisateurs.",
-    "API & Automation : Mise en place d'automatisations et intégration d'outils via API.",
-    "Marketing Automation : Automatisation des campagnes marketing.",
-    "Content Marketing : Déploiement de stratégies de contenu performantes.",
-    "Trading Ads Certification : Maîtrise des outils publicitaires et certification.",
-    "Digital Media Strategy : Pilotage de campagnes omnicanales.",
-    "Mobile Marketing : Optimisation des stratégies marketing sur mobile.",
-    "Amazon Business : Développement de stratégies e-commerce sur Amazon.",
-    "Blockchain Ebusiness : Compréhension des usages de la blockchain dans le commerce digital.",
-    "Ecommerce Platform advanced : Gestion avancée des plateformes e-commerce.",
-    "Sales & Business Development : Développement commercial et stratégie de croissance.",
-    "Culture Digitale : Analyse des évolutions du secteur.",
-    "IIMasterclass conférences : Rencontres avec des experts du domaine.",
-    "Design Thinking : Méthodologie d'innovation centrée utilisateur.",
-    "Digital Business English : Renforcement de l'anglais professionnel.",
-    "Missions de conseils opérationnels : Projets stratégiques pour des entreprises partenaires.",
-    "Parcours à la carte : Spécialisation selon les objectifs de carrière.",
-    "Hackathon A5 : Projet intensif à forte dimension stratégique.",
-    "Mission en entreprise : Expérience professionnelle avancée."
-   ],
-   "extrait": "Analytics Dashboard & Data Visualization : Cr&eacute;ation de tableaux de bord pour analyser et piloter la performance e-commerce.",
+   "extrait": "420 heures de formation par an sur deux ans, en pr&eacute;sentiel et distanciel",
    "id": 59,
    "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
   },
   {
    "champ": "niveauEntree",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "un titre ou diplôme de niveau 5",
-   "extrait": "Pour une admission en troisi&egrave;me ann&eacute;e : un titre ou dipl&ocirc;me de niveau 5.",
-   "id": 70,
-   "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
+   "motif": "extrait_absent_de_la_page",
+   "valeur": "Bac+3",
+   "extrait": "Bac+3 (bachelor, licence, titre niveau II) en sciences, Web et multimédia, informatique.",
+   "id": 59,
+   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
   },
   {
    "champ": "prerequis",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Pour une admission en première année : un titre ou diplôme de niveau 4. Pour une admission en deuxième année : la validation d'une première année d'une formation supérieure. Pour une admission en troisième année : un titre ou diplôme de niveau 5.",
-   "extrait": "En fonction du dispositif de formation int&eacute;gr&eacute; par le candidat pour postuler &agrave; la certification, les pr&eacute;requis sont :",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": "Bac+3 (bachelor, licence, titre niveau II) en sciences, Web et multimédia, informatique.",
+   "extrait": "Bac+3 (bachelor, licence, titre niveau II) en sciences, Web et multimédia, informatique.",
+   "id": 59,
+   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
+  },
+  {
+   "champ": "certification",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": "titre RNCP de niveau 7 « Manager du Marketing Digital »",
+   "extrait": "La formation spécialisée Ecommerce, Data & IA prépare au titre RNCP de niveau 7 « Manager du Marketing Digital », certifié par l'État.",
+   "id": 59,
+   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
+  },
+  {
+   "champ": "outils",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": [
+    "Python",
+    "R",
+    "Power BI"
+   ],
+   "extrait": "Un volet spécifique couvre la data science avec Python, R et Power BI pour extraire des insights stratégiques à partir de volumes de données massifs, le tout en tenant compte des enjeux éthiques et légaux liés à l'utilisation de ces technologies.",
+   "id": 59,
+   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
+  },
+  {
+   "champ": "programme",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": [
+    "Analytics Dashboard & Data Visualization",
+    "Dev for Marketers – SQL",
+    "SEO Advanced",
+    "Email Marketing",
+    "UX Design",
+    "Copywriting",
+    "Social Content",
+    "Performance Marketing",
+    "Ecommerce Shopify",
+    "Ecommerce & Retail Marketing",
+    "Gestion de projet agile & Scrum",
+    "Missions de conseils opérationnels",
+    "Digital Business English",
+    "Culture Digitale",
+    "Masterclass & conférences",
+    "Parcours à la carte",
+    "Hackathon A4",
+    "Mission en entreprise"
+   ],
+   "extrait": "Analytics Dashboard & Data Visualization : Création de tableaux de bord pour analyser et piloter la performance e-commerce.\nDev for Marketers – SQL : Initiation aux bases de données et à l'analyse de données via SQL.\nSEO Advanced : Optimisation avancée du référencement naturel pour les sites e-commerce.\nEmail Marketing : Mise en place de campagnes d'emailing performantes.\nUX Design : Conception de parcours utilisateurs optimisés pour la conversion.\nCopywriting : Rédaction de contenus engageants et orientés conversion.\nSocial Content : Création de contenus adaptés aux réseaux sociaux.\nPerformance Marketing : Gestion des leviers d'acquisition payants (SEA, social ads).\nEcommerce Shopify : Création et gestion de boutiques en ligne avec Shopify.\nEcommerce & Retail Marketing : Stratégies marketing adaptées au commerce en ligne et omnicanal.\nGestion de projet agile & Scrum : Organisation et pilotage de projets digitaux en mode agile.\nMissions de conseils opérationnels : Réalisation de projets pour des entreprises partenaires.\nDigital Business English : Développement des compétences professionnelles en anglais.\nCulture Digitale : Analyse des tendances et des enjeux du digital.\nMasterclass & conférences : Interventions de professionnels du secteur.\nParcours à la carte : Personnalisation du parcours selon les objectifs.\nHackathon A4 : Projet intensif en équipe sur une problématique e-commerce.\nMission en entreprise : Immersion professionnelle en alternance.",
+   "id": 59,
+   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
+  },
+  {
+   "champ": "dateVerification",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": "22 Juil 2026",
+   "extrait": "Informations mises à jour le 22 Juil 2026",
+   "id": 59,
+   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": "Pour une admission en troisième année : un titre ou diplôme de niveau 5.",
+   "extrait": "Pour une admission en troisième année : un titre ou diplôme de niveau 5.",
    "id": 70,
    "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
   },
   {
    "champ": "certification",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "RNCP visé n°36877 : Chef de projet marketing digital et communication (niveau 6)",
-   "extrait": "Titre RNCP : RNCP vis&eacute; n&deg;36877 : Chef de projet marketing digital et communication (niveau 6)",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": "Chef de projet marketing digital et communication (niveau 6)",
+   "extrait": "Titre RNCP : RNCP visé n°36877 : Chef de projet marketing digital et communication (niveau 6)",
    "id": 70,
    "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
   },
   {
    "champ": "codeRncpRs",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "RNCP36877",
-   "extrait": "Titre RNCP : RNCP vis&eacute; n&deg;36877 : Chef de projet marketing digital et communication (niveau 6)",
+   "motif": "extrait_absent_de_la_page",
+   "valeur": "36877",
+   "extrait": "Titre RNCP : RNCP visé n°36877 : Chef de projet marketing digital et communication (niveau 6)",
    "id": 70,
    "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
   },
