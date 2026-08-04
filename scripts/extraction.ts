@@ -26,7 +26,10 @@ import { clientAnthropic, extrairePage } from "../src/collecte/extraction";
 import { journaliser, type EcritureJournalisee } from "../src/collecte/journal";
 import type { Rejet } from "../src/collecte/citation";
 
-const DECOUVERTES = "src/donnees/urls-decouvertes.json";
+const DECOUVERTES =
+  process.argv.includes("--source")
+    ? process.argv[process.argv.indexOf("--source") + 1]!
+    : "src/donnees/urls-decouvertes.json";
 const JOURNAL = "src/donnees/journal-extraction.json";
 const REJETS = "src/donnees/rejets-extraction.json";
 const LE = new Date().toISOString().slice(0, 10);

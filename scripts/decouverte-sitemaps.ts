@@ -22,8 +22,17 @@ import {
 
 const SORTIE = "src/donnees/urls-decouvertes.json";
 /** Un index peut pointer des centaines de sous-sitemaps ; on borne. */
-const MAX_SOUS_SITEMAPS = 8;
-const MAX_URLS_PAR_ORGANISME = 400;
+const MAX_SOUS_SITEMAPS = 24;
+/**
+ * Plafond d'URL **non rapprochées** conservées par organisme.
+ *
+ * Il ne s'applique jamais avant le rapprochement. Plafonner d'abord gardait ce
+ * qui arrive en tête du sitemap — chez une université, des pages d'orientation
+ * (« comment choisir sa licence ») plutôt que les fiches diplôme — et le
+ * rapprochement travaillait ensuite sur les mauvaises URL. Douze organismes
+ * touchaient le plafond exactement, ce qui aurait dû suffire à le signaler.
+ */
+const MAX_NOUVELLES_PAR_ORGANISME = 400;
 
 type ResultatOrganisme = {
   organisme: string;
@@ -71,7 +80,7 @@ async function collecterEntrees(sitemaps: string[]): Promise<EntreeSitemap[]> {
     } else {
       entrees.push(...lues);
     }
-    if (entrees.length > MAX_URLS_PAR_ORGANISME * 4) break;
+    if (entrees.length > 40_000) break;
   }
   return entrees;
 }
@@ -112,10 +121,18 @@ async function main() {
         } catch {
           return false;
         }
-      })
-      .slice(0, MAX_URLS_PAR_ORGANISME);
+      });
 
-    const rapprochements = rapprocher(pages, offres.map((o) => ({ id: o.id, nom: o.nom })));
+    // Rapprochement sur la totalité des pages, puis plafond sur les seules
+    // nouvelles : aucune URL rapprochée n'est jamais perdue par troncature.
+    const tous = rapprocher(pages, offres.map((o) => ({ id: o.id, nom: o.nom })));
+    const rapprochements = [
+      ...tous.filter((r) => r.id !== null),
+      ...tous
+        .filter((r) => r.id === null)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, MAX_NOUVELLES_PAR_ORGANISME),
+    ];
     const rapprochees = rapprochements.filter((r) => r.id !== null).length;
 
     resultats.push({
