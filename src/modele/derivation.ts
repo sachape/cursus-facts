@@ -17,9 +17,30 @@
  */
 import type { OffreNormalisee } from "@/donnees/catalogue";
 
+/**
+ * Organismes ayant publié une déclaration de portée générale sur leur
+ * catalogue, avec le libellé exact de cette déclaration.
+ *
+ * Liste fermée et nominative. Une déclaration à portée générale n'est pas une
+ * supposition : ORSYS écrit sur son site que *toutes* ses formations peuvent
+ * être organisées en intra. La reporter sur ses fiches est légitime ; la
+ * présenter comme une déclaration parcours par parcours serait faux, et c'est
+ * la mention de dérivation qui fait la différence.
+ */
+export const DECLARATIONS_GENERALES: Record<string, { dispoIntra: true; source: string }> = {
+  ORSYS: {
+    dispoIntra: true,
+    source: "orsys.fr — « Toutes nos formations peuvent être organisées en intra »",
+  },
+};
+
+export const REGLE_DECLARATION_GENERALE =
+  "Dérivé : déclaration de portée générale publiée par l'organisme sur son " +
+  "catalogue, et non déclaration propre à ce parcours.";
+
 export type Derivation = {
-  champ: "prix" | "modalite_acces";
-  valeur: number | string;
+  champ: "prix" | "modalite_acces" | "dispo_intra";
+  valeur: number | string | boolean;
   /** La règle appliquée, affichée telle quelle sur la fiche. */
   regle: string;
 };
@@ -106,9 +127,26 @@ export function deriverModaliteAcces(offre: OffreNormalisee): Derivation | null 
   return { champ: "modalite_acces", valeur: "pris_en_charge", regle: REGLE_ALTERNANCE };
 }
 
+/**
+ * Dérive la disponibilité intra d'une déclaration de portée générale.
+ *
+ * Ne dérive jamais par-dessus une valeur collectée sur la page du parcours :
+ * une déclaration générale ne prime pas sur une information spécifique.
+ */
+export function deriverDispoIntra(offre: OffreNormalisee): Derivation | null {
+  if (offre.dispoIntra !== null) return null;
+  const declaration = DECLARATIONS_GENERALES[offre.organisme];
+  if (!declaration) return null;
+  return {
+    champ: "dispo_intra",
+    valeur: true,
+    regle: `${REGLE_DECLARATION_GENERALE} Source : ${declaration.source}`,
+  };
+}
+
 /** Toutes les dérivations applicables à une offre. */
 export function deriver(offre: OffreNormalisee): Derivation[] {
-  return [deriverPrix(offre), deriverModaliteAcces(offre)].filter(
+  return [deriverPrix(offre), deriverModaliteAcces(offre), deriverDispoIntra(offre)].filter(
     (d): d is Derivation => d !== null,
   );
 }

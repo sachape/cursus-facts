@@ -1,0 +1,105 @@
+{
+ "rejets": [],
+ "echecs": [
+  {
+   "id": 34,
+   "url": "https://www.cnam.fr/formation/commerce-marketing-finance/commerce/vente-distribution",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 40,
+   "url": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 55,
+   "url": "https://www.audencia.com/les-formations/msc/msc-in-digital-business-data-management/diplomes-et-certifications",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 53,
+   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 45,
+   "url": "https://www.efap.com/formation-communication/mba-marketing-digital",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 33,
+   "url": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 70,
+   "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Grammar compilation timed out\"},\"request_id\":\"req"
+  },
+  {
+   "id": 56,
+   "url": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Grammar compilation timed out\"},\"request_id\":\"req"
+  },
+  {
+   "id": 65,
+   "url": "https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Grammar compilation timed out\"},\"request_id\":\"req"
+  },
+  {
+   "id": 61,
+   "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 58,
+   "url": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 59,
+   "url": "https://www.iim.fr/cursus/mastere-ecommerce-data-ia/",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 86,
+   "url": "https://www.jedha.co/formation-data",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Grammar compilation timed out\"},\"request_id\":\"req"
+  },
+  {
+   "id": 225,
+   "url": "https://www.studi.com/fr/formations-en-ligne-commerce-international",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 230,
+   "url": "https://www.studi.com/fr/alternance/bachelor-marketing-digital",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 91,
+   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 79,
+   "url": "https://www.supdepub.com/nos-programmes/mastere/strategie-digitale/lyon/",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 93,
+   "url": "https://www.studi.com/fr/formation-a-distance/commerciale",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Schema is too complex.\"},\"request_id\":\"req_011Cdh"
+  },
+  {
+   "id": 224,
+   "url": "https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Grammar compilation timed out\"},\"request_id\":\"req"
+  },
+  {
+   "id": 226,
+   "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client",
+   "motif": "400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Grammar compilation timed out\"},\"request_id\":\"req"
+  }
+ ]
+}

@@ -67,6 +67,20 @@ export const ETATS_INFORMATION = [
    * de dérivation, sans quoi le catalogue affirmerait en son propre nom.
    */
   "derive",
+  /**
+   * Information que l'organisme ne publie pas et ne publiera pas — elle
+   * s'obtient sur demande, par devis ou par contact commercial.
+   *
+   * Distincte de « non publié » et de « non collecté », et pour la même raison
+   * que ces deux-là ont été séparés : ne pas faire porter à un organisme une
+   * absence qui ne lui est pas imputable. Un tarif intra sur devis est une
+   * pratique commerciale normale, pas de l'opacité — et aucune lecture de page
+   * ne le produira jamais. Sans cet état, la file de collecte contiendrait
+   * indéfiniment des champs impossibles à remplir.
+   *
+   * Sort du dénominateur, comme `non_applicable`.
+   */
+  "communique_sur_demande",
 ] as const;
 export type EtatInformation = (typeof ETATS_INFORMATION)[number];
 
@@ -234,7 +248,10 @@ export function compterInformations(etats: EtatsInformation): CompteurInformatio
     // opposable. C'est son affichage qui doit la distinguer, pas le compteur.
     renseignees: valeurs.filter((etat) => etat === "renseigne" || etat === "derive").length,
     applicables: valeurs.filter(
-      (etat) => etat !== "non_applicable" && etat !== "non_collecte",
+      (etat) =>
+        etat !== "non_applicable" &&
+        etat !== "non_collecte" &&
+        etat !== "communique_sur_demande",
     ).length,
     nonCollectes: valeurs.filter((etat) => etat === "non_collecte").length,
     // Valeurs présentes mais non reconfirmées. Elles ne comptent pas comme

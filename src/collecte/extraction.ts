@@ -65,25 +65,38 @@ const texte = { type: "string" };
 const booleen = { type: "boolean" };
 const liste = { type: "array", items: { type: "string" } };
 
+/**
+ * Le schéma est scindé en deux appels.
+ *
+ * Dix-neuf champs, chacun un objet `{valeur, extrait}`, plusieurs avec
+ * énumérations et tableaux : la compilation de grammaire échouait — « Schema is
+ * too complex » sur 14 pages, « Grammar compilation timed out » sur 6. Les
+ * énumérations sont remplacées par du texte libre, normalisé en aval : le
+ * modèle localise, il ne classe pas, et une valeur hors vocabulaire vaut mieux
+ * qu'une extraction perdue.
+ */
+export const GROUPES_EXTRACTION = [
+  ["prix", "prixIntra", "modaliteAcces", "duree", "volumeHoraire", "formats", "region", "dispoInter", "dispoIntra"],
+  ["niveauEntree", "prerequis", "cpf", "financements", "certification", "codeRncpRs", "outils", "programme", "nonCouvert", "dateVerification"],
+] as const;
+
 export const SCHEMA_EXTRACTION = {
   type: "object",
   properties: {
     prix: champCite(nombre, "Tarif pour une personne (inter-entreprises), en euros. 0 si gratuit."),
     prixIntra: champCite(nombre, "Tarif de groupe (intra-entreprise), en euros."),
     modaliteAcces: champCite(
-      { type: "string", enum: ["libre", "compte_requis", "compte_produit_requis", "certificat_payant", "freemium", "pris_en_charge"] },
-      "Comment on accède au parcours quand il est gratuit ou partiellement gratuit.",
+      texte,
+      "Comment on accède au parcours quand il est gratuit : accès libre, compte requis, " +
+        "compte produit requis, certificat payant, freemium, ou pris en charge.",
     ),
     duree: champCite(texte, "Durée telle qu'écrite : « 3 jours », « 6 mois »."),
     volumeHoraire: champCite(nombre, "Nombre total d'heures de formation."),
-    formats: champCite(
-      { type: "array", items: { type: "string", enum: ["Présentiel", "Distanciel", "Alternance"] } },
-      "Modalités pédagogiques proposées.",
-    ),
+    formats: champCite(liste, "Modalités pédagogiques : Présentiel, Distanciel, Alternance."),
     region: champCite(texte, "Région ou ville où la formation a lieu."),
     niveauEntree: champCite(
-      { type: "string", enum: ["Aucun prérequis", "Bac+2", "Bac+3", "Expérience"] },
-      "Niveau d'entrée exigé.",
+      texte,
+      "Niveau d'entrée exigé : Aucun prérequis, Bac+2, Bac+3, ou Expérience.",
     ),
     prerequis: champCite(texte, "Prérequis, tels qu'énoncés."),
     cpf: champCite(booleen, "Éligibilité au CPF, si la page le dit explicitement."),
@@ -138,16 +151,32 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
 
   return {
     async extraire(texte, url) {
-      const message = await client.messages.create({
-        model: MODELE,
-        max_tokens: 8_000,
-        thinking: { type: "adaptive" },
-        system: CONSIGNE,
-        output_config: { format: { type: "json_schema", schema: SCHEMA_EXTRACTION } },
-        messages: [{ role: "user", content: `URL : ${url}\n\n---\n${texte}` }],
-      });
-      const bloc = message.content.find((c) => c.type === "text");
-      return bloc && "text" in bloc ? JSON.parse(bloc.text) : {};
+      // Deux appels plutôt qu'un : la grammaire d'un schéma à 19 champs cités
+      // ne compilait pas. Les deux résultats sont fusionnés, chaque champ
+      // restant vérifié contre le même texte de page.
+      const resultats = await Promise.all(
+        GROUPES_EXTRACTION.map(async (groupe) => {
+          const proprietes = Object.fromEntries(
+            groupe.map((champ) => [champ, SCHEMA_EXTRACTION.properties[champ]]),
+          );
+          const message = await client.messages.create({
+            model: MODELE,
+            max_tokens: 8_000,
+            thinking: { type: "adaptive" },
+            system: CONSIGNE,
+            output_config: {
+              format: {
+                type: "json_schema",
+                schema: { type: "object", properties: proprietes, additionalProperties: false },
+              },
+            },
+            messages: [{ role: "user", content: `URL : ${url}\n\n---\n${texte}` }],
+          });
+          const bloc = message.content.find((c) => c.type === "text");
+          return bloc && "text" in bloc ? JSON.parse(bloc.text) : {};
+        }),
+      );
+      return Object.assign({}, ...resultats);
     },
   };
 }

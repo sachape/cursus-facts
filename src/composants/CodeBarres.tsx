@@ -22,6 +22,8 @@ const TITRE_ETAT: Record<string, string> = {
   non_applicable: "ne s'applique pas à ce parcours",
   non_collecte: "pas encore collecté par nos soins",
   a_confirmer: "à confirmer",
+  derive: "dérivé d'une règle publiée",
+  communique_sur_demande: "communiqué sur demande, jamais publié",
 };
 
 export function CodeBarres({
@@ -62,6 +64,12 @@ export function CodeBarres({
                 ? "bg-[repeating-linear-gradient(45deg,var(--color-border)_0px,var(--color-border)_1px,transparent_1px,transparent_3px)]"
                 : "",
               etat === "a_confirmer" ? "bg-foreground/40" : "",
+              // Dérivé : plein, mais légèrement plus court — la valeur est
+              // exacte et opposable, elle ne vient simplement pas de l'organisme.
+              etat === "derive" ? "bg-foreground h-3" : "",
+              // Communiqué sur demande : comme un champ sans objet, il s'efface
+              // au lieu de creuser le code-barres. Ce n'est pas un manque.
+              etat === "communique_sur_demande" ? "bg-border/30 h-2" : "",
             ].join(" ")}
           />
         );
