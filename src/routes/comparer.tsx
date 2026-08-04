@@ -204,7 +204,7 @@ function Comparer() {
     return (
       <main className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8">
         <h1 className="font-titre text-2xl font-semibold">Comparer des parcours</h1>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
+        <p className="mx-auto mt-3 max-w-md t-body-sm text-(--text-secondary)">
           Sélectionnez au moins deux parcours depuis le catalogue pour les comparer sur les 21
           informations suivies. La comparaison porte sur quatre parcours au maximum.
         </p>
@@ -216,44 +216,44 @@ function Comparer() {
   }
 
   return (
-    <main className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+    <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-12)">
       <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Comparaison</h1>
-      <p className="mt-2 text-sm text-muted-foreground">
+      <p className="mt-2 t-body-sm text-(--text-secondary)">
         {chargement
           ? "Chargement des fiches…"
           : `${differences} ${differences > 1 ? "lignes diffèrent" : "ligne diffère"} sur ${lignes.length}.`}
       </p>
 
       {erreur !== null && (
-        <p className="mt-6 rounded-md border border-destructive/40 p-4 text-sm text-destructive">
+        <p className="mt-6 rounded-(--radius-md) border border-destructive/40 p-4 t-body-sm text-destructive">
           {erreur}
         </p>
       )}
 
       {fiches.length > 0 && (
         <div className="mt-6 overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
+          <table className="w-full border-collapse t-body-sm">
             <thead>
               <tr>
-                <th className="sticky left-0 z-10 min-w-40 bg-background p-3 text-left align-bottom text-xs font-normal text-muted-foreground">
+                <th className="sticky left-0 z-10 min-w-40 bg-background p-3 text-left align-bottom t-caption font-normal text-(--text-secondary)">
                   Attribut
                 </th>
                 {fiches.map((f) => (
-                  <th key={f.slug} className="min-w-56 border-b border-border p-3 text-left align-bottom">
+                  <th key={f.slug} className="min-w-56 border-b border-(--border-subtle) p-3 text-left align-bottom">
                     <Link
                       to="/parcours/$slug"
                       params={{ slug: f.slug }}
-                      className="font-titre text-sm font-medium leading-snug hover:underline hover:underline-offset-4"
+                      className="font-titre t-body-sm font-medium leading-snug hover:underline hover:underline-offset-4"
                     >
                       {f.nom}
                     </Link>
-                    <p className="mt-1 text-xs font-normal text-muted-foreground">
+                    <p className="mt-1 t-caption font-normal text-(--text-secondary)">
                       {f.organismeNom}
                     </p>
                     <button
                       type="button"
                       onClick={() => retirer(f.slug)}
-                      className="mt-2 text-xs font-normal text-muted-foreground underline underline-offset-2 hover:text-foreground"
+                      className="mt-2 t-caption font-normal text-(--text-secondary) underline underline-offset-2 hover:text-(--text-primary)"
                     >
                       Retirer
                     </button>
@@ -267,12 +267,12 @@ function Comparer() {
                 return (
                   <tr
                     key={ligne.attribut}
-                    className={identique ? "text-muted-foreground/60" : ""}
+                    className={identique ? "text-(--text-secondary)/60" : ""}
                   >
                     <th
                       scope="row"
-                      className={`sticky left-0 z-10 bg-background border-b border-border p-3 text-left align-top text-xs font-normal ${
-                        identique ? "text-muted-foreground/60" : "text-muted-foreground"
+                      className={`sticky left-0 z-10 bg-background border-b border-(--border-subtle) p-3 text-left align-top t-caption font-normal ${
+                        identique ? "text-(--text-secondary)/60" : "text-(--text-secondary)"
                       }`}
                     >
                       {ligne.attribut}
@@ -280,7 +280,7 @@ function Comparer() {
                     {ligne.valeurs.map((valeur, i) => (
                       <td
                         key={i}
-                        className={`border-b border-border p-3 align-top ${
+                        className={`border-b border-(--border-subtle) p-3 align-top ${
                           valeur === NON_COMMUNIQUE && !identique ? "text-absent" : ""
                         } ${identique ? "" : "font-medium"}`}
                       >
@@ -295,7 +295,7 @@ function Comparer() {
         </div>
       )}
 
-      <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+      <p className="mt-4 t-caption text-(--text-secondary)">
         Les lignes en retrait portent la même valeur sur tous les parcours comparés : elles sont
         affichées pour montrer qu&apos;elles ont été vérifiées, mais elles n&apos;aident pas à
         décider. Les lignes en relief sont celles où les parcours diffèrent réellement.
@@ -317,10 +317,10 @@ function BlocEmail() {
   const [envoye, setEnvoye] = useState(false);
 
   return (
-    <section className="mt-10 rounded-md border border-border p-5">
+    <section className="mt-10 rounded-(--radius-md) border border-(--border-subtle) p-5">
       <h2 className="font-titre text-base font-medium">Recevoir cette comparaison par email</h2>
       {envoye ? (
-        <p className="mt-2 text-sm text-muted-foreground">
+        <p className="mt-2 t-body-sm text-(--text-secondary)">
           C&apos;est noté. Vous recevrez cette comparaison à l&apos;adresse indiquée.
         </p>
       ) : (
@@ -343,7 +343,7 @@ function BlocEmail() {
           <Button type="submit">Recevoir la comparaison</Button>
         </form>
       )}
-      <p className="mt-3 text-xs text-muted-foreground">
+      <p className="mt-3 t-caption text-(--text-secondary)">
         Vous serez prévenu si l&apos;un de ces prix ou programmes change. Aucun démarchage.
       </p>
     </section>

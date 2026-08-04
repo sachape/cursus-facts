@@ -99,7 +99,7 @@ function AideAuChoix() {
   return (
     <main className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
       <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Aide au choix</h1>
-      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+      <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
         Cinq questions sur votre situation, trois parcours qui y correspondent — avec ce qui ne
         correspond pas. Nous n&apos;évaluons aucun organisme et ne classons rien par qualité.
       </p>
@@ -123,10 +123,10 @@ function AideAuChoix() {
                         setReponses((r) => ({ ...r, [cle]: valeur }));
                         setRefus(null);
                       }}
-                      className={`rounded-md border px-3 py-1.5 text-sm transition-colors ${
+                      className={`rounded-(--radius-md) border px-3 py-1.5 t-body-sm transition-colors ${
                         choisi
                           ? "border-foreground bg-foreground text-background"
-                          : "border-border hover:border-foreground/40"
+                          : "border-(--border-subtle) hover:border-foreground/40"
                       }`}
                     >
                       {libelle}
@@ -143,20 +143,20 @@ function AideAuChoix() {
         <Button onClick={chercher} disabled={enCours}>
           {enCours ? "Recherche en cours…" : "Voir les correspondances"}
         </Button>
-        <p className="mt-3 max-w-xl text-xs leading-relaxed text-muted-foreground">
+        <p className="mt-3 max-w-xl t-caption text-(--text-secondary)">
           Le résultat indique une adéquation avec votre situation, pas un niveau de qualité. Nous
           n&apos;évaluons aucun organisme.
         </p>
 
         {refus !== null && (
-          <p role="alert" className="mt-4 rounded-md border border-absent/40 p-3 text-sm text-absent">
+          <p role="alert" className="mt-4 rounded-(--radius-md) border border-absent/40 p-3 t-body-sm text-absent">
             {refus}
           </p>
         )}
       </div>
 
       {avertissement !== null && (
-        <p className="mt-8 rounded-md border border-border p-3 text-xs text-muted-foreground">
+        <p className="mt-8 rounded-(--radius-md) border border-(--border-subtle) p-3 t-caption text-(--text-secondary)">
           {avertissement}
         </p>
       )}
@@ -166,7 +166,7 @@ function AideAuChoix() {
           <h2 className="font-titre text-xl font-medium">Trois correspondances</h2>
           <ul className="mt-4 space-y-6">
             {resultats.map((a) => (
-              <li key={a.parcours.slug} className="border-t border-border pt-5">
+              <li key={a.parcours.slug} className="border-t border-(--border-subtle) pt-5">
                 <h3 className="font-titre text-base font-medium">
                   <Link
                     to="/parcours/$slug"
@@ -176,40 +176,40 @@ function AideAuChoix() {
                     {a.parcours.nom}
                   </Link>
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">{a.parcours.organismeNom}</p>
-                <p className="chiffre mt-2 text-sm">
+                <p className="mt-1 t-body-sm text-(--text-secondary)">{a.parcours.organismeNom}</p>
+                <p className="chiffre mt-2 t-body-sm">
                   {libellePrix(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces)}
                   {a.parcours.duree !== null && (
-                    <span className="text-muted-foreground"> · {a.parcours.duree}</span>
+                    <span className="text-(--text-secondary)"> · {a.parcours.duree}</span>
                   )}
                 </p>
 
                 {phrases.has(a.parcours.slug) && (
-                  <p className="mt-3 text-sm leading-relaxed">
+                  <p className="mt-3 t-body-sm">
                     {phrases.get(a.parcours.slug)!.phrase}
                   </p>
                 )}
 
                 <div className="mt-4 grid gap-4 sm:grid-cols-2">
                   <div>
-                    <h4 className="text-xs font-medium uppercase tracking-wide text-atteste">
+                    <h4 className="t-caption font-medium uppercase tracking-wide text-atteste">
                       ✓ Ce qui correspond
                     </h4>
-                    <ul className="mt-2 space-y-1 text-sm">
+                    <ul className="mt-2 space-y-1 t-body-sm">
                       {a.correspond.length === 0 ? (
-                        <li className="text-muted-foreground">Aucun critère satisfait</li>
+                        <li className="text-(--text-secondary)">Aucun critère satisfait</li>
                       ) : (
                         a.correspond.map((c) => <li key={c}>{c}</li>)
                       )}
                     </ul>
                   </div>
                   <div>
-                    <h4 className="text-xs font-medium uppercase tracking-wide text-absent">
+                    <h4 className="t-caption font-medium uppercase tracking-wide text-absent">
                       ≠ Ce qui ne correspond pas
                     </h4>
-                    <ul className="mt-2 space-y-1 text-sm">
+                    <ul className="mt-2 space-y-1 t-body-sm">
                       {a.ecarts.length === 0 ? (
-                        <li className="text-muted-foreground">
+                        <li className="text-(--text-secondary)">
                           Aucun écart constaté — vérifiez que la fiche est suffisamment renseignée
                         </li>
                       ) : (
@@ -222,7 +222,7 @@ function AideAuChoix() {
             ))}
           </ul>
 
-          <p className="mt-8 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
+          <p className="mt-8 border-t border-(--border-subtle) pt-4 t-caption text-(--text-secondary)">
             Les écarts ne sont pas des défauts : ce sont des faits utiles pour décider. Une
             correspondance sans aucun écart signale le plus souvent une fiche trop peu renseignée
             pour qu&apos;un écart ait pu être constaté, pas un parcours sans compromis.

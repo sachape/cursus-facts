@@ -71,10 +71,10 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="border-t border-border py-8">
+    <section className="border-t border-(--border-subtle) py-8">
       <h2 className="font-titre text-xl font-medium">{titre}</h2>
-      {intro && <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{intro}</p>}
-      <div className="mt-4 text-sm leading-relaxed">{children}</div>
+      {intro && <p className="mt-2 max-w-2xl t-body-sm text-(--text-secondary)">{intro}</p>}
+      <div className="mt-4 t-body-sm">{children}</div>
     </section>
   );
 }
@@ -87,13 +87,13 @@ function Methode() {
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
-      <Link to="/" className="text-sm text-muted-foreground underline underline-offset-4">
+      <Link to="/" className="t-body-sm text-(--text-secondary) underline underline-offset-4">
         ← Retour au catalogue
       </Link>
 
       <header className="mt-6 pb-2">
         <h1 className="font-titre text-3xl font-semibold tracking-tight">Méthode</h1>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
           Toutes les règles ci-dessous sont déterministes et publiées. Aucune ne repose sur
           une appréciation. C&apos;est la condition pour qu&apos;un organisme mécontent de son
           classement puisse contester la règle plutôt que la décision — et pour que, dans un
@@ -136,21 +136,21 @@ function Methode() {
         <dl className="mt-3 space-y-2">
           <div>
             <dt className="inline font-medium">Organisme — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               l&apos;acteur qui vend et délivre. Sert à la navigation, et évite qu&apos;un acteur
               sature les résultats.
             </dd>
           </div>
           <div>
             <dt className="inline font-medium">Parcours — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               un parcours pédagogique distinct. <strong>C&apos;est la fiche</strong>, et
               l&apos;unité de comparaison.
             </dd>
           </div>
           <div>
             <dt className="inline font-medium">Variante — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               une déclinaison commerciale d&apos;un parcours. Affichée dans la fiche, jamais dans
               la liste. Seuls le prix, l&apos;accompagnement, la durée et les options peuvent
               varier à l&apos;intérieur d&apos;une fiche : un contenu différent fait une fiche
@@ -159,7 +159,7 @@ function Methode() {
           </div>
           <div>
             <dt className="inline font-medium">Session — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               une date, une ville, une promotion. Hors périmètre pour l&apos;instant.
             </dd>
           </div>
@@ -206,13 +206,13 @@ function Methode() {
         <dl className="mt-2 space-y-2">
           <div>
             <dt className="inline font-medium">Non communiqué — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               l&apos;organisme ne publie pas l&apos;information.
             </dd>
           </div>
           <div>
             <dt className="inline font-medium">Ne s&apos;applique pas — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               le champ n&apos;a pas de sens pour ce parcours. Le lieu d&apos;une formation
               exclusivement à distance, les modalités de paiement d&apos;une formation gratuite.
               Ces champs sortent du dénominateur : « 12 sur 16 applicables ». Un champ
@@ -221,7 +221,7 @@ function Methode() {
           </div>
           <div>
             <dt className="inline font-medium">À confirmer — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               valeur connue mais vérification datée.
             </dd>
           </div>
@@ -232,7 +232,7 @@ function Methode() {
         titre="La gratuité ne s'affirme jamais par défaut"
         intro="« Gratuit » recouvre au moins cinq réalités différentes, et les écraser en un prix valant zéro induit en erreur au moment précis où l'on compare des budgets."
       >
-        <p className="rounded border border-border bg-muted/40 p-4">
+        <p className="rounded border border-(--border-subtle) bg-muted/40 p-4">
           <strong className="font-medium">La règle.</strong> La gratuité n&apos;est renseignée que
           si l&apos;organisme la publie explicitement sur son propre site, et la modalité
           d&apos;accès est alors précisée. En l&apos;absence de source officielle, le prix reste
@@ -245,7 +245,7 @@ function Methode() {
             (modalite) => (
               <div key={modalite}>
                 <dt className="inline font-medium">{LIBELLES_MODALITES[modalite]} — </dt>
-                <dd className="inline text-muted-foreground">
+                <dd className="inline text-(--text-secondary)">
                   {DEFINITIONS_MODALITES[modalite]}
                 </dd>
               </div>
@@ -253,7 +253,7 @@ function Methode() {
           )}
         </dl>
 
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-(--text-secondary)">
           Une fiche dont la modalité n&apos;a pas été vérifiée ne remonte dans aucun des deux
           filtres de gratuité, et les parcours en accès partiel ne remontent pas en tête du tri
           par prix croissant : seul leur contenu d&apos;appel est gratuit.
@@ -265,11 +265,11 @@ function Methode() {
         intro="Trois niveaux, parce qu'un seul ne filtre plus rien. Avec un niveau de tags unique, filtrer sur une compétence remontait un quart du catalogue : un filtre qui remonte 54 résultats sur 195 ne filtre plus."
       >
         <h3 className="font-titre font-medium">Domaine — un seul, parmi neuf</h3>
-        <p className="mt-1 text-muted-foreground">
+        <p className="mt-1 text-(--text-secondary)">
           {Object.values(LIBELLES_DOMAINES).join(" · ")}
         </p>
         <p className="mt-2">Déterminé dans cet ordre, le premier motif reconnu l&apos;emporte :</p>
-        <ol className="mt-1 list-decimal space-y-0.5 pl-5 text-muted-foreground">
+        <ol className="mt-1 list-decimal space-y-0.5 pl-5 text-(--text-secondary)">
           <li>motif reconnu dans l&apos;intitulé du parcours</li>
           <li>motif reconnu dans l&apos;intitulé et le nom de l&apos;organisme</li>
           <li>motif reconnu dans un module publié</li>
@@ -281,7 +281,7 @@ function Methode() {
 
         <h3 className="mt-6 font-titre font-medium">Sujet principal — un seul, obligatoire</h3>
         <p className="mt-1">Déterminé dans cet ordre strict :</p>
-        <ol className="mt-1 list-decimal space-y-0.5 pl-5 text-muted-foreground">
+        <ol className="mt-1 list-decimal space-y-0.5 pl-5 text-(--text-secondary)">
           <li>la compétence citée dans l&apos;intitulé</li>
           <li>sinon, la compétence présente dans au moins {pourcentSujet} % des modules publiés</li>
           <li>
@@ -290,18 +290,18 @@ function Methode() {
           </li>
           <li>sinon, le sujet généraliste du domaine</li>
         </ol>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-(--text-secondary)">
           Le seuil de {pourcentSujet} % remplace celui de 25 % de la première version, qui
           produisait des aberrations : une formation Shopify de sept modules dont un sur le
           référencement n&apos;est pas une formation de référencement.
         </p>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-2 text-(--text-secondary)">
           Les sujets généralistes ne sont pas un pis-aller : la majorité des licences pro,
           masters et bachelors n&apos;ont aucune compétence dominante. Sans eux, une grande
           partie du catalogue sortirait du filtre principal, qui est l&apos;entrée de
           navigation.
         </p>
-        <p className="mt-3 text-xs text-muted-foreground">
+        <p className="mt-3 t-caption text-(--text-secondary)">
           <strong className="font-medium">Vocabulaire fermé</strong> —{" "}
           {SUJETS_OUTILS.length} sujets-outils : {SUJETS_OUTILS.join(", ")}. Et{" "}
           {Object.keys(SUJET_GENERALISTE).length} sujets généralistes, un par domaine :{" "}
@@ -309,7 +309,7 @@ function Methode() {
         </p>
 
         <h3 className="mt-6 font-titre font-medium">Compétences abordées</h3>
-        <p className="mt-1 text-muted-foreground">
+        <p className="mt-1 text-(--text-secondary)">
           Toutes les autres compétences identifiées, sans hiérarchie interne. Elles alimentent
           un filtre secondaire, jamais le filtre principal. {MOTIFS_COMPETENCES.length}{" "}
           compétences sont détectées, uniquement dans l&apos;intitulé, les outils et les modules
@@ -322,7 +322,7 @@ function Methode() {
         intro="Une fiche = un parcours pédagogique distinct. Pas une session, pas un organisme, pas une déclinaison marketing. Trois issues possibles, jamais une règle binaire."
       >
         <h3 className="font-titre font-medium">Fusion automatique</h3>
-        <p className="mt-1 text-muted-foreground">
+        <p className="mt-1 text-(--text-secondary)">
           Les quatre conditions réunies, et aucune preuve de divergence : même organisme ·
           intitulé partageant au moins {pourcentIntitule} % de mots communs après retrait du
           suffixe de formule (Builder, Premium, Elite, Starter, Niveau N…) · même niveau
@@ -330,20 +330,20 @@ function Methode() {
         </p>
 
         <h3 className="mt-4 font-titre font-medium">Refus automatique</h3>
-        <p className="mt-1 text-muted-foreground">
+        <p className="mt-1 text-(--text-secondary)">
           Les deux programmes sont publiés <em>et</em> partagent moins de {pourcentTronc} % de
           leurs modules. Deux fiches distinctes.
         </p>
 
         <h3 className="mt-4 font-titre font-medium">Cas ambigu</h3>
-        <p className="mt-1 text-muted-foreground">
+        <p className="mt-1 text-(--text-secondary)">
           Informations insuffisantes pour trancher — typiquement, au moins un programme non
           publié. Le cas part en file d&apos;arbitrage. Pendant l&apos;attente, les offres
           restent des fiches distinctes et consultables, mais se replient en une seule entrée
           dans la liste, avec le motif affiché.
         </p>
 
-        <p className="mt-5 rounded border border-border bg-muted/40 p-4">
+        <p className="mt-5 rounded border border-(--border-subtle) bg-muted/40 p-4">
           <strong className="font-medium">Pourquoi la fusion est le défaut.</strong> La
           formulation naïve serait « je fusionne si je peux prouver que les programmes sont
           similaires ». Elle produit une incitation inversée : organisme transparent, programme
@@ -359,12 +359,12 @@ function Methode() {
         intro="Toute décision manuelle enregistre le cas, la règle restée muette, la preuve retenue, la date et l'auteur. Cette file est publique : c'est ce qui rend la revue manuelle compatible avec le reste du produit."
       >
         {arbitrages.length === 0 ? (
-          <p className="text-muted-foreground">Aucun cas en attente.</p>
+          <p className="text-(--text-secondary)">Aucun cas en attente.</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full border-collapse text-sm">
+            <table className="w-full border-collapse t-body-sm">
               <thead>
-                <tr className="border-b border-border text-left text-xs text-muted-foreground">
+                <tr className="border-b border-(--border-subtle) text-left t-caption text-(--text-secondary)">
                   <th className="p-2 font-normal">Cas</th>
                   <th className="p-2 font-normal">Règle restée muette</th>
                   <th className="p-2 font-normal">Preuve retenue</th>
@@ -374,16 +374,16 @@ function Methode() {
               </thead>
               <tbody>
                 {arbitrages.map((a) => (
-                  <tr key={a.id} className="border-b border-border align-top">
+                  <tr key={a.id} className="border-b border-(--border-subtle) align-top">
                     <td className="p-2 font-medium">{a.regle_muette}</td>
-                    <td className="p-2 text-muted-foreground">Fusion automatique</td>
-                    <td className="p-2 text-muted-foreground">{a.preuve_retenue}</td>
+                    <td className="p-2 text-(--text-secondary)">Fusion automatique</td>
+                    <td className="p-2 text-(--text-secondary)">{a.preuve_retenue}</td>
                     <td className="p-2">
                       <span className={a.decision === null ? "text-absent" : "text-atteste"}>
                         {a.decision ?? "En attente d'arbitrage"}
                       </span>
                     </td>
-                    <td className="chiffre p-2 text-muted-foreground">
+                    <td className="chiffre p-2 text-(--text-secondary)">
                       {a.date_decision
                         ? new Date(a.date_decision).toLocaleDateString("fr-FR")
                         : "—"}
@@ -396,24 +396,24 @@ function Methode() {
         )}
 
         <h3 className="mt-6 font-titre font-medium">Cas clos</h3>
-        <p className="mt-1 text-muted-foreground">
+        <p className="mt-1 text-(--text-secondary)">
           Un cas peut sortir de la file sans arbitrage : il suffit que l&apos;information manquante
           soit publiée pour que la règle automatique s&apos;applique. La file est une salle
           d&apos;attente, pas un tribunal.
         </p>
         <ul className="mt-3 space-y-3">
           {journal.map((cas) => (
-            <li key={cas.id} className="rounded border border-border p-4">
+            <li key={cas.id} className="rounded border border-(--border-subtle) p-4">
               <p className="font-medium">{cas.regleMuette}</p>
-              <p className="mt-1 text-xs text-muted-foreground">
+              <p className="mt-1 t-caption text-(--text-secondary)">
                 Ouvert le {new Date(cas.ouvertLe).toLocaleDateString("fr-FR")} —{" "}
                 {cas.motifOuverture}
               </p>
               <p className="mt-2 text-atteste">
                 {new Date(cas.resoluLe).toLocaleDateString("fr-FR")} · {cas.resolution}
               </p>
-              <p className="mt-1 text-xs text-muted-foreground">{cas.preuveRetenue}</p>
-              <p className="mt-2 text-xs text-muted-foreground">
+              <p className="mt-1 t-caption text-(--text-secondary)">{cas.preuveRetenue}</p>
+              <p className="mt-2 t-caption text-(--text-secondary)">
                 Auteur de la décision :{" "}
                 {cas.auteur ?? "aucun — la règle s'est appliquée d'elle-même"}
               </p>
@@ -421,7 +421,7 @@ function Methode() {
           ))}
         </ul>
 
-        <p className="mt-4 rounded border border-absent/30 p-3 text-xs text-absent">
+        <p className="mt-4 rounded border border-absent/30 p-3 t-caption text-absent">
           Reste à trancher avant d&apos;ouvrir la revendication de fiche : qui arbitre, et sous
           quel délai. Une file sans engagement de traitement devient une zone grise permanente —
           et c&apos;est précisément là que la pression commerciale s&apos;exercerait, puisque
@@ -446,34 +446,34 @@ function Methode() {
                 */}
                 <div>
                   <dd className="chiffre text-xl">{etat.pourcentageFrais} %</dd>
-                  <dt className="text-xs text-muted-foreground">
+                  <dt className="t-caption text-(--text-secondary)">
                     vérifié en profondeur depuis moins de 6 mois
                   </dt>
                 </div>
                 <div>
                   <dd className="chiffre text-xl">{tauxPrixVerifie(chargerCatalogue())} %</dd>
-                  <dt className="text-xs text-muted-foreground">
+                  <dt className="t-caption text-(--text-secondary)">
                     avec prix ou modalité d'accès vérifié
                   </dt>
                 </div>
                 <div>
                   <dd className="chiffre text-xl">{etat.traites}</dd>
-                  <dt className="text-xs text-muted-foreground">pages de détail lues</dt>
+                  <dt className="t-caption text-(--text-secondary)">pages de détail lues</dt>
                 </div>
                 <div>
                   <dd className="chiffre text-xl">{etat.restants}</dd>
-                  <dt className="text-xs text-muted-foreground">restant à vérifier</dt>
+                  <dt className="t-caption text-(--text-secondary)">restant à vérifier</dt>
                 </div>
               </dl>
 
-              <p className="mt-4 text-muted-foreground">
+              <p className="mt-4 text-(--text-secondary)">
                 Un champ vide ne dit pas la même chose selon qu&apos;on a lu la page de détail du
                 parcours ou seulement la page catalogue de l&apos;organisme. Tant que le détail
                 n&apos;a pas été ouvert, la fiche affiche « pas encore collecté » — un fait sur
                 nous. Une fois ouvert, elle affiche « non publié par l&apos;organisme » — un fait
                 sur lui, et un critère de comparaison légitime.
               </p>
-              <p className="mt-3 text-muted-foreground">
+              <p className="mt-3 text-(--text-secondary)">
                 Les champs non collectés sortent du dénominateur : on ne peut pas reprocher à un
                 organisme une absence qu&apos;on n&apos;a pas vérifiée. Le tri par informations
                 disponibles ne pénalise donc pas une fiche encore à vérifier au même titre
@@ -491,14 +491,14 @@ function Methode() {
         <dl className="space-y-2">
           <div>
             <dt className="inline font-medium">France Compétences — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               fiches RNCP et RS, certificateurs accrédités, liste des organismes préparant à la
               certification, dates d&apos;échéance.
             </dd>
           </div>
           <div>
             <dt className="inline font-medium">Mon Compte Formation — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               catalogue des offres éligibles au CPF.
             </dd>
           </div>
@@ -506,19 +506,19 @@ function Methode() {
             <dt className="inline font-medium">
               Liste publique des organismes de formation —{" "}
             </dt>
-            <dd className="inline text-muted-foreground">déclarations d&apos;activité, SIRET.</dd>
+            <dd className="inline text-(--text-secondary)">déclarations d&apos;activité, SIRET.</dd>
           </div>
           <div>
             <dt className="inline font-medium">Liste des certifiés Qualiopi — </dt>
-            <dd className="inline text-muted-foreground">statut qualité.</dd>
+            <dd className="inline text-(--text-secondary)">statut qualité.</dd>
           </div>
           <div>
             <dt className="inline font-medium">Onisep — </dt>
-            <dd className="inline text-muted-foreground">diplômes d&apos;État, BTS, BUT.</dd>
+            <dd className="inline text-(--text-secondary)">diplômes d&apos;État, BTS, BUT.</dd>
           </div>
           <div>
             <dt className="inline font-medium">Sites officiels des organismes — </dt>
-            <dd className="inline text-muted-foreground">
+            <dd className="inline text-(--text-secondary)">
               prix réels, programmes, formations indépendantes. La source retenue est affichée sur
               chaque fiche, avec sa date de vérification.
             </dd>
@@ -544,11 +544,11 @@ function Methode() {
                   }[tri]
                 }
               </dt>
-              <dd className="text-muted-foreground">{LIBELLES_TRIS[tri]}</dd>
+              <dd className="text-(--text-secondary)">{LIBELLES_TRIS[tri]}</dd>
             </div>
           ))}
         </dl>
-        <p className="mt-4 text-muted-foreground">
+        <p className="mt-4 text-(--text-secondary)">
           Effet recherché, assumé : un organisme mal classé n&apos;a pas à négocier, il a à
           remplir sa fiche.
         </p>
@@ -558,28 +558,28 @@ function Methode() {
         titre="Éligibilité au référencement"
         intro="Un acteur est référencé s'il vérifie au moins 3 des 7 critères suivants. Les critères vérifiés sont affichés sur la fiche."
       >
-        <ul className="list-disc space-y-0.5 pl-5 text-muted-foreground">
+        <ul className="list-disc space-y-0.5 pl-5 text-(--text-secondary)">
           {CRITERES_ELIGIBILITE.map((c) => (
             <li key={c}>{c}</li>
           ))}
         </ul>
 
         <h3 className="mt-5 font-titre font-medium">Jamais référencé</h3>
-        <ul className="mt-1 list-disc space-y-0.5 pl-5 text-muted-foreground">
+        <ul className="mt-1 list-disc space-y-0.5 pl-5 text-(--text-secondary)">
           {JAMAIS_REFERENCE.map((c) => (
             <li key={c}>{c}</li>
           ))}
         </ul>
 
         <h3 className="mt-5 font-titre font-medium">Acteurs écartés</h3>
-        <p className="mt-1 text-muted-foreground">
+        <p className="mt-1 text-(--text-secondary)">
           Publiés avec leur motif, même logique que la file d&apos;arbitrage.
         </p>
         <ul className="mt-2 space-y-1">
           {(ecartes as Array<{ nom: string; motif: string }>).map((e) => (
             <li key={e.nom}>
               <span className="font-medium">{e.nom}</span>{" "}
-              <span className="text-muted-foreground">— {e.motif}</span>
+              <span className="text-(--text-secondary)">— {e.motif}</span>
             </li>
           ))}
         </ul>
@@ -589,29 +589,29 @@ function Methode() {
         titre="Les sept catégories d'organisme"
         intro="Elles évitent qu'un cours à 15 € et un mastère de deux ans se retrouvent dans la même liste."
       >
-        <p className="text-muted-foreground">{Object.values(LIBELLES_CATEGORIES).join(" · ")}</p>
+        <p className="text-(--text-secondary)">{Object.values(LIBELLES_CATEGORIES).join(" · ")}</p>
       </Section>
 
       <Section
         titre="Ce que cette méthode ne résout pas encore"
         intro="Autant le dire ici plutôt que de le laisser découvrir."
       >
-        <ul className="space-y-2 text-muted-foreground">
+        <ul className="space-y-2 text-(--text-secondary)">
           <li>
-            <strong className="font-medium text-foreground">Le dédoublonnage réel.</strong> La
+            <strong className="font-medium text-(--text-primary)">Le dédoublonnage réel.</strong> La
             règle ne reconnaît aujourd&apos;hui que les suffixes de formule. Reconnaître que deux
             intitulés différents recouvrent le même parcours suppose de comparer les
             programmes — donc qu&apos;ils soient publiés. Beaucoup ne le sont pas.
           </li>
           <li>
-            <strong className="font-medium text-foreground">
+            <strong className="font-medium text-(--text-primary)">
               L&apos;éligibilité CPF non vérifiée.
             </strong>{" "}
             La donnée collectée ne distingue pas encore « vérifié non éligible » de « non
             vérifié ». Nous ne comblons pas cet écart par déduction.
           </li>
           <li>
-            <strong className="font-medium text-foreground">
+            <strong className="font-medium text-(--text-primary)">
               La visibilité des fiches incomplètes.
             </strong>{" "}
             Une fiche peu renseignée reste au catalogue, mais atterrit loin dans la liste. Le

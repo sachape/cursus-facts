@@ -79,25 +79,25 @@ function Organismes() {
   const multiCatalogue = organismes.filter((o) => o.parcours > 1).length;
 
   return (
-    <main className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+    <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-12)">
       <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Organismes</h1>
-      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+      <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
         Le niveau au-dessus des parcours. Le nombre de parcours référencés décrit l&apos;étendue
         d&apos;un catalogue, pas la qualité d&apos;un organisme.
       </p>
 
-      <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3 text-sm">
+      <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-3 t-body-sm">
         <div>
           <dd className="chiffre text-xl">{organismes.length.toLocaleString("fr-FR")}</dd>
-          <p className="text-xs text-muted-foreground">organismes</p>
+          <p className="t-caption text-(--text-secondary)">organismes</p>
         </div>
         <div>
           <dd className="chiffre text-xl">{multiCatalogue.toLocaleString("fr-FR")}</dd>
-          <p className="text-xs text-muted-foreground">portent plusieurs parcours</p>
+          <p className="t-caption text-(--text-secondary)">portent plusieurs parcours</p>
         </div>
         <div>
           <dd className="chiffre text-xl">{parcours.length.toLocaleString("fr-FR")}</dd>
-          <p className="text-xs text-muted-foreground">parcours au total</p>
+          <p className="t-caption text-(--text-secondary)">parcours au total</p>
         </div>
       </dl>
 
@@ -112,7 +112,7 @@ function Organismes() {
       </div>
 
       {filtres.length === 0 ? (
-        <p className="py-16 text-center text-sm text-muted-foreground">
+        <p className="py-16 text-center t-body-sm text-(--text-secondary)">
           Aucun organisme ne correspond à cette recherche.
         </p>
       ) : (
@@ -122,18 +122,18 @@ function Organismes() {
               <Link
                 to="/"
                 search={{ organisme: organisme.nom }}
-                className="flex h-full flex-col rounded-md border border-border p-4 transition-colors hover:border-foreground/40"
+                className="flex h-full flex-col rounded-(--radius-md) border border-(--border-subtle) p-4 transition-colors hover:border-foreground/40"
               >
-                <h2 className="font-titre text-sm font-medium leading-snug">{organisme.nom}</h2>
-                <p className="mt-1 text-xs text-muted-foreground">
+                <h2 className="font-titre t-body-sm font-medium leading-snug">{organisme.nom}</h2>
+                <p className="mt-1 t-caption text-(--text-secondary)">
                   {LIBELLES_CATEGORIES[organisme.categorie]}
                 </p>
 
-                <p className="mt-3 text-xs text-muted-foreground">
-                  <span className="chiffre text-foreground">{organisme.parcours}</span>{" "}
+                <p className="mt-3 t-caption text-(--text-secondary)">
+                  <span className="chiffre text-(--text-primary)">{organisme.parcours}</span>{" "}
                   {organisme.parcours > 1 ? "parcours" : "parcours"}
                   <span aria-hidden> · </span>
-                  <span className="chiffre text-foreground">{organisme.domaines}</span>{" "}
+                  <span className="chiffre text-(--text-primary)">{organisme.domaines}</span>{" "}
                   {organisme.domaines > 1 ? "domaines" : "domaine"}
                 </p>
 
@@ -141,7 +141,7 @@ function Organismes() {
                   {organisme.sujets.map((sujet) => (
                     <li
                       key={sujet}
-                      className="rounded-full border border-border px-3 py-1 t-caption text-(--text-secondary)"
+                      className="rounded-full border border-(--border-subtle) px-3 py-1 t-caption text-(--text-secondary)"
                     >
                       {sujet}
                     </li>
@@ -153,7 +153,7 @@ function Organismes() {
         </ul>
       )}
 
-      <p className="mt-8 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
+      <p className="mt-8 border-t border-(--border-subtle) pt-4 t-caption text-(--text-secondary)">
         Un clic sur un organisme filtre le catalogue sur ses parcours.{" "}
         <Link to="/methode" className="underline underline-offset-4">
           Les sept catégories d&apos;organisme sont publiées dans la Méthode
