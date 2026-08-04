@@ -43,13 +43,30 @@ export const Route = createFileRoute("/")({
   component: Explorer,
   head: () => ({
     meta: [
-      { title: "Cursus — comparateur de formations e-commerce" },
+      { title: "Formlist — Comparateur de formations e-commerce en France" },
       {
         name: "description",
         content:
-          "Comparez les formations e-commerce sur des faits vérifiables. Aucune note, aucun classement par qualité, aucun lien affilié.",
+          "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
       },
+      {
+        property: "og:title",
+        content: "Formlist — Comparateur de formations e-commerce en France",
+      },
+      {
+        property: "og:description",
+        content:
+          "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
+      },
+      { property: "og:url", content: "https://formlist.fr/" },
+      { property: "og:image", content: "https://formlist.fr/og-formlist.jpg" },
+      {
+        property: "og:image:alt",
+        content: "Formlist, comparateur indépendant de formations e-commerce en France.",
+      },
+      { name: "twitter:image", content: "https://formlist.fr/og-formlist.jpg" },
     ],
+    links: [{ rel: "canonical", href: "https://formlist.fr/" }],
   }),
 });
 
