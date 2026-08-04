@@ -1,34 +1,22 @@
 /**
- * Identité de l'organisme — monogramme et nom.
+ * Identité de l'organisme — marque, nom et catégorie.
  *
- * Pas de logo distant : nous n'en hébergeons aucun, et en charger depuis les
- * sites des organismes leur enverrait le trafic de chaque affichage de liste
- * tout en nous rendant dépendants de leur disponibilité. Le monogramme est
- * dérivé du nom, donc toujours présent et toujours exact.
- *
- * Aucune couleur par organisme : une teinte attribuée les distinguerait
- * visuellement, et une distinction visuelle se lit comme une hiérarchie.
+ * La marque est traitée par `OrganizationMark` : logo officiel s'il existe,
+ * icône de catégorie sinon. Aucune couleur par organisme — seulement par
+ * catégorie, et de même intensité entre elles : une teinte propre à un
+ * organisme le distinguerait visuellement, et une distinction visuelle se lit
+ * comme une hiérarchie.
  */
 import type { CategorieOrganisme } from "@/types/cursus";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
+import { OrganizationMark } from "./OrganizationMark";
 
-/**
- * Initiales d'un nom d'organisme.
- *
- * Deux lettres au plus. Les sigles déjà courts — ESSEC, HETIC — sont conservés
- * tels quels sur deux caractères plutôt que décomposés, ce qui les rendrait
- * méconnaissables.
- */
-export function monogramme(nom: string): string {
-  const mots = nom
-    .replace(/[—–-]/g, " ")
-    .split(/\s+/)
-    .filter((m) => m.length > 1 && !/^(de|du|des|la|le|les|et|en)$/i.test(m));
-  if (mots.length === 0) return nom.slice(0, 2).toUpperCase();
-  if (mots.length === 1) return mots[0]!.slice(0, 2).toUpperCase();
-  return `${mots[0]![0]}${mots[1]![0]}`.toUpperCase();
-}
-
+/*
+  Le monogramme a été retiré. « RU » ou « NU » n'apprenaient rien : ils
+  répétaient en abrégé un nom figurant en toutes lettres à côté, et deux
+  organismes aux mêmes initiales devenaient indiscernables. L'icône de
+  catégorie porte, elle, une information que le nom ne donne pas.
+*/
 export function OrganizationIdentity({
   nom,
   categorie,
@@ -41,12 +29,7 @@ export function OrganizationIdentity({
 }) {
   return (
     <div className="flex min-w-0 items-center gap-(--space-3)">
-      <span
-        aria-hidden
-        className="flex size-(--monogramme-taille) shrink-0 items-center justify-center rounded-(--radius-md) border border-(--border-subtle) bg-(--surface-sunken) t-data-sm text-(--text-secondary)"
-      >
-        {monogramme(nom)}
-      </span>
+      <OrganizationMark categorie={categorie} nom={nom} />
       <div className="min-w-0">
         <p className="truncate t-body-sm font-medium text-(--text-primary)">{nom}</p>
         <p className={`truncate t-caption text-(--text-tertiary) ${compact ? "sr-only" : ""}`}>

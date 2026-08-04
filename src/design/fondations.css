@@ -292,7 +292,9 @@
   --titre-largeur-max: 20ch;
   --sous-titre-largeur-max: 60ch;
   --carte-rayon: var(--radius-xl);
-  --monogramme-taille: 40px;
+  --marque-taille: 44px;
+  --marque-rayon: 11px;
+  --marque-retrait: 7px;
   --bouton-hauteur: 40px;
   --bouton-hauteur-tactile: 44px;
   --cible-hauteur-min: 32px;

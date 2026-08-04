@@ -27,6 +27,7 @@ import {
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
 import type { CategorieOrganisme, FormatParcours, NiveauEntree } from "@/types/cursus";
 import { FILTRES_CONDITION, LIBELLES_FILTRES_CONDITION } from "@/modele/condition-cout";
+import { IconeCategorie } from "./OrganizationMark";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 
@@ -160,12 +161,15 @@ function Option({
   coche,
   nombre,
   basculer,
+  icone,
 }: {
   id: string;
   libelle: string;
   coche: boolean;
   nombre: number;
   basculer: () => void;
+  /** Même icône que la marque d'organisme : la correspondance est le propos. */
+  icone?: React.ReactNode;
 }) {
   const inactive = nombre === 0 && !coche;
   return (
@@ -184,6 +188,9 @@ function Option({
       }`}
     >
       <Checkbox id={id} checked={coche} onCheckedChange={basculer} disabled={inactive} />
+      {icone !== undefined && (
+        <span className="shrink-0 text-(--text-tertiary)">{icone}</span>
+      )}
       <span className="flex-1 t-body-sm">{libelle}</span>
       <span className="t-data-sm text-(--text-tertiary)">{nombre}</span>
     </label>
@@ -315,6 +322,7 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
               key={categorie}
               id={`cat-${categorie}`}
               libelle={LIBELLES_CATEGORIES[categorie]}
+              icone={<IconeCategorie categorie={categorie} />}
               coche={filtres.categories.includes(categorie)}
               nombre={compterAvec(parcours, filtres, { categories: [categorie] })}
               basculer={() => modifier({ categories: basculer(filtres.categories, categorie) })}
