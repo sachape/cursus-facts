@@ -24,6 +24,7 @@ import {
   texteprincipal,
 } from "../src/collecte/recuperation";
 import { clientAnthropic, extrairePage } from "../src/collecte/extraction";
+import { fermerNavigateur, rendre } from "../src/collecte/navigateur";
 import { journaliser, type EcritureJournalisee } from "../src/collecte/journal";
 import type { Rejet } from "../src/collecte/citation";
 
@@ -146,14 +147,40 @@ async function main() {
       return;
     }
 
-    const texte = texteprincipal(reponse.texte);
-    if (exigeRepliNavigateur(texte)) {
-      // Rendu JavaScript probable : sans repli navigateur, on classerait en
-      // « non publié » des informations parfaitement publiées.
+    let texte = texteprincipal(reponse.texte);
+
+    /*
+      REPLI NAVIGATEUR. Le seuil de page vide ne suffit pas : Coursera sert
+      12 360 caractères pour 890 Ko de HTML — au-dessus du seuil, et pourtant
+      amputé de l'essentiel. On compare donc le texte obtenu au volume de HTML
+      servi : sous 3 %, la page est presque sûrement rendue côté client.
+    */
+    const ratio = texte.length / Math.max(1, reponse.texte.length);
+    if (exigeRepliNavigateur(texte) || ratio < 0.03) {
       repliNecessaire++;
-      echecs.push({ id: entree.id!, url: entree.url, motif: "page_vide_repli_navigateur_requis" });
-      console.log(`${etiquette} ⟳ page vide (${texte.length} car.) — repli requis`);
-      return;
+      const rendu = await rendre(entree.url);
+      if (rendu.ok) {
+        const apres = texteprincipal(rendu.html);
+        // On ne retient le rendu que s'il apporte réellement du texte : un
+        // navigateur qui rend moins que la récupération simple n'a rien appris.
+        if (apres.length > texte.length) {
+          console.log(
+            `${etiquette} ⟳ repli navigateur ${texte.length} → ${apres.length} car.`,
+          );
+          texte = apres;
+        }
+      }
+      // Un échec de rendu n'est jamais une absence d'information : si le texte
+      // reste vide, la fiche sort de ce lot sans qu'aucun champ soit conclu.
+      if (exigeRepliNavigateur(texte)) {
+        echecs.push({
+          id: entree.id!,
+          url: entree.url,
+          motif: rendu.ok ? "page_vide_apres_rendu" : `navigateur_${rendu.motif}`,
+        });
+        console.log(`${etiquette} ✗ page vide même après rendu`);
+        return;
+      }
     }
 
     pagesLues++;
@@ -200,6 +227,7 @@ async function main() {
     );
   });
 
+  await fermerNavigateur();
   writeFileSync(JOURNAL, JSON.stringify(journal, null, 1));
   writeFileSync(REJETS, JSON.stringify({ rejets, echecs }, null, 1));
 
