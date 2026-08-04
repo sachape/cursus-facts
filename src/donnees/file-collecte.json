@@ -232,14 +232,6 @@
   "dernierPassage": null
  },
  {
-  "id": 210,
-  "nom": "PrestaShop — Webmasters",
-  "organisme": "Dawan",
-  "urlDetail": null,
-  "statut": "a_traiter",
-  "dernierPassage": null
- },
- {
   "id": 211,
   "nom": "PrestaShop — Créer et gérer le site e-commerce de sa TPE",
   "organisme": "Dawan",
@@ -915,14 +907,6 @@
   "id": 200,
   "nom": "WordPress & WooCommerce 2026",
   "organisme": "AMZ Academy",
-  "urlDetail": null,
-  "statut": "a_traiter",
-  "dernierPassage": null
- },
- {
-  "id": 201,
-  "nom": "PrestaShop, créer un site e-commerce",
-  "organisme": "ORSYS",
   "urlDetail": null,
   "statut": "a_traiter",
   "dernierPassage": null
@@ -1840,6 +1824,14 @@
   "dernierPassage": null
  },
  {
+  "id": 201,
+  "nom": "PrestaShop, créer un site e-commerce",
+  "organisme": "ORSYS",
+  "urlDetail": "https://www.orsys.fr/formation/formation-prestashop-creer-un-site-e-commerce.html",
+  "statut": "traite",
+  "dernierPassage": "2026-08-04"
+ },
+ {
   "id": 204,
   "nom": "Shopify — Créez facilement votre boutique en ligne",
   "organisme": "M2i Formation",
@@ -1860,6 +1852,14 @@
   "nom": "PrestaShop — Développeurs",
   "organisme": "Dawan",
   "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-developpeurs",
+  "statut": "traite",
+  "dernierPassage": "2026-08-04"
+ },
+ {
+  "id": 210,
+  "nom": "PrestaShop — Webmasters",
+  "organisme": "Dawan",
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-webmasters",
   "statut": "traite",
   "dernierPassage": "2026-08-04"
  },

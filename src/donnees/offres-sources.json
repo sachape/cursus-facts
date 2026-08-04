@@ -8002,7 +8002,7 @@
    "Distanciel"
   ],
   "niveauLibelle": null,
-  "prerequis": null,
+  "prerequis": "Connaissances fondamentales de Windows et de l'utilisation du web",
   "cpf": 0,
   "financements": [
    "OPCO"
@@ -8011,10 +8011,19 @@
   "outils": [
    "PrestaShop"
   ],
-  "programme": null,
+  "programme": [
+   "Présentation de PrestaShop",
+   "Créer un catalogue de produits et de clients",
+   "Gérer les commandes et administrer les solutions de paiement",
+   "Définir les frais de transport et de livraison",
+   "Mettre en place les modules de la boutique",
+   "Créer un thème personnalisé",
+   "Suivre l'activité du site",
+   "Administrer la boutique"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-08-04",
-  "source": "orsys.fr — page catalogue formations e-commerce",
+  "source": "orsys.fr — page de détail de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "PrestaShop"
@@ -8022,11 +8031,16 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "prix": null,
+  "prix": 2080,
   "id": 201,
   "nom": "PrestaShop, créer un site e-commerce",
   "duree": "3 jours",
-  "volumeHoraire": 21
+  "volumeHoraire": 21,
+  "dispoInter": true,
+  "dispoIntra": true,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-04",
+  "urlDetail": "https://www.orsys.fr/formation/formation-prestashop-creer-un-site-e-commerce.html"
  },
  {
   "organisme": "ORSYS",
@@ -8372,7 +8386,7 @@
    "Distanciel"
   ],
   "niveauLibelle": null,
-  "prerequis": null,
+  "prerequis": "Connaissances de HTML, CSS et PHP",
   "cpf": 0,
   "financements": [
    "OPCO"
@@ -8381,10 +8395,16 @@
   "outils": [
    "PrestaShop"
   ],
-  "programme": null,
+  "programme": [
+   "Introduction",
+   "Maintenir une boutique",
+   "Administration générale",
+   "La présentation",
+   "Étendre PrestaShop"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-08-04",
-  "source": "dawan.fr — pages catalogue e-commerce",
+  "source": "dawan.fr — page de détail de la formation",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [
    "PrestaShop"
@@ -8392,11 +8412,16 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "prix": null,
+  "duree": "3 jours",
+  "volumeHoraire": 21,
+  "prix": 1500,
   "id": 210,
-  "nom": "PrestaShop — Webmasters"
+  "nom": "PrestaShop — Webmasters",
+  "dispoInter": true,
+  "dispoIntra": null,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-04",
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-webmasters"
  },
  {
   "organisme": "Dawan",
