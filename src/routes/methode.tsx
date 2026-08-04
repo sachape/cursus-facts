@@ -10,7 +10,7 @@
  * Méthode qui diverge du code est pire que pas de page Méthode.
  */
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { chargerArbitrages } from "@/donnees/requetes";
+import { chargerArbitrages, type ArbitrageLigne } from "@/donnees/requetes";
 import {
   LIBELLES_CATEGORIES,
   LIBELLES_DOMAINES,
