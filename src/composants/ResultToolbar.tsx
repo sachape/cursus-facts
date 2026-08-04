@@ -80,7 +80,14 @@ export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => vo
           <SelectContent
             position="popper"
             sideOffset={8}
-            className="w-(--radix-select-trigger-width) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) p-(--space-1) shadow-(--elevation-3)"
+            /*
+              Aucun padding ici : le `Viewport` de shadcn porte déjà `p-1` ET
+              `min-w-[--radix-select-trigger-width]`. Ajouter un padding au
+              conteneur lui laissait 8 px de moins que ce minimum, et il
+              débordait à droite — d'où un fond de sélection collé au bord
+              droit alors que la gauche respirait.
+            */
+            className="w-(--radix-select-trigger-width) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) shadow-(--elevation-3)"
           >
             {TRIS.map((t) => (
               <SelectItem
