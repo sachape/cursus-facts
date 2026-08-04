@@ -14,6 +14,7 @@
 import { useRef } from "react";
 import type { DomaineParcours } from "@/types/cursus";
 import { useHauteurPubliee } from "./pile-collante";
+import { CountBadge } from "./CountBadge";
 
 export type OngletDomaine = {
   /** `null` pour l'onglet « Tous les domaines ». */
@@ -47,26 +48,30 @@ export function OngletsDomaines({
       className="sticky top-(--app-header-height) z-40 m-0 w-full max-w-[100vw] border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
     >
       <ul
-        className="-mb-px flex max-w-full min-h-(--domain-navigation-height) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex max-w-full min-h-(--domain-navigation-height) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {onglets.map((onglet) => {
           const estActif = onglet.domaine === actif;
           return (
             <li key={onglet.domaine ?? "tous"} className="shrink-0">
+              {/*
+                Le trait actif REMPLACE la portion du séparateur, il ne s'ajoute
+                pas au-dessus : posé en `bottom: -1px`, il recouvre exactement le
+                filet du conteneur. Une bordure sur le bouton produisait deux
+                lignes concurrentes à quelques pixels l'une de l'autre.
+              */}
               <button
                 type="button"
                 aria-current={estActif ? "true" : undefined}
                 onClick={() => choisir(onglet.domaine)}
-                className={`whitespace-nowrap border-b-2 py-(--space-3) t-body-sm transition-colors ${
+                className={`relative inline-flex min-h-(--domain-navigation-height) items-center gap-(--space-2) whitespace-nowrap t-body-sm transition-colors after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:content-[''] ${
                   estActif
-                    ? "border-foreground font-medium text-foreground"
-                    : "border-transparent text-muted-foreground hover:text-foreground"
+                    ? "font-medium text-(--text-primary) after:bg-(--text-primary)"
+                    : "text-(--text-secondary) after:bg-transparent hover:text-(--text-primary)"
                 }`}
               >
                 {onglet.libelle}
-                <span className="t-data-sm ml-2 text-(--text-tertiary)">
-                  {onglet.nombre}
-                </span>
+                <CountBadge>{onglet.nombre}</CountBadge>
               </button>
             </li>
           );

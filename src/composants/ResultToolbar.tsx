@@ -13,6 +13,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import { SearchField } from "./SearchField";
+import { CountBadge } from "./CountBadge";
 import type { Tri } from "@/modele/classement";
 import { LIBELLES_TRIS, LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
 
@@ -200,7 +201,7 @@ export function ResultToolbar({
         ) : (
           <div className="flex min-h-(--bouton-hauteur-tactile) w-full items-center justify-between gap-(--space-3) min-[1024px]:w-auto">
             <h2 className="m-0 t-heading-4 leading-[1.2] text-(--text-primary)">
-              {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
+              {titre} <CountBadge>{nombre}</CountBadge>
             </h2>
             {/*
               L'emplacement est toujours réservé — seule l'opacité change. Le
@@ -232,7 +233,7 @@ export function ResultToolbar({
 
         {/* Bureau : titre à gauche, tri à droite, rien d'autre. */}
         <h2 className="m-0 hidden shrink-0 t-heading-4 leading-[1.2] text-(--text-primary) min-[1024px]:block">
-          {titre} <span className="t-data text-(--text-tertiary)">{nombre}</span>
+          {titre} <CountBadge>{nombre}</CountBadge>
         </h2>
         <div className="ml-auto hidden shrink-0 items-center gap-(--space-4) min-[1024px]:flex">
           {comparateur}

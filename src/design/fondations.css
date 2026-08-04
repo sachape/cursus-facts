@@ -352,6 +352,12 @@
   --marque-taille: 44px;
   --marque-rayon: 11px;
   --marque-retrait: 7px;
+  /* Compteur neutre : il informe, il ne signale rien. Aucun accent. */
+  --badge-compteur-fond: #f2f4f5;
+  --badge-compteur-texte: #68707a;
+  --badge-compteur-hauteur: 22px;
+  --badge-compteur-padding: 7px;
+
   --badge-hauteur: 28px;
   --badge-padding: 10px;
   --badge-point: 7px;
@@ -394,6 +400,8 @@
   --status-absent-bg: var(--clay-90);
   --status-pending: var(--amber-20);
   --status-pending-bg: var(--amber-70);
+  --badge-compteur-fond: var(--neutral-80);
+  --badge-compteur-texte: var(--neutral-40);
 
   --accent-default: var(--accent-40);
   --accent-hover: var(--accent-20);
