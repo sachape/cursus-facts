@@ -12,7 +12,7 @@
  */
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
-const BASE = process.env["URL_TEST"] ?? "http://localhost:3000";
+const BASE = process.env["URL_TEST"] ?? "http://localhost:4317";
 
 /** Rectangle d'un élément, en coordonnées de page. */
 async function boite(cible: Locator) {
@@ -57,20 +57,40 @@ test("deux éléments de texte adjacents ne se touchent jamais", async ({ page }
   /*
     L'invariant qui manquait. « Tous les domaines 193E-commerce 65 » : le
     compteur collé au libellé suivant, parce qu'une classe d'espacement ne
-    produisait aucun style. Ici on mesure l'écart réel entre les rectangles.
+    produisait aucun style.
+
+    ON MESURE ENTRE LES BOÎTES D'ENCRE, pas entre les rectangles. Les entrées
+    d'en-tête sont des pastilles à retrait interne : 4 px séparent leurs
+    rectangles, ~28 px séparent leurs lettres. Comparer les rectangles les
+    signalait toutes les quatre, alors que rien ne se touche à l'écran — et un
+    invariant qui signale du bruit finit par ne plus être lu, ce qui le rend
+    pire qu'absent.
+
+    Ce qui compte pour un lecteur, c'est l'espace entre les GLYPHES. Le retrait
+    intérieur en fait partie : le soustraire mesure ce que l'œil voit.
   */
   const onglets = page.locator("nav a, nav button").filter({ hasText: /\S/ });
   const total = await onglets.count();
   expect(total).toBeGreaterThan(1);
 
+  /** Rectangle réduit à sa zone de texte : retraits et filets ôtés. */
+  const encre = (cible: Locator) =>
+    cible.evaluate((e) => {
+      const r = e.getBoundingClientRect();
+      const s = getComputedStyle(e);
+      const g = parseFloat(s.paddingLeft) + parseFloat(s.borderLeftWidth);
+      const d = parseFloat(s.paddingRight) + parseFloat(s.borderRightWidth);
+      return { x: r.x + g, droite: r.right - d, y: r.y };
+    });
+
   const collisions: string[] = [];
   for (let i = 0; i < total - 1; i++) {
-    const gauche = await boite(onglets.nth(i));
-    const droite = await boite(onglets.nth(i + 1));
+    const gauche = await encre(onglets.nth(i));
+    const droite = await encre(onglets.nth(i + 1));
     // Uniquement les voisins sur la même ligne : un retour à la ligne n'est
     // pas une collision.
     if (Math.abs(gauche.y - droite.y) > 4) continue;
-    const ecart = droite.x - (gauche.x + gauche.width);
+    const ecart = droite.x - gauche.droite;
     if (ecart < 8) {
       collisions.push(
         `« ${(await onglets.nth(i).innerText()).slice(0, 24)} » → ${ecart.toFixed(1)} px`,
@@ -89,7 +109,7 @@ test("les tailles rendues appartiennent à l'échelle typographique", async ({ p
   const echelle = await page.evaluate(() => {
     const style = getComputedStyle(document.documentElement);
     return [
-      "--display-1-size", "--display-2-size", "--heading-1-size", "--heading-2-size",
+      "--display-0-size", "--display-1-size", "--display-2-size", "--heading-1-size", "--heading-2-size",
       "--heading-3-size", "--heading-4-size", "--body-lg-size", "--body-size",
       "--body-sm-size", "--caption-size", "--label-size", "--data-lg-size",
       "--data-size", "--data-sm-size",
