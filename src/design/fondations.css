@@ -238,9 +238,27 @@
   --z-base: 0;
   --z-collant: 10;
   --z-suggestions: 20;
-  --z-barre-ancree: 30;
-  --z-voile: 40;
-  --z-panneau: 50;
+
+  /*
+    LA PILE COLLANTE, NOMMÉE.
+
+    Ces trois-là ne sont pas trois z-index parmi d'autres : ils décrivent un
+    ordre imposé par la mise en page. L'en-tête reste au-dessus de la barre de
+    domaines, qui reste au-dessus de la barre de résultats, qui reste au-dessus
+    du contenu qui défile dessous. Tant que les composants écrivaient `z-30`,
+    `z-40`, `z-50` chacun de son côté, rien ne disait que ces trois nombres
+    formaient une suite — et rien n'empêchait un quatrième élément de venir
+    s'intercaler au jugé.
+
+    Les valeurs ne changent pas ; c'est leur RELATION qui devient déclarée.
+  */
+  --z-barre-resultats: 30;
+  --z-barre-domaines: 40;
+  --z-entete: 50;
+
+  --z-barre-ancree: 60;
+  --z-voile: 70;
+  --z-panneau: 80;
 
   /* ---------------------------------------------------------------------- */
   /* PRIMITIFS — élévation.                                                 */
@@ -361,16 +379,35 @@
   --critere-padding: 12px;
   --critere-ecart: 8px;
   --critere-rayon: 10px;
-  --critere-texte: 12.5px;
+  --critere-texte: 12px;
   --critere-bordure: #e5e7eb;
   --critere-encre: #56616d;
   --critere-ombre: 0 1px 2px rgb(15 23 42 / 0.03), 0 8px 20px rgb(15 23 42 / 0.05);
 
   /* Le défilement long sort de l'échelle de motion, qui couvre les
-     transitions d'interface et non les animations continues. */
-  --bande-duree: 50s;
-  --bande-duree-mobile: 36s;
+     transitions d'interface et non les animations continues.
+
+     C'est une VITESSE qui est déclarée, jamais une durée. Une durée fixe fait
+     varier la vitesse avec la taille du catalogue : à 163 organismes elle
+     défilait trois fois trop vite pour qu'on lise un nom. La durée est dérivée
+     de la largeur mesurée par `BandeOrganismes`, cette valeur en est l'entrée.
+
+     40 px/s tient le repère de contrôle : un organisme reste lisible plus de
+     deux secondes en traversant l'écran. Le cycle dure alors plusieurs minutes,
+     et c'est voulu — une bande de fond n'a pas à boucler dans le temps
+     d'attention d'un visiteur. */
+  --bande-vitesse: 40;
+  /* Repli si la mesure n'a pas encore eu lieu. Écrasé avant la première image
+     par `useLayoutEffect` : il ne s'affiche en pratique jamais. */
+  --bande-duree: 600s;
+  /* La mise en pause décélère au lieu de s'arrêter net — un arrêt brutal sur un
+     mouvement continu se remarque davantage que le mouvement lui-même. Hors de
+     l'échelle de motion pour la même raison que la durée de cycle. */
+  --bande-deceleration: 400ms;
   --bande-masque: 64px;
+  --bande-carte-hauteur: 64px;
+  --bande-carte-min: 200px;
+  --bande-carte-max: 320px;
 
   --rail-largeur: 180px;
   --rail-gap: var(--space-8);
