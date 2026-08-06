@@ -169,6 +169,27 @@ verifier("7 bis. Le dénominateur n'exclut que les champs sans objet", (o) => {
     : null;
 });
 
+/*
+  11. La date de vérification n'est jamais présentée comme impossible.
+
+  Sur la SORTIE, pas sur la donnée : une vérification antérieure à la première
+  écriture en base est un fait normal — nous lisons la page avant d'inscrire le
+  parcours. Ce qui serait faux, c'est de l'annoncer comme une « entrée au
+  catalogue », ce qui la ferait lire comme une impossibilité.
+
+  Ce qu'on vérifie ici est donc l'inverse de l'intuition : que la date de
+  vérification existe et soit lisible, jamais qu'elle suive la création.
+*/
+verifier("11. Toute fiche porte une date de vérification lisible", (o) => {
+  if (o.dateVerification === null) return null;
+  const date = new Date(o.dateVerification);
+  if (Number.isNaN(date.getTime())) return `${nom(o)} → date illisible`;
+  // Une date future serait, elle, réellement impossible.
+  return o.dateVerification > new Date().toISOString().slice(0, 10)
+    ? `${nom(o)} → vérification datée dans le futur (${o.dateVerification})`
+    : null;
+});
+
 verifier("8. Toute fiche possède une URL de site officiel", (o) =>
   o.url === null || o.url.trim() === "" || o.url === "—" ? nom(o) : null,
 );

@@ -479,18 +479,34 @@ export function ContenuFiche({
       */}
       <Section titre="Provenance">
         <dl className="divide-y divide-border text-sm">
+          {/*
+            « Première écriture en base », et non « entrée au catalogue ».
+            `created_at` date le premier enregistrement du parcours dans la
+            base — ce qui n'est pas la date à laquelle nous l'avons collecté.
+            Une date de vérification ANTÉRIEURE est donc normale et non
+            contradictoire : nous avons lu la page de l'organisme avant de
+            l'inscrire. L'ancien libellé faisait lire une impossibilité là où il
+            n'y a qu'un décalage réel.
+          */}
           <LigneProvenance
-            libelle="Créée"
+            libelle="Première écriture en base"
             valeur={formaterDate(p.creeeLe)}
-            detail="Première entrée au catalogue"
+            detail="Peut être postérieure à la vérification : la collecte précède l'enregistrement"
           />
           <LigneProvenance
             libelle="Dernière mise à jour"
             valeur={formaterDate(p.misAJourLe)}
+            /*
+              La mention n'affirme un changement que si un champ modifié est
+              réellement enregistré. Elle affirmait auparavant « aucun
+              changement depuis la création » dès que ce champ était vide — or
+              il l'est toujours, la colonne n'ayant jamais existé. Une absence
+              d'enregistrement n'est pas une absence de changement.
+            */
             detail={
               p.champModifie !== null
                 ? `Champ modifié : ${p.champModifie}`
-                : "Aucun changement de valeur enregistré depuis la création"
+                : "Détail des changements non enregistré"
             }
           />
           <LigneProvenance
