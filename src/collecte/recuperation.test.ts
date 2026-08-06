@@ -35,7 +35,13 @@ Sitemap: https://x.fr/sitemap.xml`;
       <p>Tarif&nbsp;: 1&nbsp;500&nbsp;&euro; HT</p><!-- caché --></body></html>`;
     const texte = texteprincipal(html);
     expect(texte).toContain("Formation PrestaShop");
-    expect(texte).toContain("Tarif : 1 500 € HT");
+    /*
+      Espace INSÉCABLE, et c'est voulu : la page en contient une, et le
+      décodage la restitue telle quelle plutôt que de l'aplatir. La
+      normalisation des citations traite les deux comme équivalentes, donc rien
+      ne se casse en aval — et le texte servi au modèle reste littéral.
+    */
+    expect(texte).toContain("Tarif\u00a0: 1\u00a0500\u00a0€ HT");
     expect(texte).not.toContain("var x=1");
     expect(texte).not.toContain("color:red");
     expect(texte).not.toContain("caché");
