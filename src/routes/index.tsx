@@ -28,6 +28,7 @@ import { TrainingResultCard } from "@/composants/TrainingResultCard";
 import { ResultToolbar } from "@/composants/ResultToolbar";
 import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
 import { RailCriteres } from "@/composants/HeroBadges";
+import { BandeOrganismes } from "@/composants/BandeOrganismes";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
@@ -225,6 +226,20 @@ function Explorer() {
     n'interroge rien. Trois groupes du plus précis au plus large — un parcours
     nommé est une réponse, un domaine n'est qu'une piste.
   */
+  /*
+    Tous les organismes, jamais une sélection : la bande boucle sur les 163.
+    Le décompte de parcours vient du catalogue, comme le total du surtitre.
+  */
+  const organismesBande = useMemo(() => {
+    const parNom = new Map<string, { categorie: ParcoursListe["organismeCategorie"]; parcours: number }>();
+    for (const p of parcours) {
+      const entree = parNom.get(p.organismeNom);
+      if (entree) entree.parcours += 1;
+      else parNom.set(p.organismeNom, { categorie: p.organismeCategorie, parcours: 1 });
+    }
+    return [...parNom].map(([nom, reste]) => ({ nom, ...reste }));
+  }, [parcours]);
+
   const suggestions: Suggestion[] = useMemo(() => {
     const q = filtres.recherche.trim().toLowerCase();
     if (q.length < 3) return [];
@@ -371,7 +386,18 @@ function Explorer() {
         </div>
       </header>
 
-      {/* space-16 entre les KPIs et la barre de domaines : le hero respire. */}
+      {/*
+        Pleine largeur : la bande déborde volontairement la grille de contenu,
+        c'est ce qui donne la continuité horizontale. Les marges négatives
+        compensent exactement le retrait du conteneur, jamais davantage.
+      */}
+      <div className="-mx-(--space-6) my-(--space-12)">
+        <BandeOrganismes
+          organismes={organismesBande}
+          choisir={(nom) => modifier({ organisme: nom })}
+        />
+      </div>
+
       <OngletsDomaines
         onglets={onglets}
         actif={filtres.domaine}

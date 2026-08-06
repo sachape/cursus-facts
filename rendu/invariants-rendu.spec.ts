@@ -284,3 +284,22 @@ test("les deux champs de recherche partagent une valeur, sans perdre de frappe",
   const position = await hero.evaluate((e: HTMLInputElement) => e.selectionStart);
   expect(position).toBe(5);
 });
+
+test("la bande d'organismes ne déborde pas et reste lisible", async ({ page }) => {
+  const bande = page.getByRole("list").filter({ hasText: /organisme|Formation|Université/ }).first();
+  await expect(bande).toBeVisible();
+
+  // Elle déborde volontairement la grille, jamais la fenêtre.
+  const fenetre = page.viewportSize()!;
+  const { defilable } = await page.evaluate(() => ({
+    defilable: document.documentElement.scrollWidth,
+  }));
+  expect(defilable).toBeLessThanOrEqual(fenetre.width + 1);
+
+  // Nom et compteur ne se touchent pas : sans écart, « Cegos12 » se lit comme
+  // un seul mot.
+  const premier = bande.locator("li").first().locator("span");
+  const nom = await boite(premier.first());
+  const compteur = await boite(premier.last());
+  expect(compteur.x - (nom.x + nom.width)).toBeGreaterThan(4);
+});

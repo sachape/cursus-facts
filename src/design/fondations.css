@@ -366,6 +366,12 @@
   --critere-encre: #56616d;
   --critere-ombre: 0 1px 2px rgb(15 23 42 / 0.03), 0 8px 20px rgb(15 23 42 / 0.05);
 
+  /* Le défilement long sort de l'échelle de motion, qui couvre les
+     transitions d'interface et non les animations continues. */
+  --bande-duree: 50s;
+  --bande-duree-mobile: 36s;
+  --bande-masque: 64px;
+
   --rail-largeur: 180px;
   --rail-gap: var(--space-8);
   --rail-haut: 120px;
@@ -536,6 +542,20 @@ html {
   mouvement se remarque au lieu d'être perçu — un badge qui attire l'œil
   concurrence le titre qu'il accompagne.
 */
+/*
+  La bande se déplace de la moitié de sa largeur : la liste étant dupliquée,
+  ce demi-tour ramène exactement la seconde copie à la place de la première, et
+  le raccord ne se voit pas.
+*/
+@keyframes defile {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes derive {
   0%,
   100% {
