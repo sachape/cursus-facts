@@ -130,6 +130,51 @@ ramener que des parcours d'organismes connus.
 **Les nouveaux acteurs viendront de SIRENE et DREETS, ou de nulle part.** Deux
 mécanismes, deux sources, aucun ne fait le travail de l'autre.
 
+### Aide au choix — cinq questions ramenées à quatre
+
+Mesuré le 6 août 2026 sur 230 parcours par `bun run scripts/pouvoir-discriminant.ts`.
+« Restants » = parcours qu'une réponse laisse **sans écart sur son propre
+critère**. Les réponses neutres — celles qui n'écartent personne par
+construction, « pas encore décidé », « à temps plein » — sont **exclues des
+agrégats** : les compter tirait chaque moyenne vers le bas et gonflait chaque
+étendue, si bien que les questions n'étaient plus comparables entre elles.
+
+| Question | Écart entre réponses | Réduction moyenne | Couverture du champ |
+|---|---:|---:|---:|
+| Budget | **60,0 pts** | 49,0 % | `prix_min` 53 % |
+| Canal de vente | 35,2 pts | 78,6 % | `competences_couvertes` 50 % |
+| Objectif | 30,4 pts | 69,6 % | `code_rncp_rs` 12 % |
+| ~~Point de départ~~ | ~~17,8 pts~~ | ~~23,8 %~~ | `niveau_entree` **93 %** |
+| Temps par semaine | 16,1 pts | 11,0 % | `volume_horaire` **30 %** |
+
+**Le point de départ est retiré. Le temps est conservé.** Les deux mesurent
+presque pareil — 17,8 contre 16,1 — et ce n'est donc pas le chiffre qui les
+départage, c'est la **couverture du champ dont ils dépendent**.
+
+À 93 %, le point de départ disposait de sa donnée et ne triait quand même pas :
+sa faiblesse est un fait sur la question. À 30 %, celle du temps est un **fait
+sur nous** — `evaluer` ne produit ni correspondance ni écart sur un volume
+absent, conformément à la règle. Retirer les deux au même motif aurait
+**verrouillé une lacune de collecte en décision produit**, et après le crawl on
+aurait supprimé une question devenue utile sans jamais savoir qu'elle l'était.
+
+C'est la distinction `non_collecte` / `non_communique` appliquée à l'interface.
+
+**À rejouer après le crawl.** Si `volume_horaire` dépasse 70 % de couverture et
+que le temps reste sous 20 points d'écart, la question tombe à son tour — mais
+mesurée sur des données présentes.
+
+Deux conséquences assumées du retrait :
+
+- `niveau_entree` n'entre plus dans l'adéquation, alors que c'est le champ le
+  mieux couvert des cinq. Le prérequis reste un fait publié sur la fiche ; il ne
+  pèse plus sur le choix des trois correspondances.
+- Le **canal n'était pas le maillon faible**, contrairement à l'hypothèse de
+  départ : c'est la question à la plus forte réduction moyenne (78,6 %). Mais
+  ses réponses coupent toutes à peu près pareil — elle sépare l'utilisateur du
+  catalogue, pas les utilisateurs entre eux. Le budget fait les deux, et c'est
+  ce qui le place en tête.
+
 ### Découverte par comparatifs tiers — épuisée
 
 79 % de recouvrement avec ce que nous avions déjà. Et aucune donnée n'en est
@@ -178,6 +223,28 @@ identiquement à du JSON libre. Un JSON mal formé ne produit rien.
 ---
 
 ## 5. Dettes connues, chiffrées
+
+### Ni la collecte automatique ni la manuelle ne domine l'autre
+
+Constat du 6 août 2026, à retenir avant d'arbitrer une divergence.
+
+Le pipeline allait dégrader des prix justes : les 1 500 € de Dawan, corrects,
+qu'il s'apprêtait à remplacer par 875 € — le tarif journalier lu comme un total.
+**La collecte automatique n'est pas systématiquement meilleure que ce qu'elle
+remplace.**
+
+Mais la réciproque est fausse. Sur la même passe, le pipeline a corrigé une
+erreur de notre propre collecte manuelle : la fiche 211 portait 975 €, qui était
+*exactement* le tarif journalier de l'organisme. Ce n'était pas un prix périmé,
+c'était la même confusion d'unité, commise à la main en juin et invisible depuis.
+Et le garde-fou de correspondance a dénoncé cinq appariements faux, dont **deux
+que la relecture humaine n'avait pas vus**.
+
+Conséquence pratique : une divergence entre catalogue et extraction ne se
+tranche pas par l'origine de la donnée. Elle se tranche sur la citation et sur
+la cohérence interne — un prix inférieur au plancher journalier publié par
+l'organisme est faux, quelle que soit la main qui l'a écrit.
+
 
 | Dette | Chiffre | Note |
 |---|---|---|
@@ -274,6 +341,29 @@ attraper une régression avant déploiement, et la production étant en retard s
 branche poussée, ils produiraient des échecs sans rapport avec le dernier commit.
 
 ---
+
+## 7 bis. Le panneau qui s'effaçait après cinq secondes — diagnostic complété
+
+Le symptôme avait été traité, pas la cause. Le voici en entier.
+
+**`@tanstack/history` patche `window.history.pushState`.** Un appel direct n'est
+donc pas une écriture d'historique : il est interprété par le routeur comme une
+navigation, et le routeur rendait `/parcours/<slug>` **par-dessus** le panneau
+encore monté. D'où les deux comportements simultanés, et l'impression d'un
+panneau qui « s'efface » — il ne s'effaçait pas, il était recouvert.
+
+**La parade : la fiche ouverte vit dans la RECHERCHE de la route courante**
+(`?fiche=<slug>`), jamais dans un `pushState` direct. On ne change jamais de
+route, et le retour arrière, le partage et l'accès direct sont gérés
+nativement — sans le moindre gestionnaire `popstate` à écrire.
+
+C'est encore le motif du §8 : la règle était juste, l'API appelée était la
+bonne, et une couche en aval — le patch du routeur — en changeait le sens sans
+rien signaler. Aucune erreur, aucun test rouge.
+
+**Conséquence pour la suite :** `src/composants/ouverture-fiche.tsx` est
+désormais le seul endroit qui ouvre une fiche. Toute vue qui réécrirait sa
+propre ouverture retomberait dans le même piège.
 
 ## 8. Le motif qui s'est répété six fois
 
