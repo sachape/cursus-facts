@@ -17,15 +17,20 @@ import { filtrerParCitation, type Filtrage, type ValeurCitee } from "./citation"
 /**
  * Modèle d'extraction, configurable sans toucher au code.
  *
- * L'extraction sous contrainte de citation est une tâche de repérage et de
- * recopie, pas de jugement — et le garde-fou rattrape les erreurs, puisqu'une
- * valeur mal extraite est rejetée plutôt qu'écrite. Un modèle plus petit y
- * suffit donc, à condition de le vérifier plutôt que de le supposer.
+ * MESURÉ LE 6 AOÛT 2026 : Haiku rend 59 % de citations valides contre 71 % pour
+ * Opus, sur le même lot figé. L'écart tient sur cinq strates, et il ne vient pas
+ * de la longueur des citations — les borner à 200 caractères n'a rien changé.
+ * La tâche paraît mécanique, mais localiser une valeur puis la recopier sans
+ * dériver ne l'est pas.
+ *
+ * À 59 %, quatre extractions sur dix sont perdues : l'économie par appel ne
+ * compense pas le travail à refaire. Le paramètre reste configurable — la
+ * mesure sera à refaire quand les modèles évolueront.
  *
  * Seule l'extraction bascule : l'assistant d'adéquation, qui rédige une phrase
  * à partir de listes déjà établies, garde son propre modèle.
  */
-export const MODELE = process.env["MODELE_EXTRACTION"] ?? "claude-haiku-4-5";
+export const MODELE = process.env["MODELE_EXTRACTION"] ?? "claude-opus-5";
 
 /**
  * La réflexion adaptative n'existe pas sur toute la gamme.
