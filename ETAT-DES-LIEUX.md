@@ -369,10 +369,45 @@ propre ouverture retomberait dans le même piège.
 
 Plafond de découverte à 400, créneau de cadence enregistré après l'attente,
 garde-fou d'alternance contourné par l'affichage, `non_applicable` déduit d'un
-autre champ, syntaxe de variable Tailwind, migration de carte non appliquée.
+autre champ, syntaxe de variable Tailwind, migration de carte non appliquée,
+**et le hook de pré-poussée qui testait une autre application**.
 
 **À chaque fois : la règle est juste, la donnée est juste, une couche en aval
 passe à côté. Rien ne plante, aucun test ne rougit, le résultat est faux.**
+
+### Le cas du 6 août : un garde-fou qui mesurait autre chose
+
+`playwright.config.ts` pointe sur `http://localhost:3000` avec
+`reuseExistingServer: true`. Un serveur de développement d'un **autre projet**
+occupait ce port. Playwright ne l'a pas démarré : il s'y est rattaché.
+
+Les invariants de rendu de Formlist ont donc inspecté une application étrangère,
+et `.githooks/pre-push` faisait la même chose à chaque poussée. Il tournait, il
+ne plantait pas, il rendait des verdicts — sur autre chose. Même forme que le
+plafond de découverte à 400.
+
+**Deux parades, la seconde suffit :** `strictPort`, pour qu'un port occupé
+échoue bruyamment au lieu de se rattacher en silence ; ou faire tourner les
+invariants contre un **build** sur son propre port, ce qui supprime la question
+et, au passage, l'intermittence observée sur le test de suggestions.
+
+### Le garde-fou n'a jamais protégé — et c'est le plus grave
+
+Les quatre invariants rouges du 6 août échouent **aussi sur `main`** (vérifié en
+remisant les modifications en cours et en rejouant sur `HEAD`). Le hook bloque
+donc la poussée depuis un moment : les commits récents sont passés par
+`SAUTER_RENDU` ou par `--no-verify`.
+
+Un garde-fou qu'on contourne par habitude ne protège de rien. Il est pire qu'un
+garde-fou absent, parce qu'il donne le sentiment d'une couverture — c'est le
+test rouge toléré qui finira par masquer une vraie régression, exactement comme
+un plafond mesuré sur le mauvais corpus.
+
+**Les quatre dettes se soldent avant la prochaine poussée**, et dans cet ordre :
+le passage sur un build d'abord — il supprime d'un coup la classe
+d'intermittence et le risque de mauvais port —, puis le contraste de
+`--text-tertiary`, puis les paliers du titre, le débordement des onglets à
+360 px, et le faux positif d'espacement.
 
 ### Et un second motif, distinct : deux règles correctes, incohérentes ensemble
 
