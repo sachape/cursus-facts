@@ -69,6 +69,7 @@ function formesDuNombre(valeur: number): string[] {
 }
 
 export type MotifRejet =
+  | "extrait_trop_long"
   | "extrait_vide"
   | "extrait_absent_de_la_page"
   | "valeur_absente_de_l_extrait";
@@ -94,8 +95,21 @@ const MARQUEURS_FAUX = ["non", "aucun", "aucune", "sans", "not", "no "];
  * dont un seul élément est cité laisserait passer un programme à moitié
  * inventé — pire qu'un programme absent, parce qu'il a l'air complet.
  */
-export function verifierCitation(valeur: unknown, extrait: string, page: string): Verdict {
+export function verifierCitation(
+  valeur: unknown,
+  extrait: string,
+  page: string,
+  maxLongueur = Number.POSITIVE_INFINITY,
+): Verdict {
   if (extrait.trim() === "") return { valide: false, motif: "extrait_vide", valeur, extrait };
+  /*
+    Un extrait trop long est rejeté AVANT d'être comparé : au-delà d'une phrase,
+    la recopie dérive mécaniquement, et le rejet arriverait de toute façon —
+    mais sous un motif qui ferait croire à une citation fabriquée.
+  */
+  if (extrait.length > maxLongueur) {
+    return { valide: false, motif: "extrait_trop_long", valeur, extrait };
+  }
 
   const extraitNormalise = normaliser(extrait);
   if (!normaliser(page).includes(extraitNormalise)) {
@@ -157,6 +171,7 @@ export type Filtrage = {
 export function filtrerParCitation(
   extraction: Record<string, ValeurCitee | null | undefined>,
   page: string,
+  maxLongueur?: number,
 ): Filtrage {
   const retenus: Record<string, ValeurCitee> = {};
   const rejets: Rejet[] = [];
@@ -165,7 +180,7 @@ export function filtrerParCitation(
     if (cite === null || cite === undefined) continue;
     if (cite.valeur === null || cite.valeur === undefined) continue;
 
-    const verdict = verifierCitation(cite.valeur, cite.extrait ?? "", page);
+    const verdict = verifierCitation(cite.valeur, cite.extrait ?? "", page, maxLongueur);
     if (verdict.valide) {
       retenus[champ] = cite;
     } else {

@@ -104,3 +104,31 @@ describe("citation obligatoire", () => {
     expect(rejets).toHaveLength(1);
   });
 });
+
+describe("borne de longueur des citations", () => {
+  it("rejette un extrait plus long que la borne, avant toute comparaison", () => {
+    /*
+      Un extrait de 769 caractères n'est pas une citation, c'est un paragraphe
+      recopié — et la recopie dérive mécaniquement au milieu. Le rejeter sous
+      son propre motif évite de le compter comme une citation fabriquée, ce qui
+      avait fait conclure à un taux d'invention inexistant.
+    */
+    const long = "a".repeat(250);
+    expect(verifierCitation("a", long, long, 200)).toMatchObject({
+      valide: false,
+      motif: "extrait_trop_long",
+    });
+  });
+
+  it("laisse passer un extrait court et exact", () => {
+    const page = "Tarif : 1 495 € HT pour la session inter-entreprises.";
+    expect(verifierCitation(1495, "Tarif : 1 495 € HT", page, 200)).toEqual({ valide: true });
+  });
+
+  it("n'applique aucune borne quand elle n'est pas demandée", () => {
+    // La borne appartient au pipeline, pas au comparateur : celui-ci reste
+    // utilisable sans elle.
+    const long = `Contexte. ${"mot ".repeat(80)}Tarif : 1 495 € HT.`;
+    expect(verifierCitation(1495, long, long).valide).toBe(true);
+  });
+});

@@ -129,6 +129,36 @@ async function main() {
   console.log(`\nExtraction — ${lot.length} page(s) sur ${file.length} en file`);
   console.log(`Modèle : ${MODELE}\n`);
 
+  /*
+    APPEL DE CONTRÔLE, avant le lot.
+
+    Quarante appels ont été perdus sur une compilation de grammaire, puis trente
+    sur un paramètre refusé. Chacune de ces erreurs se voyait sur le PREMIER
+    appel. Une page suffit donc à valider la configuration ; le reste ne part
+    qu'ensuite.
+  */
+  const sonde = lot[0];
+  if (sonde !== undefined) {
+    const reponse = await recuperer(sonde.url);
+    if (reponse.ok) {
+      const texte = texteprincipal(reponse.texte);
+      if (!exigeRepliNavigateur(texte)) {
+        try {
+          const essai = await extrairePage(client, texte, sonde.url);
+          console.log(
+            `Appel de contrôle : ${Object.keys(essai.filtrage.retenus).length}/${essai.proposes} champs cités — configuration valide.\n`,
+          );
+        } catch (erreur) {
+          console.error(
+            `\nAppel de contrôle EN ÉCHEC — le lot n'est pas lancé.\n` +
+              `${erreur instanceof Error ? erreur.message : String(erreur)}\n`,
+          );
+          process.exit(1);
+        }
+      }
+    }
+  }
+
   const journal: EcritureJournalisee[] = [];
   const rejets: (Rejet & { id: number; url: string })[] = [];
   const echecs: { id: number; url: string; motif: string }[] = [];
@@ -252,6 +282,12 @@ async function main() {
     {},
   );
 
+  const depense = client.depense();
+  console.log(`\n  Appels au modèle             : ${depense.appels}`);
+  console.log(
+    `  Caractères envoyés          : ${depense.caracteresEnvoyes.toLocaleString("fr-FR")}` +
+      ` (~${Math.round(depense.caracteresEnvoyes / 4).toLocaleString("fr-FR")} jetons)`,
+  );
   console.log(`\n  Pages lues                    : ${pagesLues}/${lot.length}`);
   console.log(`  Repli navigateur nécessaire   : ${repliNecessaire}`);
   console.log(`  Champs proposés par le modèle : ${proposes}`);

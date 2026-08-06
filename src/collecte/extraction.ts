@@ -27,6 +27,16 @@ import { filtrerParCitation, type Filtrage, type ValeurCitee } from "./citation"
  */
 export const MODELE = process.env["MODELE_EXTRACTION"] ?? "claude-haiku-4-5";
 
+/**
+ * La réflexion adaptative n'existe pas sur toute la gamme.
+ *
+ * Haiku la refuse en 400, et l'envoyer quand même faisait échouer les trente
+ * pages d'un coup. On ne la retire pas partout pour autant : sur un modèle qui
+ * la prend, elle améliore le repérage dans une page longue. Le paramètre suit
+ * donc le modèle, au lieu d'être posé une fois pour toutes.
+ */
+const REFLECHIT = !MODELE.includes("haiku");
+
 /** Les dix-neuf champs extraits d'une page de détail. */
 export const CHAMPS_EXTRAITS = [
   "prix",
@@ -140,6 +150,11 @@ Si aucune phrase de la page ne porte littéralement la valeur, omets le champ en
 Un champ omis est un résultat correct. Un champ inventé est une faute grave — la citation
 sera vérifiée par comparaison de chaînes, et toute valeur non attestée sera rejetée.
 
+CITE COURT. Un extrait dépasse rarement une phrase, et jamais 200 caractères.
+Choisis la phrase la plus courte qui contient la valeur — pas le paragraphe qui
+l'entoure. Un extrait long est recopié de moins en moins fidèlement, et il est
+rejeté dès qu'un caractère diverge.
+
 Ne calcule rien. « 3 jours » ne devient pas 21 heures si la page n'écrit pas 21 heures.
 Ne complète rien par ce que tu sais de l'organisme.
 Ne confonds pas le tarif d'une personne (inter) et le tarif d'un groupe (intra).`;
@@ -153,7 +168,28 @@ export type Extraction = {
 
 export type ClientExtraction = {
   extraire(texte: string, url: string): Promise<Record<string, ValeurCitee | null>>;
+  /** Compteur de dépense, lisible en fin de passe. */
+  depense(): { appels: number; caracteresEnvoyes: number };
 };
+
+/**
+ * Plafond d'appels par passe.
+ *
+ * Une erreur de configuration a consommé quarante appels avant d'être vue, puis
+ * trente sur un paramètre refusé. Le plafond interrompt là où le regard
+ * n'arrive plus : au-delà, la passe s'arrête au lieu de continuer à payer.
+ */
+export const PLAFOND_APPELS = Number(process.env["PLAFOND_APPELS"] ?? 200);
+
+/**
+ * Longueur maximale d'une citation.
+ *
+ * Un extrait de 769 caractères n'est pas une citation, c'est un paragraphe
+ * recopié — et la dérive au milieu devient mécanique. Les extraits fautifs
+ * avaient une médiane de 406 caractères contre 117 pour ceux qui passaient.
+ * Rien dans la consigne ne demandait de citer court.
+ */
+export const MAX_CITATION = Number(process.env["MAX_CITATION"] ?? 200);
 
 /** Client réel, adossé à l'API Claude. */
 export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientExtraction {
@@ -164,8 +200,11 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
     );
   }
   const client = new Anthropic({ apiKey: cle });
+  let appels = 0;
+  let caracteres = 0;
 
   return {
+    depense: () => ({ appels, caracteresEnvoyes: caracteres }),
     async extraire(texte, url) {
       /*
         PAS DE SORTIE STRUCTURÉE. La grammaire d'un schéma à champs cités ne
@@ -179,15 +218,24 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
         façon à un JSON libre. Un champ mal formé se perd, ce qui est le
         comportement voulu : pas de citation, pas d'écriture.
       */
+      if (appels + GROUPES_EXTRACTION.length > PLAFOND_APPELS) {
+        throw new Error(
+          `Plafond de ${PLAFOND_APPELS} appels atteint (${appels} effectués). ` +
+            `Relancer avec PLAFOND_APPELS plus haut si c'est voulu.`,
+        );
+      }
+
       const resultats = await Promise.all(
         GROUPES_EXTRACTION.map(async (groupe) => {
+          appels += 1;
+          caracteres += texte.length;
           const proprietes = Object.fromEntries(
             groupe.map((champ) => [champ, SCHEMA_EXTRACTION.properties[champ]]),
           );
           const message = await client.messages.create({
             model: MODELE,
             max_tokens: 8_000,
-            thinking: { type: "adaptive" },
+            ...(REFLECHIT ? { thinking: { type: "adaptive" as const } } : {}),
             system: CONSIGNE,
             messages: [
               {
