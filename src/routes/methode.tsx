@@ -524,6 +524,27 @@ function Methode() {
             </dd>
           </div>
         </dl>
+
+        {/*
+          Cette explication vivait sur chaque fiche, sous la date de première
+          écriture. Elle décrit NOTRE fonctionnement, pas la formation : sa
+          place est ici, où l'on vient chercher comment le catalogue est
+          fabriqué, et non dans une fiche où l'on vient comparer des faits.
+
+          Elle reste indispensable : sans elle, une date de vérification
+          antérieure à la date d'enregistrement se lit comme une impossibilité,
+          donc comme une erreur de notre part.
+        */}
+        <h3 className="mt-6 font-titre font-medium">La collecte précède l&apos;enregistrement</h3>
+        <p className="mt-2 text-(--text-secondary)">
+          La date de première écriture en base est celle du premier enregistrement d&apos;un
+          parcours, pas celle à laquelle nous avons lu la page de l&apos;organisme. Une date de
+          vérification <strong className="font-medium">antérieure</strong> à la date
+          d&apos;enregistrement est donc normale : nous avons consulté la source avant d&apos;inscrire
+          la fiche. Le détail de provenance de chaque fiche porte ces deux dates séparément, parce
+          que confondre « enregistré » et « vérifié » avantagerait les fiches récentes sur les
+          fiches contrôlées.
+        </p>
       </Section>
 
       <Section

@@ -12,6 +12,7 @@
  * dans l'en-tête : sans cette ligne de faits clés, remonter les compétences
  * repousserait le coût hors de vue et dégraderait la fiche.
  */
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
@@ -110,6 +111,108 @@ function LigneProvenance({
         )}
       </dd>
     </div>
+  );
+}
+
+/**
+ * Provenance — une ligne au repos, le détail sur demande.
+ *
+ * POURQUOI REPLIER. Le bloc occupait quatre lignes avec leurs explications, au
+ * même niveau visuel que le programme. C'est disproportionné pour une
+ * information de second plan, et ça repoussait la barre d'actions hors de vue.
+ *
+ * POURQUOI NE PAS MASQUER. La source et la date sont ce qui rend notre promesse
+ * vérifiable. Les retirer nous ramènerait au régime des comparatifs affiliés,
+ * qui demandent qu'on les croie sur parole — c'est précisément ce contre quoi
+ * le produit se construit. Repliée, l'information reste à un clic ; masquée,
+ * elle n'existe plus.
+ *
+ * L'ÉTAT NE SURVIT PAS À LA FICHE. Le panneau ne se remonte pas d'un parcours à
+ * l'autre : sans cette remise à zéro, ouvrir une fiche après avoir déplié la
+ * précédente afficherait un pavé de dates là où on attend un résumé.
+ */
+function Provenance({ p }: { p: ParcoursFiche }) {
+  const [deplie, setDeplie] = useState(false);
+  useEffect(() => setDeplie(false), [p.id]);
+
+  return (
+    <section className="border-t border-border py-(--space-5)">
+      {/*
+        `flex-wrap` : sous 640 px la ligne passe sur deux lignes plutôt que de
+        tronquer une date ou de pousser le bouton hors du panneau.
+      */}
+      <div className="flex flex-wrap items-center gap-x-(--space-2) gap-y-(--space-1) t-caption text-(--text-tertiary)">
+        <span>Source : {p.sourceInformation ?? "Non communiquée"}</span>
+        <span aria-hidden="true">·</span>
+        <span>Vérifié le {formaterDate(p.dateVerification)}</span>
+        <span aria-hidden="true">·</span>
+        <button
+          type="button"
+          onClick={() => setDeplie((ouvert) => !ouvert)}
+          aria-expanded={deplie}
+          className="inline-flex items-center gap-(--space-1) rounded-(--radius-sm) text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+        >
+          {deplie ? "Masquer le détail" : "Voir le détail"}
+          <svg
+            viewBox="0 0 16 16"
+            width="12"
+            height="12"
+            fill="none"
+            aria-hidden="true"
+            className={`transition-transform duration-(--motion-base) ${deplie ? "rotate-180" : ""}`}
+          >
+            <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+          </svg>
+        </button>
+      </div>
+
+      {/*
+        Dépliage par `grid-template-rows: 0fr → 1fr`, et non par une hauteur
+        maximale devinée. Une `max-height` en dur se fait rattraper dès qu'une
+        source porte un nom long : soit elle coupe, soit elle laisse un blanc,
+        et dans les deux cas elle ment sur la hauteur réelle.
+      */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-(--motion-base) ${
+          deplie ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <dl className="divide-y divide-border pt-(--space-4) text-sm">
+            <LigneProvenance
+              libelle="Première écriture en base"
+              valeur={formaterDate(p.creeeLe)}
+            />
+            <LigneProvenance
+              libelle="Dernière mise à jour"
+              valeur={formaterDate(p.misAJourLe)}
+              /*
+                La mention n'affirme un changement que si un champ modifié est
+                réellement enregistré. Elle affirmait auparavant « aucun
+                changement depuis la création » dès que ce champ était vide — or
+                il l'est toujours, la colonne n'ayant jamais existé. Une absence
+                d'enregistrement n'est pas une absence de changement.
+              */
+              detail={
+                p.champModifie !== null
+                  ? `Champ modifié : ${p.champModifie}`
+                  : "Détail des changements non enregistré"
+              }
+            />
+            <LigneProvenance
+              libelle="Source"
+              valeur={p.sourceInformation ?? "Non communiquée"}
+              detail={p.siteOfficiel ?? undefined}
+            />
+            <LigneProvenance
+              libelle="Dernière vérification"
+              valeur={formaterDate(p.dateVerification)}
+              detail={`Contrôle effectué même sans changement · Origine : ${p.origineChangement ?? "vérification interne"}`}
+            />
+          </dl>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -477,50 +580,42 @@ export function ContenuFiche({
         beaucoup plus difficile à corrompre qu'un comparateur qui n'affiche que
         son état courant.
       */}
-      <Section titre="Provenance">
-        <dl className="divide-y divide-border text-sm">
-          {/*
-            « Première écriture en base », et non « entrée au catalogue ».
-            `created_at` date le premier enregistrement du parcours dans la
-            base — ce qui n'est pas la date à laquelle nous l'avons collecté.
-            Une date de vérification ANTÉRIEURE est donc normale et non
-            contradictoire : nous avons lu la page de l'organisme avant de
-            l'inscrire. L'ancien libellé faisait lire une impossibilité là où il
-            n'y a qu'un décalage réel.
-          */}
-          <LigneProvenance
-            libelle="Première écriture en base"
-            valeur={formaterDate(p.creeeLe)}
-            detail="Peut être postérieure à la vérification : la collecte précède l'enregistrement"
-          />
-          <LigneProvenance
-            libelle="Dernière mise à jour"
-            valeur={formaterDate(p.misAJourLe)}
-            /*
-              La mention n'affirme un changement que si un champ modifié est
-              réellement enregistré. Elle affirmait auparavant « aucun
-              changement depuis la création » dès que ce champ était vide — or
-              il l'est toujours, la colonne n'ayant jamais existé. Une absence
-              d'enregistrement n'est pas une absence de changement.
-            */
-            detail={
-              p.champModifie !== null
-                ? `Champ modifié : ${p.champModifie}`
-                : "Détail des changements non enregistré"
-            }
-          />
-          <LigneProvenance
-            libelle="Source"
-            valeur={p.sourceInformation ?? "Non communiquée"}
-            detail={p.siteOfficiel ?? undefined}
-          />
-          <LigneProvenance
-            libelle="Dernière vérification"
-            valeur={formaterDate(p.dateVerification)}
-            detail={`Contrôle effectué même sans changement · Origine : ${p.origineChangement ?? "vérification interne"}`}
-          />
-        </dl>
-      </Section>
+      {/*
+        « Première écriture en base », et non « entrée au catalogue ».
+        `created_at` date le premier enregistrement du parcours dans la base —
+        ce qui n'est pas la date à laquelle nous l'avons collecté. Une date de
+        vérification ANTÉRIEURE est donc normale et non contradictoire.
+
+        L'explication de ce décalage a quitté la fiche pour la page Méthode,
+        section « Sources de données » : elle décrit notre fonctionnement, pas
+        la formation. Une fiche porte des faits sur un parcours ; tout ce qui
+        parle de nous appartient à la méthode.
+      */}
+      <Provenance p={p} />
+
+      {/*
+        « Signaler une correction » a quitté la barre d'actions du pied, où il
+        occupait le même rang que « Voir le site officiel » — trois actions
+        alignées déclarent trois importances égales, et débordaient sur trois
+        lignes.
+
+        Sa vraie place est ici : on ne signale une correction qu'après avoir lu
+        la fiche et constaté une erreur. En haut, il ne fait que peser sur les
+        deux actions qui comptent ; en bas, il tombe exactement au moment où il
+        peut servir.
+      */}
+      <p className="pb-(--space-4) t-caption text-(--text-tertiary)">
+        <a
+          href={
+            `mailto:corrections@formlist.fr` +
+            `?subject=${encodeURIComponent(`Correction — ${p.nom}`)}` +
+            `&body=${encodeURIComponent(`Fiche concernée : ${p.slug}\n\nInformation à corriger :\n`)}`
+          }
+          className="rounded-(--radius-sm) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-secondary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+        >
+          Signaler une correction
+        </a>
+      </p>
 
       {/*
         La section « Actions » vivait ici. Elle est passée dans le pied ancré du
