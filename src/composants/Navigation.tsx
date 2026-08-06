@@ -45,7 +45,14 @@ export function Navigation() {
           <Symbole className="block size-(--space-8) text-(--text-primary) min-[1024px]:hidden" />
         </Link>
 
-        <nav aria-label="Navigation principale">
+        {/*
+          `min-w-0` : sans lui, la largeur minimale d'un élément flex est celle
+          de son contenu. Le `overflow-x-auto` de la liste ne s'enclenchait donc
+          jamais — la barre restait à 412 px et poussait le document à 504 px de
+          large sur un écran de 360. Le défilement était déclaré, il ne pouvait
+          simplement pas s'appliquer.
+        */}
+        <nav aria-label="Navigation principale" className="min-w-0">
           <ul className="-mx-1 flex gap-1 overflow-x-auto py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {VUES.map((vue) => (
               <li key={vue.to} className="shrink-0">
