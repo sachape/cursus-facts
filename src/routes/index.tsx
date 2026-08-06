@@ -30,6 +30,7 @@ import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
 import { RailCriteres } from "@/composants/HeroBadges";
 import { BandeOrganismes } from "@/composants/BandeOrganismes";
 import { PanneauFiche } from "@/composants/PanneauFiche";
+import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,7 +41,7 @@ export const Route = createFileRoute("/")({
   // l'URL pour que le lien soit partageable et que le retour arrière marche.
   validateSearch: (recherche: Record<string, unknown>): { organisme?: string; fiche?: string } => ({
     ...(typeof recherche["organisme"] === "string" ? { organisme: recherche["organisme"] } : {}),
-    ...(typeof recherche["fiche"] === "string" ? { fiche: recherche["fiche"] } : {}),
+    ...validerFiche(recherche),
   }),
   loader: () => chargerListe(),
   component: Explorer,
@@ -70,21 +71,6 @@ function Explorer() {
   const [limite, setLimite] = useState(PAR_PAGE);
   // Sous 960 px la colonne devient un panneau dépliable, replié au chargement.
   const [filtresOuverts, setFiltresOuverts] = useState(false);
-  /*
-   * La fiche ouverte vit dans l'URL, en paramètre de recherche sur la route
-   * courante — surtout pas via `window.history.pushState`.
-   *
-   * @tanstack/history patche `history.pushState` : un appel direct est
-   * interprété par le routeur comme une navigation, qui rendait alors la page
-   * `/parcours/<slug>` par-dessus le panneau. C'était la cause du double
-   * comportement. En passant par le routeur sur la route courante, on ne
-   * change jamais de route.
-   *
-   * Bénéfice : le retour arrière, le partage et l'accès direct sont gérés
-   * nativement — `?fiche=<slug>` rouvre le catalogue avec le panneau déployé,
-   * sans gestionnaire `popstate` à écrire.
-   */
-  const origineFocus = useRef<HTMLElement | null>(null);
   /** Point de retour du focus quand l'élément d'origine a disparu. */
   const champRecherche = useRef<HTMLInputElement | null>(null);
   /*
@@ -107,35 +93,17 @@ function Explorer() {
   }, []);
 
   /*
-    L'élément de retour est optionnel.
-
-    Le retour au focus avait été conçu pour un clic sur une rangée, où
-    l'élément d'origine existe toujours à la fermeture. Depuis
-    l'autocomplétion, il a disparu — la liste s'est refermée. Le point de
-    retour par défaut est alors le champ de recherche : il est présent, il est
-    visible, et il correspond à ce que fait la personne — elle referme la fiche
-    et continue sa recherche.
+    L'ouverture passe par le point d'appel partagé. Le repli de focus est le
+    champ de recherche : il est présent, visible, et il correspond à ce que fait
+    la personne — elle referme la fiche et continue sa recherche.
   */
+  const { ouvrir, fermer: fermerPanneau } = useOuvertureFiche({
+    retourParDefaut: champRecherche,
+  });
   const ouvrirEnPanneau = useCallback(
-    (parcours: ParcoursListe, origine?: HTMLElement | null) => {
-      origineFocus.current = origine ?? champRecherche.current;
-      void naviguer({
-        search: (actuel: { fiche?: string }) => ({ ...actuel, fiche: parcours.slug }),
-      });
-    },
-    [naviguer],
+    (parcours: ParcoursListe, origine?: HTMLElement | null) => ouvrir(parcours.slug, origine),
+    [ouvrir],
   );
-
-  const fermerPanneau = useCallback(() => {
-    void naviguer({
-      search: ({ fiche: _ignore, ...reste }: { fiche?: string }) => reste,
-    });
-    // Un élément détaché du document ne peut plus recevoir le focus : on
-    // retombe alors sur le champ de recherche plutôt que de le perdre.
-    const cible = origineFocus.current;
-    (cible?.isConnected ? cible : champRecherche.current)?.focus();
-    origineFocus.current = null;
-  }, [naviguer]);
 
   const modifier = (patch: Partial<Filtres>) => {
     setFiltres((f) => ({ ...f, ...patch }));
@@ -442,9 +410,6 @@ function Explorer() {
             toutRetirer={() => setFiltres(FILTRES_VIDES)}
             tri={tri}
             choisirTri={setTri}
-            recherche={filtres.recherche}
-            modifierRecherche={(v: string) => modifier({ recherche: v })}
-            suggestions={suggestions}
           />
 
           {ecartesFauteInfo > 0 && (
