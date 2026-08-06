@@ -109,6 +109,7 @@ export function RechercheHero({
   modifier,
   suggestions,
   champRef,
+  compact = false,
 }: {
   valeur: string;
   modifier: (v: string) => void;
@@ -116,11 +117,25 @@ export function RechercheHero({
   suggestions: Suggestion[];
   /** Exposé à l'appelant : c'est le point de retour du focus par défaut. */
   champRef?: React.RefObject<HTMLInputElement | null>;
+  /** Version de la barre de résultats : 40 px, loupe 16 px, même autocomplétion. */
+  compact?: boolean;
 }) {
   const [ouvert, setOuvert] = useState(false);
   const [surligne, setSurligne] = useState(0);
-  const [saisie, setSaisie] = useState(valeur);
-  const [enCours, setEnCours] = useState(false);
+  /*
+    AUCUN ÉTAT LOCAL DE SAISIE.
+
+    Chaque champ en gardait un, resynchronisé par un minuteur de 150 ms. Avec
+    deux champs sur la même valeur, celui qui n'était pas actif écrasait la
+    frappe de l'autre au premier battement : caractères perdus, curseur qui
+    saute. Un seul état, détenu par l'appelant, supprime la course.
+
+    Le débounce disparaît avec lui — filtrer 233 fiches à chaque frappe coûte
+    moins qu'une désynchronisation.
+  */
+  const saisie = valeur;
+  const setSaisie = modifier;
+  const enCours = false;
   /*
     La hauteur de la liste s'adapte à la place réellement disponible sous le
     champ. Une hauteur fixe de 400 px n'était jamais atteinte par six entrées :
@@ -135,24 +150,6 @@ export function RechercheHero({
   const liste = useRef<HTMLDivElement>(null);
   const actifRef = useRef<HTMLButtonElement>(null);
   const listeId = useId();
-
-  /*
-    Débounce de 150 ms, avec annulation de la frappe précédente. La valeur
-    affichée dans le champ reste immédiate — c'est la propagation vers le
-    filtrage qui attend, jamais le retour visuel de la frappe.
-  */
-  useEffect(() => {
-    if (saisie === valeur) {
-      setEnCours(false);
-      return;
-    }
-    setEnCours(true);
-    const minuteur = setTimeout(() => {
-      modifier(saisie);
-      setEnCours(false);
-    }, DEBOUNCE_MS);
-    return () => clearTimeout(minuteur);
-  }, [saisie, valeur, modifier]);
 
   const assezLong = saisie.trim().length >= SEUIL_CARACTERES;
 
@@ -274,14 +271,25 @@ export function RechercheHero({
   let index = -1;
 
   return (
-    <div ref={conteneur} className="relative mx-auto w-full max-w-(--recherche-largeur)">
+    <div
+      ref={conteneur}
+      className={`relative w-full ${compact ? "" : "mx-auto max-w-(--recherche-largeur)"}`}
+    >
       <div className="relative">
         <span
-          className={`pointer-events-none absolute inset-y-0 left-(--recherche-padding) flex items-center transition-colors duration-(--motion-exit) max-[639px]:left-(--recherche-padding-mobile) ${
+          className={`pointer-events-none absolute inset-y-0 flex items-center transition-colors duration-(--motion-exit) ${
+            compact ? "left-(--space-3)" : "left-(--recherche-padding) max-[639px]:left-(--recherche-padding-mobile)"
+          } ${
             ouvert ? "text-(--accent-default)" : "text-(--text-secondary)"
           }`}
         >
-          {enCours ? <Chargement className="" /> : <Loupe className="" />}
+          {compact ? (
+            <Search size={16} strokeWidth={1.75} aria-hidden />
+          ) : enCours ? (
+            <Chargement className="" />
+          ) : (
+            <Loupe className="" />
+          )}
         </span>
 
         <input
@@ -309,7 +317,11 @@ export function RechercheHero({
             déplacerait la mise en page de 3 px à chaque focus, et un `border`
             plus épais ferait sauter la hauteur du champ.
           */
-          className={`h-(--recherche-hauteur) w-full rounded-(--recherche-rayon) border bg-(--surface-raised) pl-(--recherche-retrait) pr-(--space-10) text-(--text-primary) outline-none transition-[border-color,box-shadow] duration-(--motion-exit) ease-(--ease-standard) placeholder:text-(--text-tertiary) [font-size:var(--recherche-texte)] [line-height:var(--recherche-interligne)] max-[639px]:h-(--recherche-hauteur-mobile) max-[639px]:rounded-(--recherche-rayon-mobile) max-[639px]:pl-(--recherche-retrait-mobile) max-[639px]:[font-size:var(--recherche-texte-mobile)] disabled:opacity-60 ${
+          className={`w-full border bg-(--surface-raised) text-(--text-primary) outline-none transition-[border-color,box-shadow] duration-(--motion-exit) ease-(--ease-standard) placeholder:text-(--text-tertiary) disabled:opacity-60 ${
+            compact
+              ? "h-(--bouton-hauteur) rounded-(--radius-md) pl-(--space-8) pr-(--space-8) t-body-sm"
+              : "h-(--recherche-hauteur) rounded-(--recherche-rayon) pl-(--recherche-retrait) pr-(--space-10) [font-size:var(--recherche-texte)] [line-height:var(--recherche-interligne)] max-[639px]:h-(--recherche-hauteur-mobile) max-[639px]:rounded-(--recherche-rayon-mobile) max-[639px]:pl-(--recherche-retrait-mobile) max-[639px]:[font-size:var(--recherche-texte-mobile)]"
+          } ${
             ouvert
               ? "border-(--border-strong) [box-shadow:var(--recherche-ombre),var(--recherche-anneau)]"
               : "border-(--border-default) [box-shadow:var(--recherche-ombre)] hover:border-(--border-strong)"

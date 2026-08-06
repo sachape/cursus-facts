@@ -190,13 +190,11 @@ function Explorer() {
       alors qu'il est simplement au bord de la zone qui défile.
     */
     <div className="flex flex-col gap-(--space-4) px-(--space-2) py-(--space-3)">
-      <Input
-        type="search"
-        value={filtres.recherche}
-        onChange={(e) => modifier({ recherche: e.target.value })}
-        placeholder="Intitulé, organisme, code RNCP…"
-        aria-label="Rechercher dans le catalogue"
-      />
+      {/*
+        Le champ de recherche a quitté cette colonne pour la barre de résultats.
+        Deux champs sur la même valeur n'apportaient rien et se disputaient la
+        saisie.
+      */}
 
       {filtres.organisme !== null && (
         <p className="rounded-(--radius-md) border border-(--border-subtle) px-(--space-3) py-(--space-2) t-caption">
@@ -420,7 +418,7 @@ function Explorer() {
             choisirTri={setTri}
             recherche={filtres.recherche}
             modifierRecherche={(v: string) => modifier({ recherche: v })}
-            declencheurVisible={heroHorsEcran}
+            suggestions={suggestions}
           />
 
           {ecartesFauteInfo > 0 && (
@@ -465,7 +463,7 @@ function Explorer() {
               négative les fusionnerait en un seul bloc, ce qui annulerait la
               carte.
             */
-            <ul className="flex flex-col gap-(--space-4) pt-(--space-4) min-[768px]:pt-(--space-5)">
+            <ul className="flex flex-col gap-(--space-4) pt-(--space-4)">
               {resultats.slice(0, limite).map((p) => (
                 <TrainingResultCard key={p.id} parcours={p} ouvrirEnPanneau={ouvrirEnPanneau} />
               ))}

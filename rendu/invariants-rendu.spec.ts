@@ -262,3 +262,25 @@ test("le titre tient sur exactement deux lignes jusqu'à 1023 px", async ({ page
   }
   expect(fautifs).toEqual([]);
 });
+
+test("les deux champs de recherche partagent une valeur, sans perdre de frappe", async ({ page }) => {
+  /*
+    Chaque champ gardait un état local resynchronisé par un minuteur : celui qui
+    n'était pas actif écrasait la frappe de l'autre au premier battement.
+    Caractères perdus, curseur qui saute. Ce test saisit réellement et vérifie
+    les deux symptômes — la valeur complète, et le curseur resté en fin.
+  */
+  const champs = page.getByRole("combobox");
+  await expect(champs).toHaveCount(2);
+
+  const hero = champs.first();
+  await hero.click();
+  await hero.pressSequentially("shopi", { delay: 60 });
+
+  await expect(hero).toHaveValue("shopi");
+  await expect(champs.nth(1)).toHaveValue("shopi");
+
+  // Le curseur reste à la fin : un remontage le renverrait à zéro.
+  const position = await hero.evaluate((e: HTMLInputElement) => e.selectionStart);
+  expect(position).toBe(5);
+});

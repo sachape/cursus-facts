@@ -19,7 +19,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SearchField } from "./SearchField";
+import { RechercheHero, type Suggestion } from "./RechercheHero";
 import { CountBadge } from "./CountBadge";
 import type { Tri } from "@/modele/classement";
 import { LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
@@ -135,7 +135,7 @@ export function ResultToolbar({
   comparateur,
   recherche,
   modifierRecherche,
-  declencheurVisible = false,
+  suggestions,
 }: {
   titre: string;
   nombre: number;
@@ -148,123 +148,41 @@ export function ResultToolbar({
   /** LA MÊME requête que le hero : aucune seconde logique de recherche. */
   recherche: string;
   modifierRecherche: (v: string) => void;
-  /** Vrai quand la recherche du hero a quitté la fenêtre. */
-  declencheurVisible?: boolean;
+  /** Les mêmes suggestions que le hero : une seule logique de recherche. */
+  suggestions: Suggestion[];
 }) {
-  /*
-    Le champ compact remplace la ligne de titre, à hauteur constante. Il reste
-    ouvert tant qu'une requête est active : la refermer en défilant ferait
-    disparaître le seul rappel de ce qui filtre la liste.
-  */
-  const [ouvert, setOuvert] = useState(false);
-  const declencheur = useRef<HTMLButtonElement>(null);
-  const champ = useRef<HTMLInputElement>(null);
-  const actif = ouvert || recherche.trim() !== "";
-
-  useEffect(() => {
-    if (ouvert) champ.current?.focus();
-  }, [ouvert]);
-
-  const fermer = () => {
-    setOuvert(false);
-    // Le focus revient d'où il venait : sans ça, il retombe sur le document et
-    // la navigation au clavier repart du haut de la page.
-    declencheur.current?.focus();
-  };
   return (
     <>
       {/*
-        Collante sous la navigation des domaines. Elle ne porte que le titre, le
-        compteur et le tri : y garder les filtres actifs ferait varier sa
-        hauteur au fil des sélections, et une barre collante dont la hauteur
-        change décale toute la pile sous elle.
-
-        Le fond est exactement celui de la page — il n'existe que pour empêcher
-        les cartes de transparaître pendant le défilement, pas pour recréer un
-        bandeau.
+        Collante sous la navigation des domaines. Le fond est exactement celui
+        de la page — il n'existe que pour empêcher les cartes de transparaître
+        pendant le défilement, pas pour recréer un bandeau.
       */}
       {/*
         Sous 1024 px, la barre passe en colonne : titre puis ligne de tri. Sur
         une largeur de téléphone, les mettre côte à côte écrase le select à
         quelques dizaines de pixels ou le pousse hors de la barre.
       */}
-      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-navigation-height))] z-30 flex m-0 flex-col gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) pb-(--space-5) pt-(--space-4) min-[768px]:py-(--space-5) min-[1024px]:w-full min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-12) min-[1024px]:px-0 min-[1024px]:pb-(--space-6) min-[1024px]:pt-(--space-5)">
+      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-navigation-height))] z-30 m-0 flex flex-wrap items-center gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) pb-(--space-5) pt-(--space-4) min-[768px]:py-(--space-5) min-[1024px]:w-full min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-12) min-[1024px]:px-0 min-[1024px]:pb-(--space-6) min-[1024px]:pt-(--space-5)">
         {/*
-          La recherche compacte est réservée au mobile et à la tablette. Sur
-          bureau, elle vit dans la colonne de filtres, toujours visible : un
-          second point d'entrée y ferait doublon.
+          Titre, recherche, tri sur une seule ligne. Le champ est présent dès le
+          départ : le faire apparaître en cours de défilement déplacerait le
+          titre à chaque franchissement du seuil.
         */}
-        <div className="flex w-full flex-col gap-(--space-4) min-[1024px]:hidden">
-        {actif ? (
-          <div className="flex min-h-(--bouton-hauteur-tactile) w-full items-center gap-(--space-2)">
-            <div className="min-w-0 flex-1">
-              <SearchField
-                ref={champ}
-                taille="sm"
-                valeur={recherche}
-                modifier={modifierRecherche}
-                placeholder="Rechercher une formation"
-                actif
-                champProps={{
-                  onKeyDown: (e) => {
-                    if (e.key === "Escape") fermer();
-                  },
-                }}
-              />
-            </div>
-            {/*
-              Fermer le mode recherche est distinct d'effacer la requête : la
-              croix du champ vide la saisie, ce bouton referme sans la perdre.
-            */}
-            <button
-              type="button"
-              onClick={fermer}
-              aria-label="Fermer la recherche"
-              className="flex size-(--bouton-hauteur-tactile) shrink-0 items-center justify-center rounded-(--radius-md) text-(--text-secondary) transition-colors duration-(--motion-fast) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
-            >
-              <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden>
-                <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-              </svg>
-            </button>
-          </div>
-        ) : (
-          <div className="flex min-h-(--bouton-hauteur-tactile) w-full items-center justify-between gap-(--space-3) min-[1024px]:w-auto">
-            <h2 className="m-0 t-heading-4 leading-[1.2] text-(--text-primary)">
-              {titre} <CountBadge>{nombre}</CountBadge>
-            </h2>
-            {/*
-              L'emplacement est toujours réservé — seule l'opacité change. Le
-              faire apparaître par affichage conditionnel décalerait le titre à
-              chaque franchissement du seuil.
-            */}
-            <button
-              ref={declencheur}
-              type="button"
-              onClick={() => setOuvert(true)}
-              aria-label="Rechercher une formation"
-              tabIndex={declencheurVisible ? 0 : -1}
-              className={`flex size-(--bouton-hauteur-tactile) shrink-0 items-center justify-center gap-(--space-2) rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) text-(--text-secondary) transition-[opacity,transform,color] duration-(--motion-exit) ease-(--ease-standard) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) min-[768px]:w-auto min-[768px]:px-(--space-3) ${
-                declencheurVisible
-                  ? "pointer-events-auto opacity-100"
-                  : "pointer-events-none -translate-y-1 opacity-0"
-              }`}
-            >
-              <Search size={19} strokeWidth={1.75} aria-hidden />
-              <span className="hidden t-body-sm min-[768px]:inline">Rechercher</span>
-            </button>
-          </div>
-        )}
-          <div className="flex min-w-0 w-full items-center gap-(--space-3)">
-            {comparateur}
-            <SortSelect tri={tri} choisir={choisirTri} />
-          </div>
-        </div>
-
-        {/* Bureau : titre à gauche, tri à droite, rien d'autre. */}
-        <h2 className="m-0 hidden shrink-0 t-heading-4 leading-[1.2] text-(--text-primary) min-[1024px]:block">
+        <h2 className="m-0 shrink-0 t-heading-4 leading-[1.2] text-(--text-primary)">
           {titre} <CountBadge>{nombre}</CountBadge>
         </h2>
-        <div className="ml-auto hidden shrink-0 items-center gap-(--space-4) min-[1024px]:flex">
+
+        <div className="min-w-0 flex-1 max-[959px]:order-last max-[959px]:w-full max-[959px]:flex-none">
+          <RechercheHero
+            valeur={recherche}
+            modifier={modifierRecherche}
+            suggestions={suggestions}
+            compact
+          />
+        </div>
+
+        <div className="flex shrink-0 items-center gap-(--space-4)">
           {comparateur}
           <SortSelect tri={tri} choisir={choisirTri} />
         </div>
