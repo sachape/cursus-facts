@@ -200,8 +200,15 @@ test("le pied du panneau reste visible et ne recouvre aucun contenu", async ({ p
     un corps trop haut, un pied qui recouvre la dernière section, et un corps
     qui entraîne l'en-tête ou le pied en défilant.
   */
+  /*
+    `getByRole("listitem")` visait n'importe quel `<li>` de la page — donc les
+    cartes de la bande d'organismes, qui n'ouvrent aucun panneau. Le test
+    échouait sur « dialog introuvable » en accusant le panneau, alors qu'il
+    n'avait jamais cliqué au bon endroit. Le sélecteur descend maintenant dans
+    la liste de résultats, la seule qui ouvre une fiche.
+  */
   for (const rang of [0, 1]) {
-    await page.getByRole("listitem").nth(rang).getByRole("link").first().click();
+    await page.locator("main ul > li h3 a").nth(rang).click();
     const panneau = page.getByRole("dialog");
     await expect(panneau).toBeVisible();
 
@@ -222,6 +229,89 @@ test("le pied du panneau reste visible et ne recouvre aucun contenu", async ({ p
 
     await page.keyboard.press("Escape");
   }
+});
+
+test("la barre d'actions du panneau tient en une ligne de boutons", async ({ page }) => {
+  /*
+    Elle faisait 137 px : trois actions alignées, donc trois lignes une fois la
+    place manquante, plus la mention. Le pied mangeait le corps de la fiche.
+
+    Le plafond porte sur la HAUTEUR RENDUE, boutons et mention compris — pas sur
+    le nombre d'actions. Un futur bouton qui repasserait la barre à trois lignes
+    doit faire rougir ce test, quelle que soit la raison qui l'a fait ajouter.
+  */
+  const fautifs: string[] = [];
+
+  for (const largeur of [1440, 1024, 768, 430, 390, 320]) {
+    await page.setViewportSize({ width: largeur, height: 900 });
+    await page.locator("main ul > li h3 a").first().click();
+    const panneau = page.getByRole("dialog");
+    await expect(panneau).toBeVisible();
+
+    const pied = panneau.locator("footer");
+    const hauteur = (await boite(pied)).height;
+    if (hauteur > 96) fautifs.push(`${largeur}px → pied de ${hauteur.toFixed(0)} px`);
+
+    // Les deux boutons partagent une ligne : même ordonnée, à un pixel près.
+    const actions = pied.locator("a, button");
+    await expect(actions).toHaveCount(2);
+    const a = await boite(actions.nth(0));
+    const b = await boite(actions.nth(1));
+    if (Math.abs(a.y - b.y) > 1) fautifs.push(`${largeur}px → boutons sur deux lignes`);
+
+    // Sous 640 px, la cible tactile passe à 44 px et les deux boutons sont à
+    // parts égales : c'est le seul cas où l'égalité de largeur l'emporte.
+    if (largeur < 640) {
+      /*
+        Trois pixels de tolérance. La moitié de ligne tombe sur une fraction —
+        390 px d'espace utile donnent 195 px chacun, que le moteur répartit en
+        194,x et 196,x. C'est un arrondi de rendu, pas un déséquilibre : le
+        seuil doit laisser passer le bruit du partage sans laisser passer un
+        bouton dimensionné par son contenu, qui s'écarterait de dizaines de
+        pixels.
+      */
+      if (Math.abs(a.width - b.width) > 3) {
+        fautifs.push(`${largeur}px → ${a.width.toFixed(0)} contre ${b.width.toFixed(0)} px`);
+      }
+      if (a.height < 44) fautifs.push(`${largeur}px → cible de ${a.height.toFixed(0)} px`);
+    }
+
+    // Aucun libellé tronqué : le raccourcissement est une décision, pas un
+    // débordement qu'on laisse couper.
+    for (const rang of [0, 1]) {
+      const coupe = await actions.nth(rang).evaluate((e) => e.scrollWidth > Math.ceil(e.getBoundingClientRect().width));
+      if (coupe) fautifs.push(`${largeur}px → libellé tronqué`);
+    }
+
+    await page.keyboard.press("Escape");
+  }
+
+  expect(fautifs).toEqual([]);
+});
+
+test("la requête de conteneur du pied décrit bien le panneau, pas la fenêtre", async ({ page }) => {
+  /*
+    Une requête de conteneur qui ne s'applique pas ne produit AUCUN message :
+    la classe est simplement ignorée, et la mise en page retombe sur un état
+    plausible. C'est le même mode de défaillance que `mr-[--space-6]`, et il ne
+    se voit qu'en mesurant.
+
+    Le critère est observable sans rien savoir de la mécanique : le panneau est
+    plafonné à 560 px, donc la mention passe SOUS les boutons — même dans une
+    fenêtre de 1440 px, où une règle exprimée en unités de fenêtre l'aurait
+    remontée sur la même ligne.
+  */
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.locator("main ul > li h3 a").first().click();
+  const panneau = page.getByRole("dialog");
+  await expect(panneau).toBeVisible();
+
+  const pied = panneau.locator("footer");
+  expect((await boite(pied)).width).toBeLessThan(900);
+
+  const bouton = await boite(pied.locator("a, button").first());
+  const mention = await boite(pied.getByText("Lien non affilié"));
+  expect(mention.y).toBeGreaterThan(bouton.y + bouton.height - 1);
 });
 
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
@@ -263,30 +353,89 @@ test("le titre tient sur exactement deux lignes jusqu'à 1023 px", async ({ page
   expect(fautifs).toEqual([]);
 });
 
-test("les deux champs de recherche partagent une valeur, sans perdre de frappe", async ({ page }) => {
+test("l'explorateur n'a qu'un seul champ de recherche, sans perdre de frappe", async ({ page }) => {
   /*
-    Chaque champ gardait un état local resynchronisé par un minuteur : celui qui
-    n'était pas actif écrasait la frappe de l'autre au premier battement.
-    Caractères perdus, curseur qui saute. Ce test saisit réellement et vérifie
-    les deux symptômes — la valeur complète, et le curseur resté en fin.
+    Il y en avait deux, synchronisés : chacun gardait un état local resynchronisé
+    par un minuteur, et celui qui n'était pas actif écrasait la frappe de l'autre
+    au premier battement. Caractères perdus, curseur qui saute.
+
+    Le second champ a été retiré plutôt que réparé : deux champs obligent à
+    répondre en permanence à « lequel fait foi », et c'est cette question qui
+    coûtait un état partagé et des frappes. Ce test tient les deux bouts —
+    l'unicité, et la saisie qui arrive entière.
   */
-  const champs = page.getByRole("combobox");
-  await expect(champs).toHaveCount(2);
+  await expect(page.getByRole("combobox")).toHaveCount(1);
 
-  const hero = champs.first();
-  await hero.click();
-  await hero.pressSequentially("shopi", { delay: 60 });
-
-  await expect(hero).toHaveValue("shopi");
-  await expect(champs.nth(1)).toHaveValue("shopi");
+  const champ = page.getByRole("combobox");
+  await champ.click();
+  await champ.pressSequentially("shopi", { delay: 60 });
+  await expect(champ).toHaveValue("shopi");
 
   // Le curseur reste à la fin : un remontage le renverrait à zéro.
-  const position = await hero.evaluate((e: HTMLInputElement) => e.selectionStart);
+  const position = await champ.evaluate((e: HTMLInputElement) => e.selectionStart);
   expect(position).toBe(5);
 });
 
+test("aucune carte ne recouvre la barre de résultats, à toutes les largeurs", async ({ page }) => {
+  /*
+    Le défaut visé : les cartes passaient PAR-DESSUS la barre collante au
+    défilement, et les deux textes se superposaient. Deux causes possibles, et
+    une seule des deux se lit dans le code — un plan de superposition implicite,
+    ou un fond non opaque. La mesure ne s'intéresse à ni l'une ni l'autre : elle
+    demande au navigateur ce qui se trouve RÉELLEMENT au-dessus de la barre.
+
+    `elementFromPoint` est l'autorité ici. Comparer des rectangles ne suffirait
+    pas : une carte qui chevauche le rectangle de la barre est le comportement
+    NORMAL d'un élément collant — c'est de passer devant qui est le défaut.
+  */
+  const fautifs: string[] = [];
+
+  for (const largeur of [1440, 1024, 960, 768, 430, 390]) {
+    await page.setViewportSize({ width: largeur, height: 800 });
+    await page.evaluate(() => window.scrollTo(0, 2600));
+    await page.waitForTimeout(200);
+
+    const intrus = await page.evaluate(() => {
+      const barre = [...document.querySelectorAll("*")].find((e) =>
+        String(e.className).includes("z-(--z-barre-resultats)"),
+      );
+      if (!barre) return ["barre de résultats introuvable"];
+      const r = barre.getBoundingClientRect();
+      const dessus: string[] = [];
+      for (const dx of [0.1, 0.3, 0.5, 0.7, 0.9]) {
+        for (const dy of [0.15, 0.5, 0.85]) {
+          const el = document.elementFromPoint(r.x + r.width * dx, r.y + r.height * dy);
+          if (el && el !== barre && !barre.contains(el)) {
+            dessus.push(el.tagName.toLowerCase());
+          }
+        }
+      }
+      return [...new Set(dessus)];
+    });
+
+    if (intrus.length > 0) fautifs.push(`${largeur}px → ${intrus.join(", ")}`);
+
+    // Et le fond reste plein : un fond translucide laisse passer le texte quel
+    // que soit le plan de superposition.
+    const opaque = await page.evaluate(() => {
+      const barre = [...document.querySelectorAll("*")].find((e) =>
+        String(e.className).includes("z-(--z-barre-resultats)"),
+      );
+      const fond = barre ? getComputedStyle(barre).backgroundColor : "";
+      // Le quatrième nombre est l'alpha — s'il y en a un quatrième. Chercher
+      // « le dernier nombre » prenait le bleu de `rgb(255, 255, 255)` pour une
+      // opacité de 255 et déclarait translucide un fond parfaitement plein.
+      const composantes = (fond.match(/[\d.]+/g) ?? []).map(Number);
+      return composantes.length < 4 || composantes[3] === 1;
+    });
+    if (!opaque) fautifs.push(`${largeur}px → fond translucide`);
+  }
+
+  expect(fautifs).toEqual([]);
+});
+
 test("la bande d'organismes ne déborde pas et reste lisible", async ({ page }) => {
-  const bande = page.getByRole("list").filter({ hasText: /organisme|Formation|Université/ }).first();
+  const bande = page.getByRole("list", { name: "Organismes référencés" });
   await expect(bande).toBeVisible();
 
   // Elle déborde volontairement la grille, jamais la fenêtre.
@@ -296,10 +445,103 @@ test("la bande d'organismes ne déborde pas et reste lisible", async ({ page }) 
   }));
   expect(defilable).toBeLessThanOrEqual(fenetre.width + 1);
 
-  // Nom et compteur ne se touchent pas : sans écart, « Cegos12 » se lit comme
-  // un seul mot.
-  const premier = bande.locator("li").first().locator("span");
-  const nom = await boite(premier.first());
-  const compteur = await boite(premier.last());
-  expect(compteur.x - (nom.x + nom.width)).toBeGreaterThan(4);
+  // Catégorie et compteur ne se touchent pas : sans écart, « Bootcamp12 » se
+  // lit comme un seul mot. Ils partagent la seconde ligne de la carte.
+  const seconde = bande.locator("li").first().locator("span > span");
+  const categorie = await boite(seconde.first());
+  const compteur = await boite(seconde.last());
+  expect(compteur.x - (categorie.x + categorie.width)).toBeGreaterThan(4);
+});
+
+test("la bande défile à une vitesse lisible, quelle que soit la taille du catalogue", async ({
+  page,
+}) => {
+  /*
+    L'invariant qui manquait au chantier précédent. `--bande-duree` valait 50 s
+    en dur : la vitesse dépendait donc du nombre d'organismes, et chaque ajout
+    au catalogue rendait la bande un peu plus illisible sans que rien ne le
+    signale. Un test sur la durée n'aurait rien vu — c'est la VITESSE qui est le
+    critère, et elle ne se lit nulle part dans le code.
+
+    `defile` translate de -50 % : la distance parcourue en un cycle vaut la
+    moitié de la largeur de la piste dupliquée.
+  */
+  const bande = page.getByRole("list", { name: "Organismes référencés" });
+  await expect(bande).toBeVisible();
+
+  const vitesse = await bande.evaluate((element) => {
+    const duree = parseFloat(getComputedStyle(element).animationDuration);
+    const parcourue = element.getBoundingClientRect().width / 2;
+    return parcourue / duree;
+  });
+
+  // Le repère de contrôle est la lisibilité : à moins de 30 px/s la bande
+  // paraît figée, au-delà de 50 un nom ne tient pas deux secondes à l'écran.
+  expect(vitesse).toBeGreaterThanOrEqual(30);
+  expect(vitesse).toBeLessThanOrEqual(50);
+});
+
+test("la bande décélère à la mise en pause au lieu de s'arrêter net", async ({ page }) => {
+  /*
+    Cet invariant existe parce que la décélération S'EXÉCUTAIT — sans erreur,
+    sans test rouge — en une seule image. `--bande-deceleration` vaut « 400ms »,
+    que `getComputedStyle` rend normalisé en « .4s » : `parseFloat` en tirait
+    0,4, et la durée valait quatre dixièmes de milliseconde. Le résultat visible
+    était l'arrêt brutal que la règle interdisait.
+
+    Aucun contrôle sur le jeton ne pouvait le voir : le jeton était juste. Seule
+    la mesure du taux de lecture À MI-PARCOURS distingue une décélération d'un
+    arrêt — c'est la sortie qu'on interroge, pas la mécanique.
+  */
+  const bande = page.getByRole("list", { name: "Organismes référencés" });
+  await expect(bande).toBeVisible();
+
+  // L'échantillonnage vit dans la page : un aller-retour par mesure coûterait
+  // plus longtemps que la décélération elle-même.
+  await bande.evaluate((ul) => {
+    const releves: Array<[number, number]> = [];
+    const depart = performance.now();
+    const pas = () => {
+      const t = performance.now() - depart;
+      releves.push([t, ul.getAnimations()[0]?.playbackRate ?? -1]);
+      if (t < 600) requestAnimationFrame(pas);
+    };
+    requestAnimationFrame(pas);
+    (window as unknown as { releves: typeof releves }).releves = releves;
+  });
+
+  /*
+    `hover()` attend que l'élément soit stable, ce qu'une bande en défilement
+    continu n'est jamais : on pointe la position, pas l'élément.
+  */
+  /*
+    La section, et non la piste : celle-ci fait plusieurs dizaines de milliers
+    de pixels de large et son rectangle déborde largement la fenêtre.
+
+    Amenée dans la zone visible d'abord — `page.mouse` travaille en coordonnées
+    de fenêtre, et la bande est sous la ligne de flottaison : viser sa position
+    de page déplaçait le pointeur hors de l'écran, sans que rien ne le signale.
+  */
+  const section = page.locator("section").filter({ has: bande });
+  await section.scrollIntoViewIfNeeded();
+  const zone = await boite(section);
+  await page.mouse.move(zone.x + zone.width / 2, zone.y + zone.height / 2);
+  await page.waitForTimeout(700);
+
+  const releves = await page.evaluate(
+    () => (window as unknown as { releves: Array<[number, number]> }).releves,
+  );
+
+  const a = (instant: number) =>
+    releves.reduce((meilleur, actuel) =>
+      Math.abs(actuel[0] - instant) < Math.abs(meilleur[0] - instant) ? actuel : meilleur,
+    )[1];
+
+  // À mi-parcours le mouvement est engagé mais pas fini : c'est le seul point
+  // qu'un arrêt net ne peut pas produire.
+  expect(a(200)).toBeGreaterThan(0.02);
+  expect(a(200)).toBeLessThan(0.9);
+  // Et il finit bien par s'arrêter, sans jamais accélérer en chemin.
+  expect(a(600)).toBeLessThan(0.01);
+  expect(Math.max(...releves.map(([, taux]) => taux))).toBeLessThanOrEqual(1.001);
 });
