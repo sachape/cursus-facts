@@ -9,9 +9,14 @@
  * POSÉE SUR LA PAGE, sans fond ni conteneur : un bandeau autour du titre et du
  * tri ajoutait une surface de plus dans une vue qui en compte déjà deux — la
  * colonne de filtres et les cartes. La hiérarchie se fait par l'espacement.
+ *
+ * UN SEUL CHAMP DE RECHERCHE DANS L'EXPLORATEUR, celui du hero. Le second champ
+ * a vécu ici : deux champs synchronisés obligent à répondre en permanence à
+ * « lequel des deux fait foi », et la réponse était « les deux », ce qui a
+ * coûté un état partagé, un test de rendu dédié, et des frappes perdues. Un
+ * seul champ ne pose plus la question.
  */
-import { useEffect, useRef, useState } from "react";
-import { Search } from "lucide-react";
+import { useRef } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,8 +24,8 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { RechercheHero, type Suggestion } from "./RechercheHero";
 import { CountBadge } from "./CountBadge";
+import { useEstAncree } from "./pile-collante";
 import type { Tri } from "@/modele/classement";
 import { LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
 
@@ -133,9 +138,6 @@ export function ResultToolbar({
   tri,
   choisirTri,
   comparateur,
-  recherche,
-  modifierRecherche,
-  suggestions,
 }: {
   titre: string;
   nombre: number;
@@ -145,42 +147,48 @@ export function ResultToolbar({
   choisirTri: (t: Tri) => void;
   /** Rendu du comparateur, quand des parcours sont sélectionnés. */
   comparateur?: React.ReactNode;
-  /** LA MÊME requête que le hero : aucune seconde logique de recherche. */
-  recherche: string;
-  modifierRecherche: (v: string) => void;
-  /** Les mêmes suggestions que le hero : une seule logique de recherche. */
-  suggestions: Suggestion[];
 }) {
+  const barre = useRef<HTMLDivElement>(null);
+  const ancree = useEstAncree(barre);
+
   return (
     <>
       {/*
-        Collante sous la navigation des domaines. Le fond est exactement celui
-        de la page — il n'existe que pour empêcher les cartes de transparaître
-        pendant le défilement, pas pour recréer un bandeau.
+        Collante sous la navigation des domaines.
+
+        FOND OPAQUE, jamais translucide. Une barre collante sans fond plein
+        laisse voir le contenu qui passe dessous quel que soit le plan de
+        superposition : le texte se superpose au texte et les deux deviennent
+        illisibles. `--catalog-canvas` et non `--surface-page` — la barre doit
+        se confondre avec la surface sur laquelle les cartes défilent, pas avec
+        le fond général, sinon elle redevient le bandeau gris qu'on a retiré.
+
+        NIVEAU EXPLICITE, jamais l'ordre du document. `--z-barre-resultats` est
+        déclaré sous `--z-barre-domaines`, lui-même sous `--z-entete` : la pile
+        se lit dans les jetons, et non dans l'ordre où les composants ont été
+        écrits.
       */}
       {/*
         Sous 1024 px, la barre passe en colonne : titre puis ligne de tri. Sur
         une largeur de téléphone, les mettre côte à côte écrase le select à
         quelques dizaines de pixels ou le pousse hors de la barre.
       */}
-      <div className="sticky top-[calc(var(--app-header-height)+var(--domain-navigation-height))] z-30 m-0 flex flex-wrap items-center gap-(--space-4) border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding) pb-(--space-5) pt-(--space-4) min-[768px]:py-(--space-5) min-[1024px]:w-full min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-12) min-[1024px]:px-0 min-[1024px]:pb-(--space-6) min-[1024px]:pt-(--space-5)">
-        {/*
-          Titre, recherche, tri sur une seule ligne. Le champ est présent dès le
-          départ : le faire apparaître en cours de défilement déplacerait le
-          titre à chaque franchissement du seuil.
-        */}
+      <div
+        ref={barre}
+        /*
+          Le filet n'apparaît qu'une fois la barre ancrée. Posé en permanence,
+          il trace un trait sous un titre qui ne sépare encore rien ; il ne
+          devient une information qu'au moment où du contenu passe dessous.
+          `border-transparent` plutôt qu'absence de bordure : retirer la
+          bordure décalerait la barre d'un pixel au franchissement du seuil.
+        */
+        className={`sticky top-[calc(var(--app-header-height)+var(--domain-navigation-height))] z-(--z-barre-resultats) m-0 flex flex-wrap items-center gap-(--space-4) border-b bg-(--catalog-canvas) px-(--nav-padding) pb-(--space-5) pt-(--space-4) transition-colors duration-(--motion-fast) min-[768px]:py-(--space-5) min-[1024px]:w-full min-[1024px]:flex-row min-[1024px]:items-center min-[1024px]:justify-between min-[1024px]:gap-x-(--space-12) min-[1024px]:px-0 min-[1024px]:pb-(--space-6) min-[1024px]:pt-(--space-5) ${
+          ancree ? "border-(--border-subtle)" : "border-transparent"
+        }`}
+      >
         <h2 className="m-0 shrink-0 t-heading-4 leading-[1.2] text-(--text-primary)">
           {titre} <CountBadge>{nombre}</CountBadge>
         </h2>
-
-        <div className="min-w-0 flex-1 max-[959px]:order-last max-[959px]:w-full max-[959px]:flex-none">
-          <RechercheHero
-            valeur={recherche}
-            modifier={modifierRecherche}
-            suggestions={suggestions}
-            compact
-          />
-        </div>
 
         <div className="flex shrink-0 items-center gap-(--space-4)">
           {comparateur}

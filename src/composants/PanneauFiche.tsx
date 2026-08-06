@@ -102,7 +102,7 @@ export function PanneauFiche({
     : [];
 
   return (
-    <div className="fixed inset-0 z-50">
+    <div className="fixed inset-0 z-(--z-panneau)">
       {/* Voile : ferme au clic, et n'est pas atteignable au clavier puisque
           Échap fait le même travail. */}
       <div

@@ -20,7 +20,14 @@ export function BarreComparaison() {
   const emplacements = Array.from({ length: MAX_COMPARAISON }, (_, i) => selection[i] ?? null);
 
   return (
-    <div className="sticky bottom-0 z-40 border-t border-border bg-background/95 backdrop-blur">
+    /*
+      Fond PLEIN. `bg-background/95 backdrop-blur` laissait passer le texte des
+      cartes derrière les noms des parcours sélectionnés — c'est la même règle
+      que pour la barre de résultats : une barre collante translucide n'est pas
+      une barre, c'est un calque. Le flou coûtait en plus une couche de
+      composition sur toute la largeur, à chaque image de défilement.
+    */
+    <div className="sticky bottom-0 z-(--z-barre-ancree) border-t border-(--border-subtle) bg-(--catalog-canvas)">
       <div className="mx-auto max-w-6xl px-5 py-3 sm:px-8">
         {refus !== null && (
           <p role="status" className="mb-2 text-xs text-absent">
