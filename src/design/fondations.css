@@ -45,6 +45,12 @@
   --neutral-40: #b9bfc4;
   --neutral-50: #98a0a6;
   --neutral-60: #767f87;
+  /*
+    Palier intercalaire, ajouté le 6 août 2026 pour le contraste du texte
+    tertiaire. L'échelle s'étend, elle ne s'improvise pas : cette valeur est
+    nommée et disponible, pas écrite en dur dans un composant.
+  */
+  --neutral-65: #636b73;
   --neutral-70: #59626a;
   --neutral-80: #3c444b;
   --neutral-90: #262d33;
@@ -120,7 +126,24 @@
 
   --text-primary: var(--neutral-100);
   --text-secondary: var(--neutral-70);
-  --text-tertiary: var(--neutral-50);
+  /*
+    DEUX VALEURS, UNE PAR THÈME — comme les teintes sémantiques, désormais
+    étendu aux neutres.
+
+    `neutral-50` sur blanc donnait 2,65:1, très en dessous des 4,5:1 imposés.
+    Ce jeton n'est plus décoratif : il porte le coût pour l'apprenant, la
+    catégorie des organismes et les compteurs de fraîcheur.
+
+    Le pire cas n'est pas le blanc mais `surface-page` (#f4f6f7), voire
+    `surface-sunken` (#e8ebec). `#6e767d` passait sur blanc à 4,61 et échouait
+    à 4,26 sur `surface-page` : mesurer sur le seul fond blanc aurait produit
+    une correction qui ne corrige pas. `neutral-65` donne 5,41 / 4,99 / 4,52.
+
+    En thème sombre, `neutral-50` atteint DÉJÀ 5,26 sur `surface-raised`.
+    L'assombrir l'aurait rapproché du fond : une même valeur pour les deux
+    thèmes aurait réparé le clair en cassant le sombre.
+  */
+  --text-tertiary: var(--neutral-65);
   --text-disabled: var(--neutral-40);
   --text-on-inverse: var(--neutral-0);
 
@@ -167,6 +190,18 @@
     gagnent 4 px là où la hauteur d'x le réclame, en restant sur le rythme de
     4 px.
   */
+  /*
+    Palier de titre héroïque, ajouté le 6 août 2026. Le hero rendait
+    `clamp(56px, 4.4vw, 72px)`, donc une taille qui n'appartenait à aucune
+    échelle — 56,32 px à 1 280 px de large. Un `clamp` rend l'invariant
+    typographique invérifiable PAR CONSTRUCTION : il n'existe aucun palier
+    auquel comparer une valeur continue.
+
+    On étend l'échelle, on n'improvise pas. Trois paliers déclarés, un par point
+    de rupture, et la taille rendue redevient une valeur qu'on peut nommer.
+  */
+  --display-0-size: 64px;
+  --display-0-line: 64px;
   --display-1-size: 48px;
   --display-1-line: 56px;
   --display-2-size: 36px;
@@ -466,6 +501,7 @@
 
   --text-primary: var(--neutral-10);
   --text-secondary: var(--neutral-40);
+  /* Conservé : 5,26:1 sur `surface-raised`, déjà conforme. Voir le thème clair. */
   --text-tertiary: var(--neutral-50);
   --text-disabled: var(--neutral-60);
   --text-on-inverse: var(--neutral-100);
@@ -787,7 +823,7 @@ html {
     width: min(960px, calc(100% - 40px));
     margin-inline: auto;
     font-family: var(--font-display);
-    font-size: clamp(56px, 4.4vw, 72px);
+    font-size: var(--display-0-size);
     line-height: 0.98;
     /*
       −0,055em fermait les contreformes de Bricolage et collait « Comparez les »
@@ -821,7 +857,7 @@ html {
 
   @media (min-width: 768px) and (max-width: 1023px) {
     .hero-title {
-      font-size: clamp(44px, 6vw, 56px);
+      font-size: var(--display-1-size);
       font-variation-settings: "opsz" var(--opsz-display-2);
     }
   }
@@ -832,7 +868,12 @@ html {
       /* `100vw` inclut la barre de défilement et déborde donc de la largeur
          réellement disponible. `100%` suffit et reste exact. */
       max-width: 100%;
-      font-size: clamp(27px, 7.2vw, 34px);
+      /*
+        `heading-1` et non `display-2` : à 320 px, 36 px font passer le titre à
+        trois lignes. Le palier est choisi par la contrainte de mise en page,
+        pas par l'envie — c'est ce qu'une taille continue masquait.
+      */
+      font-size: var(--heading-1-size);
       letter-spacing: -0.045em;
       font-variation-settings: "opsz" var(--opsz-heading);
     }
