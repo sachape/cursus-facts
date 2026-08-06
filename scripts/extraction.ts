@@ -23,7 +23,7 @@ import {
   recuperer,
   texteprincipal,
 } from "../src/collecte/recuperation";
-import { clientAnthropic, extrairePage } from "../src/collecte/extraction";
+import { clientAnthropic, extrairePage, MODELE } from "../src/collecte/extraction";
 import { fermerNavigateur, rendre } from "../src/collecte/navigateur";
 import { journaliser, type EcritureJournalisee } from "../src/collecte/journal";
 import type { Rejet } from "../src/collecte/citation";
@@ -124,7 +124,10 @@ async function main() {
   }
   const client = clientAnthropic();
 
-  console.log(`\nExtraction — ${lot.length} page(s) sur ${file.length} en file\n`);
+  // Le modèle est journalisé : une mesure dont on ignore le modèle ne se
+  // compare à rien.
+  console.log(`\nExtraction — ${lot.length} page(s) sur ${file.length} en file`);
+  console.log(`Modèle : ${MODELE}\n`);
 
   const journal: EcritureJournalisee[] = [];
   const rejets: (Rejet & { id: number; url: string })[] = [];

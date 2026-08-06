@@ -14,7 +14,18 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { filtrerParCitation, type Filtrage, type ValeurCitee } from "./citation";
 
-export const MODELE = "claude-opus-5";
+/**
+ * Modèle d'extraction, configurable sans toucher au code.
+ *
+ * L'extraction sous contrainte de citation est une tâche de repérage et de
+ * recopie, pas de jugement — et le garde-fou rattrape les erreurs, puisqu'une
+ * valeur mal extraite est rejetée plutôt qu'écrite. Un modèle plus petit y
+ * suffit donc, à condition de le vérifier plutôt que de le supposer.
+ *
+ * Seule l'extraction bascule : l'assistant d'adéquation, qui rédige une phrase
+ * à partir de listes déjà établies, garde son propre modèle.
+ */
+export const MODELE = process.env["MODELE_EXTRACTION"] ?? "claude-haiku-4-5";
 
 /** Les dix-neuf champs extraits d'une page de détail. */
 export const CHAMPS_EXTRAITS = [

@@ -8,6 +8,8 @@
  * « non publié » des informations parfaitement publiées.
  */
 
+import { decodeHTML } from "entities";
+
 const CADENCE_PAR_DOMAINE_MS = 1_500;
 const TENTATIVES = 3;
 const AGENT = "FormlistBot/1.0 (+https://formlist.fr ; comparateur de formations)";
@@ -155,7 +157,19 @@ export const SEUIL_PAGE_VIDE = 600;
  * la valeur serait comparée à un texte que la page n'a jamais servi.
  */
 export function texteprincipal(html: string): string {
-  return html
+  /*
+    DÉCODAGE PAR BIBLIOTHÈQUE, JAMAIS PAR LISTE.
+
+    Une liste d'entités écrite à la main est une liste qui sera toujours
+    incomplète. Celle qui vivait ici couvrait `&nbsp;`, `&amp;`, `&lt;`, `&gt;`,
+    `&quot;`, `&euro;` et les apostrophes — et laissait passer TOUTES les
+    lettres accentuées. Le modèle recevait « strat&eacute;gique », restituait
+    « stratégique », et sa citation ne correspondait plus au texte servi.
+
+    Seize rejets sur vingt-cinq pages, comptés comme des citations fabriquées.
+    Le garde-fou faisait son travail sur une entrée que nous avions corrompue.
+  */
+  return decodeHTML(html)
     .replace(/<(script|style|noscript|svg|template)\b[\s\S]*?<\/\1>/gi, " ")
     .replace(/<!--[\s\S]*?-->/g, " ")
     // La navigation dilue la page et n'apporte aucun fait sur le parcours.
@@ -181,13 +195,6 @@ export function texteprincipal(html: string): string {
     .replace(/<\/(dd|td)>\s*/gi, "\n")
     .replace(/<\/(p|div|li|tr|h[1-6]|section|article|br)>/gi, "\n")
     .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&lt;/gi, "<")
-    .replace(/&gt;/gi, ">")
-    .replace(/&(#39|apos|rsquo);/gi, "'")
-    .replace(/&(quot|ldquo|rdquo);/gi, '"')
-    .replace(/&(euro);/gi, "€")
     .replace(/[ \t]+/g, " ")
     .replace(/\n\s*\n\s*/g, "\n")
     .trim();
