@@ -103,7 +103,12 @@ verifier("5. Toute valeur écrite par le pipeline porte une citation", (o) =>
   // Le pipeline n'écrit qu'après `filtrerParCitation`, et l'application au
   // catalogue journalise l'extrait dans `historique`. Une valeur d'origine
   // « extraction_automatique » sans extrait serait un contournement.
-  (o.historique ?? []).some((h) => /Extraction automatique/.test(h.motif) && !/« .* »/.test(h.motif))
+  /*
+    Le drapeau `s` est indispensable : une citation légitime contient souvent un
+    retour à la ligne — « Campus\nVieux-Lille » — et sans lui l'invariant
+    signalait des valeurs parfaitement citées.
+  */
+  (o.historique ?? []).some((h) => /Extraction automatique/.test(h.motif) && !/« .* »/s.test(h.motif))
     ? nom(o)
     : null,
 );

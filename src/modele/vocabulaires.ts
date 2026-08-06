@@ -41,7 +41,8 @@ export const MOTIFS_DOMAINES: ReadonlyArray<readonly [DomaineParcours, RegExp]> 
     /e-commerce|ecommerce|boutique en ligne|vente en ligne|commerce électronique|marchand|dropshipping/i,
   ],
   ["marketplaces", /amazon|marketplace|etsy|wholesale|fba|cdiscount/i],
-  ["publicite_payante", /\bads\b|publicit|sea|media buy/i],
+  // « sea » borné : sans limite de mot il attrapait « Seat » et « réseau ».
+  ["publicite_payante", /\bads\b|publicit|(?<![\p{L}\p{N}])sea(?![\p{L}\p{N}])|media buy/iu],
   ["referencement", /seo|référencement/i],
   ["email_crm", /email|klaviyo|brevo|mailchimp|crm|fidélisation/i],
   ["data_conversion", /analytics|\bdata\b|conversion|\bcro\b|hotjar|ga4/i],
@@ -78,14 +79,21 @@ export const MOTIFS_COMPETENCES: ReadonlyArray<readonly [string, RegExp]> = [
   ["Amazon FBA", /amazon|fba|wholesale/i],
   ["Etsy", /etsy/i],
   ["Meta Ads", /meta ads|facebook ads|instagram|publicité meta|snapchat/i],
-  ["Google Ads", /google ads|sea|moteurs de recherche|microsoft advertising/i],
+  ["Google Ads", /google ads|(?<![\p{L}\p{N}])sea(?![\p{L}\p{N}])|moteurs de recherche|microsoft advertising/iu],
   ["TikTok Ads", /tiktok/i],
   ["Pinterest Ads", /pinterest/i],
   ["Email Marketing", /email|mailchimp|newsletter|fidélisation/i],
   ["Klaviyo", /klaviyo/i],
   ["Brevo", /brevo/i],
   ["SEO e-commerce", /seo|référencement|search console|semrush|ahrefs/i],
-  ["CRO", /conversion|hotjar|taux de conversion|ux|parcours d'achat|tunnel/i],
+  /*
+    `ux` et `sea` sont bornés par des limites de mot compatibles Unicode.
+    Sans elles, « ux » attrapait Linux, flux, Bordeaux et luxe ; « sea »
+    attrapait Seat et réseau. `\b` ne suffit pas ici : il est ASCII et ne
+    délimite pas un mot accentué — même piège que « recommandé » sur le
+    vocabulaire interdit de l'assistant.
+  */
+  ["CRO", /conversion|hotjar|taux de conversion|(?<![\p{L}\p{N}])ux(?![\p{L}\p{N}])|parcours d'achat|tunnel/iu],
   ["Analytics", /analytics|ga4|matomo|données de masse|kpi|indicateurs/i],
   ["Merchant Center", /merchant center|shopping/i],
   ["IA e-commerce", /\bia\b|intelligence artificielle|chatgpt|gemini|mistral/i],

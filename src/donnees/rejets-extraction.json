@@ -1,0 +1,374 @@
+{
+ "rejets": [
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Partie 1 : Stratégie et Écosystème Web",
+    "Partie 2 : Stratégies de Contenu et Inbound Marketing",
+    "Partie 3 : Visibilité et Acquisition (SEO & SEA, GEO)",
+    "Partie 4 : Social Media et Influence",
+    "Partie 5 : Data Marketing et Performance",
+    "Partie 6 : Emailing, Automation et Fidélisation"
+   ],
+   "extrait": "Partie 1 : Stratégie et Écosystème Web",
+   "id": 33,
+   "url": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital"
+  },
+  {
+   "champ": "prix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": 0,
+   "extrait": "All Semrush Academy courses are free of charge.",
+   "id": 164,
+   "url": "https://www.semrush.com/academy/courses/semrush-tools/"
+  },
+  {
+   "champ": "modaliteAcces",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "compte requis",
+   "extrait": "If you already have a Semrush account, log in to proceed; otherwise, create a new account by providing the required information",
+   "id": 164,
+   "url": "https://www.semrush.com/academy/courses/semrush-tools/"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Enroll in a course today",
+   "id": 164,
+   "url": "https://www.semrush.com/academy/courses/semrush-tools/"
+  },
+  {
+   "champ": "cpf",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "1499€ TTC, finançable via votre Compte Personnel de Formation , votre  OPCO , ainsi que  France Travail  et vos  fonds propres .",
+   "id": 91,
+   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "1. Introduction aux spécificités du e-commerce",
+    "2. Législation pour le e-commerce",
+    "3. Travailler son image de marque",
+    "4. Espionner la concurrence de la vente en ligne",
+    "5. SEO : le référencement naturel de votre site et de vos pages produits",
+    "6. Établir une stratégie de contenu adaptée au e-commerce",
+    "7. Pinterest pour les e-commerçant·es",
+    "8. Bâtir une communauté et vendre sur Instagram",
+    "9. Percer sur Tik Tok pour vendre ses produits",
+    "10. Analyser les performances de son site avec Google Analytics",
+    "11. Google Ads : les campagnes shopping",
+    "12. Vendre grâce à Facebook Ads & Instagram Ads",
+    "13. Se lancer sur les marketplaces",
+    "14. L’intelligence artificielle au service de vos contenus",
+    "15. Le marketing d’influence pour augmenter ses ventes",
+    "16. Déployer une stratégie d’affiliation"
+   ],
+   "extrait": "1. Introduction aux spécificités du e-commerce",
+   "id": 91,
+   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/"
+  },
+  {
+   "champ": "prix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": 0,
+   "extrait": "Enroll for free Starts Aug 6",
+   "id": 180,
+   "url": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Digital Marketing Foundations",
+    "Strategy, Analysis & Audit",
+    "Channel Implementation & Performance Analysis"
+   ],
+   "extrait": "There are 3 modules in this course",
+   "id": 180,
+   "url": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies"
+  },
+  {
+   "champ": "formats",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Distanciel"
+   ],
+   "extrait": "Toutes nos formations sont 100 % en ligne et éligibles au CPF ou disponibles en alternance.",
+   "id": 93,
+   "url": "https://www.studi.com/fr/formation-a-distance/commerciale"
+  },
+  {
+   "champ": "duree",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "6 mois de formation académique + 6 mois de mission en entreprise",
+   "extrait": "Prochaine rentrée: octobre 2026 › 6 mois de formation académique (+/- 400h de face à face) › 6 mois de mission en entreprise",
+   "id": 45,
+   "url": "https://www.efap.com/formation-communication/mba-marketing-digital"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Transformation digitale de l'économie globale",
+    "Digital Marketing & Communication",
+    "Management de projet digital (web, mobile, internet des objets)",
+    "Social world & Individu média",
+    "Personal branding 2.0 et coaching de projet professionnel",
+    "E-business & Data world",
+    "Projet start-up ou consultant junior"
+   ],
+   "extrait": "Transformation digitale de l'économie globale › Comprendre l’économie numérique › Start-up et disruption › Économie collaborative › E-santé › 3D Printing",
+   "id": 45,
+   "url": "https://www.efap.com/formation-communication/mba-marketing-digital"
+  },
+  {
+   "champ": "region",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Paris, Nice",
+   "extrait": "Cette spécialisation est disponible sur les campus de Paris , Nice ainsi qu'en ligne via IPAG Online .",
+   "id": 53,
+   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "En 1re année : Parcoursup + entretien de motivation en français ; En 2e année : sous condition d'obtention de 60 crédits ECTS ; En 3e année : sous condition d'obtention de 120 crédits ECTS",
+   "extrait": "En 1re année Titulaire d’un diplôme français • Parcoursup + entretien de motivation en français Titulaire d’un diplôme étranger • Sur dossier + entretien de motivation en français",
+   "id": 53,
+   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Certification professionnelle au choix",
+    "CRM",
+    "Digital Marketing",
+    "Publicité & Communication",
+    "Community Management",
+    "Site d'e-commerce et stratégie digitale"
+   ],
+   "extrait": "Les modules de la spécialisation Marketing & Communication Digitale incluent :",
+   "id": 53,
+   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
+  },
+  {
+   "champ": "codeRncpRs",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "RNCP40509",
+   "extrait": "Consulter la fiche RNCP nationale n°40509 relative à ce diplôme",
+   "id": 2,
+   "url": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique"
+  },
+  {
+   "champ": "prix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": 0,
+   "extrait": "No sign-up required, and absolutely free of charge",
+   "id": 165,
+   "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
+  },
+  {
+   "champ": "modaliteAcces",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "accès libre",
+   "extrait": "No sign-up required, and absolutely free of charge",
+   "id": 165,
+   "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
+  },
+  {
+   "champ": "formats",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Distanciel"
+   ],
+   "extrait": "Learn practical ways to use Ahrefs' SEO tools and reports to improve SEO.",
+   "id": 165,
+   "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Formation inter / intra - Marketing - Marketing digital Offre 2026 Offre 2027",
+   "id": 104,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Formation inter / intra - Marketing - Marketing digital Offre 2026 Offre 2027",
+   "id": 104,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "E-quiz en amont/aval de la formation.",
+    "Structurer un Customer Care efficace et omnicanal",
+    "Maximiser la valeur du Customer Care grâce aux données et à l’IA",
+    "Automatiser et fluidifier le service client tout en conservant une touche humaine",
+    "Déployer un processus de contrôle qualité et de gestion des risques"
+   ],
+   "extrait": "Structurer un Customer Care efficace et omnicanal",
+   "id": 106,
+   "url": "https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Les sessions inter-entreprises permettent également des échanges de pratiques entre professionnels de secteurs variés, source d'enrichissement mutuel.",
+   "id": 232,
+   "url": "https://www.ism.fr/formations/marketing-digital"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "L'ISM propose des solutions intra-entreprise et des programmes sur mesure, conçus en collaboration avec les directions marketing, commerciales ou RH.",
+   "id": 232,
+   "url": "https://www.ism.fr/formations/marketing-digital"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Bac+3 (bachelor, licence, titre niveau II) en management, marketing, communication, web ou informatique",
+   "extrait": "Bac+3 (bachelor, licence, titre niveau II) en en management, marketing, communication, web ou informatique.",
+   "id": 61,
+   "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
+  },
+  {
+   "champ": "certification",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Titre « Manager de la Communication Numérique » de l’IIM et diplôme de l’EMLV conférant le grade de master",
+   "extrait": "À l’issue du cursus, les étudiants obtiennent le titre « Manager de la Communication Numérique » de l’IIM et le diplôme de l’EMLV conférant le grade de master",
+   "id": 61,
+   "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Accessible post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2 ; sélection sur dossier, épreuves puis entretien",
+   "extrait": "Les bachelors IIM sont accessibles post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2. La sélection est faite sur dossier, épreuves puis entretien.",
+   "id": 58,
+   "url": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
+  },
+  {
+   "champ": "formats",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Distanciel"
+   ],
+   "extrait": "100% à distance",
+   "id": 200,
+   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Maîtrise des outils bureautiques-traitement de texte, traitement des images, navigation internet, tableur ; Aisance dans le rédactionnel et le traitement de données chiffrées ; Un entretien téléphonique est obligatoire avant toute inscription",
+   "extrait": "Maîtrise des outils bureautiques-traitement de texte, traitement des images, navigation internet, tableur",
+   "id": 200,
+   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
+  },
+  {
+   "champ": "financements",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "CPF",
+    "AGEFICE",
+    "FIFPL",
+    "OPCOMMERCE",
+    "FRANCE TRAVAIL",
+    "OPCO"
+   ],
+   "extrait": "Pour les chefs d’entreprises : CPF, AGEFICE, FIFPL, OPCOMMERCE",
+   "id": 200,
+   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Module 0 : Bienvenue dans la formation",
+    "Module 1 : Installation de WordPress et configuration de l’hébergement",
+    "Module 2 : Vos premiers pas avec WordPress",
+    "Module 3 : Installation et configuration de la boutique",
+    "Module 4 : Le catalogue de produits",
+    "Module 5 : Gérer la livraison et le transport",
+    "Module 6 : Le tunnel de vente de WooCommerce",
+    "Module 7 : Gérer les commandes clients",
+    "Module 8 : Les mentions légales obligatoires",
+    "Module 9 : Gérer le référencement naturel (SEO)",
+    "Module 10 : Personnaliser les pages de sa boutique",
+    "Module 11 : Améliorer la rapidité de sa boutique",
+    "Module 12 : La maintenance de votre boutique"
+   ],
+   "extrait": "Module 0 : Bienvenue dans la formation",
+   "id": 200,
+   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Pour une admission en première année : un titre ou diplôme de niveau 4. Pour une admission en deuxième année : la validation d'une première année d'une formation supérieure. Pour une admission en troisième année : un titre ou diplôme de niveau 5.",
+   "extrait": "En fonction du dispositif de formation intégré par le candidat pour postuler à la certification, les prérequis sont :",
+   "id": 70,
+   "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
+  },
+  {
+   "champ": "codeRncpRs",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "RNCP n°36877",
+   "extrait": "Titre RNCP :  RNCP visé n°36877 :  Chef de projet marketing digital et communication (niveau 6)",
+   "id": 70,
+   "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
+  },
+  {
+   "champ": "formats",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Présentiel",
+    "Distanciel"
+   ],
+   "extrait": "Lieu : en présentiel ou à distance",
+   "id": 150,
+   "url": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Pour une formation sur-mesure (intra-entreprise), le tarif est lui aussi sur-mesure.",
+   "id": 150,
+   "url": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "1 - Introduction & fondamentaux de Matomo",
+    "2 - Installation et configuration initiale",
+    "3 - Prise en main de l'interface Analytics",
+    "4 - Analyse des performances & optimisation",
+    "5 - Module RGPD & privacy by design",
+    "6 - Présentation de Matomo Tag Manager & différents plugins",
+    "7 - Suivi des campagnes marketing, du moteur de recherche interne et du commerce électronique",
+    "8 - Bonus IA avec Matomo",
+    "Conclusion"
+   ],
+   "extrait": "1 - Introduction & fondamentaux de Matomo",
+   "id": 150,
+   "url": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/"
+  }
+ ],
+ "echecs": []
+}

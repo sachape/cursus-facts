@@ -1797,7 +1797,7 @@
   "organisme": "IAE de Lille",
   "categorieLibelle": "Universités",
   "sousFamille": "Diplôme d'État",
-  "region": null,
+  "region": "Vieux-Lille",
   "url": "iaelille.fr",
   "prix": 0,
   "duree": "2 ans",
@@ -1834,7 +1834,17 @@
   "competencesDeclarees": [],
   "classificationManuelle": false,
   "modaliteAcces": "pris_en_charge",
-  "sourceModalite": "Structurel : alternance financée par l'OPCO, frais d'inscription universitaires"
+  "sourceModalite": "Structurel : alternance financée par l'OPCO, frais d'inscription universitaires",
+  "historique": [
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://iaelille.fr/nos-formations/master-marketing-digital/ — « Campus\nVieux-Lille »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 33,
@@ -1842,11 +1852,11 @@
   "organisme": "Le Cnam",
   "categorieLibelle": "Universités",
   "sousFamille": "Diplôme d'État",
-  "region": null,
+  "region": "Paris",
   "url": "cnam.fr",
   "prix": null,
   "duree": "2 ans",
-  "volumeHoraire": null,
+  "volumeHoraire": 50,
   "formats": [
    "Distanciel",
    "Présentiel"
@@ -1860,7 +1870,11 @@
    "VAE"
   ],
   "certification": "Diplôme national niveau 7",
-  "outils": null,
+  "outils": [
+   "Meta",
+   "TikTok",
+   "LinkedIn"
+  ],
   "programme": null,
   "nonCouvert": null,
   "dateVerification": "2026-06-15",
@@ -1868,7 +1882,29 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.cnam.fr/formation/marketing-dans-un-monde-digital — « Durée : 50 heures (+/- 10%) »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.cnam.fr/formation/marketing-dans-un-monde-digital — « Adresse : \n 2 rue Conté - 75003 Paris »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.cnam.fr/formation/marketing-dans-un-monde-digital — « Le Social Ads : Ciblage publicitaire et formats créatifs sur Meta, TikTok et LinkedIn. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 34,
@@ -2106,11 +2142,11 @@
   "organisme": "SKEMA Business School",
   "categorieLibelle": "Écoles",
   "sousFamille": "École de commerce",
-  "region": null,
+  "region": "Lille, Paris ou en version Online",
   "url": "skema.edu",
-  "prix": null,
+  "prix": 18000,
   "duree": "1 an",
-  "volumeHoraire": null,
+  "volumeHoraire": 448,
   "formats": [
    "Alternance"
   ],
@@ -2140,7 +2176,36 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique — « Le coût d’un Mastère Spécialisé à SKEMA est de 18 000€ nets de taxes. »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique — « 12 mois – 448h de cours / an »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique — « Les programmes sont accessibles sur les campus SKEMA de Lille, Paris ou en version Online selon la spécialisation choisie. »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique — « Certifié RNCP niveau 7 (Répertoire National des Certifications Professionnelles) n° RNCP37332 »"
+   }
+  ],
+  "codeRncpRs": "RNCP37332",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 41,
@@ -2299,11 +2364,11 @@
   "organisme": "EFAP",
   "categorieLibelle": "Écoles",
   "sousFamille": "École de commerce",
-  "region": null,
+  "region": "Paris",
   "url": "efap.com",
   "prix": null,
   "duree": "1 à 2 ans",
-  "volumeHoraire": null,
+  "volumeHoraire": 400,
   "formats": [
    "Alternance"
   ],
@@ -2314,15 +2379,55 @@
    "Alternance"
   ],
   "certification": "Titre RNCP niveau 7",
-  "outils": null,
+  "outils": [
+   "Google Analytics",
+   "Prestashop"
+  ],
   "programme": null,
-  "nonCouvert": null,
+  "nonCouvert": [
+   "Pas de suite de parcours / Pas de passerelle"
+  ],
   "dateVerification": "2026-06-12",
   "source": "efap.com",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.efap.com/formation-communication/mba-marketing-digital — « Prochaine rentrée: octobre 2026 › 6 mois de formation académique (+/- 400h de face à face) › 6 mois de mission en entreprise »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.efap.com/formation-communication/mba-marketing-digital — « Formation délivrée en présentiel et disponible à : \nParis »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.efap.com/formation-communication/mba-marketing-digital — « La révolution numérique du commerce global ! Titre RNCP « Manager du marketing et de la transformation digitale » (RNCP 36119). »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.efap.com/formation-communication/mba-marketing-digital — « › Manager un site e-commerce (certification Prestashop) › Paiement électronique › Comprendre la démarche omnicanal › CRM et marketing client › Droit du commerce numérique › Analyse de la data : Google Analytics, datavisualisation »"
+   },
+   {
+    "champ": "nonCouvert",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.efap.com/formation-communication/mba-marketing-digital — « › Pas de suite de parcours / Pas de passerelle. »"
+   }
+  ],
+  "codeRncpRs": "RNCP 36119",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 46,
@@ -2553,7 +2658,7 @@
   "sousFamille": "École de commerce",
   "region": null,
   "url": "ipag.edu",
-  "prix": null,
+  "prix": 8950,
   "duree": "3 ans",
   "volumeHoraire": null,
   "formats": [
@@ -2575,7 +2680,24 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ipag.edu/bachelor-marketing-communication-digitale — « Les tarifs pour l’entrée en 1re, 2e, 3e année sont de 8 950 € par an en cas de paiement comptant et de 9 350 € en cas de paiement fractionné. »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ipag.edu/bachelor-marketing-communication-digitale — « Ces modules rejoignent les compétences de la fiche RNCP 37968 reconnue par France Compétences : »"
+   }
+  ],
+  "codeRncpRs": "RNCP 37968",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 54,
@@ -2614,9 +2736,9 @@
   "organisme": "Audencia",
   "categorieLibelle": "Écoles",
   "sousFamille": "École de commerce",
-  "region": null,
+  "region": "Nantes",
   "url": "audencia.com",
-  "prix": null,
+  "prix": 19400,
   "duree": "1 à 2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -2630,7 +2752,10 @@
    "Alternance"
   ],
   "certification": "Titre RNCP niveau 7",
-  "outils": null,
+  "outils": [
+   "Power BI",
+   "Tableau"
+  ],
   "programme": null,
   "nonCouvert": null,
   "dateVerification": "2026-06-12",
@@ -2638,7 +2763,36 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.audencia.com/les-formations/msc/msc-in-digital-business-data-management/diplomes-et-certifications — « 1 an - 19 400€ »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.audencia.com/les-formations/msc/msc-in-digital-business-data-management/diplomes-et-certifications — « Campus : \nAtlantic Campus - Nantes »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.audencia.com/les-formations/msc/msc-in-digital-business-data-management/diplomes-et-certifications — « N°RNCP : 37936 »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.audencia.com/les-formations/msc/msc-in-digital-business-data-management/diplomes-et-certifications — « Plusieurs certifications disponibles : Microsoft, Analytique (Power BI ou Tableau), Intelligence artificielle, gestion de projet, Cyber sécurité, etc. »"
+   }
+  ],
+  "codeRncpRs": "37936",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 56,
@@ -2646,7 +2800,7 @@
   "organisme": "ESDES Lyon",
   "categorieLibelle": "Écoles",
   "sousFamille": "École de commerce",
-  "region": null,
+  "region": "Lyon",
   "url": "esdes.fr",
   "prix": null,
   "duree": "1 à 2 ans",
@@ -2656,21 +2810,58 @@
    "Alternance"
   ],
   "niveauLibelle": "Bac+3",
-  "prerequis": null,
+  "prerequis": "un diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital",
   "cpf": 0,
   "financements": [
    "Alternance"
   ],
   "certification": "Titre RNCP niveau 7",
-  "outils": null,
-  "programme": null,
+  "outils": [
+   "Adobe Photoshop",
+   "Illustrator",
+   "Premiere"
+  ],
+  "programme": [
+   "Codage développement WEB",
+   "Digital project management",
+   "Graphisme Design",
+   "Hands-on Digital project"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-06-12",
   "source": "esdes.fr",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/ — « Formation Bac +5 Marketing Digital en alternance à Lyon »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/ — « il est nécessaire de justifier d’un diplôme Bac+3 en commerce, gestion ou domaine connexe, accompagné d’une forte appétence pour le digital »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/ — « La maîtrise d’outils de création graphique et montage vidéo professionnels, tels qu’Adobe Photoshop, Illustrator et Premiere »"
+   },
+   {
+    "champ": "programme",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/ — « Codage développement WEB \nDigital project management \nGraphisme Design \nHands-on Digital project »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 57,
@@ -2721,11 +2912,11 @@
   "organisme": "IIM Digital School",
   "categorieLibelle": "Écoles",
   "sousFamille": "École du digital",
-  "region": null,
+  "region": "Paris La Défense",
   "url": "iim.fr",
   "prix": null,
   "duree": "3 ans",
-  "volumeHoraire": null,
+  "volumeHoraire": 455,
   "formats": [
    "Présentiel",
    "Alternance"
@@ -2737,7 +2928,11 @@
    "Alternance"
   ],
   "certification": "Titre RNCP",
-  "outils": null,
+  "outils": [
+   "Looker Studio",
+   "Google Analytics",
+   "Google Ads"
+  ],
   "programme": [
    "Stratégie digitale",
    "Social media",
@@ -2751,7 +2946,29 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/ — « 455 heures de formation par an sur trois ans, en présentiel et distanciel »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/ — « Dispensé à Paris La Défense au sein du Pôle Léonard de Vinci, il prépare à évoluer aussi bien en agences spécialisées qu’au sein des directions marketing et communication de grandes entreprises ou de startups. »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/ — « Data Looker Studio / Google Analytics / Google Ads (certifications) : Analyse de la performance digitale et maîtrise des outils Google. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 59,
@@ -2763,7 +2980,7 @@
   "url": "iim.fr",
   "prix": null,
   "duree": "2 ans",
-  "volumeHoraire": null,
+  "volumeHoraire": 420,
   "formats": [
    "Alternance"
   ],
@@ -2774,7 +2991,11 @@
    "Alternance"
   ],
   "certification": "Titre RNCP niveau 7",
-  "outils": null,
+  "outils": [
+   "Python",
+   "R",
+   "Power BI"
+  ],
   "programme": null,
   "nonCouvert": null,
   "dateVerification": "2026-06-14",
@@ -2782,7 +3003,23 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.iim.fr/cursus/mastere-ecommerce-data-ia/ — « 420 heures de formation par an sur deux ans, en présentiel et distanciel »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.iim.fr/cursus/mastere-ecommerce-data-ia/ — « Les étudiants se forment à la collecte, au traitement et à l’analyse de données massives à l’aide de logiciels et langages spécialisés comme Python, R, ou Power BI. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 60,
@@ -2825,7 +3062,7 @@
   "url": "iim.fr",
   "prix": null,
   "duree": "2 ans",
-  "volumeHoraire": null,
+  "volumeHoraire": 420,
   "formats": [
    "Alternance"
   ],
@@ -2836,7 +3073,11 @@
    "Alternance"
   ],
   "certification": "Titre RNCP niveau 7",
-  "outils": null,
+  "outils": [
+   "Excel",
+   "SQL",
+   "Python"
+  ],
   "programme": null,
   "nonCouvert": null,
   "dateVerification": "2026-06-14",
@@ -2844,7 +3085,23 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/ — « Oui, la formation se déroule intégralement en alternance, à raison d’une semaine de cours sur quatre (13 semaines par an, 420 heures de formation annuelles). »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/ — « Utiliser des outils techniques comme Excel, SQL et Python pour le traitement de données »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 62,
@@ -2972,7 +3229,9 @@
    "Paiement échelonné"
   ],
   "certification": null,
-  "outils": null,
+  "outils": [
+   "Linux et bash"
+  ],
   "programme": null,
   "nonCouvert": null,
   "dateVerification": "2026-06-08",
@@ -2980,7 +3239,17 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale — « Linux et bash »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 66,
@@ -3637,7 +3906,7 @@
   "url": "rocket-school.com",
   "prix": 0,
   "duree": "13 mois",
-  "volumeHoraire": null,
+  "volumeHoraire": 476,
   "formats": [
    "Présentiel",
    "Alternance"
@@ -3651,7 +3920,12 @@
    "POEI"
   ],
   "certification": "Titre RNCP40377 — niveau 6",
-  "outils": null,
+  "outils": [
+   "HubSpot",
+   "Salesforce",
+   "outils de Growth Hacking",
+   "IA générative"
+  ],
   "programme": [
    "Bootcamp immersif d'un mois",
    "Acquisition et growth",
@@ -3678,8 +3952,29 @@
     "valeurPrecedente": null,
     "le": "2026-08-04",
     "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://rocket-school.com/formation/bachelor-business-development-marketing-digital/ — « Le programme est articulé autour de 3 blocs de compétences conformément au référentiel de certification pour un volume horaire de 476 heures sur l’année du cycle. »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://rocket-school.com/formation/bachelor-business-development-marketing-digital/ — « Titre RNCP 38666 – Responsable d’établissement marchand »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://rocket-school.com/formation/bachelor-business-development-marketing-digital/ — « L’apprentissage se fait directement sur les logiciels utilisés au quotidien par les équipes professionnelles (HubSpot, Salesforce, outils de Growth Hacking, IA générative). »"
    }
-  ]
+  ],
+  "codeRncpRs": "RNCP 38666",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 85,
@@ -3936,7 +4231,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "digi-atlas.com",
-  "prix": null,
+  "prix": 1499,
   "duree": "Accès à vie",
   "volumeHoraire": null,
   "formats": [
@@ -3967,7 +4262,17 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/ — « 1499€ TTC, finançable via votre Compte Personnel de Formation , votre  OPCO , ainsi que  France Travail  et vos  fonds propres . »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 92,
@@ -4511,17 +4816,17 @@
   "organisme": "ISM",
   "categorieLibelle": "Formations professionnelles",
   "sousFamille": "Formation continue",
-  "region": null,
+  "region": "Paris",
   "url": "ism.fr",
-  "prix": null,
+  "prix": 1510,
   "duree": "2 à 3 jours",
-  "volumeHoraire": null,
+  "volumeHoraire": 14,
   "formats": [
    "Présentiel",
    "Distanciel"
   ],
   "niveauLibelle": "Expérience",
-  "prerequis": null,
+  "prerequis": "Connaître les fondamentaux de la relation client digitale.",
   "cpf": 0,
   "financements": [
    "Plan de développement",
@@ -4536,7 +4841,42 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client — « 1510€ HT »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client — « 2 jours - 14 heures »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client — « 16 et 17 sept. 2027 \nParis »"
+   },
+   {
+    "champ": "dispoInter",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client — « Places disponibles »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client — « Connaître les fondamentaux de la relation client digitale. »"
+   }
+  ],
+  "dispoInter": true,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 108,
@@ -6326,15 +6666,15 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "conversion-boosters.com",
-  "prix": null,
+  "prix": 690,
   "duree": "1 à 2 jours",
-  "volumeHoraire": null,
+  "volumeHoraire": 14,
   "formats": [
    "Distanciel",
    "Présentiel"
   ],
   "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
+  "prerequis": "Savoir se servir d'un ordinateur et d'un navigateur web",
   "cpf": 0,
   "financements": [
    "OPCO",
@@ -6354,7 +6694,36 @@
    "Analytics"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/ — « Le tarif des formations inter-entreprises est de 690€ à 890€ HT par jour et par apprenant selon le thème, la modalité et la durée de la formation. »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/ — « Durée : 14h »"
+   },
+   {
+    "champ": "dispoInter",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/ — « Toutes nos sessions inter sont disponibles au calendrier. »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/ — « Savoir se servir d'un ordinateur et d'un navigateur web »"
+   }
+  ],
+  "dispoInter": true,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 151,
@@ -7822,7 +8191,7 @@
   "url": "coursera.org",
   "prix": null,
   "duree": "Variable",
-  "volumeHoraire": null,
+  "volumeHoraire": 7,
   "formats": [
    "Distanciel"
   ],
@@ -7833,7 +8202,9 @@
    "Paiement comptant"
   ],
   "certification": "Certificat de plateforme",
-  "outils": null,
+  "outils": [
+   "Digital Marketing Tools"
+  ],
   "programme": null,
   "nonCouvert": [
    "Accompagnement individuel"
@@ -7846,7 +8217,29 @@
    "Analytics"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": "Enroll for free",
+  "historique": [
+   {
+    "champ": "modaliteAcces",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies — « Enroll for free Starts Aug 6 »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies — « 7 hours to complete »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies — « Tools you'll learn\nDigital Marketing Tools »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 181,
@@ -7967,7 +8360,7 @@
   "sousFamille": "Plateforme et MOOC",
   "region": null,
   "url": "elephorm.com",
-  "prix": null,
+  "prix": 29.95,
   "duree": "Variable",
   "volumeHoraire": null,
   "formats": [
@@ -7997,7 +8390,17 @@
    "PrestaShop"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.elephorm.com/formation/apprendre-html-5-et-css3-tutoriel-video-avec-un-expert-du-web — « 29,95€ »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 185,
@@ -8660,11 +9063,28 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "prix": null,
+  "prix": 1650,
   "id": 200,
   "nom": "WordPress & WooCommerce 2026",
   "volumeHoraire": 30,
-  "duree": null
+  "duree": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce — « Premium\n 1.650€\n Pour ceux qui veulent se former et créer une boutique e-commerce professionnelle avec WordPress et WooCommerce »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce — « Cette formation prépare à la certification “Créer et gérer le site internet de sa TPE à l'aide d'un CMS” enregistrée à France Compétences depuis le 27/06/2024 sous le numéro RS6685 par l’organisme certificateur CréActifs . »"
+   }
+  ],
+  "codeRncpRs": "RS6685",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "ORSYS",
@@ -9802,7 +10222,7 @@
    "Distanciel"
   ],
   "niveauLibelle": null,
-  "prerequis": null,
+  "prerequis": "une familiarité de base avec les concepts du marketing et une certaine aisance avec les outils numériques sont recommandées",
   "cpf": 0,
   "financements": [
    "OPCO"
@@ -9822,7 +10242,17 @@
   "volumeHoraire": null,
   "prix": null,
   "id": 231,
-  "nom": "Parcours certifiant — Marketing digital"
+  "nom": "Parcours certifiant — Marketing digital",
+  "historique": [
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ism.fr/formations/marketing-digital/strategie-digitale — « Bien que nos programmes soient conçus pour accueillir un large éventail de profils professionnels, une familiarité de base avec les concepts du marketing et une certaine aisance avec les outils numériques sont recommandées pour tirer le meilleur parti de la formation. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "ISM",
@@ -9835,7 +10265,7 @@
    "Distanciel"
   ],
   "niveauLibelle": null,
-  "prerequis": null,
+  "prerequis": "Les prérequis varient selon le niveau et l'objectif de chaque formation.",
   "cpf": 0,
   "financements": [
    "OPCO"
@@ -9855,7 +10285,17 @@
   "volumeHoraire": null,
   "prix": null,
   "id": 232,
-  "nom": "Les fondamentaux du marketing digital"
+  "nom": "Les fondamentaux du marketing digital",
+  "historique": [
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ism.fr/formations/marketing-digital — « Les prérequis varient selon le niveau et l'objectif de chaque formation. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "ISM",
