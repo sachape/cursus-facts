@@ -136,6 +136,18 @@ async function main() {
   const fichesTouchees = new Set<number>();
   const parStrate = new Map<string, { proposes: number; retenus: number; pages: number }>();
 
+  /*
+    AVANCEMENT PERSISTÉ À CHAQUE PAGE.
+
+    Les deux tentatives précédentes ont été interrompues avant terme et ont tout
+    perdu : le journal n'était écrit qu'à la fin. Une passe longue qui ne
+    survit pas à son interruption ne finit jamais — elle recommence.
+  */
+  const sauvegarder = () => {
+    writeFileSync(JOURNAL, JSON.stringify(journal, null, 1));
+    writeFileSync(REJETS, JSON.stringify({ rejets, echecs }, null, 1));
+  };
+
   await enParallele(lot, 6, async (entree, index) => {
     const etiquette = `${String(index + 1).padStart(3)}/${lot.length}  ${entree.offre.nom.slice(0, 40).padEnd(40)}`;
 
@@ -222,14 +234,14 @@ async function main() {
       );
     }
     fichesTouchees.add(entree.id!);
+    sauvegarder();
     console.log(
       `${etiquette} ✓ ${String(Object.keys(extraction.filtrage.retenus).length).padStart(2)}/${String(extraction.proposes).padStart(2)} champs cités`,
     );
   });
 
   await fermerNavigateur();
-  writeFileSync(JOURNAL, JSON.stringify(journal, null, 1));
-  writeFileSync(REJETS, JSON.stringify({ rejets, echecs }, null, 1));
+  sauvegarder();
 
   const tauxCitation = proposes === 0 ? 0 : Math.round((retenus / proposes) * 100);
   const parMotif = rejets.reduce<Record<string, number>>(
