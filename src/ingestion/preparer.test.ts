@@ -122,7 +122,7 @@ describe("ce qui part en base respecte les invariants", () => {
     }
   });
 
-  it("écrit 2 724 informations vérifiées", () => {
+  it("écrit 2 769 informations vérifiées", () => {
     // 2 401 → 2 368 : correction des prix nuls non attestés (33 fiches).
     // 2 368 → 2 340 : qualification de la gratuité (28 fiches de plus).
     // 2 340 → 2 320 : fusion des trois formules Amazon Incubator en une fiche,
@@ -134,13 +134,16 @@ describe("ce qui part en base respecte les invariants", () => {
     // comme des parcours. Les 19 informations perdues décrivaient une famille
     // de cours, pas un parcours achetable — une baisse qui vaut mieux que le
     // chiffre qu'elle remplace.
+    // 2 638 → 2 724 puis 2 769 : passe d'extraction automatisée du 6 août 2026,
+    // journalisée dans `journal-extraction.json`. Chaque hausse est adossée à la
+    // lecture d'une page de détail citée — c'est le chemin légitime.
     // Ce compteur ne doit monter que par lecture d'une page de détail : une
     // hausse sans passage en collecte signalerait une information déduite.
     const total = preparation.fiches.reduce(
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2724);
+    expect(total).toBe(2769);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
