@@ -19,7 +19,7 @@ import type { ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_DOMAINES } from "./vocabulaires";
 
 /* -------------------------------------------------------------------------- */
-/* Les cinq questions                                                         */
+/* Les quatre questions                                                       */
 /* -------------------------------------------------------------------------- */
 
 export const OBJECTIFS = {
@@ -44,12 +44,26 @@ export const TEMPS = {
   temps_plein: "À temps plein",
 } as const;
 
-export const DEPARTS = {
-  zero: "Je pars de zéro",
-  deja_teste: "J'ai déjà testé",
-  vend_deja: "Je vends déjà en ligne",
-  en_poste: "Je suis en poste dans le secteur",
-} as const;
+/*
+  LE POINT DE DÉPART A ÉTÉ RETIRÉ le 6 août 2026, sur mesure.
+
+  Écart entre ses réponses : 17,8 points, neutres exclues — l'avant-dernière des
+  cinq. Et sa faiblesse est STRUCTURELLE, pas conjoncturelle : `niveau_entree`
+  est publié sur 93 % du catalogue, donc la question disposait de sa donnée et
+  ne triait quand même pas.
+
+  C'est ce qui la distingue de la question du temps, qui mesure plus bas encore
+  (16,1 points) mais dont le champ n'est couvert qu'à 30 % : sa faiblesse est un
+  fait sur nous, pas sur elle. Retirer les deux au même motif aurait verrouillé
+  une lacune de collecte en décision produit.
+
+  Conséquence assumée : `niveau_entree` n'entre plus dans l'adéquation, alors
+  que c'est le champ le mieux couvert des cinq. Le prérequis reste un fait
+  publié sur la fiche, il ne pèse simplement plus sur le choix des trois
+  correspondances.
+
+  Rejouer `bun run scripts/pouvoir-discriminant.ts` après le crawl.
+*/
 
 export const CANAUX = {
   boutique_propre: "Ma propre boutique",
@@ -61,33 +75,29 @@ export const CANAUX = {
 export type Objectif = keyof typeof OBJECTIFS;
 export type Budget = keyof typeof BUDGETS;
 export type Temps = keyof typeof TEMPS;
-export type Depart = keyof typeof DEPARTS;
 export type Canal = keyof typeof CANAUX;
 
 export type Situation = {
   objectif: Objectif;
   budget: Budget;
   temps: Temps;
-  depart: Depart;
   canal: Canal;
 };
 
-/** Les cinq questions, dans l'ordre d'affichage. */
+/** Les quatre questions, dans l'ordre d'affichage. */
 export const QUESTIONS = [
   { cle: "objectif", intitule: "Quel est votre objectif ?", options: OBJECTIFS },
   { cle: "budget", intitule: "Quel budget pouvez-vous engager ?", options: BUDGETS },
   { cle: "temps", intitule: "Combien de temps par semaine ?", options: TEMPS },
-  { cle: "depart", intitule: "Quel est votre point de départ ?", options: DEPARTS },
   { cle: "canal", intitule: "Sur quel canal voulez-vous vendre ?", options: CANAUX },
 ] as const;
 
-/** Vrai seulement si les cinq réponses sont renseignées. */
+/** Vrai seulement si toutes les réponses attendues sont renseignées. */
 export function situationComplete(partielle: Partial<Situation>): partielle is Situation {
   return (
     partielle.objectif !== undefined &&
     partielle.budget !== undefined &&
     partielle.temps !== undefined &&
-    partielle.depart !== undefined &&
     partielle.canal !== undefined
   );
 }
@@ -135,14 +145,6 @@ const DOMAINES_CANAL: Record<Canal, readonly string[]> = {
   pas_decide: [],
 };
 
-/** Niveaux d'entrée accessibles selon le point de départ déclaré. */
-const NIVEAUX_ACCESSIBLES: Record<Depart, readonly string[]> = {
-  zero: ["aucun_prerequis"],
-  deja_teste: ["aucun_prerequis", "experience"],
-  vend_deja: ["aucun_prerequis", "experience", "bac2"],
-  en_poste: ["aucun_prerequis", "experience", "bac2", "bac3"],
-};
-
 /* -------------------------------------------------------------------------- */
 /* Résultat                                                                   */
 /* -------------------------------------------------------------------------- */
@@ -157,35 +159,46 @@ export type Adequation = {
 
 const COMPETENCES = (p: ParcoursListe) => [p.sujetPrincipal, ...p.competencesCouvertes];
 
-/** Évalue un parcours contre une situation. Ne classe pas, ne juge pas. */
-export function evaluer(parcours: ParcoursListe, situation: Situation): Adequation {
+/**
+ * Évalue un parcours contre une situation. Ne classe pas, ne juge pas.
+ *
+ * La situation peut être PARTIELLE. Une question sans réponse ne pose aucun
+ * critère — exactement comme une réponse neutre — ce qui permet de compter les
+ * candidats encore compatibles au fil du parcours guidé sans dupliquer la
+ * moindre règle. Une seconde fonction de comptage aurait divergé de celle-ci au
+ * premier ajustement, et l'écran aurait annoncé un nombre que la sortie
+ * n'aurait pas tenu.
+ */
+export function evaluer(parcours: ParcoursListe, situation: Partial<Situation>): Adequation {
   const correspond: string[] = [];
   const ecarts: string[] = [];
 
   /* Budget — un prix non publié n'est ni un écart ni une correspondance. */
-  const plafond = PLAFOND_BUDGET[situation.budget];
-  if (situation.budget === "finance") {
-    if (parcours.eligibleCpf === true) correspond.push("Éligible au CPF");
-    else if ((parcours.financements?.length ?? 0) > 0) {
-      correspond.push(`Financements acceptés : ${parcours.financements!.join(", ")}`);
+  if (situation.budget !== undefined) {
+    const plafond = PLAFOND_BUDGET[situation.budget];
+    if (situation.budget === "finance") {
+      if (parcours.eligibleCpf === true) correspond.push("Éligible au CPF");
+      else if ((parcours.financements?.length ?? 0) > 0) {
+        correspond.push(`Financements acceptés : ${parcours.financements!.join(", ")}`);
+      } else {
+        ecarts.push("Aucun financement CPF ou entreprise n'est publié pour ce parcours");
+      }
+    } else if (parcours.prixMin === null) {
+      ecarts.push("Le prix n'est pas publié : la compatibilité budgétaire ne peut pas être vérifiée");
+    } else if (plafond !== null && parcours.prixMin > plafond) {
+      ecarts.push(
+        `Budget dépassé : ${parcours.prixMin.toLocaleString("fr-FR")} € pour un budget annoncé de ${BUDGETS[situation.budget].toLowerCase()}`,
+      );
+    } else if (parcours.prixMin === 0) {
+      correspond.push("Gratuit");
     } else {
-      ecarts.push("Aucun financement CPF ou entreprise n'est publié pour ce parcours");
+      correspond.push(`Prix dans votre budget : ${parcours.prixMin.toLocaleString("fr-FR")} €`);
     }
-  } else if (parcours.prixMin === null) {
-    ecarts.push("Le prix n'est pas publié : la compatibilité budgétaire ne peut pas être vérifiée");
-  } else if (plafond !== null && parcours.prixMin > plafond) {
-    ecarts.push(
-      `Budget dépassé : ${parcours.prixMin.toLocaleString("fr-FR")} € pour un budget annoncé de ${BUDGETS[situation.budget].toLowerCase()}`,
-    );
-  } else if (parcours.prixMin === 0) {
-    correspond.push("Gratuit");
-  } else {
-    correspond.push(`Prix dans votre budget : ${parcours.prixMin.toLocaleString("fr-FR")} €`);
-  }
+    }
 
   /* Charge horaire — approximation publiée à partir du volume total. */
-  const plafondVolume = PLAFOND_VOLUME[situation.temps];
-  if (parcours.volumeHoraire !== null) {
+  if (situation.temps !== undefined && parcours.volumeHoraire !== null) {
+    const plafondVolume = PLAFOND_VOLUME[situation.temps];
     if (plafondVolume !== null && parcours.volumeHoraire > plafondVolume) {
       ecarts.push(
         `Charge horaire incompatible : ${parcours.volumeHoraire} h au total pour une disponibilité de ${TEMPS[situation.temps].toLowerCase()} par semaine`,
@@ -195,24 +208,8 @@ export function evaluer(parcours: ParcoursListe, situation: Situation): Adequati
     }
   }
 
-  /* Point de départ — le niveau d'entrée est un fait publié, pas un jugement. */
-  const accessibles = NIVEAUX_ACCESSIBLES[situation.depart];
-  if (parcours.niveauEntree !== null) {
-    if (accessibles.includes(parcours.niveauEntree)) {
-      correspond.push(
-        parcours.niveauEntree === "aucun_prerequis"
-          ? "Aucun prérequis"
-          : `Niveau d'entrée atteint : ${parcours.niveauEntree === "bac2" ? "Bac+2" : parcours.niveauEntree === "bac3" ? "Bac+3" : "expérience"}`,
-      );
-    } else {
-      ecarts.push(
-        `Prérequis non détenu : ce parcours demande ${parcours.niveauEntree === "bac2" ? "un Bac+2" : parcours.niveauEntree === "bac3" ? "un Bac+3" : "une expérience du secteur"}`,
-      );
-    }
-  }
-
   /* Canal de vente. */
-  if (situation.canal !== "pas_decide") {
+  if (situation.canal !== undefined && situation.canal !== "pas_decide") {
     const attendues = COMPETENCES_CANAL[situation.canal];
     const couvert = COMPETENCES(parcours).some((c) => attendues.includes(c));
     const parDomaine = DOMAINES_CANAL[situation.canal].includes(parcours.domaine);
@@ -228,7 +225,7 @@ export function evaluer(parcours: ParcoursListe, situation: Situation): Adequati
   }
 
   /* Objectif. */
-  switch (situation.objectif) {
+  if (situation.objectif !== undefined) switch (situation.objectif) {
     case "diplome_reconnu":
       if (parcours.codeRncpRs !== null) {
         correspond.push(`Certification enregistrée : ${parcours.codeRncpRs}`);
@@ -339,4 +336,43 @@ export function motsInterditsPresents(texte: string): string[] {
   return MOTS_INTERDITS.filter((mot) =>
     new RegExp(`(?<![\\p{L}\\p{N}])${mot}(?![\\p{L}\\p{N}])`, "iu").test(texte),
   );
+}
+
+/* -------------------------------------------------------------------------- */
+/* Parcours guidé                                                             */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Les questions à poser, compte tenu des réponses déjà données.
+ *
+ * Le canal de vente ne veut rien dire pour quelqu'un qui vise un diplôme
+ * reconnu ou un emploi : il ne cherche pas où vendre, il cherche à être
+ * certifié ou embauché. La question est donc écartée dans ces deux cas — et
+ * l'indicateur de progression compte sur CETTE liste, jamais sur `QUESTIONS`,
+ * sinon il annoncerait un total que le parcours n'atteindra pas.
+ */
+export function questionsApplicables(reponses: Partial<Situation>): typeof QUESTIONS[number][] {
+  const sansCanal = reponses.objectif === "diplome_reconnu" || reponses.objectif === "trouver_emploi";
+  return QUESTIONS.filter((q) => !(q.cle === "canal" && sansCanal));
+}
+
+/** Vrai si toutes les questions applicables ont reçu une réponse. */
+export function parcoursTermine(reponses: Partial<Situation>): boolean {
+  return questionsApplicables(reponses).every((q) => reponses[q.cle as keyof Situation] !== undefined);
+}
+
+/**
+ * Combien de parcours restent compatibles avec les réponses déjà données.
+ *
+ * Compté par `evaluer` sur une situation partielle, jamais par une règle
+ * parallèle : c'est ce nombre qui transforme un questionnaire en exploration,
+ * et il doit désigner exactement les mêmes parcours que la sortie finale. Un
+ * comptage écrit à part aurait divergé au premier ajustement d'un seuil, et
+ * l'écran aurait promis un chiffre que les trois correspondances démentaient.
+ */
+export function compterCandidats(
+  parcours: readonly ParcoursListe[],
+  reponses: Partial<Situation>,
+): number {
+  return parcours.filter((p) => evaluer(p, reponses).ecarts.length === 0).length;
 }

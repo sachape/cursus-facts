@@ -48,7 +48,6 @@ const situation = (partiel: Partial<Situation> = {}): Situation => ({
   objectif: "developper_activite",
   budget: "plus_2500",
   temps: "temps_plein",
-  depart: "en_poste",
   canal: "pas_decide",
   ...partiel,
 });
@@ -61,7 +60,6 @@ describe("les cinq questions sont obligatoires", () => {
         objectif: "trouver_emploi",
         budget: "zero",
         temps: "moins_3h",
-        depart: "zero",
       }),
     ).toBe(false);
   });
@@ -80,9 +78,19 @@ describe("l'écart est une information, pas un défaut masqué", () => {
     expect(normalise.some((e) => e.includes("Budget dépassé") && e.includes("2 490"))).toBe(true);
   });
 
-  it("énonce un prérequis non détenu", () => {
-    const { ecarts } = evaluer(p({ niveauEntree: "bac3" }), situation({ depart: "zero" }));
-    expect(ecarts.some((e) => e.includes("Prérequis non détenu") && e.includes("Bac+3"))).toBe(true);
+  it("n'énonce plus aucun écart de prérequis, la question ayant été retirée", () => {
+    /*
+      Le point de départ a été retiré le 6 août 2026 : 17,8 points d'écart entre
+      ses réponses, neutres exclues, alors que `niveau_entree` est publié sur
+      93 % du catalogue. La question disposait de sa donnée et ne triait pas.
+
+      Ce test remplace « énonce un prérequis non détenu ». Le supprimer sans le
+      remplacer aurait laissé le retrait invisible : un critère qui disparaît
+      d'`evaluer` sans qu'aucun test ne l'atteste revient au premier
+      copier-coller.
+    */
+    const { ecarts } = evaluer(p({ niveauEntree: "bac3" }), situation({}));
+    expect(ecarts.some((e) => e.includes("Prérequis"))).toBe(false);
   });
 
   it("énonce un canal non couvert", () => {
@@ -120,10 +128,6 @@ describe("rien n'est déduit d'une information absente", () => {
     expect(ecarts.some((e) => e.includes("Charge horaire"))).toBe(false);
   });
 
-  it("ne produit aucun écart de niveau sans niveau d'entrée publié", () => {
-    const { ecarts } = evaluer(p({ niveauEntree: null }), situation({ depart: "zero" }));
-    expect(ecarts.some((e) => e.includes("Prérequis"))).toBe(false);
-  });
 });
 
 describe("correspondances factuelles", () => {
@@ -154,7 +158,7 @@ describe("classement", () => {
   it("place les parcours qui présentent le moins d'écarts en premier", () => {
     const parfait = p({ nom: "Sans écart", prixMin: 200, niveauEntree: "aucun_prerequis" });
     const ecarte = p({ nom: "Trop cher", prixMin: 5000, niveauEntree: "bac3" });
-    const classe = classerParAdequation([ecarte, parfait], situation({ budget: "moins_500", depart: "zero" }));
+    const classe = classerParAdequation([ecarte, parfait], situation({ budget: "moins_500" }));
     expect(classe[0]!.parcours.nom).toBe("Sans écart");
   });
 
@@ -174,7 +178,7 @@ describe("classement", () => {
     // Une fiche qui ne correspond à rien reste classable : c'est à
     // l'utilisateur de lire les écarts, pas au moteur de masquer la fiche.
     const catalogue = [p({ nom: "Inadapté", prixMin: 9999, niveauEntree: "bac3" })];
-    const classe = classerParAdequation(catalogue, situation({ budget: "zero", depart: "zero" }));
+    const classe = classerParAdequation(catalogue, situation({ budget: "zero" }));
     expect(classe).toHaveLength(1);
     expect(classe[0]!.ecarts.length).toBeGreaterThan(0);
   });

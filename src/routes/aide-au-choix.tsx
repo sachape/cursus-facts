@@ -6,11 +6,12 @@
  * situation, et non un niveau de qualité. Les écarts sont affichés au même rang
  * que les correspondances — c'est souvent l'information la plus utile.
  */
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import {
-  QUESTIONS,
+  compterCandidats,
+  questionsApplicables,
   situationComplete,
   troisCorrespondances,
   type Adequation,
@@ -30,7 +31,7 @@ export const Route = createFileRoute("/aide-au-choix")({
       {
         name: "description",
         content:
-          "Cinq questions, trois correspondances avec leurs écarts explicites. Une adéquation avec votre situation, pas une évaluation de qualité.",
+          "Quatre questions, trois correspondances avec leurs écarts explicites. Une adéquation avec votre situation, pas une évaluation de qualité.",
       },
     ],
   }),
@@ -39,19 +40,67 @@ export const Route = createFileRoute("/aide-au-choix")({
 function AideAuChoix() {
   const parcours = Route.useLoaderData();
   const [reponses, setReponses] = useState<Partial<Situation>>({});
+  /** Index dans la liste des questions APPLICABLES, jamais dans `QUESTIONS`. */
+  const [rang, setRang] = useState(0);
+  const [sens, setSens] = useState<"avant" | "arriere">("avant");
   const [resultats, setResultats] = useState<Adequation[] | null>(null);
   const [phrases, setPhrases] = useState<Map<string, PhraseRedigee>>(new Map());
   const [avertissement, setAvertissement] = useState<string | null>(null);
   const [enCours, setEnCours] = useState(false);
   const [refus, setRefus] = useState<string | null>(null);
 
-  const complete = situationComplete(reponses);
-  const manquantes = QUESTIONS.filter((q) => reponses[q.cle as keyof Situation] === undefined);
+  /*
+    La liste des questions dépend des réponses : viser un diplôme ou un emploi
+    retire celle du canal. Elle est donc recalculée à chaque réponse, et
+    l'indicateur de progression compte dessus — annoncer « sur 4 » pour un
+    parcours qui s'arrête à 3 ferait attendre un écran qui ne viendra pas.
+  */
+  const questions = useMemo(() => questionsApplicables(reponses), [reponses]);
+  const question = questions[Math.min(rang, questions.length - 1)]!;
+  const derniere = rang >= questions.length - 1;
+
+  /*
+    Le catalogue qui se réduit, sous chaque question. C'est ce qui transforme un
+    questionnaire en exploration : on voit le catalogue travailler au lieu de
+    répondre à l'aveugle.
+
+    Compté par le modèle sur la situation partielle — jamais par une règle
+    écrite ici, qui aurait fini par annoncer un nombre que les trois
+    correspondances démentent.
+  */
+  const candidats = useMemo(() => compterCandidats(parcours, reponses), [parcours, reponses]);
+  const aucunCandidat = candidats === 0;
+
+  const repondre = (cle: keyof Situation, valeur: string) => {
+    const suite = { ...reponses, [cle]: valeur } as Partial<Situation>;
+    setReponses(suite);
+    setRefus(null);
+    /*
+      Avance automatique : un bouton de validation par écran ajoute un geste par
+      question sans rien décider. Seule la dernière en porte un, parce qu'elle
+      déclenche un calcul et non un passage.
+
+      Le rang se recale sur la liste RECALCULÉE : répondre « diplôme reconnu »
+      retire la question du canal, et un index figé aurait sauté une question ou
+      pointé au-delà de la fin.
+    */
+    const suivantes = questionsApplicables(suite);
+    if (rang < suivantes.length - 1) {
+      setSens("avant");
+      setRang(rang + 1);
+    }
+  };
+
+  const revenir = () => {
+    setSens("arriere");
+    setRang((r) => Math.max(0, r - 1));
+  };
 
   async function chercher() {
     if (!situationComplete(reponses)) {
+      const manquantes = questions.filter((q) => reponses[q.cle as keyof Situation] === undefined);
       setRefus(
-        `Les cinq questions doivent être renseignées pour établir une adéquation. Il en manque ${manquantes.length} : ${manquantes.map((q) => q.intitule.replace(/\s*\?$/, "").toLowerCase()).join(", ")}.`,
+        `Il manque ${manquantes.length} réponse${manquantes.length > 1 ? "s" : ""} : ${manquantes.map((q) => q.intitule.replace(/\s*\?$/, "").toLowerCase()).join(", ")}.`,
       );
       return;
     }
@@ -64,7 +113,7 @@ function AideAuChoix() {
     setResultats(trois);
 
     try {
-      const resume = QUESTIONS.map((q) => {
+      const resume = questions.map((q) => {
         const options = q.options as Record<string, string>;
         return `${q.intitule} ${options[reponses[q.cle as keyof Situation] as string]}`;
       }).join(" ");
@@ -100,60 +149,138 @@ function AideAuChoix() {
     <main className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
       <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Aide au choix</h1>
       <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
-        Cinq questions sur votre situation, trois parcours qui y correspondent — avec ce qui ne
+        Quelques questions sur votre situation, trois parcours qui y correspondent — avec ce qui ne
         correspond pas. Nous n&apos;évaluons aucun organisme et ne classons rien par qualité.
       </p>
 
-      <div className="mt-8 space-y-8">
-        {QUESTIONS.map((question) => {
-          const cle = question.cle as keyof Situation;
-          const options = question.options as Record<string, string>;
-          return (
-            <fieldset key={question.cle}>
-              <legend className="font-titre text-base font-medium">{question.intitule}</legend>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {Object.entries(options).map(([valeur, libelle]) => {
-                  const choisi = reponses[cle] === valeur;
-                  return (
-                    <button
-                      key={valeur}
-                      type="button"
-                      aria-pressed={choisi}
-                      onClick={() => {
-                        setReponses((r) => ({ ...r, [cle]: valeur }));
-                        setRefus(null);
-                      }}
-                      className={`rounded-(--radius-md) border px-3 py-1.5 t-body-sm transition-colors ${
-                        choisi
-                          ? "border-foreground bg-foreground text-background"
-                          : "border-(--border-subtle) hover:border-foreground/40"
-                      }`}
-                    >
-                      {libelle}
-                    </button>
-                  );
-                })}
-              </div>
-            </fieldset>
-          );
-        })}
+      {/* Progression discrète : elle situe, elle ne presse pas. */}
+      <div className="mt-(--space-8)">
+        <p className="t-label text-(--text-tertiary)">
+          Question <span className="chiffre">{rang + 1}</span> sur{" "}
+          <span className="chiffre">{questions.length}</span>
+        </p>
+        <div className="mt-(--space-2) h-(--space-1) w-full overflow-hidden rounded-(--radius-full) bg-(--surface-sunken)">
+          <div
+            className="h-full rounded-(--radius-full) bg-(--interactive-default) transition-[width] duration-(--motion-base)"
+            style={{ width: `${((rang + 1) / questions.length) * 100}%` }}
+          />
+        </div>
       </div>
 
-      <div className="mt-10">
-        <Button onClick={chercher} disabled={enCours}>
-          {enCours ? "Recherche en cours…" : "Voir les correspondances"}
-        </Button>
-        <p className="mt-3 max-w-xl t-caption text-(--text-secondary)">
-          Le résultat indique une adéquation avec votre situation, pas un niveau de qualité. Nous
-          n&apos;évaluons aucun organisme.
+      {/*
+        Un écran, une question. `key` sur la clé de question : c'est ce qui
+        rejoue l'animation d'entrée à chaque passage — sans elle React réutilise
+        le nœud et le glissement ne se produit qu'une fois.
+      */}
+      <fieldset
+        key={question.cle}
+        className={`mt-(--space-6) motion-safe:animate-in motion-safe:duration-(--motion-base) ${
+          sens === "avant"
+            ? "motion-safe:slide-in-from-right-4"
+            : "motion-safe:slide-in-from-left-4"
+        }`}
+      >
+        <legend className="t-heading-2 text-(--text-primary)">{question.intitule}</legend>
+
+        <div className="mt-(--space-5) flex flex-wrap gap-(--space-2)">
+          {Object.entries(question.options as Record<string, string>).map(([valeur, libelle]) => {
+            const cle = question.cle as keyof Situation;
+            const choisi = reponses[cle] === valeur;
+            return (
+              <button
+                key={valeur}
+                type="button"
+                aria-pressed={choisi}
+                onClick={() => repondre(cle, valeur)}
+                className={`rounded-(--radius-md) border px-(--space-4) py-(--space-2) t-body-sm transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) ${
+                  choisi
+                    ? "border-(--interactive-default) bg-(--interactive-default) text-(--text-on-inverse)"
+                    : "border-(--border-default) hover:border-(--border-strong)"
+                }`}
+              >
+                {libelle}
+              </button>
+            );
+          })}
+        </div>
+
+        {/*
+          Le catalogue qui travaille. La transition porte sur le chiffre : un
+          nombre qui saute ne se lit pas comme une conséquence de la réponse.
+        */}
+        <p
+          aria-live="polite"
+          className="mt-(--space-4) t-caption text-(--text-tertiary) transition-opacity duration-(--motion-base)"
+        >
+          <span className="chiffre">{candidats}</span>{" "}
+          {candidats > 1 ? "parcours correspondent" : "parcours correspond"} à vos réponses
         </p>
 
-        {refus !== null && (
-          <p role="alert" className="mt-4 rounded-(--radius-md) border border-absent/40 p-3 t-body-sm text-absent">
-            {refus}
-          </p>
+        {/*
+          Zéro se dit TOUT DE SUITE. Laisser dérouler jusqu'au bout pour
+          n'afficher aucun résultat fait perdre trois écrans avant d'annoncer
+          une impasse qu'on connaissait dès la réponse précédente.
+        */}
+        {aucunCandidat && (
+          <div
+            role="alert"
+            className="mt-(--space-4) rounded-(--radius-md) border border-(--status-absent) p-(--space-4) t-body-sm"
+          >
+            <p className="text-(--text-primary)">
+              Aucun parcours du catalogue ne réunit ces réponses.
+            </p>
+            <p className="mt-(--space-2) text-(--text-secondary)">
+              Ce n&apos;est pas un manque de résultats : c&apos;est un fait sur le catalogue tel
+              qu&apos;il est publié aujourd&apos;hui. Revenez sur une réponse pour élargir.
+            </p>
+            {rang > 0 && (
+              <button
+                type="button"
+                onClick={revenir}
+                className="mt-(--space-3) rounded-(--radius-sm) underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+              >
+                Revenir à la question précédente
+              </button>
+            )}
+          </div>
+        )}
+      </fieldset>
+
+      <div className="mt-(--space-8) flex flex-wrap items-center gap-(--space-4)">
+        {rang > 0 && (
+          <button
+            type="button"
+            onClick={revenir}
+            className="rounded-(--radius-sm) t-body-sm text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+          >
+            ← Question précédente
+          </button>
+        )}
+
+        {/*
+          Un seul bouton dans tout le parcours, sur la dernière question :
+          répondre fait avancer, sauf ici où ça déclenche un calcul.
+        */}
+        {derniere && (
+          <Button onClick={chercher} disabled={enCours || !situationComplete(reponses)}>
+            {enCours ? "Recherche en cours…" : "Voir les correspondances"}
+          </Button>
         )}
       </div>
+
+      <p className="mt-(--space-3) max-w-xl t-caption text-(--text-secondary)">
+        Le résultat indique une adéquation avec votre situation, pas un niveau de qualité. Nous
+        n&apos;évaluons aucun organisme.
+      </p>
+
+      {refus !== null && (
+        <p
+          role="alert"
+          className="mt-(--space-4) rounded-(--radius-md) border border-absent/40 p-(--space-3) t-body-sm text-absent"
+        >
+          {refus}
+        </p>
+      )}
 
       {avertissement !== null && (
         <p className="mt-8 rounded-(--radius-md) border border-(--border-subtle) p-3 t-caption text-(--text-secondary)">
