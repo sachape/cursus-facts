@@ -16,6 +16,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
+import { oublierIdentite } from "./mesure";
 
 type Contexte = {
   utilisateur: User | null;
@@ -110,6 +111,8 @@ export function FournisseurAuth({ children }: { children: React.ReactNode }) {
 
   const deconnecter = useCallback(async () => {
     await supabase.auth.signOut();
+    // Sur un poste partagé, deux sessions ne doivent pas être cousues en une.
+    oublierIdentite();
   }, []);
 
   const valeur = useMemo(

@@ -18,6 +18,8 @@
  * revient toujours à la poser partiellement, aux endroits dont on se souvient.
  */
 
+import mixpanel from "mixpanel-browser";
+
 /** Les gestes suivis. Une liste fermée : un événement libre ne s'analyse pas. */
 export type Evenement =
   | "inscription"
@@ -36,21 +38,73 @@ export type Evenement =
  */
 export type Proprietes = { type?: string; nombre?: number };
 
-type Mixpanel = { track: (evenement: string, proprietes?: Proprietes) => void };
+/*
+  Initialisé une seule fois, à la demande, et JAMAIS au rendu serveur.
 
-function fournisseur(): Mixpanel | null {
-  if (typeof window === "undefined") return null;
-  return (window as unknown as { mixpanel?: Mixpanel }).mixpanel ?? null;
+  Sans jeton, tout reste inerte : c'est le comportement voulu en développement
+  et dans les tests, où mesurer les gestes d'un robot fausserait la seule
+  courbe qu'on regarde.
+*/
+let pret: boolean | null = null;
+
+function initialiser(): boolean {
+  if (pret !== null) return pret;
+  if (typeof window === "undefined") return (pret = false);
+
+  const jeton = import.meta.env["VITE_MIXPANEL_TOKEN"] as string | undefined;
+  if (jeton === undefined || jeton === "") return (pret = false);
+
+  try {
+    mixpanel.init(jeton, {
+      /*
+        `track_pageview: false` — la capture automatique de pages compterait
+        chaque exploration de Googlebot, qui parcourt nos 400 URL. La courbe
+        d'audience mesurerait alors notre référencement au lieu de nos
+        utilisateurs : un chiffre faux qui a l'air juste.
+      */
+      track_pageview: false,
+      // Les URL de fiche portent des identifiants de parcours ; les remonter
+      // reconstituerait un signal de popularité que le classement interdit.
+      save_referrer: false,
+      persistence: "localStorage",
+      ip: false,
+    });
+    return (pret = true);
+  } catch {
+    return (pret = false);
+  }
 }
 
 export function mesurer(evenement: Evenement, proprietes: Proprietes = {}): void {
   // Le rendu serveur ne mesure rien : c'est la garantie, pas une précaution.
   if (typeof window === "undefined") return;
-  const mp = fournisseur();
-  if (mp === null) return;
+  if (!initialiser()) return;
   try {
-    mp.track(evenement, proprietes);
+    mixpanel.track(evenement, proprietes);
   } catch {
     // Une mesure qui échoue ne casse jamais le geste qu'elle observe.
+  }
+}
+
+/**
+ * Oublie l'identité du navigateur à la déconnexion.
+ *
+ * AUCUN `identify` N'EST APPELÉ — c'est une décision, pas un oubli. Le skill
+ * Mixpanel recommande `identify(user.id)` à la connexion, ce qui rattacherait
+ * chaque geste à une personne de notre base. La consigne du produit dit
+ * l'inverse : aucune propriété identifiant une personne. On mesure des gestes,
+ * pas des gens.
+ *
+ * Conséquence assumée : la mesure reste au niveau du navigateur, et on ne peut
+ * pas suivre un même utilisateur d'un appareil à l'autre. `reset` reste utile
+ * sur un poste partagé, pour ne pas coudre deux sessions en une.
+ */
+export function oublierIdentite(): void {
+  if (typeof window === "undefined") return;
+  if (!initialiser()) return;
+  try {
+    mixpanel.reset();
+  } catch {
+    /* rien à faire */
   }
 }
