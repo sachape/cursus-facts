@@ -456,7 +456,7 @@ function Explorer() {
             */
             <ul className="flex flex-col gap-(--space-4) pt-(--space-4)">
               {resultats.slice(0, limite).map((p) => (
-                <TrainingResultCard key={p.id} parcours={p} ouvrirEnPanneau={ouvrirEnPanneau} />
+                <TrainingResultCard key={p.id} parcours={p} />
               ))}
             </ul>
           )}

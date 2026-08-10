@@ -24,6 +24,7 @@ import { libellePrix } from "./RangeeParcours";
 import { useComparaison } from "./comparaison";
 import { Button } from "@/components/ui/button";
 import type { EtatInformation } from "@/types/cursus";
+import { useOuvertureFiche } from "./ouverture-fiche";
 
 const LIBELLES_FORMATS = {
   distanciel: "Distanciel",
@@ -293,6 +294,7 @@ export function ContenuFiche({
   /** Autres parcours du même organisme, hors celui-ci. */
   autresParcours?: readonly ParcoursListe[];
 }) {
+  const { proprietesLien } = useOuvertureFiche();
   const { ajouter, retirer, contient } = useComparaison();
   const e = p.etats;
   const selectionne = contient(p.slug);
@@ -550,13 +552,12 @@ export function ContenuFiche({
           <ul className="space-y-2">
             {autresParcours.slice(0, 6).map((autre) => (
               <li key={autre.slug} className="flex items-baseline justify-between gap-4 text-sm">
-                <Link
-                  to="/parcours/$slug"
-                  params={{ slug: autre.slug }}
+                <a
+              {...proprietesLien(autre.slug)}
                   className="hover:underline hover:underline-offset-4"
                 >
                   {autre.nom}
-                </Link>
+                </a>
                 <span className="chiffre shrink-0 text-xs text-muted-foreground">
                   {autre.infosRenseignees} sur {autre.infosApplicables}
                 </span>

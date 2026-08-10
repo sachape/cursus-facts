@@ -6,7 +6,7 @@
  * situation, et non un niveau de qualité. Les écarts sont affichés au même rang
  * que les correspondances — c'est souvent l'information la plus utile.
  */
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import {
@@ -21,8 +21,18 @@ import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { libellePrix } from "@/composants/RangeeParcours";
 import { redigerAdequation, type PhraseRedigee } from "@/ingestion/adequation.functions";
 import { Button } from "@/components/ui/button";
+import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
+import { PanneauFiche } from "@/composants/PanneauFiche";
 
 export const Route = createFileRoute("/aide-au-choix")({
+  /*
+    `?fiche=` ouvre le panneau PAR-DESSUS le questionnaire. Sans ce validateur,
+    le paramètre serait effacé à la première navigation et le panneau se
+    refermerait seul — et surtout, un clic sur une correspondance renverrait à
+    la page dédiée, d'où le retour ramenait à l'accueil : réponses et
+    correspondances perdues.
+  */
+  validateSearch: validerFiche,
   loader: () => chargerListe(),
   component: AideAuChoix,
   head: () => ({
@@ -38,6 +48,16 @@ export const Route = createFileRoute("/aide-au-choix")({
 });
 
 function AideAuChoix() {
+  const { fiche } = Route.useSearch();
+  /*
+    Repli de focus : le titre des résultats. Il est présent dès qu'une fiche a
+    pu être ouverte depuis cette vue, et c'est là qu'on revient — à la liste des
+    correspondances, pas en haut du questionnaire.
+  */
+  const titreResultats = useRef<HTMLHeadingElement | null>(null);
+  const { proprietesLien, fermer: fermerPanneau } = useOuvertureFiche({
+    retourParDefaut: titreResultats,
+  });
   const parcours = Route.useLoaderData();
   const [reponses, setReponses] = useState<Partial<Situation>>({});
   /** Index dans la liste des questions APPLICABLES, jamais dans `QUESTIONS`. */
@@ -290,18 +310,19 @@ function AideAuChoix() {
 
       {resultats !== null && (
         <section className="mt-10">
-          <h2 className="font-titre text-xl font-medium">Trois correspondances</h2>
+          <h2 ref={titreResultats} tabIndex={-1} className="font-titre text-xl font-medium">
+            Trois correspondances
+          </h2>
           <ul className="mt-4 space-y-6">
             {resultats.map((a) => (
               <li key={a.parcours.slug} className="border-t border-(--border-subtle) pt-5">
                 <h3 className="font-titre text-base font-medium">
-                  <Link
-                    to="/parcours/$slug"
-                    params={{ slug: a.parcours.slug }}
+                  <a
+              {...proprietesLien(a.parcours.slug)}
                     className="hover:underline hover:underline-offset-4"
                   >
                     {a.parcours.nom}
-                  </Link>
+                  </a>
                 </h3>
                 <p className="mt-1 t-body-sm text-(--text-secondary)">{a.parcours.organismeNom}</p>
                 <p className="chiffre mt-2 t-body-sm">
@@ -355,6 +376,15 @@ function AideAuChoix() {
             pour qu&apos;un écart ait pu être constaté, pas un parcours sans compromis.
           </p>
         </section>
+      )}
+
+      {/*
+        Le panneau s'ouvre par-dessus la vue, qui reste montée derrière lui : à
+        la fermeture, les réponses au questionnaire et les correspondances sont
+        toujours là, sans rechargement. C'est tout l'objet du chantier.
+      */}
+      {fiche !== undefined && (
+        <PanneauFiche slug={fiche} autresParcours={parcours} fermer={fermerPanneau} />
       )}
     </main>
   );

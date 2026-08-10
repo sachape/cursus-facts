@@ -46,14 +46,18 @@ export function useOuvertureFiche({
   /**
    * Où renvoyer le focus quand l'élément d'origine a disparu du document.
    *
+   * Facultatif : une entrée de liste est toujours encore attachée à la
+   * fermeture, donc un composant de liste n'a rien à déclarer. Le repli ne sert
+   * qu'aux origines volatiles — l'autocomplétion, dont la liste s'est refermée.
+   *
    * Le retour au focus avait été conçu pour un clic sur une rangée, où
    * l'élément existe toujours à la fermeture. Depuis l'autocomplétion il a
    * disparu — la liste s'est refermée. Chaque vue déclare donc son point de
    * repli : le champ de recherche dans l'explorateur, le titre des résultats
    * dans l'aide au choix.
    */
-  retourParDefaut: RefObject<HTMLElement | null>;
-}) {
+  retourParDefaut?: RefObject<HTMLElement | null> | undefined;
+} = {}) {
   /*
     `useNavigate` est typé PAR ROUTE : il n'accepte que la forme de recherche de
     la route depuis laquelle il est appelé. Ce point d'appel est justement
@@ -71,7 +75,7 @@ export function useOuvertureFiche({
 
   const ouvrir = useCallback(
     (slug: string, origine?: HTMLElement | null) => {
-      origineFocus.current = origine ?? retourParDefaut.current;
+      origineFocus.current = origine ?? retourParDefaut?.current ?? null;
       void naviguer({
         search: (actuel: RechercheFiche) => ({ ...actuel, fiche: slug }),
       });
@@ -86,7 +90,7 @@ export function useOuvertureFiche({
     // Un élément détaché du document ne peut plus recevoir le focus : on
     // retombe alors sur le point de repli plutôt que de le perdre.
     const cible = origineFocus.current;
-    (cible?.isConnected ? cible : retourParDefaut.current)?.focus();
+    (cible?.isConnected ? cible : retourParDefaut?.current ?? null)?.focus();
     origineFocus.current = null;
   }, [naviguer, retourParDefaut]);
 
@@ -107,7 +111,10 @@ export function useOuvertureFiche({
           evenement.metaKey ||
           evenement.ctrlKey ||
           evenement.shiftKey ||
-          evenement.altKey
+          evenement.altKey ||
+          // Un lien qui déclare sa cible veut ouvrir ailleurs : l'intercepter
+          // contredirait ce qu'il annonce.
+          evenement.currentTarget.hasAttribute("target")
         ) {
           return;
         }

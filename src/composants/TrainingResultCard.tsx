@@ -17,7 +17,7 @@
  * Aucune valeur absente n'est masquée : elle s'affiche « Non communiqué » à son
  * emplacement, jamais en blanc. L'absence est une information.
  */
-import { Link } from "@tanstack/react-router";
+import { useOuvertureFiche } from "./ouverture-fiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { coutDuParcours } from "@/modele/condition-cout";
@@ -56,35 +56,8 @@ const MAX_SECONDAIRES = 3;
  * à la page complète. Clic milieu, Cmd/Ctrl et « ouvrir dans un nouvel onglet »
  * suivent la navigation normale — c'est un comportement attendu.
  */
-function interception(
-  parcours: ParcoursListe,
-  ouvrirEnPanneau?: (parcours: ParcoursListe, origine?: HTMLElement | null) => void,
-) {
-  return (evenement: React.MouseEvent<HTMLAnchorElement>) => {
-    if (
-      ouvrirEnPanneau === undefined ||
-      evenement.defaultPrevented ||
-      evenement.button !== 0 ||
-      evenement.metaKey ||
-      evenement.ctrlKey ||
-      evenement.shiftKey ||
-      evenement.altKey ||
-      evenement.currentTarget.hasAttribute("target")
-    ) {
-      return;
-    }
-    evenement.preventDefault();
-    ouvrirEnPanneau(parcours, evenement.currentTarget);
-  };
-}
-
-export function TrainingResultCard({
-  parcours,
-  ouvrirEnPanneau,
-}: {
-  parcours: ParcoursListe;
-  ouvrirEnPanneau?: (parcours: ParcoursListe, origine?: HTMLElement | null) => void;
-}) {
+export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
+  const { proprietesLien } = useOuvertureFiche();
   const certification = certificationCourte(parcours.certification, parcours.codeRncpRs);
   const cout = coutDuParcours(parcours);
   const prixInconnu = cout.valeur === null && cout.montant === null;
@@ -112,10 +85,8 @@ export function TrainingResultCard({
           <OrganizationIdentity nom={parcours.organismeNom} categorie={parcours.organismeCategorie} />
 
           <h3 className="mt-(--space-4) t-heading-4 text-(--text-primary)">
-            <Link
-              to="/parcours/$slug"
-              params={{ slug: parcours.slug }}
-              onClick={interception(parcours, ouvrirEnPanneau)}
+            <a
+              {...proprietesLien(parcours.slug)}
               /*
                 L'ancre couvre toute la carte : la cible cliquable est la
                 surface entière, pas le seul intitulé. Les boutons d'action
@@ -124,7 +95,7 @@ export function TrainingResultCard({
               className="after:absolute after:inset-0 after:rounded-(--carte-rayon) focus-visible:outline-none"
             >
               {parcours.nom}
-            </Link>
+            </a>
           </h3>
 
           <div className="mt-(--space-3) flex flex-wrap items-center gap-(--space-2)">

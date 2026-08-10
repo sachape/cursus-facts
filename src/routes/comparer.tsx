@@ -15,6 +15,8 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerFiche, type ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "@/composants/comparaison";
+import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
+import { PanneauFiche } from "@/composants/PanneauFiche";
 import { ConditionCout } from "@/composants/Niveaux";
 import { coutDuParcours } from "@/modele/condition-cout";
 import { libellePrix } from "@/composants/RangeeParcours";
@@ -24,6 +26,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/comparer")({
+  /*
+    Même comportement d'ouverture qu'ailleurs. Le tableau porte déjà le contenu
+    complet des fiches comparées, mais un titre de colonne reste un lien vers
+    une fiche : le faire quitter la vue perdrait la sélection en cours.
+  */
+  validateSearch: validerFiche,
   component: Comparer,
   head: () => ({
     meta: [
@@ -166,6 +174,8 @@ export function ligneIdentique(ligne: Ligne): boolean {
 
 function Comparer() {
   const { selection, retirer } = useComparaison();
+  const { fiche } = Route.useSearch();
+  const { proprietesLien, fermer: fermerPanneau } = useOuvertureFiche();
   const [fiches, setFiches] = useState<ParcoursFiche[]>([]);
   const [chargement, setChargement] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
@@ -240,13 +250,12 @@ function Comparer() {
                 </th>
                 {fiches.map((f) => (
                   <th key={f.slug} className="min-w-56 border-b border-(--border-subtle) p-3 text-left align-bottom">
-                    <Link
-                      to="/parcours/$slug"
-                      params={{ slug: f.slug }}
+                    <a
+                      {...proprietesLien(f.slug)}
                       className="font-titre t-body-sm font-medium leading-snug hover:underline hover:underline-offset-4"
                     >
                       {f.nom}
-                    </Link>
+                    </a>
                     <p className="mt-1 t-caption font-normal text-(--text-secondary)">
                       {f.organismeNom}
                     </p>
@@ -302,6 +311,16 @@ function Comparer() {
       </p>
 
       <BlocEmail />
+
+      {/*
+        Le panneau se superpose au tableau, qui reste monté : refermer rend la
+        comparaison intacte, sélection comprise. `autresParcours` est vide ici —
+        cette vue ne charge que les fiches comparées, et charger le catalogue
+        entier pour une section secondaire coûterait plus qu'elle ne rapporte.
+      */}
+      {fiche !== undefined && (
+        <PanneauFiche slug={fiche} autresParcours={[]} fermer={fermerPanneau} />
+      )}
     </main>
   );
 }
