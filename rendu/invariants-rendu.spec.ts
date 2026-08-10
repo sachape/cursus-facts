@@ -334,6 +334,56 @@ test("la requête de conteneur du pied décrit bien le panneau, pas la fenêtre"
   expect(mention.y).toBeGreaterThan(bouton.y + bouton.height - 1);
 });
 
+test("depuis l'aide au choix, fermer une fiche rend le parcours intact", async ({ page }) => {
+  /*
+    LE DÉFAUT VISÉ, dans ses termes exacts : le panneau n'existait que dans
+    l'explorateur. Depuis l'aide au choix, un clic sur une correspondance
+    ouvrait la page dédiée, et le retour renvoyait à l'accueil — réponses au
+    questionnaire et correspondances perdues. La personne avait répondu à
+    quatre questions pour rien.
+
+    Ce test ne vérifie pas qu'un panneau s'ouvre : il vérifie que la VUE DERRIÈRE
+    est toujours là après fermeture. C'est la seule formulation qui tienne, parce
+    qu'une implémentation par navigation peut très bien ouvrir un panneau et
+    perdre l'état quand même.
+  */
+  await page.goto(`${BASE}/aide-au-choix`, { waitUntil: "networkidle" });
+
+  // Répondre jusqu'au bout, puis demander les correspondances.
+  for (const reponse of ["Lancer ma boutique", "Moins de 500 €", "3 à 10 h", "Ma propre boutique"]) {
+    await page.getByRole("button", { name: reponse, exact: true }).click();
+  }
+  await page.getByRole("button", { name: /Voir les correspondances/ }).click();
+
+  const correspondances = page.locator("main section ul > li");
+  await expect(correspondances.first()).toBeVisible({ timeout: 20_000 });
+  const combien = await correspondances.count();
+  const premier = await correspondances.first().locator("a").first().innerText();
+
+  // L'entrée est un VRAI lien : sans href, un robot et une ouverture dans un
+  // nouvel onglet perdent la fiche.
+  const lien = correspondances.first().locator('a[href^="/parcours/"]').first();
+  await expect(lien).toHaveCount(1);
+
+  await lien.click();
+  const panneau = page.getByRole("dialog");
+  await expect(panneau).toBeVisible();
+  // On est resté sur l'aide au choix : le panneau se superpose, il ne remplace
+  // pas.
+  expect(new URL(page.url()).pathname).toBe("/aide-au-choix");
+
+  await page.keyboard.press("Escape");
+  await expect(panneau).toBeHidden();
+
+  // Les réponses et les correspondances sont toujours à l'écran, à l'identique.
+  await expect(page.getByRole("button", { name: "Ma propre boutique", exact: true })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await expect(correspondances).toHaveCount(combien);
+  expect(await correspondances.first().locator("a").first().innerText()).toBe(premier);
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {
