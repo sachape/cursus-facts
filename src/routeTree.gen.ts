@@ -13,9 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AideAuChoixRouteImport } from './routes/aide-au-choix'
 import { Route as ComparerRouteImport } from './routes/comparer'
 import { Route as MethodeRouteImport } from './routes/methode'
-import { Route as OrganismesRouteImport } from './routes/organismes'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
 import { Route as ApiIngestionRouteImport } from './routes/api/ingestion'
+import { Route as OrganismesIndexRouteImport } from './routes/organismes.index'
+import { Route as OrganismesSlugRouteImport } from './routes/organismes.$slug'
 import { Route as ParcoursSlugRouteImport } from './routes/parcours.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -38,11 +39,6 @@ const MethodeRoute = MethodeRouteImport.update({
   path: '/methode',
   getParentRoute: () => rootRouteImport,
 } as any)
-const OrganismesRoute = OrganismesRouteImport.update({
-  id: '/organismes',
-  path: '/organismes',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AdminSeedRoute = AdminSeedRouteImport.update({
   id: '/admin/seed',
   path: '/admin/seed',
@@ -51,6 +47,16 @@ const AdminSeedRoute = AdminSeedRouteImport.update({
 const ApiIngestionRoute = ApiIngestionRouteImport.update({
   id: '/api/ingestion',
   path: '/api/ingestion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganismesIndexRoute = OrganismesIndexRouteImport.update({
+  id: '/organismes/',
+  path: '/organismes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganismesSlugRoute = OrganismesSlugRouteImport.update({
+  id: '/organismes/$slug',
+  path: '/organismes/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ParcoursSlugRoute = ParcoursSlugRouteImport.update({
@@ -64,20 +70,22 @@ export interface FileRoutesByFullPath {
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
-  '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
+  '/organismes/': typeof OrganismesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
-  '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
+  '/organismes': typeof OrganismesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -85,10 +93,11 @@ export interface FileRoutesById {
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
-  '/organismes': typeof OrganismesRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
+  '/organismes/': typeof OrganismesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -97,30 +106,33 @@ export interface FileRouteTypes {
     | '/aide-au-choix'
     | '/comparer'
     | '/methode'
-    | '/organismes'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/organismes/$slug'
     | '/parcours/$slug'
+    | '/organismes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/aide-au-choix'
     | '/comparer'
     | '/methode'
-    | '/organismes'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/organismes/$slug'
     | '/parcours/$slug'
+    | '/organismes'
   id:
     | '__root__'
     | '/'
     | '/aide-au-choix'
     | '/comparer'
     | '/methode'
-    | '/organismes'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/organismes/$slug'
     | '/parcours/$slug'
+    | '/organismes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -128,10 +140,11 @@ export interface RootRouteChildren {
   AideAuChoixRoute: typeof AideAuChoixRoute
   ComparerRoute: typeof ComparerRoute
   MethodeRoute: typeof MethodeRoute
-  OrganismesRoute: typeof OrganismesRoute
   AdminSeedRoute: typeof AdminSeedRoute
   ApiIngestionRoute: typeof ApiIngestionRoute
+  OrganismesSlugRoute: typeof OrganismesSlugRoute
   ParcoursSlugRoute: typeof ParcoursSlugRoute
+  OrganismesIndexRoute: typeof OrganismesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -164,13 +177,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MethodeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/organismes': {
-      id: '/organismes'
-      path: '/organismes'
-      fullPath: '/organismes'
-      preLoaderRoute: typeof OrganismesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/admin/seed': {
       id: '/admin/seed'
       path: '/admin/seed'
@@ -183,6 +189,20 @@ declare module '@tanstack/react-router' {
       path: '/api/ingestion'
       fullPath: '/api/ingestion'
       preLoaderRoute: typeof ApiIngestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organismes/': {
+      id: '/organismes/'
+      path: '/organismes'
+      fullPath: '/organismes/'
+      preLoaderRoute: typeof OrganismesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organismes/$slug': {
+      id: '/organismes/$slug'
+      path: '/organismes/$slug'
+      fullPath: '/organismes/$slug'
+      preLoaderRoute: typeof OrganismesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/parcours/$slug': {
@@ -200,10 +220,11 @@ const rootRouteChildren: RootRouteChildren = {
   AideAuChoixRoute: AideAuChoixRoute,
   ComparerRoute: ComparerRoute,
   MethodeRoute: MethodeRoute,
-  OrganismesRoute: OrganismesRoute,
   AdminSeedRoute: AdminSeedRoute,
   ApiIngestionRoute: ApiIngestionRoute,
+  OrganismesSlugRoute: OrganismesSlugRoute,
   ParcoursSlugRoute: ParcoursSlugRoute,
+  OrganismesIndexRoute: OrganismesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -8,12 +8,14 @@
  */
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { chargerListe, type ParcoursListe } from "@/donnees/requetes";
+import { chargerListe } from "@/donnees/requetes";
+import { regrouperParOrganisme } from "@/modele/organismes";
+import { formaterDateCourte } from "@/modele/dates";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/organismes")({
+export const Route = createFileRoute("/organismes/")({
   loader: () => chargerListe(),
   component: Organismes,
   head: () => ({
@@ -27,43 +29,6 @@ export const Route = createFileRoute("/organismes")({
     ],
   }),
 });
-
-type Organisme = {
-  nom: string;
-  categorie: ParcoursListe["organismeCategorie"];
-  parcours: number;
-  domaines: number;
-  sujets: string[];
-};
-
-function regrouperParOrganisme(parcours: readonly ParcoursListe[]): Organisme[] {
-  const par = new Map<string, ParcoursListe[]>();
-  for (const p of parcours) {
-    const existant = par.get(p.organismeNom);
-    if (existant) existant.push(p);
-    else par.set(p.organismeNom, [p]);
-  }
-
-  return [...par.entries()]
-    .map(([nom, liste]) => {
-      // Sujets les plus portés d'abord : ce qui décrit le mieux l'organisme.
-      const compte = new Map<string, number>();
-      for (const p of liste) compte.set(p.sujetPrincipal, (compte.get(p.sujetPrincipal) ?? 0) + 1);
-      const sujets = [...compte.entries()]
-        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "fr"))
-        .slice(0, 3)
-        .map(([sujet]) => sujet);
-
-      return {
-        nom,
-        categorie: liste[0]!.organismeCategorie,
-        parcours: liste.length,
-        domaines: new Set(liste.map((p) => p.domaine)).size,
-        sujets,
-      };
-    })
-    .sort((a, b) => b.parcours - a.parcours || a.nom.localeCompare(b.nom, "fr"));
-}
 
 function Organismes() {
   const parcours = Route.useLoaderData();
@@ -119,9 +84,8 @@ function Organismes() {
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filtres.map((organisme) => (
             <li key={organisme.nom}>
-              <Link
-                to="/"
-                search={{ organisme: organisme.nom }}
+              <a
+                href={`/organismes/${organisme.slug}`}
                 className="flex h-full flex-col rounded-(--carte-rayon) border border-(--border-subtle) bg-(--surface-raised) p-(--space-5) transition-[border-color,box-shadow,transform] duration-(--motion-fast) ease-(--ease-standard) hover:border-(--border-default) hover:shadow-(--elevation-2) motion-safe:hover:-translate-y-px"
               >
                 <h2 className="font-titre t-body-sm font-medium leading-snug">{organisme.nom}</h2>
@@ -137,6 +101,26 @@ function Organismes() {
                   {organisme.domaines > 1 ? "domaines" : "domaine"}
                 </p>
 
+                {/*
+                  Ce qui permet de CHOISIR quel organisme ouvrir. Le nombre de
+                  parcours seul ne le dit pas : entre deux organismes à six
+                  fiches, celui dont les coûts sont établis et la vérification
+                  récente est celui sur lequel on peut décider.
+                */}
+                <p className="mt-(--space-2) t-caption text-(--text-tertiary)">
+                  <span className="chiffre">{organisme.parcoursAvecCout}</span> avec un coût
+                  renseigné
+                  {organisme.derniereVerification !== null && (
+                    <>
+                      <span aria-hidden> · </span>
+                      vérifié le{" "}
+                      <span className="chiffre">
+                        {formaterDateCourte(organisme.derniereVerification)}
+                      </span>
+                    </>
+                  )}
+                </p>
+
                 <ul className="mt-3 flex flex-wrap gap-1">
                   {organisme.sujets.map((sujet) => (
                     <li
@@ -147,7 +131,7 @@ function Organismes() {
                     </li>
                   ))}
                 </ul>
-              </Link>
+              </a>
             </li>
           ))}
         </ul>

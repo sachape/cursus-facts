@@ -59,44 +59,7 @@ const LIBELLES_NIVEAUX = {
   experience: "Expérience",
 } as const;
 
-/** Interception du clic qui ouvre la fiche en panneau sans casser le lien. */
-function interception(
-  parcours: ParcoursListe,
-  ouvrirEnPanneau?: (parcours: ParcoursListe, origine: HTMLElement) => void,
-) {
-  return (evenement: React.MouseEvent<HTMLAnchorElement>) => {
-    // Le lien n'est neutralisé que pour un clic simple, gauche, sans
-    // modificateur et sans cible explicite. Tout le reste — clic milieu,
-    // Cmd/Ctrl, « ouvrir dans un nouvel onglet » — suit la navigation
-    // normale : c'est un comportement que les utilisateurs attendent.
-    if (
-      ouvrirEnPanneau === undefined ||
-      evenement.defaultPrevented ||
-      evenement.button !== 0 ||
-      evenement.metaKey ||
-      evenement.ctrlKey ||
-      evenement.shiftKey ||
-      evenement.altKey ||
-      evenement.currentTarget.hasAttribute("target")
-    ) {
-      return;
-    }
-    evenement.preventDefault();
-    ouvrirEnPanneau(parcours, evenement.currentTarget);
-  };
-}
-
-export function RangeeParcours({
-  parcours,
-  ouvrirEnPanneau,
-}: {
-  parcours: ParcoursListe;
-  /**
-   * Ouvre la fiche en panneau au lieu de naviguer. Le lien reste un vrai
-   * `<a href>` : sans JavaScript, ou sur un robot, il mène à la page complète.
-   */
-  ouvrirEnPanneau?: (parcours: ParcoursListe, origine: HTMLElement) => void;
-}) {
+export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
   const { proprietesLien } = useOuvertureFiche();
   const { ajouter, retirer, contient } = useComparaison();
   const selectionne = contient(parcours.slug);
@@ -108,7 +71,6 @@ export function RangeeParcours({
   // restitue, elle ne conclut pas.
   const cout = coutDuParcours(parcours);
   const prixInconnu = cout.valeur === null && cout.montant === null;
-  const ouvrir = interception(parcours, ouvrirEnPanneau);
 
   return (
     <li className="border-b border-border">
@@ -119,7 +81,6 @@ export function RangeeParcours({
             <a
               {...proprietesLien(parcours.slug)}
               className="transition-colors hover:underline hover:underline-offset-4"
-              onClick={ouvrir}
             >
               {parcours.nom}
             </a>
@@ -221,7 +182,6 @@ export function RangeeParcours({
             <a
               {...proprietesLien(parcours.slug)}
               className="rounded-md border border-border px-2.5 py-1 text-xs transition-colors hover:border-foreground/40"
-              onClick={ouvrir}
             >
               Fiche
             </a>

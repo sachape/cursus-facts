@@ -27,6 +27,7 @@ import ecartes from "@/donnees/acteurs-ecartes.json";
 import journal from "@/donnees/journal-arbitrages.json";
 import { avancement, fileDeCollecte, tauxPrixVerifie } from "@/donnees/file-collecte";
 import { chargerCatalogue } from "@/donnees/catalogue";
+import { formaterDateCourte } from "@/modele/dates";
 
 export const Route = createFileRoute("/methode")({
   loader: () => chargerArbitrages(),
@@ -385,7 +386,7 @@ function Methode() {
                     </td>
                     <td className="chiffre p-2 text-(--text-secondary)">
                       {a.date_decision
-                        ? new Date(a.date_decision).toLocaleDateString("fr-FR")
+                        ? formaterDateCourte(a.date_decision)
                         : "—"}
                     </td>
                   </tr>
@@ -406,7 +407,7 @@ function Methode() {
             <li key={cas.id} className="rounded border border-(--border-subtle) p-4">
               <p className="font-medium">{cas.regleMuette}</p>
               <p className="mt-1 t-caption text-(--text-secondary)">
-                Ouvert le {new Date(cas.ouvertLe).toLocaleDateString("fr-FR")} —{" "}
+                Ouvert le {formaterDateCourte(cas.ouvertLe)} —{" "}
                 {cas.motifOuverture}
               </p>
               <p className="mt-2 text-atteste">

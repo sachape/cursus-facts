@@ -29,6 +29,12 @@ export type ParcoursListe = {
   nom: string;
   organismeNom: string;
   organismeCategorie: CategorieOrganisme;
+  /** Source retenue pour cette fiche. Alimente la provenance de l'organisme. */
+  sourceInformation: string | null;
+  /** Site de l'organisme. `null` tant que la colonne n'est pas déployée. */
+  organismeSite: string | null;
+  /** Qualiopi, déclaration d'activité… Vide si rien n'est publié. */
+  organismeCertifications: string[];
   domaine: DomaineParcours;
   sujetPrincipal: string;
   competencesCouvertes: string[];
@@ -92,10 +98,23 @@ const COLONNES_LISTE = `
   id, slug, nom, domaine, sujet_principal, competences_couvertes,
   prix_min, prix_max, duree, volume_horaire, formats, lieu, niveau_entree,
   eligible_cpf, financements_acceptes, certification, code_rncp_rs,
-  date_verification, etats, infos_renseignees, infos_applicables, modalite_acces,
+  date_verification, source_information, etats, infos_renseignees, infos_applicables, modalite_acces,
   statut_regroupement, motif_regroupement, parcours_parent_id,
   organismes ( nom, categorie )
 `;
+
+/**
+ * Le même en-tête, avec les champs d'organisme que la page dédiée réclame.
+ *
+ * `site` et `certifications_qualite` existent au schéma, mais la règle de la
+ * maison vaut aussi pour eux : une colonne absente doit dégrader, jamais faire
+ * tomber le catalogue. Ils sont donc tentés d'abord et abandonnés ensemble si
+ * la base ne les porte pas encore.
+ */
+const COLONNES_LISTE_ORGANISME = COLONNES_LISTE.replace(
+  "organismes ( nom, categorie )",
+  "organismes ( nom, categorie, site, certifications_qualite )",
+);
 
 /**
  * Colonnes déployées par une migration plus récente que ce code.
@@ -114,7 +133,14 @@ const COLONNES_DIFFEREES = "dispo_inter, dispo_intra, prix_intra";
 
 
 type LigneBrute = Record<string, unknown> & {
-  organismes: { nom: string; categorie: CategorieOrganisme } | null;
+  organismes:
+    | {
+        nom: string;
+        categorie: CategorieOrganisme;
+        site?: string | null;
+        certifications_qualite?: string[] | null;
+      }
+    | null;
 };
 
 function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): ParcoursListe {
@@ -124,6 +150,9 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
     nom: ligne["nom"] as string,
     organismeNom: ligne.organismes?.nom ?? "Organisme inconnu",
     organismeCategorie: ligne.organismes?.categorie ?? "formation_professionnelle",
+    sourceInformation: (ligne["source_information"] as string | null) ?? null,
+    organismeSite: ligne.organismes?.site ?? null,
+    organismeCertifications: ligne.organismes?.certifications_qualite ?? [],
     domaine: ligne["domaine"] as DomaineParcours,
     sujetPrincipal: ligne["sujet_principal"] as string,
     competencesCouvertes: (ligne["competences_couvertes"] as string[]) ?? [],
@@ -154,11 +183,21 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
 
 /** Charge les entrées de la liste : tout le catalogue, replis exclus. */
 export async function chargerListe(): Promise<ParcoursListe[]> {
-  let { data, error } = await supabase
-    .from("parcours")
-    .select(`${COLONNES_LISTE}, ${COLONNES_DIFFEREES}`);
-  if (error && colonneAbsente(error.message)) {
-    ({ data, error } = await supabase.from("parcours").select(COLONNES_LISTE));
+  /*
+    Candidats du plus riche au plus pauvre, tentés dans l'ordre. Généralise le
+    repli qui n'existait que pour `COLONNES_DIFFEREES` : chaque groupe de
+    colonnes récentes se retire à son tour, et la page tient jusqu'au socle.
+  */
+  const candidats = [
+    `${COLONNES_LISTE_ORGANISME}, ${COLONNES_DIFFEREES}`,
+    `${COLONNES_LISTE}, ${COLONNES_DIFFEREES}`,
+    COLONNES_LISTE_ORGANISME,
+    COLONNES_LISTE,
+  ];
+  let { data, error } = await supabase.from("parcours").select(candidats[0]!);
+  for (const suivant of candidats.slice(1)) {
+    if (!(error && colonneAbsente(error.message))) break;
+    ({ data, error } = await supabase.from("parcours").select(suivant));
   }
   if (error) {
     // Le message nomme la colonne et porte le prompt à envoyer : un 500 muet
