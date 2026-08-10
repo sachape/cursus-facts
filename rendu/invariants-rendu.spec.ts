@@ -695,6 +695,48 @@ test("deux fiches au libellé identique ne partagent ni titre ni description", a
   expect(lus[0]!.description).not.toBe(lus[1]!.description);
 });
 
+test("une fiche portant un champ non collecté n'affiche jamais un compteur plein", async ({
+  page,
+}) => {
+  /*
+    ÉCRIT SUR CE QUE L'INTERFACE REND, pas sur ce que le modèle calcule — c'est
+    le patron du 4 bis. Un invariant qui interroge `compterInformations`
+    vérifie sa cohérence interne ; il ne voit pas que la valeur AFFICHÉE vient
+    d'ailleurs.
+
+    Et elle venait bien d'ailleurs : `infos_renseignees` et `infos_applicables`
+    sont des colonnes dérivées, écrites à l'ingestion. La règle du dénominateur
+    a été corrigée dans le modèle le 4 août, le catalogue n'a jamais été
+    réingéré, et 224 fiches sur 233 ont continué d'afficher l'ancien calcul.
+    Le code était juste, les tests verts, et « 11 sur 11 » s'affichait au-dessus
+    de sept champs marqués « pas encore collecté ».
+
+    Le seul contrôle qui l'attrape est celui-ci : lire les deux à l'écran, et
+    refuser qu'ils se contredisent.
+  */
+  await page.locator("main ul > li h3 a").first().click();
+  const panneau = page.getByRole("dialog");
+  await expect(panneau).toBeVisible();
+  // La fiche se charge après l'ouverture : lire trop tôt ne rend que le
+  // message d'attente, et le test conclurait à l'absence de compteur.
+  await expect(panneau.getByText(/Chargement de la fiche/)).toBeHidden();
+  await expect(panneau.getByText(/\d+\s+sur\s+\d+/).first()).toBeVisible();
+
+  const texte = await panneau.innerText();
+  const compteur = /(\d+)\s+sur\s+(\d+)/.exec(texte);
+  expect(compteur, "aucun compteur lisible dans le panneau").not.toBeNull();
+
+  const [renseignees, applicables] = [Number(compteur![1]), Number(compteur![2])];
+  const nonCollectes = (texte.match(/[Pp]as encore collecté/g) ?? []).length;
+
+  if (nonCollectes > 0) {
+    expect(
+      renseignees,
+      `${nonCollectes} champ(s) non collecté(s) affichés, et pourtant ${renseignees} sur ${applicables}`,
+    ).toBeLessThan(applicables);
+  }
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

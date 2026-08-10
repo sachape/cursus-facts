@@ -11,6 +11,7 @@
  */
 import { supabase } from "@/integrations/supabase/client";
 import {
+  compterInformations,
   lireEtats,
   type CategorieOrganisme,
   type DomaineParcours,
@@ -143,6 +144,21 @@ type LigneBrute = Record<string, unknown> & {
     | null;
 };
 
+/**
+ * Le compteur d'une fiche, dérivé de ses états.
+ *
+ * `etats` fait foi : c'est lui qui distingue « l'organisme ne publie pas » de
+ * « nous n'avons pas lu la page », et c'est de cette distinction que dépend le
+ * dénominateur.
+ */
+function compteurDepuisEtats(etats: EtatsInformation): {
+  infosRenseignees: number;
+  infosApplicables: number;
+} {
+  const compteur = compterInformations(etats);
+  return { infosRenseignees: compteur.renseignees, infosApplicables: compteur.applicables };
+}
+
 function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): ParcoursListe {
   return {
     id: ligne["id"] as string,
@@ -173,8 +189,25 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
     codeRncpRs: ligne["code_rncp_rs"] as string | null,
     dateVerification: ligne["date_verification"] as string | null,
     etats: lireEtats(ligne["etats"]),
-    infosRenseignees: ligne["infos_renseignees"] as number,
-    infosApplicables: ligne["infos_applicables"] as number,
+    /*
+      RECALCULÉ DEPUIS LES ÉTATS, jamais lu dans la base.
+
+      `infos_renseignees` et `infos_applicables` sont des colonnes DÉRIVÉES de
+      `etats`, écrites à l'ingestion. Le 4 août, la règle du dénominateur a été
+      corrigée dans `compterInformations` — `non_collecte` y est resté — mais le
+      catalogue n'a jamais été réingéré. Les colonnes ont donc gardé l'ancien
+      calcul, et 224 fiches sur 233 affichaient un compteur périmé : « 11 sur
+      11 » avec sept champs non collectés visibles à l'écran.
+
+      Le correctif n'est pas de réingérer, ce serait à refaire à chaque
+      évolution de la règle. Une valeur dérivée stockée à côté de sa source
+      finit toujours par en diverger — on la recalcule donc à la lecture, et la
+      règle vaut immédiatement partout.
+
+      Les colonnes restent en base pour le tri SQL ; elles ne gouvernent plus
+      l'affichage.
+    */
+    ...compteurDepuisEtats(lireEtats(ligne["etats"])),
     statutRegroupement: ligne["statut_regroupement"] as StatutRegroupement,
     motifRegroupement: ligne["motif_regroupement"] as string | null,
     offresRepliees: replieesParId.get(ligne["id"] as string) ?? 0,

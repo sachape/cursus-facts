@@ -59,12 +59,18 @@ dans `preparer.test.ts`. Déclasser ne le fait pas bouger ; effacer le fait tomb
 
 | État | Signification | Dénominateur |
 |---|---|---|
-| `non_collecte` | Page jamais lue. **Fait sur nous.** | exclu |
+| `non_collecte` | Page jamais lue. **Fait sur nous.** | **inclus** |
 | `non_communique` | Page lue, l'organisme ne publie pas. **Fait sur lui.** | inclus |
 | `non_applicable` | Le champ n'a pas d'objet ici. | exclu |
 | `communique_sur_demande` | Sur devis, jamais publié. Pratique normale. | exclu |
 | `a_confirmer` | Valeur conservée, non reconfirmée. | inclus, hors numérateur |
 | `derive` | Produite par une règle publiée. | inclus, dans le numérateur |
+
+`non_collecte` **reste au dénominateur** : l'argument « on ne reproche pas une
+absence non vérifiée » porte sur le NUMÉRATEUR. L'en sortir ne laissait que deux
+états possibles sur une fiche non lue, et le compteur devenait plein par
+construction. Cette ligne disait « exclu » et contredisait le §8 — corrigée le
+10 août 2026, voir le motif ci-dessous.
 
 **`non_applicable` exige la lecture de la page ET une règle publiée — les deux.**
 C'est le seul état qui **ferme** un champ : il sort du dénominateur, sort de la
@@ -475,6 +481,45 @@ est une information déduite.
 C'est la même famille que le §8, déplacée d'un cran : là, une couche en aval
 changeait le résultat ; ici, c'est l'instrument de mesure qui regarde à côté.
 Aucun test ne rougit dans les deux cas.
+
+### Le motif du 10 août bis : une correction consignée mais jamais portée
+
+Le §8 décrivait la correction du dénominateur comme faite. Le §2 affirmait
+l'inverse dans sa table d'états. Et le code, lui, était **juste** :
+`compterInformations` gardait bien `non_collecte` au dénominateur.
+
+Alors pourquoi « 11 sur 11 » au-dessus de sept champs non collectés ?
+
+**Parce que l'affichage ne lisait pas le modèle.** `infos_renseignees` et
+`infos_applicables` sont des colonnes DÉRIVÉES, écrites à l'ingestion. La règle
+a changé dans le code le 4 août ; le catalogue n'a jamais été réingéré. Les
+colonnes ont donc conservé l'ancien calcul, et **224 fiches sur 233** affichaient
+un compteur périmé — dont 165 un compteur plein avec des champs vides à l'écran.
+
+Trois choses fausses en même temps, et aucun test pour les voir :
+
+- le document affirmait une correction jamais portée jusqu'à l'affichage ;
+- deux de ses sections se contredisaient ;
+- le code était cohérent **avec lui-même**, donc tous les tests passaient.
+
+**Le correctif n'est pas de réingérer** — ce serait à refaire à chaque évolution
+de la règle. Le compteur est recalculé à la LECTURE, depuis `etats` qui fait
+foi. Une valeur dérivée stockée à côté de sa source finit toujours par en
+diverger ; les colonnes restent en base pour le tri SQL, elles ne gouvernent
+plus l'affichage.
+
+**DEUX RÈGLES EN DÉCOULENT.**
+
+1. **Toute correction consignée renvoie au commit qui la porte.** Sans lui, ce
+   n'est pas une correction, c'est une intention — et elle se lit comme un fait
+   acquis pendant des semaines.
+2. **Un invariant s'écrit sur ce que l'interface REND.** Celui qui manquait ici
+   tient en une phrase : une fiche affichant un champ non collecté ne peut pas
+   afficher un compteur plein. Il ne sait rien de `compterInformations`, et
+   c'est pour ça qu'il l'attrape.
+
+Les taux affichés ont baissé sur 165 fiches. Un chiffre qui baisse parce qu'il
+cesse de mentir est un progrès.
 
 ### Et un second motif, distinct : deux règles correctes, incohérentes ensemble
 
