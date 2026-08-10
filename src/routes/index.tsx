@@ -34,7 +34,9 @@ import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type { DomaineParcours } from "@/types/cursus";
+import { CHAMPS_INFORMATION, type DomaineParcours } from "@/types/cursus";
+import { formaterNombre } from "@/modele/nombres";
+import { formaterJourMois } from "@/modele/dates";
 
 export const Route = createFileRoute("/")({
   // La vue Organismes renvoie ici avec ?organisme=<nom> : le filtre vit dans
@@ -115,7 +117,6 @@ function Explorer() {
     [parcours, filtres, tri],
   );
 
-  const informationsTotales = parcours.reduce((s, p) => s + p.infosRenseignees, 0);
   // Vérifiable : c'est la date la plus récente réellement portée par une fiche.
   const derniereVerification = parcours
     .map((p) => p.dateVerification)
@@ -342,10 +343,37 @@ function Explorer() {
           aurait raison. La date de vérification passe en mention sous la ligne —
           elle est vérifiable, mais elle ne pèse pas comme les trois autres.
         */}
-        <dl className="mt-(--space-8) flex flex-wrap justify-center gap-x-(--space-12) gap-y-(--space-6)">
-          <Chiffre valeur={parcours.length} libelle="parcours" />
-          <Chiffre valeur={organismes} libelle="organismes" />
-          <Chiffre valeur={informationsTotales} libelle="informations vérifiées" />
+        {/*
+          UN BLOC, PAS TROIS ÉLÉMENTS FLOTTANTS. Les filets horizontaux
+          l'ancrent dans la page ; l'alignement se fait sur la LIGNE DE BASE et
+          non sur les boîtes, sans quoi trois valeurs de hauteurs différentes
+          paraissent dériver les unes par rapport aux autres.
+
+          Le nombre de critères est LU DEPUIS LE MODÈLE. L'écrire à la main le
+          ferait mentir au premier champ ajouté — et une promesse fausse sur un
+          chiffre de couverture coûte plus cher que pas de promesse du tout.
+        */}
+        <dl className="mx-auto mt-(--space-8) mb-(--space-12) grid max-w-(--hero-chiffres-largeur) grid-cols-3 items-baseline divide-x divide-(--border-subtle) border-y border-(--border-subtle) py-(--space-5) text-left max-[639px]:grid-cols-1 max-[639px]:divide-x-0 max-[639px]:divide-y max-[639px]:py-0">
+          <Chiffre
+            valeur={formaterNombre(parcours.length)}
+            libelle="parcours"
+            qualificatif={`comparés sur ${CHAMPS_INFORMATION.length} critères`}
+          />
+          <Chiffre
+            valeur={formaterNombre(organismes)}
+            libelle="organismes"
+            qualificatif="écoles, universités, indépendants"
+          />
+          {/*
+            Le troisième change de nature : la fraîcheur et la traçabilité sont
+            ce qui nous distingue, pas un total d'informations que personne ne
+            sait interpréter.
+          */}
+          <Chiffre
+            valeur={formaterJourMois(derniereVerification)}
+            libelle="dernière vérification"
+            qualificatif="chaque information porte sa source"
+          />
         </dl>
 
         {/* La date de vérification vit désormais dans l'infobulle du badge. */}
@@ -490,12 +518,44 @@ function Explorer() {
   );
 }
 
-function Chiffre({ valeur, libelle }: { valeur: number; libelle: string }) {
+/**
+ * Un chiffre clé et ce qu'il garantit.
+ *
+ * UN CHIFFRE NU NE PROUVE RIEN. « 2 718 informations vérifiées » ne se
+ * rapporte à rien de connu : personne ne sait si c'est beaucoup. Ce qui compte
+ * n'est pas la quantité mais ce qu'elle garantit — d'où le qualificatif, qui
+ * porte la promesse là où le nombre ne porte qu'une mesure.
+ *
+ * Aucun pictogramme, aucune couleur, aucune animation de comptage : un chiffre
+ * qui défile à l'arrivée appartient au registre des pages de vente, et il
+ * demande d'attendre pour lire un fait.
+ */
+function Chiffre({
+  valeur,
+  libelle,
+  qualificatif,
+}: {
+  valeur: string;
+  libelle: string;
+  qualificatif: string;
+}) {
   return (
-    <div>
+    /*
+      Sous 640 px la ligne se retourne : valeur à gauche, libellé à droite.
+      Trois chiffres côte à côte à 375 px sont illisibles, et c'est ce qui
+      produisait le chiffre orphelin sur une seconde ligne.
+    */
+    <div className="px-(--space-4) max-[639px]:flex max-[639px]:items-baseline max-[639px]:justify-between max-[639px]:gap-(--space-4) max-[639px]:px-0 max-[639px]:py-(--space-3)">
       <dt className="sr-only">{libelle}</dt>
-      <dd className="t-data-lg text-(--text-primary)">{valeur.toLocaleString("fr-FR")}</dd>
-      <p className="mt-(--space-1) t-caption text-(--text-tertiary)">{libelle}</p>
+      {/* La valeur ne se coupe jamais : « 4 août » sur deux lignes se lit
+          comme deux informations. C'est au qualificatif de céder la place. */}
+      <dd className="whitespace-nowrap t-data-lg text-(--text-primary)">{valeur}</dd>
+      <div className="min-w-0 max-[639px]:text-right">
+        <p className="mt-(--space-1) t-body-sm text-(--text-secondary) max-[639px]:mt-0">
+          {libelle}
+        </p>
+        <p className="mt-(--space-1) t-caption italic text-(--text-tertiary)">{qualificatif}</p>
+      </div>
     </div>
   );
 }

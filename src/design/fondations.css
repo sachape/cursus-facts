@@ -476,6 +476,9 @@
   --rail-haut: 120px;
   --rail-bas: 90px;
   --hero-centre-largeur: 1040px;
+  /* Aligné sur le champ de recherche : les deux partagent le même axe
+     vertical, et un bloc décalé de quelques pixels se lit comme une erreur. */
+  --hero-chiffres-largeur: 640px;
   --hero-min-hauteur: 640px;
   --domain-navigation-height: 56px;
   --results-toolbar-height: 60px;

@@ -160,22 +160,56 @@ test("le texte secondaire respecte le contraste AA sur sa surface", async ({ pag
   expect(insuffisants).toEqual([]);
 });
 
-test("les trois KPIs du hero ne se touchent pas", async ({ page }) => {
-  // Même défaut que les onglets, même mesure : l'écart réel entre rectangles.
-  // Le document impose space-12 entre les blocs ; on vérifie qu'il existe.
-  const blocs = page.locator("header dl > div");
-  const total = await blocs.count();
-  expect(total).toBe(3);
+test("le bloc de chiffres s'aligne sur la ligne de base, et s'empile sous 640 px", async ({
+  page,
+}) => {
+  /*
+    Les trois chiffres flottaient : alignés sur leur BOÎTE, trois valeurs de
+    hauteurs différentes paraissent dériver les unes par rapport aux autres.
+    C'est la ligne de base qui les tient, et elle ne se voit qu'en mesurant —
+    à l'œil, l'écart passe pour une intention.
 
-  const collisions: string[] = [];
-  for (let i = 0; i < total - 1; i++) {
-    const gauche = await boite(blocs.nth(i));
-    const droite = await boite(blocs.nth(i + 1));
-    if (Math.abs(gauche.y - droite.y) > 4) continue;
-    const ecart = droite.x - (gauche.x + gauche.width);
-    if (ecart < 24) collisions.push(`bloc ${i} → ${ecart.toFixed(1)} px`);
+    Sous 640 px, trois chiffres côte à côte à 375 px sont illisibles : le bloc
+    s'empile. C'est ce qui produisait le chiffre orphelin sur une seconde ligne.
+  */
+  for (const largeur of [1280, 768]) {
+    await page.setViewportSize({ width: largeur, height: 900 });
+    await page.goto(BASE, { waitUntil: "networkidle" });
+
+    const valeurs = page.locator("header dl dd");
+    await expect(valeurs).toHaveCount(3);
+
+    // Même ligne de base : on compare le BAS du texte, pas le haut de la boîte.
+    const bases = await valeurs.evaluateAll((els) =>
+      els.map((e) => {
+        const r = e.getBoundingClientRect();
+        const s = getComputedStyle(e);
+        // Approximation stable de la ligne de base : bas de la boîte moins la
+        // demi-différence entre interligne et taille de police.
+        return r.bottom - (parseFloat(s.lineHeight) - parseFloat(s.fontSize)) / 2;
+      }),
+    );
+    expect(Math.max(...bases) - Math.min(...bases)).toBeLessThanOrEqual(1);
+
+    const { defilable } = await page.evaluate(() => ({
+      defilable: document.documentElement.scrollWidth,
+    }));
+    expect(defilable).toBeLessThanOrEqual(largeur + 1);
   }
-  expect(collisions).toEqual([]);
+
+  // Sous 640 px : empilé, donc trois ordonnées distinctes.
+  await page.setViewportSize({ width: 375, height: 900 });
+  await page.goto(BASE, { waitUntil: "networkidle" });
+  const cellules = page.locator("header dl > div");
+  const y: number[] = [];
+  for (let i = 0; i < 3; i++) y.push((await boite(cellules.nth(i))).y);
+  expect(y[1]!).toBeGreaterThan(y[0]!);
+  expect(y[2]!).toBeGreaterThan(y[1]!);
+
+  const { defilable } = await page.evaluate(() => ({
+    defilable: document.documentElement.scrollWidth,
+  }));
+  expect(defilable).toBeLessThanOrEqual(376);
 });
 
 test("la liste de suggestions ne déborde pas et suit la sélection", async ({ page }) => {
