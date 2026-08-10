@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.creer_profil_a_inscription() FROM PUBLIC, anon, authenticated;
