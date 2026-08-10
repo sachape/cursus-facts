@@ -74,8 +74,18 @@ export function PiedDePage() {
       {/* Bandeau — la promesse, à la place où l'on met d'ordinaire un logo. */}
       <div className="bg-(--surface-sunken) py-(--space-16)">
         <div className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6)">
+          {/*
+            DIT EN POSITIF CE QUE LE VISITEUR OBTIENT, et non ce que nous
+            refusons. Trois refus enchaînés décrivent nos principes, pas son
+            bénéfice : quelqu'un qui cherche une formation n'est pas venu
+            arbitrer entre comparateurs.
+
+            L'engagement d'indépendance ne disparaît pas — il nous distingue et
+            doit figurer — mais il passe en second, comme la CONSÉQUENCE de la
+            méthode plutôt que comme le message.
+          */}
           <p className="max-w-3xl text-balance t-heading-1 text-(--text-primary) max-[767px]:t-heading-2">
-            Aucune note. Aucun classement par qualité. Aucune position achetable.
+            Les prix, les programmes et les certifications. Vérifiés un par un, avec leur source.
           </p>
           {/*
             Les chiffres viennent du catalogue. Les écrire en dur les ferait
@@ -85,15 +95,27 @@ export function PiedDePage() {
           <p className="mt-(--space-4) max-w-2xl t-body text-(--text-secondary)">
             <span className="chiffre">{formaterNombre(stats.parcours)}</span> parcours de{" "}
             <span className="chiffre">{formaterNombre(stats.organismes)}</span> organismes, comparés
-            sur <span className="chiffre">{stats.criteres}</span> critères vérifiables. Chaque
-            information porte sa source et sa date.
+            sur <span className="chiffre">{stats.criteres}</span> critères. Nous ne notons rien,
+            nous ne classons rien par qualité, et aucune position n&apos;est achetable.
           </p>
         </div>
       </div>
 
       {/* Corps — les colonnes. */}
       <div className="border-t border-(--border-subtle) bg-(--surface-page) py-(--space-12)">
-        <div className="mx-auto grid max-w-(--contenu-largeur-max) gap-(--space-8) px-(--space-6) min-[768px]:grid-cols-4">
+        {/*
+          AUTANT DE COLONNES QUE DE CONTENU. La grille était fixée à quatre pour
+          trois blocs : la dernière restait vide et le pied paraissait tronqué à
+          mi-largeur. Un pied à moitié vide se remarque plus qu'un pied court.
+
+          Le compte de colonnes suit donc `COLONNES` — la mise en page cesse
+          d'anticiper des pages qui n'existent pas, et se rééquilibrera d'
+          elle-même le jour où « Le projet » sera écrite.
+        */}
+        <div
+          className="mx-auto grid max-w-(--contenu-largeur-max) gap-(--space-8) px-(--space-6) min-[768px]:grid-cols-(--pied-colonnes)"
+          style={{ "--pied-colonnes": `repeat(${COLONNES.length + 1}, minmax(0, 1fr))` } as React.CSSProperties}
+        >
           <div>
             <MotSymboleHorizontal className="h-(--space-8) w-auto text-(--text-primary)" />
             <p className="mt-(--space-3) max-w-56 t-caption text-(--text-tertiary)">
