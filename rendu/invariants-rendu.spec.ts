@@ -1213,3 +1213,59 @@ test("la bande décélère à la mise en pause au lieu de s'arrêter net", async
   expect(a(600)).toBeLessThan(0.01);
   expect(Math.max(...releves.map(([, taux]) => taux))).toBeLessThanOrEqual(1.001);
 });
+
+test("une comparaison s'enregistre, et le détour par la connexion n'en perd rien", async ({
+  page,
+}) => {
+  /*
+    SANS CE POINT, LE COMPTE NE SERT À RIEN sur la vue Comparer. Composer une
+    comparaison à quatre parcours coûte plusieurs minutes ; si elle disparaît
+    au premier rechargement, elle se refait — une fois, jamais deux.
+
+    Le test porte sur le PARCOURS DÉCONNECTÉ, le seul qui puisse être vérifié
+    sans compte, et le seul où l'oubli coûte cher : le clic doit poser
+    l'intention AVANT de rediriger. Sans cet ordre, la personne s'inscrit,
+    revient, et retrouve une page vide.
+
+    Le chemin connecté — insertion, confirmation, mesure — se vérifie en
+    production, avec une vraie boîte mail.
+  */
+  await page.goto(BASE, { waitUntil: "networkidle" });
+
+  // Composer une sélection de deux parcours depuis le catalogue.
+  /*
+    « Comparer » sur les cartes du catalogue, « Ajouter à la comparaison » dans
+    le pied de fiche : le même geste porte deux libellés, l'un raccourci faute
+    de place. Les deux sont acceptés ici — le test vérifie l'enregistrement,
+    pas le vocabulaire des boutons d'ajout.
+  */
+  const boutons = page.getByRole("button", { name: /^comparer$|ajouter à la comparaison/i });
+  let poses = 0;
+  for (let i = 0; i < (await boutons.count()) && poses < 2; i++) {
+    const bouton = boutons.nth(i);
+    if (!(await bouton.isVisible())) continue;
+    // Clic JS : `click()` de Playwright ferait défiler la page pour atteindre
+    // l'élément, et modifierait la position qu'un autre invariant mesure.
+    await bouton.evaluate((el: HTMLElement) => el.click());
+    poses += 1;
+  }
+  expect(poses).toBe(2);
+
+  await page.goto(`${BASE}/comparer`, { waitUntil: "networkidle" });
+
+  const enregistrer = page.getByRole("button", { name: "Enregistrer cette comparaison" });
+  await expect(enregistrer).toBeVisible();
+
+  // Le libellé annonce le résultat, jamais le péage : « créer un compte » ici
+  // ferait renoncer avant d'avoir essayé.
+  expect((await enregistrer.innerText()).toLowerCase()).not.toMatch(/compte|inscri|connect/);
+
+  await enregistrer.evaluate((el: HTMLElement) => el.click());
+  await page.waitForURL(/\/connexion/);
+
+  const brut = await page.evaluate(() => localStorage.getItem("formlist.intention"));
+  expect(brut).not.toBeNull();
+  const { intention } = JSON.parse(brut as string);
+  expect(intention.type).toBe("enregistrer-comparaison");
+  expect(intention.parcoursIds).toHaveLength(2);
+});

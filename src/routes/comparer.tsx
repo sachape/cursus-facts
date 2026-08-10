@@ -22,6 +22,7 @@ import { useAuth } from "@/composants/authentification";
 import { synthetiser } from "@/modele/synthese-comparaison";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import { declarerVue, mesurer } from "@/composants/mesure";
+import { EnregistrerComparaison } from "@/composants/EnregistrerComparaison";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { ConditionCout } from "@/composants/Niveaux";
 import { coutDuParcours } from "@/modele/condition-cout";
@@ -274,7 +275,20 @@ function Comparer() {
 
   return (
     <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-12)">
-      <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Comparaison</h1>
+      {/*
+        L'action est sur la ligne du titre, parce qu'elle porte sur la
+        comparaison ENTIÈRE — pas sur une colonne, pas sur une ligne du tableau.
+        Posée en bas de page, elle serait à quinze écrans du haut sur une
+        comparaison à quatre parcours : le même défaut que les actions de fiche
+        avant qu'elles ne rejoignent le pied ancré.
+
+        `flex-wrap` et non deux mises en page : sous 640 px le bouton passe
+        simplement sous le titre.
+      */}
+      <div className="flex flex-wrap items-center justify-between gap-(--space-4)">
+        <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Comparaison</h1>
+        <EnregistrerComparaison />
+      </div>
       {chargement && (
         <p className="mt-2 t-body-sm text-(--text-secondary)">Chargement des fiches…</p>
       )}
