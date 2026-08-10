@@ -182,6 +182,20 @@ function initialiser(): boolean {
   try {
     mixpanel.init(jeton, {
       /*
+        RÉGION EUROPE. Le projet a été créé en UE ; sans cette ligne, la
+        bibliothèque poste vers `api-js.mixpanel.com`, c'est-à-dire le cluster
+        américain, qui accepte la requête et n'en fait rien.
+
+        C'est le pire des cas : la requête part, le navigateur ne signale
+        aucune erreur, et le tableau de bord reste vide sans rien pour dire
+        pourquoi. Constaté ici — quatre événements vérifiés au départ,
+        zéro arrivé sur sept jours.
+
+        Voir une requête partir ne prouve pas qu'elle arrive. La vérification
+        se fait des DEUX côtés : au réseau et dans le projet.
+      */
+      api_host: "https://api-eu.mixpanel.com",
+      /*
         `track_pageview: false` — la capture automatique de pages compterait
         chaque exploration de Googlebot, qui parcourt nos 400 URL. La courbe
         d'audience mesurerait alors notre référencement au lieu de nos
