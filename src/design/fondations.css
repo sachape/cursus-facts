@@ -122,12 +122,20 @@
   /* SÉMANTIQUES — ce que les composants consomment                         */
   /* ---------------------------------------------------------------------- */
   /*
-    Fond du catalogue — la surface derrière les cartes.
-    Distinct de `surface-page` : les barres collantes doivent se confondre avec
-    ce qui défile SOUS elles, pas avec le fond général. Employer
-    `surface-page` y dessinait deux rectangles gris.
+    Fond du catalogue — la surface derrière les cartes, et celle des barres
+    collantes.
+
+    LA RÈGLE N'A PAS CHANGÉ, SA VALEUR SI. Une barre collante doit se confondre
+    avec ce qui défile SOUS elle, jamais dessiner un rectangle. Tant que le
+    corps était blanc, `surface-page` y traçait deux rectangles gris et le
+    blanc était la bonne réponse.
+
+    Le corps porte désormais `surface-page`, et le blanc produit exactement le
+    défaut symétrique : trois rectangles blancs — la bande d'organismes, les
+    onglets de domaine, la barre de résultats. Le jeton suit le fond de page ;
+    ce sont les CARTES qui s'en détachent, en `surface-raised`.
   */
-  --catalog-canvas: var(--neutral-0);
+  --catalog-canvas: var(--surface-page);
 
   --surface-page: var(--neutral-10);
   --surface-raised: var(--neutral-0);
@@ -474,7 +482,15 @@
      mouvement continu se remarque davantage que le mouvement lui-même. Hors de
      l'échelle de motion pour la même raison que la durée de cycle. */
   --bande-deceleration: 400ms;
-  --bande-masque: 64px;
+  /*
+    Le voile doit DISSOUDRE une carte, pas en effleurer le bord. À 64 px il
+    laissait voir 180 px de carte tranchée net — invisible tant que le fond
+    était blanc comme les cartes, criant depuis que la page est grise. La
+    valeur couvre désormais la largeur minimale d'une carte.
+  */
+  --bande-masque: 240px;
+  /* Les onglets de domaine défilent aussi : même traitement, à leur échelle. */
+  --onglets-masque: 96px;
   --bande-carte-hauteur: 64px;
   /* 240 et non 200 : le pictogramme et le badge prennent leur place sans
      écraser les noms longs, qui reculeraient sinon devant l'ellipse. */
@@ -534,7 +550,10 @@
   serait illisible.
 */
 .dark {
-  --catalog-canvas: var(--neutral-90);
+  /* Même règle qu'en clair : la barre se confond avec le fond de page, la
+     carte s'en détache. En sombre aussi, `neutral-90` dessinait un rectangle
+     de la couleur des cartes. */
+  --catalog-canvas: var(--surface-page);
 
   --surface-page: var(--neutral-100);
   --surface-raised: var(--neutral-90);

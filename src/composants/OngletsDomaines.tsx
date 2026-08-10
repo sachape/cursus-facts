@@ -45,8 +45,21 @@ export function OngletsDomaines({
     <nav
       aria-label="Domaines"
       ref={barre}
-      className="sticky top-(--app-header-height) z-(--z-barre-domaines) m-0 w-full max-w-full border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
+      className="relative sticky top-(--app-header-height) z-(--z-barre-domaines) m-0 w-full max-w-full border-b border-(--border-subtle) bg-(--catalog-canvas) px-(--nav-padding)"
     >
+      {/*
+        VOILE À DROITE. Neuf domaines ne tiennent pas en ligne : le dernier
+        libellé était tranché en plein mot — « Création de si ». Une coupe nette
+        se lit comme un défaut de mise en page ; un fondu dit qu'il y a la
+        suite, et c'est vrai.
+
+        `pointer-events-none` : le voile ne doit pas intercepter le clic sur
+        l'onglet qu'il recouvre à moitié.
+      */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-(--onglets-masque) bg-[linear-gradient(to_left,var(--catalog-canvas),transparent)]"
+      />
       <ul
         className="flex max-w-full min-h-(--nav-hauteur) [overscroll-behavior-x:contain] items-stretch gap-(--nav-gap) overflow-x-auto overflow-y-hidden whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
