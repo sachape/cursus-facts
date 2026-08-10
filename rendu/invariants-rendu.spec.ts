@@ -439,6 +439,41 @@ test("un organisme a sa page, et le panneau s'y ouvre sans la quitter", async ({
   await expect(parcours).toHaveCount(combien);
 });
 
+test("la synthèse de comparaison énonce des écarts, jamais des noms", async ({ page }) => {
+  /*
+    LA CONTRAINTE DE FOND, vérifiée sur le rendu. Un bloc de synthèse est
+    l'endroit exact où un comparateur se met à recommander sans le décider :
+    il suffit d'écrire « LiveMentor est le moins cher » au lieu de « de 0 € à
+    1 980 € ». Les deux disent la même chose ; l'un tranche.
+
+    Le test lit donc les énoncés et vérifie qu'AUCUN nom de parcours n'y figure,
+    et qu'aucun superlatif n'apparaît. C'est mécanique, et c'est le genre de
+    dérive qu'une relecture humaine laisse passer parce qu'elle sonne juste.
+  */
+  const noms: string[] = [];
+  for (const rang of [0, 1]) {
+    const carte = page.locator("main ul > li").nth(rang);
+    noms.push(await carte.locator("h3 a").first().innerText());
+    await carte.getByRole("button", { name: /Comparer|Ajouter/ }).first().click();
+  }
+
+  await page.goto(`${BASE}/comparer`, { waitUntil: "networkidle" });
+  const synthese = page.locator("main section").first();
+  await expect(synthese).toBeVisible();
+
+  const texte = await synthese.innerText();
+  // Des écarts chiffrés, pas un classement.
+  expect(texte).toMatch(/diffèrent?\s+sur/);
+  for (const interdit of ["le moins cher", "le plus complet", "meilleur", "recommand"]) {
+    expect(texte.toLowerCase()).not.toContain(interdit);
+  }
+  // Les énoncés d'écart ne nomment aucun parcours.
+  const enonces = await synthese.locator("dd").allInnerTexts();
+  for (const e of enonces) {
+    for (const nom of noms) expect(e).not.toContain(nom);
+  }
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

@@ -15,6 +15,7 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerFiche, type ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "@/composants/comparaison";
+import { synthetiser } from "@/modele/synthese-comparaison";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { ConditionCout } from "@/composants/Niveaux";
@@ -209,6 +210,8 @@ function Comparer() {
 
   const lignes = useMemo(() => (fiches.length > 0 ? construireLignes(fiches) : []), [fiches]);
   const differences = lignes.filter((l) => !ligneIdentique(l)).length;
+  // Recalculée à chaque ajout ou retrait : elle suit la sélection.
+  const synthese = useMemo(() => synthetiser(fiches), [fiches]);
 
   if (selection.length < 2) {
     return (
@@ -228,11 +231,64 @@ function Comparer() {
   return (
     <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-12)">
       <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Comparaison</h1>
-      <p className="mt-2 t-body-sm text-(--text-secondary)">
-        {chargement
-          ? "Chargement des fiches…"
-          : `${differences} ${differences > 1 ? "lignes diffèrent" : "ligne diffère"} sur ${lignes.length}.`}
-      </p>
+      {chargement && (
+        <p className="mt-2 t-body-sm text-(--text-secondary)">Chargement des fiches…</p>
+      )}
+
+      {/*
+        SYNTHÈSE, PAS VERDICT. Le tableau oblige à tout lire pour trouver où
+        sont les écarts ; ce bloc donne la lecture immédiate et le tableau reste
+        la lecture détaillée.
+
+        Il ne désigne aucun gagnant, ne met aucune colonne en avant, et ne
+        contient aucune phrase rédigée — un gabarit rempli par des chiffres,
+        jamais une interprétation.
+      */}
+      {!chargement && fiches.length >= 2 && (
+        <section className="mt-(--space-6) rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) p-(--space-6)">
+          <h2 className="t-heading-3 text-(--text-primary)">
+            <span className="chiffre">{differences}</span>{" "}
+            {differences > 1 ? "lignes diffèrent" : "ligne diffère"} sur{" "}
+            <span className="chiffre">{lignes.length}</span>
+          </h2>
+          {/*
+            LA DISTINCTION QUI MANQUAIT. Une ligne peut différer parce que les
+            offres divergent, ou parce que l'un ne publie pas l'information. Le
+            tableau affichait « Non communiqué » sans jamais dire combien de
+            fois — un trou de collecte passait pour une différence d'offre.
+          */}
+          <p className="mt-(--space-2) t-body-sm text-(--text-secondary)">
+            <span className="chiffre">{synthese.divergences}</span>{" "}
+            {synthese.divergences > 1 ? "portent" : "porte"} une divergence réelle,{" "}
+            <span className="chiffre">{synthese.incomparables}</span>{" "}
+            {synthese.incomparables > 1 ? "portent" : "porte"} une information absente chez au
+            moins un parcours.
+          </p>
+
+          {synthese.decisifs.length > 0 && (
+            <dl className="mt-(--space-5) grid gap-(--space-3) min-[960px]:grid-cols-2">
+              {synthese.decisifs.map((e) => (
+                <div key={e.attribut}>
+                  <dt className="t-label text-(--text-tertiary)">{e.attribut}</dt>
+                  <dd className="mt-(--space-1) t-body text-(--text-primary)">{e.enonce}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          <p className="mt-(--space-5) border-t border-(--border-subtle) pt-(--space-4) t-caption text-(--text-tertiary)">
+            <span className="chiffre">{synthese.incomparables}</span>{" "}
+            {synthese.incomparables > 1 ? "attributs ne se comparent pas" : "attribut ne se compare pas"}{" "}
+            : au moins un parcours n&apos;en publie pas l&apos;information. L&apos;absence peut
+            venir de l&apos;organisme, qui ne la publie pas, ou de nous, qui n&apos;avons pas
+            encore lu sa page —{" "}
+            <Link to="/methode" className="underline underline-offset-2">
+              la Méthode détaille les deux cas
+            </Link>
+            .
+          </p>
+        </section>
+      )}
 
       {erreur !== null && (
         <p className="mt-6 rounded-(--radius-md) border border-destructive/40 p-4 t-body-sm text-destructive">
