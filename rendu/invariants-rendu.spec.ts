@@ -1587,3 +1587,72 @@ test("chaque renvoi vers la Méthode atteint une section qui existe", async ({ p
   const html = await (await page.request.get(`${BASE}/methode`)).text();
   expect(html).not.toMatch(/name="robots"[^>]*noindex/);
 });
+
+test("les listes de parcours rendent la même carte partout", async ({ page }) => {
+  /*
+    TROISIÈME DIVERGENCE DU MÊME GENRE — après l'ouverture de fiche et le lien
+    vers l'organisme. La page organisme et « mes formations » rendaient des
+    rangées séparées par un filet, quand l'explorateur rendait des cartes. Deux
+    vues écrites à des moments différents, deux composants, et rien pour le
+    dire.
+
+    LE FOND DE PAGE FAIT PARTIE DE LA CARTE. Mesuré avant correction : le corps
+    valait `oklch(1 0 0)` et la carte `rgb(255,255,255)` — une carte blanche sur
+    fond blanc, qui ne tient que par un filet d'un pixel. Le jeton
+    `--surface-page` existait et n'était appliqué nulle part.
+  */
+  const geometrie = async (url: string) => {
+    await page.goto(url, { waitUntil: "networkidle" });
+    return page.evaluate(() => {
+      /*
+        LES COULEURS SONT NORMALISÉES AVANT D'ÊTRE COMPARÉES.
+
+        `getComputedStyle` rend la couleur dans la notation d'origine :
+        `oklch(1 0 0)` pour le corps, `rgb(255, 255, 255)` pour la carte. Deux
+        chaînes différentes, la même couleur — et une première version de ce
+        test les comparait telles quelles. Elle passait aussi bien avec le fond
+        corrigé qu'en le remettant au blanc : elle ne prouvait rien.
+
+        La deuxième version lisait `fillStyle` en retour, ce qui ramène bien
+        `rgb(...)` à `#rrggbb` — mais laisse `oklch(...)` intact. Elle ne
+        prouvait donc rien non plus. Seule la PEINTURE résout : on remplit un
+        pixel et on lit ses composantes, quelle que soit la notation d'entrée.
+      */
+      const toile = document.createElement("canvas");
+      toile.width = 1;
+      toile.height = 1;
+      const pinceau = toile.getContext("2d")!;
+      const normaliser = (couleur: string) => {
+        pinceau.clearRect(0, 0, 1, 1);
+        pinceau.fillStyle = couleur;
+        pinceau.fillRect(0, 0, 1, 1);
+        const [r, v, b] = pinceau.getImageData(0, 0, 1, 1).data;
+        return `${r},${v},${b}`;
+      };
+
+      const carte = document.querySelector("main ul > li");
+      if (carte === null) return null;
+      const s = getComputedStyle(carte);
+      return {
+        fondCarte: normaliser(s.backgroundColor),
+        fondPage: normaliser(getComputedStyle(document.body).backgroundColor),
+        rayon: s.borderTopLeftRadius,
+        bordure: s.borderTopWidth,
+      };
+    });
+  };
+
+  const explorateur = await geometrie(BASE);
+  expect(explorateur).not.toBeNull();
+
+  // Un organisme du sitemap, donc réel — jamais un slug écrit en dur.
+  const sitemap = await (await page.request.get(`${BASE}/sitemap.xml`)).text();
+  const organisme = /\/organismes\/([^<]+)</.exec(sitemap)?.[1];
+  expect(organisme).toBeDefined();
+  const surOrganisme = await geometrie(`${BASE}/organismes/${organisme}`);
+
+  expect(surOrganisme).toEqual(explorateur);
+
+  // Et la carte se détache : sans écart de fond, elle ne tient qu'au filet.
+  expect(explorateur!.fondCarte).not.toBe(explorateur!.fondPage);
+});

@@ -33,7 +33,7 @@ const LIBELLES_FORMATS: Record<FormatParcours, string> = {
   presentiel: "Présentiel",
   alternance: "Alternance",
 };
-import { RangeeParcours } from "@/composants/RangeeParcours";
+import { TrainingResultCard } from "@/composants/TrainingResultCard";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import { declarerVue, mesurer } from "@/composants/mesure";
@@ -320,9 +320,11 @@ function PageOrganisme() {
             retirée du catalogue — elle ne correspond simplement pas.
           </p>
         ) : (
-          <ul className="mt-(--space-4)">
+          /* Même liste que l'explorateur : cartes espacées sur le fond de
+             page, jamais des rangées séparées par un filet. */
+          <ul className="mt-(--space-4) flex flex-col gap-(--space-4)">
             {resultats.map((p) => (
-              <RangeeParcours key={p.id} parcours={p} />
+              <TrainingResultCard key={p.id} parcours={p} />
             ))}
           </ul>
         )}

@@ -191,7 +191,19 @@
   }
 
   body {
-    background-color: var(--color-background);
+    /*
+      `--surface-page`, ET NON LE BLANC. Le jeton existait depuis le début et
+      n'était appliqué nulle part : mesuré, le fond de page valait
+      `oklch(1 0 0)` sur les trois vues de liste, exactement comme les cartes.
+      Une carte blanche sur fond blanc ne tient que par un filet d'un pixel —
+      c'est ce qui faisait paraître les listes plates.
+
+      Le système l'avait prévu : les contrastes de texte ont été validés sur
+      `surface-page` (#f4f6f7) et non sur le blanc seul, et le commentaire des
+      barres collantes précise qu'elles doivent s'en distinguer. Le fond leur
+      manquait, pas la règle.
+    */
+    background-color: var(--surface-page);
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }

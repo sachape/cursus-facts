@@ -27,9 +27,9 @@ import { EnregistrerComparaison } from "@/composants/EnregistrerComparaison";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { ConditionCout } from "@/composants/Niveaux";
 import { coutDuParcours } from "@/modele/condition-cout";
-import { libellePrix } from "@/composants/RangeeParcours";
+
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
-import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
+import { DEFINITIONS_MODALITES, libellePrixQualifie } from "@/modele/modalite-acces";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -100,7 +100,7 @@ export function construireLignes(parcours: readonly ParcoursFiche[]): Ligne[] {
         return (
           <>
             <span className="chiffre">
-              {cout.valeur ?? libellePrix(cout.montant, p.prixMax, p.modaliteAcces)}
+              {cout.valeur ?? libellePrixQualifie(cout.montant, p.prixMax, p.modaliteAcces)}
             </span>
             <ConditionCout>{cout.condition}</ConditionCout>
           </>

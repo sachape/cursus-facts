@@ -17,7 +17,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { useAuth } from "@/composants/authentification";
 import { useSauvegardes } from "@/composants/sauvegardes";
-import { RangeeParcours } from "@/composants/RangeeParcours";
+import { TrainingResultCard } from "@/composants/TrainingResultCard";
 import { regrouperParOrganisme } from "@/modele/organismes";
 import { BoutonSauvegarde } from "@/composants/BoutonSauvegarde";
 import { hrefOrganisme } from "@/composants/lien-organisme";
@@ -97,9 +97,11 @@ function MesFormations() {
         ) : parcours.length === 0 ? (
           <Invitation quoi="parcours" />
         ) : (
-          <ul className="mt-(--space-4)">
+          /* Même liste que l'explorateur : cartes espacées sur le fond de
+             page, jamais des rangées séparées par un filet. */
+          <ul className="mt-(--space-4) flex flex-col gap-(--space-4)">
             {parcours.map((p) => (
-              <RangeeParcours key={p.id} parcours={p} />
+              <TrainingResultCard key={p.id} parcours={p} />
             ))}
           </ul>
         )}

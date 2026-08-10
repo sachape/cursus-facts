@@ -17,11 +17,11 @@ import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { hrefOrganisme } from "./lien-organisme";
-import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
+import { DEFINITIONS_MODALITES, libellePrixQualifie } from "@/modele/modalite-acces";
 import { ConditionCout, MentionDerivation } from "./Niveaux";
 import { coutDuParcours } from "@/modele/condition-cout";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
-import { libellePrix } from "./RangeeParcours";
+
 import { useComparaison } from "./comparaison";
 import { Button } from "@/components/ui/button";
 import type { EtatInformation } from "@/types/cursus";
@@ -284,7 +284,7 @@ export function EnteteFiche({ p }: { p: ParcoursFiche }) {
         <div>
           <dt className="sr-only">Coût pour l&apos;apprenant</dt>
           <dd className="chiffre font-medium">
-            {libellePrix(p.prixMin, p.prixMax, p.modaliteAcces)}
+            {libellePrixQualifie(p.prixMin, p.prixMax, p.modaliteAcces)}
           </dd>
         </div>
         <div>
@@ -402,7 +402,7 @@ export function ContenuFiche({
             {p.variantes.map((v, i) => (
               <li key={i} className="flex justify-between gap-4 text-sm">
                 <span>{v.label}</span>
-                <span className="chiffre">{libellePrix(v.prix, null, p.modaliteAcces)}</span>
+                <span className="chiffre">{libellePrixQualifie(v.prix, null, p.modaliteAcces)}</span>
               </li>
             ))}
           </ul>
@@ -420,7 +420,7 @@ export function ContenuFiche({
               return (
                 <>
                   <span className="chiffre">
-                    {cout.valeur ?? libellePrix(cout.montant, p.prixMax, p.modaliteAcces)}
+                    {cout.valeur ?? libellePrixQualifie(cout.montant, p.prixMax, p.modaliteAcces)}
                   </span>
                   <ConditionCout>{cout.condition}</ConditionCout>
                   <MentionDerivation>{cout.derivation}</MentionDerivation>

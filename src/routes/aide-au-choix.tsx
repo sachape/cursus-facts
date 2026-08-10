@@ -7,6 +7,7 @@
  * que les correspondances — c'est souvent l'information la plus utile.
  */
 import { useEffect, useMemo, useRef, useState } from "react";
+import { libellePrixQualifie } from "@/modele/modalite-acces";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FilAriane } from "@/composants/FilAriane";
 import { chargerListe } from "@/donnees/requetes";
@@ -19,7 +20,7 @@ import {
   type Situation,
 } from "@/modele/adequation";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
-import { libellePrix } from "@/composants/RangeeParcours";
+
 import { redigerAdequation, type PhraseRedigee } from "@/ingestion/adequation.functions";
 import { Button } from "@/components/ui/button";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
@@ -174,7 +175,7 @@ function AideAuChoix() {
             organisme: a.parcours.organismeNom,
             domaine: LIBELLES_DOMAINES[a.parcours.domaine],
             sujetPrincipal: a.parcours.sujetPrincipal,
-            prix: libellePrix(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces),
+            prix: libellePrixQualifie(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces),
             duree: a.parcours.duree ?? "Non communiquée",
             correspond: a.correspond,
             ecarts: a.ecarts,
@@ -354,7 +355,7 @@ function AideAuChoix() {
                 </h3>
                 <p className="mt-1 t-body-sm text-(--text-secondary)">{a.parcours.organismeNom}</p>
                 <p className="chiffre mt-2 t-body-sm">
-                  {libellePrix(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces)}
+                  {libellePrixQualifie(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces)}
                   {a.parcours.duree !== null && (
                     <span className="text-(--text-secondary)"> · {a.parcours.duree}</span>
                   )}
