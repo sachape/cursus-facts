@@ -384,6 +384,61 @@ test("depuis l'aide au choix, fermer une fiche rend le parcours intact", async (
   expect(await correspondances.first().locator("a").first().innerText()).toBe(premier);
 });
 
+test("un organisme a sa page, et le panneau s'y ouvre sans la quitter", async ({ page }) => {
+  /*
+    Cliquer sur un organisme renvoyait vers l'explorateur avec `?organisme=` :
+    la personne quittait la vue Organismes, perdait sa position, et atterrissait
+    dans une liste qui ne disait rien de l'organisme lui-même.
+
+    Le test suit le parcours entier — vue, page, panneau, retour — parce que
+    c'est la CHAÎNE qui était rompue, pas un maillon. Vérifier séparément que la
+    page existe et que le panneau s'ouvre laisserait passer exactement le défaut
+    d'origine : chaque étape correcte, l'enchaînement perdu.
+  */
+  await page.goto(`${BASE}/organismes`, { waitUntil: "networkidle" });
+
+  // La carte est un vrai lien vers la page dédiée, pas un filtre sur l'accueil.
+  const carte = page.locator('main ul li a[href^="/organismes/"]').first();
+  await expect(carte).toBeVisible();
+  const nomAttendu = await carte.locator("h2").innerText();
+
+  await carte.click();
+  /*
+    La carte est un vrai lien : le clic déclenche un chargement de page complet.
+    Il faut attendre l'HYDRATATION avant de cliquer un parcours — sans elle, le
+    gestionnaire n'est pas encore posé et le lien navigue au lieu d'ouvrir le
+    panneau. C'est le comportement voulu sans JavaScript, ce n'est pas ce que ce
+    test mesure.
+  */
+  await page.waitForLoadState("networkidle");
+  await expect(page.locator("h1")).toHaveText(nomAttendu);
+  const adresseOrganisme = new URL(page.url()).pathname;
+  expect(adresseOrganisme).toMatch(/^\/organismes\/.+/);
+
+  // La mention obligatoire : sans elle, le compteur se lit comme une mesure de
+  // taille, donc comme un jugement.
+  await expect(
+    page.getByText(/décrit l'étendue de notre collecte, pas celle du catalogue/),
+  ).toBeVisible();
+
+  const parcours = page.locator("main section ul > li");
+  const combien = await parcours.count();
+  expect(combien).toBeGreaterThan(0);
+
+  await parcours.first().locator('a[href^="/parcours/"]').first().click();
+  const panneau = page.getByRole("dialog");
+  await expect(panneau).toBeVisible();
+  // On ne quitte pas la page organisme : le panneau se superpose.
+  expect(new URL(page.url()).pathname).toBe(adresseOrganisme);
+
+  await page.keyboard.press("Escape");
+  await expect(panneau).toBeHidden();
+
+  // La page et sa liste sont intactes.
+  await expect(page.locator("h1")).toHaveText(nomAttendu);
+  await expect(parcours).toHaveCount(combien);
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {
@@ -515,12 +570,27 @@ test("la bande d'organismes ne déborde pas et reste lisible", async ({ page }) 
   }));
   expect(defilable).toBeLessThanOrEqual(fenetre.width + 1);
 
-  // Catégorie et compteur ne se touchent pas : sans écart, « Bootcamp12 » se
-  // lit comme un seul mot. Ils partagent la seconde ligne de la carte.
-  const seconde = bande.locator("li").first().locator("span > span");
-  const categorie = await boite(seconde.first());
-  const compteur = await boite(seconde.last());
-  expect(compteur.x - (categorie.x + categorie.width)).toBeGreaterThan(4);
+  /*
+    Les trois blocs de la carte — pictogramme, texte, badge — ne se touchent
+    jamais. Sans écart, « Bootcamp12 » se lit comme un seul mot, et un badge
+    collé au nom se lit comme sa suite.
+
+    Mesuré sur les enfants DIRECTS du bouton, dans l'ordre du document : c'est
+    la composition qu'on vérifie, pas une paire choisie à la main.
+  */
+  const carte = bande.locator("li").first().locator("button");
+  const blocs = carte.locator("> span");
+  await expect(blocs).toHaveCount(3);
+
+  const rects = [];
+  for (let i = 0; i < 3; i++) rects.push(await boite(blocs.nth(i)));
+  for (let i = 0; i < 2; i++) {
+    const ecart = rects[i + 1]!.x - (rects[i]!.x + rects[i]!.width);
+    expect(ecart).toBeGreaterThan(4);
+  }
+
+  // Le badge est bien à droite, le texte au centre : la composition tient.
+  expect(rects[2]!.x).toBeGreaterThan(rects[1]!.x);
 });
 
 test("la bande défile à une vitesse lisible, quelle que soit la taille du catalogue", async ({

@@ -13,6 +13,20 @@
  *   2. La hiérarchie se construit par l'échelle, jamais par la décoration.
  *   3. Toute valeur appartient à une échelle. Si une valeur manque, on étend
  *      l'échelle — on n'improvise pas.
+ *
+ * LE PICTOGRAMME — CE QUE LA RÈGLE INTERDIT, ET CE QU'ELLE N'INTERDIT PAS
+ *
+ * Un pictogramme ne se place jamais devant une VALEUR : « 1 480 € » précédé
+ * d'une pièce de monnaie n'ajoute rien à la lecture, et un chiffre lu est déjà
+ * sans ambiguïté. La règle vise la décoration d'une donnée.
+ *
+ * Elle ne vise pas le pictogramme qui PORTE lui-même une information et n'a pas
+ * de doublon textuel à côté — la catégorie d'un organisme, l'état d'un champ.
+ * Celui-là est un ancrage : il donne à l'œil un point d'entrée dans une liste
+ * dense, et il code un fait que rien d'autre ne dit à cet endroit.
+ *
+ * Le test est simple : retirer le pictogramme fait-il perdre une information ?
+ * Si oui, il est légitime. Si non, il décore.
  */
 
 :root {
@@ -441,8 +455,14 @@
   --bande-deceleration: 400ms;
   --bande-masque: 64px;
   --bande-carte-hauteur: 64px;
-  --bande-carte-min: 200px;
+  /* 240 et non 200 : le pictogramme et le badge prennent leur place sans
+     écraser les noms longs, qui reculeraient sinon devant l'ellipse. */
+  --bande-carte-min: 240px;
   --bande-carte-max: 320px;
+  --bande-picto-cadre: 36px;
+  --bande-picto-taille: 18px;
+  --bande-picto-trait: 1.5;
+  --bande-badge-hauteur: 22px;
 
   --rail-largeur: 180px;
   --rail-gap: var(--space-8);

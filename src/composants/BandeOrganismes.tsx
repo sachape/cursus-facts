@@ -22,6 +22,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CategorieOrganisme } from "@/types/cursus";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
+import { IconeCategorie } from "./OrganizationMark";
 
 export type OrganismeBande = {
   nom: string;
@@ -99,15 +100,43 @@ function Carte({
           Transition sur `box-shadow` et `border-color` seulement : animer
           `all` reprendrait la transformation de défilement à chaque image.
         */
-        className="flex h-(--bande-carte-hauteur) min-w-(--bande-carte-min) max-w-(--bande-carte-max) flex-col justify-center gap-(--space-1) overflow-hidden rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) px-(--space-4) py-(--space-3) text-left shadow-(--elevation-1) transition-[box-shadow,border-color] duration-(--motion-fast) hover:border-(--border-default) hover:shadow-(--elevation-2) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+        className="group/carte flex h-(--bande-carte-hauteur) min-w-(--bande-carte-min) max-w-(--bande-carte-max) items-center gap-(--space-3) overflow-hidden rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) px-(--space-4) py-(--space-3) text-left shadow-(--elevation-1) transition-[box-shadow,border-color] duration-(--motion-fast) hover:border-(--border-default) hover:shadow-(--elevation-2) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
       >
-        <span className="t-body truncate font-medium text-(--text-primary)">
-          {organisme.nom}
+        {/*
+          ANCRAGE, PAS DÉCORATION. Le pictogramme porte la catégorie — retirer
+          l'un fait perdre l'autre — et il donne à l'œil un point d'entrée dans
+          une bande dense. C'est le jeu de `IconeCategorie`, celui des rangées
+          de résultats : un second vocabulaire de formes obligerait à apprendre
+          deux fois la même chose.
+
+          Une catégorie sans pictogramme reçoit le générique, jamais un vide :
+          une carte sans cadre romprait l'alignement de toute la bande.
+
+          Taille et épaisseur passent par le CSS et non par les props du
+          composant d'icône, pour que les jetons restent la seule source.
+        */}
+        <span className="grid size-(--bande-picto-cadre) shrink-0 place-items-center rounded-(--radius-md) bg-(--surface-sunken) text-(--text-secondary) transition-colors duration-(--motion-fast) group-hover/carte:text-(--text-primary) [&>svg]:size-(--bande-picto-taille) [&>svg]:[stroke-width:var(--bande-picto-trait)]">
+          <IconeCategorie categorie={organisme.categorie} />
         </span>
-        <span className="flex items-baseline gap-(--space-2) t-caption text-(--text-tertiary)">
-          <span className="truncate">{LIBELLES_CATEGORIES[organisme.categorie]}</span>
-          <span aria-hidden="true">·</span>
-          <span className="t-data-sm shrink-0">{organisme.parcours}</span>
+
+        <span className="flex min-w-0 flex-col gap-(--space-1)">
+          <span className="t-body truncate font-medium text-(--text-primary)">
+            {organisme.nom}
+          </span>
+          <span className="t-caption truncate text-(--text-tertiary)">
+            {LIBELLES_CATEGORIES[organisme.categorie]}
+          </span>
+        </span>
+
+        {/*
+          Le mot « parcours » a quitté la carte : le surtitre de la bande donne
+          le contexte une fois, le répéter cent soixante-trois fois n'apprend
+          rien. Il reste à la lecture d'écran, où le contexte ne se déduit pas
+          d'une position à l'écran.
+        */}
+        <span className="ml-auto inline-flex h-(--bande-badge-hauteur) shrink-0 items-center rounded-(--radius-full) bg-(--surface-sunken) px-(--space-2) t-data-sm text-(--text-secondary) transition-colors duration-(--motion-fast) group-hover/carte:bg-(--surface-hover)">
+          {organisme.parcours}
+          <span className="sr-only"> parcours référencés</span>
         </span>
       </button>
     </li>
