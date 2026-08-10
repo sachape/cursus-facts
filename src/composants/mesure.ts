@@ -166,15 +166,39 @@ export type Proprietes = Partial<ProprietesParcours> & {
 /*
   Initialisé une seule fois, à la demande, et JAMAIS au rendu serveur.
 
-  Sans jeton, tout reste inerte : c'est le comportement voulu en développement
-  et dans les tests, où mesurer les gestes d'un robot fausserait la seule
-  courbe qu'on regarde.
+  Sans jeton, tout reste inerte. On croyait que ça suffisait à protéger les
+  chiffres en développement et dans les tests — c'était faux : le jeton vit
+  dans `.env`, versionné parce que Lovable en a besoin à la construction, donc
+  il est présent partout, y compris sous Playwright.
 */
 let pret: boolean | null = null;
+
+/**
+ * La machine mesure-t-elle, ou est-elle en train de se tester elle-même ?
+ *
+ * CONSTATÉ, PAS SUPPOSÉ. Le projet contenait 52 événements dont 40 émis depuis
+ * `http://localhost:4317` — le serveur que lance la suite d'invariants de
+ * rendu. Le crochet de pré-poussée l'exécute à chaque poussée : chaque
+ * vérification faussait la seule courbe qu'on regarde, et le taux de
+ * conversion se serait mesuré sur un robot qui clique toujours au même endroit.
+ *
+ * Deux barrages plutôt qu'un. L'hôte local couvre le développement et
+ * l'intégration continue ; `navigator.webdriver` couvre le cas où une suite
+ * viserait un jour un domaine réel. Aucun des deux ne peut arriver en
+ * production, où l'on sert `formlist.fr` à de vrais navigateurs.
+ */
+function machineDeTest(): boolean {
+  const hote = window.location.hostname;
+  if (hote === "localhost" || hote === "127.0.0.1" || hote === "0.0.0.0" || hote === "[::1]") {
+    return true;
+  }
+  return navigator.webdriver === true;
+}
 
 function initialiser(): boolean {
   if (pret !== null) return pret;
   if (typeof window === "undefined") return (pret = false);
+  if (machineDeTest()) return (pret = false);
 
   const jeton = import.meta.env["VITE_MIXPANEL_TOKEN"] as string | undefined;
   if (jeton === undefined || jeton === "") return (pret = false);

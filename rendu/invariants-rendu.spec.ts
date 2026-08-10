@@ -1300,3 +1300,79 @@ test("une comparaison s'enregistre, et le détour par la connexion n'en perd rie
   expect(JSON.parse(locale ?? "[]")).toHaveLength(0);
   await ongletNeuf.close();
 });
+
+test("aucune mesure ne part pendant les tests", async ({ page }) => {
+  /*
+    LE GARDE-FOU QUI MANQUAIT, ET QUI A COÛTÉ 40 ÉVÉNEMENTS.
+
+    « Sans jeton, tout reste inerte » était l'intention écrite dans
+    `mesure.ts`. Elle n'était pas tenue : le jeton vit dans `.env`, versionné
+    parce que Lovable en a besoin à la construction, donc présent aussi sous
+    Playwright. Le crochet de pré-poussée exécute cette suite à chaque poussée
+    — chaque vérification faussait la seule courbe qu'on regarde.
+
+    Constaté dans le projet Mixpanel : 52 événements, dont 40 émis depuis
+    `http://localhost:4317`, c'est-à-dire depuis ce fichier. Le taux de
+    conversion se serait mesuré sur un robot qui clique toujours au même
+    endroit, et rien à l'écran ne l'aurait dit.
+
+    Le test observe le RÉSEAU, pas le code : c'est la seule façon de constater
+    qu'une requête ne part pas. Voir un appel absent d'un fichier ne prouve
+    rien sur ce que fait la page.
+  */
+  const versMixpanel: string[] = [];
+  page.on("request", (requete) => {
+    if (requete.url().includes("mixpanel.com")) versMixpanel.push(requete.url());
+  });
+
+  await page.goto(BASE, { waitUntil: "networkidle" });
+
+  /*
+    Les gestes sont EXIGÉS, pas tentés. Une première version les enveloppait
+    dans des `if (await ...count())` : quand aucun sélecteur ne correspondait,
+    le test ne faisait rien et constatait zéro requête — il passait sans
+    garantir quoi que ce soit. Vérifié en retirant le garde-fou : il passait
+    quand même.
+
+    Chacun de ces trois gestes émet un événement en production. S'ils cessent
+    d'être atteignables, le test échoue ici plutôt que de se taire.
+  */
+  const tri = page.locator('[aria-label="Trier les résultats"]').first();
+  await expect(tri).toBeVisible();
+  await tri.click();
+  const option = page.getByRole("menuitemradio").nth(1);
+  await expect(option).toBeVisible();
+  await option.click();
+
+  const champ = page.locator('input[type="search"], input[type="text"]').first();
+  await expect(champ).toBeVisible();
+  await champ.fill("shopify");
+  await page.waitForTimeout(1200);
+
+  const lien = page.locator('a[href^="/parcours/"]').first();
+  await expect(lien).toBeVisible();
+  // Clic JS : `click()` ferait défiler la page, ce qu'un autre invariant mesure.
+  await lien.evaluate((el: HTMLElement) => el.click());
+  await page.waitForURL(/fiche=/);
+
+  /*
+    ON REGARDE LA FILE, PAS LE RÉSEAU SEUL.
+
+    `mixpanel-browser` regroupe ses envois : l'événement est accepté tout de
+    suite, la requête part plus tard. Une première version de ce test attendait
+    deux secondes et concluait « rien n'est parti » — elle passait aussi bien
+    avec le garde-fou qu'en le retirant, c'est-à-dire qu'elle ne prouvait rien.
+    Vérifié à la sonde : sans garde, `localStorage` contient
+    `__mpq_<jeton>_ev`, la file d'attente, et aucune requête n'est encore
+    visible.
+
+    Les deux clés que la bibliothèque écrit — la persistance et la file —
+    n'apparaissent que si `init` a été appelé. Leur absence prouve l'inertie
+    sans dépendre d'un délai.
+  */
+  const clesMixpanel = await page.evaluate(() =>
+    Object.keys(localStorage).filter((c) => c.startsWith("mp_") || c.startsWith("__mpq_")),
+  );
+  expect(clesMixpanel).toEqual([]);
+  expect(versMixpanel).toEqual([]);
+});
