@@ -123,6 +123,16 @@ function Methode() {
           </li>
           <li>Toute règle appliquée au catalogue est publiée dans cette page.</li>
           <li>Toute décision manuelle est journalisée et publique.</li>
+          {/*
+            Posé le 10 août 2026, avant que les comptes existent — c'est le seul
+            moment où une règle de ce genre ne coûte rien. Une fois qu'un
+            compteur de sauvegardes existe, « remonter ce que les gens
+            regardent » devient une évidence de produit.
+          */}
+          <li>
+            Aucun signal d&apos;utilisateur ne remonte dans le classement. Ni le nombre de
+            sauvegardes, ni celui des comparaisons, ni celui des alertes.
+          </li>
         </ol>
       </Section>
 
@@ -552,6 +562,15 @@ function Methode() {
         titre="Classement des résultats"
         intro="Aucun critère n'est achetable. Le libellé du tri appliqué est toujours affiché sous la liste."
       >
+        <p className="mb-4 rounded-(--radius-md) border border-(--border-subtle) p-(--space-3)">
+          <strong className="font-medium">Aucun signal d&apos;utilisateur ne remonte ici.</strong>{" "}
+          Le nombre de sauvegardes, de comparaisons ou d&apos;alertes n&apos;influence ni le tri, ni
+          la mise en avant, ni aucun affichage public. Une formation sauvegardée cent fois
+          n&apos;est pas meilleure : c&apos;est celle que des gens ont regardée. Trier dessus
+          fabriquerait une popularité et la présenterait comme un fait sur la formation —
+          c&apos;est-à-dire le score que l&apos;invariant 1 interdit, rétabli par la bande.
+        </p>
+
         <dl className="space-y-3">
           {TRIS.map((tri) => (
             <div key={tri}>

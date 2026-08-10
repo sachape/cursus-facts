@@ -6,6 +6,25 @@
  * (invariant 4). Un tri dont on ne publie pas la règle est un classement
  * éditorial déguisé.
  *
+ * AUCUN SIGNAL D'UTILISATEUR NE REMONTE DANS LE CLASSEMENT.
+ *
+ * Ni le nombre de sauvegardes, ni celui des comparaisons, ni celui des alertes.
+ * Ces compteurs n'influencent ni le tri, ni la mise en avant, ni aucun
+ * affichage public.
+ *
+ * Une formation sauvegardée cent fois n'est pas meilleure : c'est celle que des
+ * gens ont regardée. Trier dessus fabriquerait une popularité et la
+ * présenterait comme un fait sur la formation — c'est-à-dire exactement le
+ * score que l'invariant 1 interdit, rétabli par la bande.
+ *
+ * L'effet est cumulatif et irréversible : ce qui remonte est vu, donc sauvegardé
+ * davantage, donc remonte encore. Au bout de quelques semaines, le catalogue
+ * n'est plus décrit, il est classé — et plus personne ne sait par quoi.
+ *
+ * La règle est posée AVANT que les comptes existent, pendant que rien n'en
+ * dépend. `ParcoursClassable` en est la forme mécanique : il n'expose que des
+ * champs de fiche, donc un comparateur ne PEUT pas lire un signal d'usage.
+ *
  * NE JAMAIS TRIER PAR RATIO. Ordonner sur `renseignees / applicables`
  * produirait un chiffre sur 100 qui se lit comme une note, et rétablirait par
  * la bande le score que le produit refuse. Le critère est le NOMBRE
@@ -91,7 +110,15 @@ const absentsEnDernier = (a: number | null, b: number | null, comparaison: numbe
 const tarifIndividuel = (p: ParcoursClassable) =>
   prixAffichable(p.prixMin, { dispoInter: p.dispoInter ?? null, dispoIntra: null });
 
-const COMPARATEURS: Record<Tri, (a: ParcoursClassable, b: ParcoursClassable) => number> = {
+/*
+  Exporté pour que l'invariant puisse EXÉCUTER chaque comparateur, et pas
+  seulement relire le code : un contrôle textuel se contourne, une mesure sur
+  le comportement non.
+*/
+export const COMPARATEURS_PAR_TRI: Record<
+  Tri,
+  (a: ParcoursClassable, b: ParcoursClassable) => number
+> = {
   // Les trois critères successifs du modèle : informations, fraîcheur, alphabétique.
   informations: (a, b) =>
     b.infosRenseignees - a.infosRenseignees || parFraicheur(a, b) || parIntitule(a, b),
@@ -120,5 +147,5 @@ export function classer<T extends ParcoursClassable>(
   parcours: readonly T[],
   tri: Tri = TRI_PAR_DEFAUT,
 ): T[] {
-  return [...parcours].sort(COMPARATEURS[tri]);
+  return [...parcours].sort(COMPARATEURS_PAR_TRI[tri]);
 }

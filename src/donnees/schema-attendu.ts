@@ -14,6 +14,67 @@
 
 /** Colonnes qu'une migration doit avoir créées avant que ce code les lise. */
 export const COLONNES_REQUISES: Record<string, { colonne: string; type: string }[]> = {
+  /*
+    LES SIX TABLES DE COMPTE, lues depuis les migrations 20260810123706 et
+    20260810123756 — jamais devinées. Mes six suppositions de noms étaient
+    fausses avant de les lire : le rattachement s'appelle `utilisateur_id` et
+    non `user_id`, l'horodatage `cree_le` et non `created_at`.
+
+    Ce n'est pas un détail de vocabulaire. Un code écrit sur des noms supposés
+    ne tombe pas en erreur claire : PostgREST renvoie « column X does not
+    exist » à l'exécution, en production, sur la première action d'un
+    utilisateur connecté.
+  */
+  profils: [
+    { colonne: "id", type: "uuid primary key references auth.users(id) on delete cascade" },
+    { colonne: "email", type: "text not null" },
+    { colonne: "cree_le", type: "timestamptz not null default now()" },
+    { colonne: "derniere_connexion", type: "timestamptz" },
+  ],
+  sauvegardes: [
+    { colonne: "utilisateur_id", type: "uuid not null references profils(id) on delete cascade" },
+    { colonne: "type", type: "text not null check (type in ('parcours','organisme'))" },
+    { colonne: "cible_id", type: "text not null" },
+    { colonne: "cree_le", type: "timestamptz not null default now()" },
+  ],
+  comparaisons: [
+    { colonne: "utilisateur_id", type: "uuid not null references profils(id) on delete cascade" },
+    { colonne: "nom", type: "text" },
+    { colonne: "parcours_ids", type: "text[] not null, 2 à 4 éléments" },
+    { colonne: "cree_le", type: "timestamptz not null default now()" },
+    { colonne: "consulte_le", type: "timestamptz" },
+  ],
+  alertes: [
+    { colonne: "utilisateur_id", type: "uuid not null references profils(id) on delete cascade" },
+    { colonne: "parcours_id", type: "text not null" },
+    { colonne: "champs_surveilles", type: "text[] not null default '{cout_apprenant}'" },
+    { colonne: "active", type: "boolean not null default true" },
+    { colonne: "derniere_notification", type: "timestamptz" },
+  ],
+  historique_champs: [
+    { colonne: "parcours_id", type: "text not null" },
+    { colonne: "champ", type: "text not null" },
+    { colonne: "valeur_precedente", type: "text" },
+    { colonne: "valeur_nouvelle", type: "text" },
+    /*
+      Les états sont conservés À CÔTÉ des valeurs, et c'est ce qui permet de
+      NE PAS notifier un changement d'état seul. Un champ qui passe de « pas
+      encore collecté » à « non publié par l'organisme » est un changement pour
+      nous, pas pour l'utilisateur. Seule une valeur qui change de valeur
+      déclenche un email.
+    */
+    { colonne: "etat_precedent", type: "text" },
+    { colonne: "etat_nouveau", type: "text" },
+    { colonne: "origine", type: "text not null check (extraction_automatique | correction_manuelle | declaration_organisme | signalement_utilisateur)" },
+    { colonne: "source_url", type: "text" },
+    { colonne: "citation", type: "text" },
+    { colonne: "modifie_le", type: "timestamptz not null default now()" },
+  ],
+  notifications_envoyees: [
+    { colonne: "alerte_id", type: "uuid not null references alertes(id) on delete cascade" },
+    { colonne: "historique_id", type: "uuid not null references historique_champs(id)" },
+    { colonne: "envoye_le", type: "timestamptz not null default now()" },
+  ],
   parcours: [
     { colonne: "profondeur", type: "text not null default 'catalogue_seul'" },
     { colonne: "profondeur_verifiee_le", type: "date" },
