@@ -188,6 +188,36 @@ NAF 85.59A/B via SIRENE reste nécessaire.
 
 ---
 
+### Appariement par libellé de lien — épuisé
+
+Passe du 6 août 2026, 120 organismes visités : **1 fiche appariée**. Quatrième
+et dernière route d'appariement heuristique close.
+
+Taux après la passe : **23 % (54/232)**, contre 25 % avant — la baisse est le
+retrait des cinq appariements faux dénoncés par le garde-fou de correspondance,
+et aucune des cinq n'a été retrouvée par le libellé.
+
+**Ne pas relancer.** Les quatre routes (score d'URL, sitemaps, comparatifs
+tiers, libellé de lien) sont mesurées et closes. Ce qui reste bloqué ne l'est
+pas par l'appariement : voir ci-dessous.
+
+### Ce n'est plus l'appariement, c'est la découverte d'URL
+
+Inventaire du 6 août 2026 sur les 59 fiches dont le prix attend reconfirmation
+(`src/donnees/file-reconfirmation.json`) :
+
+| | Fiches |
+|---|---|
+| URL de détail déjà appariée | 4 |
+| Domaine exploré, pages connues, aucune rapprochée de la fiche | 19 |
+| **Domaine jamais exploré** | **36** |
+| Sans domaine | 0 |
+
+Les 59 ont toutes un domaine d'organisme. Le goulot n'est donc pas le
+rapprochement page↔fiche mais le fait que **61 % de ces domaines n'ont jamais
+été passés au crible**. Insister sur l'appariement ne peut rien y faire ; seule
+une passe de découverte sur ces 36 domaines le peut.
+
 ## 4. Mesures du pipeline d'extraction
 
 | Mesure | Valeur |
@@ -408,6 +438,43 @@ le passage sur un build d'abord — il supprime d'un coup la classe
 d'intermittence et le risque de mauvais port —, puis le contraste de
 `--text-tertiary`, puis les paliers du titre, le débordement des onglets à
 360 px, et le faux positif d'espacement.
+
+### Le motif du 10 août : trois faux diagnostics, tous dus à l'instrument
+
+Trois fois dans la même journée, une conclusion fausse tirée d'une mesure juste
+— parce que l'outil portait sur autre chose que ce qu'on croyait.
+
+| L'instrument | Ce qu'il mesurait vraiment | Ce qu'on en a conclu |
+|---|---|---|
+| `playwright` sur le port 3000 | Le serveur de dev d'un **autre projet** | Que les invariants validaient Formlist |
+| `grep -c` dans ce shell | Rien : il sort sans imprimer, même `0` | Que les routes dynamiques n'émettaient aucun `<title>` |
+| `curl` sur `localhost:4317` | Le **code du jour**, non déployé | Que le `ld+json` était en ligne |
+
+Le deuxième a coûté le plus cher : une sortie vide lue comme un zéro a produit
+un diagnostic d'architecture complet — streaming, coquille envoyée trop tôt,
+options A/B/C/D — et une décision produit prise dessus. Il n'y avait rien à
+corriger.
+
+Le troisième est le plus insidieux, parce que la mesure était juste : le
+`ld+json` sortait bien au premier octet **en local**. C'est le tableau de
+restitution qui mélangeait des lignes de production et des lignes de local sans
+les étiqueter. Un tableau dont chaque ligne peut venir d'un environnement
+différent n'est pas vérifiable.
+
+**LA RÈGLE : toute mesure indique explicitement son environnement.** URL
+complète, pas de chemin relatif ; l'origine dans la restitution, pas seulement
+dans la commande ; et jamais deux environnements dans le même tableau sans
+colonne qui les sépare.
+
+Corollaire, appris au même moment : un slug ne se construit pas, il se lit. Une
+URL de fiche s'écrit `<organisme>-<nom>-<id>` — le suffixe numérique en fait
+partie, et `/parcours/livementor-formation-e-commerce` répond 404 quand
+`/parcours/livementor-formation-e-commerce-88` répond 200. Une adresse déduite
+est une information déduite.
+
+C'est la même famille que le §8, déplacée d'un cran : là, une couche en aval
+changeait le résultat ; ici, c'est l'instrument de mesure qui regarde à côté.
+Aucun test ne rougit dans les deux cas.
 
 ### Et un second motif, distinct : deux règles correctes, incohérentes ensemble
 
