@@ -19,6 +19,7 @@ import { chargerListe } from "@/donnees/requetes";
 import { CHAMPS_INFORMATION } from "@/types/cursus";
 import { FournisseurAuth } from "@/composants/authentification";
 import { FournisseurSauvegardes } from "@/composants/sauvegardes";
+import { RepriseIntention } from "@/composants/RepriseIntention";
 
 /** Adresse canonique du site. Une seule source pour les métadonnées. */
 const SITE = "https://formlist.fr";
@@ -189,6 +190,10 @@ function RootComponent() {
       <FournisseurAuth>
       <FournisseurSauvegardes>
       <FournisseurComparaison>
+        {/* Rejoue l'intention dès qu'une session apparaît, connexion directe
+            comme retour de confirmation. Monté ici : il lui faut les
+            fournisseurs pour écrire ce qu'on avait demandé. */}
+        <RepriseIntention />
         <div className="flex min-h-screen flex-col">
           <Navigation />
           <div className="flex-1">

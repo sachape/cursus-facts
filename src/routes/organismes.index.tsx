@@ -11,6 +11,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { regrouperParOrganisme } from "@/modele/organismes";
 import { hrefOrganisme } from "@/composants/lien-organisme";
+import { BoutonSauvegarde } from "@/composants/BoutonSauvegarde";
 import { formaterDateCourte } from "@/modele/dates";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { Input } from "@/components/ui/input";
@@ -84,7 +85,7 @@ function Organismes() {
       ) : (
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filtres.map((organisme) => (
-            <li key={organisme.nom}>
+            <li key={organisme.nom} className="relative">
               <a
                 href={hrefOrganisme(organisme.nom)}
                 className="flex h-full flex-col rounded-(--carte-rayon) border border-(--border-subtle) bg-(--surface-raised) p-(--space-5) transition-[border-color,box-shadow,transform] duration-(--motion-fast) ease-(--ease-standard) hover:border-(--border-default) hover:shadow-(--elevation-2) motion-safe:hover:-translate-y-px"
@@ -133,6 +134,11 @@ function Organismes() {
                   ))}
                 </ul>
               </a>
+              {/* En haut à droite, hors de l'ancre : la carte entière est un
+                  lien, et un bouton dedans serait avalé par la navigation. */}
+              <span className="absolute right-(--space-3) top-(--space-3)">
+                <BoutonSauvegarde type="organisme" cibleId={organisme.slug} libelle={organisme.nom} />
+              </span>
             </li>
           ))}
         </ul>

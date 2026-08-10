@@ -17,6 +17,7 @@ import type { ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { CodeBarres, CompteurInformations } from "./CodeBarres";
 import { useComparaison } from "./comparaison";
+import { BoutonSauvegarde } from "./BoutonSauvegarde";
 import { libellePrixQualifie, type ModaliteAcces } from "@/modele/modalite-acces";
 import { reserveAuxEntreprises } from "@/modele/modalite-commerciale";
 import { coutDuParcours } from "@/modele/condition-cout";
@@ -201,6 +202,7 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
             >
               {selectionne ? "Retirer" : "Ajouter à la comparaison"}
             </button>
+            <BoutonSauvegarde type="parcours" cibleId={parcours.slug} libelle={parcours.nom} />
           </div>
         </div>
       </div>

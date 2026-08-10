@@ -307,10 +307,18 @@ test("la barre d'actions du panneau tient en une ligne de boutons", async ({ pag
     if (hauteur > 96) fautifs.push(`${largeur}px → pied de ${hauteur.toFixed(0)} px`);
 
     // Les deux boutons partagent une ligne : même ordonnée, à un pixel près.
+    /*
+      Trois commandes depuis que le signet est posé : le lien sortant, le
+      signet, la comparaison. Le signet est une cible carrée qui ne participe
+      pas au partage de largeur — on ne mesure donc l'égalité qu'entre les deux
+      actions à libellé, qui sont celles qui se disputent la ligne.
+    */
     const actions = pied.locator("a, button");
-    await expect(actions).toHaveCount(2);
-    const a = await boite(actions.nth(0));
-    const b = await boite(actions.nth(1));
+    await expect(actions).toHaveCount(3);
+    const aLibelle = pied.locator("a, button").filter({ hasText: /\S/ });
+    await expect(aLibelle).toHaveCount(2);
+    const a = await boite(aLibelle.nth(0));
+    const b = await boite(aLibelle.nth(1));
     if (Math.abs(a.y - b.y) > 1) fautifs.push(`${largeur}px → boutons sur deux lignes`);
 
     // Sous 640 px, la cible tactile passe à 44 px et les deux boutons sont à

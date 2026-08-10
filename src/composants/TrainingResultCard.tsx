@@ -23,6 +23,7 @@ import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { coutDuParcours } from "@/modele/condition-cout";
 import { libellePrixQualifie } from "@/modele/modalite-acces";
 import { CompareButton } from "./CompareButton";
+import { BoutonSauvegarde } from "./BoutonSauvegarde";
 import { OrganizationIdentity } from "./OrganizationIdentity";
 import {
   CertificationBadge,
@@ -172,6 +173,7 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
           */}
           <div className="relative z-(--z-collant) mt-auto flex items-center gap-(--space-2)">
             <CompareButton slug={parcours.slug} nom={parcours.nom} discretHorsSurvol />
+            <BoutonSauvegarde type="parcours" cibleId={parcours.slug} libelle={parcours.nom} />
           </div>
         </div>
       </div>

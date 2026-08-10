@@ -17,6 +17,7 @@
  */
 import type { ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "./comparaison";
+import { BoutonSauvegarde } from "./BoutonSauvegarde";
 
 export function PiedFiche({ p }: { p: ParcoursFiche }) {
   const { ajouter, retirer, contient } = useComparaison();
@@ -84,6 +85,10 @@ export function PiedFiche({ p }: { p: ParcoursFiche }) {
             </span>
           </a>
         )}
+
+        {/* Entre les deux actions : le signet est un geste de mise de côté,
+            il ne dispute la place ni au lien sortant ni à la comparaison. */}
+        <BoutonSauvegarde type="parcours" cibleId={p.slug} libelle={p.nom} />
 
         {/*
           Action secondaire : largeur adaptée à son libellé, et non à parts
