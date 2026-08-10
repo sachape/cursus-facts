@@ -11,6 +11,11 @@
  */
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FilAriane } from "@/composants/FilAriane";
+import {
+  CRITERES_ELIGIBILITE,
+  CRITERES_MINIMUM,
+  JAMAIS_REFERENCE,
+} from "@/modele/eligibilite";
 import { chargerArbitrages, type ArbitrageLigne } from "@/donnees/requetes";
 import {
   LIBELLES_CATEGORIES,
@@ -44,24 +49,6 @@ export const Route = createFileRoute("/methode")({
     ],
   }),
 });
-
-const CRITERES_ELIGIBILITE = [
-  "Offre structurée",
-  "Objectif pédagogique explicite",
-  "Contenu ou modules identifiables",
-  "Durée ou modalités",
-  "Prix ou processus d'inscription",
-  "Accompagnement pédagogique",
-  "Offre actuellement commercialisée",
-];
-
-const JAMAIS_REFERENCE = [
-  "Chaîne gratuite sans offre payante",
-  "Consultant qui ne vend aucune formation",
-  "Agence proposant une prestation",
-  "Masterclass ponctuelle sans parcours",
-  "Page abandonnée",
-];
 
 function Section({
   titre,
@@ -626,7 +613,7 @@ function Methode() {
       <Section
         titre="Éligibilité au référencement"
         ancre="eligibilite"
-        intro="Un acteur est référencé s'il vérifie au moins 3 des 7 critères suivants. Les critères vérifiés sont affichés sur la fiche."
+        intro={`Un acteur est référencé s'il vérifie au moins ${CRITERES_MINIMUM} des ${CRITERES_ELIGIBILITE.length} critères suivants. Les critères vérifiés sont affichés sur la fiche.`}
       >
         <ul className="list-disc space-y-0.5 pl-5 text-(--text-secondary)">
           {CRITERES_ELIGIBILITE.map((c) => (

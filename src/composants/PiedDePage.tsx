@@ -52,7 +52,13 @@ const COLONNES = [
   },
   {
     titre: "Comprendre",
-    liens: [{ to: "/methode", libelle: "Méthode" }],
+    liens: [
+      { to: "/methode", libelle: "Méthode" },
+      /* Sa place est ici et non dans « Explorer » : un organisme qui veut être
+         référencé ne cherche pas à explorer le catalogue, il cherche à
+         comprendre ce qu'il est. */
+      { to: "/ajouter-un-organisme", libelle: "Ajouter un organisme" },
+    ],
     externes: [{ href: CORRECTION, libelle: "Signaler une correction" }],
   },
 ] as const;

@@ -30,6 +30,9 @@ const VUES = [
   { chemin: "/organismes", priorite: "0.8" },
   { chemin: "/aide-au-choix", priorite: "0.7" },
   { chemin: "/methode", priorite: "0.5" },
+  /* Indexable à dessein : « référencer ma formation » est une requête réelle,
+     et cette page y répond mieux qu'un formulaire de contact générique. */
+  { chemin: "/ajouter-un-organisme", priorite: "0.5" },
 ] as const;
 
 function echapper(valeur: string): string {
