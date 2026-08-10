@@ -43,8 +43,21 @@ import { formaterJourMois } from "@/modele/dates";
 export const Route = createFileRoute("/")({
   // La vue Organismes renvoie ici avec ?organisme=<nom> : le filtre vit dans
   // l'URL pour que le lien soit partageable et que le retour arrière marche.
-  validateSearch: (recherche: Record<string, unknown>): { organisme?: string; fiche?: string } => ({
+  /*
+    `?domaine=` rejoint `?organisme=` : c'est le fil d'Ariane des fiches qui
+    l'exige — « Accueil → Domaine → Parcours » n'a de valeur que si le niveau
+    intermédiaire est un vrai lien. Sans validateur, le paramètre serait effacé
+    à la première navigation et le lien mènerait au catalogue entier.
+
+    Ces adresses ne créent pas de contenu dupliqué : le canonique de cette
+    route est auto-référent sur `https://formlist.fr/`, donc toutes les
+    variantes s'y consolident.
+  */
+  validateSearch: (
+    recherche: Record<string, unknown>,
+  ): { organisme?: string; domaine?: string; fiche?: string } => ({
     ...(typeof recherche["organisme"] === "string" ? { organisme: recherche["organisme"] } : {}),
+    ...(typeof recherche["domaine"] === "string" ? { domaine: recherche["domaine"] } : {}),
     ...validerFiche(recherche),
   }),
   loader: () => chargerListe(),
@@ -77,11 +90,18 @@ const PAR_PAGE = 25;
 
 function Explorer() {
   const parcours = Route.useLoaderData() as ParcoursListe[];
-  const { organisme, fiche } = Route.useSearch();
+  const { organisme, domaine: domaineUrl, fiche } = Route.useSearch();
   const naviguer = useNavigate({ from: "/" });
   const [filtres, setFiltres] = useState<Filtres>({
     ...FILTRES_VIDES,
     organisme: organisme ?? null,
+    // Le domaine arrive du fil d'Ariane d'une fiche. Validé contre le
+    // vocabulaire : une valeur inventée dans l'URL ne doit pas produire une
+    // liste vide sans explication, elle doit être ignorée.
+    domaine:
+      domaineUrl !== undefined && domaineUrl in LIBELLES_DOMAINES
+        ? (domaineUrl as DomaineParcours)
+        : null,
   });
   const [tri, setTri] = useState<Tri>(TRI_PAR_DEFAUT);
   const [limite, setLimite] = useState(PAR_PAGE);

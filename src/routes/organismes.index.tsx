@@ -8,6 +8,7 @@
  */
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FilAriane } from "@/composants/FilAriane";
 import { chargerListe } from "@/donnees/requetes";
 import { regrouperParOrganisme } from "@/modele/organismes";
 import { hrefOrganisme } from "@/composants/lien-organisme";
@@ -47,6 +48,7 @@ function Organismes() {
 
   return (
     <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-12)">
+      <FilAriane miettes={[{ libelle: "Accueil", chemin: "/" }, { libelle: "Organismes" }]} />
       <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Organismes</h1>
       <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
         Le niveau au-dessus des parcours. Le nombre de parcours référencés décrit l&apos;étendue

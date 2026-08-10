@@ -18,9 +18,11 @@
  * nous ne portons pas.
  */
 import { useEffect, useMemo, useRef, useState } from "react";
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
-import { trouverOrganisme, urlDuSite } from "@/modele/organismes";
+import { regrouperParOrganisme, trouverOrganisme, urlDuSite } from "@/modele/organismes";
+import { domainesParOrganisme, voisinsDOrganisme } from "@/modele/maillage";
+import { FilAriane, balisageFilAriane, type Miette } from "@/composants/FilAriane";
 import { classer, LIBELLES_TRIS, TRI_PAR_DEFAUT } from "@/modele/classement";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { SelecteurListe } from "@/composants/SelecteurListe";
@@ -48,7 +50,19 @@ export const Route = createFileRoute("/organismes/$slug")({
     const parcours = await chargerListe();
     const trouve = trouverOrganisme(parcours, params.slug);
     if (trouve === null) throw notFound();
-    return trouve;
+    /*
+      Le voisinage ne coûte AUCUNE requête ici : cette route charge déjà le
+      catalogue entier pour trouver l'organisme. Il se déduit de ce qu'on a
+      sous la main, contrairement à la page fiche où il fallait aller le
+      chercher.
+    */
+    const tous = regrouperParOrganisme(parcours);
+    const voisinage = voisinsDOrganisme(
+      tous,
+      domainesParOrganisme(parcours),
+      trouve.organisme,
+    );
+    return { ...trouve, voisinage };
   },
   component: PageOrganisme,
   head: ({ loaderData }) => {
@@ -76,6 +90,8 @@ export const Route = createFileRoute("/organismes/$slug")({
         Aucune note, aucun avis, pour la même raison que sur les fiches.
       */
       scripts: [
+        // Mêmes miettes qu'à l'écran : une seule source pour les deux surfaces.
+        balisageFilAriane(miettesDOrganisme(organisme.nom)),
         {
           type: "application/ld+json",
           children: JSON.stringify({
@@ -103,8 +119,17 @@ function Certification({ libelle }: { libelle: string }) {
   );
 }
 
+/** Le chemin d'un organisme : accueil, l'index, son nom. */
+function miettesDOrganisme(nom: string): Miette[] {
+  return [
+    { libelle: "Accueil", chemin: "/" },
+    { libelle: "Organismes", chemin: "/organismes" },
+    { libelle: nom },
+  ];
+}
+
 function PageOrganisme() {
-  const { organisme, fiches } = Route.useLoaderData();
+  const { organisme, fiches, voisinage } = Route.useLoaderData();
   const { fiche } = Route.useSearch();
 
   const titreListe = useRef<HTMLHeadingElement | null>(null);
@@ -184,6 +209,7 @@ function PageOrganisme() {
   return (
     <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-12)">
       <header>
+        <FilAriane miettes={miettesDOrganisme(organisme.nom)} />
         <h1 className="t-display-2 text-(--text-primary)">{organisme.nom}</h1>
         <p className="mt-(--space-2) t-body-sm text-(--text-secondary)">
           {LIBELLES_CATEGORIES[organisme.categorie]}
@@ -308,6 +334,41 @@ function PageOrganisme() {
         nom={organisme.nom}
         slug={organisme.slug}
       />
+
+      {voisinage.organismes.length > 0 && (
+        /*
+          EN PIED DE VUE, et c'est délibéré : on ne propose d'aller ailleurs
+          qu'après avoir montré ce que cet organisme porte. Placée en haut, la
+          section détournerait de la page qu'on vient d'ouvrir.
+
+          CE N'EST NI UN CLASSEMENT NI UNE RECOMMANDATION. Ces organismes
+          partagent un domaine, rien de plus. L'ordre est alphabétique, et il
+          est publié sous la liste — le tri par défaut du catalogue classe par
+          informations disponibles, et l'appliquer à des organismes se lirait
+          comme un jugement sur eux.
+        */
+        <section className="mt-(--space-10) border-t border-(--border-subtle) pt-(--space-6)">
+          <h2 className="t-heading-3 text-(--text-primary)">{voisinage.titre}</h2>
+          <ul className="mt-(--space-4) flex flex-wrap gap-(--space-3)">
+            {voisinage.organismes.map((o) => (
+              <li key={o.slug}>
+                {/* L'ancre porte le NOM de l'organisme : c'est le texte du lien
+                    qui dit à Google de quoi parle la page visée. */}
+                <Link
+                  to="/organismes/$slug"
+                  params={{ slug: o.slug }}
+                  className="inline-flex items-center rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) px-(--space-3) py-(--space-2) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong)"
+                >
+                  {o.nom}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-(--space-4) t-caption text-(--text-tertiary)">
+            {voisinage.regleOrdre}
+          </p>
+        </section>
+      )}
 
       {/*
         Le panneau se superpose : la page organisme reste montée derrière, donc

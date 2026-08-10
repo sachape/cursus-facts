@@ -11,7 +11,12 @@
  * `ContenuFiche`. Une seule source pour les deux surfaces.
  */
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { chargerFiche } from "@/donnees/requetes";
+import { chargerFiche, chargerVoisins } from "@/donnees/requetes";
+import { voisinsDeParcours } from "@/modele/maillage";
+import { FilAriane, balisageFilAriane, type Miette } from "@/composants/FilAriane";
+import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
+import { slugifierOrganisme } from "@/modele/organismes";
+import type { DomaineParcours } from "@/types/cursus";
 import { descriptionFiche, titreFiche } from "@/modele/description-fiche";
 import { ContenuFiche, EnteteFiche } from "@/composants/ContenuFiche";
 
@@ -33,7 +38,19 @@ export const Route = createFileRoute("/parcours/$slug")({
   loader: async ({ params }) => {
     const fiche = await chargerFiche(params.slug);
     if (!fiche) throw notFound();
-    return { fiche };
+    /*
+      Les voisins arrivent APRÈS la fiche, et par une requête ciblée sur le
+      seul domaine concerné : la décision ci-dessus tient toujours, on ne
+      recharge pas 233 fiches pour en montrer cinq.
+
+      En série et non en parallèle, parce que le domaine n'est connu qu'une
+      fois la fiche lue. Le coût est un aller-retour sur une requête plafonnée,
+      contre une page orpheline — 21 fiches du catalogue n'ont pas trois
+      voisins de même sujet, et sans ce lien elles ne seraient désignées par
+      rien.
+    */
+    const candidats = await chargerVoisins(fiche.domaine, fiche.organismeNom);
+    return { fiche, voisinage: voisinsDeParcours(candidats, fiche) };
   },
   component: Fiche,
   head: ({ loaderData }) => {
@@ -67,6 +84,13 @@ export const Route = createFileRoute("/parcours/$slug")({
         que l'effacement des 61 prix du 3 août.
       */
       scripts: [
+        /*
+          Le fil d'Ariane est déclaré à partir des MÊMES miettes que celles
+          rendues à l'écran. Deux sources produiraient deux chemins, et Google
+          afficherait dans ses résultats une hiérarchie que la page ne montre
+          pas — ce que le balisage structuré interdit.
+        */
+        balisageFilAriane(miettesDeFiche(fiche)),
         {
           type: "application/ld+json",
           children: JSON.stringify({
@@ -100,20 +124,79 @@ export const Route = createFileRoute("/parcours/$slug")({
   },
 });
 
+/** Le chemin d'une fiche : accueil, son domaine, son intitulé. */
+function miettesDeFiche(fiche: { nom: string; domaine: DomaineParcours }): Miette[] {
+  return [
+    { libelle: "Accueil", chemin: "/" },
+    { libelle: LIBELLES_DOMAINES[fiche.domaine], chemin: `/?domaine=${fiche.domaine}` },
+    { libelle: fiche.nom },
+  ];
+}
+
 function Fiche() {
-  const { fiche } = Route.useLoaderData();
+  const { fiche, voisinage } = Route.useLoaderData();
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
-      <Link to="/" className="text-sm text-muted-foreground underline underline-offset-4">
-        ← Retour au catalogue
-      </Link>
+      {/*
+        Le fil remplace le lien « ← Retour au catalogue », qui disait moins :
+        il ne nommait ni le domaine, ni la position de la page dans le site.
+        Un seul chemin à l'écran, le même que celui déclaré aux robots.
+      */}
+      <FilAriane miettes={miettesDeFiche(fiche)} />
 
       <header className="mt-6 border-b border-border pb-6">
         <EnteteFiche p={fiche} />
       </header>
 
       <ContenuFiche p={fiche} />
+
+      {voisinage.parcours.length > 0 && (
+        /*
+          CE N'EST PAS UNE RECOMMANDATION. La section ne conseille rien, ne
+          classe rien et ne met rien en avant : elle dit que d'autres
+          organismes enseignent le même sujet, et publie la règle d'ordre
+          appliquée. Aucune formule du type « formations similaires
+          recommandées » — ce serait un jugement.
+
+          Les ancres portent l'intitulé du parcours, jamais « voir la fiche » :
+          c'est le texte du lien qui dit de quoi parle la page visée.
+        */
+        <section className="mt-(--space-10) border-t border-(--border-subtle) pt-(--space-6)">
+          <h2 className="t-heading-3 text-(--text-primary)">{voisinage.titre}</h2>
+          <ul className="mt-(--space-4) space-y-(--space-3)">
+            {voisinage.parcours.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  to="/parcours/$slug"
+                  params={{ slug: p.slug }}
+                  className="t-body-sm text-(--text-primary) underline-offset-4 hover:underline"
+                >
+                  {p.nom}
+                </Link>
+                <p className="t-caption text-(--text-secondary)">
+                  <Link
+                    to="/organismes/$slug"
+                    params={{ slug: slugifierOrganisme(p.organismeNom) }}
+                    className="underline-offset-2 hover:underline"
+                  >
+                    {p.organismeNom}
+                  </Link>
+                  {" · "}
+                  <span className="chiffre">
+                    {p.infosRenseignees} sur {p.infosApplicables} applicables
+                  </span>
+                </p>
+              </li>
+            ))}
+          </ul>
+          {/* La règle d'ordre est publiée, comme sous la liste : un ordre dont
+              on ne dit pas la règle est un classement éditorial déguisé. */}
+          <p className="mt-(--space-4) t-caption text-(--text-tertiary)">
+            {voisinage.regleOrdre}
+          </p>
+        </section>
+      )}
     </article>
   );
 }

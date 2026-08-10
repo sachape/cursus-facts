@@ -13,6 +13,7 @@
  */
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FilAriane } from "@/composants/FilAriane";
 import { chargerFiche, type ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "@/composants/comparaison";
 import { DemarrerComparaison, type ComparaisonEnregistree } from "@/composants/DemarrerComparaison";
@@ -286,6 +287,7 @@ function Comparer() {
         simplement sous le titre.
       */}
       <div className="flex flex-wrap items-center justify-between gap-(--space-4)">
+        <FilAriane miettes={[{ libelle: "Accueil", chemin: "/" }, { libelle: "Comparer" }]} />
         <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Comparaison</h1>
         <EnregistrerComparaison />
       </div>

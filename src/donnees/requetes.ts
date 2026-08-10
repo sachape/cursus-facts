@@ -254,6 +254,41 @@ export async function chargerListe(): Promise<ParcoursListe[]> {
     .map((l) => versListe(l, replieesParId));
 }
 
+/**
+ * Les voisins d'une fiche — pour le maillage interne, et rien d'autre.
+ *
+ * UNE REQUÊTE CIBLÉE, PAS LE CATALOGUE. Le loader de la page fiche a
+ * délibérément cessé de ramener les 233 fiches pour en afficher six : deux
+ * appels en série avant le premier octet, dont l'un cent fois trop gros. Cette
+ * requête respecte cette décision — elle ne rapporte que le domaine concerné,
+ * plafonné, et le tri par défaut s'applique ensuite en mémoire.
+ *
+ * LE DOMAINE ET NON LE SUJET. Un sujet est toujours porté par un domaine ; en
+ * filtrant sur le domaine on obtient d'un seul appel de quoi servir le cas
+ * nominal — même sujet — ET son repli. Deux requêtes en série pour les 21
+ * fiches concernées coûteraient un aller-retour à celles qui en ont le plus
+ * besoin.
+ */
+export async function chargerVoisins(
+  domaine: DomaineParcours,
+  organismeExclu: string,
+  plafond = 60,
+): Promise<ParcoursListe[]> {
+  const { data, error } = await supabase
+    .from("parcours")
+    .select(COLONNES_LISTE)
+    .eq("domaine", domaine)
+    .limit(plafond);
+
+  // Le maillage est un bonus de page : s'il échoue, la fiche reste entière.
+  if (error !== null || data === null) return [];
+
+  return (data as LigneBrute[])
+    .filter((l) => l["parcours_parent_id"] === null)
+    .map((l) => versListe(l, new Map()))
+    .filter((p) => p.organismeNom !== organismeExclu);
+}
+
 /** Charge une fiche complète par son slug. */
 export async function chargerFiche(slug: string): Promise<ParcoursFiche | null> {
   const champsFiche = `prerequis, outils_enseignes, programme, non_couvert,

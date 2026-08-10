@@ -634,13 +634,27 @@ test("chaque type de page porte ses balises au PREMIER OCTET", async ({ request 
     if (!/<meta[^>]+name="description"/.test(html)) manques.push(`${page.url} → description absente`);
 
     if (page.donnees !== false) {
-      const ld = /<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/.exec(html);
-      if (ld === null) {
+      /*
+        TOUS les blocs, et non le premier. Une page en porte désormais deux —
+        son type propre et le `BreadcrumbList` du fil d'Ariane — et lequel
+        arrive en tête est un détail d'écriture du `head()`, pas une propriété
+        du document. Le test l'exigeait pourtant, et il est tombé le jour où le
+        maillage a ajouté le fil : il mesurait l'ordre en croyant mesurer la
+        présence.
+      */
+      const blocs = [
+        ...html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g),
+      ].map((m) => JSON.parse(m[1]!) as Record<string, unknown>);
+
+      if (blocs.length === 0) {
         manques.push(`${page.url} → aucune donnée structurée`);
       } else {
-        const objet = JSON.parse(ld[1]!) as Record<string, unknown>;
-        if (objet["@type"] !== page.donnees) {
-          manques.push(`${page.url} → type ${String(objet["@type"])} au lieu de ${page.donnees}`);
+        const objet = blocs.find((b) => b["@type"] === page.donnees);
+        if (objet === undefined) {
+          manques.push(
+            `${page.url} → ${page.donnees} absent (types présents : ${blocs.map((b) => String(b["@type"])).join(", ")})`,
+          );
+          continue;
         }
         /*
           Ni note ni avis dans le balisage. Ce sont les propriétés que Google
@@ -1375,4 +1389,57 @@ test("aucune mesure ne part pendant les tests", async ({ page }) => {
   );
   expect(clesMixpanel).toEqual([]);
   expect(versMixpanel).toEqual([]);
+});
+
+test("le maillage interne est rendu, et ses ancres portent le sens", async ({ page }) => {
+  /*
+    Le graphe complet est vérifié dans `maillage.test.ts` : il se déduit du
+    modèle, et 400 pages parcourues au navigateur ne passeraient jamais dans un
+    crochet de pré-poussée. Ce test couvre ce que le modèle ne peut pas voir —
+    que les sections sont RÉELLEMENT rendues, et servies au premier octet.
+
+    LES ANCRES SONT LE POINT SENSIBLE. « Voir la fiche » ou « en savoir plus »
+    ne disent rien de la page visée : c'est le texte du lien qui l'annonce.
+  */
+  const listing = await page.request.get(`${BASE}/sitemap.xml`);
+  const sitemap = await listing.text();
+  const premiereFiche = /\/parcours\/([^<]+)</.exec(sitemap)?.[1];
+  expect(premiereFiche).toBeDefined();
+
+  const html = await (await page.request.get(`${BASE}/parcours/${premiereFiche}`)).text();
+
+  // Servi au PREMIER OCTET : un robot ne suit pas les liens ajoutés après coup.
+  expect(html).toMatch(/Parcours du même (sujet|domaine)|Autres parcours du catalogue/);
+  expect(html).toContain('"@type":"BreadcrumbList"');
+
+  await page.goto(`${BASE}/parcours/${premiereFiche}`, { waitUntil: "networkidle" });
+
+  const section = page.locator("section", {
+    hasText: /Parcours du même |Autres parcours du catalogue/,
+  }).last();
+  await expect(section).toBeVisible();
+
+  const liens = section.locator('a[href^="/parcours/"]');
+  const combien = await liens.count();
+  expect(combien).toBeGreaterThanOrEqual(1);
+  expect(combien).toBeLessThanOrEqual(5);
+
+  const ANCRES_VIDES = ["voir la fiche", "en savoir plus", "voir plus", "détails", "cliquez"];
+  for (let i = 0; i < combien; i++) {
+    const texte = (await liens.nth(i).innerText()).trim().toLowerCase();
+    expect(texte.length).toBeGreaterThan(3);
+    expect(ANCRES_VIDES).not.toContain(texte);
+  }
+
+  // Ni classement ni conseil : ce sont les mots qui transformeraient un
+  // maillage en palmarès.
+  const texteSection = (await section.innerText()).toLowerCase();
+  for (const mot of ["recommand", "similaire", "meilleur", "populaire"]) {
+    expect(texteSection).not.toContain(mot);
+  }
+
+  // Le fil d'Ariane est à l'écran, et le domaine y est un vrai lien.
+  const fil = page.getByRole("navigation", { name: "Fil d'Ariane" });
+  await expect(fil).toBeVisible();
+  await expect(fil.locator('a[href^="/?domaine="]')).toHaveCount(1);
 });

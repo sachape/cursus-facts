@@ -10,6 +10,7 @@
  * Méthode qui diverge du code est pire que pas de page Méthode.
  */
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FilAriane } from "@/composants/FilAriane";
 import { chargerArbitrages, type ArbitrageLigne } from "@/donnees/requetes";
 import {
   LIBELLES_CATEGORIES,
@@ -93,6 +94,7 @@ function Methode() {
       </Link>
 
       <header className="mt-6 pb-2">
+        <FilAriane miettes={[{ libelle: "Accueil", chemin: "/" }, { libelle: "Méthode" }]} />
         <h1 className="font-titre text-3xl font-semibold tracking-tight">Méthode</h1>
         <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
           Toutes les règles ci-dessous sont déterministes et publiées. Aucune ne repose sur

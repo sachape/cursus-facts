@@ -8,6 +8,7 @@
  */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { FilAriane } from "@/composants/FilAriane";
 import { chargerListe } from "@/donnees/requetes";
 import {
   compterCandidats,
@@ -193,6 +194,7 @@ function AideAuChoix() {
 
   return (
     <main className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
+      <FilAriane miettes={[{ libelle: "Accueil", chemin: "/" }, { libelle: "Aide au choix" }]} />
       <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Aide au choix</h1>
       <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
         Quelques questions sur votre situation, trois parcours qui y correspondent — avec ce qui ne
