@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@/composants/authentification";
 import { mesurer } from "@/composants/mesure";
+import { intentionEnAttente } from "@/composants/intention";
 
 type Mode = "connexion" | "inscription" | "reinitialisation";
 
@@ -82,7 +83,13 @@ function Connexion() {
       const { erreur: e, confirmationRequise } = await inscrire(email, motDePasse);
       setEnCours(false);
       if (e !== null) return setErreur(e);
-      mesurer("inscription");
+      /*
+        `declencheur` dit ce que la personne essayait de faire quand on lui a
+        demandé un compte. C'est le chiffre qui décide où poser — ou retirer —
+        une invitation à s'inscrire : « spontané » et « voulait sauvegarder »
+        ne se corrigent pas de la même manière.
+      */
+      mesurer("compte_cree", { declencheur: intentionEnAttente() ?? "spontane" });
       if (confirmationRequise) {
         return setMessage(
           "Compte créé. Ouvrez le lien envoyé à votre adresse pour le confirmer — nous reprendrons où vous en étiez.",
@@ -94,7 +101,7 @@ function Connexion() {
     const { erreur: e } = await connecter(email, motDePasse);
     setEnCours(false);
     if (e !== null) return setErreur(e);
-    mesurer("connexion");
+    mesurer("connexion_effectuee");
   }
 
   const libelle = LIBELLES[mode];

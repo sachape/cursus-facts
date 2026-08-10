@@ -80,7 +80,7 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
         <div className="min-w-0">
           <h3 className="font-titre text-base font-medium leading-snug">
             <a
-              {...proprietesLien(parcours.slug)}
+              {...proprietesLien(parcours)}
               className="transition-colors hover:underline hover:underline-offset-4"
             >
               {parcours.nom}
@@ -181,7 +181,7 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
 
           <div className="mt-4 flex flex-wrap gap-2">
             <a
-              {...proprietesLien(parcours.slug)}
+              {...proprietesLien(parcours)}
               className="rounded-md border border-border px-2.5 py-1 text-xs transition-colors hover:border-foreground/40"
             >
               Fiche

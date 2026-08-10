@@ -42,8 +42,20 @@ export function RepriseIntention() {
     if (utilisateur === null) return;
     if (avant === utilisateur.id) return; // Pas une apparition : un simple rendu.
 
-    const intention = reprendreIntention();
-    if (intention === null) return;
+    const reprise = reprendreIntention();
+    if (reprise === null) return;
+    const { intention, ageMs } = reprise;
+
+    /*
+      Mesuré AVANT de rejouer, et non après : la reprise peut échouer — une
+      sélection périmée, une insertion refusée — et c'est justement le cas
+      qu'on veut voir. Un événement émis seulement en cas de succès donnerait
+      un taux de reprise de 100 %, qui ne mesurerait plus rien.
+    */
+    mesurer("intention_rejouee", {
+      action: intention.type,
+      delai_secondes: Math.round(ageMs / 1000),
+    });
 
     void (async () => {
       if (intention.type === "sauvegarder") {

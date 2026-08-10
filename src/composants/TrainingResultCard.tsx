@@ -87,7 +87,7 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
 
           <h3 className="mt-(--space-4) t-heading-4 text-(--text-primary)">
             <a
-              {...proprietesLien(parcours.slug)}
+              {...proprietesLien(parcours)}
               /*
                 L'ancre couvre toute la carte : la cible cliquable est la
                 surface entière, pas le seul intitulé. Les boutons d'action

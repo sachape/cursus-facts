@@ -26,6 +26,7 @@ import { useComparaison } from "./comparaison";
 import { Button } from "@/components/ui/button";
 import type { EtatInformation } from "@/types/cursus";
 import { useOuvertureFiche } from "./ouverture-fiche";
+import { mesurer, proprietesParcours } from "./mesure";
 
 const LIBELLES_FORMATS = {
   distanciel: "Distanciel",
@@ -295,7 +296,9 @@ export function ContenuFiche({
   /** Autres parcours du même organisme, hors celui-ci. */
   autresParcours?: readonly ParcoursListe[];
 }) {
-  const { proprietesLien } = useOuvertureFiche();
+  // Rebondir d'une fiche à une autre est une source à part : la personne
+  // n'explore plus, elle compare deux parcours du même organisme.
+  const { proprietesLien } = useOuvertureFiche({ source: "fiche" });
   const { ajouter, retirer, contient } = useComparaison();
   const e = p.etats;
   const selectionne = contient(p.slug);
@@ -568,7 +571,7 @@ export function ContenuFiche({
             {autresParcours.slice(0, 6).map((autre) => (
               <li key={autre.slug} className="flex items-baseline justify-between gap-4 text-sm">
                 <a
-                  {...proprietesLien(autre.slug)}
+                  {...proprietesLien(autre)}
                   className="hover:underline hover:underline-offset-4"
                 >
                   {autre.nom}
@@ -636,6 +639,13 @@ export function ContenuFiche({
             `&body=${encodeURIComponent(`Fiche concernée : ${p.slug}\n\nInformation à corriger :\n`)}`
           }
           className="rounded-(--radius-sm) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-secondary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+          /*
+            Un signalement est un fait sur NOTRE collecte, pas sur la personne :
+            savoir sur quelles fiches on se trompe dit où la donnée est fragile.
+            Le lien ouvre un client mail — le clic est tout ce qu'on peut voir,
+            et il ne garantit pas qu'un message parte.
+          */
+          onClick={() => mesurer("correction_signalee", proprietesParcours(p))}
         >
           Signaler une correction
         </a>

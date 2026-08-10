@@ -6,7 +6,7 @@
  * situation, et non un niveau de qualité. Les écarts sont affichés au même rang
  * que les correspondances — c'est souvent l'information la plus utile.
  */
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import {
@@ -22,6 +22,7 @@ import { libellePrix } from "@/composants/RangeeParcours";
 import { redigerAdequation, type PhraseRedigee } from "@/ingestion/adequation.functions";
 import { Button } from "@/components/ui/button";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
+import { declarerVue, mesurer } from "@/composants/mesure";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 
 export const Route = createFileRoute("/aide-au-choix")({
@@ -58,6 +59,7 @@ function AideAuChoix() {
   const { proprietesLien, fermer: fermerPanneau } = useOuvertureFiche({
     retourParDefaut: titreResultats,
   });
+  useEffect(() => declarerVue("aide_au_choix"), []);
   const parcours = Route.useLoaderData();
   const [reponses, setReponses] = useState<Partial<Situation>>({});
   /** Index dans la liste des questions APPLICABLES, jamais dans `QUESTIONS`. */
@@ -96,6 +98,20 @@ function AideAuChoix() {
     setReponses(suite);
     setRefus(null);
     /*
+      LE DÉMARRAGE EST LA PREMIÈRE RÉPONSE, pas l'arrivée sur la page. Arriver
+      sur le questionnaire et repartir n'est pas l'avoir commencé ; compter
+      l'arrivée gonflerait le dénominateur avec des gens qui n'ont rien fait, et
+      le taux d'abandon deviendrait illisible.
+    */
+    if (Object.keys(reponses).length === 0) mesurer("aide_au_choix_demarree");
+    /*
+      `question` et `reponse` portent les CLÉS, pas les intitulés : un intitulé
+      reformulé casserait la continuité des rapports, alors que la clé survit à
+      la réécriture. C'est aussi ce qui rend l'abandon lisible question par
+      question — on voit à laquelle les gens s'arrêtent.
+    */
+    mesurer("aide_au_choix_question_repondue", { question: cle, reponse: valeur, nombre: rang + 1 });
+    /*
       Avance automatique : un bouton de validation par écran ajoute un geste par
       question sans rien décider. Seule la dernière en porte un, parce qu'elle
       déclenche un calcul et non un passage.
@@ -131,6 +147,16 @@ function AideAuChoix() {
 
     const trois = troisCorrespondances(parcours, reponses);
     setResultats(trois);
+    /*
+      Mesuré sur le CALCUL, avant la rédaction : celle-ci passe par un service
+      externe qui peut échouer, et un questionnaire mené jusqu'au bout reste
+      terminé même sans phrase rédigée. L'attacher à la réussite du service
+      ferait baisser le taux d'achèvement quand c'est le service qui tombe.
+    */
+    mesurer("aide_au_choix_terminee", {
+      nombre: trois.length,
+      resultats: trois.filter((a) => a.correspond).length,
+    });
 
     try {
       const resume = questions.map((q) => {
@@ -318,7 +344,7 @@ function AideAuChoix() {
               <li key={a.parcours.slug} className="border-t border-(--border-subtle) pt-5">
                 <h3 className="font-titre text-base font-medium">
                   <a
-              {...proprietesLien(a.parcours.slug)}
+              {...proprietesLien(a.parcours)}
                     className="hover:underline hover:underline-offset-4"
                   >
                     {a.parcours.nom}

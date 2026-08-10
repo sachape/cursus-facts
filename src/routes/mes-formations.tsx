@@ -12,7 +12,7 @@
  *
  * `noindex` : c'est une page personnelle, elle n'a rien à faire dans l'index.
  */
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { useAuth } from "@/composants/authentification";
@@ -22,6 +22,7 @@ import { regrouperParOrganisme } from "@/modele/organismes";
 import { BoutonSauvegarde } from "@/composants/BoutonSauvegarde";
 import { hrefOrganisme } from "@/composants/lien-organisme";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
+import { declarerVue } from "@/composants/mesure";
 
 export const Route = createFileRoute("/mes-formations")({
   loader: () => chargerListe(),
@@ -44,6 +45,7 @@ function Invitation({ quoi }: { quoi: string }) {
 }
 
 function MesFormations() {
+  useEffect(() => declarerVue("mes_formations"), []);
   const catalogue = Route.useLoaderData();
   const { utilisateur, chargement } = useAuth();
   const { cles, chargement: chargementSauvegardes } = useSauvegardes();

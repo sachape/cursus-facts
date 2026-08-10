@@ -16,7 +16,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
-import { oublierIdentite } from "./mesure";
+import { declarerConnecte, oublierIdentite } from "./mesure";
 
 type Contexte = {
   utilisateur: User | null;
@@ -77,10 +77,14 @@ export function FournisseurAuth({ children }: { children: React.ReactNode }) {
     const { data } = supabase.auth.onAuthStateChange((_evenement, s) => {
       setSession(s);
       setChargement(false);
+      // `connecte` est une propriété globale de la mesure : déclarée ici, elle
+      // accompagne ensuite chaque événement sans qu'aucune vue n'y pense.
+      declarerConnecte(s !== null);
     });
     void supabase.auth.getSession().then(({ data: { session: s } }) => {
       setSession(s);
       setChargement(false);
+      declarerConnecte(s !== null);
     });
     return () => data.subscription.unsubscribe();
   }, []);

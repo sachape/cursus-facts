@@ -17,7 +17,7 @@
  * détenons qu'une fiche paraît plus petit qu'il n'est, et c'est un jugement que
  * nous ne portons pas.
  */
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { trouverOrganisme, urlDuSite } from "@/modele/organismes";
@@ -34,6 +34,7 @@ const LIBELLES_FORMATS: Record<FormatParcours, string> = {
 import { RangeeParcours } from "@/composants/RangeeParcours";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
+import { declarerVue, mesurer } from "@/composants/mesure";
 import { ProvenanceOrganisme } from "@/composants/ProvenanceOrganisme";
 import { formaterDateLongue } from "@/modele/dates";
 import type { FormatParcours } from "@/types/cursus";
@@ -108,6 +109,22 @@ function PageOrganisme() {
 
   const titreListe = useRef<HTMLHeadingElement | null>(null);
   const { fermer: fermerPanneau } = useOuvertureFiche({ retourParDefaut: titreListe });
+
+  /*
+    La vue d'abord, la page vue ensuite, et dans cet ordre : `declarerVue` pose
+    la propriété globale que `page_organisme_vue` — et tout ce qui suivra sur
+    cette page — doit porter.
+
+    C'est le seul événement de page du plan. Il en existe un ici parce que la
+    page organisme est une destination : on y arrive par la bande, par une
+    suggestion, ou par un moteur de recherche, et savoir laquelle décide de ce
+    qu'on met en avant. Aucune autre page n'est comptée — ce serait revenir aux
+    pages vues automatiques, avec Googlebot dedans.
+  */
+  useEffect(() => {
+    declarerVue("organisme");
+    mesurer("page_organisme_vue", { organisme: organisme.nom, nombre: fiches.length });
+  }, [organisme.nom, fiches.length]);
 
   /*
     FILTRES RÉDUITS. Une colonne complète pour six parcours coûte plus d'écran

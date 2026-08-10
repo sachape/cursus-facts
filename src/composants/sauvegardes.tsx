@@ -89,7 +89,17 @@ export function FournisseurSauvegardes({ children }: { children: React.ReactNode
         });
         return;
       }
-      mesurer("sauvegarde_ajoutee", { type });
+      /*
+        `parcours_id` seul, sans les autres propriétés communes : le contexte
+        des sauvegardes ne connaît qu'un type et un identifiant, et aller
+        chercher la fiche pour enrichir l'événement ferait dépendre un geste
+        d'écriture d'une lecture de catalogue. L'identifiant suffit à recroiser
+        le reste dans le rapport.
+      */
+      mesurer("sauvegarde_ajoutee", {
+        type,
+        ...(type === "parcours" ? { parcours_id: cibleId } : { organisme: cibleId }),
+      });
     },
     [utilisateur],
   );
@@ -116,7 +126,10 @@ export function FournisseurSauvegardes({ children }: { children: React.ReactNode
         setCles((c) => new Set(c).add(clef(type, cibleId)));
         return;
       }
-      mesurer("sauvegarde_retiree", { type });
+      mesurer("sauvegarde_retiree", {
+        type,
+        ...(type === "parcours" ? { parcours_id: cibleId } : { organisme: cibleId }),
+      });
     },
     [utilisateur, cles, sauvegarder],
   );

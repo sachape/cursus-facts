@@ -8,7 +8,8 @@
  * contexte au-dessus des routes) et à un rechargement de page
  * (`sessionStorage`) — on choisit dans Explorer, on compare dans Comparer.
  */
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { mesurer } from "./mesure";
 
 export const MAX_COMPARAISON = 4;
 
@@ -62,7 +63,36 @@ export function FournisseurComparaison({ children }: { children: React.ReactNode
     }
   }, [selection]);
 
+  /*
+    La sélection est doublée dans une référence pour que la MESURE se décide
+    hors de la fonction de mise à jour. Un `mesurer` posé dedans serait appelé
+    deux fois en mode strict, et le compteur d'ajouts vaudrait le double sans
+    que rien ne le signale.
+  */
+  const derniere = useRef<ParcoursSelectionne[]>([]);
+  derniere.current = selection;
+
   const ajouter = useCallback((parcours: ParcoursSelectionne) => {
+    /*
+      Mesuré seulement quand l'ajout ABOUTIT : un doublon ou un refus de
+      plafond n'est pas un parcours ajouté, et le compter noierait le taux
+      d'ajout dans des gestes sans effet.
+
+      `parcours_id` seul, comme pour les sauvegardes : le contexte ne retient
+      qu'un slug et un nom — c'est ce qui est persisté en session — et
+      l'identifiant suffit à recroiser le reste dans le rapport.
+    */
+    const actuelsAvant = derniere.current;
+    if (
+      !actuelsAvant.some((p) => p.slug === parcours.slug) &&
+      actuelsAvant.length < MAX_COMPARAISON
+    ) {
+      mesurer("comparaison_ajoutee", {
+        parcours_id: parcours.slug,
+        nombre: actuelsAvant.length + 1,
+      });
+    }
+
     setSelection((actuels) => {
       if (actuels.some((p) => p.slug === parcours.slug)) return actuels;
       if (actuels.length >= MAX_COMPARAISON) {

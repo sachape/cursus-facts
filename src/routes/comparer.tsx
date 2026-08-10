@@ -21,6 +21,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/composants/authentification";
 import { synthetiser } from "@/modele/synthese-comparaison";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
+import { declarerVue, mesurer } from "@/composants/mesure";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { ConditionCout } from "@/composants/Niveaux";
 import { coutDuParcours } from "@/modele/condition-cout";
@@ -209,6 +210,7 @@ function Comparer() {
     };
   }, [utilisateur]);
   const { proprietesLien, fermer: fermerPanneau } = useOuvertureFiche();
+  useEffect(() => declarerVue("comparer"), []);
   const [fiches, setFiches] = useState<ParcoursFiche[]>([]);
   const [chargement, setChargement] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
@@ -227,7 +229,23 @@ function Comparer() {
     Promise.all(aCharger.map((slug) => chargerFiche(slug)))
       .then((resultats) => {
         if (annule) return;
-        setFiches(resultats.filter((f): f is ParcoursFiche => f !== null));
+        const chargees = resultats.filter((f): f is ParcoursFiche => f !== null);
+        setFiches(chargees);
+        /*
+          `comparaison_lancee` À LA COMPARAISON RÉELLE, pas au clic sur
+          « Comparer ». Un clic qui aboutit à une seule fiche chargée n'est pas
+          une comparaison, et l'écart entre les deux chiffres — sélections
+          faites, comparaisons obtenues — est précisément ce qu'on veut voir.
+
+          Émis ici plutôt qu'à l'affichage : l'effet ne se rejoue qu'au
+          changement de sélection, donc un simple rendu ne recompte pas.
+        */
+        if (chargees.length >= 2) {
+          mesurer("comparaison_lancee", {
+            nombre: chargees.length,
+            cout_etabli: chargees.every((f) => f.prixMin !== null || f.prixMax !== null),
+          });
+        }
       })
       .catch((e: unknown) => {
         if (!annule) setErreur(e instanceof Error ? e.message : String(e));
@@ -333,7 +351,7 @@ function Comparer() {
                 {fiches.map((f) => (
                   <th key={f.slug} className="min-w-56 border-b border-(--border-subtle) p-3 text-left align-bottom">
                     <a
-                      {...proprietesLien(f.slug)}
+                      {...proprietesLien(f)}
                       className="font-titre t-body-sm font-medium leading-snug hover:underline hover:underline-offset-4"
                     >
                       {f.nom}

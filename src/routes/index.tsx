@@ -32,6 +32,7 @@ import { BandeOrganismes } from "@/composants/BandeOrganismes";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import { useAllerOrganisme } from "@/composants/lien-organisme";
+import { declarerVue, mesurer } from "@/composants/mesure";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -117,19 +118,85 @@ function Explorer() {
     retourParDefaut: champRecherche,
   });
   const ouvrirEnPanneau = useCallback(
-    (parcours: ParcoursListe, origine?: HTMLElement | null) => ouvrir(parcours.slug, origine),
+    (parcours: ParcoursListe, origine?: HTMLElement | null) => ouvrir(parcours, origine),
     [ouvrir],
   );
+  /*
+    Une seconde ouverture, identique en tout sauf sa source. Ouvrir une fiche
+    depuis une suggestion et l'ouvrir depuis la liste ne sont pas la même
+    intention : l'une vient d'un nom qu'on connaissait déjà, l'autre d'un
+    parcours trouvé dans les résultats. Confondues sous `explorateur`, elles
+    diraient que l'autocomplétion ne sert à rien — ou l'inverse, sans moyen de
+    trancher.
+  */
+  const { ouvrir: ouvrirDepuisSuggestion } = useOuvertureFiche({
+    retourParDefaut: champRecherche,
+    source: "autocompletion",
+  });
 
   const modifier = (patch: Partial<Filtres>) => {
     setFiltres((f) => ({ ...f, ...patch }));
     setLimite(PAR_PAGE);
+    /*
+      `filtre_applique` est émis ICI, et pas dans les vingt endroits qui posent
+      un filtre — la barre, les onglets, les puces de retrait, les suggestions.
+      `modifier` est déjà le point unique de mutation ; en faire aussi le point
+      unique de mesure garantit qu'aucun filtre ajouté plus tard ne sera oublié.
+
+      `recherche` en sort : elle change à chaque frappe, et un événement par
+      caractère mesurerait la vitesse de frappe, pas la recherche. Elle est
+      traitée plus bas, une fois la saisie retombée.
+    */
+    for (const [filtre, valeur] of Object.entries(patch)) {
+      if (filtre === "recherche") continue;
+      mesurer("filtre_applique", {
+        filtre,
+        // Une liste de sujets ou de compétences se lit par sa taille, pas par
+        // son contenu : « 3 sujets » se compare, la concaténation ne se compare
+        // à rien.
+        valeur: Array.isArray(valeur) ? `${valeur.length}` : `${valeur}`,
+      });
+    }
   };
 
   const resultats = useMemo(
     () => classer(filtrer(parcours, filtres), tri),
     [parcours, filtres, tri],
   );
+
+  /*
+    LA RECHERCHE SE MESURE QUAND ELLE RETOMBE, PAS QUAND ELLE S'ÉCRIT.
+
+    Le champ filtre à chaque frappe — c'est le bon comportement à l'écran, et le
+    mauvais pour la mesure : « formation » produirait dix événements dont neuf
+    décrivent une requête que personne n'a voulu faire.
+
+    LE TEXTE NE SORT JAMAIS. On remonte sa longueur et le nombre de résultats :
+    de quoi voir qu'une recherche sur trente caractères ne donne rien, sans
+    jamais constituer un journal de ce que les gens cherchent.
+  */
+  const requete = filtres.recherche;
+  /*
+    Le décompte passe par une référence, et non par une dépendance de l'effet :
+    en dépendance, tout changement de filtre relancerait la minuterie et
+    finirait par émettre une recherche que personne n'a refaite. La requête est
+    la seule chose dont l'événement dépend ; le décompte est lu au moment de
+    l'émission.
+  */
+  const decompte = useRef(0);
+  decompte.current = resultats.length;
+  useEffect(() => {
+    const texte = requete.trim();
+    if (texte === "") return;
+    const minuterie = setTimeout(
+      () => mesurer("recherche_effectuee", { longueur: texte.length, resultats: decompte.current }),
+      800,
+    );
+    return () => clearTimeout(minuterie);
+  }, [requete]);
+
+  // La vue courante, déclarée une fois : chaque événement la porte ensuite.
+  useEffect(() => declarerVue("explorateur"), []);
 
   // Vérifiable : c'est la date la plus récente réellement portée par une fiche.
   const derniereVerification = parcours
@@ -237,7 +304,7 @@ function Explorer() {
         // Choisir un parcours nommé dans une liste, c'est vouloir le voir.
         // Poser la recherche sur son intitulé transformerait l'autocomplétion
         // en simple aide à la saisie.
-        choisir: () => ouvrirEnPanneau(p),
+        choisir: () => ouvrirDepuisSuggestion(p),
       }));
 
     const organismesTrouves = [...new Set(parcours.map((p) => p.organismeNom))].filter(correspond);
@@ -454,7 +521,10 @@ function Explorer() {
             filtresActifs={filtresActifs}
             toutRetirer={() => setFiltres(FILTRES_VIDES)}
             tri={tri}
-            choisirTri={setTri}
+            choisirTri={(t) => {
+              setTri(t);
+              mesurer("tri_change", { tri: t });
+            }}
           />
 
           {ecartesFauteInfo > 0 && (

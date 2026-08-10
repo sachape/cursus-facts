@@ -25,6 +25,8 @@
  */
 import { useCallback, useRef, type MouseEvent, type RefObject } from "react";
 import { useNavigate } from "@tanstack/react-router";
+import type { ParcoursListe } from "@/donnees/requetes";
+import { mesurer, proprietesParcours, type SourceVue } from "./mesure";
 
 /**
  * La position de défilement au moment du clic.
@@ -57,7 +59,17 @@ export function validerFiche(recherche: Record<string, unknown>): RechercheFiche
 
 export function useOuvertureFiche({
   retourParDefaut,
+  source,
 }: {
+  /**
+   * L'origine du geste, quand elle est plus précise que la vue courante.
+   *
+   * Une suggestion d'autocomplétion et une entrée de liste vivent sur la même
+   * page mais ne sont pas la même intention : l'une vient d'un nom qu'on
+   * connaissait déjà, l'autre d'un parcours dans les résultats. Sans ce
+   * paramètre, les deux se confondraient sous `explorateur`.
+   */
+  source?: SourceVue | undefined;
   /**
    * Où renvoyer le focus quand l'élément d'origine a disparu du document.
    *
@@ -90,8 +102,24 @@ export function useOuvertureFiche({
   const origineFocus = useRef<HTMLElement | null>(null);
 
   const ouvrir = useCallback(
-    (slug: string, origine?: HTMLElement | null) => {
+    (parcours: ParcoursListe, origine?: HTMLElement | null) => {
       origineFocus.current = origine ?? retourParDefaut?.current ?? null;
+      /*
+        LE PARCOURS, ET NON SON SLUG. C'est ce qui permet à l'ouverture d'être
+        le point d'appel unique de `fiche_ouverte` : les propriétés communes se
+        construisent ici, une fois, à partir de l'objet que chaque vue possède
+        déjà. Une vue qui n'aurait qu'un slug devrait recomposer — et c'est
+        exactement comme ça qu'on obtient six variantes du même événement.
+
+        Mesuré sur le GESTE, pas sur le montage du panneau : un accès direct à
+        `/parcours/<slug>` par un robot ou un lien partagé n'est pas quelqu'un
+        qui ouvre une fiche, et le compter le ferait mentir dans le sens de nos
+        400 URL indexées.
+      */
+      mesurer("fiche_ouverte", {
+        ...proprietesParcours(parcours),
+        ...(source !== undefined ? { source_vue: source } : {}),
+      });
       /*
         LA POSITION EST CAPTÉE AVANT LA NAVIGATION, et rendue après.
 
@@ -102,7 +130,7 @@ export function useOuvertureFiche({
       */
       positionAvantPanneau = window.scrollY;
       void naviguer({
-        search: (actuel: RechercheFiche) => ({ ...actuel, fiche: slug }),
+        search: (actuel: RechercheFiche) => ({ ...actuel, fiche: parcours.slug }),
         /*
           AUCUN DÉFILEMENT. Le routeur remonte en haut à chaque navigation —
           c'est le bon comportement pour un changement de page, et le mauvais
@@ -113,7 +141,7 @@ export function useOuvertureFiche({
         resetScroll: false,
       });
     },
-    [naviguer, retourParDefaut],
+    [naviguer, retourParDefaut, source],
   );
 
   const fermer = useCallback(() => {
@@ -138,8 +166,8 @@ export function useOuvertureFiche({
    * milieu, menu contextuel — passe au navigateur.
    */
   const proprietesLien = useCallback(
-    (slug: string) => ({
-      href: `/parcours/${slug}`,
+    (parcours: ParcoursListe) => ({
+      href: `/parcours/${parcours.slug}`,
       onClick: (evenement: MouseEvent<HTMLAnchorElement>) => {
         if (
           evenement.defaultPrevented ||
@@ -155,7 +183,7 @@ export function useOuvertureFiche({
           return;
         }
         evenement.preventDefault();
-        ouvrir(slug, evenement.currentTarget);
+        ouvrir(parcours, evenement.currentTarget);
       },
     }),
     [ouvrir],

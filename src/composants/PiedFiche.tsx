@@ -18,6 +18,7 @@
 import type { ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "./comparaison";
 import { BoutonSauvegarde } from "./BoutonSauvegarde";
+import { mesurer, proprietesParcours } from "./mesure";
 
 export function PiedFiche({ p }: { p: ParcoursFiche }) {
   const { ajouter, retirer, contient } = useComparaison();
@@ -69,6 +70,19 @@ export function PiedFiche({ p }: { p: ParcoursFiche }) {
             rel="noopener noreferrer nofollow"
             target="_blank"
             aria-label="Voir le site officiel"
+            /*
+              L'ÉVÉNEMENT DE CONVERSION. C'est le seul geste qui prouve que la
+              comparaison a servi : tout le reste — fiches ouvertes, filtres,
+              comparaisons — n'est qu'un chemin vers celui-là. Toutes les
+              propriétés communes y sont, `cout_etabli` en tête : c'est ici que
+              se lit l'écart de conversion entre une fiche qui affiche un prix
+              et une fiche qui n'en affiche pas.
+
+              `onClick` et non un intercepteur : le lien s'ouvre dans un nouvel
+              onglet, la page courante survit, et l'événement part sans qu'on
+              ait à retarder la navigation pour l'attendre.
+            */
+            onClick={() => mesurer("site_officiel_ouvert", proprietesParcours(p))}
             className={`${forme} flex-1 bg-(--interactive-default) font-medium text-(--text-on-inverse) hover:bg-(--interactive-hover)`}
           >
             {/*

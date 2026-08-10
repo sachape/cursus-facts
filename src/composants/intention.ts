@@ -46,8 +46,14 @@ export function poserIntention(intention: Intention): void {
  * Elle est retirée AVANT d'être rendue, y compris si elle est périmée : une
  * intention lue deux fois produirait une action jouée deux fois, et le second
  * appel n'a aucun moyen de savoir que le premier a déjà eu lieu.
+ *
+ * L'ÂGE EST RENDU AVEC ELLE. C'est le seul instant où il est connu, et c'est le
+ * chiffre qui dit si la reprise sert vraiment : une intention rejouée après
+ * quarante secondes est un aller-retour de connexion, après vingt minutes c'est
+ * un détour par la boîte mail. Les deux parcours n'ont pas le même coût, et
+ * seule la mesure peut les distinguer.
  */
-export function reprendreIntention(): Intention | null {
+export function reprendreIntention(): { intention: Intention; ageMs: number } | null {
   if (typeof window === "undefined") return null;
   let brut: string | null = null;
   try {
@@ -60,8 +66,30 @@ export function reprendreIntention(): Intention | null {
 
   try {
     const enveloppe = JSON.parse(brut) as Enveloppe;
+    const ageMs = Date.now() - enveloppe.le;
+    if (ageMs > PEREMPTION_MS) return null;
+    return { intention: enveloppe.intention, ageMs };
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Regarde l'intention en attente SANS la consommer.
+ *
+ * Sert au seul `declencheur` de `compte_cree` : savoir ce que la personne
+ * essayait de faire quand on lui a demandé un compte. La consommer ici la
+ * retirerait avant que la reprise n'ait lieu — c'est-à-dire casserait la
+ * fonctionnalité pour la mesurer.
+ */
+export function intentionEnAttente(): Intention["type"] | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const brut = localStorage.getItem(CLE);
+    if (brut === null) return null;
+    const enveloppe = JSON.parse(brut) as Enveloppe;
     if (Date.now() - enveloppe.le > PEREMPTION_MS) return null;
-    return enveloppe.intention;
+    return enveloppe.intention.type;
   } catch {
     return null;
   }
