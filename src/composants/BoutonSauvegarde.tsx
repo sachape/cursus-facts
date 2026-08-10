@@ -50,11 +50,20 @@ export function BoutonSauvegarde({
         void basculer(type, cibleId);
       }}
       /*
+        UN CONTRÔLE, PAS UN BOUTON DE CONTENU. Pictogramme seul, sans libellé :
+        posé parmi « Comparer » et « Fiche », il déclarait une troisième action
+        de même rang, et trois actions dont aucune ne domine se lisent comme des
+        éléments posés là. Le signet est tertiaire — il se range avec les
+        contrôles, pas avec le contenu.
+
         Cible de 44 px sous 640 px — le minimum sous lequel un pouce rate — mais
         le pictogramme reste à 20 px : c'est la ZONE qui grandit, pas le dessin,
         sinon le signet pèserait plus que l'intitulé qu'il accompagne.
+
+        Le fond n'apparaît qu'au survol DU BOUTON, jamais à celui de la carte :
+        c'est ce qui le distingue d'un élément de la surface qu'il occupe.
       */
-      className="grid size-(--signet-cible) shrink-0 place-items-center rounded-(--radius-md) text-(--text-tertiary) transition-colors duration-(--motion-fast) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) aria-pressed:text-(--text-primary) max-[639px]:size-(--signet-cible-tactile)"
+      className="grid size-(--signet-cible) shrink-0 place-items-center rounded-(--radius-md) text-(--text-tertiary) transition-colors duration-(--motion-fast) hover:bg-(--surface-hover) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) aria-pressed:text-(--text-primary) max-[639px]:size-(--signet-cible-tactile)"
     >
       <svg
         viewBox="0 0 24 24"

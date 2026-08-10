@@ -78,6 +78,20 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
       */
       className="group relative rounded-(--carte-rayon) border border-(--border-subtle) bg-(--surface-raised) transition-[border-color,box-shadow,transform] duration-(--motion-fast) ease-(--ease-standard) hover:border-(--border-default) hover:shadow-(--elevation-2) focus-within:border-(--border-strong) motion-safe:hover:-translate-y-px"
     >
+      {/*
+        LE SIGNET VIT HORS DU FLUX DE LECTURE. L'œil parcourt l'intitulé, les
+        compétences, les faits, le coût, puis les actions. Un marque-page n'a
+        rien à faire dans cette suite : il se pose en marge, comme sur un livre.
+
+        `relative z-(--z-collant)` le place AU-DESSUS de l'ancre qui couvre la
+        carte. Sans ce plan, le clic sur le signet ouvrirait la fiche — c'est le
+        défaut le plus probable d'un contrôle posé sur un lien couvrant, et un
+        invariant de rendu le vérifie.
+      */}
+      <div className="absolute right-(--space-4) top-(--space-4) z-(--z-collant)">
+        <BoutonSauvegarde type="parcours" cibleId={parcours.slug} libelle={parcours.nom} />
+      </div>
+
       <div className="grid gap-(--space-6) p-(--space-6) min-[840px]:grid-cols-[1fr_auto]">
         {/* ---------------------------------------------------------------- */}
         {/* Ce que le parcours est                                           */}
@@ -85,7 +99,7 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
         <div className="min-w-0">
           <OrganizationIdentity nom={parcours.organismeNom} categorie={parcours.organismeCategorie} />
 
-          <h3 className="mt-(--space-4) t-heading-4 text-(--text-primary)">
+          <h3 className="mt-(--space-4) pr-(--space-8) t-heading-4 text-(--text-primary)">
             <a
               {...proprietesLien(parcours)}
               /*
@@ -163,17 +177,16 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
           <CompletenessIndicator etats={parcours.etats} />
 
           {/*
-            Actions au-dessus de l'ancre de carte. « Comparer » reste visible
-            quand la fiche est sélectionnée : la faire disparaître au survol
-            priverait de l'action de retrait.
-          */}
-          {/*
-            Actions au-dessus de l'ancre de carte, par leur propre plan : sans
-            lui, l'ancre qui couvre la surface les avalerait.
+            L'action secondaire, seule dans sa colonne : la carte entière ouvre
+            la fiche, « Comparer » est la seule chose qu'on puisse vouloir faire
+            sans y entrer. Le signet est parti en haut à droite — il est
+            tertiaire, et l'aligner ici en faisait une action de même rang.
+
+            Propre plan d'empilement : sans lui, l'ancre qui couvre la surface
+            avalerait le bouton.
           */}
           <div className="relative z-(--z-collant) mt-auto flex items-center gap-(--space-2)">
-            <CompareButton slug={parcours.slug} nom={parcours.nom} discretHorsSurvol />
-            <BoutonSauvegarde type="parcours" cibleId={parcours.slug} libelle={parcours.nom} />
+            <CompareButton slug={parcours.slug} nom={parcours.nom} />
           </div>
         </div>
       </div>

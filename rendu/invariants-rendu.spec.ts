@@ -1443,3 +1443,86 @@ test("le maillage interne est rendu, et ses ancres portent le sens", async ({ pa
   await expect(fil).toBeVisible();
   await expect(fil.locator('a[href^="/?domaine="]')).toHaveCount(1);
 });
+
+test("les actions d'une carte sont visibles sans survol", async ({ page }) => {
+  /*
+    « Comparer » s'effaçait hors survol sur bureau. Une action qui n'apparaît
+    qu'au survol est invisible pour qui ne la cherche pas, ne survit pas à la
+    navigation au clavier, et n'existe pas au toucher — sur mobile il n'y a
+    aucun survol à produire.
+
+    Le test mesure l'OPACITÉ CALCULÉE, pas la présence dans le document : c'est
+    exactement par une opacité nulle que l'action disparaissait, tout en restant
+    dans l'arbre et donc « visible » au sens de Playwright.
+  */
+  for (const largeur of [1280, 375]) {
+    await page.setViewportSize({ width: largeur, height: 900 });
+    await page.goto(BASE, { waitUntil: "networkidle" });
+
+    const carte = page.locator("main li").filter({ has: page.locator('a[href^="/parcours/"]') }).first();
+    await expect(carte).toBeVisible();
+
+    const comparer = carte.getByRole("button", { name: /^Comparer$|Retirer de la comparaison/ });
+    await expect(comparer).toBeVisible();
+    const opacite = await comparer.evaluate((el) => getComputedStyle(el).opacity);
+    expect(Number(opacite), `opacité de Comparer à ${largeur}px`).toBeGreaterThan(0.99);
+
+    const signet = carte.getByRole("button", { name: /Sauvegarder|Retirer .* de mes formations/ });
+    await expect(signet).toBeVisible();
+    expect(
+      Number(await signet.evaluate((el) => getComputedStyle(el).opacity)),
+      `opacité du signet à ${largeur}px`,
+    ).toBeGreaterThan(0.99);
+
+    // La cible tactile : 32 px sur bureau, 44 px sous 640 px.
+    const boite = await signet.boundingBox();
+    expect(Math.round(boite!.width), `cible du signet à ${largeur}px`).toBe(
+      largeur < 640 ? 44 : 32,
+    );
+  }
+});
+
+test("le signet et le lien couvrant ne se déclenchent pas l'un l'autre", async ({ page }) => {
+  /*
+    LE DÉFAUT LE PLUS PROBABLE d'un contrôle posé au-dessus d'un lien couvrant :
+    le clic traverse et ouvre la fiche. Il ne se voit pas en lisant le code —
+    l'ordre d'empilement dépend de `position`, de `z-index` et du pseudo-élément
+    `after` de l'ancre, qui n'apparaît dans aucun des deux fichiers à la fois.
+
+    Les deux sens sont vérifiés : le signet ne doit pas ouvrir la fiche, et le
+    clic sur la carte ne doit pas sauvegarder.
+  */
+  await page.goto(BASE, { waitUntil: "networkidle" });
+
+  const carte = page.locator("main li").filter({ has: page.locator('a[href^="/parcours/"]') }).first();
+  const signet = carte.getByRole("button", { name: /Sauvegarder/ });
+  await expect(signet).toBeVisible();
+
+  /*
+    1. Le signet ne traverse pas vers la fiche.
+
+    Déconnecté, il pose une intention et mène à la page de connexion : c'est
+    précisément ce qui le prouve. Si le clic avait traversé jusqu'à l'ancre
+    couvrante, l'URL porterait `?fiche=` et non `/connexion`. Le parcours
+    connecté — la sauvegarde elle-même — se vérifie avec un compte, ce que ce
+    dispositif n'a pas.
+  */
+  await signet.click();
+  await page.waitForURL(/\/connexion|[?&]fiche=/);
+  expect(new URL(page.url()).pathname, "le signet a traversé jusqu'à la fiche").toBe("/connexion");
+  expect(new URL(page.url()).searchParams.get("fiche")).toBeNull();
+
+  // 2. Le clic sur la carte ouvre bien la fiche, et ne part pas en connexion.
+  await page.goto(BASE, { waitUntil: "networkidle" });
+  const titre = page
+    .locator("main li")
+    .filter({ has: page.locator('a[href^="/parcours/"]') })
+    .first()
+    .locator('a[href^="/parcours/"]')
+    .first();
+  // Clic JS : `click()` ferait défiler la page, ce qu'un autre invariant mesure.
+  await titre.evaluate((el: HTMLElement) => el.click());
+  await page.waitForTimeout(800);
+  expect(new URL(page.url()).pathname).toBe("/");
+  expect(new URL(page.url()).searchParams.get("fiche")).not.toBeNull();
+});

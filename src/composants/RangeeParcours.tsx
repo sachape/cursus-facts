@@ -74,14 +74,33 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
   const prixInconnu = cout.valeur === null && cout.montant === null;
 
   return (
-    <li className="border-b border-border">
+    <li className="relative border-b border-border">
+      {/*
+        LE SIGNET VIT HORS DU FLUX DE LECTURE, en marge : l'œil parcourt
+        l'intitulé, les compétences, les faits, le coût, puis les actions. Un
+        marque-page n'appartient pas à cette suite.
+
+        `z-(--z-collant)` le place au-dessus de l'ancre qui couvre la rangée.
+        Sans ce plan, le clic dessus ouvrirait la fiche.
+      */}
+      <div className="absolute right-0 top-(--space-4) z-(--z-collant)">
+        <BoutonSauvegarde type="parcours" cibleId={parcours.slug} libelle={parcours.nom} />
+      </div>
+
       <div className="grid grid-cols-1 gap-(--space-5) px-(--space-1) py-(--space-6) min-[840px]:grid-cols-[1fr_auto] min-[840px]:gap-(--space-8)">
         {/* Bloc gauche — ce qu'est le parcours. */}
         <div className="min-w-0">
-          <h3 className="font-titre text-base font-medium leading-snug">
+          <h3 className="pr-(--space-10) font-titre text-base font-medium leading-snug">
             <a
               {...proprietesLien(parcours)}
-              className="transition-colors hover:underline hover:underline-offset-4"
+              /*
+                L'ancre couvre TOUTE la rangée. C'est ce qui a permis de retirer
+                le bouton « Fiche » : il dupliquait exactement ce comportement,
+                et une action qui répète l'action principale ne fait que diluer
+                la hiérarchie — trois boutons de même rang se lisent comme des
+                éléments posés là.
+              */
+              className="transition-colors after:absolute after:inset-0 hover:underline hover:underline-offset-4"
             >
               {parcours.nom}
             </a>
@@ -179,13 +198,15 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
             />
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
-            <a
-              {...proprietesLien(parcours)}
-              className="rounded-md border border-border px-2.5 py-1 text-xs transition-colors hover:border-foreground/40"
-            >
-              Fiche
-            </a>
+          {/*
+            UNE SEULE ACTION ICI, sous le code-barres. La rangée entière ouvre
+            la fiche ; « Comparer » est la seule chose qu'on puisse vouloir
+            faire sans y entrer. Le signet est en marge, le bouton « Fiche » a
+            disparu.
+
+            Propre plan d'empilement : sans lui, l'ancre couvrante l'avalerait.
+          */}
+          <div className="relative z-(--z-collant) mt-4 flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() =>
@@ -194,15 +215,14 @@ export function RangeeParcours({ parcours }: { parcours: ParcoursListe }) {
                   : ajouter({ slug: parcours.slug, nom: parcours.nom })
               }
               aria-pressed={selectionne}
-              className={`rounded-md border px-2.5 py-1 text-xs transition-colors ${
+              className={`rounded-(--radius-md) border px-(--space-3) py-(--space-1) t-caption transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) ${
                 selectionne
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+                  ? "border-(--accent-border) bg-(--accent-surface) text-(--accent-default)"
+                  : "border-(--border-default) text-(--text-secondary) hover:border-(--border-strong) hover:text-(--text-primary)"
               }`}
             >
-              {selectionne ? "Retirer" : "Ajouter à la comparaison"}
+              {selectionne ? "Retirer de la comparaison" : "Comparer"}
             </button>
-            <BoutonSauvegarde type="parcours" cibleId={parcours.slug} libelle={parcours.nom} />
           </div>
         </div>
       </div>
