@@ -12,6 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AideAuChoixRouteImport } from './routes/aide-au-choix'
 import { Route as ComparerRouteImport } from './routes/comparer'
+import { Route as ConnexionRouteImport } from './routes/connexion'
+import { Route as MesAlertesRouteImport } from './routes/mes-alertes'
+import { Route as MesComparaisonsRouteImport } from './routes/mes-comparaisons'
+import { Route as MesFormationsRouteImport } from './routes/mes-formations'
 import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
@@ -33,6 +37,26 @@ const AideAuChoixRoute = AideAuChoixRouteImport.update({
 const ComparerRoute = ComparerRouteImport.update({
   id: '/comparer',
   path: '/comparer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnexionRoute = ConnexionRouteImport.update({
+  id: '/connexion',
+  path: '/connexion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MesAlertesRoute = MesAlertesRouteImport.update({
+  id: '/mes-alertes',
+  path: '/mes-alertes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MesComparaisonsRoute = MesComparaisonsRouteImport.update({
+  id: '/mes-comparaisons',
+  path: '/mes-comparaisons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MesFormationsRoute = MesFormationsRouteImport.update({
+  id: '/mes-formations',
+  path: '/mes-formations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MethodeRoute = MethodeRouteImport.update({
@@ -75,6 +99,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
+  '/connexion': typeof ConnexionRoute
+  '/mes-alertes': typeof MesAlertesRoute
+  '/mes-comparaisons': typeof MesComparaisonsRoute
+  '/mes-formations': typeof MesFormationsRoute
   '/methode': typeof MethodeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
@@ -87,6 +115,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
+  '/connexion': typeof ConnexionRoute
+  '/mes-alertes': typeof MesAlertesRoute
+  '/mes-comparaisons': typeof MesComparaisonsRoute
+  '/mes-formations': typeof MesFormationsRoute
   '/methode': typeof MethodeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
@@ -100,6 +132,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
+  '/connexion': typeof ConnexionRoute
+  '/mes-alertes': typeof MesAlertesRoute
+  '/mes-comparaisons': typeof MesComparaisonsRoute
+  '/mes-formations': typeof MesFormationsRoute
   '/methode': typeof MethodeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
@@ -114,6 +150,10 @@ export interface FileRouteTypes {
     | '/'
     | '/aide-au-choix'
     | '/comparer'
+    | '/connexion'
+    | '/mes-alertes'
+    | '/mes-comparaisons'
+    | '/mes-formations'
     | '/methode'
     | '/sitemap.xml'
     | '/admin/seed'
@@ -126,6 +166,10 @@ export interface FileRouteTypes {
     | '/'
     | '/aide-au-choix'
     | '/comparer'
+    | '/connexion'
+    | '/mes-alertes'
+    | '/mes-comparaisons'
+    | '/mes-formations'
     | '/methode'
     | '/sitemap.xml'
     | '/admin/seed'
@@ -138,6 +182,10 @@ export interface FileRouteTypes {
     | '/'
     | '/aide-au-choix'
     | '/comparer'
+    | '/connexion'
+    | '/mes-alertes'
+    | '/mes-comparaisons'
+    | '/mes-formations'
     | '/methode'
     | '/sitemap.xml'
     | '/admin/seed'
@@ -151,6 +199,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AideAuChoixRoute: typeof AideAuChoixRoute
   ComparerRoute: typeof ComparerRoute
+  ConnexionRoute: typeof ConnexionRoute
+  MesAlertesRoute: typeof MesAlertesRoute
+  MesComparaisonsRoute: typeof MesComparaisonsRoute
+  MesFormationsRoute: typeof MesFormationsRoute
   MethodeRoute: typeof MethodeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminSeedRoute: typeof AdminSeedRoute
@@ -181,6 +233,34 @@ declare module '@tanstack/react-router' {
       path: '/comparer'
       fullPath: '/comparer'
       preLoaderRoute: typeof ComparerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connexion': {
+      id: '/connexion'
+      path: '/connexion'
+      fullPath: '/connexion'
+      preLoaderRoute: typeof ConnexionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mes-alertes': {
+      id: '/mes-alertes'
+      path: '/mes-alertes'
+      fullPath: '/mes-alertes'
+      preLoaderRoute: typeof MesAlertesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mes-comparaisons': {
+      id: '/mes-comparaisons'
+      path: '/mes-comparaisons'
+      fullPath: '/mes-comparaisons'
+      preLoaderRoute: typeof MesComparaisonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mes-formations': {
+      id: '/mes-formations'
+      path: '/mes-formations'
+      fullPath: '/mes-formations'
+      preLoaderRoute: typeof MesFormationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/methode': {
@@ -239,6 +319,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AideAuChoixRoute: AideAuChoixRoute,
   ComparerRoute: ComparerRoute,
+  ConnexionRoute: ConnexionRoute,
+  MesAlertesRoute: MesAlertesRoute,
+  MesComparaisonsRoute: MesComparaisonsRoute,
+  MesFormationsRoute: MesFormationsRoute,
   MethodeRoute: MethodeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminSeedRoute: AdminSeedRoute,

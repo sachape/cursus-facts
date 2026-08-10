@@ -423,6 +423,11 @@
   --burger-trait-ecart: 5px;
   --menu-largeur: min(320px, 85%);
   --menu-entree-hauteur: 48px;
+  --menu-compte-largeur: 220px;
+  /* Le signet : la ZONE grandit au tactile, le dessin non. */
+  --signet-taille: 20px;
+  --signet-cible: 32px;
+  --signet-cible-tactile: 44px;
   --nav-hauteur: 56px;
 
   --app-header-height: 72px;
@@ -479,6 +484,8 @@
   /* Aligné sur le champ de recherche : les deux partagent le même axe
      vertical, et un bloc décalé de quelques pixels se lit comme une erreur. */
   --hero-chiffres-largeur: 640px;
+  /* Un formulaire d'authentification : au-delà, l'œil perd la colonne. */
+  --formulaire-largeur: 420px;
   --hero-min-hauteur: 640px;
   --domain-navigation-height: 56px;
   --results-toolbar-height: 60px;

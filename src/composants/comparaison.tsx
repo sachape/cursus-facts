@@ -23,6 +23,14 @@ type Contexte = {
   ajouter: (parcours: ParcoursSelectionne) => void;
   retirer: (slug: string) => void;
   vider: () => void;
+  /**
+   * Remplace la sélection entière — rechargement d'une comparaison enregistrée.
+   *
+   * REMPLACE et ne fusionne pas : fusionner produirait un ensemble que la
+   * personne n'a jamais composé, et le plafond de quatre parcours la ferait
+   * échouer sans qu'elle comprenne pourquoi.
+   */
+  remplacer: (parcours: ParcoursSelectionne[]) => void;
   contient: (slug: string) => boolean;
   /** Message de refus du dernier ajout, ou null. */
   refus: string | null;
@@ -78,9 +86,15 @@ export function FournisseurComparaison({ children }: { children: React.ReactNode
     setSelection([]);
   }, []);
 
+  const remplacer = useCallback((parcours: ParcoursSelectionne[]) => {
+    setRefus(null);
+    setSelection(parcours.slice(0, MAX_COMPARAISON));
+  }, []);
+
   const valeur = useMemo<Contexte>(
     () => ({
       selection,
+      remplacer,
       slugs: selection.map((p) => p.slug),
       ajouter,
       retirer,
@@ -89,7 +103,7 @@ export function FournisseurComparaison({ children }: { children: React.ReactNode
       refus,
       effacerRefus: () => setRefus(null),
     }),
-    [selection, ajouter, retirer, vider, refus],
+    [selection, ajouter, retirer, vider, remplacer, refus],
   );
 
   return <ContexteComparaison.Provider value={valeur}>{children}</ContexteComparaison.Provider>;

@@ -19,6 +19,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useHauteurPubliee } from "./pile-collante";
 import { usePiegeFocus, useVerrouDefilement } from "./piege-focus";
 import { MotSymboleHorizontal, Symbole } from "./marque/Marques";
+import { MenuCompte } from "./MenuCompte";
 
 const VUES = [
   { to: "/", libelle: "Explorer" },
@@ -126,14 +127,18 @@ export function Navigation() {
         </nav>
 
         {/*
-          EMPLACEMENT D'ACTION, vide et occupant sa place. Il équilibre le
-          burger pour que le logo tombe au centre réel de la barre. Le remplir
-          plus tard ne déplacera donc rien.
+          L'EMPLACEMENT D'ACTION, désormais rempli. Il a été réservé vide à la
+          largeur exacte du burger pour que le logo tombe au centre réel : c'est
+          ce qui permet de le remplir aujourd'hui sans que le logo ne bouge d'un
+          pixel. `MenuCompte` occupe la même largeur dans ses trois états —
+          chargement, déconnecté, connecté.
+
+          Visible aux DEUX tailles : à droite de la navigation en version
+          bureau, dans la troisième zone en mobile.
         */}
-        <div
-          aria-hidden="true"
-          className="size-(--burger-cible) shrink-0 min-[1024px]:hidden"
-        />
+        <div className="ml-auto shrink-0 max-[1023px]:ml-0">
+          <MenuCompte />
+        </div>
       </div>
 
       {ouvert && (
