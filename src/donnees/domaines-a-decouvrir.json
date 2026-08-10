@@ -1,0 +1,254 @@
+{
+ "fiches": [
+  {
+   "id": 4,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université Bordeaux Montaigne",
+   "domaine": "u-bordeaux-montaigne.fr"
+  },
+  {
+   "id": 5,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université Claude Bernard Lyon 1",
+   "domaine": "univ-lyon1.fr"
+  },
+  {
+   "id": 7,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université d'Évry Val d'Essonne",
+   "domaine": "univ-evry.fr"
+  },
+  {
+   "id": 8,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université de Bretagne Sud",
+   "domaine": "univ-ubs.fr"
+  },
+  {
+   "id": 10,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université de Lille — IUT de Lille",
+   "domaine": "univ-lille.fr"
+  },
+  {
+   "id": 14,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université de Rouen-Normandie",
+   "domaine": "univ-rouen.fr"
+  },
+  {
+   "id": 15,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université de Toulon",
+   "domaine": "univ-tln.fr"
+  },
+  {
+   "id": 17,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université Toulouse II Jean Jaurès",
+   "domaine": "univ-tlse2.fr"
+  },
+  {
+   "id": 18,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université des Antilles",
+   "domaine": "univ-ag.fr"
+  },
+  {
+   "id": 19,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université Grenoble Alpes",
+   "domaine": "univ-grenoble-alpes.fr"
+  },
+  {
+   "id": 20,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université Paris Cité — IUT Rives de Seine",
+   "domaine": "u-paris.fr"
+  },
+  {
+   "id": 21,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université Paris-Est Créteil",
+   "domaine": "u-pec.fr"
+  },
+  {
+   "id": 23,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université Savoie Mont Blanc",
+   "domaine": "univ-smb.fr"
+  },
+  {
+   "id": 24,
+   "nom": "Licence pro E-commerce et marketing numérique",
+   "organisme": "Université de Versailles Saint-Quentin",
+   "domaine": "uvsq.fr"
+  },
+  {
+   "id": 25,
+   "nom": "BUT TC — Marketing digital, e-business et entrepreneuriat",
+   "organisme": "Réseau des IUT",
+   "domaine": "onisep.fr"
+  },
+  {
+   "id": 28,
+   "nom": "Master AEI — Commerce Électronique et Stratégie Digitale",
+   "organisme": "UPEC",
+   "domaine": "u-pec.fr"
+  },
+  {
+   "id": 36,
+   "nom": "Licence pro E-commerce et marketing numérique — VAE uniquement",
+   "organisme": "IUT Paris Rives de Seine",
+   "domaine": "iutparis-seine.u-paris.fr"
+  },
+  {
+   "id": 82,
+   "nom": "Bootcamp Numérique Expert Marketing Digital",
+   "organisme": "Oreegami × Google",
+   "domaine": "grow.google"
+  },
+  {
+   "id": 94,
+   "nom": "Optimisez votre pricing en e-commerce",
+   "organisme": "OpenClassrooms",
+   "domaine": "openclassrooms.com"
+  },
+  {
+   "id": 95,
+   "nom": "Fondamentaux du design d'une boutique e-commerce",
+   "organisme": "OpenClassrooms",
+   "domaine": "openclassrooms.com"
+  },
+  {
+   "id": 114,
+   "nom": "Ateliers Numériques",
+   "organisme": "Google",
+   "domaine": "grow.google"
+  },
+  {
+   "id": 118,
+   "nom": "WiziShop Academy",
+   "organisme": "WiziShop",
+   "domaine": "wizishop.fr"
+  },
+  {
+   "id": 120,
+   "nom": "Klaviyo Academy",
+   "organisme": "Klaviyo",
+   "domaine": "klaviyo.com"
+  },
+  {
+   "id": 122,
+   "nom": "TikTok Ads — centre d'apprentissage",
+   "organisme": "TikTok",
+   "domaine": "ads.tiktok.com"
+  },
+  {
+   "id": 124,
+   "nom": "Bpifrance Université",
+   "organisme": "Bpifrance",
+   "domaine": "bpifrance-universite.fr"
+  },
+  {
+   "id": 161,
+   "nom": "Brevo Academy",
+   "organisme": "Brevo",
+   "domaine": "brevo.com"
+  },
+  {
+   "id": 162,
+   "nom": "Mailchimp Academy",
+   "organisme": "Mailchimp",
+   "domaine": "mailchimp.com"
+  },
+  {
+   "id": 163,
+   "nom": "Pinterest Academy",
+   "organisme": "Pinterest",
+   "domaine": "business.pinterest.com"
+  },
+  {
+   "id": 166,
+   "nom": "Microsoft Advertising Learning Lab",
+   "organisme": "Microsoft",
+   "domaine": "about.ads.microsoft.com"
+  },
+  {
+   "id": 167,
+   "nom": "Snapchat Focus",
+   "organisme": "Snap",
+   "domaine": "forbusiness.snapchat.com"
+  },
+  {
+   "id": 168,
+   "nom": "TikTok Academy",
+   "organisme": "TikTok",
+   "domaine": "tiktok.com"
+  },
+  {
+   "id": 169,
+   "nom": "Etsy Seller Handbook",
+   "organisme": "Etsy",
+   "domaine": "etsy.com"
+  },
+  {
+   "id": 170,
+   "nom": "Shopify Partner Academy",
+   "organisme": "Shopify",
+   "domaine": "shopify.com"
+  },
+  {
+   "id": 172,
+   "nom": "Adobe Commerce — parcours Magento",
+   "organisme": "Adobe",
+   "domaine": "business.adobe.com"
+  },
+  {
+   "id": 173,
+   "nom": "Odoo eLearning — module e-commerce",
+   "organisme": "Odoo",
+   "domaine": "odoo.com"
+  },
+  {
+   "id": 177,
+   "nom": "Klaviyo Product Certifications",
+   "organisme": "Klaviyo",
+   "domaine": "klaviyo.com"
+  }
+ ],
+ "domaines": [
+  "u-bordeaux-montaigne.fr",
+  "univ-lyon1.fr",
+  "univ-evry.fr",
+  "univ-ubs.fr",
+  "univ-lille.fr",
+  "univ-rouen.fr",
+  "univ-tln.fr",
+  "univ-tlse2.fr",
+  "univ-ag.fr",
+  "univ-grenoble-alpes.fr",
+  "u-paris.fr",
+  "u-pec.fr",
+  "univ-smb.fr",
+  "uvsq.fr",
+  "onisep.fr",
+  "iutparis-seine.u-paris.fr",
+  "grow.google",
+  "openclassrooms.com",
+  "wizishop.fr",
+  "klaviyo.com",
+  "ads.tiktok.com",
+  "bpifrance-universite.fr",
+  "brevo.com",
+  "mailchimp.com",
+  "business.pinterest.com",
+  "about.ads.microsoft.com",
+  "forbusiness.snapchat.com",
+  "tiktok.com",
+  "etsy.com",
+  "shopify.com",
+  "business.adobe.com",
+  "odoo.com"
+ ]
+}

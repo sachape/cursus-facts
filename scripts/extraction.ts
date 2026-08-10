@@ -26,6 +26,9 @@ import {
 import { clientAnthropic, extrairePage, MODELE } from "../src/collecte/extraction";
 import { fermerNavigateur, rendre } from "../src/collecte/navigateur";
 import { journaliser, type EcritureJournalisee } from "../src/collecte/journal";
+import { verifierCorrespondance } from "../src/collecte/correspondance";
+import { convertirJournalier, derivationTotal, trancherUnite } from "../src/collecte/unite-prix";
+import { QUALIFIANTS } from "../src/collecte/extraction";
 import type { Rejet } from "../src/collecte/citation";
 
 const DECOUVERTES =
@@ -162,6 +165,18 @@ async function main() {
   const journal: EcritureJournalisee[] = [];
   const rejets: (Rejet & { id: number; url: string })[] = [];
   const echecs: { id: number; url: string; motif: string }[] = [];
+  /*
+    Les appariements erronés ne sont pas seulement ignorés à l'écriture : ils
+    désignent des rapprochements faux à défaire dans le catalogue. Les ignorer
+    en silence les laisserait rejouer à chaque passe.
+  */
+  const mauvaisAppariements: {
+    id: number;
+    fiche: string;
+    url: string;
+    intitulePage: string | null;
+    score: number;
+  }[] = [];
   let proposes = 0;
   let retenus = 0;
   let pagesLues = 0;
@@ -178,7 +193,7 @@ async function main() {
   */
   const sauvegarder = () => {
     writeFileSync(JOURNAL, JSON.stringify(journal, null, 1));
-    writeFileSync(REJETS, JSON.stringify({ rejets, echecs }, null, 1));
+    writeFileSync(REJETS, JSON.stringify({ rejets, echecs, mauvaisAppariements }, null, 1));
   };
 
   await enParallele(lot, 6, async (entree, index) => {
@@ -193,6 +208,9 @@ async function main() {
     }
 
     let texte = texteprincipal(reponse.texte);
+    // Conservé pour la vérification de correspondance : une page rendue côté
+    // client ne porte son intitulé que dans le HTML produit par le navigateur.
+    let html = reponse.texte;
 
     /*
       REPLI NAVIGATEUR. Le seuil de page vide ne suffit pas : Coursera sert
@@ -213,6 +231,7 @@ async function main() {
             `${etiquette} ⟳ repli navigateur ${texte.length} → ${apres.length} car.`,
           );
           texte = apres;
+          html = rendu.html;
         }
       }
       // Un échec de rendu n'est jamais une absence d'information : si le texte
@@ -226,6 +245,25 @@ async function main() {
         console.log(`${etiquette} ✗ page vide même après rendu`);
         return;
       }
+    }
+
+    /*
+      La page lue est-elle bien celle du parcours ? Trois prix authentiques ont
+      failli être écrits sur les mauvaises fiches faute de cette question.
+    */
+    const correspondance = verifierCorrespondance(entree.offre.nom, html);
+    if (!correspondance.correspond) {
+      mauvaisAppariements.push({
+        id: entree.id!,
+        fiche: entree.offre.nom,
+        url: entree.url,
+        intitulePage: correspondance.intitule,
+        score: Number(correspondance.score.toFixed(2)),
+      });
+      console.log(
+        `${etiquette} ✗ page d'un autre parcours (${correspondance.score.toFixed(2)}) — « ${correspondance.intitule?.slice(0, 46)} »`,
+      );
+      return;
     }
 
     pagesLues++;
@@ -251,18 +289,90 @@ async function main() {
     parStrate.set(entree.offre.categorie, strate);
     rejets.push(...extraction.filtrage.rejets.map((r) => ({ ...r, id: entree.id!, url: entree.url })));
 
-    for (const [champ, cite] of Object.entries(extraction.filtrage.retenus)) {
+    const cites = extraction.filtrage.retenus;
+    for (const [champ, cite] of Object.entries(cites)) {
+      // Un qualifiant n'est pas une donnée : il rend le prix interprétable.
+      if (champ in QUALIFIANTS) continue;
+
+      let valeur = cite.valeur;
+      let extrait = cite.extrait;
+      let derive = false;
+
+      /*
+        Un prix sans unité identifiée est REJETÉ, jamais écrit par défaut en
+        total. C'est le garde-fou qui manquait aux quatre tarifs journaliers de
+        Dawan et Conversion Boosters, exacts au chiffre près et faux d'un
+        facteur égal à la durée.
+      */
+      if ((champ === "prix" || champ === "prixIntra") && typeof valeur === "number" && valeur > 0) {
+        const qualifiant = champ === "prix" ? "unitePrix" : "uniteIntra";
+        const verdict = trancherUnite(
+          cites[qualifiant]?.valeur as string | undefined,
+          `${extrait} ${cites[qualifiant]?.extrait ?? ""}`,
+        );
+        let unite = verdict.unite;
+        if (unite === null) {
+          /*
+            DÉRIVATION PUBLIÉE — sans mention d'unité et sans tarification
+            journalière ailleurs sur la page, le tarif se lit comme un total.
+            C'est la convention du secteur : « 11 390 € » sur une page de MSc ne
+            se lit pas comme un tarif journalier.
+
+            Deux conditions, pas une : l'absence de mention ne suffit pas. C'est
+            ce qui sépare la dérivation du défaut silencieux qu'elle remplace —
+            le défaut supposait, la dérivation constate avant de conclure.
+          */
+          const dérivation = verdict.motif === "unite_absente" ? derivationTotal(texte) : { derive: false, motif: verdict.motif };
+          if (!dérivation.derive) {
+            rejets.push({ champ, motif: dérivation.motif, valeur, extrait, id: entree.id!, url: entree.url });
+            console.log(`${etiquette}   ✗ ${champ} ${valeur} € sans unité (${dérivation.motif})`);
+            continue;
+          }
+          unite = "total";
+          derive = true;
+          console.log(`${etiquette}   ~ ${champ} ${valeur} € dérivé en total`);
+        }
+        /*
+          Journalier converti quand la durée en jours est connue — et les deux
+          conservés : le total pour comparer, l'unitaire parce que c'est ce que
+          l'organisme publie.
+        */
+        const converti = convertirJournalier(valeur, unite, entree.offre.duree);
+        if (unite === "journalier") {
+          if (converti === null) {
+            rejets.push({ champ, motif: "journalier_sans_duree", valeur, extrait, id: entree.id!, url: entree.url });
+            console.log(`${etiquette}   ✗ ${champ} ${valeur} €/jour, durée inconnue`);
+            continue;
+          }
+          valeur = converti.total;
+          extrait = `${extrait} — ${converti.unitaire} €/jour × ${converti.jours} j`;
+          console.log(`${etiquette}   ↻ ${champ} ${converti.unitaire} €/j × ${converti.jours} j = ${valeur} €`);
+        }
+        if (unite !== "total" && unite !== "journalier") {
+          rejets.push({ champ, motif: `unite_${unite}`, valeur, extrait, id: entree.id!, url: entree.url });
+          console.log(`${etiquette}   ✗ ${champ} ${valeur} € ${unite} — non comparable`);
+          continue;
+        }
+      }
+
       journal.push(
         journaliser(
           {
             id: entree.id!,
             champ,
             ancienne: (entree.offre as unknown as Record<string, unknown>)[champ] ?? null,
-            nouvelle: cite.valeur,
-            extrait: cite.extrait,
+            nouvelle: valeur,
+            extrait,
             urlSource: entree.url,
           },
-          { le: LE, origine: "extraction_automatique", motif: "Passe d'extraction automatisée" },
+          {
+            le: LE,
+            origine: "extraction_automatique",
+            motif: "Passe d'extraction automatisée",
+            // L'état suit la valeur : une lecture qui est la nôtre doit être
+            // contestable par le lecteur, donc visible sur la fiche.
+            ...(derive ? { etat: "derive" as const, regleDerivation: "prix_sans_unite_lu_comme_total" } : {}),
+          },
         ),
       );
     }
@@ -296,6 +406,10 @@ async function main() {
   console.log(`  Champs rejetés                : ${rejets.length}`);
   for (const [motif, n] of Object.entries(parMotif)) console.log(`      ${String(n).padStart(3)}  ${motif}`);
   console.log(`  Fiches passant à detail_verifie: ${fichesTouchees.size}`);
+  console.log(`  APPARIEMENTS ERRONÉS À DÉFAIRE : ${mauvaisAppariements.length}`);
+  for (const m of mauvaisAppariements) {
+    console.log(`      ${m.fiche.slice(0, 40)}\n         ⟵ « ${m.intitulePage?.slice(0, 50)} » (${m.score})`);
+  }
   console.log("\n  TAUX DE CITATION PAR STRATE");
   for (const [strate, v] of parStrate) {
     const taux = v.proposes === 0 ? 0 : Math.round((v.retenus / v.proposes) * 100);

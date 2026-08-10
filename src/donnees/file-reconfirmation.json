@@ -1,0 +1,608 @@
+[
+ {
+  "id": 1,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "La Rochelle Université",
+  "prixEnAttente": 0,
+  "domaine": "univ-larochelle.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 122
+ },
+ {
+  "id": 2,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Nantes Université — IAE Nantes",
+  "prixEnAttente": 0,
+  "domaine": "iae.univ-nantes.fr",
+  "urlsAppariees": [
+   "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique"
+  ],
+  "detailDirect": [
+   "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique"
+  ],
+  "pagesConnuesSurLeDomaine": 65
+ },
+ {
+  "id": 3,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Picardie Jules Verne",
+  "prixEnAttente": 0,
+  "domaine": "u-picardie.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 400
+ },
+ {
+  "id": 4,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Bordeaux Montaigne",
+  "prixEnAttente": 0,
+  "domaine": "u-bordeaux-montaigne.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 5,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Claude Bernard Lyon 1",
+  "prixEnAttente": 0,
+  "domaine": "univ-lyon1.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 6,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université d'Artois",
+  "prixEnAttente": 0,
+  "domaine": "univ-artois.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 89
+ },
+ {
+  "id": 7,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université d'Évry Val d'Essonne",
+  "prixEnAttente": 0,
+  "domaine": "univ-evry.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 8,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Bretagne Sud",
+  "prixEnAttente": 0,
+  "domaine": "univ-ubs.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 9,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Caen Normandie",
+  "prixEnAttente": 0,
+  "domaine": "unicaen.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 151
+ },
+ {
+  "id": 10,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Lille — IUT de Lille",
+  "prixEnAttente": 0,
+  "domaine": "univ-lille.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 11,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Lorraine",
+  "prixEnAttente": 0,
+  "domaine": "univ-lorraine.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 7
+ },
+ {
+  "id": 12,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris 8 — IUT de Montreuil",
+  "prixEnAttente": 0,
+  "domaine": "univ-paris8.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 27
+ },
+ {
+  "id": 13,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Rennes",
+  "prixEnAttente": 0,
+  "domaine": "univ-rennes.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 3
+ },
+ {
+  "id": 14,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Rouen-Normandie",
+  "prixEnAttente": 0,
+  "domaine": "univ-rouen.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 15,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Toulon",
+  "prixEnAttente": 0,
+  "domaine": "univ-tln.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 16,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Toulouse",
+  "prixEnAttente": 0,
+  "domaine": "univ-tlse3.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 312
+ },
+ {
+  "id": 17,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Toulouse II Jean Jaurès",
+  "prixEnAttente": 0,
+  "domaine": "univ-tlse2.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 18,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université des Antilles",
+  "prixEnAttente": 0,
+  "domaine": "univ-ag.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 19,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Grenoble Alpes",
+  "prixEnAttente": 0,
+  "domaine": "univ-grenoble-alpes.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 20,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris Cité — IUT Rives de Seine",
+  "prixEnAttente": 0,
+  "domaine": "u-paris.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 21,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris-Est Créteil",
+  "prixEnAttente": 0,
+  "domaine": "u-pec.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 22,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Polytechnique Hauts-de-France",
+  "prixEnAttente": 0,
+  "domaine": "uphf.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 80
+ },
+ {
+  "id": 23,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Savoie Mont Blanc",
+  "prixEnAttente": 0,
+  "domaine": "univ-smb.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 24,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Versailles Saint-Quentin",
+  "prixEnAttente": 0,
+  "domaine": "uvsq.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 25,
+  "nom": "BUT TC — Marketing digital, e-business et entrepreneuriat",
+  "organisme": "Réseau des IUT",
+  "prixEnAttente": 0,
+  "domaine": "onisep.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 28,
+  "nom": "Master AEI — Commerce Électronique et Stratégie Digitale",
+  "organisme": "UPEC",
+  "prixEnAttente": 0,
+  "domaine": "u-pec.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 29,
+  "nom": "Master AES — Commerce électronique",
+  "organisme": "Université de Strasbourg",
+  "prixEnAttente": 0,
+  "domaine": "unistra.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 100
+ },
+ {
+  "id": 36,
+  "nom": "Licence pro E-commerce et marketing numérique — VAE uniquement",
+  "organisme": "IUT Paris Rives de Seine",
+  "prixEnAttente": 0,
+  "domaine": "iutparis-seine.u-paris.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 69,
+  "nom": "Bachelor & MBA Marketing digital",
+  "organisme": "ISCOD",
+  "prixEnAttente": 0,
+  "domaine": "iscod.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 138
+ },
+ {
+  "id": 81,
+  "nom": "Parcours reconversion — bootcamp + alternance",
+  "organisme": "Oreegami",
+  "prixEnAttente": 0,
+  "domaine": "oreegami.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 61
+ },
+ {
+  "id": 82,
+  "nom": "Bootcamp Numérique Expert Marketing Digital",
+  "organisme": "Oreegami × Google",
+  "prixEnAttente": 0,
+  "domaine": "grow.google",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 84,
+  "nom": "Bachelor Marketing Digital",
+  "organisme": "Rocket School",
+  "prixEnAttente": 0,
+  "domaine": "rocket-school.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 25
+ },
+ {
+  "id": 85,
+  "nom": "Bootcamp Business Development",
+  "organisme": "Rocket School",
+  "prixEnAttente": 0,
+  "domaine": "rocket-school.com",
+  "urlsAppariees": [
+   "https://rocket-school.com/formations/business-development/"
+  ],
+  "detailDirect": [
+   "https://rocket-school.com/formations/business-development/"
+  ],
+  "pagesConnuesSurLeDomaine": 25
+ },
+ {
+  "id": 94,
+  "nom": "Optimisez votre pricing en e-commerce",
+  "organisme": "OpenClassrooms",
+  "prixEnAttente": 0,
+  "domaine": "openclassrooms.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 95,
+  "nom": "Fondamentaux du design d'une boutique e-commerce",
+  "organisme": "OpenClassrooms",
+  "prixEnAttente": 0,
+  "domaine": "openclassrooms.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 114,
+  "nom": "Ateliers Numériques",
+  "organisme": "Google",
+  "prixEnAttente": 0,
+  "domaine": "grow.google",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 117,
+  "nom": "PrestaShop Academy",
+  "organisme": "PrestaShop",
+  "prixEnAttente": 0,
+  "domaine": "prestashop.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 1
+ },
+ {
+  "id": 118,
+  "nom": "WiziShop Academy",
+  "organisme": "WiziShop",
+  "prixEnAttente": 0,
+  "domaine": "wizishop.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 120,
+  "nom": "Klaviyo Academy",
+  "organisme": "Klaviyo",
+  "prixEnAttente": 0,
+  "domaine": "klaviyo.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 122,
+  "nom": "TikTok Ads — centre d'apprentissage",
+  "organisme": "TikTok",
+  "prixEnAttente": 0,
+  "domaine": "ads.tiktok.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 124,
+  "nom": "Bpifrance Université",
+  "organisme": "Bpifrance",
+  "prixEnAttente": 0,
+  "domaine": "bpifrance-universite.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 125,
+  "nom": "Guides et réseau Activateurs",
+  "organisme": "France Num — DGE",
+  "prixEnAttente": 0,
+  "domaine": "francenum.gouv.fr",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 210
+ },
+ {
+  "id": 161,
+  "nom": "Brevo Academy",
+  "organisme": "Brevo",
+  "prixEnAttente": 0,
+  "domaine": "brevo.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 162,
+  "nom": "Mailchimp Academy",
+  "organisme": "Mailchimp",
+  "prixEnAttente": 0,
+  "domaine": "mailchimp.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 163,
+  "nom": "Pinterest Academy",
+  "organisme": "Pinterest",
+  "prixEnAttente": 0,
+  "domaine": "business.pinterest.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 164,
+  "nom": "Semrush Academy",
+  "organisme": "Semrush",
+  "prixEnAttente": 0,
+  "domaine": "semrush.com",
+  "urlsAppariees": [
+   "https://www.semrush.com/academy/courses/semrush-tools/"
+  ],
+  "detailDirect": [
+   "https://www.semrush.com/academy/courses/semrush-tools/"
+  ],
+  "pagesConnuesSurLeDomaine": 129
+ },
+ {
+  "id": 165,
+  "nom": "Ahrefs Academy",
+  "organisme": "Ahrefs",
+  "prixEnAttente": 0,
+  "domaine": "ahrefs.com",
+  "urlsAppariees": [
+   "https://ahrefs.com/academy/how-to-use-ahrefs"
+  ],
+  "detailDirect": [
+   "https://ahrefs.com/academy/how-to-use-ahrefs"
+  ],
+  "pagesConnuesSurLeDomaine": 283
+ },
+ {
+  "id": 166,
+  "nom": "Microsoft Advertising Learning Lab",
+  "organisme": "Microsoft",
+  "prixEnAttente": 0,
+  "domaine": "about.ads.microsoft.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 167,
+  "nom": "Snapchat Focus",
+  "organisme": "Snap",
+  "prixEnAttente": 0,
+  "domaine": "forbusiness.snapchat.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 168,
+  "nom": "TikTok Academy",
+  "organisme": "TikTok",
+  "prixEnAttente": 0,
+  "domaine": "tiktok.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 169,
+  "nom": "Etsy Seller Handbook",
+  "organisme": "Etsy",
+  "prixEnAttente": 0,
+  "domaine": "etsy.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 170,
+  "nom": "Shopify Partner Academy",
+  "organisme": "Shopify",
+  "prixEnAttente": 0,
+  "domaine": "shopify.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 171,
+  "nom": "Wix Learn",
+  "organisme": "Wix",
+  "prixEnAttente": 0,
+  "domaine": "wix.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 208
+ },
+ {
+  "id": 172,
+  "nom": "Adobe Commerce — parcours Magento",
+  "organisme": "Adobe",
+  "prixEnAttente": 0,
+  "domaine": "business.adobe.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 173,
+  "nom": "Odoo eLearning — module e-commerce",
+  "organisme": "Odoo",
+  "prixEnAttente": 0,
+  "domaine": "odoo.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 174,
+  "nom": "Salesforce Trailhead — Commerce Cloud",
+  "organisme": "Salesforce",
+  "prixEnAttente": 0,
+  "domaine": "trailhead.salesforce.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 2
+ },
+ {
+  "id": 175,
+  "nom": "Zendesk Training — relation client e-commerce",
+  "organisme": "Zendesk",
+  "prixEnAttente": 0,
+  "domaine": "zendesk.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 10
+ },
+ {
+  "id": 177,
+  "nom": "Klaviyo Product Certifications",
+  "organisme": "Klaviyo",
+  "prixEnAttente": 0,
+  "domaine": "klaviyo.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 0
+ },
+ {
+  "id": 178,
+  "nom": "Hotjar Academy",
+  "organisme": "Hotjar",
+  "prixEnAttente": 0,
+  "domaine": "hotjar.com",
+  "urlsAppariees": [],
+  "detailDirect": [],
+  "pagesConnuesSurLeDomaine": 1
+ }
+]

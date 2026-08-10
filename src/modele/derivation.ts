@@ -54,6 +54,19 @@ export type Derivation = {
  * nul, et ce n'est pas une supposition sur l'organisme : c'est une règle qui
  * s'impose à lui.
  */
+/**
+ * Règle publiée — un tarif sans mention d'unité se lit comme un total.
+ *
+ * Deux conditions, pas une : il faut aussi qu'aucune tarification journalière
+ * ne figure ailleurs sur la page. C'est ce qui sépare cette dérivation du
+ * défaut silencieux qu'elle remplace — le défaut supposait, la dérivation
+ * constate une absence avant de conclure.
+ */
+export const REGLE_PRIX_TOTAL =
+  "Tarif dérivé : la page affiche ce montant sans mention d'unité et ne " +
+  "facture nulle part à la journée. Nous le lisons comme un total, selon la " +
+  "convention du secteur.";
+
 export const REGLE_ALTERNANCE =
   "Coût dérivé : en contrat d'apprentissage ou de professionnalisation, " +
   "les frais de formation sont pris en charge et ne peuvent pas être " +

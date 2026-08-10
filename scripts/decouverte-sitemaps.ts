@@ -9,7 +9,7 @@
  * d'extraction. Les URL non rapprochées y figurent aussi — ce sont des
  * parcours que nous n'avons jamais vus.
  */
-import { writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { chargerCatalogue } from "../src/donnees/catalogue";
 import { lireRobots, recuperer } from "../src/collecte/recuperation";
 import {
@@ -85,10 +85,36 @@ async function collecterEntrees(sitemaps: string[]): Promise<EntreeSitemap[]> {
   return entrees;
 }
 
+/**
+ * Ciblage — `--domaines <fichier.json>`.
+ *
+ * Une passe de découverte sur 163 organismes coûte des heures et repasse sur
+ * ce qui est déjà connu. Le fichier attendu porte `{ domaines: string[] }` :
+ * celui produit par la file de reconfirmation convient tel quel.
+ */
+function domainesCibles(): Set<string> | null {
+  const i = process.argv.indexOf("--domaines");
+  if (i === -1) return null;
+  const chemin = process.argv[i + 1];
+  if (chemin === undefined || !existsSync(chemin)) {
+    throw new Error(`--domaines attend un fichier existant (reçu : ${chemin ?? "rien"}).`);
+  }
+  const { domaines } = JSON.parse(readFileSync(chemin, "utf8")) as { domaines: string[] };
+  if (!Array.isArray(domaines) || domaines.length === 0) {
+    throw new Error(`${chemin} ne contient aucun domaine.`);
+  }
+  return new Set(domaines.map((d) => d.replace(/^www\./, "")));
+}
+
 async function main() {
+  const ciblage = domainesCibles();
   const catalogue = chargerCatalogue();
   const parOrganisme = new Map<string, typeof catalogue>();
   for (const offre of catalogue) {
+    if (ciblage !== null) {
+      const d = String(offre.url ?? "").replace(/^https?:\/\//, "").replace(/^www\./, "").split("/")[0];
+      if (!ciblage.has(d ?? "")) continue;
+    }
     const liste = parOrganisme.get(offre.organisme) ?? [];
     liste.push(offre);
     parOrganisme.set(offre.organisme, liste);
@@ -156,7 +182,28 @@ async function main() {
     );
   }
 
-  writeFileSync(SORTIE, JSON.stringify(resultats, null, 1));
+  /*
+    FUSION EN MODE CIBLÉ, JAMAIS REMPLACEMENT.
+
+    Une passe ciblée ne connaît que ses 32 domaines : écrire `resultats` tel
+    quel effacerait les 131 autres organismes déjà découverts, et avec eux les
+    appariements défaits qui empêchent de refaire les mêmes faux rapprochements.
+    Le ciblage restreint ce qu'on VISITE, pas ce qu'on GARDE.
+  */
+  const sortie =
+    ciblage === null
+      ? resultats
+      : (() => {
+          const ancien = existsSync(SORTIE)
+            ? (JSON.parse(readFileSync(SORTIE, "utf8")) as ResultatOrganisme[])
+            : [];
+          const frais = new Map(resultats.map((r) => [r.organisme, r]));
+          return [
+            ...ancien.map((a) => frais.get(a.organisme) ?? a),
+            ...resultats.filter((r) => !ancien.some((a) => a.organisme === r.organisme)),
+          ];
+        })();
+  writeFileSync(SORTIE, JSON.stringify(sortie, null, 1));
 
   const ok = resultats.filter((r) => r.statut === "ok");
   const pages = resultats.reduce((s, r) => s + r.pagesFormation, 0);

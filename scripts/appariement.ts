@@ -40,8 +40,31 @@ type Decouverte = {
   urls: { id: number | null; url: string }[];
 };
 
+/**
+ * Ciblage — `--fiches <fichier.json>`.
+ *
+ * Balayer 120 organismes sans ordre de priorité rend toute passe dirigée
+ * impossible : la file de reconfirmation vaut 25 points de couverture de coût,
+ * et il n'y avait aucun moyen de la traiter d'abord. Le fichier attendu est une
+ * liste d'objets portant un `id` — celui produit par la file de reconfirmation
+ * convient tel quel.
+ */
+function fichesCiblees(): Set<number> | null {
+  const i = process.argv.indexOf("--fiches");
+  if (i === -1) return null;
+  const chemin = process.argv[i + 1];
+  if (chemin === undefined || !existsSync(chemin)) {
+    throw new Error(`--fiches attend un fichier existant (reçu : ${chemin ?? "rien"}).`);
+  }
+  const brut = JSON.parse(readFileSync(chemin, "utf8")) as { id: number }[];
+  const ids = new Set(brut.map((f) => f.id).filter((id) => typeof id === "number"));
+  if (ids.size === 0) throw new Error(`${chemin} ne contient aucun identifiant de fiche.`);
+  return ids;
+}
+
 async function main() {
   if (!existsSync(DECOUVERTES)) throw new Error(`${DECOUVERTES} absent.`);
+  const ciblage = fichesCiblees();
   const decouvertes = JSON.parse(readFileSync(DECOUVERTES, "utf8")) as Decouverte[];
   const catalogue = chargerCatalogue();
 
@@ -51,6 +74,9 @@ async function main() {
   const parOrganisme = new Map<string, { id: number; nom: string }[]>();
   for (const offre of catalogue) {
     if (dejaApparies.has(offre.id)) continue;
+    // Le ciblage restreint les FICHES, donc les organismes visités : un
+    // organisme dont aucune fiche n'est ciblée ne sera pas récupéré du tout.
+    if (ciblage !== null && !ciblage.has(offre.id)) continue;
     const liste = parOrganisme.get(offre.organisme) ?? [];
     liste.push({ id: offre.id, nom: offre.nom });
     parOrganisme.set(offre.organisme, liste);
@@ -59,6 +85,9 @@ async function main() {
   const domaines = new Map(decouvertes.map((d) => [d.organisme, d.domaine]));
   const cibles = [...parOrganisme].filter(([o]) => (domaines.get(o) ?? "—") !== "—");
 
+  if (ciblage !== null) {
+    console.log(`\nPasse CIBLÉE — ${ciblage.size} fiche(s) demandée(s)`);
+  }
   console.log(
     `\nAppariement par pages catalogue — ${cibles.length} organismes, ` +
       `${[...parOrganisme.values()].flat().length} fiches sans page\n`,

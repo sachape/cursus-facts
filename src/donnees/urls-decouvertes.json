@@ -17434,10 +17434,17 @@
   "nouvelles": 173,
   "urls": [
    {
-    "id": 42,
+    "id": null,
     "url": "https://www.em-normandie.com/programmes/votre-formation-en-marketing-digital/msc-creative-and-cultural-industry",
     "lastmod": "2026-06-11",
-    "score": 0.75
+    "score": 0.75,
+    "appariementDefait": {
+     "le": "2026-08-06",
+     "ancienId": 42,
+     "motif": "correspondance_page_fiche",
+     "intitulePage": "MSc Creative and Cultural Industries",
+     "score": 0.25
+    }
    },
    {
     "id": null,
@@ -29401,10 +29408,17 @@
   "nouvelles": 12,
   "urls": [
    {
-    "id": 63,
+    "id": null,
     "url": "https://ecole-du-digital.com/formations/mastere-digital-design-creative-technologies/",
     "lastmod": "2026-03-20",
-    "score": 0.6666666666666666
+    "score": 0.6666666666666666,
+    "appariementDefait": {
+     "le": "2026-08-06",
+     "ancienId": 63,
+     "motif": "correspondance_page_fiche",
+     "intitulePage": "Mastère Digital Design – Direction Artistique",
+     "score": 0.67
+    }
    },
    {
     "id": null,
@@ -34787,10 +34801,17 @@
   "nouvelles": 23,
   "urls": [
    {
-    "id": 84,
+    "id": null,
     "url": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
     "lastmod": null,
-    "score": 1
+    "score": 1,
+    "appariementDefait": {
+     "le": "2026-08-06",
+     "ancienId": 84,
+     "motif": "correspondance_page_fiche",
+     "intitulePage": "Bachelor Business Development",
+     "score": 0.33
+    }
    },
    {
     "id": 85,
@@ -40414,10 +40435,17 @@
     "score": 1
    },
    {
-    "id": 103,
+    "id": null,
     "url": "https://www.cegos.fr/formations/commercial-ventes/kam-developper-les-grands-comptes-et-comptes-strategiques",
     "lastmod": null,
-    "score": 0.6666666666666666
+    "score": 0.6666666666666666,
+    "appariementDefait": {
+     "le": "2026-08-06",
+     "ancienId": 103,
+     "motif": "correspondance_page_fiche",
+     "intitulePage": "KAM : développer les grands comptes",
+     "score": 0.33
+    }
    },
    {
     "id": null,
@@ -58886,11 +58914,2412 @@
  {
   "organisme": "Odoo",
   "domaine": "https://odoo.com",
-  "statut": "sans_sitemap",
-  "pagesFormation": 0,
+  "statut": "ok",
+  "pagesFormation": 731,
   "rapprochees": 0,
-  "nouvelles": 0,
-  "urls": []
+  "nouvelles": 400,
+  "urls": [
+   {
+    "id": null,
+    "url": "https://www.odoo.com/forum/help-1/master-data-for-odoo-module-customization-297702",
+    "lastmod": "2026-02-25",
+    "score": 0.5
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-en-odoo-7-0-technical-training-gandhinagar-india-38/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-en-odoo-7-0-functional-training-gandhinagar-india-39/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-fr-formation-utilisateur-odoo-59/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-en-odoo-7-0-functional-training-gandhinagar-india-64/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-en-odoo-7-0-functional-training-gandhinagar-india-66/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fonctionnelle-odoo-8-ex-openerp-5-jours-159/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fonctionnelle-cameroun-odoo-8-ex-openerp-5-jours-160/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gratuite-a-la-creation-d-une-boutique-en-ligne-sur-odoo-4038/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gratuite-a-la-creation-d-une-boutique-en-ligne-sur-odoo-4077/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gratuite-a-la-creation-d-une-boutique-en-ligne-sur-odoo-4078/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gratuite-a-la-creation-d-une-boutique-en-ligne-sur-odoo-4372/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gratuite-a-la-creation-d-une-boutique-en-ligne-sur-odoo-4441/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gratuite-a-la-creation-d-une-boutique-en-ligne-sur-odoo-4512/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-inventaire-odoo-academy-4593/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4596/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-manufacturing-odoo-academy-4597/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-odoo-academy-4598/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-production-odoo-academy-4601/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-odoo-academy-4602/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-et-vente-odoo-academy-4605/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-odoo-academy-4607/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-inventaire-odoo-academy-4611/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-consultance-odoo-academy-4616/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-consultancy-odoo-academy-4618/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-consultancy-odoo-academy-4653/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-odoo-academy-4664/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4665/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4666/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-et-vente-odoo-academy-4667/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-consultance-odoo-academy-4668/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4669/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-odoo-academy-4681/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-inventaire-odoo-academy-4687/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4698/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4699/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4700/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-inventaire-odoo-academy-4701/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-inventaire-odoo-academy-4702/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-inventaire-odoo-academy-4703/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-odoo-academy-4704/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-odoo-academy-4705/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-odoo-academy-4706/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-odoo-academy-4707/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4710/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-odoo-academy-4711/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-odoo-academy-4712/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-odoo-academy-4717/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-odoo-academy-4718/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-odoo-academy-4719/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-odoo-academy-4720/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4721/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4722/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-odoo-academy-4723/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4724/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-et-vente-odoo-academy-4725/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4730/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4732/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-odoo-academy-4740/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4741/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-et-vente-odoo-academy-4742/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-odoo-academy-4744/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-odoo-academy-4875/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-odoo-academy-4876/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4879/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-4888/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-entrepreneurs-odoo-academy-5070/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-entrepreneurs-odoo-academy-5087/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5088/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-odoo-academy-5215/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5391/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5392/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5393/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5394/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5395/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5396/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5434/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5435/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5436/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5437/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5438/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5440/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5441/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-facturation-odoo-academy-5443/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-odoo-academy-5522/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-5858/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-5871/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-5872/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-et-site-web-odoo-academy-5873/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/master-etims-with-odoo-pos-boost-efficiency-with-ease-7185/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/master-your-sales-pipeline-with-odoo-19-8270/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/master-production-schedule-mps-using-odoo-manufacturing-and-purchase-app-9419/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/academy-sito-web-e-e-commerce-milano-9749/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/programme-partenaires-odoo-pour-les-cabinets-comptables-quebec-10503/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/academy-sito-web-e-e-commerce-bari-10989/register",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/exhibitor/master-software-solutions-5649",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2016-420/track/formation-fonctionnelle-odoo-a-des-etudiants-de-3e-bac-en-informatique-de-gestion-une-gageure-693",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2020-2622/track/master-your-odoo-digital-campaigns-3901",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-india-4312/track/training-on-odoo-sh-5363",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-advanced-accounting-7529",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-manufacturing-inventory-7535",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-technical-development-7531",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-studio-7537",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-website-ecommerce-7544",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-point-of-sale-8982",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-advanced-accounting-7539",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-website-ecommerce-7538",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-technical-development-7540",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-studio-7543",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-manufacturing-inventory-7541",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-community-days-latin-america-2025-7012/track/master-class-odoo-point-of-sale-8983",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-advanced-inventory-9163",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-odoo-studio-dashboard-spreadsheet-9168",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-advanced-manufacturing-9173",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-accounting-localization-9161",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-odoo-web-framework-9171",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-advanced-point-of-sale-9164",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-odoo-development-9167",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-odoo-studio-dashboard-spreadsheet-9170",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-accounting-localization-9162",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-advanced-point-of-sale-9166",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-ai-odoo-1-day-class-9213",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-advanced-inventory-9165",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-ecommerce-and-marketing-1-day-class-9212",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-advanced-manufacturing-9174",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-odoo-sh-vibe-coding-1-day-class-9214",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-odoo-development-9169",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/odoo-experience-2026-india-10174/track/master-class-odoo-web-framework-9172",
+    "lastmod": null,
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/forum/help-1/master-9-0-is-most-of-the-odoo-development-going-to-be-done-behind-closed-doors-ie-private-r-d-repositories-now-86432",
+    "lastmod": "2016-08-26",
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/forum/help-1/master-date-time-format-delete-time-data-odoo-9-109193",
+    "lastmod": "2017-01-16",
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/forum/help-1/master-production-scheduling-in-manufacturing-module-291904",
+    "lastmod": "2025-11-24",
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/forum/help-1/certification-preparation-for-odoo-version-18-291185",
+    "lastmod": "2025-11-18",
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/forum/help-1/training-odoo-development-in-belgium-284118",
+    "lastmod": "2025-08-19",
+    "score": 0.25
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/certification-faq",
+    "lastmod": "2022-08-10",
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-fr-openerp-formation-technique-audaxis-tunisie-10/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-en-openerp-7-0-functional-training-lagos-12/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-technique-avec-audaxis-114/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fonctionelle-avec-audaxis-115/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-technique-en-francais-bruxelles-621/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-technique-en-francais-bruxelles-724/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-technique-en-francais-bruxelles-725/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-profs-1-achat-et-ventes-avec-scale-up-3804/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-profs-2-gestion-d-un-magasin-avec-scale-up-3842/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-profs-3-creation-d-un-ecommerce-avec-scale-up-3846/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-profs-1-achats-et-ventes-avec-scale-up-3849/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-profs-2-gestion-d-un-magasin-avec-scale-up-3852/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-profs-3-creation-d-un-ecommerce-avec-scale-up-3855/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/bootcamp-gestion-de-recursos-2024-latam-5907/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/bootcamp-de-innovacion-en-punto-de-venta-latam-5908/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/academy-riyadh-ksa-6081/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/academy-jeddah-ksa-6085/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/academy-istanbul-turkiye-6086/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-lln-6128/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/academy-uae-dubai-6138/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-lln-6141/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-ventes-lln-6143/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-lln-6144/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-lln-6146/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-lln-6178/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-6274/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-invoicing-6288/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6323/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-et-facturation-6324/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-lln-6329/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-stock-lln-6333/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6352/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6354/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6355/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6356/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6357/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6358/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6359/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6362/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6363/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6364/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-nairobi-6367/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-6368/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-nairobi-6370/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-6371/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-6372/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-6373/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-6374/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-6375/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-webseite-6377/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-6378/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-stock-6379/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-6381/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-crm-sales-6382/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-6387/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6389/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6390/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-ventes-6391/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-6392/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6393/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6395/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6396/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-lln-6411/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-lln-6412/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6418/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6419/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6420/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6421/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6423/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6424/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6425/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6426/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6427/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6428/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6429/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6430/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6431/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6432/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-et-facturation-6433/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-et-facturation-6434/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6435/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6436/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6438/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6439/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6440/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6441/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6442/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6443/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6444/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6445/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6446/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-6447/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-manufacturing-ebene-6456/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-6468/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-la-paie-6478/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-ventes-6479/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6480/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-6481/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-nairobi-6561/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-nairobi-6562/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-nairobi-6563/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-6612/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-6613/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-6614/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-restaurant-6615/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-restaurant-6616/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-6617/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-6619/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-6620/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-6621/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-6646/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-6649/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-6652/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-6654/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-6657/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-6658/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-6762/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-manufacturing-6850/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-6852/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-6923/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-6924/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-6925/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-6927/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-la-paie-6928/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-et-facturation-6929/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-6930/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-6931/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-6967/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-invoicing-6969/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-6970/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-6971/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-restaurant-nairobi-7002/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-7059/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-7060/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-7111/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7112/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-7114/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-7116/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7117/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-7127/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-7128/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7129/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7130/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7131/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7132/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-7133/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-7134/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7135/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-7154/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-7155/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-7163/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-7313/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-7314/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-education-7319/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-7477/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-7483/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-7499/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-7517/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-7544/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-ventes-7545/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-7645/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-7755/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-7762/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7937/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7938/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-7939/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-7940/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-7941/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-7942/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-manufacturing-7943/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-7944/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-7945/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-7946/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-7947/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-la-paie-7948/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-stock-7949/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-7950/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7951/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7952/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-7953/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-ventes-7972/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-7973/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-7974/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-8002/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-ventes-8003/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-8004/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-8006/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-8007/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-la-paie-8008/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8010/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-8011/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-8012/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-crm-ventes-8013/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-8042/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-8043/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-stock-8044/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-8045/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-8047/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-8058/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-8059/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-stock-8060/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-8061/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8062/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-8063/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-point-of-sale-shop-8312/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-8343/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8494/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-8495/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8499/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-8500/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8504/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8551/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-8552/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8553/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-8554/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8559/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8560/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-8561/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-website-8580/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-8610/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-website-8815/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-8896/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-8897/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-8898/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9038/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9039/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9040/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9041/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-9042/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-restaurant-9047/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9048/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9049/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-stock-9053/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-fabrication-9054/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-website-9055/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-point-de-vente-magasin-9063/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-9064/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-9067/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-9068/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-9069/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-manufacturing-9234/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-marketing-9235/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-9255/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-inventory-9256/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-manufacturing-9257/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-9281/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9282/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-lln-9283/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-9341/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-marketing-9342/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-9349/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-accounting-9350/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-9351/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-payroll-hr-9352/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-9355/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/training-ecommerce-website-9356/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-9357/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ecommerce-site-web-9368/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-ressources-humaines-9376/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-gestion-de-projet-9377/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9422/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9423/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9424/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9425/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-comptabilite-9426/register",
+    "lastmod": null,
+    "score": 0
+   },
+   {
+    "id": null,
+    "url": "https://www.odoo.com/event/formation-facturation-9427/register",
+    "lastmod": null,
+    "score": 0
+   }
+  ]
  },
  {
   "organisme": "Salesforce",
@@ -65934,10 +68363,17 @@
   "nouvelles": 400,
   "urls": [
    {
-    "id": 184,
+    "id": null,
     "url": "https://www.elephorm.com/formation/apprendre-html-5-et-css3-tutoriel-video-avec-un-expert-du-web",
     "lastmod": "2026-08-03",
-    "score": 0.6666666666666666
+    "score": 0.6666666666666666,
+    "appariementDefait": {
+     "le": "2026-08-06",
+     "ancienId": 184,
+     "motif": "correspondance_page_fiche",
+     "intitulePage": "Apprendre HTML5 et CSS3",
+     "score": 0.67
+    }
    },
    {
     "id": null,

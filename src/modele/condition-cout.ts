@@ -21,7 +21,7 @@
  */
 import type { CategorieOrganisme, FormatParcours } from "@/types/cursus";
 import type { ModaliteAcces } from "./modalite-acces";
-import { alternanceSansTarifPublie, REGLE_ALTERNANCE } from "./derivation";
+import { alternanceSansTarifPublie, REGLE_ALTERNANCE, REGLE_PRIX_TOTAL } from "./derivation";
 
 export const CONDITIONS_ACCES = [
   "alternance_requise",
@@ -75,6 +75,15 @@ export type EntreeCout = {
   dispoIntra: boolean | null;
   /** Vrai si le prix ou la modalité vient d'une règle, pas de l'organisme. */
   derive?: boolean;
+  /**
+   * Laquelle des règles publiées a produit la valeur.
+   *
+   * Sans elle, `derive` renvoyait toujours à l'alternance : la seule règle qui
+   * existait. En ajouter une seconde sans nommer laquelle s'applique aurait
+   * affiché « pris en charge en alternance » sous un tarif de MSc — une
+   * justification fausse sous une valeur juste.
+   */
+  regleDerivation?: "alternance" | "prix_sans_unite_lu_comme_total" | undefined;
 };
 
 /**
@@ -87,7 +96,12 @@ export type EntreeCout = {
  * difficile que payer.
  */
 export function conditionDuCout(entree: EntreeCout): Cout {
-  const derivation = entree.derive === true ? REGLE_ALTERNANCE : null;
+  const derivation =
+    entree.derive !== true
+      ? null
+      : entree.regleDerivation === "prix_sans_unite_lu_comme_total"
+        ? REGLE_PRIX_TOTAL
+        : REGLE_ALTERNANCE;
 
   // 1. Réservé aux entreprises : aucune autre condition ne compte si la
   //    personne ne peut pas acheter du tout.
@@ -207,6 +221,8 @@ export function coutDuParcours(p: {
   dispoInter: boolean | null;
   dispoIntra: boolean | null;
   etats?: Partial<Record<"prix", string>>;
+  /** Nommer la règle : `derive` seul renverrait toujours à l'alternance. */
+  regleDerivation?: "alternance" | "prix_sans_unite_lu_comme_total" | null;
 }): Cout & { montant: number | null } {
   // Le tarif de groupe n'est jamais le prix d'une personne.
   const montant = p.dispoInter === false ? null : p.prixMin;
@@ -219,6 +235,7 @@ export function coutDuParcours(p: {
     dispoInter: p.dispoInter,
     dispoIntra: p.dispoIntra,
     derive: p.etats?.prix === "derive",
+    regleDerivation: p.regleDerivation ?? undefined,
   });
   return { ...cout, montant };
 }

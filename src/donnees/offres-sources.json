@@ -120,8 +120,17 @@
     "valeurPrecedente": null,
     "le": "2026-08-04",
     "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique — « Consulter la fiche RNCP nationale n°40509 relative à ce diplôme »"
    }
-  ]
+  ],
+  "codeRncpRs": "40509",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 3,
@@ -2072,7 +2081,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "codeRncpRs": "RNCP n°39592",
+  "historique": [
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.inseec.com/programme/msc-marketing-digital-ecommerce/ — « Pour le titre RNCP n°39592 « Manager de la Communication et du Marketing Digital » »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 38,
@@ -2246,7 +2266,7 @@
   "organisme": "EM Normandie",
   "categorieLibelle": "Écoles",
   "sousFamille": "École de commerce",
-  "region": null,
+  "region": "Caen",
   "url": "em-normandie.fr",
   "prix": 8500,
   "duree": "2 ans",
@@ -2271,7 +2291,17 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.em-normandie.com/programmes/votre-formation-en-marketing-digital/msc-creative-and-cultural-industry — « Campus \nCaen »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 43,
@@ -2279,7 +2309,7 @@
   "organisme": "Clermont School of Business",
   "categorieLibelle": "Écoles",
   "sousFamille": "École de commerce",
-  "region": null,
+  "region": "Clermont-Ferrand",
   "url": "esc-clermont.fr",
   "prix": 8500,
   "duree": "3 ans",
@@ -2314,7 +2344,17 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.esc-clermont.fr/en/programme/msc-commerce-international-et-marketing-digital/ — « The MSc – Master of Science in International Commerce & Digital Marketing is delivered on the Clermont-Ferrand XL Campus, within an international environment bringing together more than 60 nationalities and fostering strong intercultural immersion. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 44,
@@ -2383,7 +2423,14 @@
    "Google Analytics",
    "Prestashop"
   ],
-  "programme": null,
+  "programme": [
+   "Transformation digitale de l'économie globale",
+   "Comprendre l’économie numérique",
+   "Start-up et disruption",
+   "Économie collaborative",
+   "E-santé",
+   "3D Printing"
+  ],
   "nonCouvert": [
    "Pas de suite de parcours / Pas de passerelle"
   ],
@@ -2423,6 +2470,12 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.efap.com/formation-communication/mba-marketing-digital — « › Pas de suite de parcours / Pas de passerelle. »"
+   },
+   {
+    "champ": "programme",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.efap.com/formation-communication/mba-marketing-digital — « Transformation digitale de l'économie globale › Comprendre l’économie numérique › Start-up et disruption › Économie collaborative › E-santé › 3D Printing »"
    }
   ],
   "codeRncpRs": "RNCP 36119",
@@ -2640,7 +2693,10 @@
    "Prêt étudiant"
   ],
   "certification": "Titre RNCP",
-  "outils": null,
+  "outils": [
+   "SQL",
+   "Business Intelligence"
+  ],
   "programme": null,
   "nonCouvert": null,
   "dateVerification": "2026-06-10",
@@ -2648,7 +2704,24 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "codeRncpRs": "42389",
+  "historique": [
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.psbedu.paris/fr/programmes/master-digital-business — « *le « Diplôme du Programme Grande École (PGE) » délivré par Paris School of Business, de niveau 7 (NSF 313), est enregistré au RNCP sous le numéro 42389 »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.psbedu.paris/fr/programmes/master-digital-business — « Grâce aux enseignements en SQL, Business Intelligence, intelligence artificielle, automatisation et développement web, les étudiants comprennent les technologies qui transforment les entreprises. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 53,
@@ -2656,7 +2729,7 @@
   "organisme": "IPAG Business School",
   "categorieLibelle": "Écoles",
   "sousFamille": "École de commerce",
-  "region": null,
+  "region": "Paris , Nice",
   "url": "ipag.edu",
   "prix": 8950,
   "duree": "3 ans",
@@ -2673,7 +2746,14 @@
   ],
   "certification": "Titre RNCP",
   "outils": null,
-  "programme": null,
+  "programme": [
+   "Certification professionnelle au choix",
+   "CRM",
+   "Digital Marketing",
+   "Publicité & Communication",
+   "Community Management",
+   "Site d'e-commerce et stratégie digitale"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-06-12",
   "source": "ipag.edu",
@@ -2693,6 +2773,18 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.ipag.edu/bachelor-marketing-communication-digitale — « Ces modules rejoignent les compétences de la fiche RNCP 37968 reconnue par France Compétences : »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ipag.edu/bachelor-marketing-communication-digitale — « Cette spécialisation est disponible sur les campus de Paris , Nice ainsi qu'en ligne via IPAG Online . »"
+   },
+   {
+    "champ": "programme",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.ipag.edu/bachelor-marketing-communication-digitale — « Certification professionnelle au choix\n CRM\n Digital Marketing\n Publicité & Communication\n Community Management\n Site d'e-commerce et stratégie digitale »"
    }
   ],
   "codeRncpRs": "RNCP 37968",
@@ -2858,10 +2950,17 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/ — « Codage développement WEB \nDigital project management \nGraphisme Design \nHands-on Digital project »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business-2/ — « enregistré de droit au RNCP sous le n° 36271 le 15/07/2021 »"
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "codeRncpRs": "36271"
  },
  {
   "id": 57,
@@ -3141,7 +3240,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "codeRncpRs": "36877",
+  "historique": [
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital — « Titre RNCP :  RNCP visé n°36877 :  Chef de projet marketing digital et communication (niveau 6) »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 63,
@@ -3149,11 +3259,11 @@
   "organisme": "ESD — École Supérieure du Digital",
   "categorieLibelle": "Écoles",
   "sousFamille": "École du digital",
-  "region": null,
+  "region": "Paris, Lyon, Bordeaux, Toulouse, Nantes",
   "url": "ecole-du-digital.com",
   "prix": 7000,
   "duree": "3 à 5 ans",
-  "volumeHoraire": null,
+  "volumeHoraire": 450,
   "formats": [
    "Présentiel",
    "Alternance"
@@ -3166,7 +3276,10 @@
    "Paiement échelonné"
   ],
   "certification": "Titre RNCP",
-  "outils": null,
+  "outils": [
+   "Unreal Engine",
+   "Unity"
+  ],
   "programme": null,
   "nonCouvert": null,
   "dateVerification": "2026-06-08",
@@ -3174,7 +3287,36 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://ecole-du-digital.com/formations/mastere-digital-design-creative-technologies/ — « Une formation axée sur la création - 450 heures par an »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://ecole-du-digital.com/formations/mastere-digital-design-creative-technologies/ — « Paris, Lyon, Bordeaux, Toulouse, Nantes »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://ecole-du-digital.com/formations/mastere-digital-design-creative-technologies/ — « Titre RNCP39251 Directeur artistique en projets de communication visuelle (Bac+5) »"
+   },
+   {
+    "champ": "outils",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://ecole-du-digital.com/formations/mastere-digital-design-creative-technologies/ — « Une semaine de workshop pour rentrer dans le monde de la 3D et découvrir un nouvel outil de conception comme les moteurs de jeu Unreal Engine ou Unity. »"
+   }
+  ],
+  "codeRncpRs": "RNCP39251",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 64,
@@ -3233,7 +3375,9 @@
    "Linux et bash"
   ],
   "programme": null,
-  "nonCouvert": null,
+  "nonCouvert": [
+   "initiation à l’informatique"
+  ],
   "dateVerification": "2026-06-08",
   "source": "hetic.net",
   "domaineDeclareLibelle": null,
@@ -3246,6 +3390,12 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale — « Linux et bash »"
+   },
+   {
+    "champ": "nonCouvert",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale — « La Prépa Mastère Digitale n’est pas une initiation à l’informatique. »"
    }
   ],
   "profondeur": "detail_verifie",
@@ -3417,7 +3567,7 @@
    "Alternance"
   ],
   "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
+  "prerequis": "Pour une admission en troisième année : un titre ou diplôme de niveau 5.",
   "cpf": 0,
   "financements": [
    "Alternance"
@@ -3431,7 +3581,24 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital — « Pour une admission en troisième année : un titre ou diplôme de niveau 5. »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital — « Titre RNCP :  RNCP visé n°36877 :  Chef de projet marketing digital et communication (niveau 6) »"
+   }
+  ],
+  "codeRncpRs": "RNCP visé n°36877",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 71,
@@ -3694,7 +3861,7 @@
   "organisme": "Sup de Pub",
   "categorieLibelle": "Écoles",
   "sousFamille": "École du digital",
-  "region": null,
+  "region": "Lyon",
   "url": "supdepub.com",
   "prix": null,
   "duree": "3 à 5 ans",
@@ -3718,7 +3885,17 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.supdepub.com/nos-programmes/mastere/strategie-digitale/lyon/ — « Pourquoi faire un Mastère Stratégie Digitale à Lyon ? »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 80,
@@ -3942,7 +4119,7 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null,
+  "modaliteAcces": "prises en charge par l’OPCO de l’entreprise",
   "aConfirmer": [
    "prix"
   ],
@@ -3970,6 +4147,12 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://rocket-school.com/formation/bachelor-business-development-marketing-digital/ — « L’apprentissage se fait directement sur les logiciels utilisés au quotidien par les équipes professionnelles (HubSpot, Salesforce, outils de Growth Hacking, IA générative). »"
+   },
+   {
+    "champ": "modaliteAcces",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://rocket-school.com/formation/bachelor-business-development-marketing-digital/ — « Nos formations Rocket School se déroulent en alternance et sont prises en charge par l’OPCO de l’entreprise (Opérateurs de Compétences). »"
    }
   ],
   "codeRncpRs": "RNCP 38666",
@@ -4775,7 +4958,18 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "dispoInter": true,
-  "dispoIntra": true
+  "dispoIntra": true,
+  "prixIntra": 3990,
+  "historique": [
+   {
+    "champ": "prixIntra",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.cegos.fr/formations/commercial-ventes/kam-developper-les-grands-comptes-et-comptes-strategiques — « Forfait intra - En savoir plus \n3 990,00 € HT \nPrix pour un groupe de 12 personnes max »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 104,
@@ -6538,7 +6732,25 @@
    "TikTok Ads"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "dispoInter": true,
+  "historique": [
+   {
+    "champ": "dispoInter",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-reseaux-sociaux/formation-tiktok-ads-qualiopi/ — « Toutes nos sessions inter sont disponibles au calendrier. »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 690,
+    "le": "2026-08-06",
+    "motif": "Tarif journalier publié, durée d un jour : total inchangé — https://www.conversion-boosters.com/formations-reseaux-sociaux/formation-tiktok-ads-qualiopi/ — « Le tarif des formations inter-entreprises est de 690€ à 890€ HT par jour et par apprenant selon le thème, la modalité et la durée de la formation. — 690 €/jour × 1 j »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "total"
  },
  {
   "id": 147,
@@ -6556,7 +6768,7 @@
    "Présentiel"
   ],
   "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
+  "prerequis": "Savoir se servir d'un ordinateur et d'un navigateur web",
   "cpf": 0,
   "financements": [
    "OPCO",
@@ -6574,7 +6786,9 @@
    "Audit technique",
    "Stratégie de contenu"
   ],
-  "nonCouvert": null,
+  "nonCouvert": [
+   "l’automatisation technique, les scripts complexes ou le « Prompt Engineering » avancé"
+  ],
   "dateVerification": "2026-07-24",
   "source": "conversion-boosters.com",
   "domaineDeclareLibelle": null,
@@ -6582,7 +6796,30 @@
    "SEO e-commerce"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "dispoInter": true,
+  "historique": [
+   {
+    "champ": "dispoInter",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-referencement-web/formation-seo-1-jour/ — « Toutes nos sessions inter sont disponibles au calendrier. »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-referencement-web/formation-seo-1-jour/ — « Savoir se servir d'un ordinateur et d'un navigateur web »"
+   },
+   {
+    "champ": "nonCouvert",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-referencement-web/formation-seo-1-jour/ — « Si votre objectif est de creuser l’automatisation technique, les scripts complexes ou le «  Prompt Engineering  » avancé, ce sujet mérite une session à part entière pour être traité en profondeur. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 148,
@@ -6629,7 +6866,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "conversion-boosters.com",
-  "prix": 890,
+  "prix": 1380,
   "duree": "1 à 2 jours",
   "volumeHoraire": null,
   "formats": [
@@ -6637,7 +6874,7 @@
    "Présentiel"
   ],
   "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
+  "prerequis": "Comprendre la logique du marketing digital (tunnel de conversion etc.)",
   "cpf": 0,
   "financements": [
    "OPCO",
@@ -6656,7 +6893,31 @@
    "Google Ads"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "dispoInter": true,
+  "historique": [
+   {
+    "champ": "dispoInter",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-referencement-web/formation-google-ads/ — « Toutes nos sessions inter sont disponibles au calendrier. »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-referencement-web/formation-google-ads/ — « Comprendre la logique du marketing digital (tunnel de conversion etc.) »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 890,
+    "le": "2026-08-06",
+    "motif": "Correction : tarif journalier enregistré à tort comme total — https://www.conversion-boosters.com/formations-referencement-web/formation-google-ads/ — « Le tarif des formations inter-entreprises est de 690€ à 890€ HT par jour et par apprenant selon le thème, la modalité et la durée de la formation. — 690 €/jour × 2 j »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "total"
  },
  {
   "id": 150,
@@ -6733,9 +6994,9 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "johannadigiorgio.com",
-  "prix": null,
+  "prix": 690,
   "duree": "Sur mesure",
-  "volumeHoraire": null,
+  "volumeHoraire": 7,
   "formats": [
    "Distanciel",
    "Présentiel"
@@ -6763,7 +7024,30 @@
    "Pinterest Ads"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.johannadigiorgio.com/formation-pinterest-ads-par-une-experte-certifiee/ — « 690€ pour le format hybride »"
+   },
+   {
+    "champ": "prixIntra",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.johannadigiorgio.com/formation-pinterest-ads-par-une-experte-certifiee/ — « application du tarif unique de 1 090€ pour 1 à 2 personnes, 1 590€ pour 3 à 5 personnes, et sur devis au-delà. »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.johannadigiorgio.com/formation-pinterest-ads-par-une-experte-certifiee/ — « Durée de la formation : 7h (1 jour). »"
+   }
+  ],
+  "prixIntra": 1090,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 152,
@@ -7416,7 +7700,7 @@
    "SEO e-commerce"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null,
+  "modaliteAcces": "No sign-up required",
   "aConfirmer": [
    "prix"
   ],
@@ -7426,8 +7710,16 @@
     "valeurPrecedente": null,
     "le": "2026-08-04",
     "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
+   },
+   {
+    "champ": "modaliteAcces",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://ahrefs.com/academy/how-to-use-ahrefs — « No sign-up required, and absolutely free of charge »"
    }
-  ]
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "id": 166,
@@ -8694,8 +8986,8 @@
   "categorieLibelle": "Formations indépendantes",
   "sousFamille": "Créateur indépendant",
   "region": null,
-  "url": "speed-ecom.eu",
-  "prix": 9,
+  "url": "skool.com/ecomsphere",
+  "prix": 49,
   "duree": "Abonnement mensuel",
   "volumeHoraire": null,
   "formats": [
@@ -8724,7 +9016,7 @@
    "CPF",
    "Accompagnement individuel (offre séparée)"
   ],
-  "dateVerification": "2026-08-03",
+  "dateVerification": "2026-08-06",
   "source": "Site officiel",
   "domaineDeclareLibelle": "E-commerce",
   "competencesDeclarees": [
@@ -8734,7 +9026,17 @@
    "Marketplace"
   ],
   "classificationManuelle": true,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "mensuel",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": 9,
+    "le": "2026-08-06",
+    "motif": "Erreur de collecte d origine — aucune preuve d une hausse de tarif. https://www.skool.com/ecomsphere — « Rejoins-nous pour 49€/mois. » (la page affiche aussi « $49/month »)"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 193,
@@ -9300,7 +9602,7 @@
   "organisme": "M2i Formation",
   "categorieLibelle": "Formations professionnelles",
   "sousFamille": "Organisme de formation",
-  "region": null,
+  "region": "Paris 15",
   "url": "m2iformation.fr",
   "formats": [
    "Présentiel",
@@ -9328,7 +9630,31 @@
   "volumeHoraire": null,
   "id": 206,
   "nom": "E-commerce — Concevoir votre boutique et booster vos ventes",
-  "prix": 890
+  "prix": 890,
+  "prixIntra": 4485,
+  "historique": [
+   {
+    "champ": "prixIntra",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.m2iformation.fr/formation-e-commerce-concevoir-votre-boutique-et-booster-vos-ventes/ECOMM-VEN/ — « En INTRA-ENTREPRISE\nTarif : à partir de 4 485 € HT. »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.m2iformation.fr/formation-e-commerce-concevoir-votre-boutique-et-booster-vos-ventes/ECOMM-VEN/ — « du 08/10/2026 au 09/10/2026 \nParis 15 »"
+   },
+   {
+    "champ": "niveauEntree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.m2iformation.fr/formation-e-commerce-concevoir-votre-boutique-et-booster-vos-ventes/ECOMM-VEN/ — « Aucun prérequis technique n'est nécessaire. »"
+   }
+  ],
+  "niveauEntree": "Aucun prérequis",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "M2i Formation",
@@ -9368,7 +9694,7 @@
   "organisme": "Dawan",
   "categorieLibelle": "Formations professionnelles",
   "sousFamille": "Organisme de formation",
-  "region": null,
+  "region": "Distance",
   "url": "dawan.fr",
   "formats": [
    "Présentiel",
@@ -9409,15 +9735,36 @@
   "sourceModalite": null,
   "duree": "3 jours",
   "volumeHoraire": 21,
-  "prix": 1500,
+  "prix": 2625,
   "id": 208,
   "nom": "PrestaShop — Utilisateurs",
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-04",
+  "profondeurVerifieeLe": "2026-08-06",
   "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-utilisateurs",
-  "prixIntra": null,
+  "prixIntra": 1875,
   "dispoInter": true,
-  "dispoIntra": null
+  "dispoIntra": null,
+  "historique": [
+   {
+    "champ": "prixIntra",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-utilisateurs — « Tarif présentiel\n1 875,00 € HT »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-utilisateurs — « Choisissez un lieu Votre ville Bordeaux Bruxelles Distance Genève Lille Luxembourg Lyon Marseille Montpellier Nantes Nice Paris Rennes Strasbourg Toulouse »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 1500,
+    "le": "2026-08-06",
+    "motif": "Tarif journalier publié, converti sur la durée annoncée — https://www.dawan.fr/formations/opensource/prestashop/prestashop-utilisateurs — « 875,00 € HT / jour — 875 €/jour × 3 j »"
+   }
+  ],
+  "unitePrix": "total"
  },
  {
   "organisme": "Dawan",
@@ -9435,7 +9782,7 @@
   "financements": [
    "OPCO"
   ],
-  "certification": null,
+  "certification": "Attestation de fin de formation mentionnant le résultat des acquis",
   "outils": [
    "PrestaShop"
   ],
@@ -9461,14 +9808,29 @@
   "sourceModalite": null,
   "duree": "2 jours",
   "volumeHoraire": 14,
-  "prix": 1180,
+  "prix": 1790,
   "id": 209,
   "nom": "PrestaShop — Développeurs",
   "dispoInter": true,
   "dispoIntra": null,
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-04",
-  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-developpeurs"
+  "profondeurVerifieeLe": "2026-08-06",
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-developpeurs",
+  "historique": [
+   {
+    "champ": "certification",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-developpeurs — « Sanction : Attestation de fin de formation mentionnant le résultat des acquis »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 1180,
+    "le": "2026-08-06",
+    "motif": "Tarif journalier publié, converti sur la durée annoncée — https://www.dawan.fr/formations/opensource/prestashop/prestashop-developpeurs — « 895,00 € HT / jour — 895 €/jour × 2 j »"
+   }
+  ],
+  "unitePrix": "total"
  },
  {
   "organisme": "Dawan",
@@ -9486,7 +9848,7 @@
   "financements": [
    "OPCO"
   ],
-  "certification": null,
+  "certification": "Attestation de fin de formation mentionnant le résultat des acquis",
   "outils": [
    "PrestaShop"
   ],
@@ -9509,14 +9871,29 @@
   "sourceModalite": null,
   "duree": "3 jours",
   "volumeHoraire": 21,
-  "prix": 1500,
+  "prix": 2625,
   "id": 210,
   "nom": "PrestaShop — Webmasters",
   "dispoInter": true,
   "dispoIntra": null,
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-04",
-  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-webmasters"
+  "profondeurVerifieeLe": "2026-08-06",
+  "urlDetail": "https://www.dawan.fr/formations/opensource/e-commerce/prestashop-webmasters",
+  "historique": [
+   {
+    "champ": "certification",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-webmasters — « Sanction : Attestation de fin de formation mentionnant le résultat des acquis »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 1500,
+    "le": "2026-08-06",
+    "motif": "Tarif journalier publié, converti sur la durée annoncée — https://www.dawan.fr/formations/opensource/prestashop/prestashop-webmasters — « 875,00 € HT / jour — 875 €/jour × 3 j »"
+   }
+  ],
+  "unitePrix": "total"
  },
  {
   "organisme": "Dawan",
@@ -9529,12 +9906,12 @@
    "Distanciel"
   ],
   "niveauLibelle": null,
-  "prerequis": null,
+  "prerequis": "Maîtrise des outils bureautiques (traitement de texte, traitement des images, navigation internet, tableur) - Aisance dans le rédactionnel et le traitement de données chiffrées",
   "cpf": 0,
   "financements": [
    "OPCO"
   ],
-  "certification": null,
+  "certification": "Créer et gérer le site internet de sa TPE à l’aide d’un CMS",
   "outils": [
    "PrestaShop"
   ],
@@ -9549,11 +9926,60 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
+  "duree": "3 jour(s)",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 2925,
   "id": 211,
-  "nom": "PrestaShop — Créer et gérer le site e-commerce de sa TPE"
+  "nom": "PrestaShop — Créer et gérer le site e-commerce de sa TPE",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe — « 975,00 € HT / jour »"
+   },
+   {
+    "champ": "prixIntra",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe — « 1 250,00 € HT »"
+   },
+   {
+    "champ": "duree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe — « Durée : 3 jour(s) »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe — « Maîtrise des outils bureautiques (traitement de texte, traitement des images, navigation internet, tableur) - Aisance dans le rédactionnel et le traitement de données chiffrées »"
+   },
+   {
+    "champ": "certification",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe — « La formation prépare à la certification Créer et gérer le site internet de sa TPE à l’aide d’un CMS »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe — « Code RS : RS6685 »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 975,
+    "le": "2026-08-06",
+    "motif": "Tarif journalier publié, converti sur la durée annoncée — https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe — « 975,00 € HT / jour — 975 €/jour × 3 j »"
+   }
+  ],
+  "prixIntra": 1250,
+  "codeRncpRs": "RS6685",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "total"
  },
  {
   "organisme": "Dawan",
@@ -9566,12 +9992,12 @@
    "Distanciel"
   ],
   "niveauLibelle": null,
-  "prerequis": null,
+  "prerequis": "- Être à l’aise avec l’usage courant d’un ordinateur et d’Internet - Avoir un projet de site vitrine ou e-commerce pour son activité - Aucun prérequis en développement",
   "cpf": 0,
   "financements": [
    "OPCO"
   ],
-  "certification": null,
+  "certification": "Attestation de fin de formation mentionnant le résultat des acquis",
   "outils": [
    "PrestaShop"
   ],
@@ -9586,11 +10012,53 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
+  "duree": "5 jour(s)",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 4875,
   "id": 212,
-  "nom": "PrestaShop — Finaliser, mettre en ligne et piloter sa boutique"
+  "nom": "PrestaShop — Finaliser, mettre en ligne et piloter sa boutique",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique — « 2 475,00 € HT »"
+   },
+   {
+    "champ": "prixIntra",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique — « 975,00 € HT / jour »"
+   },
+   {
+    "champ": "duree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique — « Durée : 5 jour(s) »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique — « Pré-requis : \n - Être à l’aise avec l’usage courant d’un ordinateur et d’Internet - Avoir un projet de site vitrine ou e-commerce pour son activité - Aucun prérequis en développement »"
+   },
+   {
+    "champ": "certification",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique — « Sanction : Attestation de fin de formation mentionnant le résultat des acquis »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 2475,
+    "le": "2026-08-06",
+    "motif": "Tarif journalier publié, converti sur la durée annoncée — https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique — « 975,00 € HT / jour — 975 €/jour × 5 j »"
+   }
+  ],
+  "prixIntra": 975,
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "total"
  },
  {
   "organisme": "LiveMentor",
@@ -9983,7 +10451,7 @@
    "Distanciel",
    "Alternance"
   ],
-  "prerequis": null,
+  "prerequis": "Être titulaire du baccalauréat ou d'un diplôme équivalent de niveau 4",
   "cpf": 1,
   "financements": [
    "CPF",
@@ -9999,13 +10467,48 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "prix": null,
+  "duree": "1100h • 16 mois",
+  "volumeHoraire": 1100,
+  "prix": 4190,
   "niveauLibelle": "Aucun prérequis",
   "certification": "Diplôme national niveau 5",
   "id": 224,
-  "nom": "BTS Management commercial opérationnel"
+  "nom": "BTS Management commercial opérationnel",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel — « Tarif\n4 190 €\nTarif pour les particuliers. »"
+   },
+   {
+    "champ": "duree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel — « Durée estimée 1100h • 16 mois »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel — « Total : 1100 h »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel — « Pour accéder au BTS Management Commercial Opérationnel chez Studi, vous devez être titulaire du baccalauréat ou d'un diplôme équivalent de niveau 4. »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel — « Certification : BTS \"Management commercial opérationnel\" niveau 5, enregistré au RNCP, sous le numéro 38362, par décision de France compétences le 11/12/2023 »"
+   }
+  ],
+  "codeRncpRs": "38362",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "Studi",
@@ -10051,14 +10554,16 @@
    "Distanciel",
    "Alternance"
   ],
-  "prerequis": null,
+  "prerequis": "être titulaire du baccalauréat ou d'un diplôme équivalent de niveau 4",
   "cpf": 1,
   "financements": [
    "CPF",
    "Alternance"
   ],
   "outils": null,
-  "programme": null,
+  "programme": [
+   "Culture générale et expression (BTS)"
+  ],
   "nonCouvert": null,
   "dateVerification": "2026-08-04",
   "source": "studi.com — page catalogue marketing digital",
@@ -10067,13 +10572,54 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "prix": null,
+  "duree": "16 mois",
+  "volumeHoraire": 1100,
+  "prix": 4190,
   "niveauLibelle": "Aucun prérequis",
   "certification": "Diplôme national niveau 5",
   "id": 226,
-  "nom": "BTS Négociation et digitalisation de la relation client"
+  "nom": "BTS Négociation et digitalisation de la relation client",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client — « Tarif\n4 190 €\nTarif pour les particuliers. »"
+   },
+   {
+    "champ": "duree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client — « Durée estimée 1100h • 16 mois »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client — « Durée estimée 1100h • 16 mois »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client — « Pour accéder au BTS Négociation Digitalisation Relation Client chez Studi, vous devez être titulaire du baccalauréat ou d'un diplôme équivalent de niveau 4. »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client — « Certification : BTS \"Négociation et digitalisation de la relation client\" niveau 5, enregistré au RNCP, sous le numéro 38368, par arrêté du 19/02/2018 publié au Journal Officiel du 06/03/2018 »"
+   },
+   {
+    "champ": "programme",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client — « Culture générale et expression (BTS) »"
+   }
+  ],
+  "codeRncpRs": "38368",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "Studi",
@@ -10085,7 +10631,7 @@
    "Distanciel",
    "Alternance"
   ],
-  "prerequis": null,
+  "prerequis": "Être titulaire d'un diplôme BAC+2 (BTS, DUT, L2) ou avoir validé 120 crédits ECTS",
   "cpf": 1,
   "financements": [
    "CPF",
@@ -10101,25 +10647,60 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "prix": null,
+  "duree": "450h • 9 mois",
+  "volumeHoraire": 450,
+  "prix": 5390,
   "niveauLibelle": "Bac+2",
   "certification": "Titre RNCP niveau 6",
   "id": 227,
-  "nom": "Bachelor Chargé de marketing et communication"
+  "nom": "Bachelor Chargé de marketing et communication",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication — « Tarif\n5 390 €\nTarif pour les particuliers. »"
+   },
+   {
+    "champ": "duree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication — « Durée estimée 450h • 9 mois »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication — « La durée estimée du Bachelor Chargé de Marketing et Communication est de 450h - 9 mois. »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication — « Pour intégrer le Bachelor Chargé de Marketing et Communication chez Studi, vous devez être titulaire d'un diplôme BAC+2 (BTS, DUT, L2) ou avoir validé 120 crédits ECTS. »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication — « RNCP41107BC01 - Elaborer une stratégie marketing et communication pour un produit ou service »"
+   }
+  ],
+  "codeRncpRs": "RNCP41107",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "Studi",
   "categorieLibelle": "Écoles",
   "sousFamille": "École du digital",
-  "region": null,
+  "region": "En ligne",
   "url": "studi.com",
   "formats": [
    "Distanciel",
    "Alternance"
   ],
-  "prerequis": null,
+  "prerequis": "Être titulaire d’une Certification de niveau 5, d’un Bac+2, d’un diplôme équivalent (diplôme étranger...), ou avoir validé 120 crédits ECTS dans le domaine du digital, de la communication, du marketing",
   "cpf": 1,
   "financements": [
    "CPF",
@@ -10135,13 +10716,54 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "prix": null,
+  "duree": "4 mois",
+  "volumeHoraire": 80,
+  "prix": 1990,
   "niveauLibelle": "Bac+2",
   "certification": "Titre RNCP niveau 6",
   "id": 228,
-  "nom": "Bachelor Chef de projet marketing digital"
+  "nom": "Bachelor Chef de projet marketing digital",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital — « Tarif\n1 990 €\nTarif pour les particuliers. »"
+   },
+   {
+    "champ": "duree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital — « La durée estimée de cette formation est de 80h - 4 mois. »"
+   },
+   {
+    "champ": "volumeHoraire",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital — « La durée estimée de cette formation est de 80h - 4 mois. »"
+   },
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital — « Lieu : En ligne »"
+   },
+   {
+    "champ": "prerequis",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital — « Être titulaire d’une Certification de niveau 5, d’un Bac+2, d’un diplôme équivalent (diplôme étranger...), ou avoir validé 120 crédits ECTS dans le domaine du digital, de la communication, du marketing »"
+   },
+   {
+    "champ": "codeRncpRs",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital — « RNCP39602BC03 - Déployer une stratégie de marketing digital => RNCP38018BC03 - Déployer la stratégie webmarketing (chef de projet digital - INSTITUT EUROPEEN F 2I) »"
+   }
+  ],
+  "codeRncpRs": "RNCP39602",
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "Studi",
@@ -10203,13 +10825,23 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "duree": null,
+  "duree": "trois ans",
   "volumeHoraire": null,
   "prix": null,
   "niveauLibelle": "Bac+3",
   "certification": "Titre RNCP niveau 7",
   "id": 230,
-  "nom": "Master Marketing digital"
+  "nom": "Master Marketing digital",
+  "historique": [
+   {
+    "champ": "duree",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.studi.com/fr/alternance/bachelor-marketing-digital — « Un bachelor marketing digital en apprentissage permet d'acquérir en trois ans des connaissances concrètes. »"
+   }
+  ],
+  "profondeur": "detail_verifie",
+  "profondeurVerifieeLe": "2026-08-06"
  },
  {
   "organisme": "ISM",
@@ -10336,7 +10968,7 @@
   "organisme": "Cegos",
   "categorieLibelle": "Formations professionnelles",
   "sousFamille": "Formation continue",
-  "region": null,
+  "region": "PARIS",
   "url": "cegos.fr",
   "prix": 1690,
   "duree": "2 jours",
@@ -10369,10 +11001,18 @@
   "modaliteAcces": null,
   "sourceModalite": null,
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-04",
+  "profondeurVerifieeLe": "2026-08-06",
   "urlDetail": "https://www.cegos.fr/formations/marketing/les-cles-du-e-commerce",
   "prixIntra": 4150,
   "dispoInter": true,
-  "dispoIntra": true
+  "dispoIntra": true,
+  "historique": [
+   {
+    "champ": "region",
+    "valeurPrecedente": null,
+    "le": "2026-08-06",
+    "motif": "Extraction automatique depuis https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce — « Du 8 oct. au 9 oct. 2026 \nPARIS »"
+   }
+  ]
  }
 ]

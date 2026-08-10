@@ -153,10 +153,12 @@ export function motsCles(texte: string): Set<string> {
  * l'intitulé (catégorie, référence), et les compter contre elle ferait rater
  * des rapprochements corrects.
  */
-export function scoreRapprochement(intitule: string, url: string): number {
+export function scoreRapprochement(intitule: string, cible: string): number {
   const attendus = motsCles(intitule);
   if (attendus.size === 0) return 0;
-  const presents = motsCles(cheminDe(url));
+  // `cheminDe` rend la chaîne telle quelle si ce n'est pas une URL : la même
+  // fonction sert donc à comparer un intitulé à une URL ou à un autre intitulé.
+  const presents = motsCles(cheminDe(cible));
   let trouves = 0;
   for (const mot of attendus) if (presents.has(mot)) trouves++;
   return trouves / attendus.size;

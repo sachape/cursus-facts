@@ -66,6 +66,18 @@ export const CHAMPS_EXTRAITS = [
 ] as const;
 export type ChampExtrait = (typeof CHAMPS_EXTRAITS)[number];
 
+/**
+ * Champs qui QUALIFIENT une valeur sans en être une.
+ *
+ * `unitePrix` n'est pas une donnée du catalogue : c'est ce qui rend le prix
+ * interprétable. Il ne s'écrit donc jamais comme un champ, et son absence ne
+ * compte pas comme une information manquante — elle invalide le prix.
+ */
+export const QUALIFIANTS: Record<string, string> = {
+  unitePrix: "prix",
+  uniteIntra: "prixIntra",
+};
+
 /** Un champ du schéma : une valeur, et l'extrait qui l'atteste. */
 function champCite(type: Record<string, unknown>, description: string) {
   return {
@@ -102,7 +114,7 @@ const liste = { type: "array", items: { type: "string" } };
  * qu'une extraction perdue.
  */
 export const GROUPES_EXTRACTION = [
-  ["prix", "prixIntra", "modaliteAcces", "duree", "volumeHoraire", "formats", "region", "dispoInter", "dispoIntra"],
+  ["prix", "unitePrix", "prixIntra", "uniteIntra", "modaliteAcces", "duree", "volumeHoraire", "formats", "region", "dispoInter", "dispoIntra"],
   ["niveauEntree", "prerequis", "cpf", "financements", "certification", "codeRncpRs", "outils", "programme", "nonCouvert", "dateVerification"],
 ] as const;
 
@@ -110,7 +122,19 @@ export const SCHEMA_EXTRACTION = {
   type: "object",
   properties: {
     prix: champCite(nombre, "Tarif pour une personne (inter-entreprises), en euros. 0 si gratuit."),
+    /*
+      L'unité est OBLIGATOIRE dès qu'un prix est extrait. Un tarif journalier
+      écrit comme un total ment d'un facteur égal à la durée : Dawan publie
+      « 875,00 € HT / jour » et 875 allait remplacer un total de 1 500 €.
+    */
+    unitePrix: champCite(
+      texte,
+      "OBLIGATOIRE si un prix est donné. Unité exacte du tarif telle que la page l'écrit : " +
+        "total, journalier, mensuel, annuel, ou horaire. Cite le passage qui porte la mention " +
+        "(« / jour », « par mois », « par personne »). Ne devine pas : sans mention, laisse vide.",
+    ),
     prixIntra: champCite(nombre, "Tarif de groupe (intra-entreprise), en euros."),
+    uniteIntra: champCite(texte, "Unité du tarif intra, mêmes règles que unitePrix."),
     modaliteAcces: champCite(
       texte,
       "Comment on accède au parcours quand il est gratuit : accès libre, compte requis, " +

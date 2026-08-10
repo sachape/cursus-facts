@@ -1,132 +1,6 @@
 {
  "rejets": [
   {
-   "champ": "programme",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Partie 1 : Stratégie et Écosystème Web",
-    "Partie 2 : Stratégies de Contenu et Inbound Marketing",
-    "Partie 3 : Visibilité et Acquisition (SEO & SEA, GEO)",
-    "Partie 4 : Social Media et Influence",
-    "Partie 5 : Data Marketing et Performance",
-    "Partie 6 : Emailing, Automation et Fidélisation"
-   ],
-   "extrait": "Partie 1 : Stratégie et Écosystème Web",
-   "id": 33,
-   "url": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital"
-  },
-  {
-   "champ": "prix",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": 0,
-   "extrait": "All Semrush Academy courses are free of charge.",
-   "id": 164,
-   "url": "https://www.semrush.com/academy/courses/semrush-tools/"
-  },
-  {
-   "champ": "modaliteAcces",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "compte requis",
-   "extrait": "If you already have a Semrush account, log in to proceed; otherwise, create a new account by providing the required information",
-   "id": 164,
-   "url": "https://www.semrush.com/academy/courses/semrush-tools/"
-  },
-  {
-   "champ": "dispoInter",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": true,
-   "extrait": "Enroll in a course today",
-   "id": 164,
-   "url": "https://www.semrush.com/academy/courses/semrush-tools/"
-  },
-  {
-   "champ": "cpf",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": true,
-   "extrait": "1499€ TTC, finançable via votre Compte Personnel de Formation , votre  OPCO , ainsi que  France Travail  et vos  fonds propres .",
-   "id": 91,
-   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/"
-  },
-  {
-   "champ": "programme",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "1. Introduction aux spécificités du e-commerce",
-    "2. Législation pour le e-commerce",
-    "3. Travailler son image de marque",
-    "4. Espionner la concurrence de la vente en ligne",
-    "5. SEO : le référencement naturel de votre site et de vos pages produits",
-    "6. Établir une stratégie de contenu adaptée au e-commerce",
-    "7. Pinterest pour les e-commerçant·es",
-    "8. Bâtir une communauté et vendre sur Instagram",
-    "9. Percer sur Tik Tok pour vendre ses produits",
-    "10. Analyser les performances de son site avec Google Analytics",
-    "11. Google Ads : les campagnes shopping",
-    "12. Vendre grâce à Facebook Ads & Instagram Ads",
-    "13. Se lancer sur les marketplaces",
-    "14. L’intelligence artificielle au service de vos contenus",
-    "15. Le marketing d’influence pour augmenter ses ventes",
-    "16. Déployer une stratégie d’affiliation"
-   ],
-   "extrait": "1. Introduction aux spécificités du e-commerce",
-   "id": 91,
-   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/"
-  },
-  {
-   "champ": "prix",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": 0,
-   "extrait": "Enroll for free Starts Aug 6",
-   "id": 180,
-   "url": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies"
-  },
-  {
-   "champ": "programme",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Digital Marketing Foundations",
-    "Strategy, Analysis & Audit",
-    "Channel Implementation & Performance Analysis"
-   ],
-   "extrait": "There are 3 modules in this course",
-   "id": 180,
-   "url": "https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies"
-  },
-  {
-   "champ": "formats",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Distanciel"
-   ],
-   "extrait": "Toutes nos formations sont 100 % en ligne et éligibles au CPF ou disponibles en alternance.",
-   "id": 93,
-   "url": "https://www.studi.com/fr/formation-a-distance/commerciale"
-  },
-  {
-   "champ": "duree",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "6 mois de formation académique + 6 mois de mission en entreprise",
-   "extrait": "Prochaine rentrée: octobre 2026 › 6 mois de formation académique (+/- 400h de face à face) › 6 mois de mission en entreprise",
-   "id": 45,
-   "url": "https://www.efap.com/formation-communication/mba-marketing-digital"
-  },
-  {
-   "champ": "programme",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Transformation digitale de l'économie globale",
-    "Digital Marketing & Communication",
-    "Management de projet digital (web, mobile, internet des objets)",
-    "Social world & Individu média",
-    "Personal branding 2.0 et coaching de projet professionnel",
-    "E-business & Data world",
-    "Projet start-up ou consultant junior"
-   ],
-   "extrait": "Transformation digitale de l'économie globale › Comprendre l’économie numérique › Start-up et disruption › Économie collaborative › E-santé › 3D Printing",
-   "id": 45,
-   "url": "https://www.efap.com/formation-communication/mba-marketing-digital"
-  },
-  {
    "champ": "region",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": "Paris, Nice",
@@ -138,7 +12,15 @@
    "champ": "prerequis",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": "En 1re année : Parcoursup + entretien de motivation en français ; En 2e année : sous condition d'obtention de 60 crédits ECTS ; En 3e année : sous condition d'obtention de 120 crédits ECTS",
-   "extrait": "En 1re année Titulaire d’un diplôme français • Parcoursup + entretien de motivation en français Titulaire d’un diplôme étranger • Sur dossier + entretien de motivation en français",
+   "extrait": "En 3e année Titulaire d’un diplôme français et titulaire d’un diplôme étranger Sous condition d’obtention de 120 crédits ECTS ou équivalent international • Sur dossier + entretien en français et en anglais",
+   "id": 53,
+   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
+  },
+  {
+   "champ": "codeRncpRs",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "RNCP37968",
+   "extrait": "Ces modules rejoignent les compétences de la fiche RNCP 37968 reconnue par France Compétences :",
    "id": 53,
    "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
   },
@@ -158,179 +40,425 @@
    "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
   },
   {
-   "champ": "codeRncpRs",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "RNCP40509",
-   "extrait": "Consulter la fiche RNCP nationale n°40509 relative à ce diplôme",
-   "id": 2,
-   "url": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique"
-  },
-  {
    "champ": "prix",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": 0,
-   "extrait": "No sign-up required, and absolutely free of charge",
-   "id": 165,
-   "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
+   "motif": "unite_annuel",
+   "valeur": 8950,
+   "extrait": "Les tarifs pour l’entrée en 1re, 2e, 3e année sont de 8 950 € par an en cas de paiement comptant et de 9 350 € en cas de paiement fractionné.",
+   "id": 53,
+   "url": "https://www.ipag.edu/bachelor-marketing-communication-digitale"
   },
   {
-   "champ": "modaliteAcces",
+   "champ": "unitePrix",
    "motif": "valeur_absente_de_l_extrait",
-   "valeur": "accès libre",
-   "extrait": "No sign-up required, and absolutely free of charge",
-   "id": 165,
-   "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
-  },
-  {
-   "champ": "formats",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "Distanciel"
-   ],
-   "extrait": "Learn practical ways to use Ahrefs' SEO tools and reports to improve SEO.",
-   "id": 165,
-   "url": "https://ahrefs.com/academy/how-to-use-ahrefs"
-  },
-  {
-   "champ": "dispoInter",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": true,
-   "extrait": "Formation inter / intra - Marketing - Marketing digital Offre 2026 Offre 2027",
-   "id": 104,
-   "url": "https://www.cegos.fr/formations/marketing-marketing-digital"
-  },
-  {
-   "champ": "dispoIntra",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": true,
-   "extrait": "Formation inter / intra - Marketing - Marketing digital Offre 2026 Offre 2027",
-   "id": 104,
-   "url": "https://www.cegos.fr/formations/marketing-marketing-digital"
-  },
-  {
-   "champ": "programme",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": [
-    "E-quiz en amont/aval de la formation.",
-    "Structurer un Customer Care efficace et omnicanal",
-    "Maximiser la valeur du Customer Care grâce aux données et à l’IA",
-    "Automatiser et fluidifier le service client tout en conservant une touche humaine",
-    "Déployer un processus de contrôle qualité et de gestion des risques"
-   ],
-   "extrait": "Structurer un Customer Care efficace et omnicanal",
-   "id": 106,
-   "url": "https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client"
-  },
-  {
-   "champ": "dispoInter",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": true,
-   "extrait": "Les sessions inter-entreprises permettent également des échanges de pratiques entre professionnels de secteurs variés, source d'enrichissement mutuel.",
-   "id": 232,
-   "url": "https://www.ism.fr/formations/marketing-digital"
-  },
-  {
-   "champ": "dispoIntra",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": true,
-   "extrait": "L'ISM propose des solutions intra-entreprise et des programmes sur mesure, conçus en collaboration avec les directions marketing, commerciales ou RH.",
-   "id": 232,
-   "url": "https://www.ism.fr/formations/marketing-digital"
-  },
-  {
-   "champ": "prerequis",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Bac+3 (bachelor, licence, titre niveau II) en management, marketing, communication, web ou informatique",
-   "extrait": "Bac+3 (bachelor, licence, titre niveau II) en en management, marketing, communication, web ou informatique.",
-   "id": 61,
-   "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
-  },
-  {
-   "champ": "certification",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Titre « Manager de la Communication Numérique » de l’IIM et diplôme de l’EMLV conférant le grade de master",
-   "extrait": "À l’issue du cursus, les étudiants obtiennent le titre « Manager de la Communication Numérique » de l’IIM et le diplôme de l’EMLV conférant le grade de master",
-   "id": 61,
-   "url": "https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/"
-  },
-  {
-   "champ": "prerequis",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Accessible post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2 ; sélection sur dossier, épreuves puis entretien",
-   "extrait": "Les bachelors IIM sont accessibles post-bac (Hors Parcoursup) ou avec un bac+1 ou bac+2. La sélection est faite sur dossier, épreuves puis entretien.",
-   "id": 58,
-   "url": "https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
+   "valeur": "total",
+   "extrait": "Tarif pour les particuliers.",
+   "id": 226,
+   "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client"
   },
   {
    "champ": "formats",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": [
-    "Distanciel"
+    "Distanciel",
+    "Alternance"
    ],
-   "extrait": "100% à distance",
-   "id": 200,
-   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
-  },
-  {
-   "champ": "prerequis",
-   "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Maîtrise des outils bureautiques-traitement de texte, traitement des images, navigation internet, tableur ; Aisance dans le rédactionnel et le traitement de données chiffrées ; Un entretien téléphonique est obligatoire avant toute inscription",
-   "extrait": "Maîtrise des outils bureautiques-traitement de texte, traitement des images, navigation internet, tableur",
-   "id": 200,
-   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
+   "extrait": "100% en ligne 24h/24 et 7j/7 • Web & Mobile",
+   "id": 226,
+   "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client"
   },
   {
    "champ": "financements",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": [
     "CPF",
-    "AGEFICE",
-    "FIFPL",
-    "OPCOMMERCE",
-    "FRANCE TRAVAIL",
-    "OPCO"
+    "France Travail",
+    "Entreprise",
+    "Financement personnel",
+    "Bourse d'études"
    ],
-   "extrait": "Pour les chefs d’entreprises : CPF, AGEFICE, FIFPL, OPCOMMERCE",
-   "id": 200,
-   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
+   "extrait": "Le BTS Négociation Digitalisation Relation Client est éligible au CPF, permettant de financer tout ou partie de votre formation. Les demandeurs d'emploi peuvent bénéficier d'aides France Travail.",
+   "id": 226,
+   "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client"
+  },
+  {
+   "champ": "outils",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "WordPress",
+    "Prestashop"
+   ],
+   "extrait": "À propos de WordPress",
+   "id": 226,
+   "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client"
   },
   {
    "champ": "programme",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": [
-    "Module 0 : Bienvenue dans la formation",
-    "Module 1 : Installation de WordPress et configuration de l’hébergement",
-    "Module 2 : Vos premiers pas avec WordPress",
-    "Module 3 : Installation et configuration de la boutique",
-    "Module 4 : Le catalogue de produits",
-    "Module 5 : Gérer la livraison et le transport",
-    "Module 6 : Le tunnel de vente de WooCommerce",
-    "Module 7 : Gérer les commandes clients",
-    "Module 8 : Les mentions légales obligatoires",
-    "Module 9 : Gérer le référencement naturel (SEO)",
-    "Module 10 : Personnaliser les pages de sa boutique",
-    "Module 11 : Améliorer la rapidité de sa boutique",
-    "Module 12 : La maintenance de votre boutique"
+    "Culture générale et expression (BTS)",
+    "Culture économique, juridique et managériale",
+    "Langue vivante Anglais",
+    "Relation client et négociation-vente",
+    "Relation client à distance et digitalisation",
+    "Relation client et animation de réseaux"
    ],
-   "extrait": "Module 0 : Bienvenue dans la formation",
-   "id": 200,
-   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce"
+   "extrait": "Culture générale et expression (BTS)",
+   "id": 226,
+   "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 4190,
+   "extrait": "Tarif\n4 190 €",
+   "id": 226,
+   "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "journalier",
+   "extrait": "975,00 € HT / jour",
+   "id": 211,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Boissons offertes pendant les pauses en inter-entreprises",
+   "id": 211,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Définir le projet de site e-commerce de sa TPE",
+    "Installer et configurer l’environnement de travail PrestaShop",
+    "Structurer la boutique et organiser la navigation",
+    "Créer les pages et intégrer les contenus du site",
+    "Mettre en place les fonctionnalités de relation client et les obligations légales",
+    "Construire l’offre commerciale et vendre en ligne",
+    "Piloter la gestion quotidienne de la boutique",
+    "Suivre l’activité du site et analyser les résultats",
+    "Améliorer le référencement et la visibilité de la boutique",
+    "Préparer la mise en situation certificative"
+   ],
+   "extrait": "Définir le projet de site e-commerce de sa TPE",
+   "id": 211,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe"
+  },
+  {
+   "champ": "prixIntra",
+   "motif": "unite_absente",
+   "valeur": 1250,
+   "extrait": "Tarif présentiel 1 250,00 € HT",
+   "id": 211,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-e-commerce-de-sa-tpe"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "journalier",
+   "extrait": "975,00 € HT / jour",
+   "id": 212,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Nous pouvons toutefois organiser cette formation à la demande dans un format adapté à votre besoin, y compris dans votre entreprise.",
+   "id": 212,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique"
+  },
+  {
+   "champ": "prixIntra",
+   "motif": "unite_absente",
+   "valeur": 2475,
+   "extrait": "2 475,00 € HT",
+   "id": 212,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-creer-et-gerer-le-site-internet-de-sa-tpe-a-l-aide-d-un-cms-finaliser-mettre-en-ligne-et-piloter-sa-boutique"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "total",
+   "extrait": "Tarif pour les particuliers.",
+   "id": 227,
+   "url": "https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication"
+  },
+  {
+   "champ": "formats",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Distanciel",
+    "Alternance"
+   ],
+   "extrait": "100% en ligne 24h/24 et 7j/7 • Web & Mobile",
+   "id": 227,
+   "url": "https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 5390,
+   "extrait": "Tarif\n5 390 €",
+   "id": 227,
+   "url": "https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "total",
+   "extrait": "Tarif pour les particuliers.",
+   "id": 224,
+   "url": "https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel"
+  },
+  {
+   "champ": "formats",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Distanciel",
+    "Alternance"
+   ],
+   "extrait": "La formation 100% en ligne vous permet de progresser avec un accès 24h/24 à la plateforme et un accompagnement pédagogique régulier.",
+   "id": 224,
+   "url": "https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 4190,
+   "extrait": "Tarif\n4 190 €",
+   "id": 224,
+   "url": "https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel"
+  },
+  {
+   "champ": "uniteIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "total",
+   "extrait": "Prix pour un groupe de 12 personnes max",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "formats",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Présentiel",
+    "Distanciel"
+   ],
+   "extrait": "PRESENTIEL OU CLASSE A DISTANCE",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Inter Intra",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "cette formation dans vos locaux pour un groupe de 12 personnes maximum,",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "outils",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "PrestaShop",
+    "Shopify",
+    "WooCommerce",
+    "Zapier",
+    "Facebook",
+    "Instagram",
+    "LinkedIn",
+    "TikTok",
+    "X",
+    "YouTube"
+   ],
+   "extrait": "Choisir le CMS (content management system) approprié pour son business : PrestaShop, Shopify, WooCommerce.",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "1 - Identifier les clés du e-commerce",
+    "2 - Poser les bases de son modèle économique",
+    "3 - Augmenter le trafic de son site web",
+    "4 - S'appuyer sur les réseaux sociaux",
+    "5 - Maximiser les conversions"
+   ],
+   "extrait": "1 - Identifier les clés du e-commerce",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 1690,
+   "extrait": "Prix 2026 \n1 690,00 €  HT",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "prixIntra",
+   "motif": "unite_absente",
+   "valeur": 4150,
+   "extrait": "Forfait intra - En savoir plus \n4 150,00 € HT",
+   "id": 234,
+   "url": "https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce"
+  },
+  {
+   "champ": "uniteIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "total",
+   "extrait": "Prix pour un groupe de 12 personnes max.",
+   "id": 204,
+   "url": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "En INTER-ENTREPRISE",
+   "id": 204,
+   "url": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "En INTRA-ENTREPRISE",
+   "id": 204,
+   "url": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
   },
   {
    "champ": "prerequis",
    "motif": "valeur_absente_de_l_extrait",
-   "valeur": "Pour une admission en première année : un titre ou diplôme de niveau 4. Pour une admission en deuxième année : la validation d'une première année d'une formation supérieure. Pour une admission en troisième année : un titre ou diplôme de niveau 5.",
-   "extrait": "En fonction du dispositif de formation intégré par le candidat pour postuler à la certification, les prérequis sont :",
-   "id": 70,
-   "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
+   "valeur": "Être à l'aise avec la navigation web et l'utilisation d'outils numériques. Aucune compétence en développement web n'est nécessaire.",
+   "extrait": "Être à l'aise avec la navigation web et l'utilisation d'outils numériques.",
+   "id": 204,
+   "url": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
   },
   {
-   "champ": "codeRncpRs",
+   "champ": "programme",
    "motif": "valeur_absente_de_l_extrait",
-   "valeur": "RNCP n°36877",
-   "extrait": "Titre RNCP :  RNCP visé n°36877 :  Chef de projet marketing digital et communication (niveau 6)",
-   "id": 70,
-   "url": "https://supdeweb.com/paris/bachelor-e-commerce-marketing-digital"
+   "valeur": [
+    "Prendre en main Shopify et cadrer les essentiels d'une boutique",
+    "Créer et organiser son catalogue produits",
+    "Construire les pages clés de la boutique",
+    "Configurer les réglages indispensables avant mise en ligne"
+   ],
+   "extrait": "Prendre en main Shopify et cadrer les essentiels d'une boutique",
+   "id": 204,
+   "url": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 890,
+   "extrait": "Tarif : à partir de 890 € HT.",
+   "id": 204,
+   "url": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
+  },
+  {
+   "champ": "prixIntra",
+   "motif": "unite_absente",
+   "valeur": 2670,
+   "extrait": "Tarif : à partir de 2 670 € HT.",
+   "id": 204,
+   "url": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/"
+  },
+  {
+   "champ": "cpf",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Formation stratégie ecommerce : en ligne et finançable CPF",
+   "id": 91,
+   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "Introduction aux spécificités du e-commerce",
+    "Législation pour le e-commerce",
+    "Travailler son image de marque",
+    "Espionner la concurrence de la vente en ligne",
+    "SEO : le référencement naturel de votre site et de vos pages produits",
+    "Établir une stratégie de contenu adaptée au e-commerce",
+    "Pinterest pour les e-commerçant·es",
+    "Bâtir une communauté et vendre sur Instagram",
+    "Percer sur Tik Tok pour vendre ses produits",
+    "Analyser les performances de son site avec Google Analytics",
+    "Google Ads : les campagnes shopping",
+    "Vendre grâce à Facebook Ads & Instagram Ads",
+    "Se lancer sur les marketplaces",
+    "L’intelligence artificielle au service de vos contenus",
+    "Le marketing d’influence pour augmenter ses ventes",
+    "Déployer une stratégie d’affiliation"
+   ],
+   "extrait": "1. Introduction aux spécificités du e-commerce",
+   "id": 91,
+   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 1499,
+   "extrait": "1499€ TTC, finançable via votre Compte Personnel de Formation , votre  OPCO , ainsi que  France Travail  et vos  fonds propres .",
+   "id": 91,
+   "url": "https://www.digi-atlas.com/formation-developper-son-e-commerce-grace-au-marketing-digital/"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Pour une formation sur-mesure (intra-entreprise), le tarif est lui aussi sur-mesure.",
+   "id": 149,
+   "url": "https://www.conversion-boosters.com/formations-referencement-web/formation-google-ads/"
+  },
+  {
+   "champ": "programme",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": [
+    "1 - Fondamentaux et Stratégie SEA",
+    "2 - Création de Campagnes Search (Réseau de recherche)",
+    "3 - Display, Vidéo et Performance Max",
+    "4 - Pilotage, Analyse et Optimisation",
+    "5 - Bonus : utiliser l'IA générative pour optimiser son SEA",
+    "Conclusion"
+   ],
+   "extrait": "1 - Fondamentaux et Stratégie SEA",
+   "id": 149,
+   "url": "https://www.conversion-boosters.com/formations-referencement-web/formation-google-ads/"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 18000,
+   "extrait": "Le coût d’un Mastère Spécialisé à SKEMA est de 18 000€ nets de taxes.",
+   "id": 40,
+   "url": "https://www.skema.edu/fr/programmes/mastere-specialise-manager-marketing-data-et-commerce-electronique"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "journalier",
+   "extrait": "Le tarif des formations inter-entreprises est de 690€ à 890€ HT par jour et par apprenant selon le thème, la modalité et la durée de la formation.",
+   "id": 146,
+   "url": "https://www.conversion-boosters.com/formations-reseaux-sociaux/formation-tiktok-ads-qualiopi/"
   },
   {
    "champ": "formats",
@@ -340,35 +468,217 @@
     "Distanciel"
    ],
    "extrait": "Lieu : en présentiel ou à distance",
-   "id": 150,
-   "url": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/"
+   "id": 146,
+   "url": "https://www.conversion-boosters.com/formations-reseaux-sociaux/formation-tiktok-ads-qualiopi/"
   },
   {
    "champ": "dispoIntra",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": true,
    "extrait": "Pour une formation sur-mesure (intra-entreprise), le tarif est lui aussi sur-mesure.",
-   "id": 150,
-   "url": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/"
+   "id": 146,
+   "url": "https://www.conversion-boosters.com/formations-reseaux-sociaux/formation-tiktok-ads-qualiopi/"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "journalier",
+   "extrait": "875,00 € HT / jour",
+   "id": 208,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-utilisateurs"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Tarif pour une personne à distance sans frais",
+   "id": 208,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-utilisateurs"
   },
   {
    "champ": "programme",
    "motif": "valeur_absente_de_l_extrait",
    "valeur": [
-    "1 - Introduction & fondamentaux de Matomo",
-    "2 - Installation et configuration initiale",
-    "3 - Prise en main de l'interface Analytics",
-    "4 - Analyse des performances & optimisation",
-    "5 - Module RGPD & privacy by design",
-    "6 - Présentation de Matomo Tag Manager & différents plugins",
-    "7 - Suivi des campagnes marketing, du moteur de recherche interne et du commerce électronique",
-    "8 - Bonus IA avec Matomo",
-    "Conclusion"
+    "Introduction",
+    "Catalogue",
+    "Commandes",
+    "Gestion des clients",
+    "Les Promotions",
+    "Les Transporteurs",
+    "Localisations",
+    "Configuration du site",
+    "Compte Administrateurs",
+    "Gestion des modules"
    ],
-   "extrait": "1 - Introduction & fondamentaux de Matomo",
-   "id": 150,
-   "url": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/"
+   "extrait": "Programme Prestashop : Utilisateurs\nIntroduction",
+   "id": 208,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-utilisateurs"
+  },
+  {
+   "champ": "prixIntra",
+   "motif": "unite_absente",
+   "valeur": 1875,
+   "extrait": "Tarif présentiel\n1 875,00 € HT",
+   "id": 208,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-utilisateurs"
+  },
+  {
+   "champ": "prerequis",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "Bac +3 minimum dans les domaines du marketing, de la communication, de l’informatique, de la gestion ou du commerce (admission en 1re année) ; Bac +4 validé (admission en 2e année)",
+   "extrait": "Ouvert aux titulaires d’un Bac +4 validé dans les domaines du marketing digital, de l’e-commerce, de la communication digitale ou de la gestion : Master 1 universitaire, 1ʳᵉ année de Master en école de commerce ou équivalent.",
+   "id": 37,
+   "url": "https://www.inseec.com/programme/msc-marketing-digital-ecommerce/"
+  },
+  {
+   "champ": "prix",
+   "motif": "unite_absente",
+   "valeur": 11390,
+   "extrait": "1 an 11 390 €",
+   "id": 37,
+   "url": "https://www.inseec.com/programme/msc-marketing-digital-ecommerce/"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "journalier",
+   "extrait": "895,00 € HT / jour",
+   "id": 209,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-developpeurs"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Boissons offertes pendant les pauses en inter-entreprises",
+   "id": 209,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-developpeurs"
+  },
+  {
+   "champ": "dispoIntra",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "INTRA",
+   "id": 209,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-developpeurs"
+  },
+  {
+   "champ": "prixIntra",
+   "motif": "unite_absente",
+   "valeur": 1475,
+   "extrait": "1 475,00 € HT",
+   "id": 209,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-developpeurs"
+  },
+  {
+   "champ": "unitePrix",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": "journalier",
+   "extrait": "875,00 € HT / jour",
+   "id": 210,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-webmasters"
+  },
+  {
+   "champ": "dispoInter",
+   "motif": "valeur_absente_de_l_extrait",
+   "valeur": true,
+   "extrait": "Tarif pour une personne à distance sans frais",
+   "id": 210,
+   "url": "https://www.dawan.fr/formations/opensource/prestashop/prestashop-webmasters"
   }
  ],
- "echecs": []
+ "echecs": [],
+ "mauvaisAppariements": [
+  {
+   "id": 228,
+   "fiche": "Bachelor Chef de projet marketing digital",
+   "url": "https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital",
+   "intitulePage": "Déployer une stratégie marketing digital",
+   "score": 0.5
+  },
+  {
+   "id": 151,
+   "fiche": "Formation Pinterest Ads individuelle",
+   "url": "https://www.johannadigiorgio.com/formation-pinterest-ads-par-une-experte-certifiee/",
+   "intitulePage": "Formation Pinterest ads par une experte certifiée",
+   "score": 0.67
+  },
+  {
+   "id": 42,
+   "fiche": "MSc Digital Marketing and Sales",
+   "url": "https://www.em-normandie.com/programmes/votre-formation-en-marketing-digital/msc-creative-and-cultural-industry",
+   "intitulePage": "MSc Creative and Cultural Industries",
+   "score": 0.25
+  },
+  {
+   "id": 55,
+   "fiche": "MSc Digital Marketing",
+   "url": "https://www.audencia.com/les-formations/msc/msc-in-digital-business-data-management/diplomes-et-certifications",
+   "intitulePage": "MSc in Digital Business &amp; Data Management",
+   "score": 0.67
+  },
+  {
+   "id": 63,
+   "fiche": "Bachelor et Mastère digital",
+   "url": "https://ecole-du-digital.com/formations/mastere-digital-design-creative-technologies/",
+   "intitulePage": "Mastère Digital Design – Direction Artistique &amp; Webdesign en Alternance | ESD",
+   "score": 0.67
+  },
+  {
+   "id": 103,
+   "fiche": "Développer ses ventes en ligne",
+   "url": "https://www.cegos.fr/formations/commercial-ventes/kam-developper-les-grands-comptes-et-comptes-strategiques",
+   "intitulePage": "Formation - KAM : développer les grands comptes et comptes stratégiques",
+   "score": 0.33
+  },
+  {
+   "id": 106,
+   "fiche": "Marketing digital et relation client",
+   "url": "https://www.ism.fr/formation/customer-care-mettre-le-digital-au-service-de-sa-relation-client",
+   "intitulePage": "Formation Customer Care : mettre le digital au service de sa relation client",
+   "score": 0.75
+  },
+  {
+   "id": 200,
+   "fiche": "WordPress & WooCommerce 2026",
+   "url": "https://www.amzacademy.fr/formation/ecommerce-wordpress-woocommerce",
+   "intitulePage": "Formation E-commerce avec WordPress &amp; WooCommerce",
+   "score": 0.67
+  },
+  {
+   "id": 150,
+   "fiche": "Formation Data Analytics — GA4 et Matomo",
+   "url": "https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/",
+   "intitulePage": "Formation Matomo Analytics - initiation certifiée Qualiopi",
+   "score": 0.5
+  },
+  {
+   "id": 84,
+   "fiche": "Bachelor Marketing Digital",
+   "url": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+   "intitulePage": "Formation Bachelor Business Development",
+   "score": 0.33
+  },
+  {
+   "id": 184,
+   "fiche": "Formations vidéo web et e-commerce",
+   "url": "https://www.elephorm.com/formation/apprendre-html-5-et-css3-tutoriel-video-avec-un-expert-du-web",
+   "intitulePage": "FORMATION Apprendre HTML 5 et CSS3 - Tutoriel vidéo avec un expert du Web",
+   "score": 0.67
+  },
+  {
+   "id": 206,
+   "fiche": "E-commerce — Concevoir votre boutique et booster vos ventes",
+   "url": "https://www.m2iformation.fr/formation-e-commerce-concevoir-votre-boutique-et-booster-vos-ventes/ECOMM-VEN/",
+   "intitulePage": "Formation e-commerce &nbsp;- Concevoir son&nbsp;site et&nbsp;développer ses&nbsp;ventes",
+   "score": 0.5
+  },
+  {
+   "id": 147,
+   "fiche": "Formation SEO — 1 jour",
+   "url": "https://www.conversion-boosters.com/formations-referencement-web/formation-seo-1-jour/",
+   "intitulePage": "Formation SEO certifiée Qualiopi",
+   "score": 0.5
+  }
+ ]
 }
