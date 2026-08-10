@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
+import { slugifierOrganisme } from "@/modele/organismes";
 import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
 import { ConditionCout, MentionDerivation } from "./Niveaux";
 import { coutDuParcours } from "@/modele/condition-cout";
@@ -547,13 +548,27 @@ export function ContenuFiche({
         </>
       )}
 
-      {autresParcours.length > 0 && (
-        <Section titre={`Autres parcours de ${p.organismeNom}`}>
+      {/*
+        LA SECTION NE DISPARAÎT PLUS QUAND LA LISTE EST VIDE.
+
+        Le panneau est monté depuis des vues qui ne chargent pas toutes le
+        catalogue — la comparaison ne charge que les fiches comparées. La
+        section s'effaçait alors, et son absence se lisait comme « cet organisme
+        n'a qu'un parcours », quand elle voulait dire « nous ne les avons pas
+        chargés ». C'est la distinction `non_collecte` / `non_communique`
+        transposée à l'interface : une absence de chargement ne doit jamais se
+        donner pour une absence de fait.
+
+        Le lien vers la page de l'organisme lève l'ambiguïté dans les deux cas,
+        et ne coûte rien à charger.
+      */}
+      <Section titre={`Autres parcours de ${p.organismeNom}`}>
+        {autresParcours.length > 0 && (
           <ul className="space-y-2">
             {autresParcours.slice(0, 6).map((autre) => (
               <li key={autre.slug} className="flex items-baseline justify-between gap-4 text-sm">
                 <a
-              {...proprietesLien(autre.slug)}
+                  {...proprietesLien(autre.slug)}
                   className="hover:underline hover:underline-offset-4"
                 >
                   {autre.nom}
@@ -564,8 +579,16 @@ export function ContenuFiche({
               </li>
             ))}
           </ul>
-        </Section>
-      )}
+        )}
+        <p className={autresParcours.length > 0 ? "mt-(--space-4) t-body-sm" : "t-body-sm"}>
+          <a
+            href={`/organismes/${slugifierOrganisme(p.organismeNom)}`}
+            className="text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+          >
+            Voir tous les parcours de {p.organismeNom}
+          </a>
+        </p>
+      </Section>
 
       {/*
         Historique de provenance.
