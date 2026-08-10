@@ -148,7 +148,7 @@ function Organismes() {
 
       <p className="mt-8 border-t border-(--border-subtle) pt-4 t-caption text-(--text-secondary)">
         Un clic sur un organisme filtre le catalogue sur ses parcours.{" "}
-        <Link to="/methode" className="underline underline-offset-4">
+        <Link to="/methode" hash="categories" className="underline underline-offset-4">
           Les sept catégories d&apos;organisme sont publiées dans la Méthode
         </Link>{" "}
         — elles évitent qu&apos;un cours à 15 € et un mastère de deux ans se retrouvent dans la

@@ -52,14 +52,32 @@ function Information({
   libelle,
   etat,
   children,
+  methode,
 }: {
   libelle: string;
   etat: EtatInformation;
   children?: React.ReactNode;
+  /**
+   * L'ancre de la section de Méthode qui définit ce champ, quand il en a une.
+   *
+   * Facultatif : la plupart des 18 informations se comprennent sans
+   * explication. Le lien est réservé à celles dont le libellé, seul, se prête
+   * à un contresens — et il vaut mieux que l'entrée de menu qu'il remplace,
+   * parce qu'il est là au moment où la question se pose.
+   */
+  methode?: string;
 }) {
   return (
     <div className="border-b border-border py-3 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-4">
-      <dt className="text-sm text-muted-foreground">{libelle}</dt>
+      <dt className="text-sm text-muted-foreground">
+        {methode === undefined ? (
+          libelle
+        ) : (
+          <Link to="/methode" hash={methode} className="underline underline-offset-2">
+            {libelle}
+          </Link>
+        )}
+      </dt>
       <dd className="mt-1 text-sm sm:mt-0">
         {etat === "renseigne" || etat === "a_confirmer" ? (
           <>
@@ -145,7 +163,13 @@ function Provenance({ p }: { p: ParcoursFiche }) {
         tronquer une date ou de pousser le bouton hors du panneau.
       */}
       <div className="flex flex-wrap items-center gap-x-(--space-2) gap-y-(--space-1) t-caption text-(--text-tertiary)">
-        <span>Source : {p.sourceInformation ?? "Non communiquée"}</span>
+        <span>
+          <Link to="/methode" hash="sources" className="underline underline-offset-2">
+            Source
+          </Link>
+          {" : "}
+          {p.sourceInformation ?? "Non communiquée"}
+        </span>
         <span aria-hidden="true">·</span>
         <span>Vérifié le {formaterDate(p.dateVerification)}</span>
         <span aria-hidden="true">·</span>
@@ -308,7 +332,7 @@ export function ContenuFiche({
       {p.motifRegroupement !== null && (
         <p className="mt-4 rounded border border-absent/30 px-3 py-2 text-xs text-absent">
           Regroupement en attente d&apos;arbitrage. {p.motifRegroupement}{" "}
-          <Link to="/methode" className="underline underline-offset-2">
+          <Link to="/methode" hash="arbitrage" className="underline underline-offset-2">
             Voir la file d&apos;arbitrage
           </Link>
         </p>
@@ -324,7 +348,11 @@ export function ContenuFiche({
 
           <div>
             <dt className="text-xs uppercase tracking-wide text-muted-foreground">
-              Sujet principal
+              {/* Le libellé renvoie à la règle qui l'a produit : « pourquoi ce
+                  sujet et pas un autre » se demande ici, jamais dans un menu. */}
+              <Link to="/methode" hash="classification" className="underline underline-offset-2">
+                Sujet principal
+              </Link>
             </dt>
             {/*
               Le sujet principal et les compétences abordées ne sont pas au même
@@ -469,7 +497,13 @@ export function ContenuFiche({
           <Information libelle="Programme détaillé" etat={e.programme}>
             {p.programme?.length} modules, détaillés ci-dessous
           </Information>
-          <Information libelle="Non couvert par le programme" etat={e.non_couvert}>
+          <Information
+            libelle="Non couvert par le programme"
+            etat={e.non_couvert}
+            /* Ce champ est le plus mal compris des 18 : il énonce ce que le
+               programme n'aborde pas, ce qui n'est ni un défaut ni un avis. */
+            methode="informations"
+          >
             {p.nonCouvert?.length} points, détaillés ci-dessous
           </Information>
           <Information libelle="Site officiel" etat={e.site_officiel}>
@@ -538,8 +572,8 @@ export function ContenuFiche({
             <p className="text-sm text-muted-foreground">
               Les critères d&apos;éligibilité et les motifs des acteurs écartés sont publiés dans
               la{" "}
-              <Link to="/methode" className="underline underline-offset-4">
-                page Méthode
+              <Link to="/methode" hash="eligibilite" className="underline underline-offset-4">
+                critères d&apos;éligibilité
               </Link>
               .
             </p>

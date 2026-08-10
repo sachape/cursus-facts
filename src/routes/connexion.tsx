@@ -147,6 +147,22 @@ function Connexion() {
             {mode === "inscription" && (
               <span className="t-caption text-(--text-tertiary)">Au moins 6 caractères.</span>
             )}
+            {/*
+              SOUS LE CHAMP QU'IL CONCERNE, et non dans le bloc de liens du bas.
+              Là-bas il voisinait « En créer un » et « Retour au catalogue » :
+              trois propositions de même rang, dont une seule répond à la
+              question qu'on se pose à cet instant précis — celui où le mot de
+              passe ne revient pas.
+            */}
+            {mode === "connexion" && (
+              <button
+                type="button"
+                onClick={() => { setMode("reinitialisation"); setErreur(null); setMessage(null); }}
+                className="self-start t-caption text-(--text-tertiary) underline-offset-2 hover:text-(--text-secondary) hover:underline"
+              >
+                Mot de passe oublié
+              </button>
+            )}
           </label>
         )}
 
@@ -193,15 +209,6 @@ function Connexion() {
             className="text-left text-(--text-secondary) underline-offset-2 hover:text-(--text-primary) hover:underline"
           >
             J&apos;ai déjà un compte
-          </button>
-        )}
-        {mode === "connexion" && (
-          <button
-            type="button"
-            onClick={() => { setMode("reinitialisation"); setErreur(null); setMessage(null); }}
-            className="text-left text-(--text-secondary) underline-offset-2 hover:text-(--text-primary) hover:underline"
-          >
-            Mot de passe oublié
           </button>
         )}
         <Link to="/" className="text-(--text-tertiary) underline-offset-2 hover:underline">

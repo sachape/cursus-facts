@@ -435,6 +435,26 @@ function Explorer() {
           vérifiées.
         </p>
 
+        {/*
+          LE POINT D'ENTRÉE QUI REMPLACE L'ONGLET. Méthode a quitté la
+          navigation : elle ne se parcourt pas, elle répond à une question. La
+          première question qu'on se pose devant un comparateur est « qui êtes
+          vous pour classer ça », et c'est ici qu'elle se pose — avant d'avoir
+          lu la moindre fiche.
+
+          Vers les invariants, et pas vers le haut de la page : c'est la
+          section qui porte l'engagement d'indépendance.
+        */}
+        <p className="mt-(--space-3) t-body-sm">
+          <Link
+            to="/methode"
+            hash="invariants"
+            className="text-(--text-tertiary) underline-offset-4 transition-colors duration-(--motion-fast) hover:text-(--text-secondary) hover:underline"
+          >
+            Comment ce catalogue est construit
+          </Link>
+        </p>
+
         <div ref={zoneRecherche} className="mt-(--space-8)">
           <RechercheHero
             valeur={filtres.recherche}
@@ -609,7 +629,12 @@ function Explorer() {
             règle appliquée et ce qu'elle ne signifie pas.
           */}
           <p className="mt-8 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
-            {LIBELLES_TRIS[tri]}
+            {LIBELLES_TRIS[tri]}{" "}
+            {/* La règle est énoncée ici ; la section Classement dit POURQUOI
+                c'est celle-là, et ce qu'elle interdit. */}
+            <Link to="/methode" hash="classement" className="underline underline-offset-2">
+              Comment les résultats sont classés
+            </Link>
           </p>
         </main>
       </div>

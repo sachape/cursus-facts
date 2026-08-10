@@ -342,7 +342,7 @@ function Comparer() {
             : au moins un parcours n&apos;en publie pas l&apos;information. L&apos;absence peut
             venir de l&apos;organisme, qui ne la publie pas, ou de nous, qui n&apos;avons pas
             encore lu sa page —{" "}
-            <Link to="/methode" className="underline underline-offset-2">
+            <Link to="/methode" hash="informations" className="underline underline-offset-2">
               la Méthode détaille les deux cas
             </Link>
             .

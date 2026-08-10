@@ -518,11 +518,16 @@ test("la synthèse de comparaison énonce des écarts, jamais des noms", async (
 
 test("l'en-tête mobile centre son logo et rend le focus au burger", async ({ page }) => {
   /*
-    Les cinq entrées s'affichaient à toutes les largeurs et se coupaient sous
-    900 px. Le menu ne masque rien — il expose les cinq d'un coup, Méthode
-    comprise — mais il introduit un dialogue modal, donc trois façons de piéger
-    la navigation au clavier : focus qui part derrière le voile, Échap inerte,
-    focus perdu à la fermeture.
+    Les entrées s'affichaient à toutes les largeurs et se coupaient sous
+    900 px. Le menu ne masque rien — il expose les quatre d'un coup — mais il
+    introduit un dialogue modal, donc trois façons de piéger la navigation au
+    clavier : focus qui part derrière le voile, Échap inerte, focus perdu à la
+    fermeture.
+
+    QUATRE ET NON CINQ : Méthode a quitté la navigation. On n'y va pas en
+    naviguant, mais quand une question précise se pose — chaque mention de
+    méthode dans l'interface renvoie désormais vers sa section, et le pied de
+    page la porte toujours.
 
     Le centrage du logo se MESURE. Il ne tient que si les deux zones latérales
     font la même largeur, et l'emplacement d'action de droite est vide : rien
@@ -557,8 +562,8 @@ test("l'en-tête mobile centre son logo et rend le focus au burger", async ({ pa
     expect(b.x).toBeGreaterThanOrEqual(0);
     expect(b.x + b.width).toBeLessThanOrEqual(largeur + 1);
 
-    // Les cinq entrées sont là : le menu n'en masque aucune.
-    await expect(menu.getByRole("link")).toHaveCount(5);
+    // Les quatre entrées sont là : le menu n'en masque aucune.
+    await expect(menu.getByRole("link")).toHaveCount(4);
 
     await page.keyboard.press("Escape");
     await expect(menu).toBeHidden();
@@ -576,7 +581,7 @@ test("l'en-tête mobile centre son logo et rend le focus au burger", async ({ pa
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto(BASE, { waitUntil: "networkidle" });
   await expect(page.getByRole("button", { name: "Ouvrir le menu" })).toBeHidden();
-  await expect(page.locator("header nav a")).toHaveCount(5);
+  await expect(page.locator("header nav a")).toHaveCount(4);
 });
 
 test("chaque type de page porte ses balises au PREMIER OCTET", async ({ request }) => {
@@ -1525,4 +1530,60 @@ test("le signet et le lien couvrant ne se déclenchent pas l'un l'autre", async 
   await page.waitForTimeout(800);
   expect(new URL(page.url()).pathname).toBe("/");
   expect(new URL(page.url()).searchParams.get("fiche")).not.toBeNull();
+});
+
+test("chaque renvoi vers la Méthode atteint une section qui existe", async ({ page }) => {
+  /*
+    MÉTHODE A QUITTÉ LA NAVIGATION, et ces liens la remplacent. Ils valent mieux
+    qu'un onglet — ils arrivent au moment où la question se pose — mais
+    seulement s'ils atterrissent au bon endroit.
+
+    Une ancre morte ne se voit pas : le navigateur charge la page et reste en
+    haut, exactement comme un lien sans ancre. Le défaut est donc silencieux, et
+    il se produit au premier renommage de section — d'où des identifiants
+    DÉCLARÉS plutôt que dérivés du titre.
+
+    Le test collecte les ancres réellement présentes dans le rendu et vérifie
+    que chaque `href` en `/methode#…` du site en désigne une.
+  */
+  await page.goto(`${BASE}/methode`, { waitUntil: "networkidle" });
+  const ancres = await page.evaluate(() =>
+    [...document.querySelectorAll("section[id]")].map((s) => s.id),
+  );
+  expect(ancres.length).toBeGreaterThan(5);
+
+  const pages = ["/", "/organismes", "/comparer"];
+  const vus: string[] = [];
+  for (const chemin of pages) {
+    await page.goto(`${BASE}${chemin}`, { waitUntil: "networkidle" });
+    vus.push(
+      ...(await page.evaluate(() =>
+        [...document.querySelectorAll('a[href*="/methode#"]')].map(
+          (a) => (a as HTMLAnchorElement).getAttribute("href")!,
+        ),
+      )),
+    );
+  }
+
+  // Une fiche ouverte : le sujet principal, la provenance, le non-couvert.
+  const listing = await page.request.get(`${BASE}/sitemap.xml`);
+  const slug = /\/parcours\/([^<]+)</.exec(await listing.text())?.[1];
+  await page.goto(`${BASE}/parcours/${slug}`, { waitUntil: "networkidle" });
+  vus.push(
+    ...(await page.evaluate(() =>
+      [...document.querySelectorAll('a[href*="/methode#"]')].map(
+        (a) => (a as HTMLAnchorElement).getAttribute("href")!,
+      ),
+    )),
+  );
+
+  // Un contrôle qui ne trouve rien à contrôler ne protège rien.
+  expect(vus.length).toBeGreaterThanOrEqual(3);
+
+  const mortes = [...new Set(vus)].filter((href) => !ancres.includes(href.split("#")[1]!));
+  expect(mortes, `ancres présentes : ${ancres.join(", ")}`).toEqual([]);
+
+  // Méthode reste indexable : elle porte l'engagement d'indépendance.
+  const html = await (await page.request.get(`${BASE}/methode`)).text();
+  expect(html).not.toMatch(/name="robots"[^>]*noindex/);
 });

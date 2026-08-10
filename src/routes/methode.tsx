@@ -65,15 +65,30 @@ const JAMAIS_REFERENCE = [
 
 function Section({
   titre,
+  ancre,
   children,
   intro,
 }: {
   titre: string;
+  /**
+   * L'adresse de la section, DÉCLARÉE et non dérivée du titre.
+   *
+   * Un identifiant calculé sur l'intitulé casserait tous les liens entrants le
+   * jour où la section est reformulée, sans que rien ne le signale. Chaque
+   * mention de méthode dans l'interface pointe vers l'une de ces ancres :
+   * elles font partie du contrat, au même titre qu'une adresse de page.
+   */
+  ancre: string;
   intro?: string;
   children: React.ReactNode;
 }) {
   return (
-    <section className="border-t border-(--border-subtle) py-8">
+    <section
+      id={ancre}
+      /* L'en-tête est collant : sans cette marge, l'ancre place le titre
+         dessous et la section paraît commencer au paragraphe suivant. */
+      className="scroll-mt-(--header-hauteur) border-t border-(--border-subtle) py-8"
+    >
       <h2 className="font-titre text-xl font-medium">{titre}</h2>
       {intro && <p className="mt-2 max-w-2xl t-body-sm text-(--text-secondary)">{intro}</p>}
       <div className="mt-4 t-body-sm">{children}</div>
@@ -106,6 +121,7 @@ function Methode() {
 
       <Section
         titre="Les invariants"
+        ancre="invariants"
         intro="Huit règles que rien ne peut faire céder — ni un organisme mécontent, ni une opportunité commerciale, ni une contrainte technique. Elles sont publiées ici pour pouvoir nous être opposées."
       >
         <ol className="list-decimal space-y-2 pl-5">
@@ -140,6 +156,7 @@ function Methode() {
 
       <Section
         titre="Une fiche = un parcours pédagogique distinct"
+        ancre="fiche-unique"
         intro="C'est la décision structurante du produit, et l'unité de tout le reste."
       >
         <p>
@@ -181,6 +198,7 @@ function Methode() {
 
       <Section
         titre="Ce que ce comparateur refuse d'être"
+        ancre="refus"
         intro="Le marché français de la formation e-commerce est dominé par des comparatifs rémunérés à l'affiliation. Ce site fait l'inverse."
       >
         <ul className="space-y-3">
@@ -207,6 +225,7 @@ function Methode() {
 
       <Section
         titre="Les 18 informations suivies"
+        ancre="informations"
         intro="Le compteur affiché sur chaque fiche décrit son état. Il n'évalue ni la formation ni l'organisme, et n'est jamais converti en pourcentage : un chiffre sur 100 se lit comme une note."
       >
         <ol className="grid list-decimal gap-x-8 gap-y-1 pl-5 sm:grid-cols-2">
@@ -243,6 +262,7 @@ function Methode() {
 
       <Section
         titre="La gratuité ne s'affirme jamais par défaut"
+        ancre="gratuite"
         intro="« Gratuit » recouvre au moins cinq réalités différentes, et les écraser en un prix valant zéro induit en erreur au moment précis où l'on compare des budgets."
       >
         <p className="rounded border border-(--border-subtle) bg-muted/40 p-4">
@@ -275,6 +295,7 @@ function Methode() {
 
       <Section
         titre="Classification"
+        ancre="classification"
         intro="Trois niveaux, parce qu'un seul ne filtre plus rien. Avec un niveau de tags unique, filtrer sur une compétence remontait un quart du catalogue : un filtre qui remonte 54 résultats sur 195 ne filtre plus."
       >
         <h3 className="font-titre font-medium">Domaine — un seul, parmi neuf</h3>
@@ -332,6 +353,7 @@ function Methode() {
 
       <Section
         titre="Regroupement des offres"
+        ancre="regroupement"
         intro="Une fiche = un parcours pédagogique distinct. Pas une session, pas un organisme, pas une déclinaison marketing. Trois issues possibles, jamais une règle binaire."
       >
         <h3 className="font-titre font-medium">Fusion automatique</h3>
@@ -369,6 +391,7 @@ function Methode() {
 
       <Section
         titre="File d'arbitrage"
+        ancre="arbitrage"
         intro="Toute décision manuelle enregistre le cas, la règle restée muette, la preuve retenue, la date et l'auteur. Cette file est publique : c'est ce qui rend la revue manuelle compatible avec le reste du produit."
       >
         {arbitrages.length === 0 ? (
@@ -444,6 +467,7 @@ function Methode() {
 
       <Section
         titre="Profondeur de vérification"
+        ancre="profondeur"
         intro="Quelle part du catalogue a été vérifiée sur la page de détail de chaque parcours, et non seulement sur la page catalogue de l'organisme. Le chiffre publié est celui des vérifications de moins de six mois : au-delà, une vérification ne prouve plus l'état actuel de la page."
       >
         {(() => {
@@ -499,6 +523,7 @@ function Methode() {
 
       <Section
         titre="Sources de données"
+        ancre="sources"
         intro="D'où vient chaque information. Un champ non publié par ces sources reste « Non communiqué » : nous ne le complétons pas par recoupement."
       >
         <dl className="space-y-2">
@@ -562,6 +587,7 @@ function Methode() {
 
       <Section
         titre="Classement des résultats"
+        ancre="classement"
         intro="Aucun critère n'est achetable. Le libellé du tri appliqué est toujours affiché sous la liste."
       >
         <p className="mb-4 rounded-(--radius-md) border border-(--border-subtle) p-(--space-3)">
@@ -599,6 +625,7 @@ function Methode() {
 
       <Section
         titre="Éligibilité au référencement"
+        ancre="eligibilite"
         intro="Un acteur est référencé s'il vérifie au moins 3 des 7 critères suivants. Les critères vérifiés sont affichés sur la fiche."
       >
         <ul className="list-disc space-y-0.5 pl-5 text-(--text-secondary)">
@@ -630,6 +657,7 @@ function Methode() {
 
       <Section
         titre="Les sept catégories d'organisme"
+        ancre="categories"
         intro="Elles évitent qu'un cours à 15 € et un mastère de deux ans se retrouvent dans la même liste."
       >
         <p className="text-(--text-secondary)">{Object.values(LIBELLES_CATEGORIES).join(" · ")}</p>
@@ -637,6 +665,7 @@ function Methode() {
 
       <Section
         titre="Ce que cette méthode ne résout pas encore"
+        ancre="limites"
         intro="Autant le dire ici plutôt que de le laisser découvrir."
       >
         <ul className="space-y-2 text-(--text-secondary)">

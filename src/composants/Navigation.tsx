@@ -1,12 +1,21 @@
 /**
  * Navigation persistante.
  *
- * AU-DESSUS DE 1 024 PX, cinq vues en ligne, l'onglet actif marqué.
+ * QUATRE VUES, ET MÉTHODE N'EN FAIT PLUS PARTIE. On n'ouvre pas la Méthode en
+ * naviguant : on y va quand une question précise se pose — pourquoi ce
+ * classement, pourquoi ce sujet, d'où vient cette information. Une entrée de
+ * menu répond à cette question au mauvais moment, et occupe une place qui
+ * revient aux quatre vues qu'on utilise vraiment.
+ *
+ * Elle reste dans le pied de page, colonne « Comprendre », et surtout : chaque
+ * mention de méthode dans l'interface renvoie désormais vers SA section. C'est
+ * plus utile qu'un onglet — le lien est là au moment où la question se pose.
+ *
+ * AU-DESSUS DE 1 024 PX, les quatre vues en ligne, l'onglet actif marqué.
  *
  * EN DESSOUS, un vrai en-tête mobile. La barre défilante horizontale a été
  * essayée et abandonnée : elle coupait les entrées sous 900 px, et un libellé
- * tronqué ne se parcourt pas plus vite qu'un menu — il se devine. Le menu ne
- * masque rien puisqu'il expose les cinq entrées d'un coup, Méthode comprise.
+ * tronqué ne se parcourt pas plus vite qu'un menu — il se devine.
  *
  * TROIS ZONES, ET LA TROISIÈME EST VIDE À DESSEIN. Burger à gauche, logo au
  * centre, emplacement d'action à droite — réservé à la même largeur que le
@@ -26,7 +35,6 @@ const VUES = [
   { to: "/comparer", libelle: "Comparer" },
   { to: "/aide-au-choix", libelle: "Aide au choix" },
   { to: "/organismes", libelle: "Organismes" },
-  { to: "/methode", libelle: "Méthode" },
 ] as const;
 
 /** Les trois traits, qui deviennent une croix. */
