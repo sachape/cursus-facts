@@ -426,6 +426,10 @@
   --menu-compte-largeur: 220px;
   /* Un menu de filtre peut porter 31 sujets : il défile plutôt que de sortir. */
   --menu-hauteur-max: 320px;
+  /* Plafond de largeur du menu : au-delà, une option occupe l'écran. */
+  --menu-largeur-max: 360px;
+  /* Plancher de lisibilité d'un menu de filtre en version bureau. */
+  --menu-filtre-largeur: 280px;
   /* Le signet : la ZONE grandit au tactile, le dessin non. */
   --signet-taille: 20px;
   --signet-cible: 32px;

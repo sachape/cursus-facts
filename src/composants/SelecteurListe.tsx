@@ -83,7 +83,20 @@ export function SelecteurListe({
       <DropdownMenuContent
         align="start"
         sideOffset={8}
-        className="max-h-(--menu-hauteur-max) w-(--radix-dropdown-menu-trigger-width) overflow-y-auto rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) p-(--space-2) shadow-(--elevation-3)"
+        /*
+          LE MENU S'ADAPTE À SON CONTENU, PAS AU DÉCLENCHEUR.
+
+          Calé sur la largeur du déclencheur, il héritait de « Tous » — soit
+          une centaine de pixels — et tronquait chaque option : « Création… »,
+          « Référenc… », « Marketin… ». Un menu de filtre dont on ne peut pas
+          lire les valeurs ne se choisit pas, il se devine.
+
+          Le déclencheur reste le plancher, le contenu décide au-dessus, et un
+          plafond évite qu'un sujet long n'occupe l'écran. Desktop seulement :
+          sous 768 px les champs prennent déjà toute la largeur, et s'y aligner
+          est le bon comportement.
+        */
+        className="max-h-(--menu-hauteur-max) w-auto min-w-(--radix-dropdown-menu-trigger-width) max-w-(--menu-largeur-max) min-[768px]:min-w-(--menu-filtre-largeur) overflow-y-auto rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) p-(--space-2) shadow-(--elevation-3) max-[767px]:w-(--radix-dropdown-menu-trigger-width)"
       >
         <DropdownMenuRadioGroup value={valeur} onValueChange={choisir}>
           {options.map((o) => (
@@ -99,7 +112,7 @@ export function SelecteurListe({
               disabled={o.compte === 0}
               className="flex min-h-(--option-hauteur) items-center justify-between gap-(--space-3) rounded-(--radius-md) px-(--space-3) t-body-sm data-[state=checked]:bg-(--accent-10) data-[disabled]:opacity-50 [&:not(:last-child)]:mb-(--space-2) [&>span:first-child]:hidden"
             >
-              <span className="truncate">{o.libelle}</span>
+              <span className="min-w-0 truncate">{o.libelle}</span>
               {o.compte !== undefined && (
                 <span className="chiffre shrink-0 t-caption text-(--text-tertiary)">
                   {o.compte}
