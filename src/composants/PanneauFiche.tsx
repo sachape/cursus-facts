@@ -14,11 +14,8 @@
 import { useEffect, useRef, useState } from "react";
 import { chargerFiche, type ParcoursFiche, type ParcoursListe } from "@/donnees/requetes";
 import { ContenuFiche, EnteteFiche } from "./ContenuFiche";
+import { usePiegeFocus, useVerrouDefilement } from "./piege-focus";
 import { PiedFiche } from "./PiedFiche";
-
-/** Sélecteur des éléments qui peuvent recevoir le focus. */
-const FOCUSABLES =
-  'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 export function PanneauFiche({
   slug,
@@ -53,49 +50,13 @@ export function PanneauFiche({
     };
   }, [slug]);
 
-  // Verrouille le défilement du corps : sans cela, deux zones défilent en même
-  // temps et la liste bouge sous le panneau.
-  useEffect(() => {
-    const precedent = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = precedent;
-    };
-  }, []);
-
-  // Le focus part sur la fermeture, reste piégé dans le panneau, et l'échappe
-  // referme. Un panneau modal qu'on peut quitter au clavier sans le voir est
-  // un piège pour la navigation au clavier.
-  useEffect(() => {
-    boutonFermer.current?.focus();
-
-    function auClavier(evenement: KeyboardEvent) {
-      if (evenement.key === "Escape") {
-        evenement.preventDefault();
-        fermer();
-        return;
-      }
-      if (evenement.key !== "Tab" || panneau.current === null) return;
-
-      const cibles = [...panneau.current.querySelectorAll<HTMLElement>(FOCUSABLES)].filter(
-        (e) => e.offsetParent !== null,
-      );
-      if (cibles.length === 0) return;
-
-      const premier = cibles[0]!;
-      const dernier = cibles[cibles.length - 1]!;
-      if (evenement.shiftKey && document.activeElement === premier) {
-        evenement.preventDefault();
-        dernier.focus();
-      } else if (!evenement.shiftKey && document.activeElement === dernier) {
-        evenement.preventDefault();
-        premier.focus();
-      }
-    }
-
-    document.addEventListener("keydown", auClavier);
-    return () => document.removeEventListener("keydown", auClavier);
-  }, [fermer]);
+  /*
+    Verrou de défilement et piège de focus viennent du module partagé : le menu
+    mobile en avait besoin des mêmes, et une seconde implémentation aurait
+    divergé sur l'accessibilité — c'est-à-dire là où personne ne s'en aperçoit.
+  */
+  useVerrouDefilement(true);
+  usePiegeFocus({ actif: true, conteneur: panneau, fermer, focusInitial: boutonFermer });
 
   const autres = fiche
     ? autresParcours.filter((a) => a.organismeNom === fiche.organismeNom && a.slug !== fiche.slug)

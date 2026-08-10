@@ -474,6 +474,69 @@ test("la synthèse de comparaison énonce des écarts, jamais des noms", async (
   }
 });
 
+test("l'en-tête mobile centre son logo et rend le focus au burger", async ({ page }) => {
+  /*
+    Les cinq entrées s'affichaient à toutes les largeurs et se coupaient sous
+    900 px. Le menu ne masque rien — il expose les cinq d'un coup, Méthode
+    comprise — mais il introduit un dialogue modal, donc trois façons de piéger
+    la navigation au clavier : focus qui part derrière le voile, Échap inerte,
+    focus perdu à la fermeture.
+
+    Le centrage du logo se MESURE. Il ne tient que si les deux zones latérales
+    font la même largeur, et l'emplacement d'action de droite est vide : rien
+    à l'écran ne signale qu'il a disparu, seul l'écart au centre le dirait.
+  */
+  for (const largeur of [375, 768]) {
+    await page.setViewportSize({ width: largeur, height: 800 });
+    await page.goto(BASE, { waitUntil: "networkidle" });
+
+    const burger = page.getByRole("button", { name: "Ouvrir le menu" });
+    await expect(burger).toBeVisible();
+
+    // Logo centré : son milieu tombe sur le milieu de la fenêtre.
+    const logo = await boite(page.getByRole("link", { name: "Formlist — accueil" }));
+    const milieu = logo.x + logo.width / 2;
+    expect(Math.abs(milieu - largeur / 2)).toBeLessThanOrEqual(2);
+
+    await burger.click();
+    const menu = page.getByRole("dialog", { name: "Navigation principale" });
+    await expect(menu).toBeVisible();
+
+    /*
+      Attendre la FIN du glissement, pas un délai. Le panneau entre depuis la
+      gauche : mesuré à mi-course il est à −304 px, ce qui ressemble à un
+      débordement alors que c'est une image d'animation. Un `waitForTimeout`
+      aurait marché aujourd'hui et menti le jour où la durée change.
+    */
+    await menu.evaluate((e) => Promise.all(e.getAnimations().map((a) => a.finished)));
+
+    // Le panneau ne dépasse pas la fenêtre.
+    const b = await boite(menu);
+    expect(b.x).toBeGreaterThanOrEqual(0);
+    expect(b.x + b.width).toBeLessThanOrEqual(largeur + 1);
+
+    // Les cinq entrées sont là : le menu n'en masque aucune.
+    await expect(menu.getByRole("link")).toHaveCount(5);
+
+    await page.keyboard.press("Escape");
+    await expect(menu).toBeHidden();
+    // Le focus revient au burger : sans ça, la tabulation repart du document.
+    await expect(burger).toBeFocused();
+
+    // Aucun débordement horizontal, menu ouvert ou fermé.
+    const { defilable } = await page.evaluate(() => ({
+      defilable: document.documentElement.scrollWidth,
+    }));
+    expect(defilable).toBeLessThanOrEqual(largeur + 1);
+  }
+
+  // Au-dessus de 1 024 px, rien ne change.
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto(BASE, { waitUntil: "networkidle" });
+  await expect(page.getByRole("button", { name: "Ouvrir le menu" })).toBeHidden();
+  await expect(page.locator("header nav a")).toHaveCount(5);
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

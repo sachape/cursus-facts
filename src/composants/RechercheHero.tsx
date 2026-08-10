@@ -123,6 +123,19 @@ export function RechercheHero({
   const [ouvert, setOuvert] = useState(false);
   const [surligne, setSurligne] = useState(0);
   /*
+    Faux au premier rendu, des deux côtés : le serveur ne connaît pas la largeur
+    de la fenêtre, et parier dessus produirait un écart d'hydratation — celui
+    qui a fait tomber six invariants le 10 août.
+  */
+  const [etroit, setEtroit] = useState(false);
+  useEffect(() => {
+    const requete = window.matchMedia("(max-width: 639px)");
+    const suivre = () => setEtroit(requete.matches);
+    suivre();
+    requete.addEventListener("change", suivre);
+    return () => requete.removeEventListener("change", suivre);
+  }, []);
+  /*
     AUCUN ÉTAT LOCAL DE SAISIE.
 
     Chaque champ en gardait un, resynchronisé par un minuteur de 150 ms. Avec
@@ -307,7 +320,17 @@ export function RechercheHero({
           }}
           onFocus={() => setOuvert(true)}
           onKeyDown={clavier}
-          placeholder="Rechercher un parcours, un organisme ou un code RNCP…"
+          /*
+            Le texte indicatif se raccourcit sous 640 px plutôt que d'être
+            tronqué. « Rechercher un parcours, un o… » n'indique rien : un
+            indice coupé au milieu d'un mot demande plus d'effort qu'un indice
+            court. Mesuré à l'affichage, pas deviné au rendu serveur — d'où
+            l'état plutôt qu'une classe CSS, un `placeholder` n'ayant pas de
+            variante responsive.
+          */
+          placeholder={
+            etroit ? "Rechercher une formation…" : "Rechercher un parcours, un organisme ou un code RNCP…"
+          }
           spellCheck={false}
           autoCorrect="off"
           autoCapitalize="off"

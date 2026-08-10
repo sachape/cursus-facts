@@ -416,6 +416,13 @@
     l'observateur publie à nouveau. La page grandit sans fin.
   */
   --header-hauteur: 72px;
+  /* Cible tactile de 44 px : le minimum sous lequel un pouce rate. */
+  --burger-cible: 44px;
+  --burger-trait-largeur: 18px;
+  --burger-trait-epaisseur: 1.5px;
+  --burger-trait-ecart: 5px;
+  --menu-largeur: min(320px, 85%);
+  --menu-entree-hauteur: 48px;
   --nav-hauteur: 56px;
 
   --app-header-height: 72px;
@@ -896,6 +903,27 @@ html {
       font-size: var(--heading-1-size);
       letter-spacing: -0.045em;
       font-variation-settings: "opsz" var(--opsz-heading);
+    }
+  }
+
+  /*
+    Sous 430 px, la seconde ligne — insécable par construction — réclame 301 px
+    quand le titre n'en dispose que de 247. Elle était rognée en silence par
+    l'`overflow-clip` du hero : rien ne débordait du document, donc aucun
+    invariant ne le voyait, et « e-commerce » se lisait « e-commerc ».
+
+    Un palier de plus, pas une taille sur mesure.
+  */
+  @media (max-width: 429px) {
+    .hero-title {
+      font-size: var(--heading-2-size);
+    }
+  }
+
+  /* Et un palier de plus sous 375 px, où 22 px ne tient toujours pas. */
+  @media (max-width: 374px) {
+    .hero-title {
+      font-size: var(--heading-3-size);
     }
   }
 
