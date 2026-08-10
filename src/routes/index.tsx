@@ -400,10 +400,7 @@ function Explorer() {
         compensent exactement le retrait du conteneur, jamais davantage.
       */}
       <div className="-mx-(--space-6) my-(--space-12)">
-        <BandeOrganismes
-          organismes={organismesBande}
-          choisir={(nom) => modifier({ organisme: nom })}
-        />
+        <BandeOrganismes organismes={organismesBande} />
       </div>
 
       <OngletsDomaines

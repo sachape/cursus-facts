@@ -737,6 +737,43 @@ test("une fiche portant un champ non collecté n'affiche jamais un compteur plei
   }
 });
 
+test("les cartes de la bande sont de vrais liens vers la page organisme", async ({ page }) => {
+  /*
+    Elles filtraient l'explorateur : la personne quittait la bande, perdait sa
+    position, et atterrissait dans une liste qui ne disait rien de l'organisme.
+    La vue Organismes avait été corrigée au chantier de la page dédiée, la bande
+    n'avait pas suivi — un seul comportement doit valoir partout.
+
+    Le test porte sur le `href`, pas sur le clic, parce que c'est le href qui
+    décide de l'indexation. Un `<button>` déclencherait la même navigation pour
+    un humain et rendrait ces 163 pages invisibles depuis l'accueil : le défaut
+    ne se verrait qu'en Search Console, des semaines plus tard.
+  */
+  const bande = page.getByRole("list", { name: "Organismes référencés" });
+  await expect(bande).toBeVisible();
+
+  const entrees = bande.locator("li > *");
+  const total = Math.min(await entrees.count(), 12);
+  expect(total).toBeGreaterThan(0);
+
+  const fautifs: string[] = [];
+  for (let i = 0; i < total; i++) {
+    const entree = entrees.nth(i);
+    const balise = await entree.evaluate((e) => e.tagName.toLowerCase());
+    const href = await entree.getAttribute("href");
+    if (balise !== "a") fautifs.push(`entrée ${i} → <${balise}> au lieu de <a>`);
+    else if (href === null || !href.startsWith("/organismes/")) {
+      fautifs.push(`entrée ${i} → href « ${href ?? "absent"} »`);
+    }
+  }
+  expect(fautifs).toEqual([]);
+
+  // Et le lien mène bien à une page qui existe.
+  const premier = await entrees.first().getAttribute("href");
+  const reponse = await page.request.get(`${BASE}${premier!}`);
+  expect(reponse.status()).toBe(200);
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {
@@ -876,7 +913,10 @@ test("la bande d'organismes ne déborde pas et reste lisible", async ({ page }) 
     Mesuré sur les enfants DIRECTS du bouton, dans l'ordre du document : c'est
     la composition qu'on vérifie, pas une paire choisie à la main.
   */
-  const carte = bande.locator("li").first().locator("button");
+  // La carte est un LIEN depuis qu'elle mène à la page organisme : viser
+  // `button` ici ne trouvait plus rien, et le test échouait sur le comptage
+  // sans rien dire de la composition.
+  const carte = bande.locator("li").first().locator("a");
   const blocs = carte.locator("> span");
   await expect(blocs).toHaveCount(3);
 

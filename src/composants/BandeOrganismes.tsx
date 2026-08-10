@@ -22,6 +22,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CategorieOrganisme } from "@/types/cursus";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
+import { slugifierOrganisme } from "@/modele/organismes";
 import { IconeCategorie } from "./OrganizationMark";
 
 export type OrganismeBande = {
@@ -79,18 +80,23 @@ function jetonDuree(nom: `--${string}`, repli: number): number {
   return /ms$/.test(brut) ? valeur : /s$/.test(brut) ? valeur * 1000 : repli;
 }
 
-function Carte({
-  organisme,
-  choisir,
-}: {
-  organisme: OrganismeBande;
-  choisir: (nom: string) => void;
-}) {
+function Carte({ organisme }: { organisme: OrganismeBande }) {
   return (
     <li className="shrink-0">
-      <button
-        type="button"
-        onClick={() => choisir(organisme.nom)}
+      {/*
+        UN VRAI LIEN, PAS UN GESTIONNAIRE DE CLIC.
+
+        La carte filtrait l'explorateur — la personne quittait la bande, perdait
+        sa position, et atterrissait dans une liste qui ne disait rien de
+        l'organisme. La vue Organismes a été corrigée au chantier de la page
+        dédiée ; la bande n'avait pas suivi.
+
+        Et un `href` réel n'est pas un détail de forme : ces 163 pages sont de
+        la traîne longue, et un robot ne déclenche pas de gestionnaire de clic.
+        Un `<button>` les aurait rendues invisibles depuis l'accueil.
+      */}
+      <a
+        href={`/organismes/${slugifierOrganisme(organisme.nom)}`}
         /*
           Une carte, pas un bloc de texte au fond gris : le fond au survol
           appartient au registre d'une liste de résultats, où le survol désigne
@@ -138,19 +144,12 @@ function Carte({
           {organisme.parcours}
           <span className="sr-only"> parcours référencés</span>
         </span>
-      </button>
+      </a>
     </li>
   );
 }
 
-export function BandeOrganismes({
-  organismes,
-  choisir,
-}: {
-  organismes: OrganismeBande[];
-  /** Filtre l'explorateur sur cet organisme. */
-  choisir: (nom: string) => void;
-}) {
+export function BandeOrganismes({ organismes }: { organismes: OrganismeBande[] }) {
   const [ordre, setOrdre] = useState(organismes);
   useEffect(() => setOrdre(melanger(organismes)), [organismes]);
 
@@ -270,11 +269,7 @@ export function BandeOrganismes({
           className="flex w-max items-center gap-(--space-4) will-change-transform motion-safe:animate-[defile_var(--bande-duree)_linear_infinite]"
         >
           {boucle.map((organisme, index) => (
-            <Carte
-              key={`${organisme.nom}-${index}`}
-              organisme={organisme}
-              choisir={choisir}
-            />
+            <Carte key={`${organisme.nom}-${index}`} organisme={organisme} />
           ))}
         </ul>
 
