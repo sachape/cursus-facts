@@ -428,6 +428,9 @@
   --signet-taille: 20px;
   --signet-cible: 32px;
   --signet-cible-tactile: 44px;
+  /* Bouton de connexion : 36 px en bureau, la cible de 44 px en mobile. */
+  --bouton-entete-hauteur: 36px;
+  --pastille-compte: 32px;
   --nav-hauteur: 56px;
 
   --app-header-height: 72px;

@@ -14,6 +14,9 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navigation } from "@/composants/Navigation";
 import { BarreComparaison } from "@/composants/BarreComparaison";
 import { FournisseurComparaison } from "@/composants/comparaison";
+import { PiedDePage, type StatistiquesPied } from "@/composants/PiedDePage";
+import { chargerListe } from "@/donnees/requetes";
+import { CHAMPS_INFORMATION } from "@/types/cursus";
 import { FournisseurAuth } from "@/composants/authentification";
 import { FournisseurSauvegardes } from "@/composants/sauvegardes";
 
@@ -81,6 +84,29 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  /*
+    Les chiffres du pied viennent du catalogue, jamais écrits en dur : une
+    promesse chiffrée est la première chose qu'un visiteur vérifie, et elle
+    mentirait au premier parcours ajouté.
+
+    Chargé à la racine parce que le pied est sur toutes les pages. Le catalogue
+    est déjà lu par la plupart des routes ; ce loader n'ajoute une requête que
+    sur celles qui n'en font aucune.
+  */
+  loader: async (): Promise<StatistiquesPied> => {
+    const parcours = await chargerListe();
+    return {
+      parcours: parcours.length,
+      organismes: new Set(parcours.map((p) => p.organismeNom)).size,
+      criteres: CHAMPS_INFORMATION.length,
+      derniereVerification:
+        parcours
+          .map((p) => p.dateVerification)
+          .filter((d): d is string => d !== null)
+          .sort()
+          .at(-1) ?? null,
+    };
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -169,6 +195,7 @@ function RootComponent() {
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
             <Outlet />
           </div>
+          <PiedDePage />
           <BarreComparaison />
         </div>
       </FournisseurComparaison>

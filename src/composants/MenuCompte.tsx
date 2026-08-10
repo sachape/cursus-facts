@@ -69,7 +69,19 @@ export function MenuCompte() {
       <Link
         to="/connexion"
         aria-label="Se connecter"
-        className="inline-flex h-(--burger-cible) shrink-0 items-center justify-center rounded-(--radius-md) text-(--text-primary) transition-colors duration-(--motion-fast) hover:bg-(--surface-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) max-[1023px]:w-(--burger-cible) min-[1024px]:px-(--space-3)"
+        /*
+          UN BOUTON À CONTOUR, pas un fond plein. L'action primaire de l'en-tête
+          est déjà prise par l'onglet actif, en noir plein : un second bouton
+          plein créerait deux points d'attention concurrents. Et la connexion
+          n'est pas l'action principale du site — le catalogue est public, elle
+          reste secondaire.
+
+          Le filet n'apparaît qu'en version bureau : sous 1 024 px l'emplacement
+          doit faire exactement la largeur du burger pour que le logo reste
+          centré, et un contour y ajouterait une boîte là où on attend un
+          pictogramme.
+        */
+        className="inline-flex shrink-0 items-center justify-center rounded-(--radius-md) text-(--text-primary) transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) max-[1023px]:size-(--burger-cible) max-[1023px]:hover:bg-(--surface-hover) min-[1024px]:h-(--bouton-entete-hauteur) min-[1024px]:border min-[1024px]:border-(--border-default) min-[1024px]:bg-(--surface-raised) min-[1024px]:px-(--space-4) min-[1024px]:hover:border-(--border-strong) min-[1024px]:hover:bg-(--surface-hover)"
       >
         <svg
           viewBox="0 0 24 24"
@@ -84,7 +96,7 @@ export function MenuCompte() {
           <circle cx="12" cy="8" r="4" />
           <path d="M4 21c0-4 3.6-6 8-6s8 2 8 6" />
         </svg>
-        <span className="hidden t-body-sm min-[1024px]:inline">Se connecter</span>
+        <span className="hidden t-body-sm font-medium min-[1024px]:inline">Se connecter</span>
       </Link>
     );
   }
@@ -101,7 +113,7 @@ export function MenuCompte() {
         aria-label="Menu du compte"
         className="grid size-(--burger-cible) place-items-center rounded-(--radius-full) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
       >
-        <span className="grid size-(--space-8) place-items-center rounded-(--radius-full) bg-(--interactive-default) t-body-sm font-medium text-(--text-on-inverse)">
+        <span className="grid size-(--pastille-compte) place-items-center rounded-(--radius-full) bg-(--neutral-90) t-data-sm text-(--text-on-inverse) transition-shadow duration-(--motion-fast) hover:shadow-(--elevation-2)">
           {initiale}
         </span>
       </button>

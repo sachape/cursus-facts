@@ -1,0 +1,147 @@
+/**
+ * Pied de page — institutionnel, jamais une signature de marque.
+ *
+ * LE BANDEAU REMPLACE LE GRAND LOGO. Un logo géant en pied occupe la place et
+ * ne dit rien ; à la même place, la promesse du produit dit ce qui nous
+ * distingue de tous les comparatifs du marché. C'est le dernier endroit qu'on
+ * lit avant de partir, et c'est celui où l'on décide de revenir.
+ *
+ * AUCUN LIEN MORT. Une page qui n'existe pas encore ne figure pas ici. Un lien
+ * mort en pied abîme la crédibilité plus qu'une colonne courte — sur un produit
+ * dont toute la proposition est la vérifiabilité, c'est la première promesse
+ * qu'on casse.
+ *
+ * CE QUI N'Y FIGURE PAS, ET C'EST UNE DÉCISION : aucune icône de réseau social
+ * tant que les comptes n'existent pas, aucune inscription à une infolettre —
+ * elle mérite mieux qu'un pied de page —, aucun logo de partenaire, aucun badge.
+ */
+import { Link, useRouterState } from "@tanstack/react-router";
+import { Route } from "@/routes/__root";
+import { MotSymboleHorizontal } from "./marque/Marques";
+import { formaterDateLongue } from "@/modele/dates";
+import { formaterNombre } from "@/modele/nombres";
+
+export type StatistiquesPied = {
+  parcours: number;
+  organismes: number;
+  criteres: number;
+  derniereVerification: string | null;
+};
+
+const CORRECTION =
+  "mailto:corrections@formlist.fr?subject=" + encodeURIComponent("Correction — Formlist");
+
+/*
+  Les colonnes, et ce qui en est absent.
+
+  « Comment nous vérifions » et « Acteurs écartés » sont des SECTIONS de la page
+  Méthode, pas des pages : les afficher comme des entrées séparées promettrait
+  des pages qui n'existent pas. « À propos », « Mentions légales » et
+  « Confidentialité » ne sont pas écrites. Elles reviendront ici le jour où
+  elles existeront, et pas avant.
+*/
+const COLONNES = [
+  {
+    titre: "Explorer",
+    liens: [
+      { to: "/", libelle: "Tous les parcours" },
+      { to: "/organismes", libelle: "Organismes" },
+      { to: "/comparer", libelle: "Comparer" },
+      { to: "/aide-au-choix", libelle: "Aide au choix" },
+    ],
+  },
+  {
+    titre: "Comprendre",
+    liens: [{ to: "/methode", libelle: "Méthode" }],
+    externes: [{ href: CORRECTION, libelle: "Signaler une correction" }],
+  },
+] as const;
+
+/*
+  ABSENT DES VUES PERSONNELLES. Un pied institutionnel qui vante l'indépendance
+  du catalogue n'a rien à faire sous « Mes formations » : la personne y est chez
+  elle, pas en train d'évaluer le produit.
+*/
+const SANS_PIED = ["/mes-formations", "/mes-comparaisons", "/mes-alertes", "/connexion"];
+
+export function PiedDePage() {
+  const stats = Route.useLoaderData();
+  const chemin = useRouterState({ select: (e) => e.location.pathname });
+  if (SANS_PIED.includes(chemin)) return null;
+
+  return (
+    <footer className="mt-(--space-20)">
+      {/* Bandeau — la promesse, à la place où l'on met d'ordinaire un logo. */}
+      <div className="bg-(--surface-sunken) py-(--space-16)">
+        <div className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6)">
+          <p className="max-w-3xl text-balance t-heading-1 text-(--text-primary) max-[767px]:t-heading-2">
+            Aucune note. Aucun classement par qualité. Aucune position achetable.
+          </p>
+          {/*
+            Les chiffres viennent du catalogue. Les écrire en dur les ferait
+            mentir au premier ajout — et c'est précisément le genre de promesse
+            chiffrée qu'un visiteur vérifie.
+          */}
+          <p className="mt-(--space-4) max-w-2xl t-body text-(--text-secondary)">
+            <span className="chiffre">{formaterNombre(stats.parcours)}</span> parcours de{" "}
+            <span className="chiffre">{formaterNombre(stats.organismes)}</span> organismes, comparés
+            sur <span className="chiffre">{stats.criteres}</span> critères vérifiables. Chaque
+            information porte sa source et sa date.
+          </p>
+        </div>
+      </div>
+
+      {/* Corps — les colonnes. */}
+      <div className="border-t border-(--border-subtle) bg-(--surface-page) py-(--space-12)">
+        <div className="mx-auto grid max-w-(--contenu-largeur-max) gap-(--space-8) px-(--space-6) min-[768px]:grid-cols-4">
+          <div>
+            <MotSymboleHorizontal className="h-(--space-8) w-auto text-(--text-primary)" />
+            <p className="mt-(--space-3) max-w-56 t-caption text-(--text-tertiary)">
+              Comparateur indépendant de formations e-commerce en France
+            </p>
+          </div>
+
+          {COLONNES.map((colonne) => (
+            <nav key={colonne.titre} aria-label={colonne.titre}>
+              <p className="t-label text-(--text-tertiary)">{colonne.titre}</p>
+              <ul className="mt-(--space-4) flex flex-col gap-(--space-3)">
+                {colonne.liens.map((l) => (
+                  <li key={l.to}>
+                    <Link
+                      to={l.to}
+                      className="t-body-sm text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline"
+                    >
+                      {l.libelle}
+                    </Link>
+                  </li>
+                ))}
+                {"externes" in colonne &&
+                  colonne.externes.map((l) => (
+                    <li key={l.href}>
+                      <a
+                        href={l.href}
+                        className="t-body-sm text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline"
+                      >
+                        {l.libelle}
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
+      </div>
+
+      {/* Barre inférieure. */}
+      <div className="border-t border-(--border-subtle) bg-(--surface-page) py-(--space-6)">
+        <div className="mx-auto flex max-w-(--contenu-largeur-max) flex-wrap items-center justify-between gap-(--space-3) px-(--space-6) t-caption text-(--text-tertiary)">
+          <p>
+            Formlist — Catalogue vérifié le{" "}
+            <span className="chiffre">{formaterDateLongue(stats.derniereVerification)}</span>
+          </p>
+          <p>Aucun lien de cette page n&apos;est affilié.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}

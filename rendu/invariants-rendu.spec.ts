@@ -774,6 +774,56 @@ test("les cartes de la bande sont de vrais liens vers la page organisme", async 
   expect(reponse.status()).toBe(200);
 });
 
+test("aucun lien du pied de page ne pointe vers une route inexistante", async ({ page }) => {
+  /*
+    Un lien mort en pied abîme la crédibilité plus qu'une colonne courte — sur
+    un produit dont toute la proposition est la vérifiabilité, c'est la première
+    promesse qu'on casse. Et c'est le genre de défaut qu'on n'attrape jamais à
+    l'œil : personne ne clique son propre pied de page.
+
+    Les `mailto:` sont écartés — ils ne se testent pas par une requête.
+  */
+  const liens = page.locator("footer a[href^='/']");
+  const total = await liens.count();
+  expect(total).toBeGreaterThan(0);
+
+  const morts: string[] = [];
+  for (let i = 0; i < total; i++) {
+    const href = await liens.nth(i).getAttribute("href");
+    if (href === null) continue;
+    const reponse = await page.request.get(`${BASE}${href}`);
+    if (reponse.status() !== 200) morts.push(`${href} → ${reponse.status()}`);
+  }
+  expect(morts).toEqual([]);
+});
+
+test("le bouton de connexion a la bonne cible aux deux largeurs", async ({ page }) => {
+  /*
+    36 px en version bureau, 44 px sur mobile — le minimum sous lequel un pouce
+    rate. Deux hauteurs, deux raisons : l'une est une proportion de barre,
+    l'autre une contrainte d'ergonomie tactile, et confondre les deux donnerait
+    un bouton trop petit au doigt ou trop lourd à l'écran large.
+  */
+  for (const [largeur, attendu] of [[1280, 36], [375, 44]] as const) {
+    await page.setViewportSize({ width: largeur, height: 800 });
+    await page.goto(BASE, { waitUntil: "networkidle" });
+
+    const bouton = page.getByRole("link", { name: "Se connecter" });
+    await expect(bouton).toBeVisible();
+    const b = await boite(bouton);
+    expect(Math.round(b.height), `${largeur}px`).toBe(attendu);
+
+    // Le libellé reste lisible sur son fond.
+    const { couleur, taille } = await bouton.evaluate((e) => ({
+      couleur: getComputedStyle(e).color,
+      taille: parseFloat(getComputedStyle(e).fontSize),
+    }));
+    const fond = await fondEffectif(page, bouton);
+    const requis = taille >= 18 ? 3 : 4.5;
+    expect(contraste(couleur, fond)).toBeGreaterThanOrEqual(requis);
+  }
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {
