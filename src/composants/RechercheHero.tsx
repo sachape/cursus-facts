@@ -110,6 +110,7 @@ export function RechercheHero({
   suggestions,
   champRef,
   compact = false,
+  placeholderPersonnalise,
 }: {
   valeur: string;
   modifier: (v: string) => void;
@@ -119,6 +120,9 @@ export function RechercheHero({
   champRef?: React.RefObject<HTMLInputElement | null>;
   /** Version de la barre de résultats : 40 px, loupe 16 px, même autocomplétion. */
   compact?: boolean;
+  /** Remplace le texte indicatif quand le contexte le restreint — la vue
+      Comparer n'accepte que des parcours, et le dire évite un essai vain. */
+  placeholderPersonnalise?: string;
 }) {
   const [ouvert, setOuvert] = useState(false);
   const [surligne, setSurligne] = useState(0);
@@ -329,7 +333,8 @@ export function RechercheHero({
             variante responsive.
           */
           placeholder={
-            etroit ? "Rechercher une formation…" : "Rechercher un parcours, un organisme ou un code RNCP…"
+            placeholderPersonnalise ??
+            (etroit ? "Rechercher une formation…" : "Rechercher un parcours, un organisme ou un code RNCP…")
           }
           spellCheck={false}
           autoCorrect="off"

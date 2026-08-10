@@ -875,6 +875,41 @@ test("aucun point d'entrée vers un organisme ne pose un filtre", async ({ page 
   }
 });
 
+test("la vue Comparer vide permet de démarrer sans quitter la page", async ({ page }) => {
+  /*
+    La page ne faisait que renvoyer au catalogue : un aller-retour, pas une
+    page. Le test vérifie qu'on peut y COMMENCER quelque chose — le champ
+    ajoute réellement un parcours, et les comparaisons proposées existent.
+
+    Elles sont tirées au sort APRÈS montage, pour que serveur et client rendent
+    le même HTML : le test attend donc leur apparition plutôt que de les lire
+    au premier rendu.
+  */
+  await page.goto(`${BASE}/comparer`, { waitUntil: "networkidle" });
+
+  const champ = page.getByPlaceholder(/Ajouter un parcours/);
+  await expect(champ).toBeVisible();
+
+  // Les comparaisons possibles : le catalogue le permet aujourd'hui.
+  const propositions = page.locator("main section", { hasText: "Comparaisons possibles" });
+  await expect(propositions).toBeVisible();
+  const cartes = propositions.locator("ul > li");
+  expect(await cartes.count()).toBeGreaterThan(0);
+
+  // Jamais « populaires » ni « recommandées » : ce serait un jugement.
+  const titre = await propositions.locator("h2").innerText();
+  expect(titre.toLowerCase()).not.toMatch(/populaire|recommand/);
+
+  // Le champ ajoute vraiment : une suggestion retenue fait apparaître le
+  // compteur d'un parcours retenu, sans navigation.
+  await champ.fill("commerce");
+  const option = page.getByRole("option").first();
+  await expect(option).toBeVisible();
+  await option.click();
+  await expect(page.getByText(/Un parcours retenu/)).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe("/comparer");
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

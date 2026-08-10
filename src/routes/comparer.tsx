@@ -15,6 +15,10 @@ import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerFiche, type ParcoursFiche } from "@/donnees/requetes";
 import { useComparaison } from "@/composants/comparaison";
+import { DemarrerComparaison, type ComparaisonEnregistree } from "@/composants/DemarrerComparaison";
+import { chargerListe } from "@/donnees/requetes";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/composants/authentification";
 import { synthetiser } from "@/modele/synthese-comparaison";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import { PanneauFiche } from "@/composants/PanneauFiche";
@@ -27,6 +31,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/comparer")({
+  loader: () => chargerListe(),
   /*
     Même comportement d'ouverture qu'ailleurs. Le tableau porte déjà le contenu
     complet des fiches comparées, mais un titre de colonne reste un lien vers
@@ -174,8 +179,35 @@ export function ligneIdentique(ligne: Ligne): boolean {
 }
 
 function Comparer() {
+  const catalogue = Route.useLoaderData();
   const { selection, retirer } = useComparaison();
+  const [enregistrees, setEnregistrees] = useState<ComparaisonEnregistree[]>([]);
   const { fiche } = Route.useSearch();
+  const { utilisateur } = useAuth();
+
+  /*
+    Les comparaisons du compte, pour l'état vide. Chargées ici et non dans
+    `DemarrerComparaison` : le composant décrit un écran, il n'interroge aucune
+    donnée — même règle que pour les suggestions du hero.
+  */
+  useEffect(() => {
+    if (utilisateur === null) {
+      setEnregistrees([]);
+      return;
+    }
+    let annule = false;
+    void supabase
+      .from("comparaisons")
+      .select("id, nom, parcours_ids, cree_le")
+      .order("cree_le", { ascending: false })
+      .limit(4)
+      .then(({ data }) => {
+        if (!annule) setEnregistrees((data ?? []) as ComparaisonEnregistree[]);
+      });
+    return () => {
+      annule = true;
+    };
+  }, [utilisateur]);
   const { proprietesLien, fermer: fermerPanneau } = useOuvertureFiche();
   const [fiches, setFiches] = useState<ParcoursFiche[]>([]);
   const [chargement, setChargement] = useState(false);
@@ -213,19 +245,13 @@ function Comparer() {
   // Recalculée à chaque ajout ou retrait : elle suit la sélection.
   const synthese = useMemo(() => synthetiser(fiches), [fiches]);
 
+  /*
+    L'ÉTAT VIDE EST UN POINT DE DÉPART, plus un renvoi. La page attendait une
+    sélection faite ailleurs, donc elle renvoyait ailleurs : un aller-retour,
+    pas une page.
+  */
   if (selection.length < 2) {
-    return (
-      <main className="mx-auto max-w-3xl px-5 py-20 text-center sm:px-8">
-        <h1 className="font-titre text-2xl font-semibold">Comparer des parcours</h1>
-        <p className="mx-auto mt-3 max-w-md t-body-sm text-(--text-secondary)">
-          Sélectionnez au moins deux parcours depuis le catalogue pour les comparer sur les 21
-          informations suivies. La comparaison porte sur quatre parcours au maximum.
-        </p>
-        <Button asChild className="mt-6">
-          <Link to="/">Retourner au catalogue</Link>
-        </Button>
-      </main>
-    );
+    return <DemarrerComparaison catalogue={catalogue} enregistrees={enregistrees} />;
   }
 
   return (
