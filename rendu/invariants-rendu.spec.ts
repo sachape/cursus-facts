@@ -910,6 +910,52 @@ test("la vue Comparer vide permet de démarrer sans quitter la page", async ({ p
   expect(new URL(page.url()).pathname).toBe("/comparer");
 });
 
+test("aucun sélecteur natif dans le rendu", async ({ page }) => {
+  /*
+    Troisième cas du jour où une vue écrite après les autres n'a pas repris le
+    composant existant — après l'ouverture de fiche et le lien vers l'organisme.
+    Le symptôme était visible : le menu système affichait « distanciel » et
+    « presentiel », c'est-à-dire le vocabulaire de la base servi à
+    l'utilisateur.
+
+    Le contrôle est mécanique et ne coûte rien : un `<select>` natif ne peut
+    pas respecter les jetons, donc sa seule présence est le défaut.
+  */
+  const pages = ["/", "/organismes", "/comparer", "/aide-au-choix", "/organismes/livementor"];
+  const fautifs: string[] = [];
+
+  for (const chemin of pages) {
+    await page.goto(`${BASE}${chemin}`, { waitUntil: "networkidle" });
+    const natifs = await page.locator("select").count();
+    if (natifs > 0) fautifs.push(`${chemin} → ${natifs} <select>`);
+  }
+  expect(fautifs).toEqual([]);
+});
+
+test("les filtres de la page organisme affichent des libellés, pas des valeurs brutes", async ({
+  page,
+}) => {
+  /*
+    Le rendu système montrait les valeurs stockées. On vérifie donc le CONTENU
+    du menu, pas seulement sa forme : une refonte visuelle qui garderait
+    « presentiel » n'aurait rien corrigé de ce qui se lit.
+  */
+  await page.goto(`${BASE}/organismes/livementor`, { waitUntil: "networkidle" });
+
+  const declencheurs = page.locator("main section button[aria-haspopup]");
+  const total = await declencheurs.count();
+  if (total === 0) return; // Cet organisme n'a pas assez d'axes pour filtrer.
+
+  await declencheurs.first().click();
+  const menu = page.getByRole("menu");
+  await expect(menu).toBeVisible();
+
+  const texte = await menu.innerText();
+  for (const brut of ["distanciel", "presentiel", "aucun_prerequis", "formation_professionnelle"]) {
+    expect(texte).not.toContain(brut);
+  }
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

@@ -23,6 +23,14 @@ import { chargerListe } from "@/donnees/requetes";
 import { trouverOrganisme, urlDuSite } from "@/modele/organismes";
 import { classer, LIBELLES_TRIS, TRI_PAR_DEFAUT } from "@/modele/classement";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
+import { SelecteurListe } from "@/composants/SelecteurListe";
+
+/** Les formats, en français : la base stocke « distanciel », on lit « Distanciel ». */
+const LIBELLES_FORMATS: Record<FormatParcours, string> = {
+  distanciel: "Distanciel",
+  presentiel: "Présentiel",
+  alternance: "Alternance",
+};
 import { RangeeParcours } from "@/composants/RangeeParcours";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
@@ -111,16 +119,40 @@ function PageOrganisme() {
   const [sujet, setSujet] = useState<string>("");
   const [format, setFormat] = useState<string>("");
 
-  const axes = useMemo(
-    () => ({
-      domaines: [...new Set(fiches.map((p) => p.domaine))].sort(),
-      sujets: [...new Set(fiches.map((p) => p.sujetPrincipal))].sort((a, b) =>
-        a.localeCompare(b, "fr"),
-      ),
-      formats: [...new Set(fiches.flatMap((p) => p.formats))].sort(),
-    }),
-    [fiches],
-  );
+  /*
+    LES LIBELLÉS VIENNENT DU VOCABULAIRE D'AFFICHAGE, jamais de la valeur
+    stockée. Le sélecteur natif rendait « distanciel » et « presentiel » — le
+    vocabulaire de la base servi à l'utilisateur, en minuscules et sans accent.
+    Les valeurs enregistrées ne changent pas ; seule leur présentation est mise
+    en forme.
+
+    Le COMPTEUR par option compte les parcours de CET organisme, comme la
+    colonne de filtres de l'explorateur. Une option à zéro reste affichée mais
+    désactivée : elle informe sans laisser cliquer dans le vide.
+  */
+  const axes = useMemo(() => {
+    const compter = (predicat: (p: (typeof fiches)[number]) => boolean) =>
+      fiches.filter(predicat).length;
+    return {
+      domaines: [...new Set(fiches.map((p) => p.domaine))]
+        .sort()
+        .map((d) => ({
+          valeur: d,
+          libelle: LIBELLES_DOMAINES[d],
+          compte: compter((p) => p.domaine === d),
+        })),
+      sujets: [...new Set(fiches.map((p) => p.sujetPrincipal))]
+        .sort((a, b) => a.localeCompare(b, "fr"))
+        .map((s) => ({ valeur: s, libelle: s, compte: compter((p) => p.sujetPrincipal === s) })),
+      formats: [...new Set(fiches.flatMap((p) => p.formats))]
+        .sort()
+        .map((f) => ({
+          valeur: f,
+          libelle: LIBELLES_FORMATS[f],
+          compte: compter((p) => p.formats.includes(f)),
+        })),
+    };
+  }, [fiches]);
 
   const resultats = useMemo(() => {
     const retenus = fiches.filter(
@@ -207,25 +239,36 @@ function PageOrganisme() {
           <p className="t-caption text-(--text-tertiary)">{LIBELLES_TRIS[TRI_PAR_DEFAUT]}</p>
         </div>
 
-        <div className="mt-(--space-4) flex flex-wrap gap-(--space-3)">
-          <Selecteur
-            libelle="Domaine"
-            valeur={domaine}
-            choisir={setDomaine}
-            options={axes.domaines.map((d) => ({ valeur: d, libelle: LIBELLES_DOMAINES[d] }))}
-          />
-          <Selecteur
-            libelle="Sujet principal"
-            valeur={sujet}
-            choisir={setSujet}
-            options={axes.sujets.map((s) => ({ valeur: s, libelle: s }))}
-          />
-          <Selecteur
-            libelle="Format"
-            valeur={format}
-            choisir={setFormat}
-            options={axes.formats.map((f) => ({ valeur: f, libelle: f }))}
-          />
+        {/*
+          Une ligne en version bureau, empilés sous 768 px avec le libellé
+          AU-DESSUS du sélecteur — côte à côte, trois lignes de libellés de
+          longueurs différentes désalignent les trois champs.
+        */}
+        <div className="mt-(--space-4) flex flex-col gap-(--space-4) min-[768px]:flex-row min-[768px]:flex-wrap">
+          {[
+            { id: "domaine", etiquette: "Domaine", valeur: domaine, choisir: setDomaine, options: axes.domaines },
+            { id: "sujet", etiquette: "Sujet principal", valeur: sujet, choisir: setSujet, options: axes.sujets },
+            { id: "format", etiquette: "Format", valeur: format, choisir: setFormat, options: axes.formats },
+          ].map((axe) =>
+            axe.options.length < 2 ? null : (
+              <div key={axe.id} className="flex flex-col gap-(--space-2)">
+                <label htmlFor={axe.id} className="t-body-sm text-(--text-secondary)">
+                  {axe.etiquette}
+                </label>
+                <SelecteurListe
+                  id={axe.id}
+                  etiquette={axe.etiquette}
+                  valeur={axe.valeur}
+                  choisir={axe.choisir}
+                  libelleVide="Tous"
+                  options={[
+                    { valeur: "", libelle: "Tous", compte: fiches.length },
+                    ...axe.options,
+                  ]}
+                />
+              </div>
+            ),
+          )}
         </div>
 
         {resultats.length === 0 ? (
@@ -260,34 +303,3 @@ function PageOrganisme() {
   );
 }
 
-/** Un axe de filtre. « Tous » est une valeur, pas une absence de choix. */
-function Selecteur({
-  libelle,
-  valeur,
-  choisir,
-  options,
-}: {
-  libelle: string;
-  valeur: string;
-  choisir: (v: string) => void;
-  options: { valeur: string; libelle: string }[];
-}) {
-  if (options.length < 2) return null;
-  return (
-    <label className="flex items-center gap-(--space-2) t-body-sm">
-      <span className="text-(--text-secondary)">{libelle}</span>
-      <select
-        value={valeur}
-        onChange={(e) => choisir(e.target.value)}
-        className="h-(--bouton-hauteur) rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) px-(--space-3) t-body-sm text-(--text-primary)"
-      >
-        <option value="">Tous</option>
-        {options.map((o) => (
-          <option key={o.valeur} value={o.valeur}>
-            {o.libelle}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}

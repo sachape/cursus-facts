@@ -17,14 +17,8 @@
  * seul champ ne pose plus la question.
  */
 import { useRef } from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { CountBadge } from "./CountBadge";
+import { SelecteurListe } from "./SelecteurListe";
 import { useEstAncree } from "./pile-collante";
 import type { Tri } from "@/modele/classement";
 import { LIBELLES_TRIS_COURTS, TRIS } from "@/modele/classement";
@@ -61,64 +55,21 @@ export function ActiveFilter({ libelle, retirer }: { libelle: string; retirer: (
  * aucun.
  */
 export function SortSelect({ tri, choisir }: { tri: Tri; choisir: (t: Tri) => void }) {
-  /*
-    Radix plutôt qu'un `<select>` natif : sur macOS, le menu système est un
-    panneau gris que rien ne permet d'harmoniser, et son contour de focus noir
-    jure avec tout le reste. Le rendu en portail évite aussi qu'un parent en
-    `overflow` ne le coupe — la toolbar est collante, et une liste rendue dans
-    son flux disparaîtrait sous les cartes.
-  */
   return (
     <div className="flex min-w-0 flex-1 items-center gap-(--space-3) max-[419px]:flex-col max-[419px]:items-stretch max-[419px]:gap-(--space-2)">
       <label htmlFor="tri" className="shrink-0 t-body-sm text-(--text-secondary)">
         Trier par
       </label>
-      <div className="relative min-w-0 flex-1 min-[768px]:min-w-(--select-largeur-min) min-[1024px]:w-[clamp(280px,24vw,360px)] min-[1024px]:flex-none">
-        {/*
-          DropdownMenu plutôt que Select : Radix Select n'expose PAS de
-          `modal={false}` et verrouille toujours le défilement du corps. Ce
-          verrou pose `overflow: hidden` sur le corps, qui devient conteneur de
-          défilement — les éléments collants perdent alors leur référence et
-          toute la pile disparaît à l'ouverture du menu.
-
-          Un menu de tri n'est pas une boîte de dialogue : il n'a pas à
-          confisquer le défilement de la page.
-        */}
-        <DropdownMenu modal={false}>
-          <DropdownMenuTrigger
-            id="tri"
-            aria-label="Trier les résultats"
-            className="flex h-(--bouton-hauteur) w-full items-center justify-between gap-(--space-2) rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) px-(--space-3) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus:outline-none focus:ring-0 focus:[box-shadow:var(--select-focus)] max-[1023px]:min-h-12 min-[1024px]:h-12"
-          >
-            <span className="truncate">{LIBELLES_TRIS_COURTS[tri]}</span>
-            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden className="shrink-0 text-(--text-tertiary)">
-              <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
-            </svg>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align="start"
-            sideOffset={8}
-            className="w-(--radix-dropdown-menu-trigger-width) rounded-(--radius-lg) border-(--select-bordure) bg-(--surface-raised) p-(--space-2) shadow-(--elevation-3)"
-          >
-            <DropdownMenuRadioGroup value={tri} onValueChange={(v) => choisir(v as Tri)}>
-              {TRIS.map((t) => (
-                <DropdownMenuRadioItem
-                  key={t}
-                  value={t}
-                  /*
-                    L'indicateur radio de shadcn est positionné en absolu à
-                    gauche, où il chevauche le texte dès qu'on retire le retrait
-                    de 32 px qu'il attend. Le fond de sélection dit déjà ce qui
-                    est choisi : un second marqueur n'ajoute rien.
-                  */
-                  className="min-h-(--option-hauteur) rounded-(--radius-md) px-(--space-3) t-body-sm data-[state=checked]:bg-(--accent-10) [&:not(:last-child)]:mb-(--space-2) [&>span:first-child]:hidden"
-                >
-                  {LIBELLES_TRIS_COURTS[t]}
-                </DropdownMenuRadioItem>
-              ))}
-            </DropdownMenuRadioGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <div className="min-w-0 flex-1 min-[1024px]:w-[clamp(280px,24vw,360px)] min-[1024px]:flex-none">
+        {/* Le composant du design system, extrait d'ici même : ce sélecteur
+            était le seul conforme, il est devenu le seul tout court. */}
+        <SelecteurListe
+          id="tri"
+          etiquette="Trier les résultats"
+          valeur={tri}
+          choisir={(v) => choisir(v as Tri)}
+          options={TRIS.map((t) => ({ valeur: t, libelle: LIBELLES_TRIS_COURTS[t] }))}
+        />
       </div>
     </div>
   );

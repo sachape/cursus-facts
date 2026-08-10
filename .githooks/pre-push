@@ -31,5 +31,22 @@ if [ ! -f .env.local ]; then
   exit 0
 fi
 
+#
+# REPRISE UNIQUE, ET C'EST UN PANSEMENT.
+#
+# Les invariants tournent contre `vite dev`, qui compile à la demande : sous
+# charge, un test expire sans qu'aucun défaut n'existe. Un hook qui échoue au
+# hasard finit par être contourné — `--no-verify` devient un réflexe, et le
+# garde-fou ne protège plus rien. C'est le mécanisme documenté au §8.
+#
+# Une seule reprise, jamais deux : au-delà, on ne distingue plus une
+# intermittence d'un défaut qui n'échoue qu'une fois sur trois.
+#
+# LE VRAI CORRECTIF est de servir un build. Il est décrit dans
+# `playwright.config.ts` et bloqué côté hébergement — voir le préréglage Nitro.
 echo "→ invariants de rendu"
-bun run invariants:rendu
+if ! bun run invariants:rendu; then
+  echo ""
+  echo "→ échec — reprise unique (intermittence du serveur de développement)"
+  bun run invariants:rendu
+fi
