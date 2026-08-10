@@ -521,6 +521,45 @@ plus l'affichage.
 Les taux affichés ont baissé sur 165 fiches. Un chiffre qui baisse parce qu'il
 cesse de mentir est un progrès.
 
+### Un invariant a protégé une décision passée contre une modification future
+
+C'est la première fois, et ça change l'argument.
+
+Jusqu'ici, les invariants de rendu ont RÉVÉLÉ des défauts déjà présents : le
+compteur plein, le titre rogné, la navigation qui débordait. Le 10 août,
+l'emplacement d'action de l'en-tête a été posé **vide**, à la largeur exacte du
+burger, pour que le logo tombe au centre — avec un invariant qui mesure ce
+centrage à ±2 px.
+
+Quand cet emplacement a été rempli, deux chantiers plus tard, le premier essai y
+mettait un libellé texte. Le logo s'est décentré. **Le test l'a dit dans la
+minute**, et la correction a été immédiate : un pictogramme contraint à la
+largeur réservée sous 1 024 px, le libellé complet en version bureau seulement.
+
+Personne n'aurait relu le commentaire expliquant pourquoi l'emplacement était
+vide. L'invariant, lui, n'avait pas besoin d'être relu.
+
+**C'est l'argument pour continuer à en écrire** : le coût d'un invariant se paie
+une fois, sa valeur se perçoit à chaque modification ultérieure — y compris
+celles faites par quelqu'un qui ignore la décision qu'il défait. Une décision de
+conception non mesurée n'a que la durée de vie de la mémoire de celui qui l'a
+prise.
+
+### La clé de rôle de service n'est pas récupérable — construire sans
+
+Lovable Cloud garde ses secrets. Ni lecture privilégiée, ni suppression d'un
+compte de test, ni création d'un utilisateur déjà confirmé par l'API
+d'administration.
+
+**Conséquence à ne pas contourner :** tout contrôle exigeant un compte confirmé
+se fait à la main, et se documente. Un test de rendu ne peut pas franchir une
+boîte mail.
+
+La règle qui en découle, apprise en voulant l'écrire quand même : **un test qui
+ne peut pas tourner ne protège rien.** Deux tests réels et une vérification
+manuelle consignée valent mieux qu'un test impossible à exécuter, qui donne
+l'apparence d'une couverture et sera désactivé au premier échec.
+
 ### Et un second motif, distinct : deux règles correctes, incohérentes ensemble
 
 Le 4 août, `non_collecte` sortait du dénominateur — « on ne reproche pas une
