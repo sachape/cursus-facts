@@ -14,6 +14,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navigation } from "@/composants/Navigation";
 import { BarreComparaison } from "@/composants/BarreComparaison";
 import { FournisseurComparaison } from "@/composants/comparaison";
+import { FournisseurAuth } from "@/composants/authentification";
+import { FournisseurSauvegardes } from "@/composants/sauvegardes";
 
 /** Adresse canonique du site. Une seule source pour les métadonnées. */
 const SITE = "https://formlist.fr";
@@ -153,6 +155,13 @@ function RootComponent() {
         La sélection de comparaison vit au-dessus des routes : on choisit des
         parcours dans Explorer et on les retrouve dans Comparer.
       */}
+      {/*
+        L'ordre compte : les sauvegardes lisent la session, donc l'auth
+        l'enveloppe. La comparaison ne dépend d'aucune des deux et vit à
+        l'intérieur, où elle profite de la session pour la fusion du local.
+      */}
+      <FournisseurAuth>
+      <FournisseurSauvegardes>
       <FournisseurComparaison>
         <div className="flex min-h-screen flex-col">
           <Navigation />
@@ -163,6 +172,8 @@ function RootComponent() {
           <BarreComparaison />
         </div>
       </FournisseurComparaison>
+      </FournisseurSauvegardes>
+      </FournisseurAuth>
     </QueryClientProvider>
   );
 }
