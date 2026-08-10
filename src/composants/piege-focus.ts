@@ -86,13 +86,48 @@ export function usePiegeFocus({
  * Sans lui, deux zones défilent en même temps et le contenu bouge derrière le
  * panneau — le repère visuel qu'on venait de quitter n'est plus là au retour.
  */
-export function useVerrouDefilement(actif: boolean): void {
+export function useVerrouDefilement(
+  actif: boolean,
+  positionConservee?: () => number | null,
+): void {
   useEffect(() => {
     if (!actif) return;
-    const precedent = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+
+    /*
+      LA POSITION EST CAPTURÉE ET RENDUE.
+
+      Passer le corps en `overflow: hidden` supprime sa zone défilable : le
+      navigateur ramène alors la position à ce qui reste, et l'ouverture d'un
+      panneau faisait sauter la liste de 2 600 px à 721. Verrouiller sans
+      compenser, c'est déplacer la vue qu'on prétend figer.
+
+      Le corps est décalé de la position captée pendant le verrou, ce qui rend
+      le figement invisible : rien ne bouge à l'ouverture, rien ne bouge à la
+      fermeture.
+    */
+    // La position captée au clic prime : au montage, elle est déjà faussée.
+    const y = positionConservee?.() ?? window.scrollY;
+    const corps = document.body.style;
+    const precedent = {
+      overflow: corps.overflow,
+      position: corps.position,
+      top: corps.top,
+      largeur: corps.width,
+    };
+
+    corps.overflow = "hidden";
+    corps.position = "fixed";
+    corps.top = `-${y}px`;
+    corps.width = "100%";
+
     return () => {
-      document.body.style.overflow = precedent;
+      corps.overflow = precedent.overflow;
+      corps.position = precedent.position;
+      corps.top = precedent.top;
+      corps.width = precedent.largeur;
+      // `instant` : une restauration animée se voit comme un saut, alors que
+      // c'est justement le saut qu'on supprime.
+      window.scrollTo({ top: y, behavior: "instant" });
     };
   }, [actif]);
 }

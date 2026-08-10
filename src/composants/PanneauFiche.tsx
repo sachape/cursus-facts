@@ -15,6 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import { chargerFiche, type ParcoursFiche, type ParcoursListe } from "@/donnees/requetes";
 import { ContenuFiche, EnteteFiche } from "./ContenuFiche";
 import { usePiegeFocus, useVerrouDefilement } from "./piege-focus";
+import { positionAConserver } from "./ouverture-fiche";
 import { PiedFiche } from "./PiedFiche";
 
 export function PanneauFiche({
@@ -55,7 +56,7 @@ export function PanneauFiche({
     mobile en avait besoin des mêmes, et une seconde implémentation aurait
     divergé sur l'accessibilité — c'est-à-dire là où personne ne s'en aperçoit.
   */
-  useVerrouDefilement(true);
+  useVerrouDefilement(true, positionAConserver);
   usePiegeFocus({ actif: true, conteneur: panneau, fermer, focusInitial: boutonFermer });
 
   const autres = fiche

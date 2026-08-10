@@ -455,6 +455,7 @@ Trois fois dans la même journée, une conclusion fausse tirée d'une mesure jus
 | `playwright` sur le port 3000 | Le serveur de dev d'un **autre projet** | Que les invariants validaient Formlist |
 | `grep -c` dans ce shell | Rien : il sort sans imprimer, même `0` | Que les routes dynamiques n'émettaient aucun `<title>` |
 | `curl` sur `localhost:4317` | Le **code du jour**, non déployé | Que le `ld+json` était en ligne |
+| `Playwright.click()` | Une page **qu'il venait de faire défiler** | Que l'ouverture d'un panneau sautait de 2 600 px |
 
 Le deuxième a coûté le plus cher : une sortie vide lue comme un zéro a produit
 un diagnostic d'architecture complet — streaming, coquille envoyée trop tôt,
@@ -466,6 +467,20 @@ Le troisième est le plus insidieux, parce que la mesure était juste : le
 restitution qui mélangeait des lignes de production et des lignes de local sans
 les étiqueter. Un tableau dont chaque ligne peut venir d'un environnement
 différent n'est pas vérifiable.
+
+Le quatrième est le plus retors, parce que l'instrument ne se contente pas de
+regarder à côté : **il modifie ce qu'il mesure.** `click()` fait défiler
+l'élément dans la vue avant de cliquer. La sonde se plaçait à 2 600 px, le clic
+ramenait la page à 721, et le gestionnaire s'exécutait à cette position — le
+saut mesuré était produit par la mesure. Un clic JS, qui ne défile pas, montre
+la position parfaitement conservée.
+
+Corollaire : **quand on mesure un effet de position, l'outil qui déclenche
+l'action doit être neutre vis-à-vis de la position.** Sinon on observe l'outil.
+
+Et un TROISIÈME environnement s'ajoute aux deux autres : la prévisualisation
+Lovable, distincte du local ET de la production. Trois surfaces qui peuvent
+diverger simultanément — un rapport de défaut doit donc nommer laquelle.
 
 **LA RÈGLE : toute mesure indique explicitement son environnement.** URL
 complète, pas de chemin relatif ; l'origine dans la restitution, pas seulement

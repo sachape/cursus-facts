@@ -26,6 +26,21 @@
 import { useCallback, useRef, type MouseEvent, type RefObject } from "react";
 import { useNavigate } from "@tanstack/react-router";
 
+/**
+ * La position de défilement au moment du clic.
+ *
+ * Partagée au niveau du module, et c'est assumé : le verrou de défilement
+ * s'applique au MONTAGE du panneau, c'est-à-dire après que quelque chose a déjà
+ * ramené la liste de 2 600 px à 721. Il ne peut donc pas capter la bonne valeur
+ * lui-même — il faut la lui transmettre depuis l'instant du clic, qui est le
+ * seul où elle est encore juste.
+ */
+let positionAvantPanneau: number | null = null;
+
+export function positionAConserver(): number | null {
+  return positionAvantPanneau;
+}
+
 /** Le paramètre de recherche qui porte la fiche ouverte, sur toute route. */
 export type RechercheFiche = { fiche?: string };
 
@@ -70,14 +85,32 @@ export function useOuvertureFiche({
   */
   const naviguer = useNavigate() as unknown as (options: {
     search: (actuel: RechercheFiche) => RechercheFiche;
+    resetScroll?: boolean;
   }) => Promise<void>;
   const origineFocus = useRef<HTMLElement | null>(null);
 
   const ouvrir = useCallback(
     (slug: string, origine?: HTMLElement | null) => {
       origineFocus.current = origine ?? retourParDefaut?.current ?? null;
+      /*
+        LA POSITION EST CAPTÉE AVANT LA NAVIGATION, et rendue après.
+
+        `resetScroll: false` ne suffit pas : quelque chose entre le clic et le
+        montage du panneau ramenait la liste de 2 600 px à 721. Plutôt que de
+        chercher lequel des maillons, on rétablit ce qu'on avait — la mesure
+        décide, pas la théorie sur le coupable.
+      */
+      positionAvantPanneau = window.scrollY;
       void naviguer({
         search: (actuel: RechercheFiche) => ({ ...actuel, fiche: slug }),
+        /*
+          AUCUN DÉFILEMENT. Le routeur remonte en haut à chaque navigation —
+          c'est le bon comportement pour un changement de page, et le mauvais
+          ici : ouvrir un panneau n'est pas quitter la vue. Sans cette ligne,
+          la personne perdait sa position dans la liste à l'ouverture, et la
+          retrouvait en haut à la fermeture.
+        */
+        resetScroll: false,
       });
     },
     [naviguer, retourParDefaut],
@@ -86,7 +119,10 @@ export function useOuvertureFiche({
   const fermer = useCallback(() => {
     void naviguer({
       search: ({ fiche: _ignore, ...reste }: RechercheFiche) => reste,
+      // Même raison qu'à l'ouverture : la fermeture rend la vue telle quelle.
+      resetScroll: false,
     });
+    positionAvantPanneau = null;
     // Un élément détaché du document ne peut plus recevoir le focus : on
     // retombe alors sur le point de repli plutôt que de le perdre.
     const cible = origineFocus.current;
