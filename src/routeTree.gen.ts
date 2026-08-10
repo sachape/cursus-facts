@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AideAuChoixRouteImport } from './routes/aide-au-choix'
 import { Route as ComparerRouteImport } from './routes/comparer'
 import { Route as MethodeRouteImport } from './routes/methode'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
 import { Route as ApiIngestionRouteImport } from './routes/api/ingestion'
 import { Route as OrganismesIndexRouteImport } from './routes/organismes.index'
@@ -37,6 +38,11 @@ const ComparerRoute = ComparerRouteImport.update({
 const MethodeRoute = MethodeRouteImport.update({
   id: '/methode',
   path: '/methode',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminSeedRoute = AdminSeedRouteImport.update({
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/aide-au-choix': typeof AideAuChoixRoute
   '/comparer': typeof ComparerRoute
   '/methode': typeof MethodeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/aide-au-choix'
     | '/comparer'
     | '/methode'
+    | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
     | '/organismes/$slug'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/aide-au-choix'
     | '/comparer'
     | '/methode'
+    | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
     | '/organismes/$slug'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/aide-au-choix'
     | '/comparer'
     | '/methode'
+    | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
     | '/organismes/$slug'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AideAuChoixRoute: typeof AideAuChoixRoute
   ComparerRoute: typeof ComparerRoute
   MethodeRoute: typeof MethodeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminSeedRoute: typeof AdminSeedRoute
   ApiIngestionRoute: typeof ApiIngestionRoute
   OrganismesSlugRoute: typeof OrganismesSlugRoute
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/methode'
       fullPath: '/methode'
       preLoaderRoute: typeof MethodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/seed': {
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AideAuChoixRoute: AideAuChoixRoute,
   ComparerRoute: ComparerRoute,
   MethodeRoute: MethodeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminSeedRoute: AdminSeedRoute,
   ApiIngestionRoute: ApiIngestionRoute,
   OrganismesSlugRoute: OrganismesSlugRoute,
