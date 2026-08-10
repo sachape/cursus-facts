@@ -25,7 +25,26 @@ const PEREMPTION_MS = 60 * 60 * 1000;
 /** Ce qu'une personne déconnectée a tenté de faire. */
 export type Intention =
   | { type: "sauvegarder"; cible: "parcours" | "organisme"; cibleId: string }
-  | { type: "enregistrer-comparaison"; parcoursIds: string[]; nom: string | null };
+  | {
+      type: "enregistrer-comparaison";
+      /**
+       * LA SÉLECTION ENTIÈRE, ET NON SES SEULS IDENTIFIANTS.
+       *
+       * La base n'a besoin que des slugs, et c'est ce qu'on stockait. Mais la
+       * sélection de travail vit dans `sessionStorage`, qui est propre à
+       * l'onglet : au retour du lien de confirmation, dans un onglet NEUF, elle
+       * vaut `[]`. Mesuré — la comparaison partait bien dans le compte, et la
+       * page affichait l'état vide au moment précis où la personne revenait la
+       * voir.
+       *
+       * Le nom de chaque parcours voyage donc avec, parce que la barre de
+       * comparaison l'affiche et que le catalogue n'est pas chargé au moment de
+       * la reprise. Le type reste structurel — `{slug, nom}` — pour qu'aucune
+       * dépendance ne remonte du contexte de comparaison vers ce module.
+       */
+      parcours: { slug: string; nom: string }[];
+      nom: string | null;
+    };
 
 type Enveloppe = { intention: Intention; le: number };
 

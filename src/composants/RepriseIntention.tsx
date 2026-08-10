@@ -22,12 +22,22 @@ import { useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./authentification";
 import { useSauvegardes } from "./sauvegardes";
+import { useComparaison } from "./comparaison";
 import { reprendreIntention } from "./intention";
 import { mesurer } from "./mesure";
 
 export function RepriseIntention() {
   const { utilisateur } = useAuth();
   const { sauvegarder } = useSauvegardes();
+  const { selection, remplacer } = useComparaison();
+  /*
+    La sélection passe par une référence plutôt que par une dépendance de
+    l'effet : en dépendance, chaque ajout ou retrait de parcours relancerait la
+    reprise d'intention, alors que celle-ci ne doit se jouer qu'à l'apparition
+    d'une session.
+  */
+  const selectionCourante = useRef<typeof selection>([]);
+  selectionCourante.current = selection;
   /*
     L'identifiant précédent, et non un simple booléen : changer de compte dans
     le même onglet est aussi une apparition de session, et l'intention posée
@@ -70,8 +80,24 @@ export function RepriseIntention() {
         de base de données pour une action que la personne a demandée il y a
         cinquante minutes.
       */
-      const ids = intention.parcoursIds;
+      const ids = intention.parcours.map((p) => p.slug);
       if (ids.length < 2 || ids.length > 4) return;
+
+      /*
+        LA SÉLECTION LOCALE EST RENDUE AVANT L'INSERTION, et c'est délibéré :
+        c'est ce que la personne revient voir. L'enregistrement en base peut
+        prendre une seconde ou échouer ; l'écran, lui, doit montrer la
+        comparaison tout de suite. Sans ça, elle revient de sa boîte mail sur
+        l'état vide — mesuré, `sessionStorage` vaut `[]` dans l'onglet neuf.
+
+        SEULEMENT SI LA SÉLECTION EST VIDE. Se connecter dans l'onglet où l'on
+        travaille est le cas le plus fréquent, et la sélection y est intacte :
+        la remplacer par celle de l'intention écraserait ce que la personne
+        vient peut-être de modifier. La règle de `remplacer` vaut ici aussi —
+        on ne fusionne pas deux sélections, ça produirait un ensemble que
+        personne n'a composé.
+      */
+      if (selectionCourante.current.length === 0) remplacer(intention.parcours);
 
       const { error } = await supabase.from("comparaisons").insert({
         utilisateur_id: utilisateur.id,
@@ -80,7 +106,7 @@ export function RepriseIntention() {
       });
       if (error === null) mesurer("comparaison_enregistree", { nombre: ids.length });
     })();
-  }, [utilisateur, sauvegarder]);
+  }, [utilisateur, sauvegarder, remplacer]);
 
   return null;
 }

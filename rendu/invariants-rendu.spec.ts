@@ -1267,5 +1267,36 @@ test("une comparaison s'enregistre, et le détour par la connexion n'en perd rie
   expect(brut).not.toBeNull();
   const { intention } = JSON.parse(brut as string);
   expect(intention.type).toBe("enregistrer-comparaison");
-  expect(intention.parcoursIds).toHaveLength(2);
+  expect(intention.parcours).toHaveLength(2);
+
+  /*
+    L'INTENTION PORTE LES INTITULÉS, PAS SEULEMENT LES SLUGS.
+
+    La base n'a besoin que des slugs, et c'est ce qu'on stockait. Mais le
+    retour du lien de confirmation se fait dans un onglet NEUF, où la sélection
+    de travail — `sessionStorage`, propre à l'onglet — vaut `[]`. Mesuré : la
+    comparaison partait bien dans le compte, et la page affichait l'état vide
+    au moment précis où la personne revenait la voir.
+
+    Sans les intitulés, la reprise saurait quoi enregistrer et pas quoi
+    réafficher : la barre de comparaison n'a pas le catalogue sous la main.
+  */
+  for (const p of intention.parcours) {
+    expect(typeof p.slug).toBe("string");
+    expect(p.nom.length).toBeGreaterThan(0);
+  }
+
+  /*
+    Et la sélection de l'onglet neuf est bien vide : c'est CE trou que la
+    reprise comble. Le test le constate plutôt que de le supposer — le jour où
+    la sélection passerait en `localStorage`, la restauration deviendrait
+    inutile et devrait partir plutôt que de rester à doubler le stockage.
+  */
+  const ongletNeuf = await page.context().newPage();
+  await ongletNeuf.goto(`${BASE}/comparer`, { waitUntil: "networkidle" });
+  const locale = await ongletNeuf.evaluate(() =>
+    sessionStorage.getItem("cursus.comparaison"),
+  );
+  expect(JSON.parse(locale ?? "[]")).toHaveLength(0);
+  await ongletNeuf.close();
 });

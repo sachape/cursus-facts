@@ -56,7 +56,17 @@ export function EnregistrerComparaison() {
     const ids = selection.map((p) => p.slug);
 
     if (utilisateur === null) {
-      poserIntention({ type: "enregistrer-comparaison", parcoursIds: ids, nom: null });
+      /*
+        La sélection ENTIÈRE part avec l'intention, pas seulement ses
+        identifiants : le retour de confirmation se fait dans un autre onglet,
+        où `sessionStorage` est vide. Sans les intitulés, la reprise saurait
+        quoi enregistrer mais pas quoi réafficher.
+      */
+      poserIntention({
+        type: "enregistrer-comparaison",
+        parcours: selection.map((p) => ({ slug: p.slug, nom: p.nom })),
+        nom: null,
+      });
       void naviguer({ to: "/connexion", search: { retour: chemin } });
       return;
     }
