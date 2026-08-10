@@ -14,6 +14,44 @@ export type Database = {
   }
   public: {
     Tables: {
+      alertes: {
+        Row: {
+          active: boolean
+          champs_surveilles: string[]
+          cree_le: string
+          derniere_notification: string | null
+          id: string
+          parcours_id: string
+          utilisateur_id: string
+        }
+        Insert: {
+          active?: boolean
+          champs_surveilles?: string[]
+          cree_le?: string
+          derniere_notification?: string | null
+          id?: string
+          parcours_id: string
+          utilisateur_id: string
+        }
+        Update: {
+          active?: boolean
+          champs_surveilles?: string[]
+          cree_le?: string
+          derniere_notification?: string | null
+          id?: string
+          parcours_id?: string
+          utilisateur_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alertes_utilisateur_id_fkey"
+            columns: ["utilisateur_id"]
+            isOneToOne: false
+            referencedRelation: "profils"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       arbitrages: {
         Row: {
           auteur: string | null
@@ -46,6 +84,119 @@ export type Database = {
           regle_muette?: string | null
         }
         Relationships: []
+      }
+      comparaisons: {
+        Row: {
+          consulte_le: string | null
+          cree_le: string
+          id: string
+          nom: string | null
+          parcours_ids: string[]
+          utilisateur_id: string
+        }
+        Insert: {
+          consulte_le?: string | null
+          cree_le?: string
+          id?: string
+          nom?: string | null
+          parcours_ids: string[]
+          utilisateur_id: string
+        }
+        Update: {
+          consulte_le?: string | null
+          cree_le?: string
+          id?: string
+          nom?: string | null
+          parcours_ids?: string[]
+          utilisateur_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comparaisons_utilisateur_id_fkey"
+            columns: ["utilisateur_id"]
+            isOneToOne: false
+            referencedRelation: "profils"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      historique_champs: {
+        Row: {
+          champ: string
+          citation: string | null
+          etat_nouveau: string | null
+          etat_precedent: string | null
+          id: string
+          modifie_le: string
+          origine: string
+          parcours_id: string
+          source_url: string | null
+          valeur_nouvelle: string | null
+          valeur_precedente: string | null
+        }
+        Insert: {
+          champ: string
+          citation?: string | null
+          etat_nouveau?: string | null
+          etat_precedent?: string | null
+          id?: string
+          modifie_le?: string
+          origine: string
+          parcours_id: string
+          source_url?: string | null
+          valeur_nouvelle?: string | null
+          valeur_precedente?: string | null
+        }
+        Update: {
+          champ?: string
+          citation?: string | null
+          etat_nouveau?: string | null
+          etat_precedent?: string | null
+          id?: string
+          modifie_le?: string
+          origine?: string
+          parcours_id?: string
+          source_url?: string | null
+          valeur_nouvelle?: string | null
+          valeur_precedente?: string | null
+        }
+        Relationships: []
+      }
+      notifications_envoyees: {
+        Row: {
+          alerte_id: string
+          envoye_le: string
+          historique_id: string
+          id: string
+        }
+        Insert: {
+          alerte_id: string
+          envoye_le?: string
+          historique_id: string
+          id?: string
+        }
+        Update: {
+          alerte_id?: string
+          envoye_le?: string
+          historique_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_envoyees_alerte_id_fkey"
+            columns: ["alerte_id"]
+            isOneToOne: false
+            referencedRelation: "alertes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_envoyees_historique_id_fkey"
+            columns: ["historique_id"]
+            isOneToOne: false
+            referencedRelation: "historique_champs"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       organismes: {
         Row: {
@@ -223,6 +374,59 @@ export type Database = {
             columns: ["parcours_parent_id"]
             isOneToOne: false
             referencedRelation: "parcours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profils: {
+        Row: {
+          cree_le: string
+          derniere_connexion: string | null
+          email: string
+          id: string
+        }
+        Insert: {
+          cree_le?: string
+          derniere_connexion?: string | null
+          email: string
+          id: string
+        }
+        Update: {
+          cree_le?: string
+          derniere_connexion?: string | null
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      sauvegardes: {
+        Row: {
+          cible_id: string
+          cree_le: string
+          id: string
+          type: string
+          utilisateur_id: string
+        }
+        Insert: {
+          cible_id: string
+          cree_le?: string
+          id?: string
+          type: string
+          utilisateur_id: string
+        }
+        Update: {
+          cible_id?: string
+          cree_le?: string
+          id?: string
+          type?: string
+          utilisateur_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sauvegardes_utilisateur_id_fkey"
+            columns: ["utilisateur_id"]
+            isOneToOne: false
+            referencedRelation: "profils"
             referencedColumns: ["id"]
           },
         ]
