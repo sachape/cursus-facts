@@ -10,6 +10,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { regrouperParOrganisme } from "@/modele/organismes";
+import { hrefOrganisme } from "@/composants/lien-organisme";
 import { formaterDateCourte } from "@/modele/dates";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { Input } from "@/components/ui/input";
@@ -85,7 +86,7 @@ function Organismes() {
           {filtres.map((organisme) => (
             <li key={organisme.nom}>
               <a
-                href={`/organismes/${organisme.slug}`}
+                href={hrefOrganisme(organisme.nom)}
                 className="flex h-full flex-col rounded-(--carte-rayon) border border-(--border-subtle) bg-(--surface-raised) p-(--space-5) transition-[border-color,box-shadow,transform] duration-(--motion-fast) ease-(--ease-standard) hover:border-(--border-default) hover:shadow-(--elevation-2) motion-safe:hover:-translate-y-px"
               >
                 <h2 className="font-titre t-body-sm font-medium leading-snug">{organisme.nom}</h2>

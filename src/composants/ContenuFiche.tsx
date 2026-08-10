@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
-import { slugifierOrganisme } from "@/modele/organismes";
+import { hrefOrganisme } from "./lien-organisme";
 import { DEFINITIONS_MODALITES } from "@/modele/modalite-acces";
 import { ConditionCout, MentionDerivation } from "./Niveaux";
 import { coutDuParcours } from "@/modele/condition-cout";
@@ -582,7 +582,7 @@ export function ContenuFiche({
         )}
         <p className={autresParcours.length > 0 ? "mt-(--space-4) t-body-sm" : "t-body-sm"}>
           <a
-            href={`/organismes/${slugifierOrganisme(p.organismeNom)}`}
+            href={hrefOrganisme(p.organismeNom)}
             className="text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
           >
             Voir tous les parcours de {p.organismeNom}

@@ -22,7 +22,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { CategorieOrganisme } from "@/types/cursus";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
-import { slugifierOrganisme } from "@/modele/organismes";
+import { hrefOrganisme } from "./lien-organisme";
 import { IconeCategorie } from "./OrganizationMark";
 
 export type OrganismeBande = {
@@ -96,7 +96,7 @@ function Carte({ organisme }: { organisme: OrganismeBande }) {
         Un `<button>` les aurait rendues invisibles depuis l'accueil.
       */}
       <a
-        href={`/organismes/${slugifierOrganisme(organisme.nom)}`}
+        href={hrefOrganisme(organisme.nom)}
         /*
           Une carte, pas un bloc de texte au fond gris : le fond au survol
           appartient au registre d'une liste de résultats, où le survol désigne

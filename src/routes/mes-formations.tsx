@@ -20,6 +20,7 @@ import { useSauvegardes } from "@/composants/sauvegardes";
 import { RangeeParcours } from "@/composants/RangeeParcours";
 import { regrouperParOrganisme } from "@/modele/organismes";
 import { BoutonSauvegarde } from "@/composants/BoutonSauvegarde";
+import { hrefOrganisme } from "@/composants/lien-organisme";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
 
 export const Route = createFileRoute("/mes-formations")({
@@ -116,7 +117,7 @@ function MesFormations() {
             {organismes.map((o) => (
               <li key={o.slug} className="relative">
                 <a
-                  href={`/organismes/${o.slug}`}
+                  href={hrefOrganisme(o.nom)}
                   className="flex h-full flex-col rounded-(--carte-rayon) border border-(--border-subtle) bg-(--surface-raised) p-(--space-5) pr-(--space-12) transition-[border-color,box-shadow] duration-(--motion-fast) hover:border-(--border-default) hover:shadow-(--elevation-2)"
                 >
                   <span className="font-titre t-body-sm font-medium">{o.nom}</span>

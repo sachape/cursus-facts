@@ -824,6 +824,57 @@ test("le bouton de connexion a la bonne cible aux deux largeurs", async ({ page 
   }
 });
 
+test("aucun point d'entrée vers un organisme ne pose un filtre", async ({ page }) => {
+  /*
+    TROIS FOIS LE MÊME DÉFAUT EN UN JOUR : la vue Organismes, la bande
+    défilante, puis l'autocomplétion. Chaque fois la même cause — la consigne
+    d'origine « organisme pose un filtre » datait d'avant la page dédiée, et
+    chaque vue l'appliquait pour son compte.
+
+    Cet invariant existe pour qu'il n'y ait pas de quatrième. Il ne connaît
+    aucune vue : il balaie la page, prend tout ce qui est cliquable et porte un
+    nom d'organisme, et exige que ça mène à `/organismes/`.
+
+    Le filtre `?organisme=` reste ACCEPTÉ en entrée — une adresse partagée ne
+    doit pas casser — mais plus rien ne doit le produire.
+  */
+  const noms = await page.evaluate(() => {
+    const bande = document.querySelector('ul[aria-label="Organismes référencés"]');
+    return [...(bande?.querySelectorAll("li a span:first-child") ?? [])]
+      .map((e) => (e.textContent ?? "").trim())
+      .filter((n) => n.length > 3)
+      .slice(0, 8);
+  });
+  expect(noms.length).toBeGreaterThan(0);
+
+  const fautifs = await page.evaluate((liste: string[]) => {
+    const mauvais: string[] = [];
+    for (const element of document.querySelectorAll("a[href], button")) {
+      const texte = (element.textContent ?? "").trim();
+      if (!liste.some((n) => texte === n)) continue;
+      const href = element.getAttribute("href");
+      if (href === null) {
+        mauvais.push(`<button> « ${texte} » — un organisme doit être un lien`);
+      } else if (!href.startsWith("/organismes/")) {
+        mauvais.push(`« ${texte} » → ${href}`);
+      }
+    }
+    return mauvais;
+  }, noms);
+
+  expect(fautifs).toEqual([]);
+
+  // L'autocomplétion : une suggestion d'organisme mène à sa page.
+  const champ = page.getByRole("combobox");
+  await champ.fill(noms[0]!.slice(0, 6));
+  const suggestion = page.getByRole("option").filter({ hasText: noms[0]! }).first();
+  if ((await suggestion.count()) > 0) {
+    await suggestion.click();
+    await page.waitForLoadState("networkidle");
+    expect(new URL(page.url()).pathname).toMatch(/^\/organismes\/.+/);
+  }
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

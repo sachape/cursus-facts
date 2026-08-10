@@ -31,6 +31,7 @@ import { RailCriteres } from "@/composants/HeroBadges";
 import { BandeOrganismes } from "@/composants/BandeOrganismes";
 import { PanneauFiche } from "@/composants/PanneauFiche";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
+import { useAllerOrganisme } from "@/composants/lien-organisme";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -111,6 +112,7 @@ function Explorer() {
     champ de recherche : il est présent, visible, et il correspond à ce que fait
     la personne — elle referme la fiche et continue sa recherche.
   */
+  const allerOrganisme = useAllerOrganisme();
   const { ouvrir, fermer: fermerPanneau } = useOuvertureFiche({
     retourParDefaut: champRecherche,
   });
@@ -243,7 +245,13 @@ function Explorer() {
       type: "organisme",
       libelle: nom,
       detail: `${parcours.filter((p) => p.organismeNom === nom).length} parcours`,
-      choisir: () => modifier({ recherche: nom }),
+      /*
+        MÈNE À LA PAGE, PLUS À UN FILTRE. La consigne d'origine — « organisme
+        pose un filtre, c'est son rôle » — datait d'avant la page dédiée.
+        Une suggestion de domaine, elle, pose toujours un filtre : un domaine
+        n'a pas de page.
+      */
+      choisir: () => allerOrganisme(nom),
     }));
 
     const parDomaine: Suggestion[] = onglets
