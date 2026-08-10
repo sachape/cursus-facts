@@ -7,6 +7,7 @@
  * reste à un clic.
  */
 import { useState } from "react";
+import { lienCorrection } from "@/modele/contact";
 import { formaterDateLongue } from "@/modele/dates";
 
 export function ProvenanceOrganisme({
@@ -24,10 +25,7 @@ export function ProvenanceOrganisme({
 
   const date = formaterDateLongue(derniereVerification);
 
-  const lienCorrection =
-    `mailto:corrections@formlist.fr` +
-    `?subject=${encodeURIComponent(`Correction — ${nom}`)}` +
-    `&body=${encodeURIComponent(`Organisme concerné : ${slug}\n\nInformation à corriger :\n`)}`;
+  const lien = lienCorrection(nom, slug);
 
   return (
     <section className="mt-(--space-12) border-t border-(--border-subtle) pt-(--space-5)">
@@ -81,7 +79,7 @@ export function ProvenanceOrganisme({
             )}
             <p className="mt-(--space-4) t-caption text-(--text-tertiary)">
               <a
-                href={lienCorrection}
+                href={lien}
                 className="rounded-(--radius-sm) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-secondary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
               >
                 Signaler une correction

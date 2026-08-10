@@ -13,6 +13,7 @@
  * repousserait le coût hors de vue et dégraderait la fiche.
  */
 import { useEffect, useState } from "react";
+import { lienCorrection } from "@/modele/contact";
 import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
@@ -667,11 +668,7 @@ export function ContenuFiche({
       */}
       <p className="pb-(--space-4) t-caption text-(--text-tertiary)">
         <a
-          href={
-            `mailto:corrections@formlist.fr` +
-            `?subject=${encodeURIComponent(`Correction — ${p.nom}`)}` +
-            `&body=${encodeURIComponent(`Fiche concernée : ${p.slug}\n\nInformation à corriger :\n`)}`
-          }
+          href={lienCorrection(p.nom, p.slug)}
           className="rounded-(--radius-sm) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-secondary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
           /*
             Un signalement est un fait sur NOTRE collecte, pas sur la personne :

@@ -17,6 +17,7 @@
  * règle.
  */
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ADRESSE_CONTACT, lienContact } from "@/modele/contact";
 import {
   CRITERES_ELIGIBILITE,
   CRITERES_MINIMUM,
@@ -26,9 +27,7 @@ import {
 const SITE = "https://formlist.fr";
 
 /** L'objet est pré-rempli : une demande arrive triée, pas à qualifier. */
-const CONTACT =
-  "mailto:contact@formlist.fr?subject=" +
-  encodeURIComponent("Ajout d'un organisme au catalogue");
+const CONTACT = lienContact("Ajout d'un organisme au catalogue");
 
 export const Route = createFileRoute("/ajouter-un-organisme")({
   component: AjouterUnOrganisme,
@@ -145,7 +144,7 @@ function AjouterUnOrganisme() {
       <p className="mt-(--space-2) max-w-prose t-body-sm text-(--text-secondary)">
         Écrivez-nous à{" "}
         <a href={CONTACT} className="underline underline-offset-2 hover:text-(--text-primary)">
-          contact@formlist.fr
+          {ADRESSE_CONTACT}
         </a>
         , avec les éléments ci-dessus.
       </p>

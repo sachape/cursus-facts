@@ -16,6 +16,7 @@
  * elle mérite mieux qu'un pied de page —, aucun logo de partenaire, aucun badge.
  */
 import { Link, useRouterState } from "@tanstack/react-router";
+import { lienCorrection } from "@/modele/contact";
 import { Route } from "@/routes/__root";
 import { MotSymboleHorizontal } from "./marque/Marques";
 import { formaterDateLongue } from "@/modele/dates";
@@ -28,8 +29,7 @@ export type StatistiquesPied = {
   derniereVerification: string | null;
 };
 
-const CORRECTION =
-  "mailto:corrections@formlist.fr?subject=" + encodeURIComponent("Correction — Formlist");
+const CORRECTION = lienCorrection();
 
 /*
   Les colonnes, et ce qui en est absent.
