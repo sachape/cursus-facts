@@ -20,7 +20,7 @@
 import { useMemo, useRef, useState } from "react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
-import { trouverOrganisme } from "@/modele/organismes";
+import { trouverOrganisme, urlDuSite } from "@/modele/organismes";
 import { classer, LIBELLES_TRIS, TRI_PAR_DEFAUT } from "@/modele/classement";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { RangeeParcours } from "@/composants/RangeeParcours";
@@ -59,6 +59,28 @@ export const Route = createFileRoute("/organismes/$slug")({
       // Auto-référent : cette page est la version canonique de son contenu, et
       // le filtre `?organisme=` de l'explorateur n'en est plus une variante.
       links: [{ rel: "canonical", href: `${SITE}/organismes/${organisme.slug}` }],
+      /*
+        `Organization` et non `EducationalOrganization` : la seconde affirme un
+        statut d'établissement d'enseignement que nous ne vérifions pas — sept
+        catégories cohabitent au catalogue, dont des créateurs indépendants.
+
+        Aucune note, aucun avis, pour la même raison que sur les fiches.
+      */
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: organisme.nom,
+            url: `${SITE}/organismes/${organisme.slug}`,
+            ...(urlDuSite(organisme.site) !== null ? { sameAs: [urlDuSite(organisme.site)] } : {}),
+            ...(organisme.certifications.length > 0
+              ? { hasCredential: organisme.certifications }
+              : {}),
+          }),
+        },
+      ],
     };
   },
 });
@@ -127,17 +149,17 @@ function PageOrganisme() {
             <dt className="text-(--text-secondary)">Domaines couverts</dt>
             <dd className="chiffre text-(--text-primary)">{organisme.domaines}</dd>
           </div>
-          {organisme.site !== null && (
+          {urlDuSite(organisme.site) !== null && (
             <div className="flex items-baseline gap-(--space-2)">
               <dt className="text-(--text-secondary)">Site officiel</dt>
               <dd>
                 <a
-                  href={organisme.site.startsWith("http") ? organisme.site : `https://${organisme.site}`}
+                  href={urlDuSite(organisme.site)!}
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                   className="text-(--text-primary) underline-offset-2 hover:underline"
                 >
-                  {organisme.site.replace(/^https?:\/\//, "")}
+                  {urlDuSite(organisme.site)!.replace(/^https?:\/\//, "")}
                 </a>
               </dd>
             </div>

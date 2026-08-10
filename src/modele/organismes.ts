@@ -122,3 +122,24 @@ export function trouverOrganisme(
     fiches: parcours.filter((p) => p.organismeNom === organisme.nom),
   };
 }
+
+/**
+ * L'URL du site d'un organisme, ou `null`.
+ *
+ * La colonne `site` porte des domaines nus — « odoo.com » — mais aussi, sur
+ * quelques lignes, du texte libre échappé d'un champ de source : « Site
+ * officiel + fiche Mon Compte Formation ». Préfixer aveuglément de `https://`
+ * fabriquait `https://Site officiel + fiche…`, c'est-à-dire un lien mort dans
+ * la page et une URL inventée dans les données structurées.
+ *
+ * On ne complète que ce qui ressemble à un domaine. Le reste vaut `null` :
+ * mieux vaut ne rien afficher qu'afficher une adresse qui n'existe pas.
+ */
+export function urlDuSite(site: string | null): string | null {
+  if (site === null) return null;
+  const nu = site.trim();
+  if (/^https?:\/\//.test(nu)) return nu;
+  // Un domaine : pas d'espace, au moins un point, une extension alphabétique.
+  if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(nu)) return null;
+  return `https://${nu}`;
+}

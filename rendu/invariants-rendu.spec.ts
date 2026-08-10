@@ -571,6 +571,93 @@ test("l'en-tête mobile centre son logo et rend le focus au burger", async ({ pa
   await expect(page.locator("header nav a")).toHaveCount(5);
 });
 
+test("chaque type de page porte ses balises au PREMIER OCTET", async ({ request }) => {
+  /*
+    Mesuré sur la réponse HTTP BRUTE, sans navigateur. C'est la seule chose que
+    voit un robot au premier passage : ce qu'un moteur de rendu ajoute après
+    hydratation arrive trop tard pour l'indexation d'une page de traîne longue.
+
+    Cet invariant existe aussi parce que je me suis trompé de diagnostic sur ce
+    point exact, en lisant une sortie vide de `grep` comme un zéro. Une mesure
+    faite à la main se relit mal ; une mesure qui échoue en rouge, non.
+  */
+  const pages = [
+    { url: "/", title: /Formlist/, donnees: false },
+    {
+      url: "/parcours/livementor-formation-e-commerce-88",
+      title: /LiveMentor/,
+      donnees: "Course",
+    },
+    { url: "/organismes/livementor", title: /LiveMentor/, donnees: "Organization" },
+  ];
+
+  const manques: string[] = [];
+  for (const page of pages) {
+    const html = await (await request.get(`${BASE}${page.url}`)).text();
+
+    const titre = /<title[^>]*>([^<]*)</.exec(html);
+    if (titre === null || !page.title.test(titre[1]!)) {
+      manques.push(`${page.url} → titre « ${titre?.[1] ?? "absent"} »`);
+    }
+    /*
+      Le canonique doit désigner LA PAGE, pas le site. Posé dans la racine, il
+      s'appliquait à toutes les routes : les fiches déclaraient l'accueil comme
+      canonique, ce qui les aurait sorties de l'index — l'inverse exact du but.
+      Vérifier sa seule présence ne l'aurait pas vu.
+    */
+    const can = /<link[^>]+rel="canonical"[^>]+href="([^"]*)/.exec(html);
+    if (can === null) {
+      manques.push(`${page.url} → canonique absent`);
+    } else {
+      /*
+        Le canonique désigne toujours le DOMAINE DE PRODUCTION, jamais celui du
+        serveur de test : on compare donc le chemin, et on vérifie séparément
+        que l'origine est bien la nôtre. Comparer l'URL entière ferait rougir
+        ce test en local pour une raison qui n'a rien à voir avec le défaut.
+      */
+      const url = new URL(can[1]!);
+      if (url.origin !== "https://formlist.fr") {
+        manques.push(`${page.url} → canonique hors domaine : ${url.origin}`);
+      }
+      if (url.pathname !== page.url) {
+        manques.push(`${page.url} → canonique vers ${url.pathname}`);
+      }
+    }
+    if (!/<meta[^>]+name="description"/.test(html)) manques.push(`${page.url} → description absente`);
+
+    if (page.donnees !== false) {
+      const ld = /<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/.exec(html);
+      if (ld === null) {
+        manques.push(`${page.url} → aucune donnée structurée`);
+      } else {
+        const objet = JSON.parse(ld[1]!) as Record<string, unknown>;
+        if (objet["@type"] !== page.donnees) {
+          manques.push(`${page.url} → type ${String(objet["@type"])} au lieu de ${page.donnees}`);
+        }
+        /*
+          Ni note ni avis dans le balisage. Ce sont les propriétés que Google
+          met en avant, et les publier supposerait des notes que le produit
+          refuse de produire — un balisage qui promet une étoile qu'on
+          n'affiche pas est un mensonge structuré.
+        */
+        // `sameAs` n'accepte que des URL : la colonne `site` porte parfois du
+        // texte libre, et `https://Site officiel + fiche…` est une adresse
+        // inventée publiée comme un fait.
+        for (const lien of (objet["sameAs"] as string[] | undefined) ?? []) {
+          if (!/^https?:\/\/[^\s]+$/.test(lien)) manques.push(`${page.url} → sameAs « ${lien} »`);
+        }
+        for (const interdit of ["aggregateRating", "review", "ratingValue"]) {
+          if (JSON.stringify(objet).includes(interdit)) {
+            manques.push(`${page.url} → ${interdit} dans le ld+json`);
+          }
+        }
+      }
+    }
+  }
+
+  expect(manques).toEqual([]);
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

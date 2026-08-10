@@ -56,6 +56,18 @@ export const Route = createFileRoute("/")({
           "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
       },
     ],
+    /*
+      CANONIQUE AUTO-RÉFÉRENT, POSÉ ICI ET NON À LA RACINE.
+
+      Le panneau pousse `/?fiche=<slug>` sur cette route : chaque fiche ouverte
+      fabrique une variante d'URL de l'accueil. Partagées ou crawlées, ce sont
+      233 adresses servant le même contenu, sans rien pour les consolider.
+
+      Posé dans `__root`, il s'appliquait à TOUTES les routes — les fiches
+      déclaraient alors l'accueil comme canonique, ce qui les aurait sorties de
+      l'index. Un canonique est une propriété de page, jamais de site.
+    */
+    links: [{ rel: "canonical", href: "https://formlist.fr/" }],
   }),
 });
 

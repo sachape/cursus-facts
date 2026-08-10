@@ -15,6 +15,9 @@ import { Navigation } from "@/composants/Navigation";
 import { BarreComparaison } from "@/composants/BarreComparaison";
 import { FournisseurComparaison } from "@/composants/comparaison";
 
+/** Adresse canonique du site. Une seule source pour les métadonnées. */
+const SITE = "https://formlist.fr";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -82,16 +85,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Formlist — Comparateur de formations e-commerce en France" },
       { name: "description", content: "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées." },
-      { name: "author", content: "Lovable" },
+      { name: "author", content: "Formlist" },
       { property: "og:title", content: "Formlist — Comparateur de formations e-commerce en France" },
       { property: "og:description", content: "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Formlist — Comparateur de formations e-commerce en France" },
       { name: "twitter:description", content: "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/8ugvYgRNSJP2AoOZxjHZbLTpsnm2/social-images/social-1785852317026-social-image.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/8ugvYgRNSJP2AoOZxjHZbLTpsnm2/social-images/social-1785852317026-social-image.webp" },
+      /*
+        Images servies depuis NOTRE domaine. Elles vivaient sur le stockage de
+        l'outil qui a généré le projet : une carte de partage qui dépend d'un
+        hébergement tiers casse le jour où ce tiers change d'avis, et c'est la
+        prévisualisation de chaque lien partagé qui tombe d'un coup.
+      */
+      { property: "og:image", content: `${SITE}/og-formlist.jpg` },
+      { property: "og:url", content: SITE },
+      { name: "twitter:image", content: `${SITE}/og-formlist.jpg` },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

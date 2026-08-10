@@ -11,23 +11,28 @@
  * `ContenuFiche`. Une seule source pour les deux surfaces.
  */
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { chargerFiche, chargerListe } from "@/donnees/requetes";
+import { chargerFiche } from "@/donnees/requetes";
 import { ContenuFiche, EnteteFiche } from "@/composants/ContenuFiche";
 
 const SITE = "https://formlist.fr";
 
 export const Route = createFileRoute("/parcours/$slug")({
+  /*
+    NE CHARGE QUE CE QUE LA PAGE AFFICHE.
+
+    Le loader ramenait le CATALOGUE ENTIER — 233 fiches — pour en lister six
+    sous « autres parcours du même organisme ». Deux appels en série avant le
+    premier octet, dont l'un cent fois trop gros pour son usage.
+
+    La section renvoie désormais vers la page de l'organisme, qui existe depuis
+    peu et fait ce travail mieux : elle porte la liste complète, ses filtres et
+    sa provenance. Une fiche n'a plus à charger le catalogue pour parler de son
+    voisinage.
+  */
   loader: async ({ params }) => {
     const fiche = await chargerFiche(params.slug);
     if (!fiche) throw notFound();
-    // Le catalogue sert à lister les autres parcours du même organisme.
-    const catalogue = await chargerListe();
-    return {
-      fiche,
-      autres: catalogue.filter(
-        (p) => p.organismeNom === fiche.organismeNom && p.slug !== fiche.slug,
-      ),
-    };
+    return { fiche };
   },
   component: Fiche,
   head: ({ loaderData }) => {
@@ -44,12 +49,55 @@ export const Route = createFileRoute("/parcours/$slug")({
       // Canonique auto-référent : cette page est l'adresse de référence de la
       // fiche, y compris quand le panneau l'a poussée dans l'historique.
       links: [{ rel: "canonical", href: `${SITE}/parcours/${fiche.slug}` }],
+      /*
+        DONNÉES STRUCTURÉES — les mêmes faits que la page, jamais davantage.
+
+        `Course` décrit une formation, et c'est le seul type honnête ici. On
+        n'émet NI `aggregateRating` NI `review` : ce sont les propriétés que
+        Google met en avant, et les publier supposerait des notes que le produit
+        refuse de produire. Un balisage qui promet une étoile qu'on n'affiche
+        pas est un mensonge structuré.
+
+        Le prix n'est déclaré que s'il est publié. Un `offers` à 0 par défaut
+        ferait passer une absence de collecte pour une gratuité — la même faute
+        que l'effacement des 61 prix du 3 août.
+      */
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Course",
+            name: fiche.nom,
+            description: fiche.sujetPrincipal,
+            url: `${SITE}/parcours/${fiche.slug}`,
+            provider: {
+              "@type": "Organization",
+              name: fiche.organismeNom,
+              ...(fiche.siteOfficiel !== null ? { url: fiche.siteOfficiel } : {}),
+            },
+            ...(fiche.prixMin !== null
+              ? {
+                  offers: {
+                    "@type": "Offer",
+                    price: fiche.prixMin,
+                    priceCurrency: "EUR",
+                    url: `${SITE}/parcours/${fiche.slug}`,
+                  },
+                }
+              : {}),
+            ...(fiche.codeRncpRs !== null
+              ? { educationalCredentialAwarded: fiche.codeRncpRs }
+              : {}),
+          }),
+        },
+      ],
     };
   },
 });
 
 function Fiche() {
-  const { fiche, autres } = Route.useLoaderData();
+  const { fiche } = Route.useLoaderData();
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
@@ -61,7 +109,7 @@ function Fiche() {
         <EnteteFiche p={fiche} />
       </header>
 
-      <ContenuFiche p={fiche} autresParcours={autres} />
+      <ContenuFiche p={fiche} />
     </article>
   );
 }
