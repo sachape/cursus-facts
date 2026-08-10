@@ -658,6 +658,43 @@ test("chaque type de page porte ses balises au PREMIER OCTET", async ({ request 
   expect(manques).toEqual([]);
 });
 
+test("deux fiches au libellé identique ne partagent ni titre ni description", async ({
+  request,
+}) => {
+  /*
+    24 licences professionnelles portent le même intitulé à l'université près,
+    et 51 fiches le même sujet principal. Une description bâtie sur le nom et le
+    sujet les rend indiscernables : Google les traite alors comme des doublons,
+    et c'est le motif « page en double, Google n'a pas sélectionné la même page
+    canonique ».
+
+    Le canonique auto-référent ne suffit pas à lui seul — il désigne la page,
+    il ne la distingue pas. C'est le CONTENU des balises qui doit varier, et
+    seule une comparaison entre deux pages le vérifie.
+  */
+  const slugs = [
+    "universite-de-picardie-jules-verne-licence-pro-e-commerce-et-marketing-numerique-3",
+    "universite-bordeaux-montaigne-licence-pro-e-commerce-et-marketing-numerique-4",
+  ];
+
+  const lus = await Promise.all(
+    slugs.map(async (slug) => {
+      const html = await (await request.get(`${BASE}/parcours/${slug}`)).text();
+      return {
+        titre: /<title[^>]*>([^<]*)/.exec(html)?.[1] ?? "",
+        description: /<meta[^>]+name="description"[^>]+content="([^"]*)/.exec(html)?.[1] ?? "",
+      };
+    }),
+  );
+
+  for (const lu of lus) {
+    expect(lu.titre).not.toBe("");
+    expect(lu.description).not.toBe("");
+  }
+  expect(lus[0]!.titre).not.toBe(lus[1]!.titre);
+  expect(lus[0]!.description).not.toBe(lus[1]!.description);
+});
+
 const LARGEURS = [320, 360, 375, 390, 430, 768, 1024];
 
 test("aucun défilement horizontal, à toutes les largeurs", async ({ page }) => {

@@ -12,6 +12,7 @@
  */
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { chargerFiche } from "@/donnees/requetes";
+import { descriptionFiche, titreFiche } from "@/modele/description-fiche";
 import { ContenuFiche, EnteteFiche } from "@/composants/ContenuFiche";
 
 const SITE = "https://formlist.fr";
@@ -40,11 +41,14 @@ export const Route = createFileRoute("/parcours/$slug")({
     const { fiche } = loaderData;
     return {
       meta: [
-        { title: `${fiche.nom} — ${fiche.organismeNom} | Formlist` },
-        {
-          name: "description",
-          content: `${fiche.nom} par ${fiche.organismeNom}. ${fiche.infosRenseignees} informations vérifiées sur ${fiche.infosApplicables} applicables. Faits comparables, sans note ni classement.`,
-        },
+        { title: titreFiche(fiche) },
+        /*
+          Bâtie sur ce qui VARIE — lieu, prix, durée, volume, certification.
+          L'ancienne formule reprenait le nom et un compteur : 51 fiches au même
+          sujet en sortaient indiscernables, et Google les traite alors comme
+          des doublons.
+        */
+        { name: "description", content: descriptionFiche(fiche) },
       ],
       // Canonique auto-référent : cette page est l'adresse de référence de la
       // fiche, y compris quand le panneau l'a poussée dans l'historique.
