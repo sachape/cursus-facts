@@ -18,13 +18,6 @@ function fichiers(dossier: string): string[] {
   return readdirSync(dossier).flatMap((entree) => {
     const chemin = join(dossier, entree);
     if (statSync(chemin).isDirectory()) return fichiers(chemin);
-    /*
-      `src/composants/marque/` est exclu : une marque porte ses propres couleurs,
-      qui sont une identité et non une décision d'interface. Les y interdire
-      obligerait à inventer des jetons sémantiques pour un logo — et un jeton
-      inventé pour contourner une règle est pire que l'exception assumée.
-    */
-    if (chemin.includes("composants/marque/")) return [];
     return /\.(tsx|ts|css)$/.test(chemin) && chemin !== DEFINITION_JETONS ? [chemin] : [];
   });
 }
@@ -34,6 +27,35 @@ const infractions: Infraction[] = [];
 
 /** Couleurs littérales : hex, rgb(), hsl(), oklch(). */
 const COULEUR = /#[0-9a-f]{3,8}\b|\b(rgb|rgba|hsl|hsla|oklch)\s*\(/i;
+
+/**
+ * `src/composants/marque/` est dispensé de la règle de COULEUR, et d'elle
+ * seule : une marque porte ses propres couleurs, qui sont une identité et non
+ * une décision d'interface.
+ *
+ * L'exception portait sur le FICHIER, pas sur la règle — il sortait donc de
+ * TOUS les contrôles. C'est ce qui a laissé passer dix-huit attributs SVG en
+ * kebab-case pendant des mois : React les ignore en silence, le logo se rendait
+ * sans ses épaisseurs de trait ni ses masques, et rien ne pouvait le dire.
+ *
+ * Une exception doit être aussi étroite que son motif.
+ */
+const DISPENSE_COULEUR = (fichier: string) => fichier.includes("composants/marque/");
+
+/**
+ * Attributs SVG écrits en kebab-case dans du JSX.
+ *
+ * React n'applique QUE les propriétés qu'il reconnaît : `stroke-width` n'est
+ * pas `strokeWidth`, il est écarté sans erreur. L'attribut est déclaré, il ne
+ * produit rien, et le rendu est subtilement faux — un trait à l'épaisseur par
+ * défaut, un groupe non rogné. Exactement la syntaxe de variable Tailwind du
+ * 4 août, transposée au SVG.
+ *
+ * Cette classe de défaut ne se voit qu'à l'œil, donc jamais. Elle se vérifie en
+ * revanche mécaniquement.
+ */
+const SVG_KEBAB =
+  /\b(stroke-width|stroke-linecap|stroke-linejoin|stroke-dasharray|stroke-dashoffset|stroke-opacity|fill-rule|fill-opacity|clip-path|clip-rule|stop-color|stop-opacity|text-anchor|dominant-baseline|vector-effect)=/;
 
 /**
  * Espacements et tailles arbitraires dans les classes Tailwind.
@@ -87,10 +109,12 @@ for (const racine of RACINES) {
           extrait: brut.split("\n")[index]?.trim().slice(0, 76) ?? "",
           regle,
         });
-      if (COULEUR.test(nu)) ajouter("couleur littérale hors jeton");
+      if (COULEUR.test(nu) && !DISPENSE_COULEUR(fichier)) ajouter("couleur littérale hors jeton");
       if (ARBITRAIRE.test(nu)) ajouter("dimension arbitraire hors échelle");
       if (DUREE.test(nu)) ajouter("durée littérale hors jeton");
       if (VARIABLE_INVALIDE.test(nu)) ajouter("syntaxe de variable invalide (crochets au lieu de parenthèses)");
+      // Le JSX seulement : en CSS, `stroke-width` est la forme correcte.
+      if (/\.tsx$/.test(fichier) && SVG_KEBAB.test(nu)) ajouter("attribut SVG en kebab-case (ignoré par React)");
     });
   }
 }
@@ -106,6 +130,7 @@ for (const regle of [
   "dimension arbitraire hors échelle",
   "durée littérale hors jeton",
   "syntaxe de variable invalide (crochets au lieu de parenthèses)",
+  "attribut SVG en kebab-case (ignoré par React)",
 ]) {
   const liste = parRegle.get(regle) ?? [];
   console.log(`${liste.length === 0 ? "  ✓" : "  ✗"} ${regle}`);
