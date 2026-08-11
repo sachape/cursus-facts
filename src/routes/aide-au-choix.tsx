@@ -8,11 +8,10 @@
  */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { libellePrixQualifie } from "@/modele/modalite-acces";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { FilAriane } from "@/composants/FilAriane";
 import { chargerListe } from "@/donnees/requetes";
 import {
-  compterCandidats,
   questionsApplicables,
   situationComplete,
   troisCorrespondances,
@@ -26,6 +25,14 @@ import { Button } from "@/components/ui/button";
 import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
 import { declarerVue, mesurer } from "@/composants/mesure";
 import { PanneauFiche } from "@/composants/PanneauFiche";
+import { BulleEntrante, BulleSortante, Compteur } from "@/composants/Bulle";
+import {
+  construireFil,
+  memoriserConversation,
+  relireConversation,
+  reprendreDepuis,
+} from "@/composants/conversation";
+import { TrainingResultCard } from "@/composants/TrainingResultCard";
 
 export const Route = createFileRoute("/aide-au-choix")({
   /*
@@ -54,106 +61,105 @@ function AideAuChoix() {
   const { fiche } = Route.useSearch();
   /*
     Repli de focus : le titre des résultats. Il est présent dès qu'une fiche a
-    pu être ouverte depuis cette vue, et c'est là qu'on revient — à la liste des
-    correspondances, pas en haut du questionnaire.
+    pu être ouverte depuis cette vue, et c'est là qu'on revient — aux
+    correspondances, pas en haut de la conversation.
   */
   const titreResultats = useRef<HTMLHeadingElement | null>(null);
   const { proprietesLien, fermer: fermerPanneau } = useOuvertureFiche({
     retourParDefaut: titreResultats,
   });
   useEffect(() => declarerVue("aide_au_choix"), []);
+
   const parcours = Route.useLoaderData();
   const [reponses, setReponses] = useState<Partial<Situation>>({});
-  /** Index dans la liste des questions APPLICABLES, jamais dans `QUESTIONS`. */
-  const [rang, setRang] = useState(0);
-  const [sens, setSens] = useState<"avant" | "arriere">("avant");
   const [resultats, setResultats] = useState<Adequation[] | null>(null);
   const [phrases, setPhrases] = useState<Map<string, PhraseRedigee>>(new Map());
   const [avertissement, setAvertissement] = useState<string | null>(null);
   const [enCours, setEnCours] = useState(false);
-  const [refus, setRefus] = useState<string | null>(null);
+  /*
+    La question courante n'apparaît qu'après un délai. C'est le seul état de
+    mise en scène : tout le reste se dérive des réponses.
+  */
+  const [questionVisible, setQuestionVisible] = useState(true);
 
   /*
-    La liste des questions dépend des réponses : viser un diplôme ou un emploi
-    retire celle du canal. Elle est donc recalculée à chaque réponse, et
-    l'indicateur de progression compte dessus — annoncer « sur 4 » pour un
-    parcours qui s'arrête à 3 ferait attendre un écran qui ne viendra pas.
+    REPRISE APRÈS RECHARGEMENT. Lue au montage, jamais au premier rendu : le
+    stockage n'existe pas côté serveur, et le lire tout de suite produirait un
+    HTML différent de celui du client.
   */
-  const questions = useMemo(() => questionsApplicables(reponses), [reponses]);
-  const question = questions[Math.min(rang, questions.length - 1)]!;
-  const derniere = rang >= questions.length - 1;
+  useEffect(() => {
+    const reprise = relireConversation();
+    if (reprise !== null) setReponses(reprise);
+  }, []);
+  useEffect(() => memoriserConversation(reponses), [reponses]);
 
   /*
-    Le catalogue qui se réduit, sous chaque question. C'est ce qui transforme un
-    questionnaire en exploration : on voit le catalogue travailler au lieu de
-    répondre à l'aveugle.
-
-    Compté par le modèle sur la situation partielle — jamais par une règle
-    écrite ici, qui aurait fini par annoncer un nombre que les trois
-    correspondances démentent.
+    TOUT SE DÉRIVE DU FIL : les messages, les compteurs, la question posée, et
+    le fait qu'il n'en reste aucune. Rien n'est mémorisé en double.
   */
-  const candidats = useMemo(() => compterCandidats(parcours, reponses), [parcours, reponses]);
-  const aucunCandidat = candidats === 0;
+  const fil = useMemo(() => construireFil(parcours, reponses), [parcours, reponses]);
+  const termine = fil.courante === null;
+  const restants = fil.echanges.at(-1)?.apres ?? parcours.length;
+  const impasse = restants === 0;
 
-  const repondre = (cle: keyof Situation, valeur: string) => {
-    const suite = { ...reponses, [cle]: valeur } as Partial<Situation>;
-    setReponses(suite);
-    setRefus(null);
-    /*
-      LE DÉMARRAGE EST LA PREMIÈRE RÉPONSE, pas l'arrivée sur la page. Arriver
-      sur le questionnaire et repartir n'est pas l'avoir commencé ; compter
-      l'arrivée gonflerait le dénominateur avec des gens qui n'ont rien fait, et
-      le taux d'abandon deviendrait illisible.
-    */
-    if (Object.keys(reponses).length === 0) mesurer("aide_au_choix_demarree");
-    /*
-      `question` et `reponse` portent les CLÉS, pas les intitulés : un intitulé
-      reformulé casserait la continuité des rapports, alors que la clé survit à
-      la réécriture. C'est aussi ce qui rend l'abandon lisible question par
-      question — on voit à laquelle les gens s'arrêtent.
-    */
-    mesurer("aide_au_choix_question_repondue", { question: cle, reponse: valeur, nombre: rang + 1 });
-    /*
-      Avance automatique : un bouton de validation par écran ajoute un geste par
-      question sans rien décider. Seule la dernière en porte un, parce qu'elle
-      déclenche un calcul et non un passage.
+  /* Le défilement suit le dernier message, jamais brutalement. */
+  const bas = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const doux = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    bas.current?.scrollIntoView({ behavior: doux ? "smooth" : "auto", block: "end" });
+  }, [fil.echanges.length, questionVisible, resultats]);
 
-      Le rang se recale sur la liste RECALCULÉE : répondre « diplôme reconnu »
-      retire la question du canal, et un index figé aurait sauté une question ou
-      pointé au-delà de la fin.
-    */
-    const suivantes = questionsApplicables(suite);
-    if (rang < suivantes.length - 1) {
-      setSens("avant");
-      setRang(rang + 1);
-    }
-  };
+  /* La question suivante entre après un temps, réglé par un jeton. */
+  useEffect(() => {
+    if (termine) return;
+    setQuestionVisible(false);
+    const attente = Number.parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue("--conversation-attente"),
+      10,
+    );
+    const minuterie = setTimeout(() => setQuestionVisible(true), Number.isNaN(attente) ? 0 : attente);
+    return () => clearTimeout(minuterie);
+  }, [fil.echanges.length, termine]);
 
-  const revenir = () => {
-    setSens("arriere");
-    setRang((r) => Math.max(0, r - 1));
-  };
+  function repondre(cle: keyof Situation, valeur: string) {
+    if (fil.echanges.length === 0) mesurer("aide_au_choix_demarree");
+    mesurer("aide_au_choix_question_repondue", {
+      question: cle,
+      reponse: valeur,
+      nombre: fil.echanges.length + 1,
+    });
+    setReponses((actuelles) => ({ ...actuelles, [cle]: valeur }));
+    setResultats(null);
+  }
+
+  /* Retirer une réponse retire aussi les suivantes : elles ont été données
+     dans un contexte qui n'existe plus. */
+  function modifier(cle: keyof Situation) {
+    setReponses(reprendreDepuis(fil, cle));
+    setResultats(null);
+    setPhrases(new Map());
+    setAvertissement(null);
+  }
+
+  function recommencer() {
+    setReponses({});
+    setResultats(null);
+    setPhrases(new Map());
+    setAvertissement(null);
+  }
 
   async function chercher() {
-    if (!situationComplete(reponses)) {
-      const manquantes = questions.filter((q) => reponses[q.cle as keyof Situation] === undefined);
-      setRefus(
-        `Il manque ${manquantes.length} réponse${manquantes.length > 1 ? "s" : ""} : ${manquantes.map((q) => q.intitule.replace(/\s*\?$/, "").toLowerCase()).join(", ")}.`,
-      );
-      return;
-    }
-    setRefus(null);
+    if (!situationComplete(fil.retenues)) return;
     setEnCours(true);
     setPhrases(new Map());
     setAvertissement(null);
 
-    const trois = troisCorrespondances(parcours, reponses);
+    const trois = troisCorrespondances(parcours, fil.retenues);
     setResultats(trois);
     /*
       Mesuré sur le CALCUL, avant la rédaction : celle-ci passe par un service
       externe qui peut échouer, et un questionnaire mené jusqu'au bout reste
-      terminé même sans phrase rédigée. L'attacher à la réussite du service
-      ferait baisser le taux d'achèvement quand c'est le service qui tombe.
+      terminé même sans phrase rédigée.
     */
     mesurer("aide_au_choix_terminee", {
       nombre: trois.length,
@@ -161,11 +167,7 @@ function AideAuChoix() {
     });
 
     try {
-      const resume = questions.map((q) => {
-        const options = q.options as Record<string, string>;
-        return `${q.intitule} ${options[reponses[q.cle as keyof Situation] as string]}`;
-      }).join(" ");
-
+      const resume = fil.echanges.map((e) => `${e.intitule} ${e.libelle}`).join(" ");
       const resultat = await redigerAdequation({
         data: {
           situation: resume,
@@ -194,185 +196,167 @@ function AideAuChoix() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
-      <FilAriane miettes={[{ libelle: "Accueil", chemin: "/" }, { libelle: "Aide au choix" }]} />
-      <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Aide au choix</h1>
-      <p className="mt-3 max-w-2xl t-body-sm text-(--text-secondary)">
-        Quelques questions sur votre situation, trois parcours qui y correspondent — avec ce qui ne
-        correspond pas. Nous n&apos;évaluons aucun organisme et ne classons rien par qualité.
-      </p>
-
-      {/* Progression discrète : elle situe, elle ne presse pas. */}
-      <div className="mt-(--space-8)">
-        <p className="t-label text-(--text-tertiary)">
-          Question <span className="chiffre">{rang + 1}</span> sur{" "}
-          <span className="chiffre">{questions.length}</span>
+    <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-10)">
+      <div className="mx-auto max-w-(--conversation-largeur)">
+        <FilAriane miettes={[{ libelle: "Accueil", chemin: "/" }, { libelle: "Aide au choix" }]} />
+        <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Aide au choix</h1>
+        <p className="mt-(--space-3) t-body-sm text-(--text-secondary)">
+          Quelques questions sur votre situation, trois parcours qui y correspondent — avec ce qui
+          ne correspond pas. Nous n&apos;évaluons aucun organisme et ne classons rien par qualité.
         </p>
-        <div className="mt-(--space-2) h-(--space-1) w-full overflow-hidden rounded-(--radius-full) bg-(--surface-sunken)">
-          <div
-            className="h-full rounded-(--radius-full) bg-(--interactive-default) transition-[width] duration-(--motion-base)"
-            style={{ width: `${((rang + 1) / questions.length) * 100}%` }}
-          />
+
+        {/*
+          LA CONVERSATION. Elle se remplit du haut vers le bas, et `space-6`
+          sépare un échange du suivant là où `space-4` sépare deux messages du
+          même échange : c'est l'espacement qui groupe, pas un cadre.
+        */}
+        <div
+          aria-live="polite"
+          className="mt-(--space-8) flex flex-col gap-(--space-6)"
+        >
+          {fil.echanges.map((echange) => (
+            <div key={echange.cle} className="flex flex-col gap-(--space-4)">
+              <BulleEntrante>{echange.intitule}</BulleEntrante>
+              <div className="flex flex-col gap-(--space-1)">
+                <BulleSortante
+                  modifier={() => modifier(echange.cle)}
+                  libelleModification={`Modifier : ${echange.intitule}`}
+                >
+                  {echange.libelle}
+                </BulleSortante>
+                <Compteur avant={echange.avant} apres={echange.apres} />
+              </div>
+            </div>
+          ))}
+
+          {/*
+            L'IMPASSE SE DIT TOUT DE SUITE. Laisser dérouler jusqu'au bout pour
+            n'afficher aucun résultat fait perdre trois écrans avant d'annoncer
+            une absence connue dès la réponse précédente.
+          */}
+          {impasse && fil.echanges.length > 0 && (
+            <div className="flex flex-col gap-(--space-4)">
+              <BulleEntrante>
+                <p>Aucun parcours du catalogue ne réunit ces réponses.</p>
+                <p className="mt-(--space-2) t-body-sm text-(--text-secondary)">
+                  Ce n&apos;est pas un manque de résultats : c&apos;est un fait sur le catalogue
+                  tel qu&apos;il est publié aujourd&apos;hui.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => modifier(fil.echanges.at(-1)!.cle)}
+                  className="mt-(--space-3) rounded-(--radius-sm) t-body-sm underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+                >
+                  Revenir sur la réponse précédente
+                </button>
+              </BulleEntrante>
+            </div>
+          )}
+
+          {!termine && !impasse && questionVisible && fil.courante !== null && (
+            <div className="flex flex-col gap-(--space-4)">
+              <BulleEntrante>{fil.courante.intitule}</BulleEntrante>
+              {/*
+                AUCUN CHAMP DE SAISIE, NULLE PART. Ce n'est pas un assistant :
+                c'est un questionnaire dans une forme conversationnelle, et un
+                champ libre laisserait croire qu'on peut lui parler.
+              */}
+              <div className="flex flex-wrap gap-(--space-2)">
+                {Object.entries(fil.courante.options as Record<string, string>).map(
+                  ([valeur, libelle]) => (
+                    <button
+                      key={valeur}
+                      type="button"
+                      onClick={() => repondre(fil.courante!.cle as keyof Situation, valeur)}
+                      className="inline-flex h-(--conversation-pastille-hauteur) items-center rounded-(--radius-full) border border-(--border-default) bg-(--surface-raised) px-(--space-4) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+                    >
+                      {libelle}
+                    </button>
+                  ),
+                )}
+              </div>
+            </div>
+          )}
+
+          {termine && !impasse && resultats === null && (
+            <div className="flex flex-col gap-(--space-4)">
+              <BulleEntrante>
+                <span className="chiffre">{restants}</span> parcours correspondent à ce que vous
+                m&apos;avez dit. Je vous en montre trois.
+              </BulleEntrante>
+              <div className="flex justify-start">
+                <Button onClick={() => void chercher()} disabled={enCours}>
+                  {enCours ? "Recherche en cours…" : "Voir les correspondances"}
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {resultats !== null && (
+            <BulleEntrante>
+              Voici les trois parcours qui correspondent le mieux à ce que vous m&apos;avez dit.
+            </BulleEntrante>
+          )}
+
+          <div ref={bas} />
         </div>
+
+        {fil.echanges.length > 0 && (
+          <div className="mt-(--space-6) flex justify-start">
+            <button
+              type="button"
+              onClick={recommencer}
+              className="rounded-(--radius-sm) t-body-sm text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+            >
+              Recommencer
+            </button>
+          </div>
+        )}
+
+        <p className="mt-(--space-6) t-caption text-(--text-secondary)">
+          Le résultat indique une adéquation avec votre situation, pas un niveau de qualité. Nous
+          n&apos;évaluons aucun organisme.
+        </p>
+
+        {avertissement !== null && (
+          <p className="mt-(--space-6) rounded-(--radius-md) border border-(--border-subtle) p-(--space-3) t-caption text-(--text-secondary)">
+            {avertissement}
+          </p>
+        )}
       </div>
 
       {/*
-        Un écran, une question. `key` sur la clé de question : c'est ce qui
-        rejoue l'animation d'entrée à chaque passage — sans elle React réutilise
-        le nœud et le glissement ne se produit qu'une fois.
+        LES RÉSULTATS SORTENT DE LA CONVERSATION. Une fiche de parcours dans une
+        bulle serait illisible : elle porte un coût, une certification, un
+        compteur d'informations. Ils s'affichent donc en pleine largeur, dans la
+        carte de l'explorateur — la même partout.
       */}
-      <fieldset
-        key={question.cle}
-        className={`mt-(--space-6) motion-safe:animate-in motion-safe:duration-(--motion-base) ${
-          sens === "avant"
-            ? "motion-safe:slide-in-from-right-4"
-            : "motion-safe:slide-in-from-left-4"
-        }`}
-      >
-        <legend className="t-heading-2 text-(--text-primary)">{question.intitule}</legend>
-
-        <div className="mt-(--space-5) flex flex-wrap gap-(--space-2)">
-          {Object.entries(question.options as Record<string, string>).map(([valeur, libelle]) => {
-            const cle = question.cle as keyof Situation;
-            const choisi = reponses[cle] === valeur;
-            return (
-              <button
-                key={valeur}
-                type="button"
-                aria-pressed={choisi}
-                onClick={() => repondre(cle, valeur)}
-                className={`rounded-(--radius-md) border px-(--space-4) py-(--space-2) t-body-sm transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) ${
-                  choisi
-                    ? "border-(--interactive-default) bg-(--interactive-default) text-(--text-on-inverse)"
-                    : "border-(--border-default) hover:border-(--border-strong)"
-                }`}
-              >
-                {libelle}
-              </button>
-            );
-          })}
-        </div>
-
-        {/*
-          Le catalogue qui travaille. La transition porte sur le chiffre : un
-          nombre qui saute ne se lit pas comme une conséquence de la réponse.
-        */}
-        <p
-          aria-live="polite"
-          className="mt-(--space-4) t-caption text-(--text-tertiary) transition-opacity duration-(--motion-base)"
-        >
-          <span className="chiffre">{candidats}</span>{" "}
-          {candidats > 1 ? "parcours correspondent" : "parcours correspond"} à vos réponses
-        </p>
-
-        {/*
-          Zéro se dit TOUT DE SUITE. Laisser dérouler jusqu'au bout pour
-          n'afficher aucun résultat fait perdre trois écrans avant d'annoncer
-          une impasse qu'on connaissait dès la réponse précédente.
-        */}
-        {aucunCandidat && (
-          <div
-            role="alert"
-            className="mt-(--space-4) rounded-(--radius-md) border border-(--status-absent) p-(--space-4) t-body-sm"
-          >
-            <p className="text-(--text-primary)">
-              Aucun parcours du catalogue ne réunit ces réponses.
-            </p>
-            <p className="mt-(--space-2) text-(--text-secondary)">
-              Ce n&apos;est pas un manque de résultats : c&apos;est un fait sur le catalogue tel
-              qu&apos;il est publié aujourd&apos;hui. Revenez sur une réponse pour élargir.
-            </p>
-            {rang > 0 && (
-              <button
-                type="button"
-                onClick={revenir}
-                className="mt-(--space-3) rounded-(--radius-sm) underline underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
-              >
-                Revenir à la question précédente
-              </button>
-            )}
-          </div>
-        )}
-      </fieldset>
-
-      <div className="mt-(--space-8) flex flex-wrap items-center gap-(--space-4)">
-        {rang > 0 && (
-          <button
-            type="button"
-            onClick={revenir}
-            className="rounded-(--radius-sm) t-body-sm text-(--text-secondary) underline-offset-2 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
-          >
-            ← Question précédente
-          </button>
-        )}
-
-        {/*
-          Un seul bouton dans tout le parcours, sur la dernière question :
-          répondre fait avancer, sauf ici où ça déclenche un calcul.
-        */}
-        {derniere && (
-          <Button onClick={chercher} disabled={enCours || !situationComplete(reponses)}>
-            {enCours ? "Recherche en cours…" : "Voir les correspondances"}
-          </Button>
-        )}
-      </div>
-
-      <p className="mt-(--space-3) max-w-xl t-caption text-(--text-secondary)">
-        Le résultat indique une adéquation avec votre situation, pas un niveau de qualité. Nous
-        n&apos;évaluons aucun organisme.
-      </p>
-
-      {refus !== null && (
-        <p
-          role="alert"
-          className="mt-(--space-4) rounded-(--radius-md) border border-absent/40 p-(--space-3) t-body-sm text-absent"
-        >
-          {refus}
-        </p>
-      )}
-
-      {avertissement !== null && (
-        <p className="mt-8 rounded-(--radius-md) border border-(--border-subtle) p-3 t-caption text-(--text-secondary)">
-          {avertissement}
-        </p>
-      )}
-
       {resultats !== null && (
-        <section className="mt-10">
+        <section className="mt-(--space-10)">
           <h2 ref={titreResultats} tabIndex={-1} className="font-titre text-xl font-medium">
             Trois correspondances
           </h2>
-          <ul className="mt-4 space-y-6">
+          <ul className="mt-(--space-6) flex flex-col gap-(--space-8)">
             {resultats.map((a) => (
-              <li key={a.parcours.slug} className="border-t border-(--border-subtle) pt-5">
-                <h3 className="font-titre text-base font-medium">
-                  <a
-              {...proprietesLien(a.parcours)}
-                    className="hover:underline hover:underline-offset-4"
-                  >
-                    {a.parcours.nom}
-                  </a>
-                </h3>
-                <p className="mt-1 t-body-sm text-(--text-secondary)">{a.parcours.organismeNom}</p>
-                <p className="chiffre mt-2 t-body-sm">
-                  {libellePrixQualifie(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces)}
-                  {a.parcours.duree !== null && (
-                    <span className="text-(--text-secondary)"> · {a.parcours.duree}</span>
-                  )}
-                </p>
+              <li key={a.parcours.slug}>
+                <ul className="flex flex-col gap-(--space-4)">
+                  <TrainingResultCard parcours={a.parcours} />
+                </ul>
 
                 {phrases.has(a.parcours.slug) && (
-                  <p className="mt-3 t-body-sm">
+                  <p className="mt-(--space-3) t-body-sm text-(--text-secondary)">
                     {phrases.get(a.parcours.slug)!.phrase}
                   </p>
                 )}
 
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                {/* Les deux listes restent au même rang : l'écart est souvent
+                    l'information la plus utile. */}
+                <div className="mt-(--space-4) grid gap-(--space-4) sm:grid-cols-2">
                   <div>
-                    <h4 className="t-caption font-medium uppercase tracking-wide text-atteste">
+                    <h3 className="t-caption font-medium uppercase tracking-wide text-atteste">
                       ✓ Ce qui correspond
-                    </h4>
-                    <ul className="mt-2 space-y-1 t-body-sm">
+                    </h3>
+                    <ul className="mt-(--space-2) space-y-(--space-1) t-body-sm">
                       {a.correspond.length === 0 ? (
                         <li className="text-(--text-secondary)">Aucun critère satisfait</li>
                       ) : (
@@ -381,10 +365,10 @@ function AideAuChoix() {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="t-caption font-medium uppercase tracking-wide text-absent">
+                    <h3 className="t-caption font-medium uppercase tracking-wide text-absent">
                       ≠ Ce qui ne correspond pas
-                    </h4>
-                    <ul className="mt-2 space-y-1 t-body-sm">
+                    </h3>
+                    <ul className="mt-(--space-2) space-y-(--space-1) t-body-sm">
                       {a.ecarts.length === 0 ? (
                         <li className="text-(--text-secondary)">
                           Aucun écart constaté — vérifiez que la fiche est suffisamment renseignée
@@ -399,7 +383,7 @@ function AideAuChoix() {
             ))}
           </ul>
 
-          <p className="mt-8 border-t border-(--border-subtle) pt-4 t-caption text-(--text-secondary)">
+          <p className="mt-(--space-8) border-t border-(--border-subtle) pt-(--space-4) t-caption text-(--text-secondary)">
             Les écarts ne sont pas des défauts : ce sont des faits utiles pour décider. Une
             correspondance sans aucun écart signale le plus souvent une fiche trop peu renseignée
             pour qu&apos;un écart ait pu être constaté, pas un parcours sans compromis.
@@ -407,11 +391,6 @@ function AideAuChoix() {
         </section>
       )}
 
-      {/*
-        Le panneau s'ouvre par-dessus la vue, qui reste montée derrière lui : à
-        la fermeture, les réponses au questionnaire et les correspondances sont
-        toujours là, sans rechargement. C'est tout l'objet du chantier.
-      */}
       {fiche !== undefined && (
         <PanneauFiche slug={fiche} autresParcours={parcours} fermer={fermerPanneau} />
       )}

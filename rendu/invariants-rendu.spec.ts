@@ -397,7 +397,10 @@ test("depuis l'aide au choix, fermer une fiche rend le parcours intact", async (
   }
   await page.getByRole("button", { name: /Voir les correspondances/ }).click();
 
-  const correspondances = page.locator("main section ul > li");
+  // Une correspondance = une carte de parcours, comme dans l'explorateur.
+  const correspondances = page
+    .locator("main section ul > li")
+    .filter({ has: page.locator('a[href^="/parcours/"]') });
   await expect(correspondances.first()).toBeVisible({ timeout: 20_000 });
   const combien = await correspondances.count();
   const premier = await correspondances.first().locator("a").first().innerText();
@@ -417,11 +420,16 @@ test("depuis l'aide au choix, fermer une fiche rend le parcours intact", async (
   await page.keyboard.press("Escape");
   await expect(panneau).toBeHidden();
 
-  // Les réponses et les correspondances sont toujours à l'écran, à l'identique.
-  await expect(page.getByRole("button", { name: "Ma propre boutique", exact: true })).toHaveAttribute(
-    "aria-pressed",
-    "true",
-  );
+  /*
+    Les réponses et les correspondances sont toujours à l'écran, à l'identique.
+
+    La réponse se vérifie désormais comme un MESSAGE ENVOYÉ, plus comme une
+    pastille marquée `aria-pressed`. Le passage au format conversationnel a fait
+    tomber ce test, et c'était son travail : la pastille choisie devient une
+    bulle et les autres disparaissent. C'est l'affichage qui a changé, pas ce
+    que l'invariant protège — la vue derrière le panneau survit à sa fermeture.
+  */
+  await expect(page.getByText("Ma propre boutique", { exact: true })).toBeVisible();
   await expect(correspondances).toHaveCount(combien);
   expect(await correspondances.first().locator("a").first().innerText()).toBe(premier);
 });
@@ -1655,4 +1663,107 @@ test("les listes de parcours rendent la même carte partout", async ({ page }) =
 
   // Et la carte se détache : sans écart de fond, elle ne tient qu'au filet.
   expect(explorateur!.fondCarte).not.toBe(explorateur!.fondPage);
+});
+
+test("l'aide au choix se déroule en conversation, et le retour recalcule", async ({ page }) => {
+  /*
+    LA FORME CHANGE, LA LOGIQUE NON. Ce test porte sur ce que le passage au
+    conversationnel pouvait casser : l'enchaînement des questions, le compteur
+    qui remplace la barre de progression, et le retour en arrière — le point où
+    une conversation est habituellement moins bonne qu'un parcours guidé.
+
+    AUCUN CHAMP DE SAISIE, vérifié aussi : ce n'est pas un assistant, et un
+    champ libre laisserait croire qu'on peut lui parler.
+  */
+  await page.goto(`${BASE}/aide-au-choix`, { waitUntil: "networkidle" });
+
+  const pastilles = () => page.locator("main button").filter({ hasNot: page.locator("svg") });
+  const compteurs = () => page.locator("main p", { hasText: /parcours →/ });
+
+  // Rien pour écrire, nulle part.
+  await expect(page.locator("main input, main textarea")).toHaveCount(0);
+
+  const choisiesSuccessives: string[] = [];
+  for (let etape = 0; etape < 6; etape += 1) {
+    const suivante = page
+      .locator("main button")
+      .filter({ hasText: /.+/ })
+      .filter({ hasNotText: /Modifier|Recommencer|correspondances|Revenir/ })
+      .first();
+    if ((await suivante.count()) === 0) break;
+    if (!(await suivante.isVisible())) break;
+    choisiesSuccessives.push((await suivante.innerText()).trim());
+    await suivante.click();
+    // Chaque question entre après un délai : on attend le compteur, pas un temps.
+    await expect(compteurs()).toHaveCount(choisiesSuccessives.length);
+  }
+
+  expect(choisiesSuccessives.length).toBeGreaterThanOrEqual(3);
+
+  /*
+    LE COMPTEUR EST UNE CONSÉQUENCE, PAS UN AFFICHAGE. Le « après » d'un échange
+    doit être le « avant » du suivant : si les deux divergent, le fil ne se
+    reconstruit pas dans l'ordre où il a été composé.
+  */
+  const lus = await compteurs().allInnerTexts();
+  const paires = lus.map((t) => (t.match(/(\d+)/g) ?? []).map(Number));
+  for (const [i, paire] of paires.entries()) {
+    expect(paire.length, `compteur ${i} illisible : « ${lus[i]} »`).toBe(2);
+    if (i > 0) expect(paire[0]).toBe(paires[i - 1]![1]);
+  }
+
+  /*
+    LA CONVERSATION SURVIT AU RECHARGEMENT. Répondre à quatre questions puis
+    tout perdre en revenant sur la page est le défaut qui rend un questionnaire
+    inutilisable — et il ne se voit qu'en rechargeant, jamais en le parcourant.
+  */
+  const avantRechargement = await compteurs().allInnerTexts();
+  await page.reload({ waitUntil: "networkidle" });
+  await expect(compteurs()).toHaveCount(avantRechargement.length);
+  expect(await compteurs().allInnerTexts()).toEqual(avantRechargement);
+
+  // Les résultats sortent de la conversation : des cartes, pas des bulles.
+  const voir = page.getByRole("button", { name: /Voir les correspondances/ });
+  if (await voir.count()) {
+    await voir.click();
+    await expect(page.getByRole("heading", { name: "Trois correspondances" })).toBeVisible();
+    expect(await page.locator("main ul > li").filter({ has: page.locator('a[href^="/parcours/"]') }).count())
+      .toBeGreaterThan(0);
+    // Aucun mot de recommandation, nulle part sur la page.
+    const texte = (await page.locator("main").innerText()).toLowerCase();
+    for (const mot of ["je vous recommande", "recommandé", "meilleur choix"]) {
+      expect(texte).not.toContain(mot);
+    }
+  }
+
+  /*
+    LE RETOUR EN ARRIÈRE. Modifier la première réponse doit retirer tout ce qui
+    suit — les réponses suivantes ont été données dans un contexte qui n'existe
+    plus — et donc ne laisser aucun compteur.
+  */
+  const total = await compteurs().count();
+  expect(total).toBeGreaterThanOrEqual(2);
+
+  /*
+    On modifie l'AVANT-DERNIÈRE réponse, pas la première : reprendre à la
+    première ne prouve rien, puisque le fil s'arrête de toute façon à la
+    première question sans réponse. C'est au milieu que la troncature se voit.
+  */
+  await page.getByRole("button", { name: /^Modifier/ }).nth(total - 2).click();
+  await expect(compteurs()).toHaveCount(total - 2);
+  await expect(page.getByRole("heading", { name: "Trois correspondances" })).toHaveCount(0);
+
+  /*
+    ET SURTOUT : rerépondre LA MÊME CHOSE ne doit pas faire resurgir les
+    réponses suivantes. Sans troncature elles restent en mémoire, et le fil
+    saute d'un coup jusqu'au bout — la personne voit trois réponses qu'elle
+    n'a pas redonnées réapparaître sous la sienne.
+  */
+  const memeChoix = page
+    .locator("main button")
+    .filter({ hasText: /.+/ })
+    .filter({ hasNotText: /Modifier|Recommencer|correspondances|Revenir/ })
+    .first();
+  await memeChoix.click();
+  await expect(compteurs()).toHaveCount(total - 1);
 });

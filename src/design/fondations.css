@@ -511,6 +511,22 @@
   --hero-chiffres-largeur: 640px;
   /* Un formulaire d'authentification : au-delà, l'œil perd la colonne. */
   --formulaire-largeur: 420px;
+
+  /*
+    AIDE AU CHOIX — la conversation.
+
+    680 px : au-delà, une bulle de question devient une ligne de texte longue et
+    la forme conversationnelle cesse de se lire comme un échange.
+
+    L'attente avant chaque question est un RYTHME, pas une simulation de
+    réflexion : rien ne rédige ici, les questions sont écrites d'avance. Assez
+    longue pour qu'on voie sa réponse partir, assez courte pour qu'on n'attende
+    pas.
+  */
+  --conversation-largeur: 680px;
+  --conversation-attente: 400ms;
+  --conversation-bulle-max: 80%;
+  --conversation-pastille-hauteur: 40px;
   --hero-min-hauteur: 640px;
   --domain-navigation-height: 56px;
   --results-toolbar-height: 60px;
