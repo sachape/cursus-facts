@@ -100,12 +100,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       parcours: parcours.length,
       organismes: new Set(parcours.map((p) => p.organismeNom)).size,
       criteres: CHAMPS_INFORMATION.length,
-      derniereVerification:
-        parcours
-          .map((p) => p.dateVerification)
-          .filter((d): d is string => d !== null)
-          .sort()
-          .at(-1) ?? null,
+      /*
+        PAS DE DATE DE VÉRIFICATION ICI. Le pied n'affiche plus de date globale :
+        la plus récente des dates de fiche ne dit rien des autres, et l'écrire au
+        singulier en faisait une affirmation sur tout le catalogue. Elle reste
+        calculée là où elle décrit un objet précis — fiche, organisme, et le
+        chiffre « dernière vérification » de l'accueil.
+      */
     };
   },
   head: () => ({

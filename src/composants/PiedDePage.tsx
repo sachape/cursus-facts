@@ -19,14 +19,12 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { lienCorrection } from "@/modele/contact";
 import { Route } from "@/routes/__root";
 import { MotSymboleHorizontal } from "./marque/Marques";
-import { formaterDateLongue } from "@/modele/dates";
 import { formaterNombre } from "@/modele/nombres";
 
 export type StatistiquesPied = {
   parcours: number;
   organismes: number;
   criteres: number;
-  derniereVerification: string | null;
 };
 
 const CORRECTION = lienCorrection();
@@ -160,13 +158,27 @@ export function PiedDePage() {
         </div>
       </div>
 
-      {/* Barre inférieure. */}
+      {/*
+        Barre inférieure.
+
+        SANS DATE DE VÉRIFICATION, ET C'EST UNE DÉCISION. « Catalogue vérifié le
+        4 août » était la date la plus récente portée par une fiche, présentée
+        comme un fait sur l'ensemble. Le catalogue est vérifié par morceaux, à
+        des dates différentes : la plus récente ne dit rien des autres. C'est
+        une information déduite — invariant 2 — et la plus coûteuse, puisqu'elle
+        porte précisément sur ce que nous promettons.
+
+        La date n'a pas disparu, elle est retournée là où elle décrit ce qu'elle
+        mesure : la ligne de provenance de chaque fiche, la ligne de faits de
+        chaque organisme, et les chiffres clés de l'accueil (qui, eux, disent
+        « dernière vérification » et non « catalogue vérifié »).
+
+        Le nom seul suffit à gauche : la promesse est déjà écrite deux fois
+        au-dessus, sous le mot-symbole et dans le bandeau.
+      */}
       <div className="border-t border-(--border-subtle) bg-(--surface-page) py-(--space-6)">
         <div className="mx-auto flex max-w-(--contenu-largeur-max) flex-wrap items-center justify-between gap-(--space-3) px-(--space-6) t-caption text-(--text-tertiary)">
-          <p>
-            Formlist — Catalogue vérifié le{" "}
-            <span className="chiffre">{formaterDateLongue(stats.derniereVerification)}</span>
-          </p>
+          <p>Formlist</p>
           <p>Aucun lien de cette page n&apos;est affilié.</p>
         </div>
       </div>
