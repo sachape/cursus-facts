@@ -3,7 +3,17 @@ import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/r
 import { renderErrorPage } from "./lib/error-page";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
 
-const errorMiddleware = createMiddleware().server(async ({ next }) => {
+/*
+  Les routes /lovable/* (webhook d'authentification, aperçu des gabarits)
+  s'authentifient elles-mêmes par signature. Les faire passer par nos gardes
+  applicatifs les casserait — on les laisse traverser en premier.
+*/
+function estRouteLovable(url: string): boolean {
+  return new URL(url).pathname.startsWith("/lovable/");
+}
+
+const errorMiddleware = createMiddleware().server(async ({ next, request }) => {
+  if (estRouteLovable(request.url)) return next();
   try {
     return await next();
   } catch (error) {
