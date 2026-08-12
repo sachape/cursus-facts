@@ -102,12 +102,21 @@ export const redigerAdequation = createServerFn({ method: "POST" })
       avertissement,
     });
 
+    /*
+      SANS CLÉ, AUCUN AVERTISSEMENT — et ce n'est pas un oubli.
+
+      Le repli déterministe ne dégrade rien : les correspondances et les écarts
+      sont calculés par le modèle, la phrase les restitue, et la personne lit un
+      résultat complet et exact. Il n'y a donc rien à signaler.
+
+      Annoncer le nom d'une variable d'environnement à quelqu'un qui cherche une
+      formation lui apprend un détail de NOTRE infrastructure sur lequel il ne
+      peut rien, et jette un doute sur des faits qui, eux, sont justes. Un
+      avertissement se réserve à ce qui change la lecture du résultat — les
+      échecs réels du service en produisent toujours un, plus bas.
+    */
     const cle = process.env["ANTHROPIC_API_KEY"];
-    if (!cle) {
-      return repli(
-        "Les phrases sont assemblées automatiquement : la clé ANTHROPIC_API_KEY n'est pas configurée côté serveur. Les correspondances et les écarts, eux, sont calculés et exacts.",
-      );
-    }
+    if (!cle) return repli(null);
 
     try {
       const { default: Anthropic } = await import("@anthropic-ai/sdk");
