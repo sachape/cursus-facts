@@ -14,12 +14,18 @@
  * Le domaine ne figure pas ici : c'est le premier niveau de la hiérarchie, et
  * il se lit comme une navigation en pleine largeur (voir `OngletsDomaines`).
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ParcoursListe } from "@/donnees/requetes";
 import {
+  BUDGET_PLAFOND,
   compterAvec,
+  compterPrixInconnu,
   FILTRES_VIDES,
+  libelleBudget,
   LIBELLES_DUREES,
+  normaliserBudget,
+  plageBudgetActive,
+  TRANCHES_BUDGET,
   TRANCHES_DUREE,
   type Filtres,
   type TrancheDuree,
@@ -29,7 +35,7 @@ import type { CategorieOrganisme, FormatParcours, NiveauEntree } from "@/types/c
 import { FILTRES_CONDITION, LIBELLES_FILTRES_CONDITION } from "@/modele/condition-cout";
 import { IconeCategorie } from "./OrganizationMark";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
 
 type Props = {
   parcours: readonly ParcoursListe[];
@@ -37,9 +43,15 @@ type Props = {
   modifier: (patch: Partial<Filtres>) => void;
 };
 
-/** Plafond du curseur de budget. Au-delà, le filtre est retiré. */
-const BUDGET_MAX = 5000;
-const BUDGET_PAS = 250;
+/**
+ * Délai avant application d'une saisie de budget.
+ *
+ * Appliquer à chaque caractère fait filtrer sur « 5 », puis « 50 », puis
+ * « 500 » : deux listes fausses pour une juste, et un catalogue qui clignote
+ * pendant qu'on tape. La sortie du champ applique immédiatement — quelqu'un qui
+ * a fini de saisir n'a pas à attendre.
+ */
+const DELAI_SAISIE = 400;
 
 /*
  * Pas vertical d'une option : 32 px de zone cliquable + 8 px d'écart.
@@ -214,6 +226,228 @@ function basculer<T>(liste: T[], valeur: T): T[] {
   return liste.includes(valeur) ? liste.filter((v) => v !== valeur) : [...liste, valeur];
 }
 
+/* -------------------------------------------------------------------------- */
+/* Budget — deux champs, quatre tranches, et le sort des prix inconnus        */
+/* -------------------------------------------------------------------------- */
+
+function texte(valeur: number | null): string {
+  return valeur === null ? "" : String(valeur);
+}
+
+function nombre(saisie: string): number | null {
+  const nettoye = saisie.trim();
+  if (nettoye === "") return null;
+  const valeur = Number(nettoye);
+  return Number.isFinite(valeur) ? valeur : null;
+}
+
+/**
+ * Un champ de montant, avec son unité posée dedans.
+ *
+ * SAISIE RESTREINTE AUX CHIFFRES plutôt qu'un `type="number"` : à 96 px, les
+ * flèches natives se disputent la place avec le suffixe « € », et le signe
+ * moins n'a aucune raison d'être saisissable dans un budget.
+ */
+function ChampEuro({
+  id,
+  etiquette,
+  invite,
+  valeur,
+  changer,
+  appliquer,
+}: {
+  id: string;
+  etiquette: string;
+  invite: string;
+  valeur: string;
+  changer: (v: string) => void;
+  appliquer: () => void;
+}) {
+  return (
+    <div className="relative">
+      <Input
+        id={id}
+        type="text"
+        inputMode="numeric"
+        aria-label={etiquette}
+        placeholder={invite}
+        value={valeur}
+        maxLength={String(BUDGET_PLAFOND).length}
+        onChange={(evenement) => changer(evenement.target.value.replace(/\D/g, ""))}
+        onBlur={appliquer}
+        className="chiffre w-24 pr-(--space-6)"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-(--space-2) flex items-center t-body-sm text-(--text-tertiary)"
+      >
+        €
+      </span>
+    </div>
+  );
+}
+
+/**
+ * La plage de budget.
+ *
+ * DEUX CHAMPS ET NON UN CURSEUR À DEUX POIGNÉES. Un curseur ne se vise pas au
+ * doigt, se règle mal au clavier, et n'atteint jamais une valeur ronde : il
+ * demande de la précision à l'entrée et n'en rend aucune. Deux champs sont
+ * exacts, dictables, et lisibles une fois remplis.
+ *
+ * LES DEUX SONT FACULTATIFS. « à » seul redonne le plafond d'avant, « de » seul
+ * donne un plancher que le curseur ne savait pas exprimer.
+ */
+function PlageBudget({ parcours, filtres, modifier }: Props) {
+  const [bas, setBas] = useState(() => texte(filtres.budgetMin));
+  const [haut, setHaut] = useState(() => texte(filtres.budgetMax));
+
+  const appliquer = () => {
+    const { budgetMin, budgetMax } = normaliserBudget(nombre(bas), nombre(haut));
+    /*
+      Les champs reçoivent la valeur NORMALISÉE, pas celle qui a été tapée.
+      C'est ainsi que l'interversion se voit : « de 2 500 à 500 » devient « de
+      500 à 2 500 » sous les yeux, sans message d'erreur à lire ni saisie à
+      reprendre. Une valeur refusée s'efface, ce qui est plus clair qu'un
+      libellé rouge sous un champ.
+    */
+    setBas(texte(budgetMin));
+    setHaut(texte(budgetMax));
+    if (budgetMin !== filtres.budgetMin || budgetMax !== filtres.budgetMax) {
+      modifier({ budgetMin, budgetMax });
+    }
+  };
+
+  // Application différée. La dépendance est la saisie, jamais le rendu : le
+  // minuteur repart à chaque frappe et n'aboutit qu'une fois la frappe finie.
+  useEffect(() => {
+    const minuterie = setTimeout(appliquer, DELAI_SAISIE);
+    return () => clearTimeout(minuterie);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bas, haut]);
+
+  /*
+    Les tranches rapides et « Réinitialiser » écrivent la plage sans passer par
+    les champs. Sans cette reprise, cliquer « 500 à 2 500 € » filtrerait juste
+    en laissant les champs vides — l'interface contredirait son propre état.
+
+    Conditionnée à un écart réel, pour ne jamais réécrire une saisie en cours.
+  */
+  useEffect(() => {
+    const pose = normaliserBudget(nombre(bas), nombre(haut));
+    if (pose.budgetMin !== filtres.budgetMin) setBas(texte(filtres.budgetMin));
+    if (pose.budgetMax !== filtres.budgetMax) setHaut(texte(filtres.budgetMax));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtres.budgetMin, filtres.budgetMax]);
+
+  const inconnus = compterPrixInconnu(parcours, {
+    ...filtres,
+    // Compté sur une plage forcément posée : hors plage, aucun prix inconnu
+    // n'est écarté, et le nombre affiché à côté de la case serait zéro alors
+    // que la case, elle, garde tout son sens.
+    ...(plageBudgetActive(filtres) ? {} : { budgetMax: BUDGET_PLAFOND }),
+  });
+
+  return (
+    <>
+      {/*
+        LES TRANCHES D'ABORD, LES CHAMPS ENSUITE. Presque personne ne connaît
+        son budget au centime ; presque tout le monde sait s'il cherche à moins
+        de 500 € ou au-delà de 2 500 €. Les champs servent le cas précis, pas
+        le cas courant — les placer en premier ferait payer à tous le coût
+        d'une saisie que peu ont besoin de faire.
+      */}
+      <div className="flex flex-wrap gap-(--space-2)">
+        {TRANCHES_BUDGET.map((tranche) => {
+          /*
+            Compté prix inconnus EXCLUS, quelle que soit la case : sinon les
+            quatre tranches afficheraient à peu près le même nombre — celui des
+            fiches sans prix, qui appartiennent à toutes — et un décompte qui ne
+            discrimine pas n'aide à choisir aucune tranche.
+          */
+          const combien = compterAvec(parcours, filtres, {
+            budgetMin: tranche.min,
+            budgetMax: tranche.max,
+            inclurePrixInconnu: false,
+          });
+          const posee =
+            filtres.budgetMin === tranche.min && filtres.budgetMax === tranche.max;
+          return (
+            <button
+              key={tranche.cle}
+              type="button"
+              aria-pressed={posee}
+              disabled={combien === 0 && !posee}
+              onClick={() =>
+                modifier(
+                  posee
+                    ? { budgetMin: null, budgetMax: null }
+                    : { budgetMin: tranche.min, budgetMax: tranche.max },
+                )
+              }
+              className={`inline-flex items-center gap-(--space-2) rounded-(--radius-full) border px-(--space-3) py-(--space-1) t-body-sm transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) ${
+                posee
+                  ? "border-(--accent-border) bg-(--accent-surface) text-(--accent-default)"
+                  : combien === 0
+                    ? "cursor-not-allowed border-(--border-subtle) text-(--text-disabled)"
+                    : "border-(--border-subtle) text-(--text-secondary) hover:border-(--border-strong) hover:text-(--text-primary)"
+              }`}
+            >
+              {tranche.libelle}
+              <Badge>{combien}</Badge>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="mt-(--space-4) flex items-center gap-(--space-2)">
+        <ChampEuro
+          id="budget-min"
+          etiquette="Budget minimum, en euros"
+          invite="De"
+          valeur={bas}
+          changer={setBas}
+          appliquer={appliquer}
+        />
+        <span aria-hidden="true" className="t-body-sm text-(--text-tertiary)">
+          –
+        </span>
+        <ChampEuro
+          id="budget-max"
+          etiquette="Budget maximum, en euros"
+          invite="à"
+          valeur={haut}
+          changer={setHaut}
+          appliquer={appliquer}
+        />
+      </div>
+
+      {/*
+        LA CASE QUI DÉCIDE DE TOUT. Une plage de prix écarte mécaniquement tout
+        ce dont le prix n'est pas établi — la majorité du catalogue. Cochée par
+        défaut, elle rend ce sort visible et réversible ; sans elle, le compteur
+        s'effondre et rien ne dit pourquoi.
+
+        Elle n'est pas un `Option` : celui-ci se désactive à zéro résultat, et
+        une case décochée dont le décompte tombe à zéro deviendrait
+        impossible à recocher.
+      */}
+      <label
+        htmlFor="f-prix-inconnu"
+        className="mt-(--space-4) flex min-h-(--cible-hauteur-min-tactile) cursor-pointer items-center gap-(--space-3) rounded-(--radius-sm) px-(--space-2) text-(--text-secondary) transition-colors duration-(--motion-fast) hover:bg-(--surface-hover) hover:text-(--text-primary) sm:min-h-(--cible-hauteur-min)"
+      >
+        <Checkbox
+          id="f-prix-inconnu"
+          checked={filtres.inclurePrixInconnu}
+          onCheckedChange={() => modifier({ inclurePrixInconnu: !filtres.inclurePrixInconnu })}
+        />
+        <span className="flex-1 t-body-sm">Inclure les parcours dont le prix n&apos;est pas connu</span>
+        <span className="t-data-sm text-(--text-tertiary)">{inconnus}</span>
+      </label>
+    </>
+  );
+}
+
 export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
   const sujets = [...new Set(parcours.map((p) => p.sujetPrincipal))].sort((a, b) =>
     a.localeCompare(b, "fr"),
@@ -242,7 +476,7 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
     financementsActifs +
     Number(filtres.certifiantSeulement) +
     Number(filtres.accessibleIndividuellement) +
-    Number(filtres.budget !== null) +
+    Number(plageBudgetActive(filtres)) +
     Number(filtres.recherche.trim() !== "");
 
   return (
@@ -332,27 +566,12 @@ export function PanneauFiltres({ parcours, filtres, modifier }: Props) {
       </Groupe>
 
       <Groupe
-        titre="Budget maximum"
-        description="Les parcours dont le prix n'est pas publié restent affichés quel que soit le budget : ne pas publier son prix ne doit ni profiter ni nuire."
-        actifs={filtres.budget === null ? 0 : 1}
+        titre="Budget"
+        description="Le prix retenu est celui que vous déboursez, pas le coût du parcours. Un parcours facturé au groupe n'a pas de tarif individuel : son prix compte comme non connu, jamais comme élevé."
+        actifs={plageBudgetActive(filtres) ? 1 : 0}
+        resume={libelleBudget(filtres.budgetMin, filtres.budgetMax) ?? ""}
       >
-        <div className="flex items-baseline justify-between">
-          <span className="chiffre text-sm">
-            {filtres.budget === null ? "Sans limite" : `${filtres.budget.toLocaleString("fr-FR")} €`}
-          </span>
-          <Badge>{compterAvec(parcours, filtres, {})}</Badge>
-        </div>
-        <Slider
-          value={[filtres.budget ?? BUDGET_MAX]}
-          min={0}
-          max={BUDGET_MAX}
-          step={BUDGET_PAS}
-          onValueChange={([valeur]) =>
-            modifier({ budget: valeur === undefined || valeur >= BUDGET_MAX ? null : valeur })
-          }
-          aria-label="Budget maximum"
-          className="mt-3"
-        />
+        <PlageBudget parcours={parcours} filtres={filtres} modifier={modifier} />
       </Groupe>
 
       <Groupe

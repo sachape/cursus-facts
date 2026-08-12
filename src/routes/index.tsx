@@ -15,9 +15,13 @@ import { chargerListe } from "@/donnees/requetes";
 import { RechercheHero, type Suggestion } from "@/composants/RechercheHero";
 import {
   auMoinsUnFiltre,
+  compterDansPlage,
   compterEcartesFauteInformation,
+  compterPrixInconnu,
   filtrer,
   FILTRES_VIDES,
+  libelleBudget,
+  plageBudgetActive,
   type Filtres,
 } from "@/modele/filtres";
 import { classer, LIBELLES_TRIS, TRIS, TRI_PAR_DEFAUT, type Tri } from "@/modele/classement";
@@ -225,6 +229,13 @@ function Explorer() {
     .sort()
     .at(-1) ?? null;
   const ecartesFauteInfo = compterEcartesFauteInformation(parcours, filtres);
+  /*
+    Les deux nombres de la mention de budget. Calculés ici, comme les autres
+    décomptes de la vue, et non dans la barre d'outils : celle-ci restitue, elle
+    ne connaît pas la forme de `Filtres`.
+  */
+  const dansPlage = compterDansPlage(parcours, filtres);
+  const prixInconnus = compterPrixInconnu(parcours, filtres);
   const organismes = new Set(parcours.map((p) => p.organismeNom)).size;
   const domaines = (Object.keys(LIBELLES_DOMAINES) as DomaineParcours[]).filter((d) =>
     parcours.some((p) => p.domaine === d),
@@ -370,11 +381,16 @@ function Explorer() {
     ...(filtres.recherche.trim() !== ""
       ? [{ libelle: `« ${filtres.recherche} »`, retirer: () => modifier({ recherche: "" }) }]
       : []),
-    ...(filtres.budget !== null
+    ...(libelleBudget(filtres.budgetMin, filtres.budgetMax) !== null
       ? [
           {
-            libelle: `Jusqu'à ${filtres.budget} €`,
-            retirer: () => modifier({ budget: null }),
+            libelle: libelleBudget(filtres.budgetMin, filtres.budgetMax) ?? "",
+            /* La case d'inclusion revient à son état par défaut avec la plage :
+               elle ne modifie plus rien une fois la plage retirée, et la
+               laisser décochée ferait réapparaître un masquage invisible à la
+               prochaine plage posée. */
+            retirer: () =>
+              modifier({ budgetMin: null, budgetMax: null, inclurePrixInconnu: true }),
           },
         ]
       : []),
@@ -566,6 +582,50 @@ function Explorer() {
               mesurer("tri_change", { tri: t });
             }}
           />
+
+          {plageBudgetActive(filtres) && prixInconnus > 0 && (
+            /*
+              LA PHRASE QUI EMPÊCHE LE FILTRE DE MENTIR. Une plage de prix
+              n'atteint que les fiches dont le prix est établi ; le reste du
+              catalogue disparaîtrait sans un mot, et un compteur qui s'effondre
+              se lit comme « il n'existe rien à ce prix » alors qu'il faut lire
+              « nous ne savons pas encore ».
+
+              Les deux nombres sont donnés ensemble, dans cet ordre : celui de
+              la fourchette d'abord, parce que c'est la question posée.
+            */
+            <p className="mt-3 rounded-md border border-absent/30 px-3 py-2 text-xs text-absent">
+              {filtres.inclurePrixInconnu ? (
+                <>
+                  <span className="chiffre">{formaterNombre(dansPlage)}</span> parcours dans cette
+                  fourchette, plus <span className="chiffre">{formaterNombre(prixInconnus)}</span>{" "}
+                  dont le prix n&apos;est pas encore connu.{" "}
+                  <button
+                    type="button"
+                    onClick={() => modifier({ inclurePrixInconnu: false })}
+                    className="underline underline-offset-2 hover:text-foreground"
+                  >
+                    Les masquer
+                  </button>
+                </>
+              ) : (
+                <>
+                  <span className="chiffre">{formaterNombre(prixInconnus)}</span>{" "}
+                  {prixInconnus > 1
+                    ? "parcours ne sont pas affichés"
+                    : "parcours n'est pas affiché"}{" "}
+                  faute de prix publié, et non parce que le prix dépasse la fourchette.{" "}
+                  <button
+                    type="button"
+                    onClick={() => modifier({ inclurePrixInconnu: true })}
+                    className="underline underline-offset-2 hover:text-foreground"
+                  >
+                    Les réafficher
+                  </button>
+                </>
+              )}
+            </p>
+          )}
 
           {ecartesFauteInfo > 0 && (
             /*

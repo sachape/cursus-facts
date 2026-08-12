@@ -1767,3 +1767,47 @@ test("l'aide au choix se déroule en conversation, et le retour recalcule", asyn
   await memeChoix.click();
   await expect(compteurs()).toHaveCount(total - 1);
 });
+
+test("les prix inconnus sont inclus par défaut, et leur décompte s'affiche une fois masqués", async ({
+  page,
+}) => {
+  /*
+    L'INVARIANT QUI EMPÊCHE LE FILTRE DE RÉCOMPENSER LE SILENCE.
+
+    Une plage de prix n'atteint que les fiches dont le prix est établi. La
+    majorité du catalogue n'en a pas : sans inclusion par défaut, poser une
+    fourchette efface ces fiches, le compteur s'effondre, et rien ne dit que ce
+    n'est pas le catalogue qui est vide mais l'information qui manque — le
+    filtre finirait par ne montrer que les organismes qui publient leur prix.
+
+    Deux choses se vérifient donc ici, et aucune des deux ne se voit dans le
+    code : que la case est bien cochée à l'arrivée, et que la masquer NOMME le
+    nombre de fiches masquées au lieu de les faire disparaître en silence.
+  */
+  await page.getByRole("button", { name: /^Budget/ }).first().click();
+
+  const inclusion = page.getByRole("checkbox", { name: /prix n'est pas connu/ });
+  await expect(inclusion).toBeVisible();
+  await expect(inclusion).toBeChecked();
+
+  /*
+    Une plage doit être posée : hors plage, aucun prix inconnu n'est écarté et
+    la case ne modifie rien. La tranche est lue depuis l'interface plutôt que
+    supposée — si le catalogue n'a aucune fiche sous 500 €, le décompte serait
+    vide pour une raison qui n'est pas celle qu'on teste.
+  */
+  const tranche = page.getByRole("button", { name: /^Moins de 500/ });
+  if (await tranche.isDisabled()) return;
+  await tranche.click();
+
+  const mention = page.locator("main p").filter({ hasText: /prix n'est pas encore connu/ });
+  await expect(mention).toBeVisible();
+
+  await inclusion.click();
+  await expect(inclusion).not.toBeChecked();
+
+  const masques = page.locator("main p").filter({ hasText: /faute de prix publié/ });
+  await expect(masques).toBeVisible();
+  // Un nombre, pas une formule vague : « certains parcours » ne se vérifie pas.
+  await expect(masques.locator("span.chiffre")).toHaveText(/\d/);
+});

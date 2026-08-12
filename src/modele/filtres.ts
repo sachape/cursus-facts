@@ -8,9 +8,16 @@
  * résultats sur 195 ne filtre plus rien.
  *
  * Un filtre ne retire jamais une fiche parce qu'elle est incomplète. Le budget
- * fait exception explicite : une fiche sans prix publié reste visible quel que
- * soit le plafond, faute de quoi ne pas publier son prix deviendrait un moyen
+ * fait exception explicite : une fiche sans prix publié reste visible quelle
+ * que soit la plage, faute de quoi ne pas publier son prix deviendrait un moyen
  * d'échapper au filtre — ou d'y figurer indûment.
+ *
+ * Cette exception est désormais un CHOIX AFFICHÉ et non un comportement
+ * silencieux : `inclurePrixInconnu` la porte, cochée par défaut, et le nombre
+ * de fiches concernées est publié sous les résultats. Une plage de prix élimine
+ * mécaniquement tout ce dont le prix n'est pas établi — la majorité du
+ * catalogue — et un compteur qui s'effondre sans explication se lit comme un
+ * catalogue vide, pas comme une information manquante.
  */
 import type { ParcoursListe } from "@/donnees/requetes";
 import type {
@@ -19,6 +26,7 @@ import type {
   FormatParcours,
   NiveauEntree,
 } from "@/types/cursus";
+import { formaterNombre } from "./nombres";
 import { PARTIELLEMENT_GRATUIT, SANS_FRAIS } from "./modalite-acces";
 import { accessibleIndividuellement, prixAffichable } from "./modalite-commerciale";
 import { coutDuParcours, filtreDe, type FiltreCondition } from "./condition-cout";
@@ -50,6 +58,97 @@ export function trancheDe(volumeHoraire: number | null): TrancheDuree {
   return "plus_500h";
 }
 
+/* -------------------------------------------------------------------------- */
+/* Budget — une plage, et le sort des prix inconnus                           */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Plafond haut d'une saisie. Au-delà, la valeur est ramenée ici.
+ *
+ * Il ne borne pas le catalogue, il borne la SAISIE : un zéro de trop dans un
+ * champ produirait une plage vide et un catalogue en apparence disparu.
+ */
+export const BUDGET_PLAFOND = 50_000;
+
+/**
+ * Tranches rapides.
+ *
+ * LES MÊMES CLÉS QUE L'ASSISTANT (`BUDGETS`, dans `adequation.ts`). Quelqu'un
+ * qui a répondu « 500 à 2 500 € » à l'assistant doit retrouver sa tranche à
+ * l'identique dans le filtre ; deux découpages concurrents du même axe feraient
+ * dire deux choses différentes au même produit.
+ *
+ * BORNES INCLUSES AUX DEUX EXTRÉMITÉS, comme `PLAFOND_BUDGET` côté assistant.
+ * Un parcours à exactement 500 € appartient donc à deux tranches — les deux
+ * énoncés sont vrais de lui. Retrancher un euro pour obtenir une partition
+ * nette inventerait une précision que le prix n'a pas.
+ *
+ * « 0 € » et non « Gratuit » : le libellé « Gratuit » seul a été retiré du
+ * produit le 3 août 2026 parce qu'il recouvrait cinq réalités distinctes. Ici
+ * la tranche ne dit rien de la modalité d'accès, seulement du montant — et
+ * c'est exactement ce que « 0 € » énonce.
+ */
+export const TRANCHES_BUDGET = [
+  { cle: "zero", libelle: "0 €", min: 0, max: 0 },
+  { cle: "moins_500", libelle: "Moins de 500 €", min: 0, max: 500 },
+  { cle: "de_500_a_2500", libelle: "500 à 2 500 €", min: 500, max: 2500 },
+  { cle: "plus_2500", libelle: "Plus de 2 500 €", min: 2500, max: null },
+] as const;
+
+export type TrancheBudget = (typeof TRANCHES_BUDGET)[number];
+
+/** Une borne saisie, ramenée à une valeur utilisable ou à `null`. */
+function borne(valeur: number | null): number | null {
+  if (valeur === null || !Number.isFinite(valeur)) return null;
+  // Négatif refusé plutôt que ramené à zéro : « de -100 » n'est pas « de 0 »,
+  // c'est une saisie sans intention lisible.
+  if (valeur < 0) return null;
+  return Math.min(valeur, BUDGET_PLAFOND);
+}
+
+/**
+ * Normalise une plage saisie.
+ *
+ * INTERVERSION SILENCIEUSE plutôt que message d'erreur : « de 2 500 à 500 » n'a
+ * qu'une lecture possible, et refuser une saisie dont on a compris l'intention
+ * fait porter à la personne le coût d'une ambiguïté qui n'existe pas.
+ */
+export function normaliserBudget(
+  min: number | null,
+  max: number | null,
+): { budgetMin: number | null; budgetMax: number | null } {
+  const bas = borne(min);
+  const haut = borne(max);
+  if (bas !== null && haut !== null && bas > haut) return { budgetMin: haut, budgetMax: bas };
+  return { budgetMin: bas, budgetMax: haut };
+}
+
+/** Vrai dès qu'une des deux bornes est posée. */
+export function plageBudgetActive(f: Filtres): boolean {
+  return f.budgetMin !== null || f.budgetMax !== null;
+}
+
+/*
+  `formaterNombre` et non `toLocaleString` : ce dernier dépend des données ICU
+  du moteur, qui diffèrent entre Node et le navigateur. Un séparateur de
+  milliers rendu côté serveur puis réhydraté autrement suffit à faire jeter
+  l'arbre entier à React.
+*/
+const EUROS = (v: number) => `${formaterNombre(v)} €`;
+
+/**
+ * Le libellé de la plage, tel qu'il apparaît dans les filtres posés.
+ *
+ * `null` quand aucune borne n'est posée : il n'y a alors pas de filtre à
+ * retirer, et une pastille vide serait un filtre fantôme.
+ */
+export function libelleBudget(min: number | null, max: number | null): string | null {
+  if (min !== null && max !== null) return `${EUROS(min)} – ${EUROS(max)}`;
+  if (max !== null) return `Jusqu'à ${EUROS(max)}`;
+  if (min !== null) return `À partir de ${EUROS(min)}`;
+  return null;
+}
+
 /** Financements qui relèvent d'une prise en charge par l'employeur. */
 const FINANCEMENTS_ENTREPRISE = /OPCO|plan de développement|entreprise|alternance/i;
 
@@ -63,8 +162,21 @@ export type Filtres = {
   categories: CategorieOrganisme[];
   formats: FormatParcours[];
   niveaux: NiveauEntree[];
-  /** Plafond en euros. `null` = sans limite. */
-  budget: number | null;
+  /** Plancher en euros, borne incluse. `null` = pas de plancher. */
+  budgetMin: number | null;
+  /** Plafond en euros, borne incluse. `null` = pas de plafond. */
+  budgetMax: number | null;
+  /**
+   * Garder les parcours dont le prix individuel n'est pas établi lorsqu'une
+   * plage est posée. Vrai par défaut, et c'est la décision qui compte.
+   *
+   * Sans elle, une plage écarte en silence tout ce que les organismes ne
+   * publient pas : le filtre récompenserait mécaniquement ceux qui affichent
+   * leur prix et effacerait les autres — la même incitation inversée que la
+   * règle de fusion cherche à supprimer. Décochée, c'est un choix explicite,
+   * et le nombre de fiches ainsi masquées reste affiché.
+   */
+  inclurePrixInconnu: boolean;
   eligibleCpf: boolean;
   certifiantSeulement: boolean;
   /**
@@ -112,7 +224,9 @@ export const FILTRES_VIDES: Filtres = {
   categories: [],
   formats: [],
   niveaux: [],
-  budget: null,
+  budgetMin: null,
+  budgetMax: null,
+  inclurePrixInconnu: true,
   eligibleCpf: false,
   certifiantSeulement: false,
   sansFrais: false,
@@ -158,13 +272,29 @@ export function correspond(p: ParcoursListe, f: Filtres): boolean {
     return false;
   }
 
-  // Un prix non publié n'exclut pas : l'absence d'information ne doit ni
-  // profiter ni nuire. La fiche reste visible, son prix reste inconnu.
-  // Le budget porte toujours sur le tarif individuel : un parcours sans tarif
-  // inter n'a pas de prix comparable, et le filtrer sur son tarif de groupe
-  // l'écarterait sur un chiffre qui ne concerne pas l'acheteur.
+  /*
+    LE PRIX FILTRÉ EST CELUI QUE LA PERSONNE DÉBOURSE, jamais le coût du
+    parcours. `prixAffichable` renvoie le tarif inter et `null` pour un parcours
+    en intra seul : facturé au groupe, il n'a pas de tarif individuel, et
+    l'écarter sur un chiffre d'entreprise ferait renoncer sur un montant qui ne
+    concerne pas l'acheteur. Un intra seul est donc un prix INCONNU, et suit le
+    sort des prix inconnus — pas celui des prix élevés.
+
+    Les bornes sont incluses, et un parcours à 0 € entre dans toute plage qui
+    contient zéro : un parcours en alternance figure bien sous « moins de
+    500 € », puisque c'est exactement ce que l'alternant débourse.
+  */
   const prixIndividuel = prixAffichable(p.prixMin, p);
-  if (f.budget !== null && prixIndividuel !== null && prixIndividuel > f.budget) return false;
+  if (plageBudgetActive(f)) {
+    if (prixIndividuel === null) {
+      if (!f.inclurePrixInconnu) return false;
+    } else if (
+      (f.budgetMin !== null && prixIndividuel < f.budgetMin) ||
+      (f.budgetMax !== null && prixIndividuel > f.budgetMax)
+    ) {
+      return false;
+    }
+  }
 
   if (f.durees.length > 0 && !f.durees.includes(trancheDe(p.volumeHoraire))) return false;
 
@@ -225,6 +355,31 @@ export function compterAvec(
   return filtrer(parcours, { ...f, ...remplacement }).length;
 }
 
+/**
+ * Les parcours dont le prix EST établi et tombe dans la plage.
+ *
+ * Calculé en forçant l'exclusion des prix inconnus, quel que soit l'état de la
+ * case : les deux nombres de la mention doivent se lire ensemble, et l'un ne
+ * peut pas dépendre du réglage que l'autre sert à expliquer.
+ */
+export function compterDansPlage(parcours: readonly ParcoursListe[], f: Filtres): number {
+  return filtrer(parcours, { ...f, inclurePrixInconnu: false }).length;
+}
+
+/**
+ * Les parcours que la plage n'atteint pas, faute de prix établi.
+ *
+ * Obtenu par différence plutôt que par un second prédicat : une fiche sans prix
+ * peut aussi être écartée par un autre filtre, et la compter alors ferait
+ * promettre un « plus 61 » que réafficher ne produirait pas.
+ */
+export function compterPrixInconnu(parcours: readonly ParcoursListe[], f: Filtres): number {
+  if (!plageBudgetActive(f)) return 0;
+  return (
+    filtrer(parcours, { ...f, inclurePrixInconnu: true }).length - compterDansPlage(parcours, f)
+  );
+}
+
 /** Vrai si au moins un filtre est actif — pilote l'affichage du bouton d'effacement. */
 export function auMoinsUnFiltre(f: Filtres): boolean {
   return (
@@ -236,7 +391,9 @@ export function auMoinsUnFiltre(f: Filtres): boolean {
     f.categories.length > 0 ||
     f.formats.length > 0 ||
     f.niveaux.length > 0 ||
-    f.budget !== null ||
+    /* `inclurePrixInconnu` n'est pas compté : seul, il ne filtre rien. C'est un
+       modificateur de la plage, pas un filtre. */
+    plageBudgetActive(f) ||
     f.eligibleCpf ||
     f.certifiantSeulement ||
     f.sansFrais ||
@@ -256,6 +413,11 @@ export function auMoinsUnFiltre(f: Filtres): boolean {
 /**
  * Champs sur lesquels un filtre actif peut écarter une fiche pour la seule
  * raison que l'organisme ne publie pas l'information.
+ *
+ * LE BUDGET N'Y FIGURE PAS, et ce n'est pas un oubli : il porte sa propre
+ * mention, qui nomme le nombre de fiches concernées et propose de les masquer
+ * plutôt que de les réafficher. L'ajouter ici les compterait deux fois, dans
+ * deux phrases qui se contrediraient à l'écran.
  */
 const CHAMPS_SILENCIEUX: Array<{
   actif: (f: Filtres) => boolean;
