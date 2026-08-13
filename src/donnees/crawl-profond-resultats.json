@@ -1,0 +1,170 @@
+[
+ {
+  "id": 51,
+  "nom": "MSc in AI Marketing & Business",
+  "organisme": "EBS Paris",
+  "strate": "ecole",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "aucune_page_rapprochee",
+  "pagesModele": [],
+  "requetesReseau": 14,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "aucune_page_rapprochee"
+ },
+ {
+  "id": 74,
+  "nom": "Formations commerce et digital à distance",
+  "organisme": "ENACO",
+  "strate": "ecole",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "aucune_page_rapprochee",
+  "pagesModele": [],
+  "requetesReseau": 24,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "aucune_page_rapprochee"
+ },
+ {
+  "id": 33,
+  "nom": "Master Marketing dans un monde digital",
+  "organisme": "Le Cnam",
+  "strate": "universite",
+  "etatPrix": "non_communique",
+  "prixActuel": null,
+  "voieDecouverte": "decouverte_apparie",
+  "pagesModele": [
+   {
+    "url": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 1,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "prix_non_publie_sur_les_pages_lues"
+ },
+ {
+  "id": 1,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "La Rochelle Université",
+  "strate": "universite",
+  "etatPrix": "a_confirmer",
+  "prixActuel": 0,
+  "voieDecouverte": "aucune_page_rapprochee",
+  "pagesModele": [],
+  "requetesReseau": 15,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "aucune_page_rapprochee"
+ },
+ {
+  "id": 89,
+  "nom": "Formation Marketing Digital",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/marketing-digital/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 4,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "Formation Marketing Digital\n1 650 €",
+   "urlSource": "https://www.livementor.com/formation/marketing-digital/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null
+ },
+ {
+  "id": 93,
+  "nom": "Formation commerciale à distance",
+  "organisme": "Studi",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "decouverte_apparie",
+  "pagesModele": [
+   {
+    "url": "https://www.studi.com/fr/formation-a-distance/commerciale",
+    "role": "detail"
+   },
+   {
+    "url": "https://www.studi.com/fr/financement",
+    "role": "financement"
+   }
+  ],
+  "requetesReseau": 2,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "prix_non_publie_sur_les_pages_lues"
+ },
+ {
+  "id": 127,
+  "nom": "Ecom Pro",
+  "organisme": "Yomi Denzel",
+  "strate": "formation_independante",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "domaine_injoignable",
+  "pagesModele": [],
+  "requetesReseau": 7,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "domaine_injoignable"
+ },
+ {
+  "id": 134,
+  "nom": "Formations marketing et business en ligne",
+  "organisme": "Marketing Mania",
+  "strate": "formation_independante",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "aucune_page_rapprochee",
+  "pagesModele": [],
+  "requetesReseau": 18,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "aucune_page_rapprochee"
+ },
+ {
+  "id": 114,
+  "nom": "Ateliers Numériques",
+  "organisme": "Google",
+  "strate": "certification_editeur",
+  "etatPrix": "a_confirmer",
+  "prixActuel": 0,
+  "voieDecouverte": "page_catalogue/formations",
+  "pagesModele": [],
+  "requetesReseau": 4,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "page_d_un_autre_parcours(0.00) « Mettez l'IA au service de vos projets »"
+ },
+ {
+  "id": 117,
+  "nom": "PrestaShop Academy",
+  "organisme": "PrestaShop",
+  "strate": "certification_editeur",
+  "etatPrix": "a_confirmer",
+  "prixActuel": 0,
+  "voieDecouverte": "aucune_page_rapprochee",
+  "pagesModele": [],
+  "requetesReseau": 12,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "aucune_page_rapprochee"
+ }
+]

@@ -1,0 +1,2620 @@
+[
+ {
+  "id": 1,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "La Rochelle Université",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-larochelle.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.4,
+   "meilleureUrl": "https://www.univ-larochelle.fr/evenements/atelier-sinscrire-en-licence-pro/",
+   "urlsInspectees": 2713,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 2,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Nantes Université — IAE Nantes",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "iae.univ-nantes.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.8,
+   "meilleureUrl": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique",
+   "urlsInspectees": 568,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 3,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Picardie Jules Verne",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "u-picardie.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Diplôme universitaire unique avec durée, volume horaire et programme cohérents pour une seule offre.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.4,
+   "meilleureUrl": "https://www.u-picardie.fr/formation/catalogue/licence-professionnelle-metiers-commerce-international/licence-professionnelle-metiers-commerce-international",
+   "urlsInspectees": 1455,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 4,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Bordeaux Montaigne",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "u-bordeaux-montaigne.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Diplôme universitaire unique avec durée, volume horaire et programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 5,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Claude Bernard Lyon 1",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-lyon1.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Intitulé de diplôme unique avec durée et volume horaire précis, correspondant à un programme unique achetable.",
+   "champDecisif": "Volume horaire"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 6,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université d'Artois",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-artois.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec une durée, un volume horaire et un programme précis et cohérents.",
+   "champDecisif": "Volume horaire"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.4,
+   "meilleureUrl": "https://www.univ-artois.fr/agenda/exposition-des-projets-ose-ton-resto-par-les-etudiants-de-la-licence-pro-megat",
+   "urlsInspectees": 1393,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 7,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université d'Évry Val d'Essonne",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-evry.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec une durée, un volume horaire et un programme cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 8,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Bretagne Sud",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-ubs.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Diplôme universitaire unique avec durée, volume horaire et programme cohérents et non ambigus.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 9,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Caen Normandie",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "unicaen.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec une durée, un volume horaire et un programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.4,
+   "meilleureUrl": "https://www.unicaen.fr/nouvelle-licence-pro-sur-les-metiers-de-lia-plongez-au-coeur-des-metiers-de-demain/",
+   "urlsInspectees": 2574,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 10,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Lille — IUT de Lille",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-lille.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.2,
+   "meilleureUrl": "https://univ-lille.fr/formation/amenagements-des-etudes/amenagements-pedagogiques-pour-reussir-sa-licence",
+   "urlsInspectees": 176,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 11,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Lorraine",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-lorraine.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.2,
+   "meilleureUrl": "https://www.univ-lorraine.fr/enseignements-et-formations/formez-vous-tout-au-long-de-la-vie/une-licence-professionnelle-en-communication-pour-melanie-et-anthony/",
+   "urlsInspectees": 291,
+   "requetes": 5
+  }
+ },
+ {
+  "id": 12,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris 8 — IUT de Montreuil",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-paris8.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents pour une seule offre.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.8,
+   "meilleureUrl": "https://univ-paris8.fr/-Licence-professionnelle-E-commerce-et-marketing-numerique-616-",
+   "urlsInspectees": 2784,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 13,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Rennes",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-rennes.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Diplôme unique avec durée, volume horaire et programme cohérents pour une seule offre.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.2,
+   "meilleureUrl": "https://www.univ-rennes.fr/interlocuteurs/campus-numerique-envam",
+   "urlsInspectees": 883,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 14,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Rouen-Normandie",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-rouen.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 15,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Toulon",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-tln.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 16,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Toulouse",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-tlse3.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec une durée, un volume horaire et un programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.4,
+   "meilleureUrl": "https://www.univ-tlse3.fr/conseils/91-approbation-du-changement-de-niveau-detude-de-lue-transversale-numerique-en-sante-pour-les-formations-de-la-licence-sciences-pour-la-sante",
+   "urlsInspectees": 10300,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 17,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Toulouse II Jean Jaurès",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-tlse2.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec une durée, un volume horaire et un programme uniques et cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 18,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université des Antilles",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-ag.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme uniques et cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 19,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Grenoble Alpes",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-grenoble-alpes.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 20,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris Cité — IUT Rives de Seine",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "u-paris.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Diplôme unique clairement identifié avec durée, volume horaire et programme uniques cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 168,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 21,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Paris-Est Créteil",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "u-pec.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Intitulé de diplôme unique avec durée, volume horaire et programme uniques cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 22,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Polytechnique Hauts-de-France",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "uphf.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme cohérents.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.2,
+   "meilleureUrl": "https://www.uphf.fr/accessibilite-numerique",
+   "urlsInspectees": 2675,
+   "requetes": 5
+  }
+ },
+ {
+  "id": 23,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université Savoie Mont Blanc",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "univ-smb.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec une durée et un volume horaire cohérents et uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 6,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 24,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Université de Versailles Saint-Quentin",
+  "categorie": "universite",
+  "duree": "1 an",
+  "volumeHoraire": 450,
+  "programme": 8,
+  "domaine": "uvsq.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec durée, volume horaire et programme uniformes.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 25,
+  "nom": "BUT TC — Marketing digital, e-business et entrepreneuriat",
+  "organisme": "Réseau des IUT",
+  "categorie": "universite",
+  "duree": "3 ans",
+  "volumeHoraire": null,
+  "programme": 5,
+  "domaine": "onisep.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un parcours nommé et unique du BUT Techniques de commercialisation, avec une durée et un programme communs.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 28,
+  "nom": "Master AEI — Commerce Électronique et Stratégie Digitale",
+  "organisme": "UPEC",
+  "categorie": "universite",
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "programme": 5,
+  "domaine": "u-pec.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un parcours nommé et unique au sein de la mention AEI, avec une durée de 2 ans et un programme publié.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 29,
+  "nom": "Master AES — Commerce électronique",
+  "organisme": "Université de Strasbourg",
+  "categorie": "universite",
+  "duree": "2 ans",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "unistra.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un parcours de master nommément identifié au sein de la mention AES, avec une durée unique de 2 ans (M1-M2).",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.25,
+   "meilleureUrl": "https://www.unistra.fr/fr/actualites/2021/07/quel-master-apres-sa-licence-des-difficultes-a-trouver-une-poursuite-detude-en-master",
+   "urlsInspectees": 6074,
+   "requetes": 6
+  }
+ },
+ {
+  "id": 33,
+  "nom": "Master Marketing dans un monde digital",
+  "organisme": "Le Cnam",
+  "categorie": "universite",
+  "duree": "2 ans",
+  "volumeHoraire": 50,
+  "programme": 0,
+  "domaine": "cnam.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique et identifié (Master Marketing dans un monde digital) avec une durée cohérente de 2 ans.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.75,
+   "meilleureUrl": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+   "urlsInspectees": 10992,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 36,
+  "nom": "Licence pro E-commerce et marketing numérique — VAE uniquement",
+  "organisme": "IUT Paris Rives de Seine",
+  "categorie": "universite",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 8,
+  "domaine": "iutparis-seine.u-paris.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique (licence pro E-commerce et marketing numérique) accessible par une seule modalité, la VAE, dont la durée variable est propre à l'accompagnement individualisé.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.29,
+   "meilleureUrl": "https://iutparis-seine.u-paris.fr/commerce-et-marketing/",
+   "urlsInspectees": 116,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 51,
+  "nom": "MSc in AI Marketing & Business",
+  "organisme": "EBS Paris",
+  "categorie": "ecole",
+  "duree": "1 à 2 ans",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "ebs-paris.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique (MSc spécialisé), la durée en fourchette reflétant seulement une entrée en 1re ou 2e année.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.67,
+   "meilleureUrl": "https://www.ebs-paris.fr/en/ai-marketing-business-double/",
+   "urlsInspectees": 257,
+   "requetes": 10
+  }
+ },
+ {
+  "id": 65,
+  "nom": "Prépa Mastère Digitale",
+  "organisme": "HETIC",
+  "categorie": "ecole",
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "hetic.net",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une année préparatoire unique d'un an, produit identifiable et non un catalogue de formations distinctes.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.67,
+   "meilleureUrl": "https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale",
+   "urlsInspectees": 547,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 69,
+  "nom": "Bachelor & MBA Marketing digital",
+  "organisme": "ISCOD",
+  "categorie": "ecole",
+  "duree": "1 à 3 ans",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "iscod.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé associe deux diplômes de niveaux différents (Bachelor et MBA) qui constituent des offres distinctes vendues séparément, sans prix ni programme communs.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.iscod.fr/offres-emploi-en-alternance/alternance-assistant-e-en-communication-et-marketing-digital-h-f-lons-le-saunier-f-h-99g4a5",
+   "urlsInspectees": 2589,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 74,
+  "nom": "Formations commerce et digital à distance",
+  "organisme": "ENACO",
+  "categorie": "ecole",
+  "duree": "1 à 3 ans",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "enaco.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé regroupe l'ensemble des offres commerce et digital de l'école, vendues séparément, sans programme ni durée unique possible (1 à 3 ans couvre plusieurs diplômes distincts).",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://www.enaco.fr/actualites/conseils-formation-a-distance-ete/",
+   "urlsInspectees": 1358,
+   "requetes": 20
+  }
+ },
+ {
+  "id": 76,
+  "nom": "Cursus management et technologies numériques",
+  "organisme": "Web School Factory",
+  "categorie": "ecole",
+  "duree": "5 ans",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "webschoolfactory.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé au singulier et la durée unique de 5 ans désignent le cursus intégré unique de l'école, non un catalogue d'offres vendues séparément.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 7,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 80,
+  "nom": "Titre Chargé de Marketing Digital et E-commerce",
+  "organisme": "EIMP — École Internationale de Management de Paris",
+  "categorie": "ecole",
+  "duree": "1 an",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "ema.education",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un titre certifiant unique avec une durée d'un an, correspondant à un produit de formation identifiable et non à un catalogue.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.4,
+   "meilleureUrl": "https://ema.education/fr/blog/boostez-votre-carriere-avec-le-marketing-digital-decryptage-et-opportunites/",
+   "urlsInspectees": 264,
+   "requetes": 6
+  }
+ },
+ {
+  "id": 81,
+  "nom": "Parcours reconversion — bootcamp + alternance",
+  "organisme": "Oreegami",
+  "categorie": "bootcamp",
+  "duree": "15 mois",
+  "volumeHoraire": 400,
+  "programme": 4,
+  "domaine": "oreegami.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un dispositif unique combinant bootcamp puis alternance, avec une durée et un volume horaire uniques cohérents (15 mois, 400 h).",
+   "champDecisif": "Durée déclarée / Volume horaire"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://oreegami.com/google-x-oreegami-10e-promo-du-bootcamp-numerique-marketing-digital/",
+   "urlsInspectees": 420,
+   "requetes": 20
+  }
+ },
+ {
+  "id": 82,
+  "nom": "Bootcamp Numérique Expert Marketing Digital",
+  "organisme": "Oreegami × Google",
+  "categorie": "bootcamp",
+  "duree": "15 mois",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "grow.google",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un bootcamp unique avec une durée ferme de 15 mois et un programme publié, sans indice de plusieurs offres vendues séparément.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 16,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 83,
+  "nom": "Parcours upskilling entreprises",
+  "organisme": "Oreegami",
+  "categorie": "bootcamp",
+  "duree": "0,5 à 3 jours",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "oreegami.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel désigne une gamme de modules courts d'upskilling proposés aux entreprises, sans programme ni durée unique (0,5 à 3 jours couvre des offres distinctes vendues séparément).",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://oreegami.com/levier-marketing-sea-benefices-et-avantages-pour-les-entreprises/",
+   "urlsInspectees": 420,
+   "requetes": 20
+  }
+ },
+ {
+  "id": 84,
+  "nom": "Bachelor Marketing Digital",
+  "organisme": "Rocket School",
+  "categorie": "bootcamp",
+  "duree": "13 mois",
+  "volumeHoraire": 476,
+  "programme": 6,
+  "domaine": "rocket-school.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un diplôme unique avec une durée, un volume horaire et un programme cohérents et uniques.",
+   "champDecisif": "Volume horaire"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://rocket-school.com/formation/bachelor-business-development-marketing-digital/",
+   "urlsInspectees": 674,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 85,
+  "nom": "Bootcamp Business Development",
+  "organisme": "Rocket School",
+  "categorie": "bootcamp",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "rocket-school.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un bootcamp unique et identifiable, avec une durée fixe de 3 mois cohérente avec un produit unique.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.67,
+   "meilleureUrl": "https://rocket-school.com/actualite/business-developer-ou-sales-development-representative-quelle-difference/",
+   "urlsInspectees": 674,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 86,
+  "nom": "Formations data et IA",
+  "organisme": "Jedha",
+  "categorie": "bootcamp",
+  "duree": "3 à 9 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "jedha.co",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel « Formations data et IA » recouvre plusieurs bootcamps Jedha vendus séparément, ce que confirme l'absence de programme et la durée très large de 3 à 9 mois.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.jedha.co/financement-formation/certificat-data-scientist",
+   "urlsInspectees": 1746,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 87,
+  "nom": "Bootcamp data et développement",
+  "organisme": "Le Wagon",
+  "categorie": "bootcamp",
+  "duree": "2 à 6 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "lewagon.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé regroupe deux filières distinctes du Wagon (développement web et data) commercialisées comme des bootcamps séparés, sans programme ni tarif communs.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://lewagon.com/data-science-course",
+   "urlsInspectees": 40,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 89,
+  "nom": "Formation Marketing Digital",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une offre unique de LiveMentor avec une durée fixe de 3 mois, format standard de leurs formations mentorées.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/marketing-digital/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 93,
+  "nom": "Formation commerciale à distance",
+  "organisme": "Studi",
+  "categorie": "formation_professionnelle",
+  "duree": "6 à 18 mois",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "studi.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé désigne un domaine générique (le commercial) sans diplôme ni niveau identifié, alors que Studi commercialise séparément plusieurs cursus commerciaux (BTS, bachelor, titres pro), ce qui exclut un prix ou un programme unique.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.studi.com/fr/formation-a-distance/commerciale",
+   "urlsInspectees": 5184,
+   "requetes": 8
+  }
+ },
+ {
+  "id": 94,
+  "nom": "Optimisez votre pricing en e-commerce",
+  "organisme": "OpenClassrooms",
+  "categorie": "formation_professionnelle",
+  "duree": "6 h",
+  "volumeHoraire": 6,
+  "programme": 4,
+  "domaine": "openclassrooms.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un cours unique et ciblé, avec une durée précise de 6 h et un programme en 4 parties.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 95,
+  "nom": "Fondamentaux du design d'une boutique e-commerce",
+  "organisme": "OpenClassrooms",
+  "categorie": "formation_professionnelle",
+  "duree": "8 h",
+  "volumeHoraire": 8,
+  "programme": 4,
+  "domaine": "openclassrooms.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un module unique et court, avec une durée fixe de 8 h et un programme identifié en 4 éléments.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 96,
+  "nom": "Parcours Chef de projet e-commerce",
+  "organisme": "OpenClassrooms",
+  "categorie": "formation_professionnelle",
+  "duree": "6 à 12 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "openclassrooms.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un cursus diplômant unique d'OpenClassrooms, la fourchette 6 à 12 mois reflétant seulement le rythme (temps plein ou partiel).",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 97,
+  "nom": "Accompagnement e-commerce individuel",
+  "organisme": "Digital Study",
+  "categorie": "formation_professionnelle",
+  "duree": "Sur mesure",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "digital-study.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une prestation unique d'accompagnement individuel, la mention « sur mesure » traduisant une personnalisation du même produit et non plusieurs offres vendues séparément.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://www.digital-study.fr/blog/meilleure-formation-e-commerce/",
+   "urlsInspectees": 132,
+   "requetes": 6
+  }
+ },
+ {
+  "id": 101,
+  "nom": "E-merchandising et optimisation du tunnel",
+  "organisme": "ORSYS",
+  "categorie": "formation_professionnelle",
+  "duree": "2 jours",
+  "volumeHoraire": 14,
+  "programme": 0,
+  "domaine": "orsys.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un stage court unique et cohérent (2 jours, 14 h) sur un sujet précis, typique du catalogue ORSYS.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 334,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 102,
+  "nom": "RGPD appliqué au e-commerce",
+  "organisme": "ORSYS",
+  "categorie": "formation_professionnelle",
+  "duree": "1 jour",
+  "volumeHoraire": 7,
+  "programme": 0,
+  "domaine": "orsys.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Intitulé thématique précis avec durée et volume horaire uniques (1 jour, 7h), caractéristiques d'un stage catalogue unique chez ORSYS.",
+   "champDecisif": "Durée déclarée / volume horaire"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://orsys.fr/formations/ia-pour-le-marketing-la-communication-et-le-commerce",
+   "urlsInspectees": 336,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 104,
+  "nom": "Marketing digital : les fondamentaux",
+  "organisme": "Cegos",
+  "categorie": "formation_professionnelle",
+  "duree": "3 jours",
+  "volumeHoraire": 21,
+  "programme": 0,
+  "domaine": "cegos.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation unique avec une durée précise et cohérente (3 jours / 21 h), typique d'un stage catalogue Cegos.",
+   "champDecisif": "Durée déclarée / volume horaire"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.cegos.fr/ressources/mag/marketing-communication/communication-2/digital-repenser-les-fondamentaux-communication",
+   "urlsInspectees": 5872,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 110,
+  "nom": "Formation continue commerce et numérique",
+  "organisme": "Réseau CCI",
+  "categorie": "formation_professionnelle",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "cci.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé générique « formation continue commerce et numérique » couvre un domaine entier plutôt qu'un produit précis, ce que confirment la durée « Variable » et l'absence totale de programme.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 111,
+  "nom": "Numérisation des artisans et commerçants",
+  "organisme": "CMA France",
+  "categorie": "formation_professionnelle",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "artisanat.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé désigne un thème d'accompagnement large porté par un réseau, sans durée ni programme uniques, ce qui recouvre plusieurs offres vendues séparément.",
+   "champDecisif": "Durée déclarée : Variable"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.67,
+   "meilleureUrl": "https://www.artisanat.fr/nous-connaitre/vous-accompagner/eco-defis-commercants-artisans",
+   "urlsInspectees": 941,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 114,
+  "nom": "Ateliers Numériques",
+  "organisme": "Google",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": 40,
+  "programme": 4,
+  "domaine": "grow.google",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Ateliers Numériques » désigne le programme-catalogue de Google regroupant de multiples ateliers et modules courts suivis indépendamment, sans prix, durée ni programme uniques.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "Ateliers Numériques",
+   "urlsInspectees": 16,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 117,
+  "nom": "PrestaShop Academy",
+  "organisme": "PrestaShop",
+  "categorie": "certification_editeur",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "prestashop.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé « Academy » désigne l'espace de formation regroupant plusieurs cours et certifications PrestaShop vendus séparément, sans durée ni volume horaire propres.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://prestashop.com/discover-prestashop/",
+   "urlsInspectees": 1218,
+   "requetes": 8
+  }
+ },
+ {
+  "id": 118,
+  "nom": "WiziShop Academy",
+  "organisme": "WiziShop",
+  "categorie": "certification_editeur",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "wizishop.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "Le terme « Academy » désigne l'espace de formation global de l'éditeur, regroupant plusieurs modules ou parcours distincts, et aucun programme ni durée unique n'est publié.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "L'IA de WiziShop",
+   "urlsInspectees": 57,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 120,
+  "nom": "Klaviyo Academy",
+  "organisme": "Klaviyo",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "klaviyo.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Klaviyo Academy » désigne la plateforme de formation regroupant de multiples modules et certifications distincts, sans prix, durée ni programme uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.klaviyo.com/blog/2025-klaviyo-partner-year-in-review",
+   "urlsInspectees": 12112,
+   "requetes": 20
+  }
+ },
+ {
+  "id": 122,
+  "nom": "TikTok Ads — centre d'apprentissage",
+  "organisme": "TikTok",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "ads.tiktok.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "Un « centre d'apprentissage » désigne un catalogue de modules et certifications distincts, sans durée ni programme uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://ads.tiktok.com/business/ar/blog/how-to-get-started-with-tiktok-ads-manager-your-step-by-step-guide",
+   "urlsInspectees": 354,
+   "requetes": 12
+  }
+ },
+ {
+  "id": 124,
+  "nom": "Bpifrance Université",
+  "organisme": "Bpifrance",
+  "categorie": "mooc_plateforme",
+  "duree": "10 à 60 min par module",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "bpifrance-universite.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Bpifrance Université » désigne une plateforme regroupant de multiples modules/MOOC accessibles séparément, sans prix, durée ni programme uniques.",
+   "champDecisif": "Catégorie (mooc_plateforme) corroborée par la durée « 10 à 60 min par module »"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 125,
+  "nom": "Guides et réseau Activateurs",
+  "organisme": "France Num — DGE",
+  "categorie": "mooc_plateforme",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "francenum.gouv.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé agrège des ressources et un dispositif d'accompagnement hétérogènes (guides multiples + réseau d'Activateurs), sans produit de formation unique identifiable.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.67,
+   "meilleureUrl": "https://www.francenum.gouv.fr/guides-et-conseils/gestion-des-ressources-humaines/intranet-et-reseau-social-dentreprise/comment",
+   "urlsInspectees": 6732,
+   "requetes": 7
+  }
+ },
+ {
+  "id": 127,
+  "nom": "Ecom Pro",
+  "organisme": "Yomi Denzel",
+  "categorie": "formation_independante",
+  "duree": "~70 h",
+  "volumeHoraire": 70,
+  "programme": 5,
+  "domaine": "yomi-denzel.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un produit unique et nommé, avec un volume horaire précis (70 h) et un programme structuré en 5 éléments, ce qui est incompatible avec un catalogue d'offres distinctes.",
+   "champDecisif": "Volume horaire"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 134,
+  "nom": "Formations marketing et business en ligne",
+  "organisme": "Marketing Mania",
+  "categorie": "formation_independante",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "marketingmania.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel « Formations marketing et business en ligne » recouvre plusieurs offres distinctes vendues séparément, sans durée ni programme unique déclaré.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://marketingmania.fr/marketing-scientifique/",
+   "urlsInspectees": 342,
+   "requetes": 14
+  }
+ },
+ {
+  "id": 136,
+  "nom": "Formation WooCommerce",
+  "organisme": "La Webeuse",
+  "categorie": "formation_independante",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "school.la-webeuse.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé au singulier porte sur un outil unique (WooCommerce) et correspond à une offre de formation identifiable, sans marqueur de catalogue ou de regroupement.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://school.la-webeuse.com/formations/woocommerce",
+   "urlsInspectees": 50,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 140,
+  "nom": "Les petits produits",
+  "organisme": "Antoine BM",
+  "categorie": "formation_independante",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "school.antoinebm.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé nomme une offre commerciale unique dont « produits » désigne le sujet traité et non plusieurs formations vendues séparément.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 144,
+  "nom": "Webmarketing E-commerce",
+  "organisme": "AMZ Academy",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": 35,
+  "programme": 0,
+  "domaine": "amzacademy.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Le volume horaire unique de 35 h correspond à une offre unique, l'intitulé accolant simplement deux thématiques d'un même programme court.",
+   "champDecisif": "Volume horaire"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "Webmarketing E-commerce Développez votre activité e-commerce grâce au webmarketing !",
+   "urlsInspectees": 62,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 145,
+  "nom": "Formations e-commerce et webdesign",
+  "organisme": "Voltee",
+  "categorie": "formation_professionnelle",
+  "duree": "Accès libre",
+  "volumeHoraire": null,
+  "programme": 7,
+  "domaine": "voltee.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé associe deux domaines distincts (e-commerce et webdesign) sans durée ni volume horaire uniques, ce qui renvoie à un catalogue d'offres vendues séparément.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://voltee.fr/un-site-e-commerce-reussi-depend-de-lexperience-utilisateur",
+   "urlsInspectees": 201,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 152,
+  "nom": "Formation SEO — E-marketing Academy",
+  "organisme": "Qlik Ads",
+  "categorie": "formation_professionnelle",
+  "duree": "6 jours",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "qlikads.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé cible une thématique unique (SEO) assortie d'une durée fixe de 6 jours et d'un programme publié, ce qui correspond à une offre unique et non à un catalogue.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.67,
+   "meilleureUrl": "https://www.qlikads.com/e-marketing-academy",
+   "urlsInspectees": 58,
+   "requetes": 10
+  }
+ },
+ {
+  "id": 154,
+  "nom": "Formation TikTok individuelle",
+  "organisme": "Digital Study",
+  "categorie": "formation_professionnelle",
+  "duree": "Sur mesure",
+  "volumeHoraire": null,
+  "programme": 5,
+  "domaine": "digital-study.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une prestation unique et identifiée — un accompagnement individuel sur TikTok — dont le caractère « sur mesure » relève de la personnalisation d'un même produit, non d'un catalogue d'offres distinctes.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.digital-study.fr/blog/meilleure-formation-tiktok/",
+   "urlsInspectees": 132,
+   "requetes": 6
+  }
+ },
+ {
+  "id": 155,
+  "nom": "Formation SEO Shopify",
+  "organisme": "Formation-SEO.org",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 2,
+  "domaine": "formation-seo.org",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation unique et ciblée sur le SEO pour Shopify, avec un programme publié unique.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.formation-seo.org/grey-hat-seo/",
+   "urlsInspectees": 158,
+   "requetes": 8
+  }
+ },
+ {
+  "id": 156,
+  "nom": "Formation SEO WooCommerce",
+  "organisme": "Formation-SEO.org",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "formation-seo.org",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation unique et thématiquement circonscrite (SEO pour WooCommerce), sans marqueur de catalogue ou d'agrégation.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.formation-seo.org/grey-hat-seo/",
+   "urlsInspectees": 158,
+   "requetes": 8
+  }
+ },
+ {
+  "id": 157,
+  "nom": "Catalogue formations digitales",
+  "organisme": "Formasuite",
+  "categorie": "formation_professionnelle",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "formasuite.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé « Catalogue formations digitales » désigne explicitement un ensemble d'offres distinctes, confirmé par une durée « Variable » et l'absence de programme.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.formasuite.fr/formation/vendre-solutions-digitales-mobilite-2640",
+   "urlsInspectees": 6188,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 159,
+  "nom": "Masterclass E-commerce Automation",
+  "organisme": "LearnThings — organismes partenaires",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "learnthings.fr",
+  "famille": {
+   "verdict": "indecidable",
+   "motif": "L'intitulé au singulier évoque un produit unique, mais l'organisme est un agrégateur d'« organismes partenaires » et aucune durée ni volume horaire n'est déclaré, si bien qu'on ne peut savoir si une seule masterclass ou plusieurs versions partenaires sont vendues sous ce libellé.",
+   "champDecisif": null
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://www.learnthings.fr/apprendre/gestion-dentreprise/e-commerce/amazon-fba/",
+   "urlsInspectees": 4346,
+   "requetes": 18
+  }
+ },
+ {
+  "id": 160,
+  "nom": "Formations création de contenu et monétisation",
+  "organisme": "dixmilleheures",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "dixmilleheures.fr",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel couvre plusieurs thèmes distincts (création de contenu, monétisation) sans durée ni programme uniques, ce qui indique un ensemble d'offres vendues séparément.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://www.dixmilleheures.fr/articles/creation-annuaire-professionnel-en-ligne",
+   "urlsInspectees": 1422,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 161,
+  "nom": "Brevo Academy",
+  "organisme": "Brevo",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "brevo.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Brevo Academy » désigne la plateforme de formation de l'éditeur regroupant plusieurs modules et certifications distincts, et non un parcours unique.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.brevo.com/glossary/brevo-academy/",
+   "urlsInspectees": 7856,
+   "requetes": 10
+  }
+ },
+ {
+  "id": 162,
+  "nom": "Mailchimp Academy",
+  "organisme": "Mailchimp",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "mailchimp.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Mailchimp Academy » désigne la plateforme de formation regroupant plusieurs parcours et certifications distincts, sans prix, durée ni programme uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://mailchimp.com/newsroom/mailchimp-native-b2b-support-shopify-merchants/",
+   "urlsInspectees": 5432,
+   "requetes": 12
+  }
+ },
+ {
+  "id": 163,
+  "nom": "Pinterest Academy",
+  "organisme": "Pinterest",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "business.pinterest.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Pinterest Academy » désigne la plateforme d'apprentissage de l'éditeur regroupant plusieurs modules et certifications distincts, et non un parcours unique.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://business.pinterest.com/ro/blog/pinterest-academy-updates-september-2025/",
+   "urlsInspectees": 6201,
+   "requetes": 12
+  }
+ },
+ {
+  "id": 164,
+  "nom": "Semrush Academy",
+  "organisme": "Semrush",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "semrush.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Semrush Academy » désigne la plateforme de formation regroupant de multiples cours et certifications distincts, et non un parcours unique.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.semrush.com/company/newsroom/semrush-academy-brian-dean-youtube-show/",
+   "urlsInspectees": 3457,
+   "requetes": 12
+  }
+ },
+ {
+  "id": 165,
+  "nom": "Ahrefs Academy",
+  "organisme": "Ahrefs",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "ahrefs.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Ahrefs Academy » désigne la plateforme de formation regroupant plusieurs cours indépendants (SEO, blogging, etc.) suivis séparément, sans programme ni durée uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://ahrefs.com/academy/how-to-use-ahrefs",
+   "urlsInspectees": 1914,
+   "requetes": 9
+  }
+ },
+ {
+  "id": 166,
+  "nom": "Microsoft Advertising Learning Lab",
+  "organisme": "Microsoft",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "about.ads.microsoft.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "Un « Learning Lab » est une plateforme regroupant plusieurs certifications et modules Microsoft Advertising achetés/suivis séparément, sans prix ni durée uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://about.ads.microsoft.com/en-us/resources/microsoft-advertising-partner-program/partner-directory",
+   "urlsInspectees": 94,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 167,
+  "nom": "Snapchat Focus",
+  "organisme": "Snap",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "forbusiness.snapchat.com",
+  "famille": {
+   "verdict": "indecidable",
+   "motif": "L'intitulé « Snapchat Focus » et la mention « modules courts » peuvent désigner aussi bien une certification unique de l'éditeur qu'un ensemble de modules distincts, sans que la fiche permette de trancher.",
+   "champDecisif": null
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://forbusiness.snapchat.com/blog/snapchat-ads-mcp",
+   "urlsInspectees": 2136,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 168,
+  "nom": "TikTok Academy",
+  "organisme": "TikTok",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "tiktok.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« TikTok Academy » désigne une plateforme regroupant plusieurs modules et certifications distincts, sans prix, durée ni programme uniques.",
+   "champDecisif": "Durée déclarée : « Modules courts » (pluriel, sans volume horaire global)"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 169,
+  "nom": "Etsy Seller Handbook",
+  "organisme": "Etsy",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "etsy.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "Le Seller Handbook d'Etsy est un ensemble de ressources et guides thématiques consultables séparément, non un parcours unique doté d'un prix, d'une durée et d'un programme propres.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 170,
+  "nom": "Shopify Partner Academy",
+  "organisme": "Shopify",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 4,
+  "domaine": "shopify.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Partner Academy » désigne une plateforme regroupant plusieurs certifications distinctes (Foundations, Theme Development, App Development…) suivies indépendamment, sans durée ni programme uniques.",
+   "champDecisif": "Durée déclarée (« Modules courts », non unifiée)"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://www.shopify.com/accessibility/vpat-shopify-mobile",
+   "urlsInspectees": 1097,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 171,
+  "nom": "Wix Learn",
+  "organisme": "Wix",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "wix.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Wix Learn » désigne la plateforme de formation de Wix regroupant de multiples modules et parcours distincts, sans prix ni durée uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.wix.com/tomorrow/creators-learn/build-with-wix",
+   "urlsInspectees": 20402,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 172,
+  "nom": "Adobe Commerce — parcours Magento",
+  "organisme": "Adobe",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "business.adobe.com",
+  "famille": {
+   "verdict": "indecidable",
+   "motif": "L'intitulé « parcours Magento » peut désigner soit un cursus unique de certification Adobe Commerce, soit l'ensemble des certifications Magento (Developer, Architect, Business Practitioner) vendues séparément, et la durée « Modules courts » sans volume horaire ne permet pas de trancher.",
+   "champDecisif": null
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 173,
+  "nom": "Odoo eLearning — module e-commerce",
+  "organisme": "Odoo",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "odoo.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un module unique et identifié (e-commerce) au sein de la plateforme Odoo eLearning, la mention « Modules courts » ne décrivant que son découpage interne.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.75,
+   "meilleureUrl": "https://www.odoo.com/forum/help-1/odoo-19-regarding-gift-cards-and-loyalty-program-in-e-commerce-module-298234",
+   "urlsInspectees": 249606,
+   "requetes": 10
+  }
+ },
+ {
+  "id": 174,
+  "nom": "Salesforce Trailhead — Commerce Cloud",
+  "organisme": "Salesforce",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "trailhead.salesforce.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé renvoie à l'espace Trailhead dédié à Commerce Cloud, qui regroupe une multitude de modules et trails indépendants suivis séparément, sans durée ni programme unique.",
+   "champDecisif": "Durée déclarée (« Modules courts »)"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.75,
+   "meilleureUrl": "https://trailhead.salesforce.com/content/learn/modules/om-salesforce-order-management/om-connect-b2c-commerce-service-cloud",
+   "urlsInspectees": 9226,
+   "requetes": 7
+  }
+ },
+ {
+  "id": 175,
+  "nom": "Zendesk Training — relation client e-commerce",
+  "organisme": "Zendesk",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "zendesk.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "« Zendesk Training » désigne l'offre de formation globale de l'éditeur et la durée « Modules courts » au pluriel confirme un ensemble de modules commercialisés séparément, sans prix ni durée uniques.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.4,
+   "meilleureUrl": "https://www.zendesk.com/newsroom/articles/zendesk-conversational-commerce/",
+   "urlsInspectees": 10756,
+   "requetes": 8
+  }
+ },
+ {
+  "id": 177,
+  "nom": "Klaviyo Product Certifications",
+  "organisme": "Klaviyo",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "klaviyo.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel désigne l'ensemble des certifications produit Klaviyo, chacune passée séparément avec son propre programme et sa propre durée.",
+   "champDecisif": "Intitulé (pluriel « Product Certifications »)"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 0.67,
+   "meilleureUrl": "https://www.klaviyo.com/blog/klaviyo-whatsapp-product-launch",
+   "urlsInspectees": 12112,
+   "requetes": 20
+  }
+ },
+ {
+  "id": 178,
+  "nom": "Hotjar Academy",
+  "organisme": "Hotjar",
+  "categorie": "certification_editeur",
+  "duree": "Modules courts",
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "hotjar.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé « Academy » désigne un catalogue de modules courts distincts et non un parcours unique doté d'une durée ou d'un programme uniques.",
+   "champDecisif": "Durée déclarée (« Modules courts »)"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.hotjar.com/webinars/canyon-bikes-hotjar/",
+   "urlsInspectees": 1774,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 180,
+  "nom": "Cours e-commerce et marketing digital",
+  "organisme": "Coursera",
+  "categorie": "mooc_plateforme",
+  "duree": "Variable",
+  "volumeHoraire": 7,
+  "programme": 0,
+  "domaine": "coursera.org",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel désigne un catalogue de cours e-commerce et marketing digital vendus séparément sur la plateforme, sans durée ni programme uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.coursera.org/professional-certificates/certificado-de-carrera-de-google-marketing-digital-e-e-commerce",
+   "urlsInspectees": 60982,
+   "requetes": 20
+  }
+ },
+ {
+  "id": 181,
+  "nom": "Cours création et vente en ligne",
+  "organisme": "Domestika",
+  "categorie": "mooc_plateforme",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "domestika.org",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel désigne un ensemble de cours Domestika vendus à l'unité, sans durée ni programme communs.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.33,
+   "meilleureUrl": "https://domestika.org/en/courses/404-content-creation-and-editing-for-instagram-stories",
+   "urlsInspectees": 342,
+   "requetes": 12
+  }
+ },
+ {
+  "id": 182,
+  "nom": "Cours e-commerce et créativité",
+  "organisme": "Skillshare",
+  "categorie": "mooc_plateforme",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "skillshare.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé désigne un catalogue de cours distincts d'une plateforme MOOC, sans durée ni programme unique.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.skillshare.com/en/classes/email-marketing-for-e-commerce-tips-and-tools-to-increase-sales-learn-with-mailchimp/936610905",
+   "urlsInspectees": 44820,
+   "requetes": 20
+  }
+ },
+ {
+  "id": 183,
+  "nom": "Parcours marketing digital",
+  "organisme": "LinkedIn Learning",
+  "categorie": "mooc_plateforme",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "linkedin.com",
+  "famille": {
+   "verdict": "indecidable",
+   "motif": "L'intitulé peut désigner un « learning path » unique de LinkedIn Learning comme un regroupement générique de cours indépendants, et la durée « Variable » sans aucun élément de programme ne permet pas de trancher.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 8,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 185,
+  "nom": "Tutoriels e-commerce et CMS",
+  "organisme": "Tuto.com",
+  "categorie": "mooc_plateforme",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "tuto.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel désigne un catalogue de tutoriels vendus séparément, sans durée ni programme uniques.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 1579,
+   "requetes": 6
+  }
+ },
+ {
+  "id": 186,
+  "nom": "Formations web et marketing",
+  "organisme": "Alphorm",
+  "categorie": "mooc_plateforme",
+  "duree": "Variable",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "alphorm.com",
+  "famille": {
+   "verdict": "famille",
+   "motif": "L'intitulé au pluriel couvre deux domaines distincts et la durée « Variable » sans programme publié confirme un catalogue de cours vendus séparément.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.alphorm.com/tutoriel/formation-en-ligne-sap-businessobjects-web-intelligence-bi4-niveau-debutant",
+   "urlsInspectees": 2723,
+   "requetes": 9
+  }
+ },
+ {
+  "id": 193,
+  "nom": "Système Sphère",
+  "organisme": "Speed Ecom",
+  "categorie": "formation_independante",
+  "duree": "12 semaines à 4 mois",
+  "volumeHoraire": null,
+  "programme": 5,
+  "domaine": "speed-ecom.eu",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé nomme un produit unique et propriétaire, avec un programme en 5 éléments et une durée en fourchette qui n'indique qu'un rythme variable d'un même parcours.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://speed-ecom.eu/ecom-sphere/",
+   "urlsInspectees": 428,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 194,
+  "nom": "Vendeur Pro Amazon",
+  "organisme": "VMD Formation",
+  "categorie": "formation_independante",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 6,
+  "domaine": "vmdformation.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation unique et ciblée sur la vente sur Amazon, avec un programme unique en 6 modules.",
+   "champDecisif": "Éléments de programme publiés"
+  },
+  "offre": {
+   "statut": "domaine_injoignable",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 195,
+  "nom": "Ecom Accelerator",
+  "organisme": "Ecom Accelerator",
+  "categorie": "formation_independante",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 3,
+  "domaine": "ecomaccelerator.fr",
+  "famille": {
+   "verdict": "indecidable",
+   "motif": "L'intitulé reprend exactement le nom de l'organisme, sans durée ni volume horaire, ce qui ne permet pas de distinguer un programme phare unique d'une marque regroupant plusieurs offres.",
+   "champDecisif": null
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 80,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 196,
+  "nom": "AMZ Révolution",
+  "organisme": "Olivier Allain",
+  "categorie": "formation_independante",
+  "duree": "6 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "jesuismonpatron.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un produit unique et commercialisé sous une marque propre, avec une durée unique de 6 mois.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 162,
+   "requetes": 7
+  }
+ },
+ {
+  "id": 198,
+  "nom": "Shopify 2026",
+  "organisme": "AMZ Academy",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": 30,
+  "programme": 0,
+  "domaine": "amzacademy.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation unique sur Shopify avec un volume horaire précis de 30 heures, ce qui est cohérent avec un produit unique.",
+   "champDecisif": "Volume horaire"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.amzacademy.fr/formation/ecommerce-shopify",
+   "urlsInspectees": 62,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 199,
+  "nom": "Définir et mettre en place une stratégie e-commerce",
+  "organisme": "AMZ Academy",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": 35,
+  "programme": 0,
+  "domaine": "amzacademy.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un objectif de formation unique avec un volume horaire précis de 35 heures, cohérent avec un produit pédagogique isolé.",
+   "champDecisif": "Volume horaire"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.2,
+   "meilleureUrl": "https://www.amzacademy.fr/formation/strategie-ecommerce",
+   "urlsInspectees": 62,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 202,
+  "nom": "Maîtriser les aspects juridiques du e-commerce",
+  "organisme": "ORSYS",
+  "categorie": "formation_professionnelle",
+  "duree": "2 jours",
+  "volumeHoraire": 14,
+  "programme": 0,
+  "domaine": "orsys.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un stage unique et thématique, cohérent avec une durée fixe de 2 jours (14 heures) chez ORSYS.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.25,
+   "meilleureUrl": "https://orsys.fr/formations/ia-pour-le-marketing-la-communication-et-le-commerce",
+   "urlsInspectees": 332,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 203,
+  "nom": "L'essentiel du digital et des réseaux sociaux pour PME",
+  "organisme": "ORSYS",
+  "categorie": "formation_professionnelle",
+  "duree": "2 jours",
+  "volumeHoraire": 14,
+  "programme": 0,
+  "domaine": "orsys.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "Durée fixe de 2 jours (14 h) typique d'un stage catalogue ORSYS unique, malgré un intitulé généraliste.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.2,
+   "meilleureUrl": "https://orsys.fr/formations/formations-reseaux-informatiques",
+   "urlsInspectees": 336,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 207,
+  "nom": "E-commerce — Enjeux, usages et solutions",
+  "organisme": "M2i Formation",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "m2iformation.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé thématique unique et fermé (« Enjeux, usages et solutions ») correspond à un module de catalogue unique et non à un regroupement d'offres vendues séparément.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.m2iformation.fr/formation-maitriser-les-techniques-et-usages-du-commerce-international/DCNEG-FOND/",
+   "urlsInspectees": 7920,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 213,
+  "nom": "Formation Copywriting",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation thématique unique de LiveMentor avec une durée fixe de 3 mois, sans mention d'un ensemble d'offres distinctes.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/copywriting/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 214,
+  "nom": "Formation SEO",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une offre unique et thématiquement fermée, cohérente avec une durée unique de 3 mois.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/seo/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 215,
+  "nom": "Formation WordPress",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation unique de LiveMentor avec une durée déterminée de 3 mois, conforme au format standard de leurs parcours mentorés.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/wordpress/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 216,
+  "nom": "Formation Google Ads",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé cible une compétence unique assortie d'une durée ferme de 3 mois, signature d'un produit de formation unique et non d'un catalogue.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/google-ads/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 217,
+  "nom": "Formation Instagram",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un produit unique de LiveMentor avec une durée fixe de 3 mois, sans marqueur de catalogue ou de pluralité d'offres.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/instagram/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 218,
+  "nom": "Formation Facebook",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une offre unique et thématiquement circonscrite, confortée par une durée ferme de 3 mois correspondant au format standard de mentorat de l'organisme.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/facebook/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 219,
+  "nom": "Formation TikTok",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une offre unique et ciblée de LiveMentor, avec une durée fixe de 3 mois caractéristique de leurs formations individuelles vendues à l'unité.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.livementor.com/formation/tiktok/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 220,
+  "nom": "Formation No-code et automatisation",
+  "organisme": "LiveMentor",
+  "categorie": "formation_professionnelle",
+  "duree": "3 mois",
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "livementor.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé au singulier avec une durée fixe de 3 mois correspond au format standard d'un produit unique LiveMentor, non à un catalogue.",
+   "champDecisif": "Durée déclarée"
+  },
+  "offre": {
+   "statut": "aucune_page_correspondante",
+   "meilleurScore": 0.5,
+   "meilleureUrl": "https://www.livementor.com/formation/automatisation/",
+   "urlsInspectees": 867,
+   "requetes": 11
+  }
+ },
+ {
+  "id": 221,
+  "nom": "Parcours Digital Marketer",
+  "organisme": "OpenClassrooms",
+  "categorie": "mooc_plateforme",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "openclassrooms.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un cursus unique et nommé du catalogue OpenClassrooms, non un regroupement d'offres vendues séparément.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 222,
+  "nom": "Parcours Chargé de marketing",
+  "organisme": "OpenClassrooms",
+  "categorie": "mooc_plateforme",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "openclassrooms.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé nomme un parcours diplômant unique et identifiable du catalogue OpenClassrooms, et non un regroupement d'offres vendues séparément.",
+   "champDecisif": "Intitulé"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 223,
+  "nom": "Parcours Expert en stratégie marketing et communication",
+  "organisme": "OpenClassrooms",
+  "categorie": "mooc_plateforme",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "openclassrooms.com",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un parcours diplômant unique et nommé, malgré l'absence de durée et de programme publiés.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "site_illisible",
+   "meilleurScore": 0,
+   "meilleureUrl": null,
+   "urlsInspectees": 0,
+   "requetes": 4
+  }
+ },
+ {
+  "id": 231,
+  "nom": "Parcours certifiant — Marketing digital",
+  "organisme": "ISM",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "ism.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne un parcours certifiant unique en marketing digital, produit identifiable vendu comme tel, même si durée et programme ne sont pas communiqués.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.ism.fr/formation/parcours-certifiant-marketing-digital",
+   "urlsInspectees": 532,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 232,
+  "nom": "Les fondamentaux du marketing digital",
+  "organisme": "ISM",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "ism.fr",
+  "famille": {
+   "verdict": "parcours",
+   "motif": "L'intitulé désigne une formation courte unique et thématiquement circonscrite du catalogue ISM, sans marqueur d'agrégation.",
+   "champDecisif": "intitulé"
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.ism.fr/formation/les-fondamentaux-du-marketing-digital-btob",
+   "urlsInspectees": 532,
+   "requetes": 3
+  }
+ },
+ {
+  "id": 233,
+  "nom": "Le marketing digital, ça s'apprend",
+  "organisme": "ISM",
+  "categorie": "formation_professionnelle",
+  "duree": null,
+  "volumeHoraire": null,
+  "programme": 0,
+  "domaine": "ism.fr",
+  "famille": {
+   "verdict": "indecidable",
+   "motif": "L'intitulé est un slogan promotionnel sans durée, volume horaire ni programme publié, ce qui ne permet pas de savoir s'il désigne un cycle unique ou une gamme d'offres.",
+   "champDecisif": null
+  },
+  "offre": {
+   "statut": "page_correspondante_trouvee",
+   "meilleurScore": 1,
+   "meilleureUrl": "https://www.ism.fr/formation/le-marketing-digital-ca-s-apprend",
+   "urlsInspectees": 532,
+   "requetes": 3
+  }
+ }
+]

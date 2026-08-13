@@ -197,8 +197,21 @@ export type Extraction = {
 
 export type ClientExtraction = {
   extraire(texte: string, url: string): Promise<Record<string, ValeurCitee | null>>;
-  /** Compteur de dépense, lisible en fin de passe. */
-  depense(): { appels: number; caracteresEnvoyes: number };
+  /**
+   * Compteur de dépense, lisible en fin de passe.
+   *
+   * Les JETONS viennent de `usage` renvoyé par l'API, pas d'une division des
+   * caractères par quatre. L'estimation à 4 caractères par jeton se trompe
+   * surtout là où on l'utilise — une page HTML nettoyée porte des nombres, des
+   * euros et des mots composés, qui se découpent plus finement que de la prose.
+   * Un coût en euros calculé sur une estimation n'est pas un coût mesuré.
+   */
+  depense(): {
+    appels: number;
+    caracteresEnvoyes: number;
+    jetonsEntree: number;
+    jetonsSortie: number;
+  };
 };
 
 /**
@@ -220,8 +233,18 @@ export const PLAFOND_APPELS = Number(process.env["PLAFOND_APPELS"] ?? 200);
  */
 export const MAX_CITATION = Number(process.env["MAX_CITATION"] ?? 200);
 
-/** Client réel, adossé à l'API Claude. */
-export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientExtraction {
+/**
+ * Client réel, adossé à l'API Claude.
+ *
+ * `groupes` restreint les champs demandés. Le crawl de prix n'a besoin que du
+ * premier groupe : demander les dix-neuf champs quand on mesure le taux de
+ * récupération du prix double le nombre d'appels et rend le coût mesuré
+ * inutilisable pour décider d'une passe de prix. Par défaut, rien ne change.
+ */
+export function clientAnthropic(
+  cle = process.env["ANTHROPIC_API_KEY"],
+  groupes: readonly (readonly string[])[] = GROUPES_EXTRACTION,
+): ClientExtraction {
   if (!cle) {
     throw new Error(
       "ANTHROPIC_API_KEY absente. L'extraction ne fonctionne pas sans clé — et deviner " +
@@ -231,9 +254,11 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
   const client = new Anthropic({ apiKey: cle });
   let appels = 0;
   let caracteres = 0;
+  let jetonsEntree = 0;
+  let jetonsSortie = 0;
 
   return {
-    depense: () => ({ appels, caracteresEnvoyes: caracteres }),
+    depense: () => ({ appels, caracteresEnvoyes: caracteres, jetonsEntree, jetonsSortie }),
     async extraire(texte, url) {
       /*
         PAS DE SORTIE STRUCTURÉE. La grammaire d'un schéma à champs cités ne
@@ -247,7 +272,7 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
         façon à un JSON libre. Un champ mal formé se perd, ce qui est le
         comportement voulu : pas de citation, pas d'écriture.
       */
-      if (appels + GROUPES_EXTRACTION.length > PLAFOND_APPELS) {
+      if (appels + groupes.length > PLAFOND_APPELS) {
         throw new Error(
           `Plafond de ${PLAFOND_APPELS} appels atteint (${appels} effectués). ` +
             `Relancer avec PLAFOND_APPELS plus haut si c'est voulu.`,
@@ -255,11 +280,14 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
       }
 
       const resultats = await Promise.all(
-        GROUPES_EXTRACTION.map(async (groupe) => {
+        groupes.map(async (groupe) => {
           appels += 1;
           caracteres += texte.length;
           const proprietes = Object.fromEntries(
-            groupe.map((champ) => [champ, SCHEMA_EXTRACTION.properties[champ]]),
+            groupe.map((champ) => [
+              champ,
+              SCHEMA_EXTRACTION.properties[champ as keyof typeof SCHEMA_EXTRACTION.properties],
+            ]),
           );
           const message = await client.messages.create({
             model: MODELE,
@@ -278,6 +306,8 @@ export function clientAnthropic(cle = process.env["ANTHROPIC_API_KEY"]): ClientE
               },
             ],
           });
+          jetonsEntree += message.usage.input_tokens;
+          jetonsSortie += message.usage.output_tokens;
           const bloc = message.content.find((c) => c.type === "text");
           if (!bloc || !("text" in bloc)) return {};
           // Un JSON mal formé se perd sans bruit : pas de citation, pas
