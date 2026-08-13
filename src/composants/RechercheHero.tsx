@@ -183,7 +183,21 @@ export function RechercheHero({
 
   const aplaties = useMemo(() => groupes.flatMap((g) => g.entrees), [groupes]);
 
-  useEffect(() => setSurligne(0), [suggestions]);
+  /*
+    LE SURLIGNAGE SUIT LE CONTENU DE LA LISTE, PAS SON IDENTITÉ.
+
+    Le tableau de suggestions est reconstruit à chaque rendu de l'explorateur —
+    il dépend des compteurs d'onglets, eux-mêmes recalculés à chaque passage.
+    Remettre le surlignage à zéro sur son identité revenait donc à l'annuler
+    dès qu'un rendu survenait pendant la navigation clavier : on descendait de
+    six crans, un rendu passait, et la sélection repartait du premier élément.
+
+    Invisible tant que rien ne faisait re-rendre la vue pendant la frappe.
+    Depuis que poser un filtre écrit dans l'adresse, cela arrive à chaque
+    recherche — et la sélection au clavier devenait inutilisable.
+  */
+  const contenuListe = aplaties.map((s) => `${s.type}\u0000${s.libelle}`).join("\u0001");
+  useEffect(() => setSurligne(0), [contenuListe]);
 
   /*
     L'élément sélectionné au clavier reste toujours visible. Sans ce
@@ -419,7 +433,15 @@ export function RechercheHero({
                     const position = index;
                     const actif = position === surligne;
                     return (
-                      <li key={`${groupe.type}-${entree.libelle}`}>
+                      /*
+                        La position entre dans la clé : DEUX PARCOURS PEUVENT
+                        PORTER LE MÊME INTITULÉ — deux licences pro homonymes
+                        dans deux universités —, et React omet alors l'un des
+                        deux enfants sans rien casser d'apparent. Une suggestion
+                        manquante dans une liste qu'on pilote au clavier est
+                        exactement le genre de défaut qui ne se voit jamais.
+                      */
+                      <li key={`${groupe.type}-${position}-${entree.libelle}`}>
                         <button
                           ref={actif ? actifRef : undefined}
                           id={`${listeId}-${position}`}
