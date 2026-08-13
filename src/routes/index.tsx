@@ -254,6 +254,14 @@ function Explorer() {
         ...(precedente.fiche !== undefined ? { fiche: precedente.fiche } : {}),
       }),
       replace: true,
+      /*
+        NE PAS REMONTER LA PAGE. Une navigation restaure le défilement par
+        défaut : depuis que poser un filtre EST une navigation, cocher une case
+        au milieu de la colonne renvoyait au sommet du hero, et il fallait
+        redescendre après chaque geste. Le filtre change la liste, pas la
+        position de lecture.
+      */
+      resetScroll: false,
     });
     setLimite(PAR_PAGE);
     /*
