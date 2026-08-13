@@ -48,9 +48,15 @@ import { liensAvecLibelle } from "../src/collecte/repli-decouverte";
 import { verifierCorrespondance } from "../src/collecte/correspondance";
 import { attribuerExtrait, SEUIL_ATTRIBUTION } from "../src/collecte/attribution";
 import { convertirJournalier, derivationTotal, trancherUnite } from "../src/collecte/unite-prix";
+import { imputer, LIBELLES_CAUSE, type Cause } from "../src/collecte/verdict-prix";
 
-const LOT = "src/donnees/lot-profondeur.json";
-const SORTIE = "src/donnees/crawl-profond-resultats.json";
+/** Lot mesuré. `--lot <chemin>` pour en viser un autre que le lot figé. */
+const LOT = process.argv.includes("--lot")
+  ? process.argv[process.argv.indexOf("--lot") + 1]!
+  : "src/donnees/lot-profondeur.json";
+const SORTIE = process.argv.includes("--sortie")
+  ? process.argv[process.argv.indexOf("--sortie") + 1]!
+  : "src/donnees/crawl-profond-resultats.json";
 const DECOUVERTES = "src/donnees/urls-decouvertes.json";
 const LE = new Date().toISOString().slice(0, 10);
 
@@ -64,7 +70,17 @@ const PAGES_MAX = 3;
  * mesure la récupération du prix doublerait le coût mesuré et le rendrait
  * inutilisable pour décider d'une passe de prix à l'échelle.
  */
-const GROUPE_PRIX = [["prix", "unitePrix", "prixIntra", "uniteIntra", "modaliteAcces"]] as const;
+/*
+  `formats` a rejoint le groupe le 13 août 2026. Sans lui, la dérivation
+  publiée « alternance → coût nul, pris en charge » ne peut jamais s'appliquer :
+  les trois parcours ISCOD lus ce jour-là sont en alternance, ne publient aucun
+  montant, et restaient sans prix faute d'un champ qu'une seule question au
+  modèle suffisait à obtenir. Gain gratuit sur les 17 fiches issues d'éclatement,
+  qui sont exactement celles dont `formats` est nul.
+*/
+const GROUPE_PRIX = [
+  ["prix", "unitePrix", "prixIntra", "uniteIntra", "modaliteAcces", "formats"],
+] as const;
 
 /** Tarif public Claude Opus 5, en dollars par million de jetons. */
 const TARIF = { entree: 5, sortie: 25 };
@@ -111,6 +127,11 @@ type Resultat = {
     derive: boolean;
   } | null;
   motifEchec: string | null;
+  /** Cause de non-rétention, et à qui l'absence appartient. */
+  cause: Cause | null;
+  imputation: string | null;
+  /** Rejets de citation sur le champ prix, toutes pages confondues. */
+  rejetsPrix: number;
 };
 
 /* -------------------------------------------------------------------------- */
@@ -358,6 +379,9 @@ async function traiter(
     trouve: false,
     proposition: null,
     motifEchec: null,
+    cause: null,
+    imputation: null,
+    rejetsPrix: 0,
   };
 
   const trouvaille = await trouverPageDetail(fiche, decouvertes);
@@ -411,15 +435,29 @@ async function traiter(
       return base;
     }
 
-    const verdict = retenirPrix(fiche, offre, page, extraction.filtrage.retenus);
-    if (verdict) {
+    base.rejetsPrix += extraction.filtrage.rejets.filter((r) => r.champ === "prix").length;
+    const verdict = retenirPrix(
+      fiche, offre, page, extraction.filtrage.retenus, extraction.filtrage.rejets,
+    );
+    if (verdict.ok) {
       base.trouve = true;
-      base.proposition = verdict;
+      base.proposition = verdict.proposition;
       return base;
     }
+    /*
+      La cause LA PLUS GRAVE l'emporte sur les pages successives : si une page
+      a proposé un prix qu'on n'a pas su retenir, la fiche ne peut pas être
+      déclarée « non publiée par l'organisme » à cause d'une autre page muette.
+    */
+    if (base.cause === null || base.cause === "aucun_prix_cite") base.cause = verdict.cause;
   }
 
-  base.motifEchec = base.motifEchec ?? "prix_non_publie_sur_les_pages_lues";
+  if (base.cause !== null) {
+    base.imputation = imputer(base.cause);
+    base.motifEchec = `${base.imputation} — ${LIBELLES_CAUSE[base.cause]}`;
+  } else {
+    base.motifEchec = base.motifEchec ?? "aucune_page_lue";
+  }
   return base;
 }
 
@@ -430,14 +468,30 @@ async function traiter(
  * amont), son unité est tranchée, et sur une page qui n'est pas celle du
  * parcours, le voisinage de la citation porte le nom du parcours.
  */
+type Retenue =
+  | { ok: true; proposition: NonNullable<Resultat["proposition"]> }
+  | { ok: false; cause: Cause };
+
 function retenirPrix(
   fiche: EntreeLot,
   offre: OffreNormalisee,
   page: PageLue,
   cites: Record<string, { valeur: unknown; extrait: string }>,
-): Resultat["proposition"] {
+  rejets: readonly { champ: string }[],
+): Retenue {
   const cite = cites["prix"];
-  if (!cite || typeof cite.valeur !== "number") return null;
+  if (!cite || typeof cite.valeur !== "number") {
+    /*
+      DISTINCTION DÉCISIVE. Le modèle n'a rien proposé, ou il a proposé une
+      valeur que le garde-fou de citation a rejetée : le premier est un fait sur
+      l'organisme, le second sur nous. `filtrerParCitation` les sépare déjà —
+      il suffisait de lire ses rejets au lieu de les ignorer.
+    */
+    return {
+      ok: false,
+      cause: rejets.some((r) => r.champ === "prix") ? "citation_invalide" : "aucun_prix_cite",
+    };
+  }
 
   /*
     UNE VALEUR EXISTANTE N'EST JAMAIS REMPLACÉE PAR UN VIDE. Ce script ne
@@ -445,7 +499,7 @@ function retenirPrix(
     vers l'effacement, et c'est voulu — une consigne d'écriture sans règle
     d'effacement avait supprimé 61 prix le 3 août.
   */
-  if (cite.valeur === null || cite.valeur === undefined) return null;
+  if (cite.valeur === null || cite.valeur === undefined) return { ok: false, cause: "aucun_prix_cite" };
 
   let valeur = cite.valeur;
   let extrait = cite.extrait;
@@ -463,17 +517,19 @@ function retenirPrix(
       verdictUnite.motif === "unite_absente"
         ? derivationTotal(page.texte)
         : { derive: false, motif: verdictUnite.motif };
-    if (!derivation.derive) return null;
+    if (!derivation.derive) return { ok: false, cause: "unite_indeterminee" };
     unite = "total";
     derive = true;
   }
   if (unite === "journalier") {
     const converti = convertirJournalier(valeur, unite, offre.duree);
-    if (converti === null) return null;
+    if (converti === null) return { ok: false, cause: "journalier_sans_duree" };
     valeur = converti.total;
     extrait = `${extrait} — ${converti.unitaire} €/jour × ${converti.jours} j`;
   } else if (unite !== "total") {
-    return null;
+    // Mensuel, annuel, horaire : l'organisme A publié son prix. C'est notre
+    // modèle de comparaison qui ne sait pas le ramener à un total.
+    return { ok: false, cause: "unite_non_comparable" };
   }
 
   /*
@@ -486,10 +542,12 @@ function retenirPrix(
   if (page.role !== "detail") {
     const verdict = attribuerExtrait(fiche.nom, page.texte, cite.extrait);
     attribution = Number(verdict.score.toFixed(2));
-    if (!verdict.attribue) return null;
+    if (!verdict.attribue) return { ok: false, cause: "attribution_refusee" };
   }
 
   return {
+    ok: true,
+    proposition: {
     champ: "prix",
     valeur,
     unite,
@@ -498,6 +556,7 @@ function retenirPrix(
     role: page.role,
     attribution,
     derive,
+    },
   };
 }
 
@@ -665,7 +724,16 @@ function restituer(
   const reseau = resultats.reduce((n, r) => n + r.requetesReseau, 0);
   const cout = euros(depense.jetonsEntree, depense.jetonsSortie);
 
-  console.log(`\n  RÉSULTAT           : ${trouves.length}/${resultats.length} prix trouvés`);
+  /*
+    LE TAUX D'ATTEINTE DU MODÈLE VIENT EN PREMIER, et c'est délibéré.
+
+    Au lot du 13 août, 7 fiches sur 10 n'atteignaient jamais le modèle — toutes
+    pour des raisons qui nous appartenaient. Tant que ce chiffre est bas, le
+    taux de citation mesure surtout notre découverte, pas notre extraction.
+  */
+  const atteintes = resultats.filter((r) => r.pagesModele.length > 0);
+  console.log(`\n  ATTEINTE DU MODÈLE : ${atteintes.length}/${resultats.length} fiches ont fait lire au moins une page`);
+  console.log(`  PRIX TROUVÉS       : ${trouves.length} (sur ${atteintes.length} fiches atteintes)`);
   console.log(`  Pages modèle       : ${pages} (${(pages / resultats.length).toFixed(1)} par fiche)`);
   console.log(`  Requêtes réseau    : ${reseau} (gratuites, hors modèle)`);
   console.log(`  Appels au modèle   : ${depense.appels}`);
@@ -692,6 +760,13 @@ function restituer(
     console.log(`      ${strate.padEnd(26)} ${s.ok}/${s.n} trouvés, ${s.pages} page(s)`);
   }
 
+  console.log("\n  À QUI APPARTIENT L'ABSENCE");
+  const parImput = new Map<string, number>();
+  for (const r of resultats.filter((x) => !x.trouve && x.imputation)) {
+    parImput.set(r.imputation!, (parImput.get(r.imputation!) ?? 0) + 1);
+  }
+  for (const [i, n] of parImput) console.log(`      ${String(n).padStart(3)}  ${i}`);
+
   console.log("\n  MOTIFS D'ÉCHEC");
   const motifs = new Map<string, number>();
   for (const r of resultats.filter((x) => !x.trouve)) {
@@ -699,6 +774,31 @@ function restituer(
     motifs.set(cle, (motifs.get(cle) ?? 0) + 1);
   }
   for (const [motif, n] of motifs) console.log(`      ${String(n).padStart(2)}  ${motif}`);
+
+  /*
+    L'INVARIANT, VÉRIFIÉ SUR LA SORTIE ET NON SUR L'INTENTION.
+
+    Aucune fiche déclarée « non publiée par l'organisme » ne peut porter un
+    rejet de citation sur le prix : un rejet est un fait sur NOUS, et il
+    interdit de conclure sur le silence de l'organisme. Le test unitaire
+    verrouille `imputer` ; celui-ci verrouille ce qui sort réellement du crawl,
+    même si un chemin de code futur contourne `imputer`.
+
+    Il échoue bruyamment plutôt que d'écrire : c'est l'inversion la plus
+    coûteuse du produit, et elle a déjà eu lieu une fois.
+  */
+  const inversions = resultats.filter(
+    (r) => r.imputation === "non_publie_par_organisme" && r.rejetsPrix > 0,
+  );
+  if (inversions.length > 0) {
+    console.error(
+      `\n  INVARIANT VIOLÉ — ${inversions.length} fiche(s) imputées à l'organisme malgré un rejet de notre pipeline :`,
+    );
+    for (const r of inversions) console.error(`      #${r.id} ${r.organisme} (${r.rejetsPrix} rejet(s))`);
+    process.exitCode = 1;
+  } else {
+    console.log(`\n  Invariant d'imputation : aucune absence imputée à tort à un organisme.`);
+  }
 
   console.log(`\n  Rien n'a été écrit au catalogue. → ${SORTIE}\n`);
 }
