@@ -57,7 +57,26 @@ const CORRIGEES = new Set([141, 142, 143]);
  * information déduite : invariant 2. Les parcours qu'elles recouvraient sont
  * fichés séparément, donc le catalogue ne perd rien.
  */
-const RETIREES = new Set([105, 107]);
+/*
+ * 13 août 2026 — dix-neuf plateformes d'apprentissage d'éditeur.
+ *
+ * Google Ateliers Numériques, PrestaShop, WiziShop, Klaviyo (×2), TikTok (×2),
+ * Brevo, Mailchimp, Pinterest, Semrush, Ahrefs, Microsoft, Etsy, Shopify, Wix,
+ * Salesforce, Zendesk, Hotjar. Retirées par MODIFICATION DE RÈGLE — le critère
+ * « Ressource gratuite sans offre payante ni parcours borné » n'existait pas, et
+ * les sept critères d'éligibilité, qui en demandent trois, les admettaient.
+ *
+ * Ce ne sont pas des fiches incomplètes : elles portaient trois à quatre
+ * éléments de programme. Elles nommaient un catalogue de modules, dont aucun
+ * prix, aucune durée et aucun programme uniques ne peuvent être vrais.
+ *
+ * Leur fiche entière est conservée dans `ressources-ecartees.json` et le retrait
+ * est publié dans `journal-retraits.json`, rendu par la page Méthode.
+ */
+const RETIREES = new Set([
+  105, 107, 114, 117, 118, 120, 122, 161, 162, 163, 164, 165, 166, 168, 169, 170, 171, 174, 175,
+  177, 178,
+]);
 const DERNIER_ID_PROTOTYPE = 195;
 const horsParite = (id: number) =>
   CORRIGEES.has(id) || RETIREES.has(id) || id > DERNIER_ID_PROTOTYPE;
@@ -111,15 +130,25 @@ describe("parité des distributions publiées dans le brief", () => {
         fiches y étaient classées sur une sous-chaîne interne : ce n'est pas une
         reclassification, c'est la correction d'un mauvais classement.
       */
-      "E-commerce": 64,
-      "Marketing digital": 50,
+      /*
+        13 août 2026 — retrait des dix-neuf plateformes d'éditeur. La perte se
+        répartit sur huit domaines sur neuf : e-commerce −1, marketing digital
+        −4, publicité payante −3, création de site −3, email et CRM −4,
+        référencement −2, data et conversion −1, marketplaces −1. Total −19.
+
+        « Commerce et vente » ne bouge pas : aucune Academy n'y était classée.
+        C'est la vérification que le retrait n'a déplacé aucune règle — il a
+        enlevé des fiches, pas reclassé celles qui restent.
+      */
+      "E-commerce": 63,
+      "Marketing digital": 46,
       "Commerce et vente": 28,
-      "Publicité payante": 13,
-      "Data et conversion": 9,
-      Marketplaces: 8,
-      Référencement: 7,
-      "Création de site": 6,
-      "Email et CRM": 5,
+      "Publicité payante": 10,
+      "Data et conversion": 8,
+      Marketplaces: 7,
+      Référencement: 5,
+      "Création de site": 3,
+      "Email et CRM": 1,
     });
   });
 
@@ -132,16 +161,33 @@ describe("parité des distributions publiées dans le brief", () => {
       formation_professionnelle: 40,
       ecole: 44,
       universite: 36,
-      certification_editeur: 28,
+      /*
+        28 → 9. C'EST LA LIGNE QUI COMPTE : le retrait du 13 août ne touche
+        qu'une seule strate, et les six autres sont identiques au chiffre près.
+        Un retrait qui aurait emporté des licences ou des BTS se verrait ici —
+        c'est le risque qu'a écarté la seconde condition du critère.
+      */
+      certification_editeur: 9,
       formation_independante: 23,
       mooc_plateforme: 12,
       bootcamp: 7,
     });
   });
 
-  it("compare au prototype les 190 offres du socle inchangé", () => {
-    expect(classes).toHaveLength(190);
-    expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(29);
+  it("compare au prototype les 171 offres du socle inchangé", () => {
+    // 190 → 171 : dix-neuf plateformes d'éditeur retirées du socle.
+    expect(classes).toHaveLength(171);
+    /*
+      29 → 22 sujets principaux sur le socle. Sur le CATALOGUE ENTIER, cinq
+      sujets deviennent orphelins — plus aucune fiche ne les porte : Klaviyo,
+      Brevo, Email Marketing, Etsy, Marketplace.
+
+      C'est une conséquence assumée du retrait, et elle est visible plutôt que
+      silencieuse : ces sujets n'étaient portés que par la formation gratuite de
+      l'éditeur lui-même. Le catalogue ne perd pas une information, il cesse de
+      prétendre couvrir un sujet qu'aucune offre payante n'y couvrait.
+    */
+    expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(22);
   });
 
   it("n'utilise que les neuf domaines du vocabulaire fermé", () => {

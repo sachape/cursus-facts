@@ -210,9 +210,15 @@ describe("effet du troisième état sur le catalogue réel", () => {
   });
 
   it("laisse toutes les fiches au catalogue, même les moins renseignées", () => {
-    expect(compteurs).toHaveLength(193);
+    expect(compteurs).toHaveLength(174);
     // 195 offres du prototype, moins les deux pages catalogue d'organisme
-    // retirées ; les suivantes sont postérieures à la référence.
+    // retirées le 4 août, moins les dix-neuf plateformes d'apprentissage
+    // d'éditeur retirées le 13 août ; les suivantes sont postérieures à la
+    // référence.
+    //
+    // Le titre du test reste vrai et c'est le point : aucune fiche n'est sortie
+    // pour être peu renseignée. Les dix-neuf portaient trois à quatre éléments
+    // de programme — elles sortent parce qu'elles ne nommaient pas un parcours.
     expect(compteurs.every((c) => c.applicables > 0)).toBe(true);
   });
 

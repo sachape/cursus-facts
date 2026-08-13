@@ -45,7 +45,25 @@ export const CRITERES_MINIMUM = 3;
  * une formation.
  */
 export const JAMAIS_REFERENCE = [
-  "Chaîne gratuite sans offre payante",
+  /*
+    ÉTENDU LE 13 AOÛT 2026, de « Chaîne gratuite sans offre payante » aux
+    plateformes d'éditeur. Dix-neuf « Academy » — Shopify, Klaviyo, Semrush,
+    Hotjar… — étaient fichées comme des parcours alors qu'aucun prix, aucune
+    durée et aucun programme uniques ne peuvent en être vrais.
+
+    LES DEUX CONDITIONS SONT CUMULATIVES, et ce n'est pas une nuance de
+    rédaction. Le catalogue portait 73 fiches à prix nul ; une règle sur la
+    seule gratuité en aurait emporté 54 de plus que les 19 visées, dont
+    34 licences et BTS en établissement public. Leur coût est PRIS EN CHARGE,
+    il n'est pas absent : elles ont un parcours borné et un prix, payé par un
+    tiers. Le 3 août, un motif voisin appliqué à une seule condition avait
+    effacé trois parcours que Google publie lui-même « gratuites ».
+
+    Ce critère n'existait pas : c'est une modification de règle, pas
+    l'application d'une règle. Les sept critères d'éligibilité en demandent
+    TROIS, et une Academy en vérifie quatre — elle passait le seuil.
+  */
+  "Ressource gratuite sans offre payante ni parcours borné",
   "Consultant qui ne vend aucune formation",
   "Agence proposant une prestation",
   "Masterclass ponctuelle sans parcours",

@@ -22,16 +22,27 @@ describe("slug", () => {
 });
 
 describe("volume ingéré", () => {
-  it("prépare 230 fiches et 161 organismes à partir de 232 offres", () => {
-    // 234 offres, dont trois fusionnées en une seule fiche : les formules
-    // Builder, Premium et Elite d'Amazon Incubator partagent le même programme.
-    expect(preparation.fiches).toHaveLength(230);
-    expect(preparation.organismes).toHaveLength(163);
+  it("prépare 211 fiches et 148 organismes à partir de 213 offres", () => {
+    // Trois offres fusionnées en une seule fiche : les formules Builder, Premium
+    // et Elite d'Amazon Incubator partagent le même programme.
+    /*
+      230 → 211 fiches et 163 → 148 organismes, 13 août 2026 : retrait des
+      dix-neuf plateformes d'apprentissage d'éditeur.
+
+      Dix-neuf fiches mais QUINZE organismes perdus, et l'écart se compte :
+      dix-sept organismes distincts (Klaviyo et TikTok en portaient deux
+      chacun), dont Google et Shopify restent au catalogue par une autre fiche.
+      Le compte a été vérifié plutôt que déduit — la première version de ce
+      commentaire disait « un organisme par fiche » et se trompait de quatre.
+    */
+    expect(preparation.fiches).toHaveLength(211);
+    expect(preparation.organismes).toHaveLength(148);
   });
 
   it("conserve une variante par offre, y compris dans une fiche fusionnée", () => {
     const variantes = preparation.fiches.reduce((s, f) => s + f.variantes.length, 0);
-    expect(variantes).toBe(232);
+    // 232 → 213 : retrait des dix-neuf plateformes d'éditeur du 13 août 2026.
+    expect(variantes).toBe(213);
   });
 
   it("ne laisse plus aucun cas en file d'arbitrage", () => {
@@ -59,9 +70,10 @@ describe("repli des groupes ambigus", () => {
     expect(ambigus).toHaveLength(0);
   });
 
-  it("expose 230 entrées de liste, sans repli", () => {
+  it("expose 211 entrées de liste, sans repli", () => {
     const entrees = preparation.fiches.filter((f) => f.ancreSlug === null);
-    expect(entrees).toHaveLength(230);
+    // 230 → 211 : retrait des dix-neuf plateformes d'éditeur du 13 août 2026.
+    expect(entrees).toHaveLength(211);
   });
 });
 
@@ -143,7 +155,17 @@ describe("ce qui part en base respecte les invariants", () => {
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),
       0,
     );
-    expect(total).toBe(2769);
+    /*
+      2 769 → 2 527, 13 août 2026. Les dix-neuf plateformes d'éditeur emportent
+      242 informations vérifiées avec elles.
+
+      CETTE BAISSE N'EST PAS UNE PERTE D'INFORMATION. Ces 242 valeurs décrivaient
+      les champs d'un objet qui n'est pas un parcours — une « durée » de
+      « Modules courts », un prix nul qui n'était pas un tarif. Le compteur ne
+      comptait pas mal : il comptait le mauvais objet. Les fiches entières sont
+      conservées dans `ressources-ecartees.json`, rien n'est effacé.
+    */
+    expect(total).toBe(2527);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
@@ -213,10 +235,18 @@ describe("ce qui part en base respecte les invariants", () => {
       agent de rafraîchissement, qui reproduirait le même comportement à
       l'échelle.
 
-      Seule baisse autorisée à ce jour : le retrait des deux pages catalogue
-      d'organisme du 4 août 2026, qui ne décrivaient aucun parcours achetable.
+      Baisses autorisées à ce jour, chacune avec son motif :
+        · 4 août 2026 — les deux pages catalogue d'organisme (M2i, Dawan), qui
+          ne décrivaient aucun parcours achetable.
+        · 13 août 2026 — les dix-neuf plateformes d'apprentissage d'éditeur,
+          2 739 → 2 567, par MODIFICATION DE RÈGLE : le critère « Ressource
+          gratuite sans offre payante ni parcours borné » n'existait pas avant.
+          Ces fiches ne sont pas effacées mais déplacées, entières, dans
+          `ressources-ecartees.json` — et le retrait est publié dans
+          `journal-retraits.json`. Le plancher tombe parce que le catalogue
+          décrit moins d'objets, pas parce qu'on sait moins de choses sur eux.
     */
-    const PLANCHER = 2739;
+    const PLANCHER = 2567;
     const total = preparation.fiches.reduce(
       (s, f) => s + valeursPresentes(compterInformations(f.colonnes["etats"] as EtatsInformation)),
       0,

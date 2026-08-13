@@ -30,6 +30,7 @@ import { LIBELLES_TRIS, TRIS } from "@/modele/classement";
 import { CHAMPS_INFORMATION, LIBELLES_CHAMPS_INFORMATION } from "@/types/cursus";
 import { DEFINITIONS_MODALITES, LIBELLES_MODALITES } from "@/modele/modalite-acces";
 import ecartes from "@/donnees/acteurs-ecartes.json";
+import retraits from "@/donnees/journal-retraits.json";
 import journal from "@/donnees/journal-arbitrages.json";
 import { avancement, fileDeCollecte, tauxPrixVerifie } from "@/donnees/file-collecte";
 import { chargerCatalogue } from "@/donnees/catalogue";
@@ -627,6 +628,15 @@ function Methode() {
             <li key={c}>{c}</li>
           ))}
         </ul>
+        <p className="mt-3 text-(--text-secondary)">
+          Une ressource gratuite est écartée quand <strong>rien ne s&apos;y achète et
+          qu&apos;aucun parcours n&apos;y est borné</strong> : plateforme d&apos;éditeur,
+          catalogue de modules consultables à la carte, bibliothèque de contenus.{" "}
+          <strong>La gratuité seule n&apos;écarte jamais.</strong> Une formation dont le coût
+          est pris en charge — BTS en lycée public, licence à l&apos;université, parcours en
+          alternance — reste au catalogue : elle a un parcours borné, et un prix payé par un
+          tiers.
+        </p>
 
         <h3 className="mt-5 font-titre font-medium">Acteurs écartés</h3>
         <p className="mt-1 text-(--text-secondary)">
@@ -639,6 +649,32 @@ function Methode() {
               <span className="text-(--text-secondary)">— {e.motif}</span>
             </li>
           ))}
+        </ul>
+
+        {/*
+          FICHES RETIRÉES — invariant 8, toute décision manuelle journalisée et
+          publique. Les deux retraits du 4 août vivaient jusqu'ici dans
+          `parite.test.ts`, un fichier de test invisible du lecteur. Deux
+          retraits invisibles passaient ; vingt et un, non.
+        */}
+        <h3 className="mt-5 font-titre font-medium">Fiches retirées</h3>
+        <p className="mt-1 text-(--text-secondary)">
+          Une fiche retirée l&apos;est parce que ce qu&apos;elle nomme n&apos;entre pas dans
+          le modèle, jamais parce qu&apos;elle est incomplète. Chaque retrait porte sa date
+          et son motif.
+        </p>
+        <ul className="mt-2 space-y-2">
+          {(retraits as Array<{ id: number; organisme: string; nom: string; le: string; motif: string }>).map(
+            (r) => (
+              <li key={r.id}>
+                <span className="font-medium">{r.organisme}</span>{" "}
+                <span className="text-(--text-secondary)">— {r.nom}</span>{" "}
+                <span className="text-(--text-tertiary)">({formaterDateCourte(r.le)})</span>
+                <br />
+                <span className="text-(--text-secondary)">{r.motif}</span>
+              </li>
+            ),
+          )}
         </ul>
       </Section>
 

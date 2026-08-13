@@ -1,0 +1,149 @@
+[
+ {
+  "id": 105,
+  "organisme": "M2i Formation",
+  "nom": "Formations digital et multimédia",
+  "le": "2026-08-04",
+  "motif": "Page catalogue d'organisme fichée comme un parcours. Elle portait des champs remplis de valeurs vraies d'aucun cours — « 1 à 5 jours » n'est la durée de rien. Une moyenne de catalogue présentée comme un fait sur un parcours est une information déduite : invariant 2. Les parcours recouverts sont fichés séparément."
+ },
+ {
+  "id": 107,
+  "organisme": "Dawan",
+  "nom": "Formations e-commerce et CMS",
+  "le": "2026-08-04",
+  "motif": "Page catalogue d'organisme fichée comme un parcours. Son « Aucun prérequis » était démenti par PrestaShop Développeurs, qui exige PHP et l'orienté objet. Invariant 2. Les parcours recouverts sont fichés séparément."
+ },
+ {
+  "id": 114,
+  "organisme": "Google",
+  "nom": "Ateliers Numériques",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 117,
+  "organisme": "PrestaShop",
+  "nom": "PrestaShop Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 118,
+  "organisme": "WiziShop",
+  "nom": "WiziShop Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 120,
+  "organisme": "Klaviyo",
+  "nom": "Klaviyo Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 122,
+  "organisme": "TikTok",
+  "nom": "TikTok Ads — centre d'apprentissage",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 161,
+  "organisme": "Brevo",
+  "nom": "Brevo Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 162,
+  "organisme": "Mailchimp",
+  "nom": "Mailchimp Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 163,
+  "organisme": "Pinterest",
+  "nom": "Pinterest Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 164,
+  "organisme": "Semrush",
+  "nom": "Semrush Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 165,
+  "organisme": "Ahrefs",
+  "nom": "Ahrefs Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 166,
+  "organisme": "Microsoft",
+  "nom": "Microsoft Advertising Learning Lab",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 168,
+  "organisme": "TikTok",
+  "nom": "TikTok Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 169,
+  "organisme": "Etsy",
+  "nom": "Etsy Seller Handbook",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 170,
+  "organisme": "Shopify",
+  "nom": "Shopify Partner Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 171,
+  "organisme": "Wix",
+  "nom": "Wix Learn",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 174,
+  "organisme": "Salesforce",
+  "nom": "Salesforce Trailhead — Commerce Cloud",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 175,
+  "organisme": "Zendesk",
+  "nom": "Zendesk Training — relation client e-commerce",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 177,
+  "organisme": "Klaviyo",
+  "nom": "Klaviyo Product Certifications",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 178,
+  "organisme": "Hotjar",
+  "nom": "Hotjar Academy",
+  "le": "2026-08-13",
+  "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ }
+]
