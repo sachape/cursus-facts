@@ -23,8 +23,21 @@
 /** Seuil de proximité des intitulés, après retrait du suffixe de formule. */
 export const SEUIL_PROXIMITE_INTITULE = 0.7;
 
-/** Seuil du tronc pédagogique commun, en deçà duquel la fusion est refusée. */
-export const SEUIL_TRONC_COMMUN = 0.8;
+/**
+ * Taux de tronc pédagogique commun EN DEÇÀ DUQUEL la fusion est refusée.
+ *
+ * Le nom porte la direction, et ce n'est pas une coquetterie. Ce seuil est un
+ * VETO : il autorise un refus, il ne conditionne pas une fusion. Cité « le
+ * tronc commun à 80 % », il se lit spontanément « on fusionne si le tronc
+ * dépasse 80 % » — l'inverse exact de la règle, et la formulation qui rend le
+ * manque d'information rentable : un organisme qui ne publie pas son programme
+ * obtiendrait autant de lignes qu'il a de formules.
+ *
+ * Renommé le 13 août 2026 en appliquant le corollaire tiré du même jour : une
+ * règle à seuil énonce son seuil ET SA DIRECTION dans sa formulation courte,
+ * parce que c'est l'abréviation qui rend l'erreur possible, pas la mémoire.
+ */
+export const SEUIL_REFUS_TRONC_COMMUN = 0.8;
 
 /**
  * Suffixes de formule commerciale, retirés avant comparaison des intitulés.
@@ -215,7 +228,7 @@ export function regrouper<T extends OffreRegroupable>(
       const reference = publies[0] ?? premier;
       const divergence = publies
         .slice(1)
-        .some((autre) => (tauxTroncCommun(reference, autre) ?? 0) < SEUIL_TRONC_COMMUN);
+        .some((autre) => (tauxTroncCommun(reference, autre) ?? 0) < SEUIL_REFUS_TRONC_COMMUN);
 
       if (divergence) {
         // Refus : chaque offre redevient une fiche autonome.

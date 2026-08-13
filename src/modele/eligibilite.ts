@@ -33,6 +33,28 @@ export const CRITERES_ELIGIBILITE = [
 export const CRITERES_MINIMUM = 3;
 
 /**
+ * LA FORMULATION COURTE DE LA RÈGLE — et elle porte son seuil.
+ *
+ * Le 13 août 2026, cette règle a été citée « les sept critères d'éligibilité »,
+ * comme s'ils étaient cumulatifs, pour justifier d'écarter des fiches que la
+ * règle **admettait** : une Academy d'éditeur en vérifie quatre. L'erreur ne
+ * venait pas de la mémoire mais de l'abréviation — « les sept critères » est
+ * une manière de citer cette règle qui en inverse le sens.
+ *
+ * D'où la leçon, et cette constante : **une règle à seuil énonce son seuil dans
+ * sa formulation courte.** Le seuil vivait dans `CRITERES_MINIMUM`, à côté de la
+ * liste, et rien n'obligeait à les citer ensemble.
+ *
+ * Elle est aussi la source unique de la phrase. Les deux pages qui publient la
+ * règle la composaient chacune de leur côté : les nombres étaient partagés, la
+ * phrase non. Deux pages qui énoncent la même règle avec leurs propres mots
+ * peuvent diverger sans que rien ne le signale — c'est exactement le défaut que
+ * l'extraction de ce module devait supprimer.
+ */
+export const REGLE_ELIGIBILITE_COURTE =
+  `Un acteur est référencé s'il vérifie au moins ${CRITERES_MINIMUM} des ${CRITERES_ELIGIBILITE.length} critères suivants.`;
+
+/**
  * Les six motifs de non-référencement.
  *
  * FORMULÉS COMME DES FAITS, JAMAIS COMME UN REFUS. « Chaîne gratuite sans offre

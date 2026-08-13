@@ -20,8 +20,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ADRESSE_CONTACT, lienContact } from "@/modele/contact";
 import {
   CRITERES_ELIGIBILITE,
-  CRITERES_MINIMUM,
   JAMAIS_REFERENCE,
+  REGLE_ELIGIBILITE_COURTE,
 } from "@/modele/eligibilite";
 
 const SITE = "https://formlist.fr";
@@ -70,10 +70,12 @@ function AjouterUnOrganisme() {
 
       <Titre>Ce que nous référençons</Titre>
       <p className="mt-(--space-2) max-w-prose t-body-sm text-(--text-secondary)">
-        Un acteur est référencé s&apos;il vérifie au moins{" "}
-        <span className="chiffre">{CRITERES_MINIMUM}</span> des{" "}
-        <span className="chiffre">{CRITERES_ELIGIBILITE.length}</span> critères suivants. Les
-        critères vérifiés sont affichés sur la fiche.
+        {/*
+          Phrase reprise telle quelle de `eligibilite.ts` : cette page la
+          composait avec ses propres mots, ce qui laissait deux énoncés de la
+          même règle libres de diverger.
+        */}
+        {REGLE_ELIGIBILITE_COURTE} Les critères vérifiés sont affichés sur la fiche.
       </p>
       <ul className="mt-(--space-3) list-disc space-y-(--space-1) pl-(--space-5) t-body-sm text-(--text-secondary)">
         {CRITERES_ELIGIBILITE.map((c) => (

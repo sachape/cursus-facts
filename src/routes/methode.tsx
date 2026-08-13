@@ -13,8 +13,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { FilAriane } from "@/composants/FilAriane";
 import {
   CRITERES_ELIGIBILITE,
-  CRITERES_MINIMUM,
   JAMAIS_REFERENCE,
+  REGLE_ELIGIBILITE_COURTE,
 } from "@/modele/eligibilite";
 import { chargerArbitrages, type ArbitrageLigne } from "@/donnees/requetes";
 import {
@@ -25,7 +25,7 @@ import {
   SUJETS_OUTILS,
 } from "@/modele/vocabulaires";
 import { SEUIL_SUJET_MODULES } from "@/modele/classification";
-import { SEUIL_PROXIMITE_INTITULE, SEUIL_TRONC_COMMUN } from "@/modele/regroupement";
+import { SEUIL_PROXIMITE_INTITULE, SEUIL_REFUS_TRONC_COMMUN } from "@/modele/regroupement";
 import { LIBELLES_TRIS, TRIS } from "@/modele/classement";
 import { CHAMPS_INFORMATION, LIBELLES_CHAMPS_INFORMATION } from "@/types/cursus";
 import { DEFINITIONS_MODALITES, LIBELLES_MODALITES } from "@/modele/modalite-acces";
@@ -88,7 +88,7 @@ function Methode() {
   const arbitrages = Route.useLoaderData() as ArbitrageLigne[];
   const pourcentSujet = Math.round(SEUIL_SUJET_MODULES * 100);
   const pourcentIntitule = Math.round(SEUIL_PROXIMITE_INTITULE * 100);
-  const pourcentTronc = Math.round(SEUIL_TRONC_COMMUN * 100);
+  const pourcentTronc = Math.round(SEUIL_REFUS_TRONC_COMMUN * 100);
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
@@ -614,7 +614,7 @@ function Methode() {
       <Section
         titre="Éligibilité au référencement"
         ancre="eligibilite"
-        intro={`Un acteur est référencé s'il vérifie au moins ${CRITERES_MINIMUM} des ${CRITERES_ELIGIBILITE.length} critères suivants. Les critères vérifiés sont affichés sur la fiche.`}
+        intro={`${REGLE_ELIGIBILITE_COURTE} Les critères vérifiés sont affichés sur la fiche.`}
       >
         <ul className="list-disc space-y-0.5 pl-5 text-(--text-secondary)">
           {CRITERES_ELIGIBILITE.map((c) => (

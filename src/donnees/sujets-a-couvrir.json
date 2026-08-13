@@ -1,0 +1,37 @@
+[
+ {
+  "sujet": "Email Marketing",
+  "depuisLe": "2026-08-13",
+  "porteAvantPar": ["Mailchimp Academy"],
+  "priorite": 1,
+  "motif": "Sujet e-commerce central, et plus aucune fiche du catalogue ne le porte depuis le retrait des plateformes d'éditeur. Le sujet RESTE au vocabulaire : qu'aucune offre payante ne le couvre est une information sur le catalogue, pas une raison de faire disparaître le sujet. Un manque doit produire un signal de collecte, jamais un effacement."
+ },
+ {
+  "sujet": "Marketplace",
+  "depuisLe": "2026-08-13",
+  "porteAvantPar": ["Salesforce Trailhead — Commerce Cloud"],
+  "priorite": 2,
+  "motif": "Sujet transverse au e-commerce, désormais sans aucune fiche. Il n'était porté que par la formation gratuite d'un éditeur — un sujet couvert par le seul vendeur de l'outil n'était déjà pas couvert par le marché."
+ },
+ {
+  "sujet": "Klaviyo",
+  "depuisLe": "2026-08-13",
+  "porteAvantPar": ["Klaviyo Academy", "Klaviyo Product Certifications"],
+  "priorite": 3,
+  "motif": "Outil d'emailing e-commerce répandu. À chercher chez les organismes de formation professionnelle, pas chez l'éditeur."
+ },
+ {
+  "sujet": "Brevo",
+  "depuisLe": "2026-08-13",
+  "porteAvantPar": ["Brevo Academy"],
+  "priorite": 3,
+  "motif": "Outil français d'emailing, susceptible d'être enseigné par des organismes francophones — c'est la piste la plus probable pour le couvrir."
+ },
+ {
+  "sujet": "Etsy",
+  "depuisLe": "2026-08-13",
+  "porteAvantPar": ["Etsy Seller Handbook"],
+  "priorite": 4,
+  "motif": "Marketplace de niche. Sa couverture par une offre payante est incertaine ; l'absence peut rester un fait durable sur le marché, et c'est une information légitime."
+ }
+]
