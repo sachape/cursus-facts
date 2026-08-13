@@ -3462,5 +3462,41 @@
   "le": "2026-08-06",
   "origine": "extraction_automatique",
   "motif": "Passe d'extraction automatisée"
+ },
+ {
+  "id": 127,
+  "champ": "url",
+  "valeurPrecedente": "yomi-denzel.fr",
+  "valeurNouvelle": null,
+  "sort": "a_verifier_en_priorite",
+  "urlSource": null,
+  "extrait": null,
+  "le": "2026-08-13",
+  "origine": "arbitrage_manuel",
+  "motif": "NE PAS RATTACHER À MINDEO. Changement de marque, PAS une correction d'URL. yomi-denzel.fr ne résout plus ; yomidenzel.com redirige vers mindeo.com. Mais Mindeo est une école multi-experts (Yomi Denzel y est l'un des intervenants, aux côtés de Théo Ritzy et Timothée Moiroux), et « Ecom Pro » N'Y FIGURE PAS — la chaîne est absente du site. Son offre e-commerce s'appelle « Ecom Accelerator », co-signée Théo Ritzy & Yomi Denzel : 3 mois, coach dédié, garantie de remboursement — là où Ecom Pro est un cours de ~70 h en autonomie, sans accompagnement. Ce sont deux produits différents. De plus « Ecom Accelerator » est DÉJÀ au catalogue en fiche 195, avec une URL qui répond (ecomaccelerator.fr) et un programme concordant (coach dédié, plan sur mesure, communauté). Rattacher 127 à Mindeo écrirait le prix d'Ecom Accelerator sur la fiche d'Ecom Pro et doublonnerait 195."
+ },
+ {
+  "id": 117,
+  "champ": "url",
+  "valeurPrecedente": "prestashop.com",
+  "valeurNouvelle": null,
+  "sort": "a_verifier_en_priorite",
+  "urlSource": null,
+  "extrait": null,
+  "le": "2026-08-13",
+  "origine": "arbitrage_manuel",
+  "motif": "Le domaine répond, mais l'offre semble avoir disparu sous ce nom : academy.prestashop.com redirige vers care-center.prestashop.com, et /academy comme /fr/academy rendent 404. Aucune page du domaine ne dépasse 0,50 de rapprochement avec « PrestaShop Academy » (le mot « academy » n'apparaît nulle part). À trancher à la lecture : offre absorbée dans le centre d'aide, ou renommée. Distinct du cas Yomi Denzel — ici l'organisme n'a pas changé, c'est le produit qui a bougé."
+ },
+ {
+  "id": 51,
+  "champ": "offre",
+  "valeurPrecedente": "MSc in AI Marketing & Business",
+  "valeurNouvelle": null,
+  "sort": "a_verifier_en_priorite",
+  "urlSource": null,
+  "extrait": null,
+  "le": "2026-08-13",
+  "origine": "arbitrage_manuel",
+  "motif": "Constaté APRÈS la correction du domaine, au rejeu du 13 août. ebs-paris.fr répond et son index de sitemaps est entièrement lisible : 13 pages de formation au total (4 dans program-sitemap, 9 dans page-sitemap). AUCUNE ne correspond à un MSc AI Marketing & Business — l'école y publie Grande École, MBA spécialisés, masters finance, RH, audit et international business. Le meilleur rapprochement est « master-international-business » à 0,33, qui est un autre programme. Ce n'est donc pas un défaut d'appariement : la page n'existe pas dans ce que l'école publie. Même famille que PrestaShop Academy — à trancher à la lecture : programme fermé, renommé, ou page hors sitemap."
  }
 ]

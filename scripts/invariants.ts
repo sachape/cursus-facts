@@ -199,9 +199,37 @@ verifier("8. Toute fiche possède une URL de site officiel", (o) =>
   o.url === null || o.url.trim() === "" || o.url === "—" ? nom(o) : null,
 );
 
+/*
+  POINTEURS INTERNES, EXCLUS DE LA RÈGLE DE NON-EFFACEMENT.
+
+  La règle protège une information QUE L'ORGANISME PUBLIE : c'est l'incident du
+  3 août, où 61 prix ont disparu faute de règle d'effacement. `urlDetail` n'est
+  pas de cette nature. Il ne figure pas dans les 18 `CHAMPS_INFORMATION`, il ne
+  s'affiche nulle part sur la fiche, et il n'est pas une déclaration de
+  l'organisme : c'est une adresse que NOUS avons choisie pour le joindre.
+
+  Deux raisons, chacune suffisante, pour que son effacement soit légitime :
+
+  1. Effacer un pointeur faux ne perd aucune information — la fiche retourne à
+     la file de découverte, ce qui est visible et réversible. Le CONSERVER, lui,
+     fait échouer toute lecture en profondeur en silence, et fait porter à
+     l'organisme une opacité qui est la nôtre.
+  2. La règle autorise déjà l'effacement quand une page lue le constate. C'est
+     exactement ce qui s'est produit sur la fiche 114 : la page a été ouverte, et
+     le garde-fou de correspondance a établi à 0,00 que ce n'était pas celle du
+     parcours. Ce n'est pas « on n'a pas su reconfirmer », c'est « on a constaté ».
+
+  L'exception est nommée et étroite. Élargir cette liste à un champ affiché
+  rouvrirait l'incident du 3 août.
+*/
+const POINTEURS_INTERNES = new Set(["urlDetail", "profondeur", "profondeurVerifieeLe"]);
+
 verifier("9. Aucune valeur effacée sans passage par « à confirmer »", (o) => {
   const effacements = (o.historique ?? []).filter(
-    (h) => h.valeurPrecedente !== null && !(o.aConfirmer ?? []).includes(h.champ),
+    (h) =>
+      h.valeurPrecedente !== null &&
+      !POINTEURS_INTERNES.has(h.champ) &&
+      !(o.aConfirmer ?? []).includes(h.champ),
   );
   // Une valeur remplacée par une autre est légitime ; une valeur devenue vide
   // sans déclassement est l'incident du 3 août.

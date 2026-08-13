@@ -1,0 +1,58 @@
+[
+ {
+  "id": 51,
+  "organisme": "EBS Paris",
+  "nom": "MSc in AI Marketing & Business",
+  "champ": "url",
+  "valeurActuelle": "ebs-paris.com",
+  "valeurConstatee": "ebs-paris.fr",
+  "sort": "correction_sure",
+  "motif": "Erreur de saisie. Le domaine .com ne résout pas ; .fr répond 200 et redirige vers www.ebs-paris.fr. Même organisme, même école, seule l'extension diffère. Constaté le 13 août 2026 par résolution DNS.",
+  "constateLe": "2026-08-13"
+ },
+ {
+  "id": 51,
+  "organisme": "EBS Paris",
+  "nom": "MSc in AI Marketing & Business",
+  "champ": "offre",
+  "valeurActuelle": "MSc in AI Marketing & Business",
+  "valeurConstatee": null,
+  "sort": "offre_a_verifier",
+  "motif": "Constaté APRÈS la correction du domaine, au rejeu du 13 août. ebs-paris.fr répond et son index de sitemaps est entièrement lisible : 13 pages de formation au total (4 dans program-sitemap, 9 dans page-sitemap). AUCUNE ne correspond à un MSc AI Marketing & Business — l'école y publie Grande École, MBA spécialisés, masters finance, RH, audit et international business. Le meilleur rapprochement est « master-international-business » à 0,33, qui est un autre programme. Ce n'est donc pas un défaut d'appariement : la page n'existe pas dans ce que l'école publie. Même famille que PrestaShop Academy — à trancher à la lecture : programme fermé, renommé, ou page hors sitemap.",
+  "constateLe": "2026-08-13"
+ },
+ {
+  "id": 114,
+  "organisme": "Google",
+  "nom": "Ateliers Numériques",
+  "champ": "urlDetail",
+  "valeurActuelle": "https://grow.google/",
+  "valeurConstatee": null,
+  "sort": "a_vider_puis_redecouvrir",
+  "motif": "Ce n'est pas une page de parcours mais la racine du domaine : son <h1> est « Mettez l'IA au service de vos projets », et le garde-fou de correspondance l'a rejetée à 0,00 — correctement. Une racine de domaine fichée comme page de détail fait échouer toute lecture en profondeur, et fait passer l'échec pour une opacité de l'organisme.",
+  "constateLe": "2026-08-13"
+ },
+ {
+  "id": 127,
+  "organisme": "Yomi Denzel",
+  "nom": "Ecom Pro",
+  "champ": "url",
+  "valeurActuelle": "yomi-denzel.fr",
+  "valeurConstatee": null,
+  "sort": "offre_a_verifier",
+  "suite": "Deux issues, une seule sera vraie. Soit Ecom Pro n'est plus vendue nulle part, et la fiche sort du catalogue avec son motif journalisé, comme les deux pages catalogue retirées le 4 août. Soit elle se vend encore ailleurs, et il faut trouver où — l'absence de domaine ne vaut pas disparition de l'offre. Ne rien conclure avant d'avoir cherché.",
+  "motif": "NE PAS RATTACHER À MINDEO. Changement de marque, PAS une correction d'URL. yomi-denzel.fr ne résout plus ; yomidenzel.com redirige vers mindeo.com. Mais Mindeo est une école multi-experts (Yomi Denzel y est l'un des intervenants, aux côtés de Théo Ritzy et Timothée Moiroux), et « Ecom Pro » N'Y FIGURE PAS — la chaîne est absente du site. Son offre e-commerce s'appelle « Ecom Accelerator », co-signée Théo Ritzy & Yomi Denzel : 3 mois, coach dédié, garantie de remboursement — là où Ecom Pro est un cours de ~70 h en autonomie, sans accompagnement. Ce sont deux produits différents. De plus « Ecom Accelerator » est DÉJÀ au catalogue en fiche 195, avec une URL qui répond (ecomaccelerator.fr) et un programme concordant (coach dédié, plan sur mesure, communauté). Rattacher 127 à Mindeo écrirait le prix d'Ecom Accelerator sur la fiche d'Ecom Pro et doublonnerait 195.",
+  "constateLe": "2026-08-13"
+ },
+ {
+  "id": 117,
+  "organisme": "PrestaShop",
+  "nom": "PrestaShop Academy",
+  "champ": "url",
+  "valeurActuelle": "prestashop.com",
+  "valeurConstatee": null,
+  "sort": "offre_a_verifier",
+  "motif": "Le domaine répond, mais l'offre semble avoir disparu sous ce nom : academy.prestashop.com redirige vers care-center.prestashop.com, et /academy comme /fr/academy rendent 404. Aucune page du domaine ne dépasse 0,50 de rapprochement avec « PrestaShop Academy » (le mot « academy » n'apparaît nulle part). À trancher à la lecture : offre absorbée dans le centre d'aide, ou renommée. Distinct du cas Yomi Denzel — ici l'organisme n'a pas changé, c'est le produit qui a bougé.",
+  "constateLe": "2026-08-13"
+ }
+]
