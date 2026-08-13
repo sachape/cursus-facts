@@ -2019,3 +2019,52 @@ test("seules les pages du plan échappent au noindex", async ({ page }) => {
   expect(derivee.noindex).toBe(true);
   expect(derivee.canonique).toBe("https://formlist.fr/");
 });
+
+test("le hero compte des informations vérifiées, et la date reste sur les fiches", async ({
+  page,
+}) => {
+  /*
+    UN CHIFFRE QUI MONTE, PAS UNE DATE QUI VIEILLIT.
+
+    Une date de dernière vérification ne produit aucun effet et se périme à
+    l'œil : lue un mardi elle rassure, lue trois semaines plus tard elle
+    inquiète, alors que le catalogue n'a pas bougé. Elle affirmait en outre sur
+    l'ENSEMBLE ce qui n'est vrai que d'une fiche.
+
+    Les deux moitiés de la décision se vérifient ensemble, sinon la seconde se
+    perd : le hero cesse de porter la date, ET la date reste là où elle décrit
+    l'objet qu'elle mesure.
+  */
+  await page.goto(BASE, { waitUntil: "networkidle" });
+
+  const chiffres = page.locator("dl").first();
+  await expect(chiffres).toBeVisible();
+  const texte = await chiffres.innerText();
+
+  expect(texte).toContain("informations vérifiées");
+  // Aucun mois écrit : c'est la forme que prenait la date.
+  expect(texte).not.toMatch(/janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre/i);
+
+  /*
+    Le total est un nombre lu sur le catalogue. Un chiffre écrit en dur
+    resterait juste le jour de sa rédaction et faux le lendemain — sur un
+    produit dont la valeur est la vérifiabilité, c'est la promesse la plus
+    coûteuse à casser.
+  */
+  const valeurs = await chiffres.locator("dd, .chiffre").allInnerTexts();
+  const total = valeurs.map((v) => v.replace(/[^\d]/g, "")).filter((v) => v !== "");
+  expect(total.length).toBeGreaterThanOrEqual(3);
+  expect(Number(total.at(-1))).toBeGreaterThan(0);
+
+  // La date, sur la ligne de provenance d'une fiche.
+  await page.locator("main ul > li h3 a").first().click();
+  const panneau = page.getByRole("dialog");
+  await expect(panneau).toBeVisible();
+  await expect(panneau.getByText(/Vérifié le/)).toBeVisible({ timeout: 15_000 });
+
+  // La date, sur la ligne de faits d'un organisme.
+  await page.goto(`${BASE}/organismes`, { waitUntil: "networkidle" });
+  await page.locator("main a[href^='/organismes/']").first().click();
+  await page.waitForURL(/\/organismes\/[a-z0-9-]+$/);
+  await expect(page.getByText(/Vérifié le/).first()).toBeVisible({ timeout: 15_000 });
+});

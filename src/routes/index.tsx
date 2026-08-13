@@ -51,7 +51,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CHAMPS_INFORMATION, type DomaineParcours } from "@/types/cursus";
 import { formaterNombre } from "@/modele/nombres";
-import { formaterJourMois } from "@/modele/dates";
 
 export const Route = createFileRoute("/")({
   // La vue Organismes renvoie ici avec ?organisme=<nom> : le filtre vit dans
@@ -338,6 +337,18 @@ function Explorer() {
     .filter((d): d is string => d !== null)
     .sort()
     .at(-1) ?? null;
+  /*
+    LE CHIFFRE QUI DIT CE QUE FAIT LE PRODUIT. Chaque information de chaque
+    fiche relevée à la source, une par une — c'est ce qu'aucun comparatif
+    rémunéré à l'affiliation ne peut afficher, parce qu'ils recopient là où
+    nous vérifions.
+
+    `infosRenseignees` compte les états `renseigne` et `derive` : une valeur
+    dérivée vient d'une règle publiée et opposable, donc vérifiable au même
+    titre. Somme lue à chaque rendu, jamais écrite : elle bougerait au premier
+    champ collecté.
+  */
+  const informationsVerifiees = parcours.reduce((total, p) => total + p.infosRenseignees, 0);
   const ecartesFauteInfo = compterEcartesFauteInformation(parcours, filtres);
   /*
     Les deux nombres de la mention de budget. Calculés ici, comme les autres
@@ -634,14 +645,26 @@ function Explorer() {
             qualificatif="écoles, universités, indépendants"
           />
           {/*
-            Le troisième change de nature : la fraîcheur et la traçabilité sont
-            ce qui nous distingue, pas un total d'informations que personne ne
-            sait interpréter.
+            LE TROISIÈME N'EST PLUS UNE DATE, ET C'EST UN REVIREMENT ASSUMÉ.
+
+            Une date de dernière vérification ne produit aucun effet et se
+            périme à l'œil en quelques jours : lue un mardi, elle rassure ; lue
+            trois semaines plus tard, elle inquiète, alors que le catalogue n'a
+            pas bougé. Elle affirmait en outre sur l'ENSEMBLE ce qui n'est vrai
+            que d'une fiche — le catalogue est vérifié par morceaux, à des dates
+            différentes, et la plus récente ne dit rien des autres.
+
+            Le total d'informations vérifiées, lui, ne se périme pas : il monte.
+            Et il énonce exactement ce que le produit fait.
+
+            La date n'a pas disparu : elle reste sur la ligne de provenance de
+            chaque fiche et sur chaque page organisme, là où elle décrit l'objet
+            qu'elle mesure.
           */}
           <Chiffre
-            valeur={formaterJourMois(derniereVerification)}
-            libelle="dernière vérification"
-            qualificatif="chaque information porte sa source"
+            valeur={formaterNombre(informationsVerifiees)}
+            libelle="informations vérifiées"
+            qualificatif="une par une, à la source"
           />
         </dl>
 
