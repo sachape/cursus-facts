@@ -145,5 +145,101 @@
   "nom": "Hotjar Academy",
   "le": "2026-08-13",
   "motif": "Ressource gratuite sans offre payante ni parcours borné : ce n'est pas un parcours au sens du catalogue. Plateforme d'apprentissage d'éditeur, dont les modules se suivent séparément et à la carte — aucun prix, aucune durée et aucun programme uniques ne peuvent en être vrais. La fiche n'est pas incomplète : elle décrit un objet qui n'entre pas dans le modèle."
+ },
+ {
+  "id": 69,
+  "organisme": "ISCOD",
+  "nom": "Bachelor & MBA Marketing digital",
+  "le": "2026-08-13",
+  "type": "eclatement",
+  "motif": "Fiche éclatée en 3 parcours, chacun avec sa page produit et son intitulé propre : Bachelor Marketing Communication & IA · MBA Marketing, Digital Business et IA · MBA Stratégie Marketing, Communication et IA. L'intitulé « Bachelor & MBA Marketing digital » recouvrait ces offres vendues séparément ; aucun prix, aucune durée et aucun programme uniques ne pouvaient en être vrais. Le catalogue ne perd rien."
+ },
+ {
+  "id": 74,
+  "organisme": "ENACO",
+  "nom": "Formations commerce et digital à distance",
+  "le": "2026-08-13",
+  "type": "eclatement",
+  "motif": "Fiche éclatée en 5 parcours, chacun avec sa page produit et son intitulé propre : Bachelor européen E-commerce · Mastère européen E-business · Bachelor européen Marketing digital · BTS Négociation et digitalisation de la relation client · Mastère européen Management digital. L'intitulé « Formations commerce et digital à distance » recouvrait ces offres vendues séparément ; aucun prix, aucune durée et aucun programme uniques ne pouvaient en être vrais. Le catalogue ne perd rien."
+ },
+ {
+  "id": 93,
+  "organisme": "Studi",
+  "nom": "Formation commerciale à distance",
+  "le": "2026-08-13",
+  "type": "eclatement",
+  "motif": "Fiche éclatée en 6 parcours, chacun avec sa page produit et son intitulé propre : BTS Management Commercial Opérationnel · BTS Négociation Digitalisation Relation Client · Déployer une stratégie marketing digital · Bachelor Chargé de Marketing et Communication · Développer la performance stratégique marketing digital · Manager des équipes et des projets de marketing digital. L'intitulé « Formation commerciale à distance » recouvrait ces offres vendues séparément ; aucun prix, aucune durée et aucun programme uniques ne pouvaient en être vrais. Le catalogue ne perd rien."
+ },
+ {
+  "id": 145,
+  "organisme": "Voltee",
+  "nom": "Formations e-commerce et webdesign",
+  "le": "2026-08-13",
+  "type": "eclatement",
+  "motif": "Fiche éclatée en 3 parcours, chacun avec sa page produit et son intitulé propre : Formation e-Commerce Power — WordPress WooCommerce et Elementor · Formation Shopify Expert · Formation Amazon FBA Pro. L'intitulé « Formations e-commerce et webdesign » recouvrait ces offres vendues séparément ; aucun prix, aucune durée et aucun programme uniques ne pouvaient en être vrais. Le catalogue ne perd rien."
+ },
+ {
+  "id": 110,
+  "organisme": "Réseau CCI",
+  "nom": "Formation continue commerce et numérique",
+  "le": "2026-08-13",
+  "type": "retrait",
+  "motif": "Programme de réseau, pas une offre. Le Réseau CCI oriente vers les offres de ses chambres territoriales ; l'intitulé « Formation continue commerce et numérique » couvre un domaine entier, avec une durée « Variable » et aucun programme. Rien à éclater : il n'y a pas de produit derrière, seulement un dispositif."
+ },
+ {
+  "id": 111,
+  "organisme": "CMA France",
+  "nom": "Numérisation des artisans et commerçants",
+  "le": "2026-08-13",
+  "type": "retrait",
+  "motif": "Dispositif de réseau, pas une offre. artisanat.fr publie un annuaire de centres de formation par région et des parcours d'orientation (« devenir apprenti », « entamer une reconversion ») ; aucune page de cours, aucune page pertinente e-commerce sur les 62 pages de formation relevées. Même nature que le Réseau CCI."
+ },
+ {
+  "id": 157,
+  "organisme": "Formasuite",
+  "nom": "Catalogue formations digitales",
+  "le": "2026-08-13",
+  "type": "retrait",
+  "motif": "Page catalogue d'organisme. L'intitulé « Catalogue formations digitales » désigne explicitement un ensemble d'offres distinctes, avec une durée « Variable » et aucun programme. Même motif que M2i et Dawan le 4 août."
+ },
+ {
+  "id": 83,
+  "organisme": "Oreegami",
+  "nom": "Parcours upskilling entreprises",
+  "le": "2026-08-13",
+  "type": "retrait",
+  "motif": "Page catalogue d'organisme, et la fiche en porte la preuve. Sa durée déclarée « 0,5 à 3 jours » reprend exactement les filtres du catalogue B2B d'Oreegami (moins d'1 jour, 1 jour, 1,5 jour, 2 jours) : c'est une plage de filtres, une valeur vraie d'aucun cours. Motif M2i et Dawan au mot près."
+ },
+ {
+  "id": 134,
+  "organisme": "Marketing Mania",
+  "nom": "Formations marketing et business en ligne",
+  "le": "2026-08-13",
+  "type": "hors_perimetre",
+  "motif": "Hors périmètre e-commerce. Marketing Mania vend trois produits réels, bornés et achetables, chacun avec sa page : croissance YouTube, copywriting professionnel avec certification, méthode 90 jours. Aucun ne porte sur le e-commerce. Ce motif ne dit rien de la qualité de l'offre — c'est le même que celui de Business Mentorat, « programme entrepreneurial généraliste, hors périmètre e-commerce »."
+ },
+ {
+  "id": 86,
+  "organisme": "Jedha",
+  "nom": "Formations data et IA",
+  "le": "2026-08-13",
+  "type": "hors_perimetre",
+  "motif": "Hors périmètre e-commerce. Jedha vend des bootcamps data, intelligence artificielle, Python et cybersécurité, ainsi que des bachelors et mastères IA. Aucune de ces offres n'a le commerce en ligne pour objet. L'éclatement aurait produit une dizaine de fiches immédiatement candidates à la sortie pour ce même motif."
+ },
+ {
+  "id": 87,
+  "organisme": "Le Wagon",
+  "nom": "Bootcamp data et développement",
+  "le": "2026-08-13",
+  "type": "hors_perimetre",
+  "motif": "Hors périmètre e-commerce. Le Wagon vend des bootcamps de développement web et de data. Le e-commerce n'y est pas l'objet du parcours."
+ },
+ {
+  "id": 160,
+  "organisme": "dixmilleheures",
+  "nom": "Formations création de contenu et monétisation",
+  "le": "2026-08-13",
+  "type": "hors_perimetre",
+  "motif": "Hors périmètre e-commerce. Ce que dixmilleheures vend est réel et borné — Airtable, Notion, Webflow, Bubble, un programme « lancer un site, le monétiser et le revendre » — mais relève de l'outillage no-code, pas du commerce en ligne. Ses trois pages e-commerce sont des comparatifs : leurs intitulés relevés sur la page sont « Les 8 meilleures formations Dropshipping », « Les 8 meilleures formations Google Ads », « Les 7 meilleures formations Shopify ». Le motif « média de comparatifs » viserait ses articles et non son offre : il serait inexact."
  }
 ]

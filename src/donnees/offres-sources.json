@@ -3506,60 +3506,6 @@
   "modaliteAcces": null
  },
  {
-  "id": 69,
-  "nom": "Bachelor & MBA Marketing digital",
-  "organisme": "ISCOD",
-  "categorieLibelle": "Écoles",
-  "sousFamille": "École du digital",
-  "region": null,
-  "url": "iscod.fr",
-  "prix": 0,
-  "duree": "1 à 3 ans",
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel",
-   "Alternance"
-  ],
-  "niveauLibelle": "Bac+2",
-  "prerequis": "Bac+2 minimum. Contrat d'alternance obligatoire.",
-  "cpf": 0,
-  "financements": [
-   "Alternance intégralement financée"
-  ],
-  "certification": "Titre RNCP",
-  "outils": [
-   "Outils marketing digital",
-   "Outils de gestion de projet"
-  ],
-  "programme": [
-   "Fondamentaux marketing et communication",
-   "Webmarketing et réseaux sociaux",
-   "Gestion de projet digital",
-   "Mémoire professionnel"
-  ],
-  "nonCouvert": [
-   "Cours en présentiel",
-   "Spécialisation e-commerce dédiée"
-  ],
-  "dateVerification": "2026-07-02",
-  "source": "iscod.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null,
-  "aConfirmer": [
-   "prix"
-  ],
-  "historique": [
-   {
-    "champ": "prix",
-    "valeurPrecedente": null,
-    "le": "2026-08-04",
-    "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
-   }
-  ]
- },
- {
   "id": 70,
   "nom": "Bachelor et Mastère e-marketing",
   "organisme": "Sup de Web — Média School",
@@ -3699,38 +3645,6 @@
   "nonCouvert": null,
   "dateVerification": "2026-06-08",
   "source": "ecitv.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 74,
-  "nom": "Formations commerce et digital à distance",
-  "organisme": "ENACO",
-  "categorieLibelle": "Écoles",
-  "sousFamille": "École du digital",
-  "region": null,
-  "url": "enaco.fr",
-  "prix": null,
-  "duree": "1 à 3 ans",
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 0,
-  "financements": [
-   "CPF",
-   "Alternance"
-  ],
-  "certification": "Titre RNCP",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-06-08",
-  "source": "enaco.fr",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
@@ -4049,39 +3963,6 @@
   ]
  },
  {
-  "id": 83,
-  "nom": "Parcours upskilling entreprises",
-  "organisme": "Oreegami",
-  "categorieLibelle": "Bootcamps",
-  "sousFamille": "Bootcamp",
-  "region": null,
-  "url": "oreegami.com",
-  "prix": null,
-  "duree": "0,5 à 3 jours",
-  "volumeHoraire": null,
-  "formats": [
-   "Présentiel",
-   "Distanciel"
-  ],
-  "niveauLibelle": "Expérience",
-  "prerequis": "Salariés en poste. Formats intra ou inter-entreprises.",
-  "cpf": 0,
-  "financements": [
-   "Plan de développement",
-   "OPCO"
-  ],
-  "certification": "Attestation",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-07-10",
-  "source": "oreegami.com",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
   "id": 84,
   "nom": "Bachelor Marketing Digital",
   "organisme": "Rocket School",
@@ -4209,77 +4090,6 @@
     "motif": "Restauration : la valeur avait été effacée le 3 août 2026 faute de vérification, au lieu d'être déclassée. Reprise du catalogue d'origine, en attente de reconfirmation sur source officielle."
    }
   ]
- },
- {
-  "id": 86,
-  "nom": "Formations data et IA",
-  "organisme": "Jedha",
-  "categorieLibelle": "Bootcamps",
-  "sousFamille": "Bootcamp",
-  "region": null,
-  "url": "jedha.co",
-  "prix": null,
-  "duree": "3 à 9 mois",
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel",
-   "Présentiel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 1,
-  "financements": [
-   "CPF",
-   "France Travail",
-   "OPCO"
-  ],
-  "certification": "Titre RNCP",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": [
-   "Spécialisation e-commerce"
-  ],
-  "dateVerification": "2026-07-16",
-  "source": "jedha.co",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 87,
-  "nom": "Bootcamp data et développement",
-  "organisme": "Le Wagon",
-  "categorieLibelle": "Bootcamps",
-  "sousFamille": "Bootcamp",
-  "region": null,
-  "url": "lewagon.com",
-  "prix": null,
-  "duree": "2 à 6 mois",
-  "volumeHoraire": null,
-  "formats": [
-   "Présentiel",
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 1,
-  "financements": [
-   "CPF",
-   "France Travail"
-  ],
-  "certification": "Titre RNCP",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": [
-   "Spécialisation e-commerce"
-  ],
-  "dateVerification": "2026-07-16",
-  "source": "lewagon.com",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
  },
  {
   "id": 88,
@@ -4506,47 +4316,6 @@
   "nonCouvert": [
    "Création technique de boutique",
    "Logistique"
-  ],
-  "dateVerification": "2026-06-30",
-  "source": "studi.com",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 93,
-  "nom": "Formation commerciale à distance",
-  "organisme": "Studi",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Organisme de formation",
-  "region": null,
-  "url": "studi.com",
-  "prix": null,
-  "duree": "6 à 18 mois",
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 1,
-  "financements": [
-   "CPF",
-   "France Travail"
-  ],
-  "certification": "Titre RNCP",
-  "outils": [
-   "CRM"
-  ],
-  "programme": [
-   "Techniques de vente",
-   "Relation client",
-   "Argumentation commerciale",
-   "Gestion de portefeuille client"
-  ],
-  "nonCouvert": [
-   "E-commerce technique"
   ],
   "dateVerification": "2026-06-30",
   "source": "studi.com",
@@ -5148,71 +4917,6 @@
   "nonCouvert": null,
   "dateVerification": "2026-06-15",
   "source": "cci.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 110,
-  "nom": "Formation continue commerce et numérique",
-  "organisme": "Réseau CCI",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Formation continue",
-  "region": null,
-  "url": "cci.fr",
-  "prix": null,
-  "duree": "Variable",
-  "volumeHoraire": null,
-  "formats": [
-   "Présentiel",
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": "186 centres, 300 000 stagiaires par an.",
-  "cpf": 0,
-  "financements": [
-   "Plan de développement",
-   "OPCO"
-  ],
-  "certification": "Attestation",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-06-15",
-  "source": "cci.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 111,
-  "nom": "Numérisation des artisans et commerçants",
-  "organisme": "CMA France",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Formation continue",
-  "region": null,
-  "url": "artisanat.fr",
-  "prix": null,
-  "duree": "Variable",
-  "volumeHoraire": null,
-  "formats": [
-   "Présentiel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": "Artisans et commerçants.",
-  "cpf": 0,
-  "financements": [
-   "Plan de développement",
-   "Aides régionales"
-  ],
-  "certification": "Attestation",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-06-15",
-  "source": "artisanat.fr",
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
@@ -5939,46 +5643,6 @@
   "modaliteAcces": null
  },
  {
-  "id": 134,
-  "nom": "Formations marketing et business en ligne",
-  "organisme": "Marketing Mania",
-  "categorieLibelle": "Formations indépendantes",
-  "sousFamille": "Créateur indépendant",
-  "region": null,
-  "url": "marketingmania.fr",
-  "prix": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 0,
-  "financements": null,
-  "certification": "Aucune",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": [
-   "Certification",
-   "CPF"
-  ],
-  "dateVerification": "2026-06-09",
-  "source": "Recherche web",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [],
-  "classificationManuelle": false,
-  "modaliteAcces": null,
-  "historique": [
-   {
-    "champ": "url",
-    "valeurPrecedente": null,
-    "le": "2026-08-04",
-    "motif": "Site officiel retrouvé et vérifié le 4 août 2026. La fiche était entrée au catalogue sans URL — impossible à ouvrir en profondeur, à rafraîchir ou à renvoyer vers l organisme."
-   }
-  ]
- },
- {
   "id": 135,
   "nom": "FormaFly — Shopify et publicité",
   "organisme": "FormaFly",
@@ -6389,51 +6053,6 @@
   "competencesDeclarees": [
    "Meta Ads",
    "SEO e-commerce",
-   "Dropshipping"
-  ],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 145,
-  "nom": "Formations e-commerce et webdesign",
-  "organisme": "Voltee",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Organisme de formation",
-  "region": null,
-  "url": "voltee.fr",
-  "prix": null,
-  "duree": "Accès libre",
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel",
-   "Présentiel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": "Aucun. Formations accessibles à tout moment.",
-  "cpf": 1,
-  "financements": [
-   "CPF",
-   "OPCO"
-  ],
-  "certification": "Qualiopi",
-  "outils": null,
-  "programme": [
-   "Marketing",
-   "E-commerce",
-   "Webdesign",
-   "SEO",
-   "Gestion de projet",
-   "Développement",
-   "Modélisation 3D"
-  ],
-  "nonCouvert": null,
-  "dateVerification": "2026-07-24",
-  "source": "voltee.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [
-   "SEO e-commerce",
-   "Shopify",
    "Dropshipping"
   ],
   "classificationManuelle": false,
@@ -7033,42 +6652,6 @@
   "modaliteAcces": null
  },
  {
-  "id": 157,
-  "nom": "Catalogue formations digitales",
-  "organisme": "Formasuite",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Organisme de formation",
-  "region": null,
-  "url": "formasuite.fr",
-  "prix": null,
-  "duree": "Variable",
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel",
-   "Présentiel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": "Contenus personnalisables sans surcoût.",
-  "cpf": 0,
-  "financements": [
-   "OPCO"
-  ],
-  "certification": "Qualiopi",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-07-24",
-  "source": "formasuite.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [
-   "SEO e-commerce",
-   "Meta Ads",
-   "Google Ads"
-  ],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
   "id": 158,
   "nom": "Coaching Amazon individuel",
   "organisme": "cockpitLAB",
@@ -7152,44 +6735,6 @@
    "No-code",
    "SEO e-commerce",
    "IA e-commerce"
-  ],
-  "classificationManuelle": false,
-  "modaliteAcces": null
- },
- {
-  "id": 160,
-  "nom": "Formations création de contenu et monétisation",
-  "organisme": "dixmilleheures",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Organisme de formation",
-  "region": null,
-  "url": "dixmilleheures.fr",
-  "prix": null,
-  "duree": null,
-  "volumeHoraire": null,
-  "formats": [
-   "Distanciel",
-   "Présentiel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 0,
-  "financements": [
-   "Paiement comptant"
-  ],
-  "certification": null,
-  "outils": null,
-  "programme": null,
-  "nonCouvert": [
-   "Certification",
-   "CPF"
-  ],
-  "dateVerification": "2026-07-24",
-  "source": "dixmilleheures.fr",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [
-   "Copywriting",
-   "Email Marketing"
   ],
   "classificationManuelle": false,
   "modaliteAcces": null
@@ -10001,6 +9546,635 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce — « Du 8 oct. au 9 oct. 2026 \nPARIS »"
+   }
+  ]
+ },
+ {
+  "id": 235,
+  "nom": "Bachelor Marketing Communication & IA",
+  "organisme": "ISCOD",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iscod.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.iscod.fr/formation-bachelor-marketing-et-communication-en-alternance",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 69,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 69 « Bachelor & MBA Marketing digital », qui nommait une famille. Intitulé relevé sur https://www.iscod.fr/formation-bachelor-marketing-et-communication-en-alternance."
+   }
+  ]
+ },
+ {
+  "id": 236,
+  "nom": "MBA Marketing, Digital Business et IA",
+  "organisme": "ISCOD",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iscod.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.iscod.fr/formation-marketing-digital-business-et-ia-en-alternance",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 69,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 69 « Bachelor & MBA Marketing digital », qui nommait une famille. Intitulé relevé sur https://www.iscod.fr/formation-marketing-digital-business-et-ia-en-alternance."
+   }
+  ]
+ },
+ {
+  "id": 237,
+  "nom": "MBA Stratégie Marketing, Communication et IA",
+  "organisme": "ISCOD",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "iscod.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.iscod.fr/formation-mba-strategie-marketing-communication-et-ia-en-alternance",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 69,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 69 « Bachelor & MBA Marketing digital », qui nommait une famille. Intitulé relevé sur https://www.iscod.fr/formation-mba-strategie-marketing-communication-et-ia-en-alternance."
+   }
+  ]
+ },
+ {
+  "id": 238,
+  "nom": "Bachelor européen E-commerce",
+  "organisme": "ENACO",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "enaco.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.enaco.fr/formations/bachelor-e-commerce/",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 74,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/bachelor-e-commerce/."
+   }
+  ]
+ },
+ {
+  "id": 239,
+  "nom": "Mastère européen E-business",
+  "organisme": "ENACO",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "enaco.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.enaco.fr/formations/mastere-ebusiness/",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 74,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/mastere-ebusiness/."
+   }
+  ]
+ },
+ {
+  "id": 240,
+  "nom": "Bachelor européen Marketing digital",
+  "organisme": "ENACO",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "enaco.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.enaco.fr/formations/bachelor-marketing-digital/",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 74,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/bachelor-marketing-digital/."
+   }
+  ]
+ },
+ {
+  "id": 241,
+  "nom": "BTS Négociation et digitalisation de la relation client",
+  "organisme": "ENACO",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "enaco.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.enaco.fr/formations/bts-ndrc/",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 74,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/bts-ndrc/."
+   }
+  ]
+ },
+ {
+  "id": 242,
+  "nom": "Mastère européen Management digital",
+  "organisme": "ENACO",
+  "categorieLibelle": "Écoles",
+  "sousFamille": "École du digital",
+  "region": null,
+  "url": "enaco.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.enaco.fr/formations/mastere-management-digital/",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 74,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/mastere-management-digital/."
+   }
+  ]
+ },
+ {
+  "id": 243,
+  "nom": "BTS Management Commercial Opérationnel",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 93,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel."
+   }
+  ]
+ },
+ {
+  "id": 244,
+  "nom": "BTS Négociation Digitalisation Relation Client",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 93,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client."
+   }
+  ]
+ },
+ {
+  "id": 245,
+  "nom": "Déployer une stratégie marketing digital",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 93,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital."
+   }
+  ]
+ },
+ {
+  "id": 246,
+  "nom": "Bachelor Chargé de Marketing et Communication",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 93,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication."
+   }
+  ]
+ },
+ {
+  "id": 247,
+  "nom": "Développer la performance stratégique marketing digital",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.studi.com/fr/formation/marketing/performance-marketing-digital",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 93,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/marketing/performance-marketing-digital."
+   }
+  ]
+ },
+ {
+  "id": 248,
+  "nom": "Manager des équipes et des projets de marketing digital",
+  "organisme": "Studi",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "studi.com",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://www.studi.com/fr/formation/marketing/management-projets-marketing-digital",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 93,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/marketing/management-projets-marketing-digital."
+   }
+  ]
+ },
+ {
+  "id": 249,
+  "nom": "Formation e-Commerce Power — WordPress WooCommerce et Elementor",
+  "organisme": "Voltee",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "voltee.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://voltee.fr/formations/ecommerce/e-commerce-woocommerce-formation",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 145,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 145 « Formations e-commerce et webdesign », qui nommait une famille. Intitulé relevé sur https://voltee.fr/formations/ecommerce/e-commerce-woocommerce-formation."
+   }
+  ]
+ },
+ {
+  "id": 250,
+  "nom": "Formation Shopify Expert",
+  "organisme": "Voltee",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "voltee.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://voltee.fr/formations/ecommerce/shopify-ecommerce",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 145,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 145 « Formations e-commerce et webdesign », qui nommait une famille. Intitulé relevé sur https://voltee.fr/formations/ecommerce/shopify-ecommerce."
+   }
+  ]
+ },
+ {
+  "id": 251,
+  "nom": "Formation Amazon FBA Pro",
+  "organisme": "Voltee",
+  "categorieLibelle": "Formations professionnelles",
+  "sousFamille": "Organisme de formation",
+  "region": null,
+  "url": "voltee.fr",
+  "prix": null,
+  "duree": null,
+  "volumeHoraire": null,
+  "formats": null,
+  "niveauLibelle": null,
+  "prerequis": null,
+  "cpf": null,
+  "financements": null,
+  "certification": null,
+  "outils": null,
+  "programme": null,
+  "nonCouvert": null,
+  "dateVerification": "2026-08-13",
+  "source": "Page de la formation sur le site de l'organisme",
+  "domaineDeclareLibelle": null,
+  "competencesDeclarees": [],
+  "classificationManuelle": false,
+  "modaliteAcces": null,
+  "profondeur": "catalogue_seul",
+  "urlDetail": "https://voltee.fr/formations/ecommerce/amazon-fba",
+  "historique": [
+   {
+    "champ": "id",
+    "valeurPrecedente": 145,
+    "le": "2026-08-13",
+    "motif": "Issue de l'éclatement de la fiche 145 « Formations e-commerce et webdesign », qui nommait une famille. Intitulé relevé sur https://voltee.fr/formations/ecommerce/amazon-fba."
    }
   ]
  }

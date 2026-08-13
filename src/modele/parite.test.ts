@@ -73,9 +73,15 @@ const CORRIGEES = new Set([141, 142, 143]);
  * Leur fiche entière est conservée dans `ressources-ecartees.json` et le retrait
  * est publié dans `journal-retraits.json`, rendu par la page Méthode.
  */
+/*
+ * 13 août 2026, second mouvement — les douze fiches-familles isolées.
+ * Éclatées (leurs parcours entrent au-delà de l'id 234) : 69 ISCOD, 74 ENACO,
+ * 93 Studi, 145 Voltee. Retirées : 83 Oreegami, 110 Réseau CCI, 111 CMA France,
+ * 157 Formasuite. Hors périmètre : 86 Jedha, 87 Le Wagon, 134 Marketing Mania, 160 dixmilleheures.
+ */
 const RETIREES = new Set([
   105, 107, 114, 117, 118, 120, 122, 161, 162, 163, 164, 165, 166, 168, 169, 170, 171, 174, 175,
-  177, 178,
+  177, 178, 69, 74, 83, 86, 87, 93, 110, 111, 134, 145, 157, 160,
 ]);
 const DERNIER_ID_PROTOTYPE = 195;
 const horsParite = (id: number) =>
@@ -140,11 +146,19 @@ describe("parité des distributions publiées dans le brief", () => {
         C'est la vérification que le retrait n'a déplacé aucune règle — il a
         enlevé des fiches, pas reclassé celles qui restent.
       */
-      "E-commerce": 63,
-      "Marketing digital": 46,
-      "Commerce et vente": 28,
+      /*
+        13 août, second mouvement — neuf fiches-familles sortent du socle
+        (quatre éclatées, quatre retirées, une hors périmètre) : e-commerce −1,
+        marketing digital −6, commerce et vente −2. Les six autres domaines ne
+        bougent pas. Les dix-sept parcours entrants portent des id supérieurs à
+        234 : ils sont hors parité par construction, comme toute fiche postérieure
+        au prototype.
+      */
+      "E-commerce": 62,
+      "Marketing digital": 39,
+      "Commerce et vente": 26,
       "Publicité payante": 10,
-      "Data et conversion": 8,
+      "Data et conversion": 6,
       Marketplaces: 7,
       Référencement: 5,
       "Création de site": 3,
@@ -158,8 +172,10 @@ describe("parité des distributions publiées dans le brief", () => {
         catalogue.filter((o) => !horsParite(o.id)).map((o) => o.categorie),
       ),
     ).toEqual({
-      formation_professionnelle: 40,
-      ecole: 44,
+      // 40 → 35 et 44 → 42 : Studi, Réseau CCI, CMA France, Formasuite et
+      // Marketing Mania d'un côté, ISCOD et ENACO de l'autre.
+      formation_professionnelle: 34,
+      ecole: 42,
       universite: 36,
       /*
         28 → 9. C'EST LA LIGNE QUI COMPTE : le retrait du 13 août ne touche
@@ -168,15 +184,15 @@ describe("parité des distributions publiées dans le brief", () => {
         c'est le risque qu'a écarté la seconde condition du critère.
       */
       certification_editeur: 9,
-      formation_independante: 23,
+      formation_independante: 22,
       mooc_plateforme: 12,
-      bootcamp: 7,
+      bootcamp: 4,
     });
   });
 
-  it("compare au prototype les 171 offres du socle inchangé", () => {
-    // 190 → 171 : dix-neuf plateformes d'éditeur retirées du socle.
-    expect(classes).toHaveLength(171);
+  it("compare au prototype les 159 offres du socle inchangé", () => {
+    // 190 → 171 (plateformes d'éditeur) → 162 (fiches-familles traitées, périmètre appliqué).
+    expect(classes).toHaveLength(159);
     /*
       29 → 22 sujets principaux sur le socle. Sur le CATALOGUE ENTIER, cinq
       sujets deviennent orphelins — plus aucune fiche ne les porte : Klaviyo,
@@ -187,7 +203,7 @@ describe("parité des distributions publiées dans le brief", () => {
       l'éditeur lui-même. Le catalogue ne perd pas une information, il cesse de
       prétendre couvrir un sujet qu'aucune offre payante n'y couvrait.
     */
-    expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(22);
+    expect(new Set(classes.map((c) => c.sujetPrincipal)).size).toBe(21);
   });
 
   it("n'utilise que les neuf domaines du vocabulaire fermé", () => {

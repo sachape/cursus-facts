@@ -22,7 +22,7 @@ describe("slug", () => {
 });
 
 describe("volume ingéré", () => {
-  it("prépare 211 fiches et 148 organismes à partir de 213 offres", () => {
+  it("prépare 216 fiches et 141 organismes à partir de 218 offres", () => {
     // Trois offres fusionnées en une seule fiche : les formules Builder, Premium
     // et Elite d'Amazon Incubator partagent le même programme.
     /*
@@ -35,14 +35,18 @@ describe("volume ingéré", () => {
       Le compte a été vérifié plutôt que déduit — la première version de ce
       commentaire disait « un organisme par fiche » et se trompait de quatre.
     */
-    expect(preparation.fiches).toHaveLength(211);
-    expect(preparation.organismes).toHaveLength(148);
+    // 13 août, second mouvement : quatre fiches-familles éclatées en dix-sept
+    // parcours réels, quatre retraits et une sortie hors périmètre.
+    // 211 → 216 fiches ; 148 → 141 organismes, les quatre parents éclatés
+    // étant remplacés par des parcours du MÊME organisme.
+    expect(preparation.fiches).toHaveLength(216);
+    expect(preparation.organismes).toHaveLength(141);
   });
 
   it("conserve une variante par offre, y compris dans une fiche fusionnée", () => {
     const variantes = preparation.fiches.reduce((s, f) => s + f.variantes.length, 0);
-    // 232 → 213 : retrait des dix-neuf plateformes d'éditeur du 13 août 2026.
-    expect(variantes).toBe(213);
+    // 232 → 213 (plateformes d'éditeur) → 221 (familles éclatées, retraits).
+    expect(variantes).toBe(218);
   });
 
   it("ne laisse plus aucun cas en file d'arbitrage", () => {
@@ -70,10 +74,10 @@ describe("repli des groupes ambigus", () => {
     expect(ambigus).toHaveLength(0);
   });
 
-  it("expose 211 entrées de liste, sans repli", () => {
+  it("expose 216 entrées de liste, sans repli", () => {
     const entrees = preparation.fiches.filter((f) => f.ancreSlug === null);
-    // 230 → 211 : retrait des dix-neuf plateformes d'éditeur du 13 août 2026.
-    expect(entrees).toHaveLength(211);
+    // 230 → 211 (plateformes d'éditeur) → 219 (familles traitées).
+    expect(entrees).toHaveLength(216);
   });
 });
 
@@ -165,7 +169,14 @@ describe("ce qui part en base respecte les invariants", () => {
       comptait pas mal : il comptait le mauvais objet. Les fiches entières sont
       conservées dans `ressources-ecartees.json`, rien n'est effacé.
     */
-    expect(total).toBe(2527);
+    /*
+      2 527 → 2 485. Les dix-sept parcours entrants n'apportent que leur
+      intitulé et leur adresse, constatés sur la page : tout le reste est nul,
+      et c'est voulu. Reprendre les champs de la fiche parente les aurait
+      peuplés de valeurs vraies d'aucun cours — ce qui a motivé l'éclatement.
+      C'est au crawl de les remplir, page par page et citation par citation.
+    */
+    expect(total).toBe(2456);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
@@ -245,8 +256,11 @@ describe("ce qui part en base respecte les invariants", () => {
           `ressources-ecartees.json` — et le retrait est publié dans
           `journal-retraits.json`. Le plancher tombe parce que le catalogue
           décrit moins d'objets, pas parce qu'on sait moins de choses sur eux.
+        · 13 août 2026, second mouvement — 2 567 → 2 495 : quatre fiches
+          éclatées, quatre retirées, quatre hors périmètre. Les parcours entrants
+          arrivent volontairement vides ; le plancher remontera par lecture.
     */
-    const PLANCHER = 2567;
+    const PLANCHER = 2495;
     const total = preparation.fiches.reduce(
       (s, f) => s + valeursPresentes(compterInformations(f.colonnes["etats"] as EtatsInformation)),
       0,

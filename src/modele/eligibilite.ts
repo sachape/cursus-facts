@@ -29,6 +29,34 @@ export const CRITERES_ELIGIBILITE = [
   "Offre actuellement commercialisée",
 ] as const;
 
+/**
+ * LE PÉRIMÈTRE — écrit le 13 août 2026, après avoir tranché quatre fiches.
+ *
+ * Marketing Mania, dixmilleheures, Jedha et Le Wagon sont sortis du catalogue
+ * ce jour-là sur un critère de périmètre qui n'était écrit NULLE PART. Une règle
+ * appliquée sans être publiée est exactement ce que l'invariant 7 interdit :
+ * elle transforme chaque décision en négociation, faute de pouvoir être
+ * contestée en tant que règle.
+ *
+ * DEUX TEMPS, ET LE SECOND EST INDISPENSABLE. « Le catalogue référence les
+ * parcours dont l'objet est le commerce en ligne » paraît suffire ; appliqué
+ * seul au catalogue du jour, il emporte 134 fiches sur 221 — tout sauf
+ * e-commerce et marketplaces, y compris le marketing digital, le référencement
+ * et la publicité, qui sont précisément les disciplines qu'un vendeur en ligne
+ * vient apprendre. Le périmètre est donc le commerce en ligne ET ce qui le sert
+ * directement.
+ *
+ * Le critère porte sur l'OBJET du parcours, jamais sur son public : c'est ce qui
+ * le rend vérifiable. Une formation Shopify destinée à des développeurs entre ;
+ * un bootcamp de développement web qui consacre un module au e-commerce n'entre
+ * pas.
+ */
+export const REGLE_PERIMETRE = [
+  "Un parcours entre au catalogue quand son objet principal est de vendre en ligne, ou d'exercer un métier du commerce en ligne : boutique, marketplace, acquisition, conversion, relation client, logistique de la vente.",
+  "Un parcours dont l'objet principal est une autre discipline n'entre pas, même si le e-commerce y figure comme module : développement, data, cybersécurité, création de contenu, outillage no-code, management général.",
+  "Le critère porte sur l'objet du parcours, jamais sur son public. Une formation Shopify destinée à des développeurs entre ; un bootcamp de développement web qui consacre un module au e-commerce n'entre pas.",
+] as const;
+
 /** Combien de critères suffisent. Publié, comme le reste. */
 export const CRITERES_MINIMUM = 3;
 

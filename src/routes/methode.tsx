@@ -15,6 +15,7 @@ import {
   CRITERES_ELIGIBILITE,
   JAMAIS_REFERENCE,
   REGLE_ELIGIBILITE_COURTE,
+  REGLE_PERIMETRE,
 } from "@/modele/eligibilite";
 import { chargerArbitrages, type ArbitrageLigne } from "@/donnees/requetes";
 import {
@@ -619,6 +620,13 @@ function Methode() {
         <ul className="list-disc space-y-0.5 pl-5 text-(--text-secondary)">
           {CRITERES_ELIGIBILITE.map((c) => (
             <li key={c}>{c}</li>
+          ))}
+        </ul>
+
+        <h3 className="font-titre font-medium">Périmètre</h3>
+        <ul className="mt-1 list-disc space-y-1 pl-5 text-(--text-secondary)">
+          {REGLE_PERIMETRE.map((r) => (
+            <li key={r}>{r}</li>
           ))}
         </ul>
 
