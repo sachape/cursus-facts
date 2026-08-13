@@ -314,6 +314,34 @@ absent = 2 points, programme, non-couvert, volume, prérequis = 1 chacun).
 Le catalogue fait foi sur la profondeur : `construireFile` réconcilie le statut
 à chaque passage, sinon les mêmes pages seraient retraitées indéfiniment.
 
+## Le code tournait, ne plantait pas, et comptait autre chose
+
+Trois défauts, un seul motif — **12 août 2026**. Aucun ne lève d'erreur, aucun
+n'est visible en lisant la ligne, et chacun a produit un chiffre faux pendant
+des semaines.
+
+- **`trois.filter((a) => a.correspond).length`** — `correspond` est la LISTE des
+  critères satisfaits, jamais un booléen. Filtrer sur sa seule présence gardait
+  tout : la mesure `aide_au_choix_terminee` annonçait systématiquement autant de
+  résultats que de candidats. Un tableau vide serait tombé sur la même ligne
+  sans rien dire de plus.
+- **« 18 parcours → 5 » puis trois affichés** — le compteur comptait les
+  parcours sans écart, le résultat prenait les trois premiers du classement.
+  Deux nombres pour le même ensemble, calculés par deux chemins différents.
+- **Le compteur d'informations stocké en colonne**, qui a menti six jours, et
+  **`certificationCourte()`** qui affichait « Non communiqué » sur un état
+  renseigné : mêmes causes, déjà consignées plus haut.
+
+**La règle.** Tout nombre affiché ou mesuré se dérive de la fonction qui produit
+l'ensemble qu'il décrit, dans le même appel quand les deux sont montrés
+ensemble. `resultatsAdequation` renvoie ses deux sections d'un unique
+`classerParAdequation` pour cette raison : ce n'est pas la discipline qui tient
+la cohérence, c'est la structure.
+
+**Corollaire de typage.** Un `filter` sur une valeur non booléenne est un défaut
+jusqu'à preuve du contraire — `.length > 0`, `!== null`, un prédicat explicite.
+TypeScript ne signale rien : `string[]` est parfaitement `truthy`.
+
 ## Dette connue, tracée
 
 - **Éligibilité CPF** : 164 fiches à `cpf: 0`. Le booléen ne distingue pas

@@ -1726,9 +1726,62 @@ test("l'aide au choix se déroule en conversation, et le retour recalcule", asyn
   const voir = page.getByRole("button", { name: /Voir les correspondances/ });
   if (await voir.count()) {
     await voir.click();
-    await expect(page.getByRole("heading", { name: "Trois correspondances" })).toBeVisible();
-    expect(await page.locator("main ul > li").filter({ has: page.locator('a[href^="/parcours/"]') }).count())
-      .toBeGreaterThan(0);
+    /*
+      LE NOMBRE ANNONCÉ EST LE NOMBRE MONTRÉ.
+
+      Le fil promettait « 18 parcours → 5 » puis en affichait trois, parce que
+      le résultat était tronqué à trois quand le compteur, lui, comptait les
+      parcours sans écart. Deux nombres pour le même ensemble, dont aucun
+      n'était vérifiable — sur un produit dont la valeur est la vérifiabilité,
+      c'est l'incohérence la plus coûteuse, et la seule qui se voit à l'écran.
+
+      Les trois lectures doivent coïncider : le « après » du dernier compteur,
+      le nombre du titre, et le nombre de cartes réellement rendues.
+    */
+    const titre = page.getByRole("heading", { name: /^\d+ correspondances?\b/ });
+    await expect(titre).toBeVisible();
+
+    const derniers = (await compteurs().allInnerTexts()).at(-1) ?? "";
+    const annonce = Number((derniers.match(/(\d+)/g) ?? []).at(-1));
+    const entete = await titre.innerText();
+    const affiche = Number(entete.match(/\d+/)![0]);
+    const cartes = await page.locator("main section > ul > li").count();
+
+    expect(annonce, `annonce illisible : « ${derniers} »`).toBeGreaterThan(0);
+    expect(affiche).toBe(annonce);
+    expect(cartes).toBe(annonce);
+
+    /*
+      LA SECONDE SECTION SUIT LA MÊME RÈGLE. « 12 correspondances · 6 à un écart
+      près » sont deux nombres qu'un lecteur additionne : le second doit lui
+      aussi désigner ce qui est réellement rendu, plafond compris. Un plafond
+      qui ne se dit pas se lit comme une exhaustivité.
+    */
+    const proches = page.locator("main section > div > ul > li");
+    if (/à un écart près/.test(entete)) {
+      const annonceQuasi = Number((entete.match(/(\d+)/g) ?? [])[1]);
+      expect(annonceQuasi).toBeGreaterThan(0);
+      expect(await proches.count()).toBe(Math.min(annonceQuasi, 10));
+      /* `exact` obligatoire : le nom accessible est cherché en « contient »,
+         et le titre « 12 correspondances · 78 à un écart près » répondrait
+         aussi — deux titres pour un locator, donc violation de strict mode. */
+      await expect(
+        page.getByRole("heading", { name: "À un écart près", exact: true }),
+      ).toBeVisible();
+
+      /*
+        CHAQUE CARTE NOMME SON ÉCART. C'est toute la raison d'être de la
+        section : « à un écart près » sans dire lequel est une appréciation, pas
+        un fait. Autant d'écarts nommés que de cartes, ni plus ni moins.
+      */
+      const nommes = page.locator("main section > div > ul > li p").filter({ hasText: /^≠/ });
+      expect(await nommes.count()).toBe(await proches.count());
+      for (const texte of await nommes.allInnerTexts()) {
+        expect(texte.replace(/^≠\s*/, "").length).toBeGreaterThan(10);
+      }
+    } else {
+      expect(await proches.count()).toBe(0);
+    }
     // Aucun mot de recommandation, nulle part sur la page.
     const texte = (await page.locator("main").innerText()).toLowerCase();
     for (const mot of ["je vous recommande", "recommandé", "meilleur choix"]) {
@@ -1751,7 +1804,7 @@ test("l'aide au choix se déroule en conversation, et le retour recalcule", asyn
   */
   await page.getByRole("button", { name: /^Modifier/ }).nth(total - 2).click();
   await expect(compteurs()).toHaveCount(total - 2);
-  await expect(page.getByRole("heading", { name: "Trois correspondances" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: /^\d+ correspondances?\b/ })).toHaveCount(0);
 
   /*
     ET SURTOUT : rerépondre LA MÊME CHOSE ne doit pas faire resurgir les

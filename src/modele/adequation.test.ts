@@ -6,7 +6,10 @@ import {
   evaluer,
   motsInterditsPresents,
   situationComplete,
-  troisCorrespondances,
+  compterCandidats,
+  correspondances,
+  PLAFOND_QUASI,
+  resultatsAdequation,
   type Situation,
 } from "./adequation";
 
@@ -172,9 +175,35 @@ describe("classement", () => {
     expect(classe[0]!.parcours.nom).toBe("Gratuit");
   });
 
-  it("renvoie exactement trois correspondances quand le catalogue le permet", () => {
-    const catalogue = Array.from({ length: 10 }, (_, i) => p({ nom: `P${i}`, slug: `p${i}` }));
-    expect(troisCorrespondances(catalogue, situation())).toHaveLength(3);
+  it("renvoie TOUS les parcours qui réunissent les réponses, sans plafond", () => {
+    // Couper à trois faisait de l'assistant un sélectionneur : rien ne
+    // distingue le troisième du quatrième quand tous deux réunissent les
+    // mêmes réponses.
+    // Prix publié : sans lui, la compatibilité budgétaire est un écart, et le
+    // catalogue de contrôle ne réunirait aucune réponse.
+    const catalogue = Array.from({ length: 10 }, (_, i) =>
+      p({ nom: `P${i}`, slug: `p${i}`, prixMin: 200 }),
+    );
+    expect(correspondances(catalogue, situation())).toHaveLength(10);
+  });
+
+  it("écarte du résultat tout parcours présentant un écart", () => {
+    const retenu = p({ nom: "Sans écart", slug: "ok", prixMin: 200 });
+    const ecarte = p({ nom: "Trop cher", slug: "ko", prixMin: 5000 });
+    const retenus = correspondances([ecarte, retenu], situation({ budget: "moins_500" }));
+    expect(retenus.map((a) => a.parcours.nom)).toEqual(["Sans écart"]);
+  });
+
+  it("désigne exactement l'ensemble que le compteur annonce", () => {
+    // Le fil promet « 18 parcours → 5 » : afficher autre chose que ces 5 rend
+    // les deux nombres invérifiables.
+    const catalogue = [
+      p({ nom: "A", slug: "a", prixMin: 100 }),
+      p({ nom: "B", slug: "b", prixMin: 200 }),
+      p({ nom: "C", slug: "c", prixMin: 9000 }),
+    ];
+    const s = situation({ budget: "moins_500" });
+    expect(correspondances(catalogue, s)).toHaveLength(compterCandidats(catalogue, s));
   });
 
   it("ne retire jamais un parcours du classement, même très écarté", () => {
@@ -207,5 +236,59 @@ describe("vocabulaire de jugement interdit", () => {
   it("ne se déclenche pas sur un mot qui contient seulement la sous-chaîne", () => {
     // « topographie » contient « top » sans en être une occurrence.
     expect(motsInterditsPresents("Module de topographie commerciale")).toEqual([]);
+  });
+});
+
+describe("les deux sections du résultat", () => {
+  it("partitionne sur le nombre d'écarts, sans recouvrement", () => {
+    // Prix publié : zéro écart. Prix absent : un seul écart, le budget.
+    const exact = p({ nom: "Exact", slug: "exact", prixMin: 200 });
+    const proche = p({ nom: "Proche", slug: "proche", prixMin: null });
+    const { exactes, quasi } = resultatsAdequation([proche, exact], situation());
+
+    expect(exactes.map((a) => a.parcours.nom)).toEqual(["Exact"]);
+    expect(quasi.map((a) => a.parcours.nom)).toEqual(["Proche"]);
+    expect(quasi.every((a) => a.ecarts.length === 1)).toBe(true);
+    // Aucun parcours ne peut figurer dans les deux.
+    const slugs = [...exactes, ...quasi].map((a) => a.parcours.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  it("fait gouverner les deux sections par la même évaluation", () => {
+    /*
+      LE POINT QUI COMPTE. « 12 correspondances · 6 à un écart près » sont deux
+      nombres qu'un lecteur additionne : les tirer de deux calculs séparés les
+      exposerait à diverger, et c'est très exactement le défaut qui faisait
+      annoncer « 18 parcours → 5 » puis en montrer trois.
+    */
+    const catalogue = [
+      p({ nom: "A", slug: "a", prixMin: 100 }),
+      p({ nom: "B", slug: "b", prixMin: 200 }),
+      p({ nom: "C", slug: "c", prixMin: null }),
+    ];
+    const s = situation();
+    const { exactes } = resultatsAdequation(catalogue, s);
+    expect(exactes).toHaveLength(compterCandidats(catalogue, s));
+    expect(exactes.map((a) => a.parcours.slug)).toEqual(
+      correspondances(catalogue, s).map((a) => a.parcours.slug),
+    );
+  });
+
+  it("plafonne les quasi-correspondances et dit combien il y en avait", () => {
+    // Une troncature silencieuse se lit comme une exhaustivité.
+    const catalogue = Array.from({ length: PLAFOND_QUASI + 5 }, (_, i) =>
+      p({ nom: `P${i}`, slug: `p${i}`, prixMin: null }),
+    );
+    const { exactes, quasi, quasiTotal } = resultatsAdequation(catalogue, situation());
+    expect(exactes).toHaveLength(0);
+    expect(quasi).toHaveLength(PLAFOND_QUASI);
+    expect(quasiTotal).toBe(PLAFOND_QUASI + 5);
+  });
+
+  it("conserve l'ordre du classement par défaut dans les quasi-correspondances", () => {
+    const fourni = p({ nom: "Renseigné", slug: "r", prixMin: null, infosRenseignees: 12 });
+    const nu = p({ nom: "Nu", slug: "n", prixMin: null, infosRenseignees: 1 });
+    const { quasi } = resultatsAdequation([nu, fourni], situation());
+    expect(quasi.map((a) => a.parcours.nom)).toEqual(["Renseigné", "Nu"]);
   });
 });

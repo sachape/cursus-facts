@@ -290,12 +290,74 @@ export function classerParAdequation(
     });
 }
 
-/** Les trois correspondances retenues. */
-export function troisCorrespondances(
+/**
+ * Les parcours qui réunissent toutes les réponses.
+ *
+ * EXACTEMENT L'ENSEMBLE QUE LE COMPTEUR ANNONCE, et c'est tout l'objet de cette
+ * fonction. Elle retenait auparavant les trois premiers du classement, quels
+ * que soient leurs écarts : le fil disait « 18 parcours → 5 » puis en montrait
+ * trois, dont certains ne réunissaient pas les réponses. Deux nombres pour le
+ * même ensemble, dont aucun n'était vérifiable — sur un produit dont la valeur
+ * est la vérifiabilité, c'est l'incohérence la plus coûteuse.
+ *
+ * AUCUN PLAFOND. Couper à trois faisait de l'assistant un sélectionneur : le
+ * choix des trois devenait éditorial, alors que rien ne distingue le troisième
+ * du quatrième quand tous deux réunissent les mêmes réponses. Le filtrage
+ * appartient aux questions posées, jamais à la troncature du résultat.
+ *
+ * Le critère est `ecarts.length === 0` — le même que `compterCandidats`, appelé
+ * sur la même fonction d'évaluation. Les deux ne peuvent pas diverger.
+ */
+export function correspondances(
   parcours: readonly ParcoursListe[],
   situation: Situation,
 ): Adequation[] {
-  return classerParAdequation(parcours, situation).slice(0, 3);
+  return classerParAdequation(parcours, situation).filter((a) => a.ecarts.length === 0);
+}
+
+/**
+ * Plafond des quasi-correspondances.
+ *
+ * Dix, parce qu'au-delà personne ne lit. Ce qui est coupé est DIT à l'écran —
+ * `quasiTotal` existe pour ça : une troncature silencieuse se lit comme une
+ * exhaustivité, et c'est exactement le mensonge que ce produit refuse.
+ */
+export const PLAFOND_QUASI = 10;
+
+export type ResultatsAdequation = {
+  /** Les parcours qui réunissent toutes les réponses. */
+  exactes: Adequation[];
+  /** Ceux qui en manquent une seule, plafonnés. */
+  quasi: Adequation[];
+  /** Combien il y en avait avant le plafond. */
+  quasiTotal: number;
+};
+
+/**
+ * Les deux sections du résultat, tirées d'UN SEUL classement.
+ *
+ * C'EST LA STRUCTURE QUI GARANTIT LA COHÉRENCE, PAS LA DISCIPLINE. « 12
+ * correspondances · 6 à un écart près » : deux nombres affichés côte à côte,
+ * qu'un lecteur additionne. Les faire calculer par deux fonctions séparées les
+ * exposerait à diverger au premier ajustement d'un critère — c'est très
+ * exactement le défaut qui faisait annoncer « 18 parcours → 5 » puis en montrer
+ * trois. Un seul appel à `classerParAdequation`, une seule partition.
+ *
+ * Le seuil est à UN écart, pas deux : « à un écart près » doit rester une
+ * phrase vraie et vérifiable carte par carte, et chaque carte nomme l'écart qui
+ * la place ici. Au-delà d'un écart, la proximité devient une appréciation.
+ */
+export function resultatsAdequation(
+  parcours: readonly ParcoursListe[],
+  situation: Situation,
+): ResultatsAdequation {
+  const classes = classerParAdequation(parcours, situation);
+  const quasiToutes = classes.filter((a) => a.ecarts.length === 1);
+  return {
+    exactes: classes.filter((a) => a.ecarts.length === 0),
+    quasi: quasiToutes.slice(0, PLAFOND_QUASI),
+    quasiTotal: quasiToutes.length,
+  };
 }
 
 /* -------------------------------------------------------------------------- */

@@ -14,8 +14,9 @@ import { chargerListe } from "@/donnees/requetes";
 import {
   questionsApplicables,
   situationComplete,
-  troisCorrespondances,
+  resultatsAdequation,
   type Adequation,
+  type ResultatsAdequation,
   type Situation,
 } from "@/modele/adequation";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
@@ -51,7 +52,7 @@ export const Route = createFileRoute("/aide-au-choix")({
       {
         name: "description",
         content:
-          "Quatre questions, trois correspondances avec leurs écarts explicites. Une adéquation avec votre situation, pas une évaluation de qualité.",
+          "Quatre questions, puis tous les parcours qui réunissent vos réponses. Une adéquation avec votre situation, pas une évaluation de qualité.",
       },
     ],
   }),
@@ -72,7 +73,7 @@ function AideAuChoix() {
 
   const parcours = Route.useLoaderData();
   const [reponses, setReponses] = useState<Partial<Situation>>({});
-  const [resultats, setResultats] = useState<Adequation[] | null>(null);
+  const [resultats, setResultats] = useState<ResultatsAdequation | null>(null);
   const [phrases, setPhrases] = useState<Map<string, PhraseRedigee>>(new Map());
   const [avertissement, setAvertissement] = useState<string | null>(null);
   const [enCours, setEnCours] = useState(false);
@@ -154,16 +155,19 @@ function AideAuChoix() {
     setPhrases(new Map());
     setAvertissement(null);
 
-    const trois = troisCorrespondances(parcours, fil.retenues);
-    setResultats(trois);
+    const retenus = resultatsAdequation(parcours, fil.retenues);
+    setResultats(retenus);
     /*
       Mesuré sur le CALCUL, avant la rédaction : celle-ci passe par un service
       externe qui peut échouer, et un questionnaire mené jusqu'au bout reste
       terminé même sans phrase rédigée.
     */
     mesurer("aide_au_choix_terminee", {
-      nombre: trois.length,
-      resultats: trois.filter((a) => a.correspond).length,
+      nombre: retenus.exactes.length,
+      /* `correspond` est une LISTE de critères satisfaits, jamais un booléen :
+         la filtrer sur sa seule présence comptait tous les résultats, à chaque
+         fois — le code tournait, ne plantait pas, et mesurait autre chose. */
+      quasi: retenus.quasi.length,
     });
 
     try {
@@ -171,7 +175,9 @@ function AideAuChoix() {
       const resultat = await redigerAdequation({
         data: {
           situation: resume,
-          candidats: trois.map((a) => ({
+          /* Les deux sections passent à la rédaction : une quasi-correspondance
+             mérite sa phrase autant qu'une correspondance exacte. */
+          candidats: [...retenus.exactes, ...retenus.quasi].map((a) => ({
             slug: a.parcours.slug,
             nom: a.parcours.nom,
             organisme: a.parcours.organismeNom,
@@ -201,8 +207,9 @@ function AideAuChoix() {
         <FilAriane miettes={[{ libelle: "Accueil", chemin: "/" }, { libelle: "Aide au choix" }]} />
         <h1 className="font-titre text-2xl font-semibold sm:text-3xl">Aide au choix</h1>
         <p className="mt-(--space-3) t-body-sm text-(--text-secondary)">
-          Quelques questions sur votre situation, trois parcours qui y correspondent — avec ce qui
-          ne correspond pas. Nous n&apos;évaluons aucun organisme et ne classons rien par qualité.
+          Quelques questions sur votre situation, puis tous les parcours qui y correspondent —
+          aucun n&apos;est écarté pour tenir dans une liste. Nous n&apos;évaluons aucun organisme
+          et ne classons rien par qualité.
         </p>
 
         {/*
@@ -281,8 +288,9 @@ function AideAuChoix() {
           {termine && !impasse && resultats === null && (
             <div className="flex flex-col gap-(--space-4)">
               <BulleEntrante>
-                <span className="chiffre">{restants}</span> parcours correspondent à ce que vous
-                m&apos;avez dit. Je vous en montre trois.
+                <span className="chiffre">{restants}</span>{" "}
+                {restants > 1 ? "parcours correspondent" : "parcours correspond"} à ce que vous
+                m&apos;avez dit. Je vous {restants > 1 ? "les montre tous" : "le montre"}.
               </BulleEntrante>
               <div className="flex justify-start">
                 <Button onClick={() => void chercher()} disabled={enCours}>
@@ -294,7 +302,11 @@ function AideAuChoix() {
 
           {resultats !== null && (
             <BulleEntrante>
-              Voici les trois parcours qui correspondent le mieux à ce que vous m&apos;avez dit.
+              {resultats.exactes.length > 1
+                ? "Voici les parcours qui réunissent ce que vous m'avez dit."
+                : resultats.exactes.length === 1
+                  ? "Voici le parcours qui réunit ce que vous m'avez dit."
+                  : "Aucun parcours ne réunit tout, mais certains en sont proches."}
             </BulleEntrante>
           )}
 
@@ -334,10 +346,26 @@ function AideAuChoix() {
       {resultats !== null && (
         <section className="mt-(--space-10)">
           <h2 ref={titreResultats} tabIndex={-1} className="font-titre text-xl font-medium">
-            Trois correspondances
+            <span className="chiffre">{resultats.exactes.length}</span>{" "}
+            {resultats.exactes.length > 1 ? "correspondances" : "correspondance"}
+            {resultats.quasiTotal > 0 && (
+              <>
+                {" · "}
+                <span className="chiffre">{resultats.quasiTotal}</span> à un écart près
+              </>
+            )}
           </h2>
+
+          {/*
+            PLEINE LARGEUR, SANS COLONNE D'ÉCARTS. Une carte de cette section
+            n'a par construction aucun écart : afficher « aucun écart constaté »
+            douze fois de suite, c'est une colonne qui ne dit jamais rien, et une
+            mise en garde répétée douze fois n'est plus une mise en garde.
+
+            Le fait d'être ICI dit déjà tout ce que la colonne disait.
+          */}
           <ul className="mt-(--space-6) flex flex-col gap-(--space-8)">
-            {resultats.map((a) => (
+            {resultats.exactes.map((a) => (
               <li key={a.parcours.slug}>
                 <ul className="flex flex-col gap-(--space-4)">
                   <TrainingResultCard parcours={a.parcours} />
@@ -349,44 +377,74 @@ function AideAuChoix() {
                   </p>
                 )}
 
-                {/* Les deux listes restent au même rang : l'écart est souvent
-                    l'information la plus utile. */}
-                <div className="mt-(--space-4) grid gap-(--space-4) sm:grid-cols-2">
-                  <div>
-                    <h3 className="t-caption font-medium uppercase tracking-wide text-atteste">
-                      ✓ Ce qui correspond
-                    </h3>
-                    <ul className="mt-(--space-2) space-y-(--space-1) t-body-sm">
-                      {a.correspond.length === 0 ? (
-                        <li className="text-(--text-secondary)">Aucun critère satisfait</li>
-                      ) : (
-                        a.correspond.map((c) => <li key={c}>{c}</li>)
-                      )}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="t-caption font-medium uppercase tracking-wide text-absent">
-                      ≠ Ce qui ne correspond pas
-                    </h3>
-                    <ul className="mt-(--space-2) space-y-(--space-1) t-body-sm">
-                      {a.ecarts.length === 0 ? (
-                        <li className="text-(--text-secondary)">
-                          Aucun écart constaté — vérifiez que la fiche est suffisamment renseignée
-                        </li>
-                      ) : (
-                        a.ecarts.map((e) => <li key={e}>{e}</li>)
-                      )}
-                    </ul>
-                  </div>
+                <div className="mt-(--space-4)">
+                  <h3 className="t-caption font-medium uppercase tracking-wide text-atteste">
+                    ✓ Ce qui correspond
+                  </h3>
+                  <ul className="mt-(--space-2) space-y-(--space-1) t-body-sm">
+                    {a.correspond.length === 0 ? (
+                      <li className="text-(--text-secondary)">Aucun critère satisfait</li>
+                    ) : (
+                      a.correspond.map((c) => <li key={c}>{c}</li>)
+                    )}
+                  </ul>
                 </div>
               </li>
             ))}
           </ul>
 
+          {/*
+            LES QUASI-CORRESPONDANCES — c'est ici, et NULLE PART AILLEURS, que
+            la notion d'écart a un sens. Personne n'a une contrainte absolue sur
+            les quatre critères : effacer ces parcours au motif qu'il leur manque
+            une réponse ferait passer l'assistant à côté de son propre objet.
+
+            « Ce qui ne colle pas » est l'information la plus honnête du produit,
+            et la seule qui distingue une adéquation d'une recommandation.
+          */}
+          {resultats.quasi.length > 0 && (
+            <div className="mt-(--space-12) border-t border-(--border-subtle) pt-(--space-8)">
+              <h2 className="font-titre text-xl font-medium">À un écart près</h2>
+              <p className="mt-(--space-2) t-body-sm text-(--text-secondary)">
+                Ces parcours réunissent toutes vos réponses sauf une, nommée sous chacun.
+                {resultats.quasiTotal > resultats.quasi.length && (
+                  <>
+                    {" "}
+                    Les <span className="chiffre">{resultats.quasi.length}</span> plus proches sont
+                    affichés, sur <span className="chiffre">{resultats.quasiTotal}</span>.
+                  </>
+                )}
+              </p>
+
+              <ul className="mt-(--space-6) flex flex-col gap-(--space-8)">
+                {resultats.quasi.map((a) => (
+                  <li key={a.parcours.slug}>
+                    <ul className="flex flex-col gap-(--space-4)">
+                      <TrainingResultCard parcours={a.parcours} />
+                    </ul>
+
+                    {phrases.has(a.parcours.slug) && (
+                      <p className="mt-(--space-3) t-body-sm text-(--text-secondary)">
+                        {phrases.get(a.parcours.slug)!.phrase}
+                      </p>
+                    )}
+
+                    {/* L'écart, nommé. Il n'y en a qu'un — c'est la définition
+                        de la section, pas une troncature de la liste. */}
+                    <p className="mt-(--space-4) t-body-sm text-absent">
+                      <span className="font-medium uppercase tracking-wide t-caption">≠ </span>
+                      {a.ecarts[0]}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <p className="mt-(--space-8) border-t border-(--border-subtle) pt-(--space-4) t-caption text-(--text-secondary)">
-            Les écarts ne sont pas des défauts : ce sont des faits utiles pour décider. Une
-            correspondance sans aucun écart signale le plus souvent une fiche trop peu renseignée
-            pour qu&apos;un écart ait pu être constaté, pas un parcours sans compromis.
+            Un écart n'est pas un défaut : c'est un fait utile pour décider. Et une correspondance
+            sans aucun écart signale parfois une fiche trop peu renseignée pour qu'un écart ait pu
+            être constaté, pas un parcours sans compromis.
           </p>
         </section>
       )}

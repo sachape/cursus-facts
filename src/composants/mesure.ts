@@ -151,6 +151,15 @@ export type Proprietes = Partial<ProprietesParcours> & {
   tri?: string;
   /** Compte d'éléments — parcours comparés, résultats, parcours d'un organisme. */
   nombre?: number;
+  /**
+   * `aide_au_choix_terminee` : les parcours à un écart près, montrés à part.
+   *
+   * Distinct de `nombre`, qui compte les correspondances exactes. Les écraser
+   * dans une seule propriété rendrait indistinguables « douze parcours
+   * réunissent tout » et « aucun ne réunit tout, douze en sont proches » — deux
+   * situations opposées pour la personne qui lit l'écran.
+   */
+  quasi?: number;
   /** `sauvegarde_*` : parcours ou organisme. */
   type?: string;
   /** `aide_au_choix_question_repondue` : la question et la réponse choisie. */
