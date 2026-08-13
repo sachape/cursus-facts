@@ -14,6 +14,15 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { RechercheHero, type Suggestion } from "@/composants/RechercheHero";
 import {
+  adresseFiltre,
+  depuisParametres,
+  normaliserParametres,
+  porteUnFiltre,
+  versParametres,
+  type ParametresFiltres,
+} from "@/modele/filtres-url";
+import { pageIndexable, pagePlanifiee } from "@/modele/plan-pages";
+import {
   auMoinsUnFiltre,
   compterDansPlage,
   compterEcartesFauteInformation,
@@ -57,23 +66,58 @@ export const Route = createFileRoute("/")({
     route est auto-référent sur `https://formlist.fr/`, donc toutes les
     variantes s'y consolident.
   */
-  validateSearch: (
-    recherche: Record<string, unknown>,
-  ): { organisme?: string; domaine?: string; fiche?: string } => ({
-    ...(typeof recherche["organisme"] === "string" ? { organisme: recherche["organisme"] } : {}),
-    ...(typeof recherche["domaine"] === "string" ? { domaine: recherche["domaine"] } : {}),
+  /*
+    TOUS LES FILTRES VIVENT DANS L'ADRESSE, et pas seulement `organisme` et
+    `domaine`. Sans cela : aucune page de croisement possible, aucune recherche
+    filtrée partageable, et la seule mesure de ce que les gens filtrent tient
+    dans un événement de mesure — donc sur la seule population qui l'accepte.
+
+    Les paramètres sont NORMALISÉS ici : une valeur inventée sort de l'adresse
+    au lieu de produire une liste vide sans explication, et deux adresses
+    décrivant le même état deviennent la même adresse.
+  */
+  validateSearch: (recherche: Record<string, unknown>): ParametresFiltres & { fiche?: string } => ({
+    ...normaliserParametres(recherche),
     ...validerFiche(recherche),
   }),
   loader: () => chargerListe(),
   component: Explorer,
-  head: () => ({
+  head: ({ match, loaderData }) => {
+    /*
+      NOINDEX PAR DÉFAUT SUR TOUTE ADRESSE FILTRÉE.
+
+      Dix-huit critères qui se combinent produisent des milliers d'adresses
+      valides servant des variantes du même contenu. Les laisser toutes
+      indexables noie les pages qui comptent — c'est le mécanisme qui a coûté
+      leur visibilité à tous les comparateurs à facettes.
+
+      Deux conditions cumulatives pour y échapper : figurer au plan de pages à
+      l'identique, et franchir le seuil de données, mesuré ici sur le catalogue.
+      Une page de croisement qui se vide se dégrade donc d'elle-même, sans que
+      personne ait à y penser.
+    */
+    const filtre = porteUnFiltre(normaliserParametres(match.search));
+    const page = filtre ? pagePlanifiee(match.search) : undefined;
+    const nombre =
+      page === undefined || loaderData === undefined
+        ? 0
+        : filtrer(loaderData, depuisParametres(match.search)).length;
+    const indexable = pageIndexable(page, nombre);
+
+    return {
     meta: [
-      { title: "Formlist — Comparateur de formations e-commerce en France" },
+      {
+        title: indexable
+          ? page!.titre
+          : "Formlist — Comparateur de formations e-commerce en France",
+      },
       {
         name: "description",
-        content:
-          "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
+        content: indexable
+          ? page!.description
+          : "Comparez les formations e-commerce en France selon leur prix, programme, durée, format, financement et certification, avec des informations vérifiées.",
       },
+      ...(filtre && !indexable ? [{ name: "robots", content: "noindex, follow" }] : []),
     ],
     /*
       CANONIQUE AUTO-RÉFÉRENT, POSÉ ICI ET NON À LA RACINE.
@@ -86,27 +130,62 @@ export const Route = createFileRoute("/")({
       déclaraient alors l'accueil comme canonique, ce qui les aurait sorties de
       l'index. Un canonique est une propriété de page, jamais de site.
     */
-    links: [{ rel: "canonical", href: "https://formlist.fr/" }],
-  }),
+    /*
+      Une adresse filtrée non planifiée se consolide sur l'accueil : c'est la
+      page dont elle est une variante. Une page planifiée, elle, est sa propre
+      référence — sinon elle disparaîtrait de l'index qu'on vient de lui ouvrir.
+    */
+    links: [
+      {
+        rel: "canonical",
+        href: indexable
+          ? adresseFiltre(page!.parametres, SITE_CANONIQUE)
+          : `${SITE_CANONIQUE}/`,
+      },
+    ],
+    };
+  },
 });
+
+const SITE_CANONIQUE = "https://formlist.fr";
 
 const PAR_PAGE = 25;
 
+/**
+ * Délai avant qu'une frappe atteigne l'adresse.
+ *
+ * PAS UN CONFORT, UNE LIMITE DE NAVIGATEUR. Safari plafonne
+ * `history.replaceState` à une centaine d'appels par tranche de trente
+ * secondes, puis lève. Une recherche de vingt caractères en consommerait vingt,
+ * et deux ou trois recherches suffiraient à casser la navigation — sur le seul
+ * navigateur où l'on ne s'en apercevrait pas en développant.
+ *
+ * Le champ reste donc piloté localement le temps de la frappe, et l'adresse
+ * reçoit la requête une fois la frappe retombée.
+ */
+const DELAI_RECHERCHE = 300;
+
 function Explorer() {
   const parcours = Route.useLoaderData() as ParcoursListe[];
-  const { organisme, domaine: domaineUrl, fiche } = Route.useSearch();
+  const recherche = Route.useSearch();
+  const { fiche } = recherche;
   const naviguer = useNavigate({ from: "/" });
-  const [filtres, setFiltres] = useState<Filtres>({
-    ...FILTRES_VIDES,
-    organisme: organisme ?? null,
-    // Le domaine arrive du fil d'Ariane d'une fiche. Validé contre le
-    // vocabulaire : une valeur inventée dans l'URL ne doit pas produire une
-    // liste vide sans explication, elle doit être ignorée.
-    domaine:
-      domaineUrl !== undefined && domaineUrl in LIBELLES_DOMAINES
-        ? (domaineUrl as DomaineParcours)
-        : null,
-  });
+  /*
+    L'ADRESSE FAIT FOI, il n'y a plus d'état de filtres à côté d'elle. Deux
+    sources obligeraient à répondre en permanence à « laquelle des deux
+    gagne », et la réponse serait « les deux » — c'est le défaut que le second
+    champ de recherche a coûté à la barre d'outils.
+  */
+  const filtres = useMemo(() => depuisParametres(recherche), [recherche]);
+
+  /*
+    LA SEULE EXCEPTION À « L'ADRESSE FAIT FOI », et elle est bornée à la durée
+    d'une frappe. `saisie` n'est pas un second état de filtre : c'est l'écho du
+    champ, qui rejoint l'adresse dès que la frappe retombe, et que l'adresse
+    reprend dès qu'elle change par ailleurs.
+  */
+  const [saisie, setSaisie] = useState(filtres.recherche);
+  useEffect(() => setSaisie(filtres.recherche), [filtres.recherche]);
   const [tri, setTri] = useState<Tri>(TRI_PAR_DEFAUT);
   const [limite, setLimite] = useState(PAR_PAGE);
   // Sous 960 px la colonne devient un panneau dépliable, replié au chargement.
@@ -159,7 +238,23 @@ function Explorer() {
   });
 
   const modifier = (patch: Partial<Filtres>) => {
-    setFiltres((f) => ({ ...f, ...patch }));
+    /*
+      REMPLACER L'ENTRÉE COURANTE, JAMAIS EN EMPILER UNE.
+
+      Chaque case cochée ajouterait sinon un point d'historique : sortir de
+      l'explorateur demanderait dix retours arrière, et le geste le plus
+      courant du navigateur deviendrait inutilisable. Le retour arrière doit
+      ramener d'où l'on vient, pas défaire un filtre à la fois.
+    */
+    naviguer({
+      search: (precedente) => ({
+        ...versParametres({ ...filtres, ...patch }),
+        // La fiche ouverte survit à un changement de filtre : le panneau est
+        // au-dessus de la liste, il n'en dépend pas.
+        ...(precedente.fiche !== undefined ? { fiche: precedente.fiche } : {}),
+      }),
+      replace: true,
+    });
     setLimite(PAR_PAGE);
     /*
       `filtre_applique` est émis ICI, et pas dans les vingt endroits qui posent
@@ -219,6 +314,13 @@ function Explorer() {
     return () => clearTimeout(minuterie);
   }, [requete]);
 
+  useEffect(() => {
+    if (saisie === filtres.recherche) return;
+    const minuterie = setTimeout(() => modifier({ recherche: saisie }), DELAI_RECHERCHE);
+    return () => clearTimeout(minuterie);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [saisie, filtres.recherche]);
+
   // La vue courante, déclarée une fois : chaque événement la porte ensuite.
   useEffect(() => declarerVue("explorateur"), []);
 
@@ -256,8 +358,21 @@ function Explorer() {
     })),
   ];
 
+  /*
+    UNE PAGE DE CROISEMENT PORTE SON PROPRE INTITULÉ, en titre de page comme en
+    titre de liste. Servir « Comparez les formations e-commerce » sur une
+    adresse indexée pour « formation Shopify éligible au CPF » revient à
+    indexer une page qui ne répond pas à la requête qui l'a fait remonter.
+
+    Le croisement doit figurer au plan : un intitulé dérivé automatiquement des
+    filtres posés fabriquerait un titre pour chacune des milliers de
+    combinaisons possibles, ce que le plan existe précisément pour empêcher.
+  */
+  const planifiee = pagePlanifiee(recherche);
+
   const titreListe =
-    filtres.domaine === null ? "Tous les parcours" : LIBELLES_DOMAINES[filtres.domaine];
+    planifiee?.intitule ??
+    (filtres.domaine === null ? "Tous les parcours" : LIBELLES_DOMAINES[filtres.domaine]);
 
   /*
     Un seul conteneur pour toute la colonne : la recherche et la carte des
@@ -291,10 +406,7 @@ function Explorer() {
           variant="outline"
           size="sm"
           className="w-full"
-          onClick={() => {
-            setFiltres(FILTRES_VIDES);
-            setLimite(PAR_PAGE);
-          }}
+          onClick={() => modifier(FILTRES_VIDES)}
         >
           Tout réinitialiser
         </Button>
@@ -322,7 +434,7 @@ function Explorer() {
   }, [parcours]);
 
   const suggestions: Suggestion[] = useMemo(() => {
-    const q = filtres.recherche.trim().toLowerCase();
+    const q = saisie.trim().toLowerCase();
     if (q.length < 3) return [];
     const correspond = (t: string) => t.toLowerCase().includes(q);
 
@@ -362,7 +474,7 @@ function Explorer() {
       }));
 
     return [...parParcours, ...parOrganisme, ...parDomaine];
-  }, [filtres.recherche, parcours, onglets]);
+  }, [saisie, parcours, onglets]);
 
   /*
     Les filtres posés, à plat et retirables. Construits ici parce que seule
@@ -436,10 +548,16 @@ function Explorer() {
           Deux lignes, obtenues par la taille et non par un `nowrap` : forcer
           l'insécable faisait déborder la seconde ligne sur les petits écrans.
         */}
-        <h1 className="hero-title mt-(--space-4)">
-          <span>Comparez les</span>
-          <span>formations e-commerce</span>
-        </h1>
+        {planifiee === undefined ? (
+          <h1 className="hero-title mt-(--space-4)">
+            <span>Comparez les</span>
+            <span>formations e-commerce</span>
+          </h1>
+        ) : (
+          <h1 className="hero-title mt-(--space-4)">
+            <span>{planifiee.intitule}</span>
+          </h1>
+        )}
 
         {/*
           La proposition de valeur, et ce qui nous sépare des comparatifs
@@ -473,8 +591,8 @@ function Explorer() {
 
         <div ref={zoneRecherche} className="mt-(--space-8)">
           <RechercheHero
-            valeur={filtres.recherche}
-            modifier={(v: string) => modifier({ recherche: v })}
+            valeur={saisie}
+            modifier={setSaisie}
             suggestions={suggestions}
             champRef={champRecherche}
           />
@@ -575,7 +693,7 @@ function Explorer() {
             titre={titreListe}
             nombre={resultats.length}
             filtresActifs={filtresActifs}
-            toutRetirer={() => setFiltres(FILTRES_VIDES)}
+            toutRetirer={() => modifier(FILTRES_VIDES)}
             tri={tri}
             choisirTri={(t) => {
               setTri(t);

@@ -1938,3 +1938,84 @@ test("un guide rend ses chiffres depuis le catalogue, et sort vers lui", async (
     timeout: 20_000,
   });
 });
+
+test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page }) => {
+  /*
+    TROIS CHOSES QUI NE SE VOIENT QU'AU RENDU.
+
+    1. Le filtre entre dans l'adresse — sans quoi aucune recherche filtrée n'est
+       partageable, aucune page de croisement n'existe, et ce que les gens
+       filtrent ne se lit que dans un événement de mesure.
+    2. L'adresse REPLACE l'entrée courante au lieu d'en empiler une. Chaque case
+       cochée ajouterait sinon un point d'historique : sortir de l'explorateur
+       demanderait dix retours arrière, et le geste le plus courant du
+       navigateur deviendrait inutilisable.
+    3. L'adresse rouvre la même liste — c'est le contrat du partage.
+  */
+  await page.goto(`${BASE}/methode`, { waitUntil: "networkidle" });
+  await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
+
+  const groupe = page.getByRole("button", { name: /^Certification/ }).first();
+  await groupe.click();
+  const option = page.getByRole("checkbox", { name: /Certifiant/ });
+  await expect(option).toBeVisible();
+  await option.click();
+
+  // 1. Le filtre est dans l'adresse.
+  await expect(page).toHaveURL(/certifiant=1/);
+  const resultats = page.locator("main section > ul > li, main ul > li");
+  const avecFiltre = await page.getByRole("heading", { level: 2 }).first().innerText();
+
+  // 2. Le retour arrière quitte l'explorateur au lieu de défaire le filtre.
+  await page.goBack();
+  await expect(page).toHaveURL(/\/methode$/);
+
+  // 3. L'adresse partagée rouvre la même liste, filtre appliqué.
+  await page.goto(`${BASE}/?certifiant=1`, { waitUntil: "networkidle" });
+  await expect(page.getByRole("checkbox", { name: /Certifiant/ })).toBeChecked();
+  expect(await page.getByRole("heading", { level: 2 }).first().innerText()).toBe(avecFiltre);
+  expect(await resultats.count()).toBeGreaterThan(0);
+});
+
+test("seules les pages du plan échappent au noindex", async ({ page }) => {
+  /*
+    Dix-huit critères qui se combinent produisent des milliers d'adresses
+    servant des variantes du même contenu. Les laisser indexables noie les pages
+    qui comptent — le mécanisme qui a coûté leur visibilité à tous les
+    comparateurs à facettes.
+
+    Le contrôle porte sur le HTML SERVI, pas sur le code : c'est ce que le robot
+    lit, et une balise posée côté client arriverait après lui.
+  */
+  const robots = async (adresse: string) => {
+    const reponse = await page.request.get(`${BASE}${adresse}`);
+    const html = await reponse.text();
+    return {
+      noindex: /name="robots"[^>]*content="noindex/.test(html),
+      canonique: html.match(/rel="canonical"\s+href="([^"]+)"/)?.[1] ?? null,
+    };
+  };
+
+  // L'accueil : indexable, canonique sur lui-même.
+  const accueil = await robots("/");
+  expect(accueil.noindex).toBe(false);
+  expect(accueil.canonique).toBe("https://formlist.fr/");
+
+  // Une combinaison quelconque : noindex, et consolidée sur l'accueil.
+  const quelconque = await robots("/?niveau=bac2&format=presentiel");
+  expect(quelconque.noindex).toBe(true);
+  expect(quelconque.canonique).toBe("https://formlist.fr/");
+
+  // Une page du plan : indexable et auto-référente.
+  const planifiee = await robots("/?cpf=1");
+  expect(planifiee.noindex).toBe(false);
+  expect(planifiee.canonique).toBe("https://formlist.fr/?cpf=1");
+
+  /*
+    Un filtre ajouté à une page du plan la fait retomber en noindex : le plan
+    liste des croisements CHOISIS, pas des croisements possibles.
+  */
+  const derivee = await robots("/?cpf=1&format=distanciel");
+  expect(derivee.noindex).toBe(true);
+  expect(derivee.canonique).toBe("https://formlist.fr/");
+});

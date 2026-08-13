@@ -22,6 +22,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { regrouperParOrganisme } from "@/modele/organismes";
 import { GUIDES, indexIndexable } from "@/contenu/guides";
+import { PLAN_PAGES, SEUIL_PAGE_INDEXABLE } from "@/modele/plan-pages";
+import { adresseFiltre, depuisParametres } from "@/modele/filtres-url";
+import { filtrer } from "@/modele/filtres";
 
 const SITE = "https://formlist.fr";
 
@@ -75,9 +78,23 @@ export const Route = createFileRoute("/sitemap.xml")({
           ...GUIDES.map((g) => entree(`/guides/${g.slug}`, "0.7", g.misAJourLe)),
         ];
 
+        /*
+          LES PAGES DE CROISEMENT SUIVENT LE MÊME SEUIL QUE LEUR BALISE.
+
+          Une page annoncée au sitemap et servie en `noindex` envoie deux
+          signaux contradictoires : le sitemap invite à indexer, la page refuse.
+          Le seuil est donc mesuré ici aussi, sur le même catalogue et par la
+          même fonction de filtrage — deux calculs séparés finiraient par
+          diverger, et c'est précisément la faute que le produit traque.
+        */
+        const croisements = PLAN_PAGES.filter(
+          (page) => filtrer(parcours, depuisParametres(page.parametres)).length >= SEUIL_PAGE_INDEXABLE,
+        ).map((page) => entree(adresseFiltre(page.parametres), "0.6", null));
+
         const lignes = [
           ...VUES.map((v) => entree(v.chemin, v.priorite, null)),
           ...guides,
+          ...croisements,
           ...organismes.map((o) =>
             entree(`/organismes/${o.slug}`, "0.7", o.derniereVerification),
           ),
