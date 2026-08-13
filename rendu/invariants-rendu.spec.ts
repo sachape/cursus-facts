@@ -570,8 +570,18 @@ test("l'en-tête mobile centre son logo et rend le focus au burger", async ({ pa
     expect(b.x).toBeGreaterThanOrEqual(0);
     expect(b.x + b.width).toBeLessThanOrEqual(largeur + 1);
 
-    // Les quatre entrées sont là : le menu n'en masque aucune.
-    await expect(menu.getByRole("link")).toHaveCount(4);
+    /*
+      Les quatre vues sont là : le menu n'en masque aucune.
+
+      NOMMÉES, PAS COMPTÉES. L'assertion portait sur un total de quatre liens,
+      ce qui la faisait tomber le jour où le panneau a reçu les guides, la
+      méthode et la connexion — alors que ce qu'elle protège, c'est qu'aucune
+      vue ne disparaisse. Un compteur global aurait aussi laissé passer un
+      remplacement : quatre liens, dont un faux.
+    */
+    for (const vue of ["Explorer", "Comparer", "Aide au choix", "Organismes"]) {
+      await expect(menu.getByRole("link", { name: vue, exact: true })).toBeVisible();
+    }
 
     await page.keyboard.press("Escape");
     await expect(menu).toBeHidden();
@@ -2067,4 +2077,60 @@ test("le hero compte des informations vérifiées, et la date reste sur les fich
   await page.locator("main a[href^='/organismes/']").first().click();
   await page.waitForURL(/\/organismes\/[a-z0-9-]+$/);
   await expect(page.getByText(/Vérifié le/).first()).toBeVisible({ timeout: 15_000 });
+});
+
+test("le panneau mobile porte toute la navigation, et sa croix ne bouge pas", async ({ page }) => {
+  /*
+    UN PANNEAU PLEIN ÉCRAN QUI RÉPÈTE LA BARRE NE SERT À RIEN. Il montrait les
+    quatre mêmes vues que le haut de page, puis un écran de blanc : ni les
+    guides, ni la méthode, ni la connexion n'y étaient atteignables, alors que
+    c'est le seul endroit où la navigation existe sous 1 024 px.
+
+    Et la croix occupe l'emplacement EXACT du burger : ouvrir puis refermer se
+    fait du même pouce, au même endroit. C'est une propriété géométrique, donc
+    elle se mesure — un remaniement qui la déplace ne se verrait pas autrement.
+  */
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(BASE, { waitUntil: "networkidle" });
+
+  const burger = page.getByRole("button", { name: "Ouvrir le menu" });
+  const avant = await boite(burger);
+  await burger.click();
+
+  const panneau = page.getByRole("dialog", { name: "Navigation principale" });
+  await expect(panneau).toBeVisible();
+
+  /*
+    ON MESURE UNE FOIS LE PANNEAU POSÉ. Il entre en glissant depuis la gauche :
+    mesuré pendant l'animation, tout ce qu'il contient est à trois cents pixels
+    de sa place, et le test décrit une image que personne ne voit.
+  */
+  await expect.poll(async () => (await panneau.boundingBox())?.x ?? -1).toBe(0);
+
+  const croix = panneau.getByRole("button", { name: "Fermer le menu" });
+  const apres = await boite(croix);
+  expect(Math.abs(apres.x - avant.x), "la croix a quitté la place du burger").toBeLessThanOrEqual(1);
+  expect(Math.abs(apres.y - avant.y)).toBeLessThanOrEqual(1);
+
+  // Les deux groupes, et ce que la barre de bureau ne porte pas.
+  for (const libelle of ["Guides", "Méthode", "Ajouter un organisme"]) {
+    await expect(panneau.getByRole("link", { name: libelle, exact: true })).toBeVisible();
+  }
+
+  /*
+    L'action de connexion reste visible sans défiler : sur un écran court, un
+    pied qui part avec la liste rend l'action introuvable au moment précis où
+    l'on en a besoin.
+  */
+  const compte = panneau.getByRole("link", { name: "Se connecter" });
+  await expect(compte).toBeInViewport();
+
+  // La promesse chiffrée est lue sur le catalogue, jamais écrite.
+  const chiffres = panneau.locator("p", { hasText: /parcours de .* organismes/ });
+  await expect(chiffres).toBeVisible();
+  expect((await chiffres.innerText()).replace(/[^\d]/g, "").length).toBeGreaterThan(0);
+
+  // Et Guides mène bien aux guides.
+  await panneau.getByRole("link", { name: "Guides", exact: true }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Guides");
 });
