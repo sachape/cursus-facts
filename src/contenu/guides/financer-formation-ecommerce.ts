@@ -59,7 +59,7 @@ export const guide: Guide = {
               precision: "condition nécessaire, pas suffisante",
             },
           ],
-          sortie: { libelle: "Voir les parcours éligibles au CPF", to: "/" },
+          sortie: { libelle: "Voir les parcours éligibles au CPF", to: "/", search: { cpf: "1" } },
         },
         {
           type: "paragraphe",
@@ -106,7 +106,7 @@ export const guide: Guide = {
               precision: "OPCO, France Travail, région, alternance",
             },
           ],
-          sortie: { libelle: "Filtrer sur le financement par l'entreprise", to: "/" },
+          sortie: { libelle: "Voir les parcours financés par l'entreprise", to: "/", search: { entreprise: "1" } },
         },
         {
           type: "sources",
@@ -170,7 +170,7 @@ export const guide: Guide = {
               precision: "coût nul pour l'alternant, sous réserve d'un contrat",
             },
           ],
-          sortie: { libelle: "Voir les parcours en alternance", to: "/" },
+          sortie: { libelle: "Voir les parcours en alternance", to: "/", search: { format: "alternance" } },
         },
         {
           type: "sources",
@@ -204,7 +204,7 @@ export const guide: Guide = {
         },
         {
           type: "sortie",
-          sortie: { libelle: "Comparer les prix relevés", to: "/" },
+          sortie: { libelle: "Comparer les prix relevés", to: "/", search: { prixPublie: "1" } },
         },
       ],
     },

@@ -48,7 +48,7 @@ export const guide: Guide = {
               precision: `${c.partPrixEtabli} % du catalogue, dont ${c.prixNul} sans frais`,
             },
           ],
-          sortie: { libelle: "Voir les parcours et leurs prix", to: "/" },
+          sortie: { libelle: "Voir les parcours dont le prix est publié", to: "/", search: { prixPublie: "1" } },
         },
         {
           type: "paragraphe",
@@ -88,7 +88,7 @@ export const guide: Guide = {
               valeur: euros(ligne.mediane),
               precision: `${ligne.payants} tarifs payants relevés sur ${ligne.nombre}, et ${ligne.gratuits} sans frais`,
             })),
-          sortie: { libelle: "Filtrer par catégorie dans l'explorateur", to: "/" },
+          sortie: { libelle: "Comparer les parcours par catégorie", to: "/" },
         },
         {
           type: "paragraphe",
@@ -160,7 +160,7 @@ export const guide: Guide = {
               precision: "le prix reste « non communiqué »",
             },
           ],
-          sortie: { libelle: "Voir les parcours sans frais pour l'apprenant", to: "/" },
+          sortie: { libelle: "Voir les parcours sans frais pour l'apprenant", to: "/", search: { sansFrais: "1" } },
         },
         {
           type: "paragraphe",
@@ -196,7 +196,7 @@ export const guide: Guide = {
               precision: "sous réserve de signer un contrat",
             },
           ],
-          sortie: { libelle: "Comparer ces parcours", to: "/" },
+          sortie: { libelle: "Voir les parcours en alternance", to: "/", search: { format: "alternance" } },
         },
         {
           type: "paragraphe",
@@ -239,7 +239,7 @@ export const guide: Guide = {
               precision: "la page de détail n'a pas encore été lue",
             },
           ],
-          sortie: { libelle: "Voir les parcours accessibles à titre individuel", to: "/" },
+          sortie: { libelle: "Voir les parcours accessibles à titre individuel", to: "/", search: { individuel: "1" } },
         },
         {
           type: "paragraphe",
