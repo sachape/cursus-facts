@@ -256,6 +256,63 @@ out » à 10. Ce n'est pas une perte : la forme n'était pas la garantie, la
 **vérification programmatique des citations** l'est, et elle s'applique
 identiquement à du JSON libre. Un JSON mal formé ne produit rien.
 
+### Une question chiffrée n'est utile que si c'est la bonne question
+
+**Crawl profond, 13 août 2026.** Trois jours de chiffrage ont porté sur le coût
+d'un crawl à l'échelle. Le test borné sur dix fiches a rendu **0,17 €** — soit
+**2 € pour les 119 fiches** exploitables au rythme constaté, **15 € au plafond**
+si toutes atteignaient le modèle à trois pages chacune.
+
+Le coût n'a jamais été la contrainte, et il était mesurable dès le premier jour
+pour le prix d'un appel.
+
+La vraie contrainte était dans le même lot, en évidence : **7 fiches sur 10
+n'ont jamais atteint le modèle**, toutes pour des raisons qui nous
+appartiennent — deux domaines faux, un `urlDetail` pointant sur une racine de
+domaine, un index de sitemaps lu sur son seul premier enfant. Quatre des sept se
+réparent sans modèle et sans arbitrage.
+
+**La règle : avant de chiffrer une hypothèse, vérifier qu'elle est la
+contrainte.** Un chiffre juste sur une question secondaire coûte plus qu'une
+estimation grossière sur la bonne — il donne l'impression d'avoir décidé. Le
+symptôme à guetter est un chiffrage qui dure plus longtemps que la mesure qui le
+trancherait : ici, dix fiches et vingt minutes.
+
+C'est la famille du §8 déplacée encore d'un cran. Là, une couche en aval passait
+à côté d'une règle juste ; ensuite, l'instrument regardait à côté ; ici,
+**l'instrument était juste, la mesure exacte, et la question mal choisie**.
+
+### Une règle citée de mémoire vaut une mesure non faite
+
+**13 août 2026, deux fois dans la même conversation.**
+
+- Les **sept critères d'éligibilité** ont été invoqués comme s'ils étaient
+  cumulatifs, pour écarter les plateformes d'éditeur. `eligibilite.ts` dit
+  « au moins TROIS », et une Academy en vérifie quatre : la règle les
+  **admettait**. Ce qui était présenté comme un rappel était une modification.
+- Un **invariant 14** a été invoqué. Il n'existe pas : le script en déclare
+  treize (1 à 11, plus 4 bis et 7 bis), `CLAUDE.md` en publie huit au niveau
+  produit. La référence visée était l'invariant produit 8.
+
+Aucune des deux n'a produit de dégât, parce qu'elles ont été relues avant
+d'agir. Mais la première aurait fait appliquer une règle qui n'existait pas sans
+la publier — invariant 7 contourné sans que personne ne le voie, puisque tout le
+monde croyait appliquer l'existant.
+
+Le même relevé a montré ce que ça coûte quand personne ne relit : la règle
+formulée de mémoire — « écarter les ressources gratuites » — aurait emporté
+**54 fiches de plus que les 19 visées, dont 34 licences et BTS en établissement
+public**. Il a fallu compter les fiches à prix nul pour le voir.
+
+**La règle : une règle qu'on cite se relit à sa source avant d'être appliquée**,
+au même titre qu'un chiffre se mesure avant d'être publié. Le coût est de
+quelques secondes ; celui de l'erreur symétrique — le 3 août — a été de 61 prix
+effacés.
+
+Corollaire de rédaction : **une règle à seuil énonce son seuil dans sa
+formulation courte.** « Au moins trois des sept critères » ne se cite pas
+« les sept critères » ; c'est cette abréviation qui rend l'erreur possible.
+
 ---
 
 ## 5. Dettes connues, chiffrées
@@ -290,10 +347,37 @@ l'organisme est faux, quelle que soit la main qui l'a écrit.
 | Profondeur du catalogue | 9 / 232 | Bloquée par l'appariement (§3). |
 | Fusion jamais déclenchée | 0 fusion | Règle couverte par des cas construits dans `regroupement.test.ts`. |
 | Intitulés désignant une famille | ~17 candidats | Non traités **par motif** : « Formlist Grande École » ressemble au patron et est un produit unique. Seule la lecture tranche. |
+| Garde-fou d'attribution (pages tarifs) | **6 tests, 0 exercice réel** | Couvert par des cas construits, jamais par le terrain — voir ci-dessous. |
 | `SaveButton` | — | **Décision produit en attente** : le produit n'a ni comptes ni favoris. Un bouton sans mécanisme serait une promesse non tenue. |
 | Règles `lieu` et `paiement` | 165 champs suspendus | Elles déduisent depuis un autre champ. Après le crawl, l'entrée sera constatée — la déduction reste, son entrée s'améliore. Même logique que le garde-fou de citation. |
 
 ---
+
+### Le garde-fou d'attribution est théorique tant qu'il ne s'est pas exercé
+
+`src/collecte/attribution.ts` répond à la question qui se pose sur une page
+tarifs — *ce PRIX est-il celui du parcours ?* — là où `verifierCorrespondance`
+répond à *cette PAGE est-elle celle du parcours ?*. Il existe parce que le
+second rejetterait toute page tarifs, dont le `<h1>` dit « Tarifs », et que
+baisser son seuil aurait supprimé le garde-fou exactement là où il protège le
+plus : une page tarifs porte le prix de dix formations.
+
+**Il n'a jamais servi.** Au crawl du 13 août, le seul prix trouvé l'a été sur
+une page de détail, où c'est la correspondance de page qui tranche. Le garde-fou
+est couvert par six cas construits — dont celui qui compte, un prix authentique
+appartenant à une autre formation de la même page — et par **zéro lecture
+réelle**.
+
+Six tests ne sont pas une mesure. Tant qu'aucun prix n'aura été retenu hors page
+de détail, son seuil de 0,8 et sa fenêtre de 600 caractères sont des paramètres
+choisis, pas des paramètres mesurés. **Le premier prix attribué depuis une page
+tarifs est à signaler et à relire à la main**, avec son extrait et son
+voisinage : c'est la seule occasion de savoir si la fenêtre est trop large — le
+titre d'une autre formation y entrerait — ou trop étroite.
+
+C'est la règle apprise sur la clé de rôle de service, appliquée à l'envers : un
+test qui ne peut pas tourner ne protège rien, et un test qui tourne sur des cas
+construits ne protège que ce qu'on a su construire.
 
 ### Ingestion — automatique, et sa limite datée
 
@@ -410,6 +494,31 @@ autre champ, syntaxe de variable Tailwind, migration de carte non appliquée,
 
 **À chaque fois : la règle est juste, la donnée est juste, une couche en aval
 passe à côté. Rien ne plante, aucun test ne rougit, le résultat est faux.**
+
+### Récurrence : le motif cherché dans un contenant plus large que son sens
+
+Deux fois maintenant, un motif juste a été cherché dans une chaîne qui portait
+autre chose que ce qu'il décrivait — et il a emprunté son sens au contenant.
+
+| Motif | Cherché dans | Ce qu'il a attrapé | Effet |
+|---|---|---|---|
+| `ux` | le texte entier | Linux, flux, Bordeaux, luxe | Une prépa classée en CRO parce que sa page disait « Linux et bash » |
+| `financ` | le chemin d'URL entier | `/formation/commerce-marketing-finance/...` | Une page de discipline prise pour une page de financement, un appel modèle dépensé pour rien |
+
+Le premier est corrigé dans `vocabulaires.ts` par `(?<![\p{L}\p{N}])…` : la
+frontière de mot rend au motif son unité de sens. Le second est corrigé dans
+`crawl-profond.ts` en cherchant le motif dans le **libellé du lien et le dernier
+segment d'URL**, jamais dans le chemin entier — un segment de taxonomie décrit
+la rubrique où vit la page, pas la page.
+
+**La règle : l'unité de recherche doit être l'unité qui porte le sens.** Un mot
+pour un motif de vocabulaire, un segment pour un motif de rôle de page. Chercher
+dans un contenant plus large ne produit jamais d'erreur, seulement des faux
+positifs silencieux — et ils coûtent d'autant plus cher qu'ils **déplacent** le
+vrai candidat au lieu de simplement s'ajouter à lui.
+
+C'est une famille distincte du motif ci-dessus : là, une couche en aval passait
+à côté d'une règle juste ; ici, la règle est appliquée au mauvais périmètre.
 
 ### Le cas du 6 août : un garde-fou qui mesurait autre chose
 
