@@ -51,6 +51,9 @@ const COLONNES = [
   {
     titre: "Comprendre",
     liens: [
+      /* En tête de la colonne : c'est le point d'entrée le plus large, celui
+         qui répond à une question posée avant même de savoir quoi comparer. */
+      { to: "/guides", libelle: "Guides" },
       { to: "/methode", libelle: "Méthode" },
       /* Sa place est ici et non dans « Explorer » : un organisme qui veut être
          référencé ne cherche pas à explorer le catalogue, il cherche à

@@ -21,6 +21,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { regrouperParOrganisme } from "@/modele/organismes";
+import { GUIDES, indexIndexable } from "@/contenu/guides";
 
 const SITE = "https://formlist.fr";
 
@@ -60,8 +61,23 @@ export const Route = createFileRoute("/sitemap.xml")({
         const parcours = await chargerListe();
         const organismes = regrouperParOrganisme(parcours);
 
+        /*
+          LES GUIDES FORMENT UNE SECTION À PART, et pas seulement pour la
+          lisibilité du fichier : leur `lastmod` est une date ÉDITORIALE — celle
+          de la dernière mise à jour du texte — là où celui d'une fiche est une
+          date de vérification. Deux natures de date qu'il ne faut pas mélanger.
+
+          L'index suit le seuil d'indexation : une page mise en `noindex` n'a
+          rien à faire dans un sitemap, qui est une invitation à indexer.
+        */
+        const guides = [
+          ...(indexIndexable() ? [entree("/guides", "0.6", null)] : []),
+          ...GUIDES.map((g) => entree(`/guides/${g.slug}`, "0.7", g.misAJourLe)),
+        ];
+
         const lignes = [
           ...VUES.map((v) => entree(v.chemin, v.priorite, null)),
+          ...guides,
           ...organismes.map((o) =>
             entree(`/organismes/${o.slug}`, "0.7", o.derniereVerification),
           ),

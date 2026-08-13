@@ -1864,3 +1864,77 @@ test("les prix inconnus sont inclus par défaut, et leur décompte s'affiche une
   // Un nombre, pas une formule vague : « certains parcours » ne se vérifie pas.
   await expect(masques.locator("span.chiffre")).toHaveText(/\d/);
 });
+
+test("un guide rend ses chiffres depuis le catalogue, et sort vers lui", async ({ page }) => {
+  /*
+    CE QUI DISTINGUE CES PAGES D'UN CONTENU D'AFFILIÉ, et qui ne se voit qu'au
+    rendu : les chiffres cités sont calculés sur le catalogue à la lecture, pas
+    recopiés. `guides.test.ts` interdit d'en écrire un dans la source ; celui-ci
+    vérifie qu'il en arrive bien un à l'écran, avec sa date de calcul et le lien
+    vers les fiches qui le composent.
+
+    Un guide sans sortie a coûté une lecture et n'a rien qualifié : le lien vers
+    le comparateur est donc contrôlé au même titre que les chiffres.
+  */
+  await page.goto(`${BASE}/guides`, { waitUntil: "networkidle" });
+
+  const premier = page.locator("main h2 a").first();
+  await expect(premier).toBeVisible();
+  await premier.click();
+
+  /*
+    ON ATTEND LE RENDU, PAS L'ADRESSE. `waitForURL` rend la main dès que
+    l'historique change — donc avant que le chargeur ait répondu et que le
+    composant soit monté. Mesurer à cet instant, c'est mesurer la page
+    précédente, et le test se met alors à décrire l'index en croyant décrire un
+    guide.
+  */
+  const blocs = page.locator("main figure");
+  await expect(blocs.first()).toBeVisible();
+  expect(page.url()).toMatch(/\/guides\/[a-z-]+$/);
+
+  // Un guide a son titre et sa date de mise à jour éditoriale.
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.locator("main header").getByText(/Mis à jour le/)).toBeVisible();
+
+  /*
+    Les blocs de données portent chacun une date de CALCUL — distincte de la
+    date de mise à jour éditoriale, et c'est tout le propos : le texte date, le
+    chiffre non.
+  */
+  const premierBloc = blocs.first();
+  await expect(premierBloc.getByText(/Calculé sur le catalogue le/)).toBeVisible();
+
+  const valeurs = await premierBloc.locator("dd").allInnerTexts();
+  expect(valeurs.length).toBeGreaterThan(0);
+  expect(valeurs.some((v) => /\d/.test(v))).toBe(true);
+
+  /*
+    LE SOMMAIRE MÈNE À DES SECTIONS QUI EXISTENT. Les ancres sont déclarées à la
+    main, comme celles de la page Méthode : une ancre morte ne se voit qu'en
+    cliquant, donc jamais. Au-delà de 1 024 px, c'est la colonne latérale qui
+    porte les liens — l'accordéon est masqué et sa liste n'est même pas rendue.
+  */
+  const sommaire = page.locator("main nav[aria-label='Sommaire du guide']").last();
+  await expect(sommaire).toBeVisible();
+  const ancres = await sommaire.locator("a").evaluateAll((liens) =>
+    liens.map((l) => (l as HTMLAnchorElement).getAttribute("href") ?? ""),
+  );
+  expect(ancres.length).toBeGreaterThan(0);
+  for (const ancre of ancres) {
+    expect(ancre.startsWith("#"), `ancre inattendue : ${ancre}`).toBe(true);
+    await expect(page.locator(`main ${ancre}`)).toHaveCount(1);
+  }
+
+  // Et la sortie vers le catalogue, en pied de guide.
+  const versCatalogue = page.getByRole("link", { name: "Ouvrir le comparateur" });
+  await expect(versCatalogue).toBeVisible();
+  await versCatalogue.click();
+  /* Le `h1` de l'explorateur vit dans son `header`, pas dans son `main` — celui-ci
+     ne porte que la colonne de résultats. Le rôle, lui, ne dépend pas du
+     placement. Délai élargi : c'est la route la plus lourde du produit et
+     `vite dev` la compile à la demande. */
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Comparez", {
+    timeout: 20_000,
+  });
+});

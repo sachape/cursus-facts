@@ -21,6 +21,8 @@ import { Route as MethodeRouteImport } from './routes/methode'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
 import { Route as ApiIngestionRouteImport } from './routes/api/ingestion'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as OrganismesIndexRouteImport } from './routes/organismes.index'
 import { Route as OrganismesSlugRouteImport } from './routes/organismes.$slug'
 import { Route as ParcoursSlugRouteImport } from './routes/parcours.$slug'
@@ -87,6 +89,16 @@ const ApiIngestionRoute = ApiIngestionRouteImport.update({
   path: '/api/ingestion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OrganismesIndexRoute = OrganismesIndexRouteImport.update({
   id: '/organismes/',
   path: '/organismes/',
@@ -126,8 +138,10 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
+  '/guides/': typeof GuidesIndexRoute
   '/organismes/': typeof OrganismesIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -145,8 +159,10 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
+  '/guides': typeof GuidesIndexRoute
   '/organismes': typeof OrganismesIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -165,8 +181,10 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
+  '/guides/': typeof GuidesIndexRoute
   '/organismes/': typeof OrganismesIndexRoute
   '/lovable/email/auth/preview': typeof LovableEmailAuthPreviewRoute
   '/lovable/email/auth/webhook': typeof LovableEmailAuthWebhookRoute
@@ -186,8 +204,10 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/guides/$slug'
     | '/organismes/$slug'
     | '/parcours/$slug'
+    | '/guides/'
     | '/organismes/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -205,8 +225,10 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/guides/$slug'
     | '/organismes/$slug'
     | '/parcours/$slug'
+    | '/guides'
     | '/organismes'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -224,8 +246,10 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/guides/$slug'
     | '/organismes/$slug'
     | '/parcours/$slug'
+    | '/guides/'
     | '/organismes/'
     | '/lovable/email/auth/preview'
     | '/lovable/email/auth/webhook'
@@ -244,8 +268,10 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminSeedRoute: typeof AdminSeedRoute
   ApiIngestionRoute: typeof ApiIngestionRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
   OrganismesSlugRoute: typeof OrganismesSlugRoute
   ParcoursSlugRoute: typeof ParcoursSlugRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   OrganismesIndexRoute: typeof OrganismesIndexRoute
   LovableEmailAuthPreviewRoute: typeof LovableEmailAuthPreviewRoute
   LovableEmailAuthWebhookRoute: typeof LovableEmailAuthWebhookRoute
@@ -337,6 +363,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiIngestionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/organismes/': {
       id: '/organismes/'
       path: '/organismes'
@@ -388,8 +428,10 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminSeedRoute: AdminSeedRoute,
   ApiIngestionRoute: ApiIngestionRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
   OrganismesSlugRoute: OrganismesSlugRoute,
   ParcoursSlugRoute: ParcoursSlugRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   OrganismesIndexRoute: OrganismesIndexRoute,
   LovableEmailAuthPreviewRoute: LovableEmailAuthPreviewRoute,
   LovableEmailAuthWebhookRoute: LovableEmailAuthWebhookRoute,
