@@ -14,6 +14,7 @@ import { determinerEtats } from "../src/modele/completude";
 import { deriver, DECLARATIONS_GENERALES, REGLE_ALTERNANCE } from "../src/modele/derivation";
 import { conditionDuCout } from "../src/modele/condition-cout";
 import { CHAMPS_INFORMATION, compterInformations } from "../src/types/cursus";
+import { RESSOURCES } from "../src/modele/ressources";
 
 const catalogue = chargerCatalogue();
 const nom = (o: OffreNormalisee) => `${o.organisme} — ${o.nom.slice(0, 44)}`;
@@ -268,6 +269,38 @@ const PRIX_SANS_TRACE_DECLARES = 30;
 verifier("12. Tout prix strictement positif porte son unité", (o) =>
   o.prix !== null && o.prix > 0 && o.unitePrix === null ? `${nom(o)} → ${o.prix} € sans unité` : null,
 );
+
+/*
+  13. AUCUNE RESSOURCE GRATUITE DANS LE CATALOGUE.
+
+  Les résultats de recherche, les filtres, l'aide au choix et les comparaisons
+  sont TOUS construits à partir du catalogue. Il suffit donc qu'aucune ressource
+  n'y figure pour qu'aucune ne puisse apparaître dans un résultat ou dans une
+  comparaison — et c'est un invariant de données, vérifiable, plutôt qu'une
+  discipline d'affichage à tenir dans chaque composant.
+
+  POURQUOI CET INVARIANT EXISTE. Les dix-neuf ressources SORTENT du catalogue :
+  elles y ont vécu jusqu'au 15 août 2026, avec des identifiants du catalogue et
+  des noms de fiche. Une réintégration accidentelle — une reprise du journal de
+  retraits, un import qui repart de `ressources-ecartees.json` — ne casserait
+  rien et ne rougirait aucun test : elle ferait simplement réapparaître une
+  chaîne gratuite au milieu de mastères à comparer. C'est exactement le motif du
+  §8 : la règle juste, la donnée juste, une couche en aval qui contourne.
+
+  DEUX CLÉS, PAS UNE. L'identifiant attrape la réintégration littérale ; le
+  couple (éditeur, nom) attrape la ressaisie sous un nouvel identifiant, qui est
+  le cas le plus probable et que l'identifiant seul laisserait passer.
+*/
+{
+  const parId = new Map(catalogue.map((o) => [o.id, o]));
+  const parCle = new Map(catalogue.map((o) => [`${o.organisme}|${o.nom}`.toLowerCase(), o]));
+  const infractions: string[] = [];
+  for (const r of RESSOURCES) {
+    const collision = parId.get(r.id) ?? parCle.get(`${r.editeurOuAuteur}|${r.nom}`.toLowerCase());
+    if (collision) infractions.push(`${r.editeurOuAuteur} — ${r.nom} → au catalogue sous #${collision.id}`);
+  }
+  resultats.push({ titre: "13. Aucune ressource gratuite dans le catalogue", infractions });
+}
 
 verifier("9. Aucune valeur effacée sans passage par « à confirmer »", (o) => {
   const effacements = (o.historique ?? []).filter(

@@ -55,6 +55,10 @@ const COLONNES = [
          qui répond à une question posée avant même de savoir quoi comparer. */
       { to: "/guides", libelle: "Guides" },
       { to: "/methode", libelle: "Méthode" },
+      /* Dans « Comprendre » et non dans « Explorer », à dessein : ces ressources
+         ne font pas partie du catalogue et ne s'explorent pas comme lui. Les
+         ranger à côté des parcours suggérerait qu'elles se comparent. */
+      { to: "/ressources", libelle: "Ressources gratuites" },
       /* Sa place est ici et non dans « Explorer » : un organisme qui veut être
          référencé ne cherche pas à explorer le catalogue, il cherche à
          comprendre ce qu'il est. */

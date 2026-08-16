@@ -18,6 +18,7 @@ import { Route as MesAlertesRouteImport } from './routes/mes-alertes'
 import { Route as MesComparaisonsRouteImport } from './routes/mes-comparaisons'
 import { Route as MesFormationsRouteImport } from './routes/mes-formations'
 import { Route as MethodeRouteImport } from './routes/methode'
+import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
 import { Route as ApiIngestionRouteImport } from './routes/api/ingestion'
@@ -72,6 +73,11 @@ const MesFormationsRoute = MesFormationsRouteImport.update({
 const MethodeRoute = MethodeRouteImport.update({
   id: '/methode',
   path: '/methode',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RessourcesRoute = RessourcesRouteImport.update({
+  id: '/ressources',
+  path: '/ressources',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/mes-comparaisons': typeof MesComparaisonsRoute
   '/mes-formations': typeof MesFormationsRoute
   '/methode': typeof MethodeRoute
+  '/ressources': typeof RessourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/mes-comparaisons': typeof MesComparaisonsRoute
   '/mes-formations': typeof MesFormationsRoute
   '/methode': typeof MethodeRoute
+  '/ressources': typeof RessourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   '/mes-comparaisons': typeof MesComparaisonsRoute
   '/mes-formations': typeof MesFormationsRoute
   '/methode': typeof MethodeRoute
+  '/ressources': typeof RessourcesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/mes-comparaisons'
     | '/mes-formations'
     | '/methode'
+    | '/ressources'
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
@@ -222,6 +232,7 @@ export interface FileRouteTypes {
     | '/mes-comparaisons'
     | '/mes-formations'
     | '/methode'
+    | '/ressources'
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
@@ -243,6 +254,7 @@ export interface FileRouteTypes {
     | '/mes-comparaisons'
     | '/mes-formations'
     | '/methode'
+    | '/ressources'
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
@@ -265,6 +277,7 @@ export interface RootRouteChildren {
   MesComparaisonsRoute: typeof MesComparaisonsRoute
   MesFormationsRoute: typeof MesFormationsRoute
   MethodeRoute: typeof MethodeRoute
+  RessourcesRoute: typeof RessourcesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminSeedRoute: typeof AdminSeedRoute
   ApiIngestionRoute: typeof ApiIngestionRoute
@@ -340,6 +353,13 @@ declare module '@tanstack/react-router' {
       path: '/methode'
       fullPath: '/methode'
       preLoaderRoute: typeof MethodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ressources': {
+      id: '/ressources'
+      path: '/ressources'
+      fullPath: '/ressources'
+      preLoaderRoute: typeof RessourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -425,6 +445,7 @@ const rootRouteChildren: RootRouteChildren = {
   MesComparaisonsRoute: MesComparaisonsRoute,
   MesFormationsRoute: MesFormationsRoute,
   MethodeRoute: MethodeRoute,
+  RessourcesRoute: RessourcesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminSeedRoute: AdminSeedRoute,
   ApiIngestionRoute: ApiIngestionRoute,

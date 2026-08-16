@@ -28,6 +28,7 @@ import { Button } from "@/components/ui/button";
 import type { EtatInformation } from "@/types/cursus";
 import { useOuvertureFiche } from "./ouverture-fiche";
 import { mesurer, proprietesParcours } from "./mesure";
+import { RessourcesGratuites } from "./RessourcesGratuites";
 
 const LIBELLES_FORMATS = {
   distanciel: "Distanciel",
@@ -653,6 +654,13 @@ export function ContenuFiche({
         la formation. Une fiche porte des faits sur un parcours ; tout ce qui
         parle de nous appartient à la méthode.
       */}
+      {/*
+        Les ressources gratuites viennent APRÈS les faits vérifiables et AVANT
+        la provenance. Elles ne sont pas un fait sur ce parcours : les placer
+        parmi les champs de la fiche les ferait lire comme tels.
+      */}
+      <RessourcesGratuites sujet={p.sujetPrincipal} />
+
       <Provenance p={p} />
 
       {/*

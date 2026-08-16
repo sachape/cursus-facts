@@ -1,0 +1,211 @@
+[
+ {
+  "id": 114,
+  "nom": "Ateliers Numériques",
+  "organisme": "Google",
+  "domaine": "grow.google",
+  "urlRetenue": "https://grow.google/academy",
+  "titreConstate": "Google Ateliers Numériques - Développez votre activité commerciale",
+  "correspond": true,
+  "langue": "fr",
+  "nomADivergence": false
+ },
+ {
+  "id": 117,
+  "nom": "PrestaShop Academy",
+  "organisme": "PrestaShop",
+  "domaine": "prestashop.com",
+  "urlRetenue": "https://prestashop.com",
+  "titreConstate": "Create an online shop easily - Ecommerce | PrestaShop",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 118,
+  "nom": "WiziShop Academy",
+  "organisme": "WiziShop",
+  "domaine": "wizishop.fr",
+  "urlRetenue": "https://wizishop.fr",
+  "titreConstate": "Solution Ecommerce WiziShop : Créez votre boutique en ligne",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 120,
+  "nom": "Klaviyo Academy",
+  "organisme": "Klaviyo",
+  "domaine": "klaviyo.com",
+  "urlRetenue": "https://academy.klaviyo.com",
+  "titreConstate": "Klaviyo Academy",
+  "correspond": true,
+  "langue": "en",
+  "nomADivergence": false
+ },
+ {
+  "id": 122,
+  "nom": "TikTok Ads — centre d'apprentissage",
+  "organisme": "TikTok",
+  "domaine": "ads.tiktok.com",
+  "urlRetenue": "https://ads.tiktok.com",
+  "titreConstate": "TikTok for Business | Marketing &amp; Advertising on TikTok",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 161,
+  "nom": "Brevo Academy",
+  "organisme": "Brevo",
+  "domaine": "brevo.com",
+  "urlRetenue": "https://academy.brevo.com",
+  "titreConstate": "Brevo Academy - Home",
+  "correspond": true,
+  "langue": "en",
+  "nomADivergence": false
+ },
+ {
+  "id": 162,
+  "nom": "Mailchimp Academy",
+  "organisme": "Mailchimp",
+  "domaine": "mailchimp.com",
+  "urlRetenue": "https://mailchimp.com",
+  "titreConstate": "Plateforme d’emailing et SMS | Mailchimp",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 163,
+  "nom": "Pinterest Academy",
+  "organisme": "Pinterest",
+  "domaine": "business.pinterest.com",
+  "urlRetenue": "https://business.pinterest.com",
+  "titreConstate": "Pinterest Business",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 164,
+  "nom": "Semrush Academy",
+  "organisme": "Semrush",
+  "domaine": "semrush.com",
+  "urlRetenue": "https://semrush.com/academy",
+  "titreConstate": "Learn Marketing for Free with Online Courses from Semrush Academy",
+  "correspond": true,
+  "langue": "en",
+  "nomADivergence": false
+ },
+ {
+  "id": 165,
+  "nom": "Ahrefs Academy",
+  "organisme": "Ahrefs",
+  "domaine": "ahrefs.com",
+  "urlRetenue": "https://ahrefs.com/academy",
+  "titreConstate": "Ahrefs Academy: Learn how to apply Ahrefs’ tools &amp; data in your Digital Marketing",
+  "correspond": true,
+  "langue": "en",
+  "nomADivergence": false
+ },
+ {
+  "id": 166,
+  "nom": "Microsoft Advertising Learning Lab",
+  "organisme": "Microsoft",
+  "domaine": "about.ads.microsoft.com",
+  "urlRetenue": "https://about.ads.microsoft.com",
+  "titreConstate": "Microsoft Advertising | End-to-End Digital Marketing Solutions for Advertisers and Publishers | Microsoft Advertising",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 168,
+  "nom": "TikTok Academy",
+  "organisme": "TikTok",
+  "domaine": "tiktok.com",
+  "urlRetenue": "https://tiktok.com",
+  "titreConstate": "TikTok - Make Your Day",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 169,
+  "nom": "Etsy Seller Handbook",
+  "organisme": "Etsy",
+  "domaine": "etsy.com",
+  "urlRetenue": "https://etsy.com",
+  "titreConstate": null,
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 170,
+  "nom": "Shopify Partner Academy",
+  "organisme": "Shopify",
+  "domaine": "shopify.com",
+  "urlRetenue": "https://academy.shopify.com",
+  "titreConstate": "Shopify Academy",
+  "correspond": true,
+  "langue": "en",
+  "nomADivergence": true
+ },
+ {
+  "id": 171,
+  "nom": "Wix Learn",
+  "organisme": "Wix",
+  "domaine": "wix.com",
+  "urlRetenue": "https://wix.com",
+  "titreConstate": "Website Builder - Create a Free Website In Minutes | Wix.com",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 174,
+  "nom": "Salesforce Trailhead — Commerce Cloud",
+  "organisme": "Salesforce",
+  "domaine": "trailhead.salesforce.com",
+  "urlRetenue": "https://trailhead.salesforce.com",
+  "titreConstate": "Trailhead | The fun way to learn",
+  "correspond": true,
+  "langue": "en",
+  "nomADivergence": true
+ },
+ {
+  "id": 175,
+  "nom": "Zendesk Training — relation client e-commerce",
+  "organisme": "Zendesk",
+  "domaine": "zendesk.com",
+  "urlRetenue": "https://zendesk.com",
+  "titreConstate": "Plateforme de service client basée sur l’IA | Zendesk",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 177,
+  "nom": "Klaviyo Product Certifications",
+  "organisme": "Klaviyo",
+  "domaine": "klaviyo.com",
+  "urlRetenue": "https://klaviyo.com",
+  "titreConstate": "Klaviyo : marketing par e-mail, SMS et WhatsApp | CRM B2C",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ },
+ {
+  "id": 178,
+  "nom": "Hotjar Academy",
+  "organisme": "Hotjar",
+  "domaine": "hotjar.com",
+  "urlRetenue": "https://hotjar.com",
+  "titreConstate": "Contentsquare + Hotjar | powering better digital experiences",
+  "correspond": false,
+  "langue": null,
+  "nomADivergence": false
+ }
+]

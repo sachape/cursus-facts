@@ -1,0 +1,264 @@
+[
+ {
+  "id": 114,
+  "nom": "Ateliers Numériques",
+  "editeurOuAuteur": "Google",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Google Ads",
+   "Référencement naturel",
+   "Analytics"
+  ],
+  "langue": "fr",
+  "url": "https://grow.google/academy",
+  "description": "Modules de Google sur les principes du marketing numérique, le référencement naturel, la publicité sur les moteurs et l'analyse des données.",
+  "verifieeLe": "2026-07-22"
+ },
+ {
+  "id": 117,
+  "nom": "PrestaShop Academy",
+  "editeurOuAuteur": "PrestaShop",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "PrestaShop",
+   "Création de boutique"
+  ],
+  "langue": null,
+  "url": "https://prestashop.com",
+  "description": "Cours de l'éditeur sur l'installation et la configuration de PrestaShop, la gestion du catalogue et des commandes, les modules et le référencement.",
+  "verifieeLe": "2026-05-14"
+ },
+ {
+  "id": 118,
+  "nom": "WiziShop Academy",
+  "editeurOuAuteur": "WiziShop",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Création de boutique"
+  ],
+  "langue": null,
+  "url": "https://wizishop.fr",
+  "description": "Ressources d'apprentissage de l'éditeur WiziShop sur la création et la gestion d'une boutique en ligne ; le programme n'est pas publié.",
+  "verifieeLe": "2026-07-15"
+ },
+ {
+  "id": 120,
+  "nom": "Klaviyo Academy",
+  "editeurOuAuteur": "Klaviyo",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Klaviyo",
+   "Email Marketing"
+  ],
+  "langue": "en",
+  "url": "https://academy.klaviyo.com",
+  "description": "Cours de l'éditeur sur les fondamentaux de l'email marketing, la segmentation, les flux automatisés et la mesure de la performance.",
+  "verifieeLe": "2026-07-20"
+ },
+ {
+  "id": 122,
+  "nom": "TikTok Ads — centre d'apprentissage",
+  "editeurOuAuteur": "TikTok",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "TikTok Ads",
+   "Acquisition payante"
+  ],
+  "langue": null,
+  "url": "https://ads.tiktok.com",
+  "description": "Ressources de TikTok sur la création de campagnes, les formats créatifs, le ciblage et la mesure dans TikTok Ads Manager.",
+  "verifieeLe": "2026-07-20"
+ },
+ {
+  "id": 161,
+  "nom": "Brevo Academy",
+  "editeurOuAuteur": "Brevo",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Brevo",
+   "Email Marketing"
+  ],
+  "langue": "en",
+  "url": "https://academy.brevo.com",
+  "description": "Cours de l'éditeur sur l'email marketing, l'automatisation, les campagnes SMS et le CRM.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 162,
+  "nom": "Mailchimp Academy",
+  "editeurOuAuteur": "Mailchimp",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Email Marketing"
+  ],
+  "langue": null,
+  "url": "https://mailchimp.com",
+  "description": "Cours de l'éditeur sur les campagnes email, les automatisations, la segmentation et l'analyse des résultats.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 163,
+  "nom": "Pinterest Academy",
+  "editeurOuAuteur": "Pinterest",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Pinterest Ads",
+   "Acquisition payante"
+  ],
+  "langue": null,
+  "url": "https://business.pinterest.com",
+  "description": "Ressources de Pinterest sur les fondamentaux de la plateforme, les formats publicitaires, le ciblage et la mesure.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 164,
+  "nom": "Semrush Academy",
+  "editeurOuAuteur": "Semrush",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "SEO e-commerce",
+   "Référencement naturel"
+  ],
+  "langue": "en",
+  "url": "https://semrush.com/academy",
+  "description": "Cours de l'éditeur sur le SEO technique, la recherche de mots-clés, l'analyse concurrentielle et le content marketing.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 165,
+  "nom": "Ahrefs Academy",
+  "editeurOuAuteur": "Ahrefs",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "SEO e-commerce",
+   "Référencement naturel"
+  ],
+  "langue": "en",
+  "url": "https://ahrefs.com/academy",
+  "description": "Cours de l'éditeur sur les fondamentaux du référencement naturel, le netlinking et l'audit de site.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 166,
+  "nom": "Microsoft Advertising Learning Lab",
+  "editeurOuAuteur": "Microsoft",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Acquisition payante",
+   "Merchant Center"
+  ],
+  "langue": null,
+  "url": "https://about.ads.microsoft.com",
+  "description": "Ressources de Microsoft sur les campagnes search, les campagnes Shopping et l'audience network de Microsoft Advertising.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 168,
+  "nom": "TikTok Academy",
+  "editeurOuAuteur": "TikTok",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "TikTok Ads",
+   "Marketplace"
+  ],
+  "langue": null,
+  "url": "https://tiktok.com",
+  "description": "Ressources de TikTok sur la stratégie de contenu, le fonctionnement de l'algorithme, TikTok Shop et la monétisation.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 169,
+  "nom": "Etsy Seller Handbook",
+  "editeurOuAuteur": "Etsy",
+  "type": "documentation",
+  "sujets": [
+   "Etsy",
+   "Vente sur marketplaces"
+  ],
+  "langue": null,
+  "url": "https://etsy.com",
+  "description": "Documentation d'Etsy sur l'ouverture d'une boutique, les fiches produits et le référencement interne, l'expédition et la publicité sur la plateforme.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 170,
+  "nom": "Shopify Partner Academy",
+  "editeurOuAuteur": "Shopify",
+  "type": "certification_gratuite",
+  "sujets": [
+   "Shopify",
+   "Création de boutique"
+  ],
+  "langue": "en",
+  "url": "https://academy.shopify.com",
+  "description": "Cours et certification de Shopify sur l'écosystème partenaire, les thèmes, les applications et l'accompagnement des marchands.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 171,
+  "nom": "Wix Learn",
+  "editeurOuAuteur": "Wix",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Création de boutique"
+  ],
+  "langue": null,
+  "url": "https://wix.com",
+  "description": "Ressources de Wix sur la création d'un site, l'ouverture d'une boutique en ligne et le référencement.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 174,
+  "nom": "Salesforce Trailhead — Commerce Cloud",
+  "editeurOuAuteur": "Salesforce",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "E-commerce généraliste"
+  ],
+  "langue": "en",
+  "url": "https://trailhead.salesforce.com",
+  "description": "Parcours Trailhead de Salesforce sur les fondamentaux de Commerce Cloud, le parcours client et la personnalisation.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 175,
+  "nom": "Zendesk Training — relation client e-commerce",
+  "editeurOuAuteur": "Zendesk",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "Email et relation client"
+  ],
+  "langue": null,
+  "url": "https://zendesk.com",
+  "description": "Ressources de Zendesk sur le support client, l'automatisation des réponses et la mesure de la satisfaction.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 177,
+  "nom": "Klaviyo Product Certifications",
+  "editeurOuAuteur": "Klaviyo",
+  "type": "certification_gratuite",
+  "sujets": [
+   "Klaviyo",
+   "Email Marketing"
+  ],
+  "langue": null,
+  "url": "https://klaviyo.com",
+  "description": "Certifications de Klaviyo sur les flux avancés, la segmentation prédictive et le reporting.",
+  "verifieeLe": "2026-07-25"
+ },
+ {
+  "id": 178,
+  "nom": "Hotjar Academy",
+  "editeurOuAuteur": "Hotjar",
+  "type": "plateforme_editeur",
+  "sujets": [
+   "CRO",
+   "Analytics"
+  ],
+  "langue": null,
+  "url": "https://hotjar.com",
+  "description": "Cours de l'éditeur sur les heatmaps et les enregistrements de session, les sondages utilisateurs et l'optimisation du taux de conversion.",
+  "verifieeLe": "2026-07-25"
+ }
+]

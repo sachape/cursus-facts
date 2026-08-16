@@ -34,6 +34,11 @@ const VUES = [
   { chemin: "/organismes", priorite: "0.8" },
   { chemin: "/aide-au-choix", priorite: "0.7" },
   { chemin: "/methode", priorite: "0.5" },
+  /* Indexable, mais sous les vues de catalogue : la page répond à une vraie
+     requête — « apprendre le e-commerce gratuitement » — sans être ce que le
+     produit fait. Lui donner la priorité d'une vue de parcours la ferait
+     remonter à la place de ce qu'on vérifie. */
+  { chemin: "/ressources", priorite: "0.5" },
   /* Indexable à dessein : « référencer ma formation » est une requête réelle,
      et cette page y répond mieux qu'un formulaire de contact générique. */
   { chemin: "/ajouter-un-organisme", priorite: "0.5" },
