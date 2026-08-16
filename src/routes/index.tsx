@@ -592,24 +592,16 @@ function Explorer() {
         </p>
 
         {/*
-          LE POINT D'ENTRÉE QUI REMPLACE L'ONGLET. Méthode a quitté la
-          navigation : elle ne se parcourt pas, elle répond à une question. La
-          première question qu'on se pose devant un comparateur est « qui êtes
-          vous pour classer ça », et c'est ici qu'elle se pose — avant d'avoir
-          lu la moindre fiche.
+          PLUS DE LIEN VERS LA MÉTHODE ICI. Il était le point d'entrée qui
+          remplaçait l'onglet retiré de la navigation, mais il s'intercalait
+          entre la proposition de valeur et la recherche — donc entre ce qu'on
+          vient de lire et ce qu'on est venu faire. Une ligne de plus à franchir
+          avant le champ, pour une question qu'on ne se pose pas encore.
 
-          Vers les invariants, et pas vers le haut de la page : c'est la
-          section qui porte l'engagement d'indépendance.
+          La Méthode reste atteignable là où la question se pose vraiment : le
+          pied de page, le panneau mobile, les guides, et chaque mention de
+          règle dans l'interface qui renvoie vers SA section.
         */}
-        <p className="mt-(--space-3) t-body-sm">
-          <Link
-            to="/methode"
-            hash="invariants"
-            className="text-(--text-tertiary) underline-offset-4 transition-colors duration-(--motion-fast) hover:text-(--text-secondary) hover:underline"
-          >
-            Comment ce catalogue est construit
-          </Link>
-        </p>
 
         <div ref={zoneRecherche} className="mt-(--space-8)">
           <RechercheHero
