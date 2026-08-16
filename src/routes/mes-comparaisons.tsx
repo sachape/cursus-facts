@@ -13,7 +13,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/composants/authentification";
 import { useComparaison } from "@/composants/comparaison";
-import { chargerListe } from "@/donnees/requetes";
+import { chargerListe, type ParcoursListe } from "@/donnees/requetes";
 import { formaterDateCourte } from "@/modele/dates";
 
 type Enregistree = {
@@ -35,7 +35,10 @@ export const Route = createFileRoute("/mes-comparaisons")({
 });
 
 function MesComparaisons() {
-  const catalogue = Route.useLoaderData();
+  /* Assertion volontaire : l'arbre de routes atteint le plafond d'inférence de
+     TypeScript, et `useLoaderData()` s'effondre en `any` sans elle. Motif
+     détaillé dans `parcours.$slug.tsx`. */
+  const catalogue = Route.useLoaderData() as ParcoursListe[];
   const { utilisateur, chargement } = useAuth();
   const { remplacer } = useComparaison();
   const naviguer = useNavigate();

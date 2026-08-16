@@ -19,9 +19,9 @@
  */
 import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { chargerListe } from "@/donnees/requetes";
-import { regrouperParOrganisme, trouverOrganisme, urlDuSite } from "@/modele/organismes";
-import { domainesParOrganisme, voisinsDOrganisme } from "@/modele/maillage";
+import { chargerListe, type ParcoursListe } from "@/donnees/requetes";
+import { regrouperParOrganisme, trouverOrganisme, urlDuSite, type Organisme } from "@/modele/organismes";
+import { domainesParOrganisme, voisinsDOrganisme, type VoisinageOrganisme } from "@/modele/maillage";
 import { FilAriane, balisageFilAriane, type Miette } from "@/composants/FilAriane";
 import { classer, LIBELLES_TRIS, TRI_PAR_DEFAUT } from "@/modele/classement";
 import { LIBELLES_CATEGORIES, LIBELLES_DOMAINES } from "@/modele/vocabulaires";
@@ -43,10 +43,32 @@ import type { FormatParcours } from "@/types/cursus";
 
 const SITE = "https://formlist.fr";
 
+/*
+  CE QUE LE LOADER REND, ÉCRIT UNE FOIS ET EMPLOYÉ AUX DEUX BOUTS.
+
+  L'inférence de TanStack Router traverse tout l'arbre de routes. Le 16 août
+  2026, l'ajout d'une route supplémentaire — même vide, même sans loader — a
+  fait dépasser le budget d'instanciation de TypeScript : `useLoaderData()`
+  s'est effondré en `any` ICI et sur la fiche parcours, deux fichiers que la
+  nouvelle route ne touchait pas. Rien ne plantait et rien ne rougissait à
+  l'exécution ; les composants perdaient simplement leurs types. C'est le motif
+  du §8 dans sa version la plus discrète : la couche qui lit renonce en silence.
+
+  L'alias coupe la dépendance au budget. Il est employé par le loader ET par la
+  lecture, si bien qu'une divergence entre les deux devient une erreur de
+  compilation — ce qu'une assertion posée seule au point de lecture ne serait
+  pas.
+*/
+type DonneesOrganisme = {
+  organisme: Organisme;
+  fiches: ParcoursListe[];
+  voisinage: VoisinageOrganisme;
+};
+
 export const Route = createFileRoute("/organismes/$slug")({
   // Le panneau s'ouvre par-dessus cette page : même point d'appel qu'ailleurs.
   validateSearch: validerFiche,
-  loader: async ({ params }) => {
+  loader: async ({ params }): Promise<DonneesOrganisme> => {
     const parcours = await chargerListe();
     const trouve = trouverOrganisme(parcours, params.slug);
     if (trouve === null) throw notFound();
@@ -129,7 +151,7 @@ function miettesDOrganisme(nom: string): Miette[] {
 }
 
 function PageOrganisme() {
-  const { organisme, fiches, voisinage } = Route.useLoaderData();
+  const { organisme, fiches, voisinage } = Route.useLoaderData() as DonneesOrganisme;
   const { fiche } = Route.useSearch();
 
   const titreListe = useRef<HTMLHeadingElement | null>(null);

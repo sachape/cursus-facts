@@ -14,7 +14,7 @@
  */
 import { useEffect, useMemo } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { chargerListe } from "@/donnees/requetes";
+import { chargerListe, type ParcoursListe } from "@/donnees/requetes";
 import { useAuth } from "@/composants/authentification";
 import { useSauvegardes } from "@/composants/sauvegardes";
 import { TrainingResultCard } from "@/composants/TrainingResultCard";
@@ -46,7 +46,10 @@ function Invitation({ quoi }: { quoi: string }) {
 
 function MesFormations() {
   useEffect(() => declarerVue("mes_formations"), []);
-  const catalogue = Route.useLoaderData();
+  /* Assertion volontaire : l'arbre de routes atteint le plafond d'inférence de
+     TypeScript, et `useLoaderData()` s'effondre en `any` sans elle. Motif
+     détaillé dans `parcours.$slug.tsx`. */
+  const catalogue = Route.useLoaderData() as ParcoursListe[];
   const { utilisateur, chargement } = useAuth();
   const { cles, chargement: chargementSauvegardes } = useSauvegardes();
 

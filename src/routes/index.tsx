@@ -43,7 +43,7 @@ import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
 import { RailCriteres } from "@/composants/HeroBadges";
 import { BandeOrganismes } from "@/composants/BandeOrganismes";
 import { PanneauFiche } from "@/composants/PanneauFiche";
-import { useOuvertureFiche, validerFiche } from "@/composants/ouverture-fiche";
+import { useOuvertureFiche, validerFiche, type RechercheFiche } from "@/composants/ouverture-fiche";
 import { useAllerOrganisme } from "@/composants/lien-organisme";
 import { declarerVue, mesurer } from "@/composants/mesure";
 import type { ParcoursListe } from "@/donnees/requetes";
@@ -246,7 +246,10 @@ function Explorer() {
       ramener d'où l'on vient, pas défaire un filtre à la fois.
     */
     naviguer({
-      search: (precedente) => ({
+      /* Type écrit : l'arbre de routes atteint le plafond d'inférence de
+         TypeScript et ce paramètre s'effondre en `any` sans lui. Motif détaillé
+         dans `parcours.$slug.tsx`. */
+      search: (precedente: RechercheFiche) => ({
         ...versParametres({ ...filtres, ...patch }),
         // La fiche ouverte survit à un changement de filtre : le panneau est
         // au-dessus de la liste, il n'en dépend pas.

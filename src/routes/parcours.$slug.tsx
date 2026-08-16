@@ -11,8 +11,8 @@
  * `ContenuFiche`. Une seule source pour les deux surfaces.
  */
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { chargerFiche, chargerVoisins } from "@/donnees/requetes";
-import { voisinsDeParcours } from "@/modele/maillage";
+import { chargerFiche, chargerVoisins, type ParcoursFiche } from "@/donnees/requetes";
+import { voisinsDeParcours, type VoisinageParcours } from "@/modele/maillage";
 import { FilAriane, balisageFilAriane, type Miette } from "@/composants/FilAriane";
 import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { slugifierOrganisme } from "@/modele/organismes";
@@ -21,6 +21,25 @@ import { descriptionFiche, titreFiche } from "@/modele/description-fiche";
 import { ContenuFiche, EnteteFiche } from "@/composants/ContenuFiche";
 
 const SITE = "https://formlist.fr";
+
+/*
+  CE QUE LE LOADER REND, ÉCRIT UNE FOIS ET EMPLOYÉ AUX DEUX BOUTS.
+
+  L'inférence de TanStack Router traverse tout l'arbre de routes, et le dépôt en
+  atteint le plafond : le 16 août 2026, l'ajout d'UNE route — même vide, même
+  sans loader — a suffi à faire s'effondrer `useLoaderData()` en `any` ici et
+  sur la page organisme, deux fichiers que la nouvelle route ne touchait pas.
+  Rien ne plante et rien ne rougit à l'exécution ; les composants perdent
+  simplement leurs types. C'est le motif du §8 dans sa version la plus discrète :
+  la couche qui lit renonce, en silence.
+
+  Le remède existait déjà dans ce dépôt — `index.tsx` et `methode.tsx` portent la
+  même assertion depuis une rencontre antérieure du même plafond. L'alias la rend
+  sûre : employé par le loader ET par la lecture, il fait d'une divergence entre
+  les deux une erreur de compilation, ce qu'une assertion posée seule ne serait
+  pas.
+*/
+type DonneesFiche = { fiche: ParcoursFiche; voisinage: VoisinageParcours };
 
 export const Route = createFileRoute("/parcours/$slug")({
   /*
@@ -35,7 +54,7 @@ export const Route = createFileRoute("/parcours/$slug")({
     sa provenance. Une fiche n'a plus à charger le catalogue pour parler de son
     voisinage.
   */
-  loader: async ({ params }) => {
+  loader: async ({ params }): Promise<DonneesFiche> => {
     const fiche = await chargerFiche(params.slug);
     if (!fiche) throw notFound();
     /*
@@ -134,7 +153,7 @@ function miettesDeFiche(fiche: { nom: string; domaine: DomaineParcours }): Miett
 }
 
 function Fiche() {
-  const { fiche, voisinage } = Route.useLoaderData();
+  const { fiche, voisinage } = Route.useLoaderData() as DonneesFiche;
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
