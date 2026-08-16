@@ -24,6 +24,7 @@
     "collecte:audit": "bun run scripts/audit-population.ts",
     "collecte:retirer": "bun run scripts/retirer-ressources.ts",
     "collecte:familles": "bun run scripts/traiter-familles.ts",
+    "collecte:mesurer-appariement": "bun run scripts/mesurer-appariement.ts",
     "collecte:appliquer": "bun run scripts/appliquer-journal.ts",
     "collecte:repli": "bun run scripts/repli-decouverte.ts",
     "collecte:disponibilite": "bun run scripts/disponibilite.ts",
