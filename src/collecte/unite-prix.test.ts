@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { convertirJournalier, derivationTotal, joursDeDuree, trancherUnite } from "./unite-prix";
+import {
+  convertirJournalier,
+  derivationTotal,
+  joursDeDuree,
+  trancherUnite,
+  uniteDansExtrait,
+} from "./unite-prix";
 
 /*
   Les quatre cas réels du 6 août 2026. Chacun portait une citation authentique,
@@ -81,5 +87,53 @@ describe("dérivation « sans mention d'unité = total »", () => {
     expect(derivationTotal("Prix : 1 490 € HT. Durée 2 jours. Mise à jour le 12 juin.").derive).toBe(
       true,
     );
+  });
+});
+
+/*
+  LES FORMULATIONS RÉELLEMENT RENCONTRÉES — relevées le 16 août 2026 dans les
+  69 extraits de prix distincts du journal d'extraction, des trois passes de
+  crawl et de l'historique du catalogue.
+
+  Elles sont ici plutôt qu'inventées parce que le défaut corrigé venait
+  exactement de là : l'ancien motif exigeait « par an » et ratait « par année »,
+  la forme qu'ENACO emploie réellement.
+*/
+describe("unité lue dans l'extrait, sur les formulations du terrain", () => {
+  const cas: [string, ReturnType<typeof uniteDansExtrait>][] = [
+    ["975,00 € HT / jour", "journalier"],
+    ["875,00 € HT / jour — 875 €/jour × 3 j", "journalier"],
+    [
+      "Le tarif des formations inter-entreprises est de 690€ à 890€ HT par jour et par apprenant",
+      "journalier",
+    ],
+    ["Cette formation est proposée à partir de  4990 € TTC .* (par année de formation)", "annuel"],
+    [
+      "Les tarifs pour l'entrée en 1re, 2e, 3e année sont de 8 950 € par an en cas de paiement comptant",
+      "annuel",
+    ],
+    ["212 € /mois", "mensuel"],
+    // Aucune unité publiée : la dérivation prendra le relais, pas ce motif.
+    ["1499€ TTC, finançable via votre Compte Personnel de Formation", null],
+    ["Tarif 4 190 € Tarif pour les particuliers.", null],
+    ["Formation Marketing Digital 1 650 €", null],
+  ];
+
+  for (const [extrait, attendu] of cas) {
+    it(`lit ${attendu ?? "aucune unité"} dans « ${extrait.slice(0, 46)}… »`, () => {
+      expect(uniteDansExtrait(extrait)).toBe(attendu);
+    });
+  }
+
+  /*
+    LE PIÈGE INVERSE, ET IL EST RÉEL. Relevé chez Audencia : « an » y est la
+    DURÉE du parcours, pas l'unité du tarif. Un motif acceptant « an » isolé
+    marquerait ce total comme annuel et le multiplierait par la durée à
+    l'affichage — la faute Dawan, dans l'autre sens.
+  */
+  it("ne prend pas une durée en années pour une unité de prix", () => {
+    expect(uniteDansExtrait("1 an 11 390 €")).toBeNull();
+    expect(uniteDansExtrait("Mastère en 2 ans — 15 500 €")).toBeNull();
+    expect(uniteDansExtrait("Licence pro sur 1 année, 4 500 € au total")).toBeNull();
   });
 });

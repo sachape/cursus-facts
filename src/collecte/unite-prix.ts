@@ -39,11 +39,39 @@ export function normaliserUnite(brut: string | null | undefined): UnitePrix | nu
  * toujours ce que la page écrit à ce que le modèle déclare.
  */
 export function uniteDansExtrait(extrait: string): UnitePrix | null {
-  const t = extrait.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
-  if (/(?:\/|par |l[ae] )\s*jour|€\s*ht\s*\/\s*j\b|par jour/.test(t)) return "journalier";
-  if (/(?:\/|par )\s*mois|\bmensuel/.test(t)) return "mensuel";
-  if (/(?:\/|par )\s*an\b|\bannuel|par an\b/.test(t)) return "annuel";
-  if (/(?:\/|par )\s*(?:heure|h\b)|\bhoraire/.test(t)) return "horaire";
+  const t = extrait.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  /*
+    LES MOTIFS SONT ÉCRITS SUR LES FORMULATIONS RÉELLEMENT RENCONTRÉES, relevées
+    le 16 août 2026 dans les 69 extraits de prix du journal, des passes de crawl
+    et de l'historique du catalogue :
+
+      « 975,00 € HT / jour »            « / jour », « /jour »
+      « 690€ à 890€ HT par jour et par apprenant »
+      « (par année de formation) »      ← RATÉ par l'ancien motif
+      « 8 950 € par an en cas de paiement comptant »
+      « 1 499€ TTC »                    aucune unité
+
+    L'ANCIEN MOTIF EXIGEAIT « par an\b » : « par année » ne correspondait pas,
+    le mot continuant après « an ». Deux prix ENACO annuels ont été dérivés en
+    total à cause de cette seule frontière de mot — la troisième occurrence du
+    défaut « le motif cherché dans un contenant qui n'est pas son unité de
+    sens ».
+
+    LE PIÈGE INVERSE, tout aussi réel : « 1 an 11 390 € » relevé chez Audencia,
+    où « an » est la DURÉE et 11 390 € un total. Un motif qui accepterait « an »
+    isolé marquerait ce prix annuel et le diviserait par trois à l'affichage.
+    D'où l'exigence d'un ATTACHEMENT : « par an », « / an », « annuel » —
+    jamais « an » seul.
+  */
+  const jour = /(?:\/|par |l[ae] )\s*jour(?:nee)?\b|\bjournalier|€\s*(?:ht|ttc)?\s*\/\s*j\b|\/ *j\b/;
+  const mois = /(?:\/|par )\s*mois\b|\bmensuel/;
+  // « par an », « par annee », « /an », « annuel » — l'attachement est requis.
+  const an = /(?:\/|par )\s*an(?:nee)?\b|\bannuel(?:le)?\b/;
+  const heure = /(?:\/|par )\s*(?:heure|h\b)|\bhoraire\b/;
+  if (jour.test(t)) return "journalier";
+  if (mois.test(t)) return "mensuel";
+  if (an.test(t)) return "annuel";
+  if (heure.test(t)) return "horaire";
   return null;
 }
 
