@@ -270,6 +270,7 @@ export type Database = {
           source_modalite_acces: string | null
           statut_regroupement: Database["public"]["Enums"]["statut_regroupement"]
           sujet_principal: string
+          unite_prix: string | null
           updated_at: string
           volume_horaire: number | null
         }
@@ -314,6 +315,7 @@ export type Database = {
           source_modalite_acces?: string | null
           statut_regroupement?: Database["public"]["Enums"]["statut_regroupement"]
           sujet_principal: string
+          unite_prix?: string | null
           updated_at?: string
           volume_horaire?: number | null
         }
@@ -358,6 +360,7 @@ export type Database = {
           source_modalite_acces?: string | null
           statut_regroupement?: Database["public"]["Enums"]["statut_regroupement"]
           sujet_principal?: string
+          unite_prix?: string | null
           updated_at?: string
           volume_horaire?: number | null
         }
