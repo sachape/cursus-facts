@@ -307,14 +307,15 @@ for (const r of resultats) {
   l'abaisser exige de résorber la dette, jamais de relever le nombre.
 */
 /*
-  53 = 14 fiches sans URL de site officiel (dette héritée) + 39 prix positifs
-  sans unité (ouverte le 16 août 2026 avec la pose du champ `unite_prix`, déjà
-  descendue de 43 à 39 le jour même).
+  52 = 14 fiches sans URL de site officiel (dette héritée) + 38 prix positifs
+  sans unité (ouverte le 16 août 2026 avec la pose du champ `unite_prix`,
+  descendue de 43 à 38 le jour même : deux requalifiées, deux établies par
+  réouverture, une par la correction du prix périmé d'INSEEC).
 
   Les deux se résorbent séparément et se comptent ensemble : un plafond unique
   qui ne peut que descendre.
 */
-const DETTE_DECLAREE = 53;
+const DETTE_DECLAREE = 52;
 
 console.log(`\n  TOTAL : ${totalInfractions} infraction(s) sur ${resultats.length} invariants`);
 if (totalInfractions > DETTE_DECLAREE) {

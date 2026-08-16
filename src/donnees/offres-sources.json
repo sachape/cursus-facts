@@ -2045,7 +2045,7 @@
   "sousFamille": "École de commerce",
   "region": null,
   "url": "inseec.com",
-  "prix": 8175,
+  "prix": 11390,
   "duree": "2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -2089,10 +2089,23 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.inseec.com/programme/msc-marketing-digital-ecommerce/ — « Pour le titre RNCP n°39592 « Manager de la Communication et du Marketing Digital » »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": 8175,
+    "le": "2026-08-16",
+    "motif": "Prix périmé corrigé le 16 août 2026 après lecture de la page. 8 175 € n'est plus publié : la chaîne est absente du site. L'INSEEC publie désormais une GRILLE à quatre régimes — formation initiale rentrée septembre, initiale rentrée février, alternance 24 mois, alternance 12 mois — et des tarifs par année. Valeur retenue : le tarif de PREMIÈRE ANNÉE en FORMATION INITIALE, seul régime dont la page affiche le détail par année. https://www.inseec.com/programme/msc-marketing-digital-ecommerce/ — « Admission Bac +3 / 1ère année / 1 an 11 390 € ». Ce n'est PAS le coût complet du parcours : la 2e année est à 13 450 €, et la grille alternance affiche 24 250 € sur 24 mois et 14 050 € sur 12 mois. Les montants ne se recoupent pas — 11 390 + 13 450 = 24 840 € contre 24 250 € publiés — donc aucun total ne se déduit par calcul. La fiche portera les quatre tarifs quand le modèle multi-tarifs existera."
+   },
+   {
+    "champ": "unitePrix",
+    "valeurPrecedente": null,
+    "le": "2026-08-16",
+    "motif": "Unité annuelle établie par lecture : le montant figure sous « 1ère année » dans une colonne « 1 an ». Le motif seul ne l'aurait pas prouvé — « 1 an 11 390 € » rend null au garde-fou, correctement."
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "annuel"
  },
  {
   "id": 38,
