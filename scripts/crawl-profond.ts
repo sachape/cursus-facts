@@ -38,6 +38,7 @@ import {
   enParallele,
   exigeRepliNavigateur,
   lireRobots,
+  racineJoignable,
   recuperer,
   texteprincipal,
 } from "../src/collecte/recuperation";
@@ -166,7 +167,17 @@ async function trouverPageDetail(
     les tentatives, et l'échec est le nôtre.
   */
   let succesReseau = 0;
-  const racine = `https://${fiche.domaine}`;
+  /*
+    La racine se RÉSOUT au lieu d'être construite : huit universités refusent
+    leur domaine nu et répondent sur `www.`. Construire l'adresse revenait à
+    déclarer injoignable un site qui répondait.
+  */
+  const racine = await racineJoignable(fiche.domaine);
+  requetes++;
+  if (racine === null) {
+    return { url: "", voie: "domaine_injoignable", requetes };
+  }
+  succesReseau++;
 
   // 1. Déjà connue. Gratuit, et c'est la seule voie sans risque d'erreur.
   if (fiche.urlDetail) return { url: fiche.urlDetail, voie: "url_detail_fichee", requetes };

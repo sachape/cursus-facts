@@ -1,0 +1,141 @@
+[
+ {
+  "id": 2,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Nantes Université — IAE Nantes",
+  "strate": "universite",
+  "etatPrix": "a_confirmer",
+  "prixActuel": 0,
+  "voieDecouverte": "decouverte_apparie",
+  "pagesModele": [
+   {
+    "url": "https://iae.univ-nantes.fr/nos-formations/offre-de-formation/licence-professionnelle-e-commerce-et-marketing-numerique",
+    "role": "detail"
+   },
+   {
+    "url": "https://iae.univ-nantes.fr/acces-par-profil/candidat-etudiant",
+    "role": "inscription"
+   }
+  ],
+  "requetesReseau": 2,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "non_publie_par_organisme — aucun prix cité sur les pages lues — l'organisme ne le publie pas",
+  "cause": "aucun_prix_cite",
+  "imputation": "non_publie_par_organisme",
+  "rejetsPrix": 0
+ },
+ {
+  "id": 33,
+  "nom": "Master Marketing dans un monde digital",
+  "organisme": "Le Cnam",
+  "strate": "universite",
+  "etatPrix": "non_communique",
+  "prixActuel": null,
+  "voieDecouverte": "decouverte_apparie",
+  "pagesModele": [
+   {
+    "url": "https://www.cnam.fr/formation/marketing-dans-un-monde-digital",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 1,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "non_publie_par_organisme — aucun prix cité sur les pages lues — l'organisme ne le publie pas",
+  "cause": "aucun_prix_cite",
+  "imputation": "non_publie_par_organisme",
+  "rejetsPrix": 0
+ },
+ {
+  "id": 104,
+  "nom": "Marketing digital : les fondamentaux",
+  "organisme": "Cegos",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "decouverte_apparie",
+  "pagesModele": [
+   {
+    "url": "https://www.cegos.fr/formations/marketing-marketing-digital",
+    "role": "detail"
+   },
+   {
+    "url": "https://www.cegos.fr/formations/formations-eligibles-au-cpf",
+    "role": "financement"
+   },
+   {
+    "url": "https://www.cegos.fr/toutes-les-solutions-de-financements",
+    "role": "financement"
+   }
+  ],
+  "requetesReseau": 3,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "non_publie_par_organisme — aucun prix cité sur les pages lues — l'organisme ne le publie pas",
+  "cause": "aucun_prix_cite",
+  "imputation": "non_publie_par_organisme",
+  "rejetsPrix": 0
+ },
+ {
+  "id": 232,
+  "nom": "Les fondamentaux du marketing digital",
+  "organisme": "ISM",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_communique",
+  "prixActuel": null,
+  "voieDecouverte": "decouverte_apparie",
+  "pagesModele": [
+   {
+    "url": "https://www.ism.fr/formations/marketing-digital",
+    "role": "detail"
+   },
+   {
+    "url": "https://www.ism.fr/formations-cpf-ism",
+    "role": "financement"
+   },
+   {
+    "url": "https://www.ism.fr/article/tout-savoir-sur-le-cpf-ism",
+    "role": "financement"
+   }
+  ],
+  "requetesReseau": 3,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "non_publie_par_organisme — aucun prix cité sur les pages lues — l'organisme ne le publie pas",
+  "cause": "aucun_prix_cite",
+  "imputation": "non_publie_par_organisme",
+  "rejetsPrix": 0
+ },
+ {
+  "id": 239,
+  "nom": "Mastère européen E-business",
+  "organisme": "ENACO",
+  "strate": "ecole",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "url_detail_fichee",
+  "pagesModele": [
+   {
+    "url": "https://www.enaco.fr/formations/mastere-ebusiness/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 1,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 4990,
+   "unite": "total",
+   "extrait": "Cette formation est proposée à partir de  4990 € TTC .* (par année de formation)",
+   "urlSource": "https://www.enaco.fr/formations/mastere-ebusiness/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ }
+]

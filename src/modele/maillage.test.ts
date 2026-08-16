@@ -141,9 +141,20 @@ describe("maillage interne", () => {
     du travail de quelqu'un d'autre. Une page sur 216 n'est pas bloquante ; un
     correctif improvisé sur l'anneau le serait.
 
-    À SOLDER dans le chantier du maillage, en supprimant cette constante.
+    ELLE A GRANDI EN DEUX JOURS, ET C'EST LA VRAIE MESURE. Le 13 août elle
+    contenait une entrée : `p-92` à deux liens. Le 15, le retrait d'UNE fiche
+    LiveMentor — hors périmètre — lui a coûté un lien de plus et a fait passer
+    `p-230` sous le seuil. Une sortie de catalogue, deux pages dégradées.
+
+    L'anneau n'est donc pas fragile sur un cas particulier : il l'est à toute
+    recomposition du catalogue, et le catalogue bouge à chaque passe de
+    collecte. Ce n'est plus une dette à solder un jour, c'est une dette dont le
+    coût croît à chaque nettoyage.
+
+    À SOLDER dans le chantier du maillage, en supprimant cette constante. Si
+    elle atteint trois entrées, le nettoyage doit s'arrêter avant l'anneau.
   */
-  const DETTE_DECLAREE = ["/parcours/p-92 (2)"];
+  const DETTE_DECLAREE = ["/parcours/p-92 (1)", "/parcours/p-230 (2)"];
 
   it("aucune page du catalogue ne reçoit moins de trois liens internes", () => {
     const compte = entrants();

@@ -8842,41 +8842,6 @@
   "nom": "Formation TikTok"
  },
  {
-  "organisme": "LiveMentor",
-  "categorieLibelle": "Formations professionnelles",
-  "sousFamille": "Organisme de formation",
-  "region": null,
-  "url": "livementor.com",
-  "formats": [
-   "Distanciel"
-  ],
-  "niveauLibelle": "Aucun prérequis",
-  "prerequis": null,
-  "cpf": 1,
-  "financements": [
-   "CPF",
-   "OPCO"
-  ],
-  "certification": "Qualiopi",
-  "outils": null,
-  "programme": null,
-  "nonCouvert": null,
-  "dateVerification": "2026-08-04",
-  "source": "livementor.com — page catalogue des formations",
-  "domaineDeclareLibelle": null,
-  "competencesDeclarees": [
-   "No-code"
-  ],
-  "classificationManuelle": false,
-  "modaliteAcces": null,
-  "sourceModalite": null,
-  "duree": "3 mois",
-  "volumeHoraire": null,
-  "prix": null,
-  "id": 220,
-  "nom": "Formation No-code et automatisation"
- },
- {
   "organisme": "OpenClassrooms",
   "categorieLibelle": "MOOC et plateformes",
   "sousFamille": "Plateforme et MOOC",

@@ -22,7 +22,7 @@ describe("slug", () => {
 });
 
 describe("volume ingéré", () => {
-  it("prépare 216 fiches et 141 organismes à partir de 218 offres", () => {
+  it("prépare 215 fiches et 141 organismes à partir de 217 offres", () => {
     // Trois offres fusionnées en une seule fiche : les formules Builder, Premium
     // et Elite d'Amazon Incubator partagent le même programme.
     /*
@@ -39,14 +39,14 @@ describe("volume ingéré", () => {
     // parcours réels, quatre retraits et une sortie hors périmètre.
     // 211 → 216 fiches ; 148 → 141 organismes, les quatre parents éclatés
     // étant remplacés par des parcours du MÊME organisme.
-    expect(preparation.fiches).toHaveLength(216);
+    expect(preparation.fiches).toHaveLength(215);
     expect(preparation.organismes).toHaveLength(141);
   });
 
   it("conserve une variante par offre, y compris dans une fiche fusionnée", () => {
     const variantes = preparation.fiches.reduce((s, f) => s + f.variantes.length, 0);
     // 232 → 213 (plateformes d'éditeur) → 221 (familles éclatées, retraits).
-    expect(variantes).toBe(218);
+    expect(variantes).toBe(217);
   });
 
   it("ne laisse plus aucun cas en file d'arbitrage", () => {
@@ -74,10 +74,10 @@ describe("repli des groupes ambigus", () => {
     expect(ambigus).toHaveLength(0);
   });
 
-  it("expose 216 entrées de liste, sans repli", () => {
+  it("expose 215 entrées de liste, sans repli", () => {
     const entrees = preparation.fiches.filter((f) => f.ancreSlug === null);
     // 230 → 211 (plateformes d'éditeur) → 219 (familles traitées).
-    expect(entrees).toHaveLength(216);
+    expect(entrees).toHaveLength(215);
   });
 });
 
@@ -176,7 +176,7 @@ describe("ce qui part en base respecte les invariants", () => {
       peuplés de valeurs vraies d'aucun cours — ce qui a motivé l'éclatement.
       C'est au crawl de les remplir, page par page et citation par citation.
     */
-    expect(total).toBe(2456);
+    expect(total).toBe(2447);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
@@ -257,10 +257,10 @@ describe("ce qui part en base respecte les invariants", () => {
           `journal-retraits.json`. Le plancher tombe parce que le catalogue
           décrit moins d'objets, pas parce qu'on sait moins de choses sur eux.
         · 13 août 2026, second mouvement — 2 567 → 2 495 : quatre fiches
-          éclatées, quatre retirées, quatre hors périmètre. Les parcours entrants
+          éclatées, quatre retirées, cinq hors périmètre (LiveMentor No-code ajoutée le 15 août). Les parcours entrants
           arrivent volontairement vides ; le plancher remontera par lecture.
     */
-    const PLANCHER = 2495;
+    const PLANCHER = 2486;
     const total = preparation.fiches.reduce(
       (s, f) => s + valeursPresentes(compterInformations(f.colonnes["etats"] as EtatsInformation)),
       0,

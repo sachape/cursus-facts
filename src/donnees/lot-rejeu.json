@@ -1,0 +1,57 @@
+[
+ {
+  "id": 2,
+  "nom": "Licence pro E-commerce et marketing numérique",
+  "organisme": "Nantes Université — IAE Nantes",
+  "strate": "universite",
+  "etatPrix": "a_confirmer",
+  "prixActuel": 0,
+  "url": "iae.univ-nantes.fr",
+  "domaine": "iae.univ-nantes.fr",
+  "urlDetail": null
+ },
+ {
+  "id": 33,
+  "nom": "Master Marketing dans un monde digital",
+  "organisme": "Le Cnam",
+  "strate": "universite",
+  "etatPrix": "non_communique",
+  "prixActuel": null,
+  "url": "cnam.fr",
+  "domaine": "cnam.fr",
+  "urlDetail": null
+ },
+ {
+  "id": 104,
+  "nom": "Marketing digital : les fondamentaux",
+  "organisme": "Cegos",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "url": "cegos.fr",
+  "domaine": "cegos.fr",
+  "urlDetail": null
+ },
+ {
+  "id": 232,
+  "nom": "Les fondamentaux du marketing digital",
+  "organisme": "ISM",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_communique",
+  "prixActuel": null,
+  "url": "ism.fr",
+  "domaine": "ism.fr",
+  "urlDetail": null
+ },
+ {
+  "id": 239,
+  "nom": "Mastère européen E-business",
+  "organisme": "ENACO",
+  "strate": "ecole",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "url": "enaco.fr",
+  "domaine": "enaco.fr",
+  "urlDetail": "https://www.enaco.fr/formations/mastere-ebusiness/"
+ }
+]

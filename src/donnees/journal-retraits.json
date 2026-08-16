@@ -241,5 +241,13 @@
   "le": "2026-08-13",
   "type": "hors_perimetre",
   "motif": "Hors périmètre e-commerce. Ce que dixmilleheures vend est réel et borné — Airtable, Notion, Webflow, Bubble, un programme « lancer un site, le monétiser et le revendre » — mais relève de l'outillage no-code, pas du commerce en ligne. Ses trois pages e-commerce sont des comparatifs : leurs intitulés relevés sur la page sont « Les 8 meilleures formations Dropshipping », « Les 8 meilleures formations Google Ads », « Les 7 meilleures formations Shopify ». Le motif « média de comparatifs » viserait ses articles et non son offre : il serait inexact."
+ },
+ {
+  "id": 220,
+  "organisme": "LiveMentor",
+  "nom": "Formation No-code et automatisation",
+  "le": "2026-08-13",
+  "type": "hors_perimetre",
+  "motif": "Hors périmètre e-commerce. La page publiée est « Formation automatisation » : trois mois de mentorat pour automatiser réseaux sociaux, prospection, e-mails, comptabilité et veille, avec Zapier, Make et Airtable. Relevé sur la page : « automatis » 124 fois, « e-commerce » zéro, « boutique » zéro. Son objet est l'outillage et le gain de temps de l'entrepreneur, pas la vente en ligne. Le critère porte sur l'objet du parcours, jamais sur son public."
  }
 ]

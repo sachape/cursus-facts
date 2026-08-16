@@ -111,6 +111,48 @@ export async function recuperer(
 /* robots.txt                                                                 */
 /* -------------------------------------------------------------------------- */
 
+/**
+ * Racine joignable d'un domaine — avec repli sur `www.`.
+ *
+ * MESURÉ LE 15 AOÛT 2026 : sur les quatorze domaines que le crawl déclarait
+ * « injoignables », HUIT répondaient 200 sur `www.` avec notre propre agent.
+ * Huit universités françaises — Bordeaux Montaigne, Évry, Bretagne Sud, Rouen,
+ * Toulon, Toulouse II, UPEC, Versailles — dont le domaine nu refuse la
+ * connexion ou expire.
+ *
+ * Le catalogue stocke des domaines nus (`univ-rouen.fr`) et le crawl
+ * construisait `https://univ-rouen.fr` sans jamais essayer `www.`. L'échec
+ * était donc le nôtre, et il a été compté comme une opacité de l'organisme
+ * pendant trois passes — exactement l'inversion que le §Découverte interdit.
+ *
+ * Le résultat est mémorisé : un domaine ne se teste qu'une fois par passe.
+ */
+const RACINES = new Map<string, string | null>();
+
+export async function racineJoignable(
+  domaine: string,
+  recupere: (url: string) => Promise<Reponse> = recuperer,
+): Promise<string | null> {
+  const cle = domaine.replace(/^www\./, "");
+  if (RACINES.has(cle)) return RACINES.get(cle)!;
+  for (const hote of [cle, `www.${cle}`]) {
+    const rep = await recupere(`https://${hote}/robots.txt`);
+    // Un 404 sur robots.txt prouve que l'hôte répond : c'est ce qu'on cherche.
+    if (rep.ok || rep.statut !== null) {
+      const racine = `https://${hote}`;
+      RACINES.set(cle, racine);
+      return racine;
+    }
+  }
+  RACINES.set(cle, null);
+  return null;
+}
+
+/** Vide le cache de racines — pour les tests, jamais en passe réelle. */
+export function oublierRacines(): void {
+  RACINES.clear();
+}
+
 export type Robots = { autorise: (chemin: string) => boolean; sitemaps: string[] };
 
 /**

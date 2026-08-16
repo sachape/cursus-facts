@@ -99,6 +99,11 @@ const RETRAITS: { id: number; motif: string }[] = [
 
 const HORS_PERIMETRE: { id: number; motif: string }[] = [
   {
+    id: 220,
+    motif:
+      "Hors périmètre e-commerce. La page publiée est « Formation automatisation » : trois mois de mentorat pour automatiser réseaux sociaux, prospection, e-mails, comptabilité et veille, avec Zapier, Make et Airtable. Relevé sur la page : « automatis » 124 fois, « e-commerce » zéro, « boutique » zéro. Son objet est l'outillage et le gain de temps de l'entrepreneur, pas la vente en ligne. Le critère porte sur l'objet du parcours, jamais sur son public.",
+  },
+  {
     id: 86,
     motif:
       "Hors périmètre e-commerce. Jedha vend des bootcamps data, intelligence artificielle, Python et cybersécurité, ainsi que des bachelors et mastères IA. Aucune de ces offres n'a le commerce en ligne pour objet. L'éclatement aurait produit une dizaine de fiches immédiatement candidates à la sortie pour ce même motif.",
