@@ -211,7 +211,7 @@ function Connexion() {
             J&apos;ai déjà un compte
           </button>
         )}
-        <Link to="/" className="text-(--text-tertiary) underline-offset-2 hover:underline">
+        <Link to="/catalogue" className="text-(--text-tertiary) underline-offset-2 hover:underline">
           ← Retour au catalogue
         </Link>
       </div>

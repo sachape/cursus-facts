@@ -36,7 +36,7 @@ function Invitation({ quoi }: { quoi: string }) {
   return (
     <p className="py-(--space-12) text-center t-body-sm text-(--text-secondary)">
       Vous n&apos;avez pas encore mis de {quoi} de côté.{" "}
-      <Link to="/" className="text-(--text-primary) underline underline-offset-2">
+      <Link to="/catalogue" className="text-(--text-primary) underline underline-offset-2">
         Parcourez le catalogue
       </Link>{" "}
       et touchez le signet pour retrouver ici ce qui vous intéresse.

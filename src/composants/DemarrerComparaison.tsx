@@ -109,7 +109,7 @@ export function DemarrerComparaison({
       {/* Action secondaire : elle reste, mais elle n'est plus la seule issue. */}
       <p className="mt-(--space-4) t-body-sm">
         <Link
-          to="/"
+          to="/catalogue"
           className="text-(--text-secondary) underline-offset-2 hover:text-(--text-primary) hover:underline"
         >
           Retourner au catalogue

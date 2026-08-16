@@ -34,7 +34,13 @@ import { Route as RouteRacine } from "@/routes/__root";
 import { formaterNombre } from "@/modele/nombres";
 
 const VUES = [
-  { to: "/", libelle: "Explorer" },
+  /*
+    « Le catalogue », et vers `/catalogue`. L'onglet menait à `/`, où mène déjà
+    le logo : deux entrées de navigation pour une seule destination, dont l'une
+    ne disait pas ce qu'elle ouvrait. Le logo ramène à l'accueil, l'onglet ouvre
+    la liste.
+  */
+  { to: "/catalogue", libelle: "Le catalogue" },
   { to: "/comparer", libelle: "Comparer" },
   { to: "/aide-au-choix", libelle: "Aide au choix" },
   { to: "/organismes", libelle: "Organismes" },
@@ -297,7 +303,15 @@ export function Navigation() {
           <ul className="-mx-1 flex gap-1 overflow-x-auto py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {VUES.map((vue) => (
               <li key={vue.to} className="shrink-0">
-                <Link to={vue.to} activeOptions={{ exact: vue.to === "/" }} className={lienDeVue}>
+                {/*
+                  Plus de correspondance exacte à imposer : elle n'existait que
+                  pour l'onglet `/`, préfixe de toutes les autres adresses, qui
+                  se serait affiché actif partout. Le logo porte seul l'accueil
+                  désormais, et la correspondance par préfixe est ce qu'on veut
+                  ailleurs — `/organismes` reste actif sur la page d'un
+                  organisme.
+                */}
+                <Link to={vue.to} className={lienDeVue}>
                   {vue.libelle}
                 </Link>
               </li>

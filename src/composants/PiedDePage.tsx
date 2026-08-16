@@ -42,7 +42,7 @@ const COLONNES = [
   {
     titre: "Explorer",
     liens: [
-      { to: "/", libelle: "Tous les parcours" },
+      { to: "/catalogue", libelle: "Tous les parcours" },
       { to: "/organismes", libelle: "Organismes" },
       { to: "/comparer", libelle: "Comparer" },
       { to: "/aide-au-choix", libelle: "Aide au choix" },

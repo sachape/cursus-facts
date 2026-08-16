@@ -31,6 +31,10 @@ const SITE = "https://formlist.fr";
 /** Vues fixes, avec leur priorité relative. */
 const VUES = [
   { chemin: "/", priorite: "1.0" },
+  /* La liste elle-même : c'est la page qui peut se classer sur « comparateur
+     formations e-commerce », ce que l'accueil faisait mal en mélangeant deux
+     rôles. Presque au rang de l'accueil, puisqu'elle porte le catalogue. */
+  { chemin: "/catalogue", priorite: "0.9" },
   { chemin: "/organismes", priorite: "0.8" },
   { chemin: "/aide-au-choix", priorite: "0.7" },
   { chemin: "/methode", priorite: "0.5" },

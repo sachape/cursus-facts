@@ -147,6 +147,10 @@ export const Route = createFileRoute("/parcours/$slug")({
 function miettesDeFiche(fiche: { nom: string; domaine: DomaineParcours }): Miette[] {
   return [
     { libelle: "Accueil", chemin: "/" },
+    /* Le niveau intermédiaire est la LISTE, pas l'accueil : un fil d'Ariane
+       décrit le chemin par lequel on atteint la page, et on atteint une fiche
+       depuis le catalogue. */
+    { libelle: "Le catalogue", chemin: "/catalogue" },
     { libelle: LIBELLES_DOMAINES[fiche.domaine], chemin: `/?domaine=${fiche.domaine}` },
     { libelle: fiche.nom },
   ];

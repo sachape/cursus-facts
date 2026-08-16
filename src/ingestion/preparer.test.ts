@@ -176,7 +176,13 @@ describe("ce qui part en base respecte les invariants", () => {
       peuplés de valeurs vraies d'aucun cours — ce qui a motivé l'éclatement.
       C'est au crawl de les remplir, page par page et citation par citation.
     */
-    expect(total).toBe(2447);
+    /*
+      2 447 → 2 461. Quatorze prix relevés chez l'organisme, chacun avec sa
+      citation et son unité — précisément le remplissage que le commentaire
+      ci-dessus annonçait. Ce compteur MONTE quand la collecte avance : le
+      figer serait le rendre faux au premier prix écrit.
+    */
+    expect(total).toBe(2461);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {

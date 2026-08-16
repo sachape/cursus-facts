@@ -230,7 +230,16 @@ export function adresseFiltre(parametres: ParametresFiltres, base = ""): string 
   const paires = CLES_FILTRES.filter((cle) => parametres[cle] !== undefined).map(
     (cle) => `${cle}=${encodeURIComponent(parametres[cle]!)}`,
   );
-  return paires.length === 0 ? `${base}/` : `${base}/?${paires.join("&")}`;
+  /*
+    LES ADRESSES FILTRÉES VIVENT SUR `/catalogue`, PLUS SUR `/`.
+
+    L'accueil et la liste ont été séparés : l'accueil présente le produit, le
+    catalogue porte la liste et ses filtres. Une page de croisement EST une vue
+    filtrée du catalogue — la servir depuis l'accueil montrerait un hero sans
+    liste. Les anciennes adresses `/?sujet=…` ne cassent pas pour autant :
+    l'accueil les redirige ici en conservant leurs paramètres.
+  */
+  return paires.length === 0 ? `${base}/catalogue` : `${base}/catalogue?${paires.join("&")}`;
 }
 
 /** Vrai si l'adresse porte au moins un filtre. Pilote l'indexabilité. */

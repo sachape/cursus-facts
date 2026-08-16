@@ -77,6 +77,14 @@ export type Evenement = (typeof EVENEMENTS)[number];
  * suggestion et l'ouvrir depuis la liste ne sont pas la même intention.
  */
 export const SOURCES_VUE = [
+  /*
+    `accueil` et `catalogue` remplacent `explorateur`, qui désignait la page
+    unique où les deux vivaient ensemble. Le nom est conservé : il reste porté
+    par les événements déjà collectés, et le retirer rendrait illisible tout
+    l'historique de mesure antérieur à la séparation.
+  */
+  "accueil",
+  "catalogue",
   "explorateur",
   "organisme",
   "comparer",

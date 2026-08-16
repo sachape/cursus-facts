@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AideAuChoixRouteImport } from './routes/aide-au-choix'
 import { Route as AjouterUnOrganismeRouteImport } from './routes/ajouter-un-organisme'
+import { Route as CatalogueRouteImport } from './routes/catalogue'
 import { Route as ComparerRouteImport } from './routes/comparer'
 import { Route as ConnexionRouteImport } from './routes/connexion'
 import { Route as MesAlertesRouteImport } from './routes/mes-alertes'
@@ -43,6 +44,11 @@ const AideAuChoixRoute = AideAuChoixRouteImport.update({
 const AjouterUnOrganismeRoute = AjouterUnOrganismeRouteImport.update({
   id: '/ajouter-un-organisme',
   path: '/ajouter-un-organisme',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogueRoute = CatalogueRouteImport.update({
+  id: '/catalogue',
+  path: '/catalogue',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComparerRoute = ComparerRouteImport.update({
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aide-au-choix': typeof AideAuChoixRoute
   '/ajouter-un-organisme': typeof AjouterUnOrganismeRoute
+  '/catalogue': typeof CatalogueRoute
   '/comparer': typeof ComparerRoute
   '/connexion': typeof ConnexionRoute
   '/mes-alertes': typeof MesAlertesRoute
@@ -157,6 +164,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/aide-au-choix': typeof AideAuChoixRoute
   '/ajouter-un-organisme': typeof AjouterUnOrganismeRoute
+  '/catalogue': typeof CatalogueRoute
   '/comparer': typeof ComparerRoute
   '/connexion': typeof ConnexionRoute
   '/mes-alertes': typeof MesAlertesRoute
@@ -180,6 +188,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/aide-au-choix': typeof AideAuChoixRoute
   '/ajouter-un-organisme': typeof AjouterUnOrganismeRoute
+  '/catalogue': typeof CatalogueRoute
   '/comparer': typeof ComparerRoute
   '/connexion': typeof ConnexionRoute
   '/mes-alertes': typeof MesAlertesRoute
@@ -204,6 +213,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aide-au-choix'
     | '/ajouter-un-organisme'
+    | '/catalogue'
     | '/comparer'
     | '/connexion'
     | '/mes-alertes'
@@ -226,6 +236,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aide-au-choix'
     | '/ajouter-un-organisme'
+    | '/catalogue'
     | '/comparer'
     | '/connexion'
     | '/mes-alertes'
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/'
     | '/aide-au-choix'
     | '/ajouter-un-organisme'
+    | '/catalogue'
     | '/comparer'
     | '/connexion'
     | '/mes-alertes'
@@ -271,6 +283,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AideAuChoixRoute: typeof AideAuChoixRoute
   AjouterUnOrganismeRoute: typeof AjouterUnOrganismeRoute
+  CatalogueRoute: typeof CatalogueRoute
   ComparerRoute: typeof ComparerRoute
   ConnexionRoute: typeof ConnexionRoute
   MesAlertesRoute: typeof MesAlertesRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       path: '/ajouter-un-organisme'
       fullPath: '/ajouter-un-organisme'
       preLoaderRoute: typeof AjouterUnOrganismeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogue': {
+      id: '/catalogue'
+      path: '/catalogue'
+      fullPath: '/catalogue'
+      preLoaderRoute: typeof CatalogueRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/comparer': {
@@ -439,6 +459,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AideAuChoixRoute: AideAuChoixRoute,
   AjouterUnOrganismeRoute: AjouterUnOrganismeRoute,
+  CatalogueRoute: CatalogueRoute,
   ComparerRoute: ComparerRoute,
   ConnexionRoute: ConnexionRoute,
   MesAlertesRoute: MesAlertesRoute,

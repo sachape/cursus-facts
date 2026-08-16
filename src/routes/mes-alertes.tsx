@@ -24,7 +24,7 @@ function MesAlertes() {
         formation que vous suivez.
       </p>
       <p className="mt-(--space-6) t-body-sm">
-        <Link to="/" className="text-(--text-secondary) underline underline-offset-2">
+        <Link to="/catalogue" className="text-(--text-secondary) underline underline-offset-2">
           ← Retour au catalogue
         </Link>
       </p>

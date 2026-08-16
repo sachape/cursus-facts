@@ -138,7 +138,7 @@ function PiedGuide({ guide, chiffres }: { guide: Guide; chiffres: ChiffresGuides
         </p>
         <p className="mt-(--space-4)">
           <Link
-            to="/"
+            to="/catalogue"
             className="inline-flex items-center rounded-(--radius-sm) bg-(--accent-default) px-(--space-4) py-(--space-2) t-body-sm font-medium text-(--surface-page) transition-opacity duration-(--motion-fast) hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
           >
             Ouvrir le comparateur

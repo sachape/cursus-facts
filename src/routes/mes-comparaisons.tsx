@@ -93,7 +93,7 @@ function MesComparaisons() {
       ) : liste.length === 0 ? (
         <p className="py-(--space-12) text-center t-body-sm text-(--text-secondary)">
           Vous n&apos;avez pas encore enregistré de comparaison.{" "}
-          <Link to="/" className="text-(--text-primary) underline underline-offset-2">
+          <Link to="/catalogue" className="text-(--text-primary) underline underline-offset-2">
             Sélectionnez deux parcours
           </Link>{" "}
           depuis le catalogue pour les mettre côte à côte.

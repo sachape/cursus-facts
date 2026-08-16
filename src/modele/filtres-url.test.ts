@@ -112,14 +112,14 @@ describe("normalisation", () => {
     // Un canonique auto-référent doit être la même chaîne à chaque rendu.
     const params = versParametres(complet);
     expect(adresseFiltre(params)).toBe(adresseFiltre(params));
-    expect(adresseFiltre({})).toBe("/");
+    expect(adresseFiltre({})).toBe("/catalogue");
     expect(adresseFiltre({ cpf: "1" }, "https://formlist.fr")).toBe(
-      "https://formlist.fr/?cpf=1",
+      "https://formlist.fr/catalogue?cpf=1",
     );
   });
 
   it("encode les valeurs qui contiennent un espace", () => {
-    expect(adresseFiltre({ sujet: "SEO e-commerce" })).toBe("/?sujet=SEO%20e-commerce");
+    expect(adresseFiltre({ sujet: "SEO e-commerce" })).toBe("/catalogue?sujet=SEO%20e-commerce");
   });
 });
 

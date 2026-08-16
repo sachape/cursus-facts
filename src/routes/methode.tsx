@@ -93,7 +93,7 @@ function Methode() {
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
-      <Link to="/" className="t-body-sm text-(--text-secondary) underline underline-offset-4">
+      <Link to="/catalogue" className="t-body-sm text-(--text-secondary) underline underline-offset-4">
         ← Retour au catalogue
       </Link>
 
