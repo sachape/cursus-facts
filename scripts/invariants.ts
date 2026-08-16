@@ -249,7 +249,14 @@ const PRIX_SANS_TRACE_DECLARES = 30;
   affichable — et l'absence de ce champ a produit deux prix annuels présentés
   comme des totaux.
 
-  QUARANTE-TROIS PRIX SANS UNITÉ au 16 août 2026, jour où le champ est posé.
+  TRENTE-NEUF PRIX SANS UNITÉ au 16 août 2026, en fin de journée. Ils étaient
+  43 à la pose du champ : deux requalifiés à la main (IPAG en annuel, Conversion
+  Boosters en journalier) et deux établis en rouvrant leur page.
+
+  LES 27 AUTRES BUTENT SUR LE MUR D'APPARIEMENT, pas sur le modèle : leur page
+  est introuvable. La dette d'unité ne se soldera donc pas avant l'appariement —
+  les deux chantiers sont liés, et c'est une information sur l'ordre des
+  travaux, pas seulement sur un compteur.
   Huit le portaient déjà — écrit par une passe d'extraction, et ignoré par un
   modèle qui ne connaissait pas le champ : la donnée existait, la couche qui la
   lit l'effaçait. C'est le motif du §8, une fois de plus.
@@ -300,14 +307,14 @@ for (const r of resultats) {
   l'abaisser exige de résorber la dette, jamais de relever le nombre.
 */
 /*
-  57 = 14 fiches sans URL de site officiel (dette héritée, ne peut que
-  décroître) + 43 prix positifs sans unité (dette ouverte le 16 août 2026 avec
-  la pose du champ `unite_prix`).
+  53 = 14 fiches sans URL de site officiel (dette héritée) + 39 prix positifs
+  sans unité (ouverte le 16 août 2026 avec la pose du champ `unite_prix`, déjà
+  descendue de 43 à 39 le jour même).
 
   Les deux se résorbent séparément et se comptent ensemble : un plafond unique
   qui ne peut que descendre.
 */
-const DETTE_DECLAREE = 57;
+const DETTE_DECLAREE = 53;
 
 console.log(`\n  TOTAL : ${totalInfractions} infraction(s) sur ${resultats.length} invariants`);
 if (totalInfractions > DETTE_DECLAREE) {

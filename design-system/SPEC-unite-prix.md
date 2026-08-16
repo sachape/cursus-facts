@@ -67,21 +67,22 @@ Aujourd'hui, une fourchette « moins de 1 000 € » retient l'abonnement Speed 
 formation à moins de 1 000 € reçoit un abonnement mensuel sans savoir que le coût
 annuel dépasse sa fourchette.
 
-Deux options, à trancher par le produit — je n'en impose aucune :
+**TRANCHÉ le 16 août 2026 : le filtre garde tout et affiche l'unité.**
 
-**A. Le filtre ne porte que sur les prix `total`.** Les autres unités sortent du
-filtre et affichent leur mention. Simple, honnête, et cohérent avec « on ne
-convertit pas ». Coût : les prix non totaux deviennent invisibles au filtre le
-plus utilisé, alors que le budget est la question la plus discriminante mesurée
-(60 points d'écart).
+Sortir les prix non totaux cacherait des parcours réels pour une raison qui nous
+arrange — et c'est exactement l'inversion que le produit passe son temps à
+corriger. Un abonnement à 49 € par mois est une information légitime pour
+quelqu'un qui cherche à moins de 500 €.
 
-**B. Le filtre garde toutes les fiches et affiche l'unité dans le résultat**,
-avec une mention quand la sélection mélange des unités. Plus riche, mais demande
-que le lecteur fasse la conversion lui-même.
+Trois conséquences d'implémentation :
 
-Ce qu'il ne faut pas faire, dans les deux cas : **convertir pour filtrer**.
-Multiplier 49 € par une durée « Abonnement mensuel » produirait un nombre que
-l'organisme n'a jamais publié.
+- Le résultat affiche **« 49 € par mois »**, jamais « 49 € ». L'unité voyage avec
+  le montant partout où il apparaît, y compris dans une carte de liste.
+- Une mention sous les résultats dit que **les prix ne sont pas convertis**, avec
+  un renvoi vers la section correspondante de Méthode.
+- **Jamais de conversion pour filtrer.** Multiplier 49 € par une durée
+  « Abonnement mensuel » produirait un nombre que l'organisme n'a jamais publié —
+  et la durée est le champ le moins bien couvert du catalogue.
 
 ## Ce qui est déjà fait, côté modèle
 

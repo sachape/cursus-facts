@@ -2793,11 +2793,18 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.ipag.edu/bachelor-marketing-communication-digitale — « Certification professionnelle au choix\n CRM\n Digital Marketing\n Publicité & Communication\n Community Management\n Site d'e-commerce et stratégie digitale »"
+   },
+   {
+    "champ": "unitePrix",
+    "valeurPrecedente": null,
+    "le": "2026-08-16",
+    "motif": "Requalification d'unité, validée le 16 août 2026. La page publie « Les tarifs pour l'entrée en 1re, 2e, 3e année sont de 8 950 € par an » : 8 950 € est le tarif ANNUEL d'un parcours de trois ans, pas son total. Aucune conversion — on affiche l'unité publiée, on ne la transforme pas. Le motif d'origine avait été raté parce que `uniteDansExtrait` exigeait « par an » et acceptait mal « par année »."
    }
   ],
   "codeRncpRs": "RNCP 37968",
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "annuel"
  },
  {
   "id": 54,
@@ -6349,11 +6356,18 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.conversion-boosters.com/formations-data-analytics/formation-matomo-analytics-initiation/ — « Savoir se servir d'un ordinateur et d'un navigateur web »"
+   },
+   {
+    "champ": "unitePrix",
+    "valeurPrecedente": null,
+    "le": "2026-08-16",
+    "motif": "Requalification d'unité, validée le 16 août 2026. La page publie « Le tarif des formations inter-entreprises est de 690€ à 890€ HT par jour et par apprenant » : 690 € est un tarif JOURNALIER. Aucune conversion — la durée déclarée « 1 à 2 jours » est une fourchette, et convertir sur une fourchette produirait un nombre que l'organisme n'a pas publié."
    }
   ],
   "dispoInter": true,
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "journalier"
  },
  {
   "id": 151,
@@ -8089,7 +8103,16 @@
   "urlDetail": "https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/",
   "prixIntra": 2670,
   "dispoInter": true,
-  "dispoIntra": true
+  "dispoIntra": true,
+  "unitePrix": "total",
+  "historique": [
+   {
+    "champ": "unitePrix",
+    "valeurPrecedente": null,
+    "le": "2026-08-16",
+    "motif": "Unité établie par réouverture de la page, prix inchangé — dérivée en total, aucune mention d'unité sur la page (règle publiée). https://www.m2iformation.fr/formation-shopify-creez-facilement-votre-boutique-en-ligne/SHOPI-CREA/ — « Tarif : à partir de 890 € HT. »"
+   }
+  ]
  },
  {
   "organisme": "M2i Formation",
@@ -9511,8 +9534,15 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.cegos.fr/formations/marketing-marketing-digital/les-cles-du-e-commerce — « Du 8 oct. au 9 oct. 2026 \nPARIS »"
+   },
+   {
+    "champ": "unitePrix",
+    "valeurPrecedente": null,
+    "le": "2026-08-16",
+    "motif": "Unité établie par réouverture de la page, prix inchangé — dérivée en total, aucune mention d'unité sur la page (règle publiée). https://www.cegos.fr/formations/marketing/les-cles-du-e-commerce — « Prix 2026 \n1 690,00 €  HT »"
    }
-  ]
+  ],
+  "unitePrix": "total"
  },
  {
   "id": 235,

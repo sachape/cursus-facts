@@ -282,6 +282,42 @@ C'est la famille du §8 déplacée encore d'un cran. Là, une couche en aval pas
 à côté d'une règle juste ; ensuite, l'instrument regardait à côté ; ici,
 **l'instrument était juste, la mesure exacte, et la question mal choisie**.
 
+### L'instrument était aveugle pour la raison même qui causait le défaut
+
+**16 août 2026, et c'est le constat le plus coûteux de la série.**
+
+Le champ `unitePrix` était écrit dans `offres-sources.json` **depuis juin**, sur
+huit fiches, par une passe d'extraction qui avait bien fait son travail. Speed
+Ecom y portait « mensuel », correctement, depuis deux mois.
+
+`catalogue.ts` ne connaissait pas le champ. Sa fonction de normalisation recopie
+les propriétés une à une : ce qu'elle ignore, elle l'efface. Toute couche en aval
+— affichage, comparaison, filtre budget — travaillait donc sur un catalogue où
+l'unité n'existait pas, alors que la donnée la portait.
+
+**Puis le balayage écrit pour trouver ce défaut est tombé dans le même trou.**
+Il cherchait l'unité dans les traces d'extraits parce qu'il lisait le catalogue
+normalisé, où le champ n'existait pas. Il a donc déclaré Speed Ecom suspect —
+un prix déjà correctement qualifié — et compté 51 prix à vérifier là où il y en
+avait 43.
+
+L'instrument de mesure était aveugle **pour la raison exacte qui causait le
+défaut qu'il cherchait**. Ce n'est pas une coïncidence : il partageait la couche
+fautive avec le code mesuré.
+
+**LA RÈGLE.** Un instrument qui mesure un défaut de couche ne doit pas traverser
+cette couche. Ici, il fallait lire `offres-sources.json` directement plutôt que
+le catalogue normalisé — la source, jamais la vue.
+
+C'est la famille du §8 poussée d'un cran de plus. Là, une couche en aval passait
+à côté d'une règle juste ; ensuite l'instrument regardait ailleurs ; ensuite la
+question était mal choisie ; ici **l'instrument et le défaut avaient la même
+cause**, et le premier ne pouvait donc pas voir le second.
+
+Corollaire pratique : quand une mesure et le code mesuré partagent un module,
+écrire d'abord le cas dont on connaît la réponse. Speed Ecom portait « mensuel »
+depuis juin ; un balayage qui ne le retrouve pas se dénonce lui-même.
+
 ### Une règle citée de mémoire vaut une mesure non faite
 
 **13 août 2026, deux fois dans la même conversation.**
