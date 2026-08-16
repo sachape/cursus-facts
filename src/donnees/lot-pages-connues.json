@@ -1,0 +1,104 @@
+[
+ {
+  "id": 235,
+  "nom": "Bachelor Marketing Communication & IA",
+  "organisme": "ISCOD",
+  "url": "https://www.iscod.fr/formation-bachelor-marketing-et-communication-en-alternance"
+ },
+ {
+  "id": 236,
+  "nom": "MBA Marketing, Digital Business et IA",
+  "organisme": "ISCOD",
+  "url": "https://www.iscod.fr/formation-marketing-digital-business-et-ia-en-alternance"
+ },
+ {
+  "id": 237,
+  "nom": "MBA Stratégie Marketing, Communication et IA",
+  "organisme": "ISCOD",
+  "url": "https://www.iscod.fr/formation-mba-strategie-marketing-communication-et-ia-en-alternance"
+ },
+ {
+  "id": 238,
+  "nom": "Bachelor européen E-commerce",
+  "organisme": "ENACO",
+  "url": "https://www.enaco.fr/formations/bachelor-e-commerce/"
+ },
+ {
+  "id": 239,
+  "nom": "Mastère européen E-business",
+  "organisme": "ENACO",
+  "url": "https://www.enaco.fr/formations/mastere-ebusiness/"
+ },
+ {
+  "id": 240,
+  "nom": "Bachelor européen Marketing digital",
+  "organisme": "ENACO",
+  "url": "https://www.enaco.fr/formations/bachelor-marketing-digital/"
+ },
+ {
+  "id": 241,
+  "nom": "BTS Négociation et digitalisation de la relation client",
+  "organisme": "ENACO",
+  "url": "https://www.enaco.fr/formations/bts-ndrc/"
+ },
+ {
+  "id": 242,
+  "nom": "Mastère européen Management digital",
+  "organisme": "ENACO",
+  "url": "https://www.enaco.fr/formations/mastere-management-digital/"
+ },
+ {
+  "id": 243,
+  "nom": "BTS Management Commercial Opérationnel",
+  "organisme": "Studi",
+  "url": "https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel"
+ },
+ {
+  "id": 244,
+  "nom": "BTS Négociation Digitalisation Relation Client",
+  "organisme": "Studi",
+  "url": "https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client"
+ },
+ {
+  "id": 245,
+  "nom": "Déployer une stratégie marketing digital",
+  "organisme": "Studi",
+  "url": "https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital"
+ },
+ {
+  "id": 246,
+  "nom": "Bachelor Chargé de Marketing et Communication",
+  "organisme": "Studi",
+  "url": "https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication"
+ },
+ {
+  "id": 247,
+  "nom": "Développer la performance stratégique marketing digital",
+  "organisme": "Studi",
+  "url": "https://www.studi.com/fr/formation/marketing/performance-marketing-digital"
+ },
+ {
+  "id": 248,
+  "nom": "Manager des équipes et des projets de marketing digital",
+  "organisme": "Studi",
+  "url": "https://www.studi.com/fr/formation/marketing/management-projets-marketing-digital"
+ },
+ {
+  "id": 249,
+  "nom": "Formation e-Commerce Power — WordPress WooCommerce et Elementor",
+  "organisme": "Voltee",
+  "url": "https://voltee.fr/formations/ecommerce/e-commerce-woocommerce-formation"
+ },
+ {
+  "id": 250,
+  "nom": "Formation Shopify Expert",
+  "organisme": "Voltee",
+  "url": "https://voltee.fr/formations/ecommerce/shopify-ecommerce"
+ },
+ {
+  "id": 251,
+  "nom": "Formation Amazon FBA Pro",
+  "organisme": "Voltee",
+  "url": "https://voltee.fr/formations/ecommerce/amazon-fba"
+ }
+]

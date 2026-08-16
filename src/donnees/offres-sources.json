@@ -9676,7 +9676,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "enaco.fr",
-  "prix": null,
+  "prix": 4190,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9702,8 +9702,16 @@
     "valeurPrecedente": 74,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/bachelor-e-commerce/."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers en formation initiale. https://www.enaco.fr/formations/bachelor-e-commerce/ — « Cette formation est proposée à partir de 4190 € TTC.* \nCe tarif est réservé aux particuliers en formation initiale. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 239,
@@ -9713,7 +9721,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "enaco.fr",
-  "prix": null,
+  "prix": 4990,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9739,8 +9747,16 @@
     "valeurPrecedente": 74,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/mastere-ebusiness/."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers en formation initiale, par année de formation. https://www.enaco.fr/formations/mastere-ebusiness/ — « Cette formation est proposée à partir de  4990 € TTC .* (par année de formation) »"
    }
-  ]
+  ],
+  "unitePrix": "annuel",
+  "aConfirmer": []
  },
  {
   "id": 240,
@@ -9750,7 +9766,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "enaco.fr",
-  "prix": null,
+  "prix": 4190,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9776,8 +9792,16 @@
     "valeurPrecedente": 74,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/bachelor-marketing-digital/."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers en formation initiale. https://www.enaco.fr/formations/bachelor-marketing-digital/ — « Cette formation est proposée à partir de 4190 € TTC.* \nCe tarif est réservé aux particuliers en formation initiale. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 241,
@@ -9787,7 +9811,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "enaco.fr",
-  "prix": null,
+  "prix": 3890,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9813,8 +9837,16 @@
     "valeurPrecedente": 74,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/bts-ndrc/."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — particuliers en formation initiale. https://www.enaco.fr/formations/bts-ndrc/ — « Cette formation est proposée à partir de 3890 € TTC. *\nCe tarif est réservé aux particuliers en formation initiale. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 242,
@@ -9824,7 +9856,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "enaco.fr",
-  "prix": null,
+  "prix": 4990,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9850,8 +9882,16 @@
     "valeurPrecedente": 74,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 74 « Formations commerce et digital à distance », qui nommait une famille. Intitulé relevé sur https://www.enaco.fr/formations/mastere-management-digital/."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers en formation initiale, par année de formation. https://www.enaco.fr/formations/mastere-management-digital/ — « Cette formation est proposée à partir de  4990 € TTC .* (par année de formation)\nCe tarif est réservé aux particuliers en formation initiale. »"
    }
-  ]
+  ],
+  "unitePrix": "annuel",
+  "aConfirmer": []
  },
  {
   "id": 243,
@@ -9861,7 +9901,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "studi.com",
-  "prix": null,
+  "prix": 4190,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9887,8 +9927,16 @@
     "valeurPrecedente": 93,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif pour les particuliers. https://www.studi.com/fr/formation/retail-point-de-vente/bts-management-commercial-operationnel — « Tarif\n4 190 €\nTarif pour les particuliers. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 244,
@@ -9898,7 +9946,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "studi.com",
-  "prix": null,
+  "prix": 4190,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9924,8 +9972,16 @@
     "valeurPrecedente": 93,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif pour les particuliers. https://www.studi.com/fr/formation/commercial-relation-client/bts-negociation-digitalisation-relation-client — « Tarif\n4 190 €\nTarif pour les particuliers. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 245,
@@ -9935,7 +9991,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "studi.com",
-  "prix": null,
+  "prix": 1990,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9961,8 +10017,16 @@
     "valeurPrecedente": 93,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif pour les particuliers. https://www.studi.com/fr/formation/gestion-de-projet/strategie-marketing-digital — « Tarif\n1 990 €\nTarif pour les particuliers. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 246,
@@ -9972,7 +10036,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "studi.com",
-  "prix": null,
+  "prix": 5390,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -9998,8 +10062,16 @@
     "valeurPrecedente": 93,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers. https://www.studi.com/fr/formation/marketing/bachelor-charge-de-marketing-et-communication — « Tarif\n5 390 €\nTarif pour les particuliers. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 247,
@@ -10009,7 +10081,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "studi.com",
-  "prix": null,
+  "prix": 2090,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -10035,8 +10107,16 @@
     "valeurPrecedente": 93,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/marketing/performance-marketing-digital."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers. https://www.studi.com/fr/formation/marketing/performance-marketing-digital — « Tarif\n2 090 €\nTarif pour les particuliers. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 248,
@@ -10046,7 +10126,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "studi.com",
-  "prix": null,
+  "prix": 2090,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -10072,8 +10152,16 @@
     "valeurPrecedente": 93,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 93 « Formation commerciale à distance », qui nommait une famille. Intitulé relevé sur https://www.studi.com/fr/formation/marketing/management-projets-marketing-digital."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers. https://www.studi.com/fr/formation/marketing/management-projets-marketing-digital — « Tarif\n2 090 €\nTarif pour les particuliers. »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 249,
@@ -10083,7 +10171,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "voltee.fr",
-  "prix": null,
+  "prix": 999,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -10109,8 +10197,16 @@
     "valeurPrecedente": 145,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 145 « Formations e-commerce et webdesign », qui nommait une famille. Intitulé relevé sur https://voltee.fr/formations/ecommerce/e-commerce-woocommerce-formation."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — formule autofinancée, paiement en 3 fois. https://voltee.fr/formations/ecommerce/e-commerce-woocommerce-formation — « Paiement en 3 fois.\n999€ »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 250,
@@ -10120,7 +10216,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "voltee.fr",
-  "prix": null,
+  "prix": 790,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -10146,8 +10242,16 @@
     "valeurPrecedente": 145,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 145 « Formations e-commerce et webdesign », qui nommait une famille. Intitulé relevé sur https://voltee.fr/formations/ecommerce/shopify-ecommerce."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — formule eLearning, paiement en 3 fois. https://voltee.fr/formations/ecommerce/shopify-ecommerce — « Pour se former en toute flexibilité \nPaiement en 3 fois.\n790€ »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  },
  {
   "id": 251,
@@ -10157,7 +10261,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "voltee.fr",
-  "prix": null,
+  "prix": 790,
   "duree": null,
   "volumeHoraire": null,
   "formats": null,
@@ -10183,7 +10287,15 @@
     "valeurPrecedente": 145,
     "le": "2026-08-13",
     "motif": "Issue de l'éclatement de la fiche 145 « Formations e-commerce et webdesign », qui nommait une famille. Intitulé relevé sur https://voltee.fr/formations/ecommerce/amazon-fba."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — offre e-learning en autonomie, paiement en 3 fois (vs 2150€ avec financement). https://voltee.fr/formations/ecommerce/amazon-fba — « Pour se former en toute flexibilité \nPaiement en 3 fois.\n790€ »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "aConfirmer": []
  }
 ]

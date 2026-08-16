@@ -1,0 +1,62 @@
+[
+ {
+  "id": 38,
+  "nom": "MSc Digital Marketing & Sales",
+  "organisme": "KEDGE Business School",
+  "url": "kedge.edu"
+ },
+ {
+  "id": 45,
+  "nom": "MBA Spécialisé Digital Marketing & Business",
+  "organisme": "EFAP",
+  "url": "efap.com"
+ },
+ {
+  "id": 89,
+  "nom": "Formation Marketing Digital",
+  "organisme": "LiveMentor",
+  "url": "livementor.com"
+ },
+ {
+  "id": 92,
+  "nom": "Marketing digital — titre RNCP",
+  "organisme": "Studi",
+  "url": "studi.com"
+ },
+ {
+  "id": 127,
+  "nom": "Ecom Pro",
+  "organisme": "Yomi Denzel",
+  "url": "yomi-denzel.fr"
+ },
+ {
+  "id": 128,
+  "nom": "Ecom French Touch",
+  "organisme": "Roman de Czerny et Maxime Le Morillon",
+  "url": "—"
+ },
+ {
+  "id": 180,
+  "nom": "Cours e-commerce et marketing digital",
+  "organisme": "Coursera",
+  "url": "coursera.org"
+ },
+ {
+  "id": 181,
+  "nom": "Cours création et vente en ligne",
+  "organisme": "Domestika",
+  "url": "domestika.org"
+ },
+ {
+  "id": 33,
+  "nom": "Master Marketing dans un monde digital",
+  "organisme": "Le Cnam",
+  "url": "cnam.fr"
+ },
+ {
+  "id": 34,
+  "nom": "Master Marketing et distribution",
+  "organisme": "ICSV — Cnam Paris",
+  "url": "cnam.fr"
+ }
+]

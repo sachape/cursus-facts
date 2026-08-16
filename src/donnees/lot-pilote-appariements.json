@@ -1,0 +1,112 @@
+[
+ {
+  "id": 38,
+  "nom": "MSc Digital Marketing & Sales",
+  "organisme": "KEDGE Business School",
+  "domaine": "kedge.edu",
+  "issue": "absent_du_catalogue",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 53,
+  "motif": "53 intitulés lus, aucun ne correspond"
+ },
+ {
+  "id": 45,
+  "nom": "MBA Spécialisé Digital Marketing & Business",
+  "organisme": "EFAP",
+  "domaine": "efap.com",
+  "issue": "catalogue_introuvable",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 0,
+  "motif": "aucun intitulé lisible"
+ },
+ {
+  "id": 89,
+  "nom": "Formation Marketing Digital",
+  "organisme": "LiveMentor",
+  "domaine": "livementor.com",
+  "issue": "catalogue_introuvable",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 0,
+  "motif": "aucun intitulé lisible"
+ },
+ {
+  "id": 92,
+  "nom": "Marketing digital — titre RNCP",
+  "organisme": "Studi",
+  "domaine": "studi.com",
+  "issue": "absent_du_catalogue",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 147,
+  "motif": "147 intitulés lus, aucun ne correspond"
+ },
+ {
+  "id": 127,
+  "nom": "Ecom Pro",
+  "organisme": "Yomi Denzel",
+  "domaine": "yomi-denzel.fr",
+  "issue": "domaine_injoignable",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 0,
+  "motif": null
+ },
+ {
+  "id": 128,
+  "nom": "Ecom French Touch",
+  "organisme": "Roman de Czerny et Maxime Le Morillon",
+  "domaine": "—",
+  "issue": "domaine_injoignable",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 0,
+  "motif": null
+ },
+ {
+  "id": 180,
+  "nom": "Cours e-commerce et marketing digital",
+  "organisme": "Coursera",
+  "domaine": "coursera.org",
+  "issue": "absent_du_catalogue",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 69,
+  "motif": "69 intitulés lus, aucun ne correspond"
+ },
+ {
+  "id": 181,
+  "nom": "Cours création et vente en ligne",
+  "organisme": "Domestika",
+  "domaine": "domestika.org",
+  "issue": "absent_du_catalogue",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 110,
+  "motif": "110 intitulés lus, aucun ne correspond"
+ },
+ {
+  "id": 33,
+  "nom": "Master Marketing dans un monde digital",
+  "organisme": "Le Cnam",
+  "domaine": "cnam.fr",
+  "issue": "catalogue_introuvable",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 0,
+  "motif": "aucun intitulé lisible"
+ },
+ {
+  "id": 34,
+  "nom": "Master Marketing et distribution",
+  "organisme": "ICSV — Cnam Paris",
+  "domaine": "cnam.fr",
+  "issue": "catalogue_introuvable",
+  "urlTrouvee": null,
+  "libelleCite": null,
+  "intitulesLus": 0,
+  "motif": "aucun intitulé lisible"
+ }
+]
