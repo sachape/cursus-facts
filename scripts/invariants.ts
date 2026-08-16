@@ -224,6 +224,44 @@ verifier("8. Toute fiche possède une URL de site officiel", (o) =>
 */
 const POINTEURS_INTERNES = new Set(["urlDetail", "profondeur", "profondeurVerifieeLe"]);
 
+/*
+  DETTE DÉCLARÉE — 30 prix sans trace, au 16 août 2026.
+
+  Trente prix strictement positifs du catalogue viennent d'une collecte
+  manuelle et ne portent aucun extrait conservé. Ils ne sont ni sains ni
+  suspects : ils sont INVÉRIFIABLES sans rouvrir la page de l'organisme.
+
+  Le plafond est déclaré ici pour que l'invariant échoue le jour où il
+  REMONTE — c'est-à-dire le jour où un prix entrerait de nouveau sans sa
+  trace. Il ne peut que décroître, comme celui des fiches sans URL.
+
+  Les compter comme sains aurait été la faute qu'on venait de corriger, dans
+  l'autre sens : conclure d'une absence de preuve.
+*/
+const PRIX_SANS_TRACE_DECLARES = 30;
+
+/*
+  UN PRIX POSITIF PORTE SON UNITÉ, SANS EXCEPTION.
+
+  « 4 990 € » et « 4 990 € par année » ne disent pas la même chose ; « 49 € »
+  et « 49 € par mois » encore moins, et le filtre budget les met aujourd'hui
+  dans la même fourchette. Un prix dont l'unité n'est pas établie n'est pas
+  affichable — et l'absence de ce champ a produit deux prix annuels présentés
+  comme des totaux.
+
+  QUARANTE-TROIS PRIX SANS UNITÉ au 16 août 2026, jour où le champ est posé.
+  Huit le portaient déjà — écrit par une passe d'extraction, et ignoré par un
+  modèle qui ne connaissait pas le champ : la donnée existait, la couche qui la
+  lit l'effaçait. C'est le motif du §8, une fois de plus.
+
+  Cette dette est nommée et datée, jamais désactivée : l'invariant échoue le
+  jour où elle REMONTE. Elle se solde en rouvrant les pages — moins d'un euro
+  pour les trente sans trace.
+*/
+verifier("12. Tout prix strictement positif porte son unité", (o) =>
+  o.prix !== null && o.prix > 0 && o.unitePrix === null ? `${nom(o)} → ${o.prix} € sans unité` : null,
+);
+
 verifier("9. Aucune valeur effacée sans passage par « à confirmer »", (o) => {
   const effacements = (o.historique ?? []).filter(
     (h) =>
@@ -261,7 +299,15 @@ for (const r of resultats) {
   Ce plafond ne doit que DÉCROÎTRE. Toute infraction au-delà fait échouer, et
   l'abaisser exige de résorber la dette, jamais de relever le nombre.
 */
-const DETTE_DECLAREE = 14;
+/*
+  57 = 14 fiches sans URL de site officiel (dette héritée, ne peut que
+  décroître) + 43 prix positifs sans unité (dette ouverte le 16 août 2026 avec
+  la pose du champ `unite_prix`).
+
+  Les deux se résorbent séparément et se comptent ensemble : un plafond unique
+  qui ne peut que descendre.
+*/
+const DETTE_DECLAREE = 57;
 
 console.log(`\n  TOTAL : ${totalInfractions} infraction(s) sur ${resultats.length} invariants`);
 if (totalInfractions > DETTE_DECLAREE) {

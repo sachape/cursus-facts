@@ -74,7 +74,20 @@ async function main() {
   let confirmes = 0;
   const sansTrace: typeof catalogue[number][] = [];
 
+  let dejaQualifies = 0;
   for (const o of avecPrix) {
+    /*
+      L'UNITÉ DÉJÀ ÉCRITE FAIT FOI, et il fallait commencer par la lire.
+
+      Première version : elle ignorait `unitePrix` — le champ n'existait pas
+      encore dans le modèle — et déclarait Speed Ecom #192 suspect alors que la
+      donnée portait déjà « mensuel ». Le balayage cherchait dans les traces ce
+      qui était écrit dans la fiche.
+    */
+    if (o.unitePrix !== null) {
+      dejaQualifies++;
+      continue;
+    }
     const t = parTrace.get(o.id) ?? [];
     if (t.length === 0) {
       sansTrace.push(o);
@@ -108,6 +121,7 @@ async function main() {
   }
 
   console.log(`\nBalayage des unités — ${avecPrix.length} prix strictement positifs au catalogue\n`);
+  console.log(`  ${String(dejaQualifies).padStart(3)}  déjà qualifiés — l'unité est écrite sur la fiche`);
   console.log(`  ${String(suspects.length).padStart(3)}  SUSPECTS — une trace porte une unité non totale`);
   console.log(`  ${String(confirmes).padStart(3)}  confirmés — une trace existe, aucune unité dedans`);
   console.log(`  ${String(sansTrace.length).padStart(3)}  sans trace — invérifiables sans rouvrir la page`);

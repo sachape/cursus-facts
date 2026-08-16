@@ -13,6 +13,7 @@ const offre = (partiel: Partial<OffreNormalisee> = {}): OffreNormalisee => ({
   dispoInter: null,
   dispoIntra: null,
   prixIntra: null,
+  unitePrix: null,
   aConfirmer: [],
   historique: [],
   sousFamille: null,

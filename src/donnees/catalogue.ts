@@ -19,6 +19,7 @@ import type {
 import type { ChampInformation } from "@/types/cursus";
 import type { ChangementValeur } from "@/modele/provenance";
 import type { ModaliteAcces } from "@/modele/modalite-acces";
+import type { UnitePrix } from "@/collecte/unite-prix";
 import offresSources from "./offres-sources.json";
 
 /** Une offre telle que collectée, avant classification et regroupement. */
@@ -75,6 +76,16 @@ export type OffreSource = {
   dispoIntra?: boolean | null;
   /** Tarif de groupe, affiché sur la fiche mais jamais dans la liste. */
   prixIntra?: number | null;
+  /**
+   * UNITÉ DU PRIX, obligatoire dès qu'un prix existe.
+   *
+   * `null` ne veut pas dire « total » : il veut dire que l'unité n'a pas été
+   * établie, et un prix dont l'unité n'est pas établie n'est pas affichable.
+   * Deux prix ENACO annuels ont été présentés comme des totaux faute de ce
+   * champ, et un abonnement à 49 €/mois voisine un diplôme à 4 990 € dans le
+   * même filtre budget.
+   */
+  unitePrix?: UnitePrix | null;
   /**
    * Champs dont la valeur est conservée mais non reconfirmée.
    * Ils s'affichent avec leur valeur et passent en tête de file de collecte.
@@ -160,6 +171,7 @@ export type OffreNormalisee = Omit<
   dispoInter: boolean | null;
   dispoIntra: boolean | null;
   prixIntra: number | null;
+  unitePrix: UnitePrix | null;
   aConfirmer: ChampInformation[];
   historique: ChangementValeur[];
 };
@@ -187,6 +199,7 @@ export function normaliserOffre(offre: OffreSource): OffreNormalisee {
     dispoInter: offre.dispoInter ?? null,
     dispoIntra: offre.dispoIntra ?? null,
     prixIntra: offre.prixIntra ?? null,
+    unitePrix: offre.unitePrix ?? null,
     aConfirmer: offre.aConfirmer ?? [],
     historique: offre.historique ?? [],
     domaineDeclare: domaineDeclareLibelle

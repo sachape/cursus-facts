@@ -81,6 +81,20 @@ export const COLONNES_REQUISES: Record<string, { colonne: string; type: string }
     { colonne: "dispo_inter", type: "boolean" },
     { colonne: "dispo_intra", type: "boolean" },
     { colonne: "prix_intra", type: "integer" },
+    /*
+      UNITE_PRIX — posée le 16 août 2026, après deux prix annuels enregistrés
+      comme des totaux. Le modèle la prévoyait « obligatoire dès qu'un prix
+      existe » ; elle n'avait jamais été implémentée, et le garde-fou d'unité
+      ne pouvait donc rien garantir en aval de l'extraction.
+
+      Un prix sans unité n'est pas affichable : « 4 990 € » et « 4 990 € par
+      année » ne disent pas la même chose, et le filtre budget les traite
+      aujourd'hui à l'identique — comme il traite 49 €/mois et un diplôme.
+
+      Pas de valeur par défaut « total ». Un défaut silencieux est exactement
+      ce qui a produit la faute : il faut que l'absence se voie.
+    */
+    { colonne: "unite_prix", type: "text check (unite_prix in ('total','annuel','mensuel','journalier','horaire'))" },
   ],
 };
 
