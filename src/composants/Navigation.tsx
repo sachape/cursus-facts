@@ -184,7 +184,6 @@ function EspaceCompte({ fermer }: { fermer: () => void }) {
  */
 function PiedPanneau({ fermer }: { fermer: () => void }) {
   const { utilisateur, chargement, deconnecter } = useAuth();
-  const stats = RouteRacine.useLoaderData();
 
   return (
     <div className="shrink-0 border-t border-(--border-subtle) bg-(--surface-sunken) px-(--space-4) py-(--space-4)">
