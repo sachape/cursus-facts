@@ -1,0 +1,38 @@
+[
+ {
+  "id": 203,
+  "nom": "L'essentiel du digital et des réseaux sociaux pour PME",
+  "organisme": "ORSYS",
+  "url": "https://www.orsys.fr/formation-essentiel-digital-des-reseaux-sociaux-pour-pme-tpe.html",
+  "issue": "releve",
+  "montant": 1650,
+  "unite": "total",
+  "condition": "formation inter, 2 jours (hors option certification 190 € H.T.)",
+  "citation": "Prix : 1650 € H.T.",
+  "motif": null
+ },
+ {
+  "id": 232,
+  "nom": "Les fondamentaux du marketing digital",
+  "organisme": "ISM",
+  "url": "https://www.ism.fr/formation/les-fondamentaux-du-marketing-digital",
+  "issue": "releve",
+  "montant": 1950,
+  "unite": "total",
+  "condition": "prix par session de 3 jours, HT",
+  "citation": "1950€ HT",
+  "motif": null
+ },
+ {
+  "id": 231,
+  "nom": "Parcours certifiant — Marketing digital",
+  "organisme": "ISM",
+  "url": "https://www.ism.fr/formation/parcours-certifiant-marketing-digital",
+  "issue": "releve",
+  "montant": 5300,
+  "unite": "total",
+  "condition": null,
+  "citation": "17 sept. 2026 au 06 janv. 2027 \nParis\nPlaces disponibles\n5300€ HT",
+  "motif": null
+ }
+]

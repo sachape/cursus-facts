@@ -182,7 +182,25 @@ describe("ce qui part en base respecte les invariants", () => {
       ci-dessus annonçait. Ce compteur MONTE quand la collecte avance : le
       figer serait le rendre faux au premier prix écrit.
     */
-    expect(total).toBe(2461);
+    /*
+      2 461 → 2 464. Trois prix relevés chez l'organisme le 17 août 2026 :
+      ORSYS « Prix : 1650 € H.T. », ISM 1 950 € et 5 300 € HT. Chacun porte sa
+      citation littérale et son unité dans l'historique de sa fiche.
+
+      Une QUATRIÈME page publiait un montant et a été écartée à la lecture :
+      ISM « 600€ht jusqu'à 10 utilisateurs » est le prix d'une licence de
+      groupe, pas ce qu'une personne débourse. Les trois garde-fous du relevé
+      l'avaient laissé passer — citation littérale, montant présent, unité
+      donnée — parce qu'aucun ne peut distinguer un tarif individuel d'un tarif
+      de groupe. C'est le même écart que celui qui sépare l'inter de l'intra, et
+      il se tranche à la lecture.
+
+      2 464 → 2 466. Trois prix de plus le même jour — AMZ Academy 2 490 € et
+      1 650 €, Studi 4 190 € — dont deux fiches portaient déjà leur durée : la
+      hausse du compteur est inférieure au nombre de prix écrits, et c'est
+      normal, il compte des informations et non des fiches.
+    */
+    expect(total).toBe(2466);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {

@@ -1,0 +1,38 @@
+[
+ {
+  "id": 144,
+  "nom": "Webmarketing E-commerce",
+  "organisme": "AMZ Academy",
+  "url": "https://www.amzacademy.fr/formation/webmarketing-ecommerce",
+  "issue": "releve",
+  "montant": 2490,
+  "unite": "total",
+  "condition": "Formule certifiante",
+  "citation": "Formule certifiante\n 2.490€\n Une formation certifiante avec un véritable accompagnement pédagogique",
+  "motif": null
+ },
+ {
+  "id": 198,
+  "nom": "Shopify 2026",
+  "organisme": "AMZ Academy",
+  "url": "https://www.amzacademy.fr/formation/ecommerce-shopify",
+  "issue": "autre_parcours",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "score 0.50"
+ },
+ {
+  "id": 199,
+  "nom": "Définir et mettre en place une stratégie e-commerce",
+  "organisme": "AMZ Academy",
+  "url": "https://www.amzacademy.fr/formation/strategie-ecommerce",
+  "issue": "releve",
+  "montant": 1650,
+  "unite": "total",
+  "condition": "Formule certifiante",
+  "citation": "Formule certifiante\n 1.650€\n Une formation certifiante avec un véritable accompagnement pédagogique",
+  "motif": null
+ }
+]

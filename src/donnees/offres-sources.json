@@ -6050,7 +6050,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "amzacademy.fr",
-  "prix": null,
+  "prix": 2490,
   "duree": null,
   "volumeHoraire": 35,
   "formats": [
@@ -6076,7 +6076,18 @@
    "Dropshipping"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "total",
+  "urlDetail": "https://www.amzacademy.fr/formation/webmarketing-ecommerce",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — Formule certifiante. https://www.amzacademy.fr/formation/webmarketing-ecommerce — « Formule certifiante\n 2.490€\n Une formation certifiante avec un véritable accompagnement pédagogique »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 146,
@@ -7886,11 +7897,22 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "prix": null,
+  "prix": 1650,
   "id": 199,
   "nom": "Définir et mettre en place une stratégie e-commerce",
   "volumeHoraire": 35,
-  "duree": null
+  "duree": null,
+  "unitePrix": "total",
+  "urlDetail": "https://www.amzacademy.fr/formation/strategie-ecommerce",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — Formule certifiante. https://www.amzacademy.fr/formation/strategie-ecommerce — « Formule certifiante\n 1.650€\n Une formation certifiante avec un véritable accompagnement pédagogique »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "AMZ Academy",
@@ -8060,11 +8082,22 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "prix": null,
+  "prix": 1650,
   "id": 203,
   "nom": "L'essentiel du digital et des réseaux sociaux pour PME",
   "duree": "2 jours",
-  "volumeHoraire": 14
+  "volumeHoraire": 14,
+  "unitePrix": "total",
+  "urlDetail": "https://www.orsys.fr/formation-essentiel-digital-des-reseaux-sociaux-pour-pme-tpe.html",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — formation inter, 2 jours (hors option certification 190 € H.T.). https://www.orsys.fr/formation-essentiel-digital-des-reseaux-sociaux-pour-pme-tpe.html — « Prix : 1650 € H.T. »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "M2i Formation",
@@ -9073,11 +9106,22 @@
   "sourceModalite": null,
   "duree": null,
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 4190,
   "niveauLibelle": "Aucun prérequis",
   "certification": "Diplôme national niveau 5",
   "id": 225,
-  "nom": "BTS Commerce international"
+  "nom": "BTS Commerce international",
+  "unitePrix": "total",
+  "urlDetail": "https://www.studi.com/fr/formation/commerce-international/bts-commerce-international",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif particuliers. https://www.studi.com/fr/formation/commerce-international/bts-commerce-international — « Tarif\n4 190 €\nTarif pour les particuliers. »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "Studi",
@@ -9407,7 +9451,7 @@
   "sourceModalite": null,
   "duree": null,
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 5300,
   "id": 231,
   "nom": "Parcours certifiant — Marketing digital",
   "historique": [
@@ -9416,10 +9460,19 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.ism.fr/formations/marketing-digital/strategie-digitale — « Bien que nos programmes soient conçus pour accueillir un large éventail de profils professionnels, une familiarité de base avec les concepts du marketing et une certaine aisance avec les outils numériques sont recommandées pour tirer le meilleur parti de la formation. »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme. https://www.ism.fr/formation/parcours-certifiant-marketing-digital — « 17 sept. 2026 au 06 janv. 2027 \nParis\nPlaces disponibles\n5300€ HT »"
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "total",
+  "urlDetail": "https://www.ism.fr/formation/parcours-certifiant-marketing-digital",
+  "aConfirmer": []
  },
  {
   "organisme": "ISM",
@@ -9450,7 +9503,7 @@
   "sourceModalite": null,
   "duree": null,
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1950,
   "id": 232,
   "nom": "Les fondamentaux du marketing digital",
   "historique": [
@@ -9459,10 +9512,19 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.ism.fr/formations/marketing-digital — « Les prérequis varient selon le niveau et l'objectif de chaque formation. »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — prix par session de 3 jours, HT. https://www.ism.fr/formation/les-fondamentaux-du-marketing-digital — « 1950€ HT »"
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "total",
+  "urlDetail": "https://www.ism.fr/formation/les-fondamentaux-du-marketing-digital",
+  "aConfirmer": []
  },
  {
   "organisme": "ISM",
