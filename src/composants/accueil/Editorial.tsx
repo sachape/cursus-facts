@@ -139,8 +139,8 @@ export function LesRessources() {
               ))}
             </dl>
 
-            <div className="mt-(--space-10) flex flex-wrap items-center gap-(--space-5)">
-              <BoutonLien to="/ressources" variante="plein">
+            <div className="mt-(--space-10) flex flex-col gap-(--space-5) sm:flex-row sm:flex-wrap sm:items-center">
+              <BoutonLien to="/ressources" variante="plein" className="w-full sm:w-auto">
                 Voir les ressources
               </BoutonLien>
               <span className="t-body-sm text-(--text-tertiary)">
