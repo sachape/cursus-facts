@@ -12,12 +12,53 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { preparerIngestion, type Preparation } from "./preparer";
 
+/**
+ * Nombre maximal de fiches retirées en une passe, sans forçage.
+ *
+ * IL NE PROTÈGE PAS D'UN RETRAIT VOULU, IL PROTÈGE D'UN CATALOGUE CASSÉ. Si la
+ * source cesse d'être lisible — un JSON tronqué, une règle de regroupement qui
+ * s'emballe — la préparation rend peu de fiches et TOUT le reste devient
+ * « obsolète ». Sans plafond, l'ingestion viderait la base en un passage, sans
+ * rien signaler d'autre qu'un rapport optimiste.
+ *
+ * Quarante : au-dessus de la plus grande vague de retraits connue — les
+ * dix-neuf plateformes d'éditeur plus les familles éclatées — et très en
+ * dessous d'un accident.
+ */
+export const PLAFOND_RETRAIT = 40;
+
+/**
+ * Les fiches présentes en base que le catalogue ne produit plus.
+ *
+ * Fonction PURE, et c'est délibéré : c'est la seule décision destructrice de
+ * l'ingestion, et elle doit pouvoir être vérifiée sans base de données.
+ *
+ * Elle refuse de conclure sur une préparation vide. Zéro fiche préparée ne
+ * signifie pas « tout le catalogue est retiré », ça signifie que la source n'a
+ * pas été lue — et c'est exactement le cas où le retrait ferait le plus de
+ * dégâts.
+ */
+export function retraitsAFaire(
+  slugsEnBase: readonly string[],
+  slugsPrepares: readonly string[],
+): string[] {
+  if (slugsPrepares.length === 0) {
+    throw new Error(
+      "Aucune fiche préparée : la source n'a pas été lue. Aucun retrait ne sera fait.",
+    );
+  }
+  const attendus = new Set(slugsPrepares);
+  return slugsEnBase.filter((slug) => !attendus.has(slug));
+}
+
 export type RapportIngestion = {
   organismesCrees: number;
   organismesTotal: number;
   fichesEcrites: number;
   fichesRepliees: number;
   variantesEcrites: number;
+  /** Fiches retirées de la base parce que le catalogue ne les produit plus. */
+  fichesRetirees: string[];
   arbitragesEnAttente: number;
   informationsVerifiees: number;
 };
@@ -126,7 +167,66 @@ export async function ecrireIngestion(
     }
   }
 
-  // 5. File d'arbitrage — publique, rejouée à l'identique.
+  /*
+    5. RETRAITS — les fiches que le catalogue ne produit plus.
+
+    L'upsert seul ne suffit pas : il ajoute et met à jour, il n'enlève rien. La
+    base gardait donc les dix-neuf plateformes d'éditeur retirées, les deux
+    pages catalogue de M2i et Dawan retirées le 4 août, et les familles ISCOD,
+    ENACO et Studi depuis éclatées en fiches individuelles — soit vingt-deux
+    fiches affichées au public que le catalogue considère comme retirées, et des
+    doublons avec leurs remplaçantes.
+
+    L'ORDRE DE SUPPRESSION SUIT LES RÉFÉRENCES. Un repli d'arbitrage pointe vers
+    une fiche ancre : si l'ancre part la première, la suppression échoue sur la
+    contrainte. On délie, on purge les variantes, puis on retire.
+
+    Les sauvegardes et alertes des utilisateurs référencent un parcours par son
+    identifiant textuel, sans contrainte : elles survivent au retrait et
+    désignent une fiche disparue. C'est le comportement déjà en place pour toute
+    fiche retirée, et il vaut mieux qu'une suppression silencieuse de données
+    qui appartiennent à quelqu'un.
+  */
+  const { data: toutesEnBase, error: erreurInventaire } = await db
+    .from("parcours")
+    .select("id, slug");
+  if (erreurInventaire) throw new Error(`Inventaire des parcours : ${erreurInventaire.message}`);
+
+  const parSlugEnBase = new Map((toutesEnBase ?? []).map((p) => [p.slug, p.id]));
+  const retires = retraitsAFaire(
+    [...parSlugEnBase.keys()],
+    preparation.fiches.map((f) => f.slug),
+  );
+
+  if (retires.length > PLAFOND_RETRAIT) {
+    throw new Error(
+      `${retires.length} fiches seraient retirées, au-dessus du plafond de ${PLAFOND_RETRAIT}. ` +
+        `Une préparation qui retire autant décrit un défaut de source, pas un retrait. ` +
+        `Rien n'a été retiré ; vérifier le catalogue avant de relancer.`,
+    );
+  }
+
+  if (retires.length > 0) {
+    const idsRetires = retires.map((slug) => parSlugEnBase.get(slug)!).filter(Boolean);
+
+    // Délier les replis qui pointent vers une fiche retirée.
+    const { error: erreurDelier } = await db
+      .from("parcours")
+      .update({ parcours_parent_id: null })
+      .in("parcours_parent_id", idsRetires);
+    if (erreurDelier) throw new Error(`Déliaison des replis : ${erreurDelier.message}`);
+
+    const { error: erreurVariantes } = await db
+      .from("variantes")
+      .delete()
+      .in("parcours_id", idsRetires);
+    if (erreurVariantes) throw new Error(`Purge des variantes retirées : ${erreurVariantes.message}`);
+
+    const { error: erreurRetrait } = await db.from("parcours").delete().in("id", idsRetires);
+    if (erreurRetrait) throw new Error(`Retrait des fiches : ${erreurRetrait.message}`);
+  }
+
+  // 6. File d'arbitrage — publique, rejouée à l'identique.
   const { error: erreurPurgeArb } = await db
     .from("arbitrages")
     .delete()
@@ -144,6 +244,7 @@ export async function ecrireIngestion(
     fichesEcrites: ecrits?.length ?? 0,
     fichesRepliees: aReplier.length,
     variantesEcrites: variantes.length,
+    fichesRetirees: retires,
     arbitragesEnAttente: preparation.arbitrages.length,
     informationsVerifiees: preparation.fiches.reduce(
       (s, f) => s + (f.colonnes["infos_renseignees"] as number),

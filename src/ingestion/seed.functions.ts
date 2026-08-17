@@ -24,6 +24,8 @@ export type ResultatSeed =
       fichesEcrites: number;
       fichesRepliees: number;
       variantesEcrites: number;
+      /** Slugs des fiches retirées : la seule opération destructrice de la passe. */
+      fichesRetirees: string[];
       arbitragesEnAttente: number;
       informationsVerifiees: number;
     };

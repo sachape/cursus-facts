@@ -92,8 +92,27 @@ function PageSeed() {
           <Ligne terme="Fiches écrites" valeur={resultat.fichesEcrites} />
           <Ligne terme="Fiches repliées en arbitrage" valeur={resultat.fichesRepliees} />
           <Ligne terme="Variantes" valeur={resultat.variantesEcrites} />
+          <Ligne terme="Fiches retirées" valeur={resultat.fichesRetirees.length} />
           <Ligne terme="Arbitrages en attente" valeur={resultat.arbitragesEnAttente} />
           <Ligne terme="Informations vérifiées" valeur={resultat.informationsVerifiees} />
+          {/*
+            LES RETRAITS SONT NOMMÉS, PAS SEULEMENT COMPTÉS. C'est la seule
+            opération de l'ingestion qui détruit : un compteur dirait « 22 » sans
+            permettre de vérifier que ce sont bien les vingt-deux attendues.
+            Nommées, une suppression aberrante se voit à la première lecture.
+          */}
+          {resultat.fichesRetirees.length > 0 && (
+            <div className="mt-4">
+              <p className="t-label text-(--text-tertiary)">Fiches retirées de la base</p>
+              <ul className="mt-2 flex flex-col gap-1">
+                {resultat.fichesRetirees.map((slug) => (
+                  <li key={slug} className="t-caption text-(--text-secondary)">
+                    {slug}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </dl>
       )}
     </main>
