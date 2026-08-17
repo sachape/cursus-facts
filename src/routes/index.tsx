@@ -282,6 +282,26 @@ function Accueil() {
         </div>
 
         {/*
+          LES RACCOURCIS PORTENT LEUR DÉCOMPTE, ET DISPARAISSENT À ZÉRO. Un
+          raccourci vers une liste vide est une promesse rompue au premier clic ;
+          le nombre affiché est celui que la page d'arrivée montrera.
+        */}
+        <ul className="flex flex-wrap justify-center gap-(--space-2)">
+          {raccourcis.map((r) => (
+            <li key={r.libelle}>
+              <Link
+                to="/catalogue"
+                search={r.search}
+                className="inline-flex items-center gap-(--space-2) rounded-(--radius-full) border border-(--border-default) bg-(--surface-raised) px-(--space-4) py-(--space-2) t-body-sm text-(--text-secondary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+              >
+                {r.libelle}
+                <span className="chiffre text-(--text-tertiary)">{formaterNombre(r.nombre)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/*
           Trois chiffres vrais. Aucune métrique de vanité : « heures analysées »
           serait le premier chiffre qu'un organisme mécontent attaquerait, et il
           aurait raison. La date de vérification passe en mention sous la ligne —
@@ -358,25 +378,6 @@ function Accueil() {
           </Button>
         </div>
 
-        {/*
-          LES RACCOURCIS PORTENT LEUR DÉCOMPTE, ET DISPARAISSENT À ZÉRO. Un
-          raccourci vers une liste vide est une promesse rompue au premier clic ;
-          le nombre affiché est celui que la page d'arrivée montrera.
-        */}
-        <ul className="flex flex-wrap justify-center gap-(--space-2)">
-          {raccourcis.map((r) => (
-            <li key={r.libelle}>
-              <Link
-                to="/catalogue"
-                search={r.search}
-                className="inline-flex items-center gap-(--space-2) rounded-(--radius-full) border border-(--border-default) bg-(--surface-raised) px-(--space-4) py-(--space-2) t-body-sm text-(--text-secondary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
-              >
-                {r.libelle}
-                <span className="chiffre text-(--text-tertiary)">{formaterNombre(r.nombre)}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
 
       {/*
