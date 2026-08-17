@@ -99,7 +99,7 @@ export function LesRessources() {
   const { sujets, types, totalSujets } = inventaire();
 
   return (
-    <Section fond="accent">
+    <Section fond="page">
       {/*
         DEUX COLONNES, PAS UN BANDEAU. À gauche la position éditoriale, à droite
         l'inventaire réel : c'est l'inventaire qui prouve la phrase, et le
@@ -109,14 +109,14 @@ export function LesRessources() {
       <div className="grid gap-(--space-12) min-[1000px]:grid-cols-[1.05fr_1fr] min-[1000px]:gap-(--space-16)">
         <Reveal>
           <div className="flex h-full flex-col">
-            <p className="t-label text-(--text-on-inverse) opacity-60">09 · Ressources gratuites</p>
+            <p className="t-label text-(--text-tertiary)">09 · Ressources gratuites</p>
 
-            <h2 className="mt-(--space-5) text-balance t-display-1 text-(--text-on-inverse) max-[767px]:t-display-2">
+            <h2 className="mt-(--space-5) text-balance t-display-1 text-(--text-primary) max-[767px]:t-display-2">
               <span className="chiffre">{formaterNombre(RESSOURCES.length)}</span> ressources
               gratuites, sur <span className="chiffre">{formaterNombre(totalSujets)}</span> sujets
             </h2>
 
-            <p className="mt-(--space-6) max-w-[56ch] t-body-lg text-(--text-on-inverse) opacity-80">
+            <p className="mt-(--space-6) max-w-[56ch] t-body-lg text-(--text-secondary)">
               Des plateformes d&apos;éditeur, des documentations et des certifications gratuites.
               Ce ne sont pas des formations : elles n&apos;entrent pas dans le catalogue et nous ne
               les évaluons pas.
@@ -126,13 +126,13 @@ export function LesRessources() {
               Les natures en ligne de crédit, pas en cartes : elles qualifient ce
               qu'on va trouver, elles ne sont pas quatre choses à cliquer.
             */}
-            <dl className="mt-(--space-8) flex flex-wrap gap-x-(--space-8) gap-y-(--space-4) border-t border-(--text-on-inverse)/15 pt-(--space-6)">
+            <dl className="mt-(--space-8) flex flex-wrap gap-x-(--space-8) gap-y-(--space-4) border-t border-(--border-default) pt-(--space-6)">
               {types.map(([type, n]) => (
                 <div key={type}>
-                  <dt className="t-caption text-(--text-on-inverse) opacity-60">
+                  <dt className="t-caption text-(--text-tertiary)">
                     {LIBELLES_TYPES_RESSOURCE[type]}
                   </dt>
-                  <dd className="mt-(--space-1) t-heading-3 text-(--text-on-inverse) [font-variant-numeric:tabular-nums]">
+                  <dd className="mt-(--space-1) t-heading-3 text-(--text-primary) [font-variant-numeric:tabular-nums]">
                     {formaterNombre(n)}
                   </dd>
                 </div>
@@ -140,10 +140,10 @@ export function LesRessources() {
             </dl>
 
             <div className="mt-(--space-10) flex flex-wrap items-center gap-(--space-5)">
-              <BoutonLien to="/ressources" variante="clair">
+              <BoutonLien to="/ressources" variante="plein">
                 Voir les ressources
               </BoutonLien>
-              <span className="t-body-sm text-(--text-on-inverse) opacity-60">
+              <span className="t-body-sm text-(--text-tertiary)">
                 Aucune n&apos;est un lien affilié.
               </span>
             </div>
@@ -157,10 +157,10 @@ export function LesRessources() {
           couvert — ce qu'une grille de cartes dilue.
         */}
         <Reveal delai={80}>
-          <div className="rounded-(--carte-rayon) border border-(--text-on-inverse)/15 bg-(--text-on-inverse)/5 p-(--space-6) max-[639px]:p-(--space-5)">
-            <div className="flex items-baseline justify-between gap-(--space-4) border-b border-(--text-on-inverse)/15 pb-(--space-4)">
-              <p className="t-label text-(--text-on-inverse) opacity-60">Sujets les plus couverts</p>
-              <p className="t-caption text-(--text-on-inverse) opacity-60">
+          <div className="rounded-(--carte-rayon) border border-(--border-default) bg-(--surface-raised) p-(--space-6) max-[639px]:p-(--space-5)">
+            <div className="flex items-baseline justify-between gap-(--space-4) border-b border-(--border-default) pb-(--space-4)">
+              <p className="t-label text-(--text-tertiary)">Sujets les plus couverts</p>
+              <p className="t-caption text-(--text-tertiary)">
                 <span className="chiffre">{formaterNombre(totalSujets)}</span> au total
               </p>
             </div>
@@ -169,16 +169,16 @@ export function LesRessources() {
               {sujets.map(([sujet, n]) => (
                 <li
                   key={sujet}
-                  className="flex items-baseline gap-(--space-4) border-b border-(--text-on-inverse)/10 py-(--space-3) last:border-b-0"
+                  className="flex items-baseline gap-(--space-4) border-b border-(--border-subtle) py-(--space-3) last:border-b-0"
                 >
-                  <span className="min-w-0 flex-1 truncate t-body text-(--text-on-inverse) opacity-90">
+                  <span className="min-w-0 flex-1 truncate t-body text-(--text-primary)">
                     {sujet}
                   </span>
                   <span
                     aria-hidden
-                    className="h-px flex-1 bg-(--text-on-inverse)/15 max-[479px]:hidden"
+                    className="h-px flex-1 bg-(--border-default) max-[479px]:hidden"
                   />
-                  <span className="t-data-sm text-(--text-on-inverse) opacity-70 [font-variant-numeric:tabular-nums]">
+                  <span className="t-data-sm text-(--text-tertiary) [font-variant-numeric:tabular-nums]">
                     {formaterNombre(n)}
                   </span>
                 </li>
@@ -186,7 +186,7 @@ export function LesRessources() {
             </ul>
 
             <div className="mt-(--space-5)">
-              <LienAction to="/ressources" ton="inverse">
+              <LienAction to="/ressources" ton="primaire">
                 Parcourir par sujet
               </LienAction>
             </div>
