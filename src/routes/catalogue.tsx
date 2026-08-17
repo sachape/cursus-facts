@@ -661,36 +661,6 @@ function Catalogue() {
             </p>
           )}
 
-          {ecartesFauteInfo > 0 && (
-            /*
-              Sans ce décompte, le filtrage récompenserait mécaniquement les
-              organismes qui publient et effacerait les autres — ce qui
-              contredit la règle d'exhaustivité.
-            */
-            <p className="mt-3 rounded-md border border-absent/30 px-3 py-2 text-xs text-absent">
-              <span className="chiffre">{ecartesFauteInfo}</span>{" "}
-              {ecartesFauteInfo > 1 ? "parcours ont été écartés" : "parcours a été écarté"} faute
-              d&apos;information publiée, et non parce qu&apos;ils ne correspondent pas.{" "}
-              <button
-                type="button"
-                onClick={() =>
-                  modifier({
-                    eligibleCpf: false,
-                    certifiantSeulement: false,
-                    sansFrais: false,
-                    accesPartiel: false,
-                    financementEntreprise: false,
-                    niveaux: [],
-                    formats: [],
-                  })
-                }
-                className="underline underline-offset-2 hover:text-foreground"
-              >
-                Les réafficher
-              </button>
-            </p>
-          )}
-
           {resultats.length === 0 ? (
             <p className="py-16 text-center text-sm text-muted-foreground">
               Aucun parcours ne correspond à ces critères. Élargissez la recherche — aucune fiche
