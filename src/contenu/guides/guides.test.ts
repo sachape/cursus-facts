@@ -254,4 +254,25 @@ describe("un guide qualifie, il ne conclut pas", () => {
       for (const to of sorties(guide)) expect(to.startsWith("/"), `${guide.slug} → ${to}`).toBe(true);
     }
   });
+
+  it("ne fait passer aucune sortie par une redirection", () => {
+    /*
+      Les treize sorties visaient `/`, avec leurs filtres. Depuis la séparation
+      du 17 août, cette adresse REDIRIGE vers `/catalogue` dès qu'elle porte un
+      filtre — les liens fonctionnaient, mais par un saut.
+
+      Ce sont précisément les liens qui doivent transmettre l'autorité des
+      guides vers la liste, et un moteur dilue le signal à chaque redirection
+      suivie. Le coût est invisible : rien ne casse, rien ne rougit, le lien
+      arrive à destination.
+
+      La règle vaut pour l'avenir : une sortie vise la page qu'elle veut
+      ouvrir, jamais une adresse qui en désigne une autre.
+    */
+    for (const guide of GUIDES) {
+      for (const to of sorties(guide)) {
+        expect(to, `${guide.slug} → « ${to} » redirige ; viser /catalogue`).not.toBe("/");
+      }
+    }
+  });
 });

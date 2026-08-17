@@ -38,7 +38,7 @@ export const guide: Guide = {
         },
         {
           type: "sortie",
-          sortie: { libelle: "Voir les programmes relevés dans les fiches", to: "/" },
+          sortie: { libelle: "Voir les programmes relevés dans les fiches", to: "/catalogue" },
         },
       ],
     },
@@ -76,7 +76,7 @@ export const guide: Guide = {
         },
         {
           type: "sortie",
-          sortie: { libelle: "Filtrer par volume horaire", to: "/", search: { duree: "de_20_a_100h" } },
+          sortie: { libelle: "Filtrer par volume horaire", to: "/catalogue", search: { duree: "de_20_a_100h" } },
         },
       ],
     },
@@ -132,7 +132,7 @@ export const guide: Guide = {
               precision: "un montant nul n'est retenu que s'il est attesté",
             },
           ],
-          sortie: { libelle: "Comparer les prix relevés", to: "/", search: { prixPublie: "1" } },
+          sortie: { libelle: "Comparer les prix relevés", to: "/catalogue", search: { prixPublie: "1" } },
         },
       ],
     },

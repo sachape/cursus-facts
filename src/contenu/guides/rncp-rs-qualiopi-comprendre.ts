@@ -75,7 +75,7 @@ export const guide: Guide = {
               precision: "un fait publié, pas une lacune",
             },
           ],
-          sortie: { libelle: "Voir les parcours certifiants", to: "/", search: { certifiant: "1" } },
+          sortie: { libelle: "Voir les parcours certifiants", to: "/catalogue", search: { certifiant: "1" } },
         },
         {
           type: "paragraphe",
