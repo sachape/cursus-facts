@@ -380,13 +380,37 @@ l'organisme est faux, quelle que soit la main qui l'a écrit.
 |---|---|---|
 | Fiches sans URL de site officiel | **14** | Toutes des créateurs indépendants. Plafond déclaré dans `scripts/invariants.ts`, **ne peut que décroître**. |
 | Prix déclassés en `a_confirmer` | **59** | Restaurés après l'incident du 3 août, en attente de reconfirmation par lecture. |
-| Éligibilité CPF | 164 fiches à `cpf: 0` | Le booléen ne distingue pas « vérifié non éligible » de « non vérifié ». Corriger par déduction violerait l'invariant 2. |
+| Éligibilité CPF | 164 fiches à `cpf: 0` | Le booléen ne distingue pas « vérifié non éligible » de « non vérifié ». Corriger par déduction violerait l'invariant 2. **Prochain chantier de collecte, après la phase 2** — voir ci-dessous. |
 | Profondeur du catalogue | 9 / 232 | Bloquée par l'appariement (§3). |
 | Fusion jamais déclenchée | 0 fusion | Règle couverte par des cas construits dans `regroupement.test.ts`. |
 | Intitulés désignant une famille | ~17 candidats | Non traités **par motif** : « Formlist Grande École » ressemble au patron et est un produit unique. Seule la lecture tranche. |
 | Garde-fou d'attribution (pages tarifs) | **6 tests, 0 exercice réel** | Couvert par des cas construits, jamais par le terrain — voir ci-dessous. |
 | `SaveButton` | — | **Décision produit en attente** : le produit n'a ni comptes ni favoris. Un bouton sans mécanisme serait une promesse non tenue. |
 | Règles `lieu` et `paiement` | 165 champs suspendus | Elles déduisent depuis un autre champ. Après le crawl, l'entrée sera constatée — la déduction reste, son entrée s'améliore. Même logique que le garde-fou de citation. |
+
+### Priorité de collecte retenue : l'éligibilité CPF — décidée le 18 août 2026
+
+**Le filtre financement ne fonctionne aujourd'hui que sur un quart du
+catalogue.** 164 fiches sur 215 portent `cpf: 0`, et ce zéro recouvre deux
+états que le booléen ne sépare pas : « vérifié non éligible » et « pas encore
+vérifié ». Une personne qui filtre sur le CPF écarte donc, sans le savoir, des
+parcours qui y sont peut-être éligibles.
+
+Ce qui en fait la priorité et non une ligne de dette parmi d'autres : le
+financement est un **critère de recherche majeur** — c'est souvent la première
+question posée, avant le prix lui-même. Une dette sur un champ rarement filtré
+coûte de la complétude ; une dette sur celui-ci coûte des résultats faux au
+moment de la décision.
+
+**Cadrage, pas lancement.** Le chantier vient **après la phase 2**. Il se mène
+par collecte — lecture de la page de l'organisme — et jamais par déduction :
+inférer l'éligibilité depuis le prix, la certification ou l'organisme
+violerait l'invariant 2, et c'est exactement le raccourci qui a coûté les 61
+prix effacés du 3 août.
+
+Le préalable technique est de séparer les deux états, comme `provenance.ts` l'a
+fait pour les valeurs à confirmer : un booléen ne peut pas porter trois
+significations. À trancher au moment d'ouvrir le chantier, pas avant.
 
 ---
 
