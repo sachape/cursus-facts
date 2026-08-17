@@ -16,13 +16,11 @@ import { useAllerOrganisme } from "@/composants/lien-organisme";
 import { declarerVue, mesurer } from "@/composants/mesure";
 import type { DomaineParcours } from "@/types/cursus";
 import { chiffresGuides } from "@/modele/chiffres-guides";
-import {
-  CeQueNousComparons,
-  ExplorerLeCatalogue,
-  LesGuides,
-  LesRessources,
-  QuestionsFrequentes,
-} from "@/composants/BlocsAccueil";
+import { PreuveParLeProduit, TroisPortes } from "@/composants/accueil/Produit";
+import { OrganismesCouverts, PaysageDuCatalogue } from "@/composants/accueil/Catalogue";
+import { LesQuestions, PourquoiFiable } from "@/composants/accueil/Confiance";
+import { Cloture, LesGuides, LesRessources } from "@/composants/accueil/Editorial";
+
 
 const SITE_CANONIQUE = "https://formlist.fr";
 
