@@ -73,6 +73,14 @@ export type EntreeCout = {
   eligibleCpf: boolean | null;
   dispoInter: boolean | null;
   dispoIntra: boolean | null;
+  /**
+   * L'unité du montant. `null` vaut « total ».
+   *
+   * Elle produit une CONDITION, pas seulement un suffixe : « 8 600 € par
+   * année » sur un cursus de trois ans ne dit pas ce que coûte le parcours, et
+   * un lecteur qui compare des totaux doit le savoir sans avoir à le déduire.
+   */
+  unitePrix?: string | null;
   /** Vrai si le prix ou la modalité vient d'une règle, pas de l'organisme. */
   derive?: boolean;
   /**
@@ -180,6 +188,30 @@ export function conditionDuCout(entree: EntreeCout): Cout {
     };
   }
 
+  /*
+    3 bis. L'UNITÉ EST UNE CONDITION, et elle prime sur les autres.
+
+    Un montant annuel, mensuel ou journalier ne dit pas ce que coûte le
+    parcours : il dit ce que coûte une année, un mois, un jour. Affiché sans sa
+    condition, il se compare à des totaux et le lecteur conclut faux — c'est la
+    faute du tarif journalier de Dawan, transposée.
+
+    Elle passe AVANT le CPF et la session collective parce qu'elle porte sur la
+    nature même du montant, quand celles-là portent sur son financement.
+  */
+  const UNITES_CONDITION: Record<string, string> = {
+    annuel: "Montant par année d'études, pas pour le parcours entier",
+    mensuel: "Montant par mois d'abonnement, sans durée d'engagement publiée",
+    journalier: "Tarif par journée — le coût total dépend du nombre de jours",
+    horaire: "Tarif horaire — le coût total dépend du volume suivi",
+  };
+  if (entree.prix !== null && entree.prix > 0 && entree.unitePrix != null) {
+    const condition = UNITES_CONDITION[entree.unitePrix];
+    if (condition !== undefined) {
+      return { valeur: null, condition, derivation, cle: "session_collective" };
+    }
+  }
+
   // 4. Conditions qui accompagnent un montant, sans le remplacer.
   if (entree.prix !== null && entree.prix > 0) {
     if (entree.eligibleCpf === true) {
@@ -220,6 +252,7 @@ export function coutDuParcours(p: {
   eligibleCpf: boolean | null;
   dispoInter: boolean | null;
   dispoIntra: boolean | null;
+  unitePrix?: string | null;
   etats?: Partial<Record<"prix", string>>;
   /** Nommer la règle : `derive` seul renverrait toujours à l'alternance. */
   regleDerivation?: "alternance" | "prix_sans_unite_lu_comme_total" | null;
@@ -228,6 +261,7 @@ export function coutDuParcours(p: {
   const montant = p.dispoInter === false ? null : p.prixMin;
   const cout = conditionDuCout({
     prix: montant,
+    unitePrix: p.unitePrix ?? null,
     modaliteAcces: p.modaliteAcces,
     formats: p.formats,
     categorie: p.organismeCategorie,

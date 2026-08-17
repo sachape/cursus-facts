@@ -94,3 +94,42 @@ describe("garde-fou des deux voies tarifaires", () => {
     expect(conditionDuCout(e({ prix: null, formats: ["alternance"] })).cle).toBe("alternance_requise");
   });
 });
+
+describe("l'unité du montant est une condition", () => {
+  /*
+    « 8 600 € » sur un cursus de trois ans ne dit pas ce que coûte le parcours.
+    Affiché sans condition, ce montant se compare à des totaux et le lecteur
+    conclut faux — la faute du tarif journalier, transposée à l'année.
+  */
+  const base = {
+    modaliteAcces: null,
+    formats: [] as const,
+    categorie: "ecole" as const,
+    eligibleCpf: null,
+    dispoInter: true,
+    dispoIntra: null,
+  };
+
+  it("dit qu'un montant annuel porte sur une année", () => {
+    const c = conditionDuCout({ ...base, prix: 8600, unitePrix: "annuel" });
+    expect(c.condition).toContain("par année d'études");
+    expect(c.condition).toContain("pas pour le parcours entier");
+  });
+
+  it("distingue l'abonnement mensuel et le tarif journalier", () => {
+    expect(conditionDuCout({ ...base, prix: 49, unitePrix: "mensuel" }).condition).toContain("par mois");
+    expect(conditionDuCout({ ...base, prix: 690, unitePrix: "journalier" }).condition).toContain("par journée");
+  });
+
+  it("ne dit rien de plus sur un total — c'est l'unité par défaut", () => {
+    const c = conditionDuCout({ ...base, prix: 1650, unitePrix: "total" });
+    expect(c.condition).not.toContain("par année");
+    expect(conditionDuCout({ ...base, prix: 1650 }).condition).not.toContain("par année");
+  });
+
+  it("laisse la gratuité qualifiée primer sur l'unité", () => {
+    // Un accès libre reste un accès libre, quelle que soit l'unité écrite.
+    const c = conditionDuCout({ ...base, prix: 0, modaliteAcces: "libre", unitePrix: "annuel" });
+    expect(c.valeur).toBe("Gratuit");
+  });
+});
