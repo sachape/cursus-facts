@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { chargerListe, type ParcoursListe } from "@/donnees/requetes";
 import { RechercheHero, type Suggestion } from "@/composants/RechercheHero";
-import { BandeOrganismes } from "@/composants/BandeOrganismes";
 import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
 import { RailCriteres } from "@/composants/HeroBadges";
 import { Button } from "@/components/ui/button";
@@ -16,13 +15,11 @@ import { useAllerOrganisme } from "@/composants/lien-organisme";
 import { declarerVue, mesurer } from "@/composants/mesure";
 import type { DomaineParcours } from "@/types/cursus";
 import { chiffresGuides } from "@/modele/chiffres-guides";
-import {
-  CeQueNousComparons,
-  ExplorerLeCatalogue,
-  LesGuides,
-  LesRessources,
-  QuestionsFrequentes,
-} from "@/composants/BlocsAccueil";
+import { PreuveParLeProduit, TroisPortes } from "@/composants/accueil/Produit";
+import { OrganismesCouverts, PaysageDuCatalogue } from "@/composants/accueil/Catalogue";
+import { LesQuestions, PourquoiFiable } from "@/composants/accueil/Confiance";
+import { Cloture, LesGuides, LesRessources } from "@/composants/accueil/Editorial";
+
 
 const SITE_CANONIQUE = "https://formlist.fr";
 
@@ -130,6 +127,25 @@ function Accueil() {
     pour un champ que personne ne lit.
   */
   const chiffres = useMemo(() => chiffresGuides(parcours, ""), [parcours]);
+
+  /*
+    Les raccourcis sous l'appel principal. Chacun porte le décompte qu'il
+    ouvrira, et ceux qui tombent à zéro ne s'affichent pas : un filtre dont le
+    rendement est nul se coche à l'aveugle et déçoit au premier clic.
+  */
+  const raccourcis = useMemo(
+    () =>
+      [
+        { libelle: "À distance", nombre: chiffres.distanciel, search: { format: "distanciel" } },
+        { libelle: "En alternance", nombre: chiffres.alternance, search: { format: "alternance" } },
+        { libelle: "Éligible CPF", nombre: chiffres.eligiblesCpf, search: { cpf: "1" } },
+        { libelle: "Certifiant", nombre: chiffres.certifiants, search: { certifiant: "1" } },
+        { libelle: "Sans frais", nombre: chiffres.sansFrais, search: { sansFrais: "1" } },
+      ].filter((r) => r.nombre > 0),
+    [chiffres],
+  );
+
+
 
   const organismesBande = useMemo(() => {
     const parNom = new Map<string, { categorie: ParcoursListe["organismeCategorie"]; parcours: number }>();
@@ -332,17 +348,35 @@ function Accueil() {
         retrait bas, quatre au-dessus de lui : un bouton seul au milieu du
         vide se lit comme une erreur de gabarit, pas comme une invitation.
       */}
-      <div className="text-center">
-        <Button
-          size="lg"
-          onClick={() => allerAuCatalogue()}
-        >
-          Voir les {formaterNombre(parcours.length)} parcours
-        </Button>
-      </div>
+      <div className="flex flex-col items-center gap-(--space-5) text-center">
+        <div className="flex flex-wrap justify-center gap-(--space-3)">
+          <Button size="lg" onClick={() => allerAuCatalogue()}>
+            Voir les {formaterNombre(parcours.length)} parcours
+          </Button>
+          <Button size="lg" variant="outline" onClick={() => naviguer({ to: "/aide-au-choix" })}>
+            Je ne sais pas quoi choisir
+          </Button>
+        </div>
 
-      <div className="-mx-(--space-6) my-(--space-12)">
-        <BandeOrganismes organismes={organismesBande} />
+        {/*
+          LES RACCOURCIS PORTENT LEUR DÉCOMPTE, ET DISPARAISSENT À ZÉRO. Un
+          raccourci vers une liste vide est une promesse rompue au premier clic ;
+          le nombre affiché est celui que la page d'arrivée montrera.
+        */}
+        <ul className="flex flex-wrap justify-center gap-(--space-2)">
+          {raccourcis.map((r) => (
+            <li key={r.libelle}>
+              <Link
+                to="/catalogue"
+                search={r.search}
+                className="inline-flex items-center gap-(--space-2) rounded-(--radius-full) border border-(--border-default) bg-(--surface-raised) px-(--space-4) py-(--space-2) t-body-sm text-(--text-secondary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+              >
+                {r.libelle}
+                <span className="chiffre text-(--text-tertiary)">{formaterNombre(r.nombre)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/*
@@ -355,13 +389,18 @@ function Accueil() {
         finissent par diverger — c'est le défaut que ce produit passe son temps
         à corriger ailleurs.
       */}
-      <CeQueNousComparons chiffres={chiffres} />
-      <QuestionsFrequentes chiffres={chiffres} />
-      <ExplorerLeCatalogue chiffres={chiffres} />
+      <PreuveParLeProduit parcours={parcours} />
+      <TroisPortes parcours={parcours} chiffres={chiffres} />
+      <PaysageDuCatalogue chiffres={chiffres} informationsVerifiees={informationsVerifiees} />
+      <OrganismesCouverts organismes={organismesBande} />
+      <PourquoiFiable chiffres={chiffres} />
+      <LesQuestions chiffres={chiffres} />
       <LesGuides />
       <LesRessources />
+      <Cloture parcours={parcours.length} />
     </div>
   );
+
 }
 
 /**
