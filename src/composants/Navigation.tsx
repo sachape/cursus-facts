@@ -224,16 +224,6 @@ function PiedPanneau({ fermer }: { fermer: () => void }) {
         </div>
       )}
 
-      {/*
-        La promesse, chiffrée. Écrire ces nombres en dur les ferait mentir au
-        premier parcours ajouté — et c'est exactement le genre de promesse qu'un
-        visiteur vérifie.
-      */}
-      <p className="mt-(--space-4) t-caption text-(--text-tertiary)">
-        <span className="chiffre">{formaterNombre(stats.parcours)}</span> parcours de{" "}
-        <span className="chiffre">{formaterNombre(stats.organismes)}</span> organismes, vérifiés un
-        par un. Aucun lien affilié.
-      </p>
     </div>
   );
 }
