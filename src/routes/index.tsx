@@ -202,7 +202,7 @@ function Accueil() {
 
   return (
     <div className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) pb-(--space-16)">
-      <header className="relative mx-auto mt-0 w-full min-w-0 overflow-clip pb-(--space-16) pt-(--hero-padding-top) text-center min-[1280px]:min-h-(--hero-min-hauteur) min-[1280px]:pb-(--space-20) min-[1280px]:pt-(--space-16)">
+      <header className="relative mx-auto mt-0 w-full min-w-0 overflow-clip pb-(--space-8) pt-(--hero-padding-top) text-center min-[1280px]:min-h-(--hero-min-hauteur) min-[1280px]:pb-(--space-10) min-[1280px]:pt-(--space-16)">
         <div className="hero-layout">
         <RailCriteres cote="gauche" />
         <div className="hero-centre">
@@ -281,7 +281,7 @@ function Accueil() {
           ferait mentir au premier champ ajouté — et une promesse fausse sur un
           chiffre de couverture coûte plus cher que pas de promesse du tout.
         */}
-        <dl className="mx-auto mt-(--space-8) mb-(--space-12) grid max-w-(--hero-chiffres-largeur) grid-cols-3 items-baseline divide-x divide-(--border-subtle) border-y border-(--border-subtle) py-(--space-5) text-left max-[639px]:grid-cols-1 max-[639px]:divide-x-0 max-[639px]:divide-y max-[639px]:py-0">
+        <dl className="mx-auto mt-(--space-8) grid max-w-(--hero-chiffres-largeur) grid-cols-3 items-baseline divide-x divide-(--border-subtle) border-y border-(--border-subtle) py-(--space-5) text-left max-[639px]:grid-cols-1 max-[639px]:divide-x-0 max-[639px]:divide-y max-[639px]:py-0">
           <Chiffre
             valeur={formaterNombre(parcours.length)}
             libelle="parcours"
@@ -326,7 +326,13 @@ function Accueil() {
         catalogue : écrit à la main, il mentirait au premier ajout, et c'est
         exactement le genre de promesse chiffrée qu'un visiteur vérifie.
       */}
-      <div className="mt-(--space-4) text-center">
+      {/*
+        L'APPEL EST ATTACHÉ AU HERO, PAS POSÉ EN DESSOUS. Il flottait à trois
+        écarts de la ligne de chiffres — douze unités sous elle, seize de
+        retrait bas, quatre au-dessus de lui : un bouton seul au milieu du
+        vide se lit comme une erreur de gabarit, pas comme une invitation.
+      */}
+      <div className="text-center">
         <Button
           size="lg"
           onClick={() => allerAuCatalogue()}
