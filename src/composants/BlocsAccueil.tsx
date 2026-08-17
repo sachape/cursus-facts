@@ -75,10 +75,10 @@ function Section({
   fond?: "page" | "creuse" | "accent";
   children: React.ReactNode;
 }) {
-  if (fond === "page") return <section className="py-(--space-20)">{children}</section>;
+  if (fond === "page") return <section className="py-(--space-16)">{children}</section>;
   const couleur = fond === "creuse" ? "bg-(--surface-sunken)" : "bg-(--accent-default)";
   return (
-    <section className={`-mx-(--space-6) ${couleur} px-(--space-6) py-(--space-20)`}>
+    <section className={`-mx-(--space-6) ${couleur} px-(--space-6) py-(--space-16)`}>
       <div className="mx-auto max-w-(--contenu-largeur-max)">{children}</div>
     </section>
   );
@@ -151,7 +151,7 @@ export function CeQueNousComparons({ chiffres }: { chiffres: ChiffresGuides }) {
             <span className="chiffre">{formaterNombre(CRITERES.length)}</span> informations, relevées
             une par une
           </Titre>
-          <p className="mt-(--space-5) max-w-[62ch] t-body-lg text-(--text-secondary)">
+          <p className="mt-(--space-5) max-w-[54ch] t-body-lg text-(--text-secondary)">
             Chaque parcours est lu sur le site de l&apos;organisme, champ par champ. Quand un prix
             est publié, nous gardons la phrase exacte qui le porte et son unité.
           </p>
@@ -280,10 +280,12 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
         {lignes.map((l) => (
           <div
             key={l.question}
-            className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-8) min-[768px]:grid-cols-[10rem_1fr] min-[768px]:gap-(--space-10)"
+            className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-7) min-[768px]:grid-cols-[8rem_1fr] min-[768px]:gap-(--space-10)"
           >
-            <p className="t-data-lg text-(--accent-default)">{l.chiffre}</p>
-            <div className="max-w-[62ch]">
+            <p className="t-display-1 tabular-nums text-(--accent-default) max-[767px]:t-display-2">
+              {l.chiffre}
+            </p>
+            <div className="max-w-[54ch]">
               <dt className="t-heading-3 text-(--text-primary)">{l.question}</dt>
               <dd className="mt-(--space-2) t-body text-(--text-secondary)">{l.reponse}</dd>
             </div>
@@ -310,14 +312,31 @@ function Tuile({
   parametres,
   libelle,
   nombre,
+  pleine = false,
 }: {
   parametres: ParametresFiltres;
   libelle: string;
   nombre: number;
+  /**
+   * Remplissage d'accent.
+   *
+   * Une grille de dix tuiles blanches identiques n'offre aucune prise à l'œil.
+   * Les trois formats la reçoivent parce qu'ils sont la première entrée du
+   * catalogue ; les catégories restent claires. C'est une hiérarchie de
+   * NAVIGATION, pas de mérite : aucun organisme, aucun parcours n'est mis en
+   * avant par ce moyen, et il n'y en aura jamais.
+   */
+  pleine?: boolean;
 }) {
   const contenu = (
     <>
-      <span className="t-data-lg text-(--text-primary) transition-colors duration-(--motion-fast) group-hover/tuile:text-(--accent-default)">
+      <span
+        className={`block t-display-2 tabular-nums transition-colors duration-(--motion-fast) ${
+          pleine
+            ? "text-(--accent-default)"
+            : "text-(--text-primary) group-hover/tuile:text-(--accent-default)"
+        }`}
+      >
         {formaterNombre(nombre)}
       </span>
       <span className="mt-(--space-1) block t-body-sm text-(--text-secondary)">{libelle}</span>
@@ -339,8 +358,11 @@ function Tuile({
     littéralement `none` dans les fondations. Deux versions de cette page ont
     porté une ombre qui ne rendait rien.
   */
-  const base =
-    "block h-full rounded-(--carte-rayon) border border-(--border-default) bg-(--surface-raised) p-(--space-5) shadow-(--elevation-2)";
+  const base = `block h-full rounded-(--carte-rayon) border p-(--space-5) shadow-(--elevation-2) ${
+    pleine
+      ? "border-(--accent-border) bg-(--accent-surface)"
+      : "border-(--border-default) bg-(--surface-raised)"
+  }`;
   if (pagePlanifiee(parametres) === undefined) {
     return <li className={base}>{contenu}</li>;
   }
@@ -367,14 +389,20 @@ export function ExplorerLeCatalogue({ chiffres }: { chiffres: ChiffresGuides }) 
   return (
     <Section fond="creuse">
       <Titre>Explorer le catalogue</Titre>
-      <p className="mt-(--space-5) max-w-[62ch] t-body-lg text-(--text-secondary)">
+      <p className="mt-(--space-5) max-w-[54ch] t-body-lg text-(--text-secondary)">
         Un mastère d&apos;école et un cours d&apos;indépendant ne se comparent pas de la même façon.
         Le format et le type d&apos;organisme répondent à la question qu&apos;on se pose d&apos;abord.
       </p>
 
       <ul className="mt-(--space-10) grid grid-cols-2 gap-(--space-4) min-[900px]:grid-cols-3">
         {formats.map((f) => (
-          <Tuile key={f.cle} parametres={{ format: f.cle }} libelle={f.libelle} nombre={f.nombre} />
+          <Tuile
+            key={f.cle}
+            parametres={{ format: f.cle }}
+            libelle={f.libelle}
+            nombre={f.nombre}
+            pleine
+          />
         ))}
       </ul>
 
