@@ -101,6 +101,8 @@ type EntreeLot = {
   url: string;
   domaine: string;
   urlDetail: string | null;
+  /** Intitulé porté par l'organisme, vérifié à la main. Sert au rapprochement. */
+  intituleOrganisme?: string | null;
 };
 
 type PageLue = { url: string; role: string; texte: string; html: string };
@@ -416,7 +418,13 @@ async function traiter(
     question porte sur la PAGE. Un mauvais rapprochement écrirait le prix d'une
     formation sur la fiche d'une autre.
   */
-  const correspondance = verifierCorrespondance(fiche.nom, detail.html);
+  /* L'intitulé de l'organisme, quand il a été vérifié à la main, sert à
+     reconnaître sa page — l'intitulé du catalogue ne peut pas suivre ses
+     reformulations sans changer le slug de la fiche. */
+  const correspondance = verifierCorrespondance(
+    [fiche.nom, ...(fiche.intituleOrganisme ? [fiche.intituleOrganisme] : [])],
+    detail.html,
+  );
   if (!correspondance.correspond) {
     base.motifEchec = `page_d_un_autre_parcours(${correspondance.score.toFixed(2)}) « ${correspondance.intitule?.slice(0, 60)} »`;
     return base;
@@ -606,6 +614,8 @@ async function main() {
       domaine: (offre.url ?? e.url).replace(/^https?:\/\//i, "").replace(/\/.*$/, "").replace(/^www\./, "").trim(),
       urlDetail: (offre as { urlDetail?: string | null }).urlDetail ?? null,
       prixActuel: offre.prix,
+      intituleOrganisme:
+        (offre as { intituleOrganisme?: string | null }).intituleOrganisme ?? e.intituleOrganisme ?? null,
     };
   });
   const decouvertes: Decouverte[] = existsSync(DECOUVERTES)

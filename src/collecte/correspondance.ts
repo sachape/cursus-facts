@@ -58,13 +58,34 @@ export type Verdict = {
  * n'écrit pas. C'est la même règle que partout ailleurs — l'absence de preuve
  * n'autorise rien.
  */
+/**
+ * PLUSIEURS INTITULÉS POUR UNE MÊME FICHE, et c'est ce qui débloque le reste.
+ *
+ * Le catalogue porte un intitulé NORMALISÉ — c'est lui qui fabrique le slug de
+ * la page, donc il ne peut pas suivre chaque reformulation de l'organisme sans
+ * casser une adresse indexée. Mais l'organisme, lui, écrit ce qu'il veut :
+ * « Prépa Mastère Digitale » chez nous, « Prépa Mastère Digital » chez lui.
+ *
+ * Le second intitulé est donc enregistré à part, comme un fait sur l'organisme,
+ * et sert UNIQUEMENT à reconnaître sa page. On garde le meilleur des scores :
+ * une fiche est reconnue si l'un OU l'autre de ses intitulés correspond.
+ *
+ * Ce n'est pas un assouplissement : chaque alias est une affirmation vérifiée à
+ * la main — « cette page est bien ce parcours » — et elle est journalisée comme
+ * toute décision manuelle.
+ */
 export function verifierCorrespondance(
-  nomParcours: string,
+  nomParcours: string | readonly string[],
   html: string,
   seuil = SEUIL_CORRESPONDANCE,
 ): Verdict {
   const intitule = intitulePage(html);
   if (intitule === null) return { correspond: false, score: 0, intitule: null };
+
+  const noms = (typeof nomParcours === "string" ? [nomParcours] : nomParcours).filter(
+    (n) => n.trim() !== "",
+  );
+  if (noms.length === 0) return { correspond: false, score: 0, intitule };
 
   /*
     Comparaison dans les deux sens, on garde la meilleure. L'intitulé de page
@@ -73,8 +94,10 @@ export function verifierCorrespondance(
     rejetterait des correspondances légitimes sur un simple écart de longueur.
   */
   const score = Math.max(
-    scoreRapprochement(nomParcours, intitule),
-    scoreRapprochement(intitule, nomParcours),
+    ...noms.flatMap((nom) => [
+      scoreRapprochement(nom, intitule),
+      scoreRapprochement(intitule, nom),
+    ]),
   );
   return { correspond: score >= seuil, score, intitule };
 }

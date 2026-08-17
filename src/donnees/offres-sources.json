@@ -3134,10 +3134,17 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/ — « Data Looker Studio / Google Analytics / Google Ads (certifications) : Analyse de la performance digitale et maîtrise des outils Google. »"
+   },
+   {
+    "champ": "intituleOrganisme",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. L'IIM a renommé le programme. La page de l'école mentionne l'ancien intitulé « Bachelor communication digitale » et le cursus couvre toujours le e-business. Vérifié sur https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "intituleOrganisme": "Bachelor Marketing & Communication digitale"
  },
  {
   "id": 59,
@@ -3466,10 +3473,17 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale — « La Prépa Mastère Digitale n’est pas une initiation à l’informatique. »"
+   },
+   {
+    "champ": "intituleOrganisme",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. HETIC écrit « Digital » là où la fiche porte « Digitale ». Même programme, constaté sur https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale"
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "intituleOrganisme": "Prépa Mastère Digital"
  },
  {
   "id": 66,

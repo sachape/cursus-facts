@@ -40,7 +40,14 @@ const TARIF = { entree: 5, sortie: 25 };
 const TAUX = Number(process.env["TAUX_USD_EUR"] ?? 0.92);
 const MAX_CITATION = 220;
 
-export type Cible = { id: number; nom: string; organisme: string; url: string };
+export type Cible = {
+  id: number;
+  nom: string;
+  organisme: string;
+  url: string;
+  /** Intitulé porté par l'organisme, vérifié à la main. Sert au rapprochement. */
+  intituleOrganisme?: string | null;
+};
 
 export type Releve = {
   id: number;
@@ -146,7 +153,12 @@ async function lire(anthropic: Anthropic, c: Cible): Promise<Releve> {
   }
   if (exigeRepliNavigateur(texte)) return { ...base, issue: "page_illisible", motif: "page vide même après rendu" };
 
-  const corr = verifierCorrespondance(c.nom, html);
+  /* Les deux intitulés de la fiche : le nôtre, qui fabrique le slug et ne peut
+     pas bouger, et celui de l'organisme quand il a été relevé à la main. */
+  const corr = verifierCorrespondance(
+    [c.nom, ...(c.intituleOrganisme ? [c.intituleOrganisme] : [])],
+    html,
+  );
   if (!corr.correspond) return { ...base, issue: "autre_parcours", motif: `score ${corr.score.toFixed(2)}` };
 
   const r = await interroger(anthropic, c.nom, c.organisme, texte);
