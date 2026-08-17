@@ -950,7 +950,7 @@ html {
 
   @media (max-width: 767px) {
     .hero-title {
-      width: calc(100% - 32px);
+      width: 100%;
       /* `100vw` inclut la barre de défilement et déborde donc de la largeur
          réellement disponible. `100%` suffit et reste exact. */
       max-width: 100%;
