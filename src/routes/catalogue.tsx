@@ -36,7 +36,6 @@ import { pageIndexable, pagePlanifiee } from "@/modele/plan-pages";
 import {
   auMoinsUnFiltre,
   compterDansPlage,
-  compterEcartesFauteInformation,
   compterPrixInconnu,
   filtrer,
   FILTRES_VIDES,
@@ -366,7 +365,6 @@ function Catalogue() {
     champ collecté.
   */
   const informationsVerifiees = parcours.reduce((total, p) => total + p.infosRenseignees, 0);
-  const ecartesFauteInfo = compterEcartesFauteInformation(parcours, filtres);
   /*
     Les deux nombres de la mention de budget. Calculés ici, comme les autres
     décomptes de la vue, et non dans la barre d'outils : celle-ci restitue, elle
@@ -660,36 +658,6 @@ function Catalogue() {
                   </button>
                 </>
               )}
-            </p>
-          )}
-
-          {ecartesFauteInfo > 0 && (
-            /*
-              Sans ce décompte, le filtrage récompenserait mécaniquement les
-              organismes qui publient et effacerait les autres — ce qui
-              contredit la règle d'exhaustivité.
-            */
-            <p className="mt-3 rounded-md border border-absent/30 px-3 py-2 text-xs text-absent">
-              <span className="chiffre">{ecartesFauteInfo}</span>{" "}
-              {ecartesFauteInfo > 1 ? "parcours ont été écartés" : "parcours a été écarté"} faute
-              d&apos;information publiée, et non parce qu&apos;ils ne correspondent pas.{" "}
-              <button
-                type="button"
-                onClick={() =>
-                  modifier({
-                    eligibleCpf: false,
-                    certifiantSeulement: false,
-                    sansFrais: false,
-                    accesPartiel: false,
-                    financementEntreprise: false,
-                    niveaux: [],
-                    formats: [],
-                  })
-                }
-                className="underline underline-offset-2 hover:text-foreground"
-              >
-                Les réafficher
-              </button>
             </p>
           )}
 
