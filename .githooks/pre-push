@@ -26,8 +26,51 @@ if [ -n "$SAUTER_RENDU" ]; then
   exit 0
 fi
 
-if [ ! -f .env.local ]; then
-  echo "→ invariants de rendu : sautés (.env.local absent, le serveur ne démarrerait pas)"
+#
+# LA GARDE PORTE SUR LA VARIABLE, PAS SUR LE FICHIER — 18 août 2026.
+#
+# Elle testait la présence de `.env.local`. Le fichier existait, sans porter ce
+# dont le serveur avait besoin : la garde se croyait armée et ne gardait rien.
+# Entre le 12 et le 18 août, les 49 invariants de rendu n'ont pas pu s'exécuter
+# une seule fois, pendant que trois commits en écrivaient de nouveaux. Constat
+# à la remise en route : 22 rouges, dont trois défauts réels déjà en ligne.
+# Consigné au §8 de ETAT-DES-LIEUX.md.
+#
+# Ce qu'il faut vraiment, c'est de quoi servir le catalogue :
+# `src/integrations/supabase/client.ts` lève sans ces deux variables, et une
+# page qui ne charge pas ne prouve rien. Elles vivent dans `.env`, versionné —
+# ce chemin ne devrait donc jamais se déclencher. S'il se déclenche, c'est une
+# information, et elle se lit.
+#
+# NE PAS remplacer ce contrôle par `LOVABLE_API_KEY` : cette clé n'est pas
+# récupérable côté développeur, et depuis que le webhook la lit paresseusement
+# le serveur démarre sans elle. La tester ferait sauter les invariants à chaque
+# poussée — la panne d'août, en permanent.
+#
+variable_definie() {
+  eval "valeur=\${$1:-}"
+  [ -n "$valeur" ] && return 0
+  for fichier in .env.local .env; do
+    [ -f "$fichier" ] || continue
+    grep -qE "^[[:space:]]*(export[[:space:]]+)?$1=[[:space:]]*[^[:space:]#]" "$fichier" && return 0
+  done
+  return 1
+}
+
+manquantes=""
+for variable in VITE_SUPABASE_URL VITE_SUPABASE_PUBLISHABLE_KEY; do
+  variable_definie "$variable" || manquantes="$manquantes $variable"
+done
+
+if [ -n "$manquantes" ]; then
+  echo ""
+  echo "  ##################################################################"
+  echo "  #  INVARIANTS DE RENDU NON EXÉCUTÉS                              #"
+  echo "  ##################################################################"
+  echo "  Variables absentes :$manquantes"
+  echo "  Le serveur de développement ne peut pas servir le catalogue."
+  echo "  49 contrôles n'ont donc RIEN vérifié pour cette poussée."
+  echo ""
   exit 0
 fi
 

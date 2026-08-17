@@ -807,9 +807,22 @@ elles décrivaient le produit ou une intention. Le coût n'est pas l'échec, c'e
 le tri — et il n'a été possible que parce que chaque test portait son motif écrit
 à côté.
 
-**Le garde du hook était faux, aussi.** Il saute les invariants de rendu si
-`.env.local` est absent ; le fichier existait, sans la clé. Une garde qui teste
-la présence d'un fichier plutôt que celle de la variable ne garde rien.
+**Le garde du hook était faux, aussi — corrigé le 18 août.** Il sautait les
+invariants de rendu si `.env.local` était absent ; le fichier existait, sans
+porter ce dont le serveur avait besoin. Une garde qui teste la présence d'un
+fichier plutôt que celle de la variable ne garde rien.
+
+Elle porte désormais sur `VITE_SUPABASE_URL` et `VITE_SUPABASE_PUBLISHABLE_KEY`
+— ce sans quoi `client.ts` lève et le catalogue ne charge pas. Elles vivent dans
+`.env`, versionné, donc ce chemin ne devrait jamais se déclencher ; s'il se
+déclenche, il l'annonce en bandeau au lieu d'une ligne qui se perd dans le
+défilement. Vérifié sur quatre cas, dont celui d'août : fichier présent et vide
+→ la garde alerte, là où elle laissait passer.
+
+**Et surtout pas sur `LOVABLE_API_KEY`.** Cette clé n'est pas récupérable côté
+développeur, et depuis que le webhook la lit paresseusement le serveur démarre
+sans elle. La tester ferait sauter les invariants à chaque poussée — la panne
+d'août, rendue permanente.
 
 ---
 
