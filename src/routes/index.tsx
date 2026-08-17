@@ -369,11 +369,11 @@ function Accueil() {
         vide se lit comme une erreur de gabarit, pas comme une invitation.
       */}
       <div className="flex flex-col items-center gap-(--space-5) text-center">
-        <div className="flex flex-wrap justify-center gap-(--space-3)">
-          <Button size="lg" onClick={() => allerAuCatalogue()}>
+        <div className="flex w-full flex-col gap-(--space-3) sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
+          <Button size="lg" className="w-full sm:w-auto" onClick={() => allerAuCatalogue()}>
             Voir les {formaterNombre(parcours.length)} parcours
           </Button>
-          <Button size="lg" variant="outline" onClick={() => naviguer({ to: "/aide-au-choix" })}>
+          <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => naviguer({ to: "/aide-au-choix" })}>
             Je ne sais pas quoi choisir
           </Button>
         </div>
