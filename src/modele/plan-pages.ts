@@ -104,6 +104,64 @@ export const PLAN_PAGES: readonly PagePlanifiee[] = [
       "Les formations dont le référencement naturel en e-commerce est le sujet principal, et non une compétence abordée en passant.",
     intitule: "Formations SEO e-commerce",
   },
+  /*
+    LES SIX PAGES PAR TYPE D'ORGANISME.
+
+    « Formation e-commerce à l'université », « bootcamp e-commerce » sont des
+    requêtes réelles, et la catégorie est le seul critère qui répond à la
+    question « à qui ai-je affaire » — un mastère d'école et un cours
+    d'indépendant ne se comparent pas de la même façon.
+
+    LES BOOTCAMPS N'Y SONT PAS, et c'est le seuil qui le décide : quatre fiches,
+    sous les huit requises. La page naîtra quand la collecte l'aura nourrie ;
+    l'ouvrir maintenant installerait une page pauvre à une adresse qu'on
+    voudrait ensuite faire remonter.
+
+    Aucune promesse dans les intitulés : ils nomment le croisement, pas une
+    qualité. « Les meilleures formations en école » serait un classement.
+  */
+  {
+    parametres: { categorie: "formation_professionnelle" },
+    titre: "Formations professionnelles e-commerce | Formlist",
+    description:
+      "Les formations e-commerce dispensées par des organismes de formation professionnelle, avec leur prix, leur durée et leur certification, relevés à la source.",
+    intitule: "Formations professionnelles e-commerce",
+  },
+  {
+    parametres: { categorie: "ecole" },
+    titre: "Formations e-commerce en école | Formlist",
+    description:
+      "Les parcours e-commerce proposés par des écoles : bachelors, mastères et MSc, comparés sur leur prix, leur format et leur certification.",
+    intitule: "Formations e-commerce en école",
+  },
+  {
+    parametres: { categorie: "universite" },
+    titre: "Formations e-commerce à l'université | Formlist",
+    description:
+      "Les licences, licences professionnelles et masters e-commerce délivrés par des universités, avec leur volume horaire et leur certification.",
+    intitule: "Formations e-commerce à l'université",
+  },
+  {
+    parametres: { categorie: "formation_independante" },
+    titre: "Formations e-commerce indépendantes | Formlist",
+    description:
+      "Les formations e-commerce vendues par des formateurs indépendants, avec leur prix publié, leur durée et les conditions d'accès annoncées.",
+    intitule: "Formations e-commerce indépendantes",
+  },
+  {
+    parametres: { categorie: "mooc_plateforme" },
+    titre: "Cours e-commerce sur MOOC et plateformes | Formlist",
+    description:
+      "Les cours e-commerce hébergés sur des plateformes de cours en ligne, avec leur tarif, leur modalité d'accès et l'attestation délivrée.",
+    intitule: "Cours e-commerce sur MOOC et plateformes",
+  },
+  {
+    parametres: { categorie: "certification_editeur" },
+    titre: "Certifications e-commerce d'éditeurs | Formlist",
+    description:
+      "Les parcours certifiants proposés par les éditeurs de solutions e-commerce, avec leur tarif et la certification qu'ils délivrent.",
+    intitule: "Certifications e-commerce d'éditeurs",
+  },
 ] as const;
 
 /**

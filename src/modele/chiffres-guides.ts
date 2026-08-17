@@ -96,6 +96,14 @@ export type ChiffresGuides = {
   cpfNonTranche: number;
   financementPublie: number;
   alternance: number;
+  /*
+    Les deux autres formats, au même titre que l'alternance. Ils alimentent le
+    maillage de l'accueil vers les pages de croisement par format ; les compter
+    là-bas aurait créé une seconde source pour un chiffre que ce module produit
+    déjà — et deux sources finissent toujours par diverger.
+  */
+  distanciel: number;
+  presentiel: number;
 
   /* Certification. */
   rncp: number;
@@ -220,6 +228,8 @@ export function chiffresGuides(
     cpfNonTranche: parcours.filter((p) => p.eligibleCpf === null).length,
     financementPublie: parcours.filter((p) => (p.financements ?? []).length > 0).length,
     alternance: parcours.filter((p) => p.formats.includes("alternance")).length,
+    distanciel: parcours.filter((p) => p.formats.includes("distanciel")).length,
+    presentiel: parcours.filter((p) => p.formats.includes("presentiel")).length,
 
     rncp: parcours.filter((p) => (p.codeRncpRs ?? "").startsWith("RNCP")).length,
     rs: parcours.filter((p) => (p.codeRncpRs ?? "").startsWith("RS")).length,

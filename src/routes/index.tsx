@@ -15,6 +15,15 @@ import { validerFiche } from "@/composants/ouverture-fiche";
 import { useAllerOrganisme } from "@/composants/lien-organisme";
 import { declarerVue, mesurer } from "@/composants/mesure";
 import type { DomaineParcours } from "@/types/cursus";
+import { chiffresGuides } from "@/modele/chiffres-guides";
+import {
+  CeQueNousComparons,
+  LesGuides,
+  LesRessources,
+  ParFormat,
+  ParTypeDOrganisme,
+  QuestionsFrequentes,
+} from "@/composants/BlocsAccueil";
 
 const SITE_CANONIQUE = "https://formlist.fr";
 
@@ -112,6 +121,16 @@ function Accueil() {
 
   const informationsVerifiees = parcours.reduce((total, p) => total + p.infosRenseignees, 0);
   const organismes = new Set(parcours.map((p) => p.organismeNom)).size;
+
+  /*
+    LES CHIFFRES DES BLOCS, calculés une fois par rendu.
+
+    `calculeLe` reçoit une date FIXE et non `Date.now()` : l'horodatage n'est
+    affiché nulle part sur l'accueil, et une valeur qui change à chaque rendu
+    ferait diverger le rendu serveur du rendu client — une erreur d'hydratation
+    pour un champ que personne ne lit.
+  */
+  const chiffres = useMemo(() => chiffresGuides(parcours, ""), [parcours]);
 
   const organismesBande = useMemo(() => {
     const parNom = new Map<string, { categorie: ParcoursListe["organismeCategorie"]; parcours: number }>();
@@ -320,6 +339,23 @@ function Accueil() {
       <div className="-mx-(--space-6) my-(--space-12)">
         <BandeOrganismes organismes={organismesBande} />
       </div>
+
+      {/*
+        LE CONTENU VIENT APRÈS L'ACTION, JAMAIS AVANT. Le bouton reste le
+        premier geste possible ; ces sections servent qui n'a pas encore décidé
+        de cliquer, et le moteur qui doit comprendre de quoi parle la page.
+
+        Les chiffres sont calculés UNE FOIS et passés aux blocs. Chaque bloc qui
+        recompterait le sien créerait une source de plus, et deux sources
+        finissent par diverger — c'est le défaut que ce produit passe son temps
+        à corriger ailleurs.
+      */}
+      <CeQueNousComparons chiffres={chiffres} />
+      <QuestionsFrequentes chiffres={chiffres} />
+      <ParFormat chiffres={chiffres} />
+      <ParTypeDOrganisme chiffres={chiffres} />
+      <LesGuides />
+      <LesRessources />
     </div>
   );
 }

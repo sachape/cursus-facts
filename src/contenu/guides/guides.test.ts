@@ -50,6 +50,8 @@ function chiffres(base: number): ChiffresGuides {
     cpfNonTranche: n(6),
     financementPublie: n(4),
     alternance: n(2),
+    distanciel: n(5),
+    presentiel: n(4),
     rncp: n(2),
     rs: n(1),
     certifiants: n(3),
