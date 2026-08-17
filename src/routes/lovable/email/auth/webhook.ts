@@ -15,9 +15,11 @@ const ROOT_DOMAIN = "formlist.fr"
 const FROM_DOMAIN = "notify.formlist.fr"
 const SITE_URL = `https://${ROOT_DOMAIN}`
 
+type AuthEmailHandlerConfig = Parameters<typeof createAuthEmailHandler>[0]
+
 // The SDK handler owns verification, dispatch, and retry semantics; this file
 // owns only the email decisions: subjects, templates, and per-type props.
-const EMAIL_CONFIG = {
+const EMAIL_CONFIG: Omit<AuthEmailHandlerConfig, 'apiKey'> = {
   from: `${SITE_NAME} <noreply@${FROM_DOMAIN}>`,
   senderDomain: SENDER_DOMAIN,
   sendUrl: process.env['LOVABLE_SEND_URL'],
