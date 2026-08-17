@@ -41,6 +41,17 @@ export type ParcoursListe = {
   competencesCouvertes: string[];
   prixMin: number | null;
   prixMax: number | null;
+  /**
+   * L'unité du montant — `null` vaut « total ».
+   *
+   * ÉCRITE EN BASE DEPUIS LE DÉBUT, JAMAIS RELUE. Sept fiches portaient déjà
+   * une unité non totale et s'affichaient comme des totaux : Speed Ecom à
+   * 49 € par mois passait pour la formation la moins chère du catalogue, et
+   * Conversion Boosters à 690 € par jour juste derrière. Un abonnement n'est
+   * pas un prix, c'est une unité — c'est la même faute que le tarif journalier
+   * de Dawan pris pour un tarif de session.
+   */
+  unitePrix: string | null;
   /** Qualification de la gratuité. `null` = non vérifiée. */
   modaliteAcces: ModaliteAcces | null;
   /** Sessions individuelles disponibles. `null` = non tranché. */
@@ -129,7 +140,7 @@ const COLONNES_LISTE_ORGANISME = COLONNES_LISTE.replace(
  * casser : `null` avant migration, la vraie valeur après, sans second
  * déploiement.
  */
-const COLONNES_DIFFEREES = "dispo_inter, dispo_intra, prix_intra";
+const COLONNES_DIFFEREES = "dispo_inter, dispo_intra, prix_intra, unite_prix";
 
 
 
@@ -174,6 +185,7 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
     competencesCouvertes: (ligne["competences_couvertes"] as string[]) ?? [],
     prixMin: ligne["prix_min"] as number | null,
     prixMax: ligne["prix_max"] as number | null,
+    unitePrix: (ligne["unite_prix"] as string | null) ?? null,
     modaliteAcces: (ligne["modalite_acces"] as ModaliteAcces | null) ?? null,
     dispoInter: (ligne["dispo_inter"] as boolean | null) ?? null,
     dispoIntra: (ligne["dispo_intra"] as boolean | null) ?? null,

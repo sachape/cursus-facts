@@ -78,3 +78,29 @@ describe("disponibilité commerciale", () => {
     expect(suspects).toEqual([]);
   });
 });
+
+describe("un montant dans une autre unité n'est pas comparable", () => {
+  /*
+    Sept fiches portaient déjà une unité non totale, écrite en base et jamais
+    relue : Speed Ecom à 49 € par mois passait pour la formation la moins chère
+    du catalogue, Conversion Boosters à 690 € par jour juste derrière. Un
+    abonnement n'est pas un prix, c'est une unité.
+  */
+  const inter = { dispoInter: true, dispoIntra: null };
+
+  it("sort un prix mensuel, journalier ou annuel des comparaisons", () => {
+    expect(prixAffichable(49, inter, "mensuel")).toBeNull();
+    expect(prixAffichable(690, inter, "journalier")).toBeNull();
+    expect(prixAffichable(8600, inter, "annuel")).toBeNull();
+  });
+
+  it("garde un total, explicite ou implicite", () => {
+    expect(prixAffichable(1650, inter, "total")).toBe(1650);
+    // `null` vaut « total » : c'est l'unité par défaut du catalogue.
+    expect(prixAffichable(1650, inter, null)).toBe(1650);
+  });
+
+  it("laisse le tarif intra prioritaire sur l'unité", () => {
+    expect(prixAffichable(890, { dispoInter: false, dispoIntra: true }, "total")).toBeNull();
+  });
+});

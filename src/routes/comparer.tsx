@@ -100,7 +100,7 @@ export function construireLignes(parcours: readonly ParcoursFiche[]): Ligne[] {
         return (
           <>
             <span className="chiffre">
-              {cout.valeur ?? libellePrixQualifie(cout.montant, p.prixMax, p.modaliteAcces)}
+              {cout.valeur ?? libellePrixQualifie(cout.montant, p.prixMax, p.modaliteAcces, p.unitePrix)}
             </span>
             <ConditionCout>{cout.condition}</ConditionCout>
           </>

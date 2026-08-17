@@ -284,7 +284,7 @@ export function correspond(p: ParcoursListe, f: Filtres): boolean {
     contient zéro : un parcours en alternance figure bien sous « moins de
     500 € », puisque c'est exactement ce que l'alternant débourse.
   */
-  const prixIndividuel = prixAffichable(p.prixMin, p);
+  const prixIndividuel = prixAffichable(p.prixMin, p, p.unitePrix);
   if (plageBudgetActive(f)) {
     if (prixIndividuel === null) {
       if (!f.inclurePrixInconnu) return false;

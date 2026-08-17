@@ -286,7 +286,7 @@ export function EnteteFiche({ p }: { p: ParcoursFiche }) {
         <div>
           <dt className="sr-only">Coût pour l&apos;apprenant</dt>
           <dd className="chiffre font-medium">
-            {libellePrixQualifie(p.prixMin, p.prixMax, p.modaliteAcces)}
+            {libellePrixQualifie(p.prixMin, p.prixMax, p.modaliteAcces, p.unitePrix)}
           </dd>
         </div>
         <div>
@@ -404,7 +404,7 @@ export function ContenuFiche({
             {p.variantes.map((v, i) => (
               <li key={i} className="flex justify-between gap-4 text-sm">
                 <span>{v.label}</span>
-                <span className="chiffre">{libellePrixQualifie(v.prix, null, p.modaliteAcces)}</span>
+                <span className="chiffre">{libellePrixQualifie(v.prix, null, p.modaliteAcces, p.unitePrix)}</span>
               </li>
             ))}
           </ul>
@@ -422,7 +422,7 @@ export function ContenuFiche({
               return (
                 <>
                   <span className="chiffre">
-                    {cout.valeur ?? libellePrixQualifie(cout.montant, p.prixMax, p.modaliteAcces)}
+                    {cout.valeur ?? libellePrixQualifie(cout.montant, p.prixMax, p.modaliteAcces, p.unitePrix)}
                   </span>
                   <ConditionCout>{cout.condition}</ConditionCout>
                   <MentionDerivation>{cout.derivation}</MentionDerivation>

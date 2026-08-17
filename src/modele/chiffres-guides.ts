@@ -153,7 +153,7 @@ export function chiffresGuides(
     particulier gonflerait le haut de gamme d'un chiffre qui ne le concerne pas.
   */
   const avecPrix = parcours
-    .map((p) => ({ p, prix: prixAffichable(p.prixMin, p) }))
+    .map((p) => ({ p, prix: prixAffichable(p.prixMin, p, p.unitePrix) }))
     .filter((x): x is { p: ParcoursListe; prix: number } => x.prix !== null);
 
   const payants = avecPrix.filter((x) => x.prix > 0);
@@ -190,7 +190,7 @@ export function chiffresGuides(
       .map((cle) => {
         const duGroupe = parcours.filter((p) => p.organismeCategorie === cle);
         const prixDuGroupe = duGroupe
-          .map((p) => prixAffichable(p.prixMin, p))
+          .map((p) => prixAffichable(p.prixMin, p, p.unitePrix))
           .filter((v): v is number => v !== null);
         const payantsDuGroupe = prixDuGroupe.filter((v) => v > 0);
         return {

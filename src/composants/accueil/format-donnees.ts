@@ -23,7 +23,7 @@ export const LIBELLES_FORMATS: Record<FormatParcours, string> = {
 
 /** Le tarif individuel, ou l'absence déclarée. Jamais un tarif de groupe. */
 export function prixLisible(p: ParcoursListe): string {
-  const prix = prixAffichable(p.prixMin, p);
+  const prix = prixAffichable(p.prixMin, p, p.unitePrix);
   if (prix === null) return NON_COMMUNIQUE;
   if (prix === 0) return "Sans frais";
   return `${formaterNombre(prix)} €`;

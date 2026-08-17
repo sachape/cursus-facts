@@ -95,10 +95,26 @@ export function rangPrix(prix: number | null, modalite: ModaliteAcces | null): n
  * n'aurait pas dû être saisi ainsi, et le dire « Non communiqué » est plus
  * exact que de le dire gratuit.
  */
+/**
+ * L'unité, dite en toutes lettres à côté du montant.
+ *
+ * « 49 € » et « 49 € par mois » ne décrivent pas la même dépense, et rien à
+ * l'écran ne les distinguait. Un montant nu se lit comme le prix du parcours
+ * entier — c'est l'unité par défaut, et c'est la seule qui n'a pas besoin
+ * d'être dite.
+ */
+const SUFFIXE_UNITE: Record<string, string> = {
+  annuel: " par année",
+  mensuel: " par mois",
+  journalier: " par jour",
+  horaire: " par heure",
+};
+
 export function libellePrixQualifie(
   prixMin: number | null,
   prixMax: number | null,
   modalite: ModaliteAcces | null,
+  unite: string | null = null,
 ): string {
   const format = (n: number) => `${n.toLocaleString("fr-FR")} €`;
 
@@ -117,7 +133,9 @@ export function libellePrixQualifie(
       ? `${format(prixMin)} – ${format(prixMax)}`
       : format(prixMin);
 
+  const avecUnite = tarif + (unite !== null ? (SUFFIXE_UNITE[unite] ?? "") : "");
+
   // Un tarif publié coexiste avec une prise en charge : les deux sont vrais.
-  if (modalite === "pris_en_charge") return `${tarif} · ${LIBELLES_MODALITES[modalite]}`;
-  return tarif;
+  if (modalite === "pris_en_charge") return `${avecUnite} · ${LIBELLES_MODALITES[modalite]}`;
+  return avecUnite;
 }

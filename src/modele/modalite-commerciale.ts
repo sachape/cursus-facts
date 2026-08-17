@@ -58,8 +58,24 @@ export function reserveAuxEntreprises(d: DisponibiliteCommerciale): boolean {
  * un tarif de groupe, qui la ferait renoncer sur un chiffre qui ne la concerne
  * pas.
  */
-export function prixAffichable(prix: number | null, d: DisponibiliteCommerciale): number | null {
-  return d.dispoInter === false ? null : prix;
+export function prixAffichable(
+  prix: number | null,
+  d: DisponibiliteCommerciale,
+  unite: string | null = null,
+): number | null {
+  if (d.dispoInter === false) return null;
+  /*
+    UN MONTANT DANS UNE AUTRE UNITÉ N'EST PAS COMPARABLE À UN TOTAL, et la
+    question posée par le filtre budget porte sur un total : « moins de 500 € »
+    ne se répond pas par « 49 € par mois ». Le prix reste AFFICHÉ sur la fiche,
+    avec son unité ; il sort seulement des comparaisons — exactement comme un
+    tarif intra, qui existe mais ne s'adresse pas à un particulier.
+
+    Les confondre revenait à classer Speed Ecom à 49 € par mois devant toutes
+    les formations du catalogue.
+  */
+  if (unite !== null && unite !== "total") return null;
+  return prix;
 }
 
 /**

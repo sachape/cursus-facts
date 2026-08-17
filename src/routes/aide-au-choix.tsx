@@ -183,7 +183,7 @@ function AideAuChoix() {
             organisme: a.parcours.organismeNom,
             domaine: LIBELLES_DOMAINES[a.parcours.domaine],
             sujetPrincipal: a.parcours.sujetPrincipal,
-            prix: libellePrixQualifie(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces),
+            prix: libellePrixQualifie(a.parcours.prixMin, a.parcours.prixMax, a.parcours.modaliteAcces, a.parcours.unitePrix),
             duree: a.parcours.duree ?? "Non communiquée",
             correspond: a.correspond,
             ecarts: a.ecarts,

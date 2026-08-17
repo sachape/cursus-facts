@@ -162,7 +162,7 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
         {/* ---------------------------------------------------------------- */}
         <div className="flex flex-col gap-(--space-4) min-[840px]:w-56 min-[840px]:shrink-0 min-[840px]:border-l min-[840px]:border-(--border-subtle) min-[840px]:pl-(--space-6)">
           <PriceSummary
-            valeur={cout.valeur ?? libellePrixQualifie(cout.montant, parcours.prixMax, parcours.modaliteAcces)}
+            valeur={cout.valeur ?? libellePrixQualifie(cout.montant, parcours.prixMax, parcours.modaliteAcces, parcours.unitePrix)}
             condition={cout.condition}
             absent={prixInconnu}
           />
