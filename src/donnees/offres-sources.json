@@ -4164,7 +4164,7 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": "prises en charge par l’OPCO de l’entreprise",
+  "modaliteAcces": "pris_en_charge",
   "aConfirmer": [
    "prix"
   ],
@@ -4198,6 +4198,12 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://rocket-school.com/formation/bachelor-business-development-marketing-digital/ — « Nos formations Rocket School se déroulent en alternance et sont prises en charge par l’OPCO de l’entreprise (Opérateurs de Compétences). »"
+   },
+   {
+    "champ": "modaliteAcces",
+    "valeurPrecedente": "prises en charge par l’OPCO de l’entreprise",
+    "le": "2026-08-17",
+    "motif": "La phrase de la page avait été recopiée telle quelle dans un champ à valeurs fermées. « Prises en charge par l'OPCO de l'entreprise » énonce exactement « pris_en_charge » : coût nul pour l'apprenant, porté par un tiers."
    }
   ],
   "codeRncpRs": "RNCP 38666",
@@ -7269,7 +7275,7 @@
    "Analytics"
   ],
   "classificationManuelle": false,
-  "modaliteAcces": "Enroll for free",
+  "modaliteAcces": "certificat_payant",
   "historique": [
    {
     "champ": "modaliteAcces",
@@ -7288,10 +7294,19 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.coursera.org/learn/master-digital-marketing-strategy-case-studies — « Tools you'll learn\nDigital Marketing Tools »"
+   },
+   {
+    "champ": "modaliteAcces",
+    "valeurPrecedente": "Enroll for free",
+    "le": "2026-08-17",
+    "motif": "« Enroll for free » était un libellé de bouton recopié dans un champ à valeurs fermées, que la base a rejeté. TRADUIT, PAS EFFACÉ : sur Coursera l'inscription est libre et la certification payante, ce qui est exactement « certificat_payant ». Passé en à-confirmer parce que cette fiche décrit un catalogue entier, où la modalité peut différer d'un cours à l'autre."
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "aConfirmer": [
+   "modaliteAcces"
+  ]
  },
  {
   "id": 181,

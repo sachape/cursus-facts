@@ -10,7 +10,12 @@ import { lancerIngestion, type ResultatSeed } from "@/ingestion/seed.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { chargerCatalogue } from "@/donnees/catalogue";
+import { CHAMPS_INFORMATION } from "@/types/cursus";
 import { Checkbox } from "@/components/ui/checkbox";
+
+/** Lu du catalogue source : l'écrire à la main le fait mentir au premier ajout. */
+const OFFRES_SOURCES = chargerCatalogue().length;
 
 export const Route = createFileRoute("/admin/seed")({
   component: PageSeed,
@@ -40,10 +45,18 @@ function PageSeed() {
   return (
     <main className="mx-auto max-w-xl px-6 py-16">
       <h1 className="text-2xl font-semibold">Ingestion du catalogue</h1>
+      {/*
+        AUCUN CHIFFRE EN DUR ICI NON PLUS. « 195 parcours sources » et « 18
+        informations » avaient été écrits à la main : le premier était faux de
+        vingt-deux fiches le jour où on l'a relu, sur l'écran même qui sert à
+        écrire le catalogue en base. Les deux se lisent désormais du modèle.
+      */}
       <p className="mt-2 text-sm text-muted-foreground">
-        Écrit les 195 parcours sources en base, en appliquant la classification, le
-        regroupement et l&apos;état des 18 informations. L&apos;opération est rejouable :
-        les organismes sont rapprochés par leur nom, les parcours par leur slug.
+        Écrit les <span className="chiffre">{OFFRES_SOURCES}</span> parcours sources en base,
+        en appliquant la classification, le regroupement et l&apos;état des{" "}
+        <span className="chiffre">{CHAMPS_INFORMATION.length}</span> informations.
+        L&apos;opération est rejouable : les organismes sont rapprochés par leur nom, les
+        parcours par leur slug. Les fiches que le catalogue ne produit plus sont retirées.
       </p>
 
       <div className="mt-8 space-y-4">

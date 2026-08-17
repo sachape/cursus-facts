@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { preparerIngestion, slugifier } from "./preparer";
+import { MODALITES_ACCES } from "@/modele/modalite-acces";
 import {
   compterInformations,
   valeursPresentes,
@@ -126,6 +127,32 @@ describe("ce qui part en base respecte les invariants", () => {
     expect(traces).toHaveLength(5);
     for (const fiche of traces) {
       expect(fiche.colonnes["ecart_classification"]).toContain("règle automatique proposait");
+    }
+  });
+
+  it("n'écrit que des modalités d'accès du vocabulaire fermé", () => {
+    /*
+      LE GARDE-FOU QUI MANQUAIT, ET CE QU'IL A COÛTÉ DE NE PAS L'AVOIR.
+
+      `modaliteAcces` est typée dans le code mais lue depuis un JSON par
+      transtypage : rien ne vérifie sa valeur à l'exécution. Deux phrases de
+      page y avaient été recopiées telles quelles — « prises en charge par
+      l'OPCO de l'entreprise » et « Enroll for free ».
+
+      Personne ne l'a vu jusqu'à l'ingestion du 17 août, où Postgres a rejeté le
+      LOT 2 : cinquante fiches étaient déjà écrites, la passe s'est arrêtée au
+      milieu, et le message parlait d'énumération sans dire quelle fiche.
+
+      La base est la dernière ligne de défense, pas la première. Ici la faute se
+      voit sans réseau, avant d'écrire quoi que ce soit.
+    */
+    const autorisees = new Set([...MODALITES_ACCES, null]);
+    for (const fiche of preparation.fiches) {
+      const modalite = fiche.colonnes["modalite_acces"] as string | null;
+      expect(
+        autorisees.has(modalite as never),
+        `${fiche.slug} porte la modalité ${JSON.stringify(modalite)}`,
+      ).toBe(true);
     }
   });
 
