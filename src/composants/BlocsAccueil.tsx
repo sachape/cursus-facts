@@ -87,9 +87,32 @@ function Section({
 /** Le titre d'une section. Sans surtitre : le titre suffit presque toujours. */
 function Titre({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="max-w-(--lecture-largeur-max) text-balance t-display-2 text-(--text-primary) max-[767px]:t-heading-1">
+    <h2 className="text-balance t-display-2 text-(--text-primary) max-[767px]:t-heading-1">
       {children}
     </h2>
+  );
+}
+
+/**
+ * L'en-tête d'une section : titre à gauche, phrase d'appui à droite.
+ *
+ * POURQUOI DEUX COLONNES. Chaque section empilait son titre puis sa phrase
+ * dans une colonne étroite calée à gauche, laissant le tiers droit de la page
+ * vide sur toute sa hauteur. Une mise en page qui n'occupe jamais son support
+ * paraît inachevée, quels que soient le rayon des cartes et la taille des
+ * chiffres. Le titre et son appui se répartissent donc la largeur.
+ *
+ * Ce n'est PAS le motif « grand titre à gauche, petit paragraphe flottant en
+ * haut à droite » : les deux colonnes partagent la même ligne de base haute et
+ * la seconde fait la moitié de la première, pas un quart.
+ */
+function Entete({ titre, appui }: { titre: React.ReactNode; appui?: string }) {
+  if (appui === undefined) return <Titre>{titre}</Titre>;
+  return (
+    <div className="grid items-start gap-(--space-5) min-[900px]:grid-cols-[1.35fr_1fr] min-[900px]:gap-(--space-12)">
+      <Titre>{titre}</Titre>
+      <p className="t-body-lg text-(--text-secondary) min-[900px]:pt-(--space-2)">{appui}</p>
+    </div>
   );
 }
 
@@ -178,7 +201,7 @@ export function CeQueNousComparons({ chiffres }: { chiffres: ChiffresGuides }) {
           sépare d'un comparatif rémunéré à l'affiliation : la seule chose de
           cette page qu'un visiteur ne peut pas vérifier lui-même.
         */}
-        <aside className="self-start rounded-(--carte-rayon) border border-(--accent-border) bg-(--accent-surface) p-(--space-6)">
+        <aside className="self-start rounded-(--carte-rayon) border border-(--accent-border) bg-(--surface-raised) p-(--space-6) shadow-(--elevation-2)">
           <p className="t-body font-medium text-(--text-primary)">Ce que nous ne faisons pas</p>
           <ul className="mt-(--space-4) flex flex-col gap-(--space-4) t-body-sm text-(--text-secondary)">
             <li>Aucune note, aucune étoile, aucun score de qualité.</li>
@@ -280,15 +303,20 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
         {lignes.map((l) => (
           <div
             key={l.question}
-            className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-7) min-[768px]:grid-cols-[8rem_1fr] min-[768px]:gap-(--space-10)"
+            className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-7) min-[768px]:grid-cols-[8rem_1.1fr_1.4fr] min-[768px]:gap-(--space-10)"
           >
             <p className="t-display-1 tabular-nums text-(--accent-default) max-[767px]:t-display-2">
               {l.chiffre}
             </p>
-            <div className="max-w-[54ch]">
-              <dt className="t-heading-3 text-(--text-primary)">{l.question}</dt>
-              <dd className="mt-(--space-2) t-body text-(--text-secondary)">{l.reponse}</dd>
-            </div>
+            {/*
+              QUESTION ET RÉPONSE DANS DEUX COLONNES, pas l'une sous l'autre.
+              Empilées, elles s'arrêtaient au milieu de la page et laissaient la
+              moitié droite vide sur toute la hauteur de la section.
+            */}
+            <dt className="t-heading-3 text-(--text-primary)">{l.question}</dt>
+            <dd className="t-body text-(--text-secondary) max-[767px]:mt-(--space-2)">
+              {l.reponse}
+            </dd>
           </div>
         ))}
       </dl>
@@ -388,13 +416,24 @@ export function ExplorerLeCatalogue({ chiffres }: { chiffres: ChiffresGuides }) 
 
   return (
     <Section fond="creuse">
-      <Titre>Explorer le catalogue</Titre>
-      <p className="mt-(--space-5) max-w-[54ch] t-body-lg text-(--text-secondary)">
-        Un mastère d&apos;école et un cours d&apos;indépendant ne se comparent pas de la même façon.
-        Le format et le type d&apos;organisme répondent à la question qu&apos;on se pose d&apos;abord.
-      </p>
+      <Entete
+        titre="Explorer le catalogue"
+        appui="Un mastère d'école et un cours d'indépendant ne se comparent pas de la même façon. Le format et le type d'organisme répondent à la question qu'on se pose d'abord."
+      />
 
-      <ul className="mt-(--space-10) grid grid-cols-2 gap-(--space-4) min-[900px]:grid-cols-3">
+      {/*
+        UNE SEULE GRILLE, EN AUTO-FIT, ET AUCUNE CELLULE VIDE.
+
+        Deux grilles à colonnes fixes laissaient un trou : sept catégories sur
+        quatre colonnes donnent quatre puis trois, et la place manquante se
+        voyait comme une case oubliée. `auto-fit` fait s'étirer la dernière
+        rangée sur la largeur restante, quel que soit le nombre de catégories —
+        y compris le jour où une huitième apparaît.
+
+        Les formats gardent leur remplissage d'accent : la couleur suffit à les
+        distinguer des catégories, ce qui permet de supprimer deux sous-titres.
+      */}
+      <ul className="mt-(--space-10) grid grid-cols-[repeat(auto-fit,minmax(9.5rem,1fr))] gap-(--space-4)">
         {formats.map((f) => (
           <Tuile
             key={f.cle}
@@ -404,9 +443,6 @@ export function ExplorerLeCatalogue({ chiffres }: { chiffres: ChiffresGuides }) 
             pleine
           />
         ))}
-      </ul>
-
-      <ul className="mt-(--space-4) grid grid-cols-2 gap-(--space-4) min-[640px]:grid-cols-3 min-[1100px]:grid-cols-4">
         {chiffres.parCategorie.map((ligne) => (
           <Tuile
             key={ligne.cle}
@@ -483,8 +519,8 @@ export function LesRessources() {
 
   return (
     <Section fond="accent">
-      <div className="flex flex-wrap items-end justify-between gap-(--space-8)">
-        <div className="max-w-[52ch]">
+      <div className="flex flex-wrap items-center justify-between gap-(--space-10)">
+        <div className="max-w-[34ch] min-[900px]:max-w-[46ch]">
           <h2 className="t-display-2 text-(--text-on-inverse) max-[767px]:t-heading-1">
             <span className="chiffre">{formaterNombre(RESSOURCES.length)}</span> ressources
             gratuites, sur <span className="chiffre">{formaterNombre(sujets)}</span> sujets
