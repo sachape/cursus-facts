@@ -2,141 +2,168 @@
  * Les blocs de contenu de l'accueil.
  *
  * POURQUOI ILS EXISTENT. En sortant la liste vers `/catalogue`, l'accueil a
- * perdu l'essentiel de son texte : un titre, une phrase, trois chiffres et un
- * bouton. C'est trop mince pour une page qui doit se classer sur « comparateur
- * formations e-commerce », et surtout trop mince pour quelqu'un qui arrive sans
- * savoir ce que nous faisons.
+ * perdu l'essentiel de son texte. Ces sections le regarnissent, pour le
+ * visiteur qui n'a pas encore cliqué comme pour le moteur qui doit comprendre
+ * de quoi parle la page.
  *
- * TOUS LES CHIFFRES VIENNENT DE `chiffresGuides`, jamais d'une saisie. C'est la
- * même fonction qui alimente les guides : deux calculs séparés finiraient par
- * diverger, et le jour où ils divergent, c'est la page la moins lue qui ment
- * sans que personne le voie.
+ * CE QUI A CHANGÉ LE 17 AOÛT 2026, ET POURQUOI.
  *
- * LE MAILLAGE VISE LES PAGES INDEXABLES. Douze adresses filtrées figurent au
- * plan de pages ; toutes les autres sont servies en `noindex`. Un bloc qui
- * pointerait ailleurs serait utile au visiteur et sans valeur pour un moteur —
- * on choisit donc les liens parmi celles qui existent vraiment.
+ * La première version empilait six sections identiques — même largeur, même
+ * graisse, même rythme, séparées par des filets. Une page se lit d'abord comme
+ * une forme : six blocs de forme identique ne disent pas « voici six choses »,
+ * ils disent « voici un document ». Rien n'accrochait l'œil, donc rien
+ * n'était lu.
  *
- * AUCUN JUGEMENT, NULLE PART. Pas de « meilleure », pas de « top », pas de
- * classement par popularité. Un bloc « les plus consultées » serait un
- * classement par le trafic, c'est-à-dire un jugement que nous ne portons pas.
+ * Trois leviers, aucun décoratif :
+ *   - LE RYTHME. Les sections alternent le fond de page et un fond creusé
+ *     pleine largeur. C'est ce qui remplace les filets : une bande change la
+ *     lecture, un filet la ponctue à peine.
+ *   - LA HIÉRARCHIE. Chaque section porte un surtitre court, un titre en
+ *     display, et une seule phrase d'appui. Le surtitre situe, le titre annonce.
+ *   - LES CHIFFRES COMME OBJETS. Les répartitions étaient des lignes de tableau
+ *     avec un nombre aligné à droite — la forme d'un export, pas d'une page.
+ *     Elles deviennent des tuiles dont le nombre est l'élément principal.
+ *
+ * CE QUI EN A ÉTÉ RETIRÉ, SUR DEMANDE : toute mention de date, et les réserves
+ * de collecte du type « leur prix n'est pas encore vérifié ». Les réponses
+ * énoncent ce que nous savons ; ce que nous ignorons se lit sur la fiche, qui
+ * est l'endroit où cela porte.
+ *
+ * TOUS LES CHIFFRES VIENNENT DE `chiffresGuides`, jamais d'une saisie — la même
+ * fonction qui alimente les guides. Deux calculs séparés finiraient par
+ * diverger, et c'est la page la moins lue qui mentirait sans qu'on le voie.
+ *
+ * AUCUN JUGEMENT, NULLE PART. Ni note, ni « top », ni classement par
+ * popularité, qui serait un classement par le trafic.
  */
 import { Link } from "@tanstack/react-router";
 import type { ChiffresGuides } from "@/modele/chiffres-guides";
 import { GUIDES } from "@/contenu/guides";
 import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
-import { CHAMPS_INFORMATION, LIBELLES_CHAMPS_INFORMATION } from "@/types/cursus";
+import {
+  CHAMPS_INFORMATION,
+  LIBELLES_CHAMPS_INFORMATION,
+  type ChampInformation,
+} from "@/types/cursus";
 import { formaterNombre } from "@/modele/nombres";
 import { RESSOURCES } from "@/modele/ressources";
 import { pagePlanifiee } from "@/modele/plan-pages";
 import type { ParametresFiltres } from "@/modele/filtres-url";
 
-/** Un titre de section, au même traitement partout. */
-function Titre({ children }: { children: React.ReactNode }) {
-  return <h2 className="t-heading-1 text-(--text-primary) max-[767px]:t-heading-2">{children}</h2>;
-}
+/* -------------------------------------------------------------------------- */
+/* Les pièces communes                                                        */
+/* -------------------------------------------------------------------------- */
 
-function Section({ children }: { children: React.ReactNode }) {
+/**
+ * Une section, sur le fond de page ou sur une bande creusée pleine largeur.
+ *
+ * La bande déborde le conteneur par des marges négatives qui compensent
+ * exactement son retrait, jamais davantage — au-delà, elle créerait un
+ * défilement horizontal.
+ */
+function Section({ creusee = false, children }: { creusee?: boolean; children: React.ReactNode }) {
+  if (!creusee) return <section className="py-(--space-20)">{children}</section>;
   return (
-    <section className="mt-(--space-16) border-t border-(--border-subtle) pt-(--space-8)">
-      {children}
+    <section className="-mx-(--space-6) bg-(--surface-sunken) px-(--space-6) py-(--space-20)">
+      <div className="mx-auto max-w-(--contenu-largeur-max)">{children}</div>
     </section>
   );
 }
 
-/**
- * Un lien vers une vue filtrée du catalogue.
- *
- * IL N'EXISTE QUE SI LA PAGE EST AU PLAN. Sans cette garde, renommer un
- * paramètre laisserait un lien pointant vers une page `noindex` — vivante à
- * l'écran, muette pour un moteur, et personne ne s'en apercevrait.
- */
-function LienCroisement({
-  parametres,
-  libelle,
-  nombre,
-}: {
-  parametres: ParametresFiltres;
-  libelle: string;
-  nombre: number;
-}) {
-  /*
-    COMPARAISON EXACTE ET INDÉPENDANTE DE L'ORDRE DES CLÉS. Une première version
-    comparait deux `JSON.stringify` : elle aurait cessé de reconnaître une page
-    au premier paramètre réordonné, sans rien casser — le lien serait simplement
-    devenu du texte, et personne ne l'aurait vu. `pagePlanifiee` fait déjà cette
-    comparaison, normalisée, pour la balise d'indexation.
-  */
-  const planifiee = pagePlanifiee(parametres) !== undefined;
-  const contenu = (
-    <>
-      <span className="t-body text-(--text-primary)">{libelle}</span>
-      <span className="chiffre t-body-sm text-(--text-tertiary)">{formaterNombre(nombre)}</span>
-    </>
-  );
-  const classe =
-    "flex items-baseline justify-between gap-(--space-3) border-b border-(--border-subtle) py-(--space-3)";
-  if (!planifiee) return <li className={classe}>{contenu}</li>;
+/** Surtitre, titre, et une seule phrase d'appui. */
+function Entete({ surtitre, titre, appui }: { surtitre: string; titre: string; appui?: string }) {
   return (
-    <li>
-      <Link
-        to="/catalogue"
-        search={parametres}
-        className={`${classe} underline-offset-4 transition-colors duration-(--motion-fast) hover:text-(--text-primary) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)`}
-      >
-        {contenu}
-      </Link>
-    </li>
+    <header className="max-w-(--lecture-largeur-max)">
+      <p className="t-label text-(--text-tertiary)">{surtitre}</p>
+      {/*
+        `t-display-2`, et surtout PAS `t-display-3` : cette classe n'existe pas
+        dans l'échelle. Tailwind v4 l'aurait ignorée en silence — ni erreur, ni
+        avertissement, un titre au corps du texte courant. C'est le défaut que
+        les invariants de rendu existent pour attraper.
+      */}
+      <h2 className="mt-(--space-3) t-display-2 text-(--text-primary) max-[767px]:t-heading-1">
+        {titre}
+      </h2>
+      {appui !== undefined && (
+        <p className="mt-(--space-4) t-body-lg text-(--text-secondary)">{appui}</p>
+      )}
+    </header>
+  );
+}
+
+/** Une carte, au même idiome que celles du catalogue. */
+function Carte({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div
+      className={`rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) p-(--space-6) shadow-(--elevation-1) ${className}`}
+    >
+      {children}
+    </div>
   );
 }
 
 /* -------------------------------------------------------------------------- */
-/* 1. Ce que nous comparons, et ce que nous ne faisons pas                    */
+/* 1. Ce que nous comparons                                                   */
 /* -------------------------------------------------------------------------- */
+
+/**
+ * Les champs de PROVENANCE ne sont pas des critères de comparaison.
+ *
+ * Le site officiel, la source et la date de vérification décrivent notre
+ * collecte, pas la formation. Les afficher parmi les critères mettait sur le
+ * même plan « Prix » et « Date de vérification », ce qui brouille les deux.
+ * Ils restent au modèle, où ils comptent ; ils sortent de cette liste.
+ */
+const PROVENANCE: readonly ChampInformation[] = [
+  "site_officiel",
+  "source_information",
+  "date_verification",
+];
+
+const CRITERES = CHAMPS_INFORMATION.filter((c) => !PROVENANCE.includes(c));
 
 export function CeQueNousComparons({ chiffres }: { chiffres: ChiffresGuides }) {
   return (
-    <Section>
-      <Titre>Ce que nous comparons</Titre>
-      <div className="mt-(--space-4) grid gap-(--space-8) min-[900px]:grid-cols-2">
-        <div>
-          <p className="t-body text-(--text-secondary)">
-            Chaque parcours est relevé sur le site de l&apos;organisme, champ par champ, avec la
-            date à laquelle nous l&apos;avons lu. Quand un prix est publié, nous conservons la
-            phrase exacte qui le porte, et son unité — un tarif journalier n&apos;est pas un tarif
-            total.
-          </p>
-          <ul className="mt-(--space-4) flex flex-wrap gap-x-(--space-3) gap-y-(--space-2)">
-            {CHAMPS_INFORMATION.map((champ) => (
-              <li
-                key={champ}
-                className="rounded-(--radius-full) border border-(--border-subtle) px-(--space-3) py-(--space-1) t-caption text-(--text-secondary)"
-              >
-                {LIBELLES_CHAMPS_INFORMATION[champ]}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          {/*
-            LES TROIS REFUS. Ils ne sont pas décoratifs : ils sont ce qui nous
-            sépare d'un comparatif rémunéré à l'affiliation, et c'est la seule
-            chose qu'un visiteur ne peut pas vérifier lui-même en trois clics.
-          */}
-          <p className="t-body text-(--text-secondary)">Ce que nous ne faisons pas :</p>
-          <ul className="mt-(--space-3) flex flex-col gap-(--space-2) t-body text-(--text-secondary)">
+    <Section creusee>
+      <Entete
+        surtitre="La méthode"
+        titre={`${formaterNombre(CRITERES.length)} informations, relevées une par une`}
+        appui="Chaque parcours est lu sur le site de l'organisme, champ par champ. Quand un prix est publié, nous conservons la phrase exacte qui le porte et son unité."
+      />
+
+      <div className="mt-(--space-10) grid gap-(--space-6) min-[900px]:grid-cols-[1fr_auto] min-[900px]:gap-(--space-12)">
+        <ul className="grid grid-cols-2 gap-x-(--space-8) gap-y-(--space-3) min-[640px]:grid-cols-3">
+          {CRITERES.map((champ) => (
+            <li
+              key={champ}
+              className="border-b border-(--border-subtle) pb-(--space-2) t-body text-(--text-secondary)"
+            >
+              {LIBELLES_CHAMPS_INFORMATION[champ]}
+            </li>
+          ))}
+        </ul>
+
+        {/*
+          LES TROIS REFUS, DANS UNE CARTE À PART. Noyés dans une colonne de
+          texte, ils se lisaient comme une note de bas de page. Ils sont ce qui
+          nous sépare d'un comparatif rémunéré à l'affiliation : la seule chose
+          de cette page qu'un visiteur ne peut pas vérifier lui-même.
+        */}
+        <Carte className="min-[900px]:w-80">
+          <p className="t-label text-(--text-tertiary)">Ce que nous ne faisons pas</p>
+          <ul className="mt-(--space-4) flex flex-col gap-(--space-4) t-body text-(--text-primary)">
             <li>Aucune note, aucune étoile, aucun score de qualité.</li>
-            <li>Aucun classement par mérite — l&apos;ordre suit une règle publiée.</li>
+            <li>Aucun classement par mérite. L&apos;ordre suit une règle publiée.</li>
             <li>Aucune position achetable, aucun lien affilié.</li>
           </ul>
-          <p className="mt-(--space-4) t-body-sm text-(--text-tertiary)">
+          <p className="mt-(--space-6) border-t border-(--border-subtle) pt-(--space-4) t-body-sm text-(--text-tertiary)">
             <span className="chiffre">{formaterNombre(chiffres.parcours)}</span> parcours de{" "}
             <span className="chiffre">{formaterNombre(chiffres.organismes)}</span> organismes.{" "}
             <Link to="/methode" className="underline underline-offset-2 hover:text-(--text-secondary)">
-              Comment ce catalogue est construit
+              La méthode
             </Link>
           </p>
-        </div>
+        </Carte>
       </div>
     </Section>
   );
@@ -149,35 +176,29 @@ export function CeQueNousComparons({ chiffres }: { chiffres: ChiffresGuides }) {
 /**
  * Quatre questions, quatre réponses chiffrées.
  *
- * CHAQUE RÉPONSE PORTE UN NOMBRE LU DU CATALOGUE, et renvoie vers l'endroit qui
- * le détaille. Une question dont la réponse serait un paragraphe d'opinion
- * n'aurait rien à faire ici : ce bloc existe parce que nous savons compter,
- * pas parce que nous savons conseiller.
- *
- * PAS DE BALISAGE FAQ. Les résultats enrichis correspondants ont été restreints
- * en 2023 ; le balisage ne rapporterait plus rien et ajouterait une dette.
+ * CHAQUE RÉPONSE TIENT EN UNE PHRASE ET PORTE UN NOMBRE LU DU CATALOGUE. La
+ * version précédente ajoutait à chacune une réserve de collecte — « leur prix
+ * n'est pas encore vérifié », « sans la vérifier auprès du financeur ». Quatre
+ * réponses suivies de quatre réserves ne se lisent plus comme des réponses.
+ * L'état de chaque information reste affiché là où il porte : sur la fiche.
  */
 export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) {
-  const euros = (v: number | null) => (v === null ? null : `${formaterNombre(v)} €`);
+  const euros = (v: number | null) => (v === null ? "" : `${formaterNombre(v)} €`);
 
   const questions: { question: string; reponse: React.ReactNode }[] = [
     {
       question: "Combien coûte une formation e-commerce ?",
       reponse:
         chiffres.medianePayant === null ? (
-          <>
-            Aucun tarif n&apos;est encore établi dans le catalogue. Nous n&apos;affichons pas de
-            fourchette tant qu&apos;elle ne repose sur rien.
-          </>
+          <>Les tarifs relevés sont publiés sur chaque fiche, avec leur source.</>
         ) : (
           <>
-            Sur les <span className="chiffre">{formaterNombre(chiffres.prixEtabli)}</span> parcours
-            dont le tarif est relevé, la médiane des parcours payants est de{" "}
-            <span className="chiffre">{euros(chiffres.medianePayant)}</span>, de{" "}
-            <span className="chiffre">{euros(chiffres.prixMinPayant)}</span> à{" "}
-            <span className="chiffre">{euros(chiffres.prixMaxPayant)}</span>. Les{" "}
-            <span className="chiffre">{formaterNombre(chiffres.prixNonEtabli)}</span> autres ne sont
-            pas gratuits : leur prix n&apos;est pas encore vérifié.
+            La médiane des parcours payants est de{" "}
+            <span className="chiffre font-medium text-(--text-primary)">
+              {euros(chiffres.medianePayant)}
+            </span>
+            , de <span className="chiffre">{euros(chiffres.prixMinPayant)}</span> à{" "}
+            <span className="chiffre">{euros(chiffres.prixMaxPayant)}</span>.
           </>
         ),
     },
@@ -185,12 +206,14 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
       question: "Peut-on la financer avec le CPF ?",
       reponse: (
         <>
-          <span className="chiffre">{formaterNombre(chiffres.eligiblesCpf)}</span> parcours
-          déclarent l&apos;éligibilité au CPF, et{" "}
-          <span className="chiffre">{formaterNombre(chiffres.alternance)}</span> existent en
-          alternance, régime dans lequel l&apos;alternant ne paie pas sa formation. C&apos;est une
-          déclaration de l&apos;organisme, que nous rapportons sans la vérifier auprès du
-          financeur.
+          <span className="chiffre font-medium text-(--text-primary)">
+            {formaterNombre(chiffres.eligiblesCpf)}
+          </span>{" "}
+          parcours déclarent l&apos;éligibilité au CPF, et{" "}
+          <span className="chiffre font-medium text-(--text-primary)">
+            {formaterNombre(chiffres.alternance)}
+          </span>{" "}
+          existent en alternance, régime dans lequel l&apos;alternant ne paie pas sa formation.
         </>
       ),
     },
@@ -198,11 +221,11 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
       question: "Que valent les sigles RNCP et RS ?",
       reponse: (
         <>
-          <span className="chiffre">{formaterNombre(chiffres.certifiants)}</span> parcours portent
-          un code enregistré au Répertoire national ou au Répertoire spécifique — condition
-          nécessaire à la plupart des financements.{" "}
-          <span className="chiffre">{formaterNombre(chiffres.aucuneCertification)}</span> ne
-          délivrent aucune certification, ce qui n&apos;en fait pas de mauvaises formations.
+          <span className="chiffre font-medium text-(--text-primary)">
+            {formaterNombre(chiffres.certifiants)}
+          </span>{" "}
+          parcours portent un code enregistré au Répertoire national ou au Répertoire spécifique,
+          condition nécessaire à la plupart des financements.
         </>
       ),
     },
@@ -210,11 +233,14 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
       question: "Existe-t-il des formations sans frais ?",
       reponse: (
         <>
-          <span className="chiffre">{formaterNombre(chiffres.sansFrais)}</span> parcours ne coûtent
-          rien à l&apos;apprenant, et{" "}
-          <span className="chiffre">{formaterNombre(chiffres.accesPartiel)}</span> ne sont gratuits
-          qu&apos;en partie. Un montant nul ne se suffit jamais à lui-même : nous affichons toujours
-          la modalité qui le qualifie.
+          <span className="chiffre font-medium text-(--text-primary)">
+            {formaterNombre(chiffres.sansFrais)}
+          </span>{" "}
+          parcours ne coûtent rien à l&apos;apprenant, et{" "}
+          <span className="chiffre font-medium text-(--text-primary)">
+            {formaterNombre(chiffres.accesPartiel)}
+          </span>{" "}
+          sont gratuits en partie.
         </>
       ),
     },
@@ -222,13 +248,13 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
 
   return (
     <Section>
-      <Titre>Les questions qu&apos;on se pose avant de choisir</Titre>
-      <dl className="mt-(--space-6) flex max-w-(--lecture-largeur-max) flex-col gap-(--space-6)">
+      <Entete surtitre="Avant de choisir" titre="Les questions qu'on se pose" />
+      <dl className="mt-(--space-10) grid gap-(--space-5) min-[900px]:grid-cols-2">
         {questions.map((q) => (
-          <div key={q.question}>
+          <Carte key={q.question}>
             <dt className="t-heading-3 text-(--text-primary)">{q.question}</dt>
-            <dd className="mt-(--space-2) t-body text-(--text-secondary)">{q.reponse}</dd>
-          </div>
+            <dd className="mt-(--space-3) t-body text-(--text-secondary)">{q.reponse}</dd>
+          </Carte>
         ))}
       </dl>
     </Section>
@@ -236,55 +262,85 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
 }
 
 /* -------------------------------------------------------------------------- */
-/* 3 et 4. Par format, par type d'organisme                                   */
+/* 3. Explorer — par format, par type d'organisme                             */
 /* -------------------------------------------------------------------------- */
 
-export function ParFormat({ chiffres }: { chiffres: ChiffresGuides }) {
-  /*
-    Les trois formats, et seulement ceux que le plan de pages porte. `presentiel`
-    n'y figure pas : la page n'existe pas, l'entrée reste donc un fait affiché
-    sans lien plutôt qu'un lien vers une page muette.
-  */
-  const formats: { cle: string; libelle: string; nombre: number }[] = [
-    { cle: "distanciel", libelle: "À distance", nombre: chiffres.distanciel },
-    { cle: "alternance", libelle: "En alternance", nombre: chiffres.alternance },
-    { cle: "presentiel", libelle: "En présentiel", nombre: chiffres.presentiel },
-  ];
-
+/**
+ * Une tuile de croisement.
+ *
+ * LE NOMBRE EST L'ÉLÉMENT PRINCIPAL, le libellé le qualifie. Ces répartitions
+ * étaient des lignes avec un nombre aligné à droite : la forme d'un export de
+ * tableur, qui donne à lire une colonne quand on voulait donner à choisir.
+ *
+ * LA TUILE N'EST UN LIEN QUE SI LA PAGE EST AU PLAN, vérifié par
+ * `pagePlanifiee` — comparaison normalisée, indépendante de l'ordre des clés.
+ * Sans cette garde, une page servie en `noindex` recevrait des liens depuis
+ * l'accueil : vivante à l'écran, muette pour un moteur.
+ */
+function Tuile({
+  parametres,
+  libelle,
+  nombre,
+}: {
+  parametres: ParametresFiltres;
+  libelle: string;
+  nombre: number;
+}) {
+  const contenu = (
+    <>
+      <span className="t-data-lg text-(--text-primary)">{formaterNombre(nombre)}</span>
+      <span className="mt-(--space-1) block t-body-sm text-(--text-secondary)">{libelle}</span>
+    </>
+  );
+  const base =
+    "block rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) p-(--space-5) shadow-(--elevation-1)";
+  if (pagePlanifiee(parametres) === undefined) {
+    return <li className={base}>{contenu}</li>;
+  }
   return (
-    <Section>
-      <Titre>Par format</Titre>
-      <ul className="mt-(--space-4) max-w-(--lecture-largeur-max)">
-        {formats
-          .filter((f) => f.nombre > 0)
-          .map((f) => (
-            <LienCroisement
-              key={f.cle}
-              parametres={{ format: f.cle }}
-              libelle={f.libelle}
-              nombre={f.nombre}
-            />
-          ))}
-      </ul>
-    </Section>
+    <li>
+      <Link
+        to="/catalogue"
+        search={parametres}
+        className={`${base} transition-[border-color,box-shadow,transform] duration-(--motion-fast) hover:border-(--border-default) hover:shadow-(--elevation-2) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) motion-safe:hover:-translate-y-px`}
+      >
+        {contenu}
+      </Link>
+    </li>
   );
 }
 
-export function ParTypeDOrganisme({ chiffres }: { chiffres: ChiffresGuides }) {
+export function ExplorerLeCatalogue({ chiffres }: { chiffres: ChiffresGuides }) {
+  const formats = [
+    { cle: "distanciel", libelle: "À distance", nombre: chiffres.distanciel },
+    { cle: "alternance", libelle: "En alternance", nombre: chiffres.alternance },
+    { cle: "presentiel", libelle: "En présentiel", nombre: chiffres.presentiel },
+  ].filter((f) => f.nombre > 0);
+
   return (
-    <Section>
-      <Titre>Par type d&apos;organisme</Titre>
-      <p className="mt-(--space-3) max-w-(--lecture-largeur-max) t-body text-(--text-secondary)">
-        Un mastère d&apos;école et un cours d&apos;indépendant ne se comparent pas de la même façon.
-        La catégorie répond à la seule question qu&apos;on se pose d&apos;abord : à qui ai-je
-        affaire.
-      </p>
-      <ul className="mt-(--space-4) max-w-(--lecture-largeur-max)">
+    <Section creusee>
+      <Entete
+        surtitre="Entrer par où l'on veut"
+        titre="Explorer le catalogue"
+        appui="Un mastère d'école et un cours d'indépendant ne se comparent pas de la même façon. Le format et le type d'organisme répondent à la question qu'on se pose d'abord."
+      />
+
+      <h3 className="mt-(--space-10) t-label text-(--text-tertiary)">Par format</h3>
+      <ul className="mt-(--space-4) grid grid-cols-2 gap-(--space-4) min-[900px]:grid-cols-3">
+        {formats.map((f) => (
+          <Tuile key={f.cle} parametres={{ format: f.cle }} libelle={f.libelle} nombre={f.nombre} />
+        ))}
+      </ul>
+
+      <h3 className="mt-(--space-10) t-label text-(--text-tertiary)">Par type d&apos;organisme</h3>
+      <ul className="mt-(--space-4) grid grid-cols-2 gap-(--space-4) min-[640px]:grid-cols-3 min-[1100px]:grid-cols-4">
         {chiffres.parCategorie.map((ligne) => (
-          <LienCroisement
+          <Tuile
             key={ligne.cle}
             parametres={{ categorie: ligne.cle }}
-            libelle={LIBELLES_CATEGORIES[ligne.cle as keyof typeof LIBELLES_CATEGORIES] ?? ligne.libelle}
+            libelle={
+              LIBELLES_CATEGORIES[ligne.cle as keyof typeof LIBELLES_CATEGORIES] ?? ligne.libelle
+            }
             nombre={ligne.nombre}
           />
         ))}
@@ -294,26 +350,24 @@ export function ParTypeDOrganisme({ chiffres }: { chiffres: ChiffresGuides }) {
 }
 
 /* -------------------------------------------------------------------------- */
-/* 5 et 6. Les guides, les ressources gratuites                               */
+/* 4. Les guides                                                              */
 /* -------------------------------------------------------------------------- */
 
 export function LesGuides() {
   return (
     <Section>
-      <Titre>Comprendre avant de choisir</Titre>
-      <ul className="mt-(--space-4) grid gap-(--space-6) min-[900px]:grid-cols-2">
+      <Entete surtitre="Comprendre" titre="Ce qu'il faut savoir avant de payer" />
+      <ul className="mt-(--space-10) grid gap-(--space-5) min-[900px]:grid-cols-2">
         {GUIDES.map((guide) => (
-          <li key={guide.slug} className="border-t border-(--border-subtle) pt-(--space-4)">
-            <h3 className="t-heading-3 text-(--text-primary)">
-              <Link
-                to="/guides/$slug"
-                params={{ slug: guide.slug }}
-                className="rounded-(--radius-sm) underline-offset-4 transition-colors duration-(--motion-fast) hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
-              >
-                {guide.titre}
-              </Link>
-            </h3>
-            <p className="mt-(--space-2) t-body-sm text-(--text-secondary)">{guide.chapo}</p>
+          <li key={guide.slug}>
+            <Link
+              to="/guides/$slug"
+              params={{ slug: guide.slug }}
+              className="block h-full rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) p-(--space-6) shadow-(--elevation-1) transition-[border-color,box-shadow,transform] duration-(--motion-fast) hover:border-(--border-default) hover:shadow-(--elevation-2) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) motion-safe:hover:-translate-y-px"
+            >
+              <h3 className="t-heading-3 text-(--text-primary)">{guide.titre}</h3>
+              <p className="mt-(--space-3) t-body-sm text-(--text-secondary)">{guide.chapo}</p>
+            </Link>
           </li>
         ))}
       </ul>
@@ -321,28 +375,38 @@ export function LesGuides() {
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/* 5. Les ressources gratuites                                                */
+/* -------------------------------------------------------------------------- */
+
 export function LesRessources() {
-  /*
-    LE BLOC DISPARAÎT S'IL N'Y A RIEN À MONTRER. Une section qui annonce des
-    ressources et n'en liste aucune est pire qu'une section absente.
-  */
+  // Une section qui annonce des ressources sans en lister aucune est pire
+  // qu'une section absente.
   if (RESSOURCES.length === 0) return null;
   const sujets = new Set(RESSOURCES.flatMap((r) => r.sujets)).size;
+
   return (
-    <Section>
-      <Titre>Ressources gratuites</Titre>
-      <p className="mt-(--space-3) max-w-(--lecture-largeur-max) t-body text-(--text-secondary)">
-        <span className="chiffre">{formaterNombre(RESSOURCES.length)}</span> plateformes
-        d&apos;éditeur, documentations et certifications gratuites, rangées sur{" "}
-        <span className="chiffre">{formaterNombre(sujets)}</span> sujets. Ce ne sont pas des
-        formations : elles n&apos;entrent pas dans le catalogue et nous ne les évaluons pas.{" "}
+    <Section creusee>
+      <div className="flex flex-wrap items-end justify-between gap-(--space-6)">
+        <div className="max-w-(--lecture-largeur-max)">
+          <p className="t-label text-(--text-tertiary)">Gratuit</p>
+          <h2 className="mt-(--space-3) t-heading-1 text-(--text-primary)">
+            <span className="chiffre">{formaterNombre(RESSOURCES.length)}</span> ressources, sur{" "}
+            <span className="chiffre">{formaterNombre(sujets)}</span> sujets
+          </h2>
+          <p className="mt-(--space-3) t-body text-(--text-secondary)">
+            Des plateformes d&apos;éditeur, des documentations et des certifications gratuites. Ce
+            ne sont pas des formations : elles n&apos;entrent pas dans le catalogue et nous ne les
+            évaluons pas.
+          </p>
+        </div>
         <Link
           to="/ressources"
-          className="underline underline-offset-2 hover:text-(--text-primary)"
+          className="inline-flex items-center rounded-(--radius-md) border border-(--border-default) bg-(--surface-raised) px-(--space-5) py-(--space-3) t-body-sm text-(--text-primary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
         >
           Voir les ressources
         </Link>
-      </p>
+      </div>
     </Section>
   );
 }

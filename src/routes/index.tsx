@@ -18,10 +18,9 @@ import type { DomaineParcours } from "@/types/cursus";
 import { chiffresGuides } from "@/modele/chiffres-guides";
 import {
   CeQueNousComparons,
+  ExplorerLeCatalogue,
   LesGuides,
   LesRessources,
-  ParFormat,
-  ParTypeDOrganisme,
   QuestionsFrequentes,
 } from "@/composants/BlocsAccueil";
 
@@ -352,8 +351,7 @@ function Accueil() {
       */}
       <CeQueNousComparons chiffres={chiffres} />
       <QuestionsFrequentes chiffres={chiffres} />
-      <ParFormat chiffres={chiffres} />
-      <ParTypeDOrganisme chiffres={chiffres} />
+      <ExplorerLeCatalogue chiffres={chiffres} />
       <LesGuides />
       <LesRessources />
     </div>
@@ -379,7 +377,7 @@ function Chiffre({
 }) {
   return (
     <div className="px-(--space-5) max-[639px]:py-(--space-4)">
-      <dd className="chiffre t-display-3 text-(--text-primary)">{valeur}</dd>
+      <dd className="whitespace-nowrap t-data-lg text-(--text-primary)">{valeur}</dd>
       <dt className="mt-(--space-1) t-body-sm text-(--text-secondary)">{libelle}</dt>
       <p className="mt-(--space-1) t-caption text-(--text-tertiary)">{qualificatif}</p>
     </div>
