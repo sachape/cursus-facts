@@ -365,7 +365,6 @@ function Catalogue() {
     champ collecté.
   */
   const informationsVerifiees = parcours.reduce((total, p) => total + p.infosRenseignees, 0);
-  const ecartesFauteInfo = compterEcartesFauteInformation(parcours, filtres);
   /*
     Les deux nombres de la mention de budget. Calculés ici, comme les autres
     décomptes de la vue, et non dans la barre d'outils : celle-ci restitue, elle
