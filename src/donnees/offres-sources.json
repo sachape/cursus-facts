@@ -4678,8 +4678,15 @@
     "valeurPrecedente": null,
     "le": "2026-08-04",
     "motif": "Champ rouvert : une règle non publiée l avait classé « sans objet » par déduction depuis la durée « Sur mesure », sans lecture de page. L organisme publie un volume horaire."
+   },
+   {
+    "champ": "intituleOrganisme",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. Digital Study nomme ainsi son accompagnement e-commerce individuel — même objet, même format 100 % individuel. Vérifié sur https://www.digital-study.fr/formation-e-commerce/"
    }
-  ]
+  ],
+  "intituleOrganisme": "Formation E-Commerce en Ligne : Individuelle, Qualiopi & CPF"
  },
  {
   "id": 98,
@@ -5895,8 +5902,15 @@
     "valeurPrecedente": null,
     "le": "2026-08-04",
     "motif": "Site officiel retrouvé et vérifié le 4 août 2026. La fiche était entrée au catalogue sans URL — impossible à ouvrir en profondeur, à rafraîchir ou à renvoyer vers l organisme."
+   },
+   {
+    "champ": "intituleOrganisme",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. La Webeuse vend sa formation WooCommerce sous ce nom de produit. Vérifié sur https://la-webeuse.com/produit/wordpress-woocommerce/"
    }
-  ]
+  ],
+  "intituleOrganisme": "Formation « WooCommerce : Suivez le Guide ! »"
  },
  {
   "id": 137,
@@ -6721,7 +6735,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "digital-study.fr",
-  "prix": null,
+  "prix": 1498,
   "duree": "Sur mesure",
   "volumeHoraire": null,
   "formats": [
@@ -6765,8 +6779,24 @@
     "valeurPrecedente": null,
     "le": "2026-08-04",
     "motif": "Champ rouvert : une règle non publiée l avait classé « sans objet » par déduction depuis la durée « Sur mesure », sans lecture de page. L organisme publie un volume horaire."
+   },
+   {
+    "champ": "intituleOrganisme",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. Même formation TikTok individuelle, l'organisme y ajoute son volume horaire. Vérifié sur https://www.digital-study.fr/formation-tiktok/"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif inter / individuel (vs intra 3 500 € jusqu'à 8 participants). https://www.digital-study.fr/formation-tiktok/ — « 1 498 € net de TVA · individuel ou inter »"
    }
-  ]
+  ],
+  "intituleOrganisme": "Formation TikTok : Développez Votre Présence Impactante en 14h",
+  "unitePrix": "total",
+  "urlDetail": "https://www.digital-study.fr/formation-tiktok/",
+  "aConfirmer": []
  },
  {
   "id": 155,
@@ -8020,11 +8050,29 @@
   "classificationManuelle": false,
   "modaliteAcces": null,
   "sourceModalite": null,
-  "prix": null,
+  "prix": 1650,
   "id": 198,
   "nom": "Shopify 2026",
   "volumeHoraire": 30,
-  "duree": null
+  "duree": null,
+  "intituleOrganisme": "Formation E-commerce avec Shopify",
+  "historique": [
+   {
+    "champ": "intituleOrganisme",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. AMZ Academy nomme « Formation E-commerce avec Shopify » le cours que son catalogue liste en « Shopify 2026 ». Vérifié sur https://www.amzacademy.fr/formation/ecommerce-shopify"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — formule Premium (accompagnement pédagogique de 2h). https://www.amzacademy.fr/formation/ecommerce-shopify — « Premium\n 1.650€\n Pour ceux qui veulent se former et créer une boutique e-commerce professionnelle avec Shopify »"
+   }
+  ],
+  "unitePrix": "total",
+  "urlDetail": "https://www.amzacademy.fr/formation/ecommerce-shopify",
+  "aConfirmer": []
  },
  {
   "organisme": "AMZ Academy",

@@ -1,0 +1,38 @@
+[
+ {
+  "id": 97,
+  "nom": "Accompagnement e-commerce individuel",
+  "organisme": "Digital Study",
+  "url": "https://www.digital-study.fr/formation-e-commerce/",
+  "issue": "aucun_prix",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": null
+ },
+ {
+  "id": 154,
+  "nom": "Formation TikTok individuelle",
+  "organisme": "Digital Study",
+  "url": "https://www.digital-study.fr/formation-tiktok/",
+  "issue": "releve",
+  "montant": 1498,
+  "unite": "total",
+  "condition": "tarif inter / individuel (vs intra 3 500 € jusqu'à 8 participants)",
+  "citation": "1 498 € net de TVA · individuel ou inter",
+  "motif": null
+ },
+ {
+  "id": 136,
+  "nom": "Formation WooCommerce",
+  "organisme": "La Webeuse",
+  "url": "https://la-webeuse.com/produit/wordpress-woocommerce/",
+  "issue": "aucun_prix",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": null
+ }
+]

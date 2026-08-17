@@ -238,7 +238,17 @@ describe("ce qui part en base respecte les invariants", () => {
       n'ajoute rien au total. La même distinction que celle qui sépare 217
       offres de 215 fiches.
     */
-    expect(total).toBe(2477);
+    /*
+      2 477 → 2 479. Deux prix de plus, débloqués par le mécanisme d'alias :
+      AMZ Academy nomme « Formation E-commerce avec Shopify » ce que le
+      catalogue liste en « Shopify 2026 », et Digital Study « Formation TikTok :
+      Développez Votre Présence Impactante en 14h » sa formation TikTok
+      individuelle — 1 498 €.
+
+      Les pages étaient trouvées depuis le début ; c'est l'écart d'intitulé qui
+      les rendait inexploitables.
+    */
+    expect(total).toBe(2479);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
