@@ -261,6 +261,7 @@ export type Database = {
           prix_intra: number | null
           prix_max: number | null
           prix_min: number | null
+          prix_niveau: string | null
           profondeur: string
           profondeur_verifiee_le: string | null
           programme: Json | null
@@ -306,6 +307,7 @@ export type Database = {
           prix_intra?: number | null
           prix_max?: number | null
           prix_min?: number | null
+          prix_niveau?: string | null
           profondeur?: string
           profondeur_verifiee_le?: string | null
           programme?: Json | null
@@ -351,6 +353,7 @@ export type Database = {
           prix_intra?: number | null
           prix_max?: number | null
           prix_min?: number | null
+          prix_niveau?: string | null
           profondeur?: string
           profondeur_verifiee_le?: string | null
           programme?: Json | null
