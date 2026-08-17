@@ -205,25 +205,6 @@ function Catalogue() {
   /** Point de retour du focus quand l'élément d'origine a disparu. */
   const champRecherche = useRef<HTMLInputElement | null>(null);
   /*
-    Le déclencheur de recherche de la toolbar n'apparaît que lorsque la
-    recherche du hero a quitté la fenêtre : tant qu'elle est visible, un second
-    champ ferait doublon à l'écran.
-  */
-  const zoneRecherche = useRef<HTMLDivElement | null>(null);
-  const [heroHorsEcran, setHeroHorsEcran] = useState(false);
-
-  useEffect(() => {
-    const cible = zoneRecherche.current;
-    if (cible === null) return;
-    const observateur = new IntersectionObserver(
-      ([entree]) => setHeroHorsEcran(!(entree?.isIntersecting ?? true)),
-      { threshold: 0 },
-    );
-    observateur.observe(cible);
-    return () => observateur.disconnect();
-  }, []);
-
-  /*
     L'ouverture passe par le point d'appel partagé. Le repli de focus est le
     champ de recherche : il est présent, visible, et il correspond à ce que fait
     la personne — elle referme la fiche et continue sa recherche.
@@ -583,6 +564,34 @@ function Catalogue() {
         c'est ce qui donne la continuité horizontale. Les marges négatives
         compensent exactement le retrait du conteneur, jamais davantage.
       */}
+
+      {/*
+        LA RECHERCHE DE LA VUE DE LISTE, ET ELLE NE MÈNE NULLE PART.
+
+        Celle du hero est une porte d'entrée : elle emmène ailleurs. Celle-ci
+        filtre la liste SUR PLACE — la saisie rejoint `q` dans l'adresse, la
+        liste se restreint, le décompte suit, et une puce de retrait apparaît.
+        Deux champs de même apparence, deux contrats : d'où le placement, au-
+        dessus de ce qu'elle filtre et non dans un hero.
+
+        PLEINE LARGEUR, PAS DANS LA COLONNE DE FILTRES. Sous 960 px cette
+        colonne se replie derrière un bouton « Filtres » fermé au chargement :
+        un champ de recherche posé dedans serait invisible sur mobile, c'est-à-
+        dire là où chercher remplace le plus souvent filtrer.
+
+        Le champ était absent depuis la séparation du 17 août — le filtrage
+        plein texte, l'anti-rebond, les suggestions et la puce de retrait
+        existaient tous, seul le champ n'avait pas été posé.
+      */}
+      <div className="mb-(--space-6)">
+        <RechercheHero
+          valeur={saisie}
+          modifier={setSaisie}
+          suggestions={suggestions}
+          champRef={champRecherche}
+          placeholderPersonnalise="Filtrer la liste : un parcours, un organisme, un domaine…"
+        />
+      </div>
 
       <OngletsDomaines
         onglets={onglets}

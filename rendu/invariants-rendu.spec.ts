@@ -2002,6 +2002,61 @@ test("un guide rend ses chiffres depuis le catalogue, et sort vers lui", async (
   await expect(titreListe).not.toBeEmpty();
 });
 
+test("la recherche du catalogue filtre en place, sans quitter la liste", async ({ page }) => {
+  /*
+    DEUX CHAMPS DE MÊME APPARENCE, DEUX CONTRATS. Celui du hero est une porte
+    d'entrée : il emmène ailleurs. Celui-ci restreint la liste posée sous lui.
+    Confondre les deux ne se voit qu'à une chose — l'adresse quitte la page —
+    et c'est donc ce qu'on mesure, en plus du filtrage lui-même.
+
+    Le champ a manqué du 17 août au 18 : le filtrage plein texte, l'anti-rebond,
+    les suggestions et la puce de retrait existaient, personne n'avait posé le
+    champ. Une vue de liste sans recherche est une lacune, pas un choix.
+  */
+  await ouvrirCatalogue(page);
+
+  const champ = page.getByRole("combobox");
+  await expect(champ).toHaveCount(1);
+
+  /*
+    LE DÉCOMPTE DU TITRE, PAS LES RANGÉES RENDUES. La liste est paginée à 25 :
+    compter les `li` mesure la taille d'une page, jamais l'effet d'un filtre —
+    mesuré, 25 avant comme après, sur un filtre qui fonctionnait.
+  */
+  const compte = async () => {
+    const titre = await page.getByRole("heading", { level: 1 }).first().innerText();
+    return Number(titre.replace(/[^\d]/g, ""));
+  };
+
+  const avant = await compte();
+  expect(avant).toBeGreaterThan(0);
+
+  await champ.fill("shopify");
+
+  // 1. La saisie rejoint l'adresse — donc la recherche est partageable.
+  await expect(page).toHaveURL(/[?&]q=shopify/);
+  // 2. ET ON N'A PAS CHANGÉ DE PAGE. C'est toute la différence avec le hero.
+  expect(new URL(page.url()).pathname).toBe("/catalogue");
+
+  // 3. La liste s'est restreinte, sans se vider.
+  await expect.poll(compte).toBeLessThan(avant);
+  expect(await compte()).toBeGreaterThan(0);
+
+  /*
+    4. Le retrait rend la liste entière. Une recherche qu'on ne peut pas défaire
+       enferme : la puce est le seul chemin de retour visible depuis la liste.
+
+    Échap d'abord : la liste de suggestions reste ouverte tant que le champ a le
+    focus et recouvre la barre en dessous — c'est le comportement attendu d'un
+    combobox, et c'est le geste qu'une personne fait. Sans lui, le clic est
+    intercepté par la suggestion posée par-dessus la puce.
+  */
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: /«\s*shopify\s*»/ }).click();
+  await expect.poll(compte).toBe(avant);
+  expect(new URL(page.url()).pathname).toBe("/catalogue");
+});
+
 test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page }) => {
   /*
     TROIS CHOSES QUI NE SE VOIENT QU'AU RENDU.
