@@ -227,8 +227,8 @@ export function LesQuestions({ chiffres }: { chiffres: ChiffresGuides }) {
       <dl className="mt-(--space-10) flex flex-col">
         {lignes.map((l, i) => (
           <Reveal key={l.question} delai={i * 40}>
-            <div className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-7) min-[768px]:grid-cols-[8rem_1.1fr_1.4fr] min-[768px]:gap-(--space-10)">
-              <p className="t-display-1 tabular-nums text-(--accent-default) max-[767px]:t-display-2">
+            <div className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-7) min-[768px]:grid-cols-[10.5rem_1.1fr_1.4fr] min-[768px]:gap-(--space-10)">
+              <p className="whitespace-nowrap t-display-1 tabular-nums text-(--accent-default) max-[767px]:t-display-2">
                 {l.chiffre}
               </p>
               <dt className="t-heading-3 text-(--text-primary)">{l.question}</dt>
