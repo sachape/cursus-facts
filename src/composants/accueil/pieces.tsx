@@ -97,13 +97,18 @@ export function Section({
   id?: string;
   children: React.ReactNode;
 }) {
-  if (fond === "page")
+  /*
+    « creuse » ne teinte plus rien : les bandes grises hachaient la page en
+    blocs alors que le rythme est déjà porté par les surtitres indexés.
+  */
+  if (fond === "page" || fond === "creuse")
     return (
       <section id={id} className="py-(--space-16)">
         {children}
       </section>
     );
-  const couleur = fond === "creuse" ? "bg-(--surface-sunken)" : "bg-(--accent-default)";
+  const couleur = "bg-(--accent-default)";
+
   return (
     <section id={id} className={`-mx-(--space-6) ${couleur} px-(--space-6) py-(--space-16)`}>
       <div className="mx-auto max-w-(--contenu-largeur-max)">{children}</div>
