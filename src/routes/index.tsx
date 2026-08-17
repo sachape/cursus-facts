@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { chargerListe, type ParcoursListe } from "@/donnees/requetes";
 import { RechercheHero, type Suggestion } from "@/composants/RechercheHero";
-import { BandeOrganismes } from "@/composants/BandeOrganismes";
 import { CatalogFreshnessBadge } from "@/composants/CatalogFreshnessBadge";
 import { RailCriteres } from "@/composants/HeroBadges";
 import { Button } from "@/components/ui/button";
@@ -141,7 +140,7 @@ function Accueil() {
         { libelle: "En alternance", nombre: chiffres.alternance, search: { format: "alternance" } },
         { libelle: "Éligible CPF", nombre: chiffres.eligiblesCpf, search: { cpf: "1" } },
         { libelle: "Certifiant", nombre: chiffres.certifiants, search: { certifiant: "1" } },
-        { libelle: "Sans frais", nombre: chiffres.sansFrais, search: { gratuit: "1" } },
+        { libelle: "Sans frais", nombre: chiffres.sansFrais, search: { sansFrais: "1" } },
       ].filter((r) => r.nombre > 0),
     [chiffres],
   );
