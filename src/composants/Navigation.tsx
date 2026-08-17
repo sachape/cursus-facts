@@ -30,7 +30,7 @@ import { usePiegeFocus, useVerrouDefilement } from "./piege-focus";
 import { MotSymboleHorizontal, Symbole } from "./marque/Marques";
 import { MenuCompte } from "./MenuCompte";
 import { useAuth } from "./authentification";
-import { Route as RouteRacine } from "@/routes/__root";
+
 import { formaterNombre } from "@/modele/nombres";
 
 const VUES = [
