@@ -17,6 +17,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import type { ParcoursListe } from "@/donnees/requetes";
 import { RechercheHero, type Suggestion } from "./RechercheHero";
 import { useComparaison } from "./comparaison";
+import { proprietesParcours } from "./mesure";
 import { comparaisonsProposees, type ComparaisonProposee } from "@/modele/comparaisons-proposees";
 import { formaterDateCourte } from "@/modele/dates";
 
@@ -77,7 +78,7 @@ export function DemarrerComparaison({
         libelle: p.nom,
         detail: p.organismeNom,
         choisir: () => {
-          ajouter({ slug: p.slug, nom: p.nom });
+          ajouter({ slug: p.slug, nom: p.nom }, proprietesParcours(p));
           // Le champ reste actif : on en ajoute un deuxième, puis un troisième.
           setRecherche("");
         },

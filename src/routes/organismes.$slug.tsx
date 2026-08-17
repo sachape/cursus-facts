@@ -170,7 +170,11 @@ function PageOrganisme() {
   */
   useEffect(() => {
     declarerVue("organisme");
-    mesurer("page_organisme_vue", { organisme: organisme.nom, nombre: fiches.length });
+    mesurer("page_organisme_vue", {
+      organisme: organisme.nom,
+      categorie: organisme.categorie,
+      parcours_references: fiches.length,
+    });
   }, [organisme.nom, fiches.length]);
 
   /*

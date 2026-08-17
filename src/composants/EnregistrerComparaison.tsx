@@ -93,7 +93,7 @@ export function EnregistrerComparaison() {
     }
 
     setEtat("enregistree");
-    mesurer("comparaison_enregistree", { nombre: ids.length });
+    mesurer("comparaison_enregistree", { nombre_parcours: ids.length });
   }
 
   if (etat === "enregistree") {

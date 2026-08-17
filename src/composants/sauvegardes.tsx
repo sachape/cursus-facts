@@ -19,7 +19,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./authentification";
-import { mesurer } from "./mesure";
+import { mesurer, type ProprietesParcours } from "./mesure";
 
 export type TypeSauvegarde = "parcours" | "organisme";
 
@@ -31,8 +31,18 @@ type Contexte = {
   cles: ReadonlySet<string>;
   chargement: boolean;
   estSauvegarde: (type: TypeSauvegarde, cibleId: string) => boolean;
-  basculer: (type: TypeSauvegarde, cibleId: string) => Promise<void>;
-  sauvegarder: (type: TypeSauvegarde, cibleId: string) => Promise<void>;
+  /**
+   * `mesure` est facultatif, et le rester est une décision.
+   *
+   * Un organisme n'a pas de propriétés de parcours ; une sauvegarde REJOUÉE
+   * au retour du lien de confirmation ne connaît qu'un identifiant, la fiche
+   * n'étant chargée nulle part à cet instant. Exiger les propriétés forcerait
+   * une lecture de catalogue pour mesurer un geste d'écriture. Là où le
+   * parcours est sous la main — la fiche, la rangée de résultats — elles sont
+   * fournies, et c'est le cas qui porte l'essentiel du volume.
+   */
+  basculer: (type: TypeSauvegarde, cibleId: string, mesure?: ProprietesParcours) => Promise<void>;
+  sauvegarder: (type: TypeSauvegarde, cibleId: string, mesure?: ProprietesParcours) => Promise<void>;
 };
 
 const ContexteSauvegardes = createContext<Contexte | null>(null);
@@ -69,7 +79,7 @@ export function FournisseurSauvegardes({ children }: { children: React.ReactNode
   );
 
   const sauvegarder = useCallback(
-    async (type: TypeSauvegarde, cibleId: string) => {
+    async (type: TypeSauvegarde, cibleId: string, mesure?: ProprietesParcours) => {
       if (utilisateur === null) return;
       // Optimiste : le signet se remplit tout de suite. Le réseau ne doit pas
       // faire attendre un geste dont l'effet est évident.
@@ -90,25 +100,25 @@ export function FournisseurSauvegardes({ children }: { children: React.ReactNode
         return;
       }
       /*
-        `parcours_id` seul, sans les autres propriétés communes : le contexte
-        des sauvegardes ne connaît qu'un type et un identifiant, et aller
-        chercher la fiche pour enrichir l'événement ferait dépendre un geste
-        d'écriture d'une lecture de catalogue. L'identifiant suffit à recroiser
-        le reste dans le rapport.
+        Les propriétés communes viennent de l'appelant quand il les a. Sans
+        elles, l'événement ne portait que `parcours_id` — et `cout_etabli`
+        manquait précisément là où il répond à la question qui décide de la
+        collecte : sauvegarde-t-on davantage une fiche qui affiche un prix ?
       */
       mesurer("sauvegarde_ajoutee", {
         type,
         ...(type === "parcours" ? { parcours_id: cibleId } : { organisme: cibleId }),
+        ...mesure,
       });
     },
     [utilisateur],
   );
 
   const basculer = useCallback(
-    async (type: TypeSauvegarde, cibleId: string) => {
+    async (type: TypeSauvegarde, cibleId: string, mesure?: ProprietesParcours) => {
       if (utilisateur === null) return;
       if (!cles.has(clef(type, cibleId))) {
-        await sauvegarder(type, cibleId);
+        await sauvegarder(type, cibleId, mesure);
         return;
       }
       setCles((c) => {
@@ -129,6 +139,7 @@ export function FournisseurSauvegardes({ children }: { children: React.ReactNode
       mesurer("sauvegarde_retiree", {
         type,
         ...(type === "parcours" ? { parcours_id: cibleId } : { organisme: cibleId }),
+        ...mesure,
       });
     },
     [utilisateur, cles, sauvegarder],

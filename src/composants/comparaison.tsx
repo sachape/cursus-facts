@@ -9,7 +9,7 @@
  * (`sessionStorage`) — on choisit dans Explorer, on compare dans Comparer.
  */
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { mesurer } from "./mesure";
+import { mesurer, type ProprietesParcours } from "./mesure";
 
 export const MAX_COMPARAISON = 4;
 
@@ -21,7 +21,17 @@ export type ParcoursSelectionne = { slug: string; nom: string };
 type Contexte = {
   selection: ParcoursSelectionne[];
   slugs: string[];
-  ajouter: (parcours: ParcoursSelectionne) => void;
+  /**
+   * Ajoute à la sélection, et mesure le geste.
+   *
+   * LES PROPRIÉTÉS DE MESURE SONT EXIGÉES, pas optionnelles. Le contexte ne
+   * retient qu'un slug et un nom — c'est ce qui est persisté en session, et
+   * l'alourdir casserait la relecture des sélections déjà stockées. Mais un
+   * `parcours_id` seul rendait `comparaison_ajoutee` incomparable aux autres
+   * événements, `cout_etabli` en tête. Les trois appelants tiennent le
+   * parcours entier ; c'est à eux de composer, par `proprietesParcours`.
+   */
+  ajouter: (parcours: ParcoursSelectionne, mesure: ProprietesParcours) => void;
   retirer: (slug: string) => void;
   vider: () => void;
   /**
@@ -72,15 +82,15 @@ export function FournisseurComparaison({ children }: { children: React.ReactNode
   const derniere = useRef<ParcoursSelectionne[]>([]);
   derniere.current = selection;
 
-  const ajouter = useCallback((parcours: ParcoursSelectionne) => {
+  const ajouter = useCallback((parcours: ParcoursSelectionne, mesure: ProprietesParcours) => {
     /*
       Mesuré seulement quand l'ajout ABOUTIT : un doublon ou un refus de
       plafond n'est pas un parcours ajouté, et le compter noierait le taux
       d'ajout dans des gestes sans effet.
 
-      `parcours_id` seul, comme pour les sauvegardes : le contexte ne retient
-      qu'un slug et un nom — c'est ce qui est persisté en session — et
-      l'identifiant suffit à recroiser le reste dans le rapport.
+      Les propriétés viennent de l'appelant, qui tient le parcours entier :
+      le contexte, lui, ne retient qu'un slug et un nom, parce que c'est ce
+      qui est persisté en session.
     */
     const actuelsAvant = derniere.current;
     if (
@@ -88,8 +98,8 @@ export function FournisseurComparaison({ children }: { children: React.ReactNode
       actuelsAvant.length < MAX_COMPARAISON
     ) {
       mesurer("comparaison_ajoutee", {
-        parcours_id: parcours.slug,
-        nombre: actuelsAvant.length + 1,
+        ...mesure,
+        nombre_selectionnes: actuelsAvant.length + 1,
       });
     }
 

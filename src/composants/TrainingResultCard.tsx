@@ -23,6 +23,7 @@ import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { coutDuParcours } from "@/modele/condition-cout";
 import { libellePrixQualifie } from "@/modele/modalite-acces";
 import { CompareButton } from "./CompareButton";
+import { proprietesParcours } from "./mesure";
 import { BoutonSauvegarde } from "./BoutonSauvegarde";
 import { OrganizationIdentity } from "./OrganizationIdentity";
 import {
@@ -89,7 +90,12 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
         invariant de rendu le vérifie.
       */}
       <div className="absolute right-(--space-4) top-(--space-4) z-(--z-collant)">
-        <BoutonSauvegarde type="parcours" cibleId={parcours.slug} libelle={parcours.nom} />
+        <BoutonSauvegarde
+          type="parcours"
+          cibleId={parcours.slug}
+          libelle={parcours.nom}
+          mesure={proprietesParcours(parcours)}
+        />
       </div>
 
       <div className="grid gap-(--space-6) p-(--space-6) min-[840px]:grid-cols-[1fr_auto]">
@@ -186,7 +192,7 @@ export function TrainingResultCard({ parcours }: { parcours: ParcoursListe }) {
             avalerait le bouton.
           */}
           <div className="relative z-(--z-collant) mt-auto flex items-center gap-(--space-2)">
-            <CompareButton slug={parcours.slug} nom={parcours.nom} />
+            <CompareButton p={parcours} />
           </div>
         </div>
       </div>

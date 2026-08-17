@@ -10,7 +10,9 @@
  * cette même adresse dans l'historique et affiche le même contenu, via
  * `ContenuFiche`. Une seule source pour les deux surfaces.
  */
+import { useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { declarerVue } from "@/composants/mesure";
 import { chargerFiche, chargerVoisins, type ParcoursFiche } from "@/donnees/requetes";
 import { voisinsDeParcours, type VoisinageParcours } from "@/modele/maillage";
 import { FilAriane, balisageFilAriane, type Miette } from "@/composants/FilAriane";
@@ -158,6 +160,15 @@ function miettesDeFiche(fiche: { nom: string; domaine: DomaineParcours }): Miett
 
 function Fiche() {
   const { fiche, voisinage } = Route.useLoaderData() as DonneesFiche;
+
+  /*
+    LA SEULE VUE QUI N'ÉTAIT PAS DÉCLARÉE, alors que deux événements partent
+    d'ici — `site_officiel_ouvert` et `correction_signalee`. Faute de
+    déclaration, ils portaient la vue de la page PRÉCÉDENTE : une sortie vers
+    le site de l'organisme était attribuée au catalogue. Le chiffre existait,
+    se lisait, et désignait la mauvaise page.
+  */
+  useEffect(() => declarerVue("fiche"), []);
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">

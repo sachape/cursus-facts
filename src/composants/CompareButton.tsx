@@ -13,9 +13,12 @@
  * Il annonce aussi la limite avant de la heurter : un bouton qui refuse au
  * clic sans avoir prévenu se lit comme une panne.
  */
+import type { ParcoursListe } from "@/donnees/requetes";
 import { MAX_COMPARAISON, useComparaison } from "./comparaison";
+import { proprietesParcours } from "./mesure";
 
-export function CompareButton({ slug, nom }: { slug: string; nom: string }) {
+export function CompareButton({ p }: { p: ParcoursListe }) {
+  const { slug, nom } = p;
   const { ajouter, retirer, contient, selection } = useComparaison();
   const selectionne = contient(slug);
   const plein = !selectionne && selection.length >= MAX_COMPARAISON;
@@ -26,7 +29,7 @@ export function CompareButton({ slug, nom }: { slug: string; nom: string }) {
       aria-pressed={selectionne}
       disabled={plein}
       title={plein ? `Comparaison limitée à ${MAX_COMPARAISON} parcours` : undefined}
-      onClick={() => (selectionne ? retirer(slug) : ajouter({ slug, nom }))}
+      onClick={() => (selectionne ? retirer(slug) : ajouter({ slug, nom }, proprietesParcours(p)))}
       className={`h-(--bouton-hauteur) rounded-(--radius-md) border px-(--space-3) t-body-sm transition-[color,background-color,border-color,opacity] duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) disabled:cursor-not-allowed disabled:border-(--border-subtle) disabled:text-(--text-disabled) ${
         selectionne
           ? "border-(--accent-border) bg-(--accent-surface) text-(--accent-default)"

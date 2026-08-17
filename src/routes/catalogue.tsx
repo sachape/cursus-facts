@@ -292,11 +292,15 @@ function Catalogue() {
     for (const [filtre, valeur] of Object.entries(patch)) {
       if (filtre === "recherche") continue;
       mesurer("filtre_applique", {
-        filtre,
+        filtre_nom: filtre,
         // Une liste de sujets ou de compétences se lit par sa taille, pas par
         // son contenu : « 3 sujets » se compare, la concaténation ne se compare
         // à rien.
-        valeur: Array.isArray(valeur) ? `${valeur.length}` : `${valeur}`,
+        filtre_valeur: Array.isArray(valeur) ? `${valeur.length}` : `${valeur}`,
+        /* Ce que le filtre LAISSE, et non seulement ce qu'il vaut : un filtre
+           qui ne retire rien ne filtre pas, un filtre qui ne laisse rien
+           décourage, et ni l'un ni l'autre ne se lit dans son nom. */
+        resultats_restants: filtrer(parcours, { ...filtres, ...patch }).length,
       });
     }
   };
@@ -331,7 +335,10 @@ function Catalogue() {
     const texte = requete.trim();
     if (texte === "") return;
     const minuterie = setTimeout(
-      () => mesurer("recherche_effectuee", { longueur: texte.length, resultats: decompte.current }),
+      () => mesurer("recherche_effectuee", {
+        longueur_requete: texte.length,
+        resultats_trouves: decompte.current,
+      }),
       800,
     );
     return () => clearTimeout(minuterie);
@@ -344,8 +351,17 @@ function Catalogue() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [saisie, filtres.recherche]);
 
-  // La vue courante, déclarée une fois : chaque événement la porte ensuite.
-  useEffect(() => declarerVue("catalogue"), []);
+  /*
+    La vue courante, déclarée une fois : chaque événement la porte ensuite.
+
+    UNE PAGE DE CROISEMENT N'EST PAS LE CATALOGUE, même si c'est le même
+    composant. « Formations Shopify éligibles au CPF » est une porte d'entrée
+    référencée, atteinte depuis un moteur de recherche ; le catalogue est
+    atteint depuis le site. Les confondre rendrait invisible ce que le plan de
+    pages rapporte réellement — et c'est la seule mesure qui dise s'il faut en
+    ouvrir d'autres.
+  */
+  useEffect(() => declarerVue(pagePlanifiee(recherche) ? "croisement" : "catalogue"), []);
 
   // Vérifiable : c'est la date la plus récente réellement portée par une fiche.
   const derniereVerification = parcours
@@ -613,7 +629,7 @@ function Catalogue() {
             tri={tri}
             choisirTri={(t) => {
               setTri(t);
-              mesurer("tri_change", { tri: t });
+              mesurer("tri_change", { tri_valeur: t });
             }}
           />
 

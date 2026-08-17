@@ -12,6 +12,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FilAriane } from "@/composants/FilAriane";
 import { chargerListe } from "@/donnees/requetes";
 import {
+  compterCandidats,
   questionsApplicables,
   situationComplete,
   resultatsAdequation,
@@ -124,10 +125,13 @@ function AideAuChoix() {
 
   function repondre(cle: keyof Situation, valeur: string) {
     if (fil.echanges.length === 0) mesurer("aide_au_choix_demarree");
+    /* Ce que la réponse LAISSE, et non son rang : le rang se déduit déjà de
+       `question`, les questions étant posées dans un ordre fixe. Ce qu'on ne
+       savait pas, c'est à quelle réponse la sélection s'effondre. */
     mesurer("aide_au_choix_question_repondue", {
       question: cle,
       reponse: valeur,
-      nombre: fil.echanges.length + 1,
+      resultats_restants: compterCandidats(parcours, { ...fil.retenues, [cle]: valeur }),
     });
     setReponses((actuelles) => ({ ...actuelles, [cle]: valeur }));
     setResultats(null);
@@ -163,8 +167,11 @@ function AideAuChoix() {
       terminé même sans phrase rédigée.
     */
     mesurer("aide_au_choix_terminee", {
-      nombre: retenus.exactes.length,
-      /* `correspond` est une LISTE de critères satisfaits, jamais un booléen :
+      resultats_proposes: retenus.exactes.length,
+      /* Distinct de `resultats_proposes`, et pas par confort de nommage : les
+         écraser rendrait indistinguables « douze parcours réunissent tout » et
+         « aucun ne réunit tout, douze en sont proches ».
+         `correspond` est une LISTE de critères satisfaits, jamais un booléen :
          la filtrer sur sa seule présence comptait tous les résultats, à chaque
          fois — le code tournait, ne plantait pas, et mesurait autre chose. */
       quasi: retenus.quasi.length,

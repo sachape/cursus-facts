@@ -97,6 +97,55 @@ describe("plan de nommage de la mesure", () => {
     expect(appels.filter((a) => !PLAN.includes(a.nom))).toEqual([]);
   });
 
+  it("AUCUN ÉVÉNEMENT NE PEUT PARTIR DU RENDU SERVEUR", () => {
+    /*
+      LE CONTRÔLE LE PLUS IMPORTANT DU FICHIER. Googlebot parcourt nos quatre
+      cents pages ; un seul événement émis au rendu et la courbe d'audience
+      mesure notre référencement au lieu de nos utilisateurs — sans que rien ne
+      le signale, puisque les chiffres montent.
+
+      Deux barrières, vérifiées ici :
+        - `mixpanel-browser` n'est importé QUE par `mesure.ts`. Un import
+          ailleurs contournerait tous les garde-fous d'un coup ;
+        - chacun des points d'entrée de `mesure.ts` sort avant tout appel quand
+          `window` n'existe pas.
+    */
+    const importateurs = sources("src").filter((f) =>
+      /from "mixpanel-browser"/.test(readFileSync(f, "utf8")),
+    );
+    expect(importateurs).toEqual(["src/composants/mesure.ts"]);
+
+    const source = readFileSync("src/composants/mesure.ts", "utf8");
+    const POINTS_ENTREE = ["initialiser", "mesurer", "declarerVue", "declarerConnecte"];
+    const sansGarde = POINTS_ENTREE.filter((nom) => {
+      const debut = source.indexOf(`function ${nom}(`);
+      if (debut === -1) return true;
+      // Le garde doit venir dans les premières lignes du corps, avant tout usage.
+      const corps = source.slice(debut, debut + 400);
+      return !/typeof window === "undefined"/.test(corps);
+    });
+    expect(sansGarde).toEqual([]);
+  });
+
+  it("aucune propriété fourre-tout ne compte deux grandeurs différentes", () => {
+    /*
+      `nombre` a servi à cinq choses : parcours comparés, résultats d'aide au
+      choix, parcours d'un organisme, rang d'une question, taille d'une
+      sélection. Le code tournait, les chiffres arrivaient, et aucun rapport ne
+      pouvait les croiser — on ne sait pas, à la lecture, laquelle des cinq
+      grandeurs une valeur désigne.
+
+      Ces noms sont donc bannis à la déclaration, y compris s'ils reviennent
+      « juste pour un événement de plus ».
+    */
+    const BANNIS = ["nombre", "valeur", "longueur", "resultats", "tri", "filtre"];
+    const source = readFileSync("src/composants/mesure.ts", "utf8");
+    const code = source.replace(/\/\*[\s\S]*?\*\//g, "").replace(/\/\/.*$/gm, "");
+    const declarees = [...code.matchAll(/^\s{2}(\w+)\??:/gm)].map((m) => m[1] as string);
+
+    expect(declarees.filter((c) => BANNIS.includes(c))).toEqual([]);
+  });
+
   it("aucune propriété ne peut porter une donnée identifiant une personne", () => {
     /*
       La règle est absolue : pas d'email, pas de nom, pas de texte de recherche

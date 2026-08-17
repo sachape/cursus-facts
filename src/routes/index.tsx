@@ -211,10 +211,19 @@ function Accueil() {
     const texte = saisie.trim();
     if (texte === "") return;
     const minuterie = setTimeout(() => {
-      mesurer("recherche_effectuee", { longueur: texte.length, resultats: 0 });
+      /*
+        `resultats_trouves` valait 0 EN DUR, écrit quand l'accueil ne comptait
+        rien. La courbe disait donc « aucune recherche ne trouve jamais rien »
+        et le taux d'échec de la recherche était inexploitable depuis le
+        premier jour. Les suggestions SONT le résultat de cette recherche.
+      */
+      mesurer("recherche_effectuee", {
+        longueur_requete: texte.length,
+        resultats_trouves: suggestions.length,
+      });
     }, 800);
     return () => clearTimeout(minuterie);
-  }, [saisie]);
+  }, [saisie, suggestions]);
 
   return (
     <div className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) pb-(--space-16)">

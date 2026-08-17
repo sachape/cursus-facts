@@ -102,7 +102,7 @@ export function PiedFiche({ p }: { p: ParcoursFiche }) {
 
         {/* Entre les deux actions : le signet est un geste de mise de côté,
             il ne dispute la place ni au lien sortant ni à la comparaison. */}
-        <BoutonSauvegarde type="parcours" cibleId={p.slug} libelle={p.nom} />
+        <BoutonSauvegarde type="parcours" cibleId={p.slug} libelle={p.nom} mesure={proprietesParcours(p)} />
 
         {/*
           Action secondaire : largeur adaptée à son libellé, et non à parts
@@ -115,7 +115,7 @@ export function PiedFiche({ p }: { p: ParcoursFiche }) {
         */}
         <button
           type="button"
-          onClick={() => (selectionne ? retirer(p.slug) : ajouter({ slug: p.slug, nom: p.nom }))}
+          onClick={() => (selectionne ? retirer(p.slug) : ajouter({ slug: p.slug, nom: p.nom }, proprietesParcours(p)))}
           aria-label={selectionne ? "Retirer de la comparaison" : "Ajouter à la comparaison"}
           className={`${forme} border border-(--border-default) bg-(--surface-raised) text-(--text-primary) hover:border-(--border-strong) min-[640px]:shrink-0`}
         >

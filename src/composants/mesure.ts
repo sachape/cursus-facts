@@ -85,6 +85,21 @@ export const SOURCES_VUE = [
   */
   "accueil",
   "catalogue",
+  /*
+    LES DEUX ORIGINES AJOUTÉES LE 17 AOÛT, ET POURQUOI CE NE SONT PAS DES
+    ÉVÉNEMENTS.
+
+    Le plan interdit les vues de page : elles noient les gestes utiles. Mais un
+    guide et une page de croisement ne sont pas des pages comme les autres —
+    ce sont des points d'ENTRÉE qui amènent quelqu'un au catalogue. Sans les
+    nommer, la chaîne « guide lu → fiche ouverte → site de l'organisme » est
+    invisible, et on ne peut pas dire si les guides convertissent.
+
+    `croisement` figurait déjà au plan sans exister dans le produit ; il existe
+    depuis que les filtres vivent dans l'adresse.
+  */
+  "guide",
+  "croisement",
   "explorateur",
   "organisme",
   "comparer",
@@ -95,6 +110,32 @@ export const SOURCES_VUE = [
 ] as const;
 
 export type SourceVue = (typeof SOURCES_VUE)[number];
+
+/**
+ * Ce qui a amené quelqu'un à créer un compte.
+ *
+ * LE PLAN NOMME LE BESOIN, LE CODE NOMME LA ROUTINE. Le déclencheur partait
+ * jusqu'ici sous le nom de l'intention interne — `sauvegarder`,
+ * `enregistrer-comparaison` — c'est-à-dire sous le nom d'une fonction. Le jour
+ * où cette fonction est renommée, la série se coupe en deux sans que rien ne
+ * le signale, et l'on comparera un avant à un après en croyant regarder deux
+ * populations.
+ *
+ * `alerte` est réservé : la fonctionnalité n'existe pas encore, la valeur est
+ * inscrite pour que le jour venu elle ne soit pas inventée à la hâte.
+ */
+export const DECLENCHEURS = ["sauvegarde", "comparaison", "alerte", "direct"] as const;
+
+export type Declencheur = (typeof DECLENCHEURS)[number];
+
+/** Traduit une intention interne en déclencheur de plan. */
+export function declencheurDe(intention: string | null): Declencheur {
+  if (intention === "sauvegarder") return "sauvegarde";
+  if (intention === "enregistrer-comparaison") return "comparaison";
+  /* Aucune intention en attente : la personne est venue créer un compte pour
+     elle-même, et non parce qu'un geste le lui a demandé. */
+  return "direct";
+}
 
 /**
  * Les propriétés communes d'un parcours — construites ICI, et nulle part
@@ -142,23 +183,63 @@ export function proprietesParcours(p: ParcoursListe): ProprietesParcours {
 /**
  * Les propriétés propres à un événement. Fermées elles aussi.
  *
- * UN MÊME NOM PARTOUT : `nombre` compte des éléments dans tous les événements
- * qui en comptent, `source_vue` désigne toujours la même chose. Deux noms pour
- * une même grandeur rendent impossible la moindre comparaison entre étapes.
+ * UN NOM PAR GRANDEUR, ET LE MÊME PARTOUT : `source_vue` désigne toujours la
+ * même chose, `resultats_restants` compte toujours ce qui reste après un
+ * geste. Deux noms pour une même grandeur rendent impossible la moindre
+ * comparaison entre étapes ; un même nom pour deux grandeurs est pire encore,
+ * puisque rien à la lecture ne dit laquelle on regarde.
  */
 export type Proprietes = Partial<ProprietesParcours> & {
   /** Surcharge la vue courante quand le geste a une origine plus précise. */
   source_vue?: SourceVue;
-  /** `filtre_applique` : quel filtre, et sur quelle valeur. */
-  filtre?: string;
-  valeur?: string;
+  /** `filtre_applique` : quel filtre, sur quelle valeur, et ce qu'il laisse. */
+  filtre_nom?: string;
+  filtre_valeur?: string;
+  /**
+   * Ce qui reste après le geste — `filtre_applique`, et chaque réponse de
+   * l'aide au choix.
+   *
+   * C'est la propriété qui dit si un filtre SERT : un filtre qui ne retire
+   * rien ne filtre pas, un filtre qui ne laisse rien décourage. Ni l'un ni
+   * l'autre ne se voit dans le nom du filtre.
+   */
+  resultats_restants?: number;
   /** `recherche_effectuee` : la longueur de la requête, JAMAIS son texte. */
-  longueur?: number;
-  resultats?: number;
+  longueur_requete?: number;
+  resultats_trouves?: number;
+  /**
+   * `recherche_effectuee` : la nature du résultat choisi — DÉCLARÉE, NON ÉMISE.
+   *
+   * L'événement part à la retombée de la frappe ; le choix vient après, et
+   * réémettre à ce moment compterait deux recherches pour une. Ce que la
+   * propriété devait dire est déjà dit ailleurs, et mieux : une suggestion
+   * choisie ouvre une fiche avec `source_vue: "autocompletion"`, un organisme
+   * émet `page_organisme_vue`, un domaine pose un filtre. Le champ reste au
+   * plan pour que sa vacance soit une décision lisible, et non un oubli.
+   */
+  type_selectionne?: string;
   /** `tri_change` : la clé de tri choisie. */
-  tri?: string;
-  /** Compte d'éléments — parcours comparés, résultats, parcours d'un organisme. */
-  nombre?: number;
+  tri_valeur?: string;
+  /*
+    UN COMPTEUR PAR QUESTION, ET NON UN `nombre` FOURRE-TOUT.
+
+    `nombre` servait à cinq choses — parcours comparés, résultats d'aide au
+    choix, parcours d'un organisme, rang d'une question. Un même nom pour cinq
+    grandeurs rend toute comparaison entre étapes impossible : on ne peut pas
+    additionner un rang et un décompte, et rien à la lecture ne dit lequel on
+    regarde.
+  */
+  /** `page_organisme_vue` : combien de parcours cet organisme porte. */
+  parcours_references?: number;
+  /** `comparaison_ajoutee` : la taille de la sélection après le geste. */
+  nombre_selectionnes?: number;
+  /** `comparaison_lancee` et `comparaison_enregistree` : parcours comparés. */
+  nombre_parcours?: number;
+  /** `comparaison_lancee` : lesquels, et combien de lignes les séparent. */
+  parcours_ids?: string;
+  lignes_differentes?: number;
+  /** `aide_au_choix_terminee` : les correspondances exactes montrées. */
+  resultats_proposes?: number;
   /**
    * `aide_au_choix_terminee` : les parcours à un écart près, montrés à part.
    *
@@ -173,10 +254,10 @@ export type Proprietes = Partial<ProprietesParcours> & {
   /** `aide_au_choix_question_repondue` : la question et la réponse choisie. */
   question?: string;
   reponse?: string;
-  /** `compte_cree` : ce qui a amené à créer le compte. */
-  declencheur?: string;
+  /** `compte_cree` : ce qui a amené à créer le compte, en vocabulaire de plan. */
+  declencheur?: Declencheur;
   /** `intention_rejouee` : ce qu'on a rejoué, et après combien de temps. */
-  action?: string;
+  action?: Declencheur;
   delai_secondes?: number;
 };
 

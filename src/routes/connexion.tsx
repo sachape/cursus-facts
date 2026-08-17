@@ -12,7 +12,7 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@/composants/authentification";
-import { mesurer } from "@/composants/mesure";
+import { declencheurDe, mesurer } from "@/composants/mesure";
 import { intentionEnAttente } from "@/composants/intention";
 
 type Mode = "connexion" | "inscription" | "reinitialisation";
@@ -89,7 +89,7 @@ function Connexion() {
         une invitation à s'inscrire : « spontané » et « voulait sauvegarder »
         ne se corrigent pas de la même manière.
       */
-      mesurer("compte_cree", { declencheur: intentionEnAttente() ?? "spontane" });
+      mesurer("compte_cree", { declencheur: declencheurDe(intentionEnAttente()) });
       if (confirmationRequise) {
         return setMessage(
           "Compte créé. Ouvrez le lien envoyé à votre adresse pour le confirmer — nous reprendrons où vous en étiez.",

@@ -244,7 +244,11 @@ function Comparer() {
         */
         if (chargees.length >= 2) {
           mesurer("comparaison_lancee", {
-            nombre: chargees.length,
+            nombre_parcours: chargees.length,
+            parcours_ids: chargees.map((f) => f.slug).join(","),
+            /* Le nombre d'attributs où les valeurs divergent réellement : c'est
+               lui qui dit si la comparaison a servi à départager. */
+            lignes_differentes: synthetiser(chargees).divergences,
             cout_etabli: chargees.every((f) => f.prixMin !== null || f.prixMax !== null),
           });
         }

@@ -24,7 +24,7 @@ import { useAuth } from "./authentification";
 import { useSauvegardes } from "./sauvegardes";
 import { useComparaison } from "./comparaison";
 import { reprendreIntention } from "./intention";
-import { mesurer } from "./mesure";
+import { declencheurDe, mesurer } from "./mesure";
 
 export function RepriseIntention() {
   const { utilisateur } = useAuth();
@@ -63,7 +63,11 @@ export function RepriseIntention() {
       un taux de reprise de 100 %, qui ne mesurerait plus rien.
     */
     mesurer("intention_rejouee", {
-      action: intention.type,
+      /* Le MÊME vocabulaire que le déclencheur de `compte_cree` : sans quoi
+         « le geste qui a fait créer le compte » et « le geste rejoué au
+         retour » ne se recoupent pas, alors que c'est exactement le taux
+         qu'on cherche à lire. */
+      action: declencheurDe(intention.type),
       delai_secondes: Math.round(ageMs / 1000),
     });
 
@@ -104,7 +108,7 @@ export function RepriseIntention() {
         nom: intention.nom,
         parcours_ids: ids,
       });
-      if (error === null) mesurer("comparaison_enregistree", { nombre: ids.length });
+      if (error === null) mesurer("comparaison_enregistree", { nombre_parcours: ids.length });
     })();
   }, [utilisateur, sauvegarder, remplacer]);
 

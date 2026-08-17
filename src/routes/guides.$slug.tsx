@@ -14,7 +14,9 @@
  * Les chiffres qu'il cite viennent tous de `chiffresGuides`, calculés dans le
  * loader sur le catalogue du jour. Aucun n'est écrit dans le texte.
  */
+import { useEffect } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { declarerVue } from "@/composants/mesure";
 import { chargerListe } from "@/donnees/requetes";
 import { chiffresGuides, type ChiffresGuides } from "@/modele/chiffres-guides";
 import { autresGuides, guideParSlug } from "@/contenu/guides";
@@ -178,6 +180,16 @@ function PageGuide() {
   const { chiffres } = Route.useLoaderData();
   /* Le loader a déjà refusé un slug inconnu : ici il existe forcément. */
   const guide = guideParSlug(slug)!;
+
+  /*
+    LA VUE, PAS UN ÉVÉNEMENT DE PAGE VUE. Le plan interdit les pages vues
+    automatiques — elles noient les gestes utiles sous du volume. Mais un guide
+    est un point d'ENTRÉE : sans le déclarer, la chaîne « guide lu → fiche
+    ouverte → site de l'organisme » est invisible, et rien ne dit si les guides
+    amènent qui que ce soit au catalogue. Ce n'est pas la page qui est comptée,
+    ce sont les gestes qui la suivent qui savent d'où ils viennent.
+  */
+  useEffect(() => declarerVue("guide"), []);
 
   return (
     <main className="mx-auto max-w-(--contenu-largeur-max) px-(--space-6) py-(--space-10)">

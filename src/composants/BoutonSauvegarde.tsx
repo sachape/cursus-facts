@@ -13,17 +13,21 @@
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { useAuth } from "./authentification";
 import { poserIntention } from "./intention";
+import type { ProprietesParcours } from "./mesure";
 import { useSauvegardes, type TypeSauvegarde } from "./sauvegardes";
 
 export function BoutonSauvegarde({
   type,
   cibleId,
   libelle,
+  mesure,
 }: {
   type: TypeSauvegarde;
   cibleId: string;
   /** Ce qu'on sauvegarde, pour le nom accessible. */
   libelle: string;
+  /** Les propriétés communes du parcours, quand il y en a un sous la main. */
+  mesure?: ProprietesParcours;
 }) {
   const { utilisateur } = useAuth();
   const { estSauvegarde, basculer } = useSauvegardes();
@@ -47,7 +51,7 @@ export function BoutonSauvegarde({
           void naviguer({ to: "/connexion", search: { retour: chemin } });
           return;
         }
-        void basculer(type, cibleId);
+        void basculer(type, cibleId, mesure);
       }}
       /*
         UN CONTRÔLE, PAS UN BOUTON DE CONTENU. Pictogramme seul, sans libellé :
