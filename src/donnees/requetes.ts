@@ -52,6 +52,8 @@ export type ParcoursListe = {
    * de Dawan pris pour un tarif de session.
    */
   unitePrix: string | null;
+  /** Palier tarifaire publié par l'organisme, quand le prix vient d'une grille. */
+  prixNiveau: string | null;
   /** Qualification de la gratuité. `null` = non vérifiée. */
   modaliteAcces: ModaliteAcces | null;
   /** Sessions individuelles disponibles. `null` = non tranché. */
@@ -140,7 +142,7 @@ const COLONNES_LISTE_ORGANISME = COLONNES_LISTE.replace(
  * casser : `null` avant migration, la vraie valeur après, sans second
  * déploiement.
  */
-const COLONNES_DIFFEREES = "dispo_inter, dispo_intra, prix_intra, unite_prix";
+const COLONNES_DIFFEREES = "dispo_inter, dispo_intra, prix_intra, unite_prix, prix_niveau";
 
 
 
@@ -186,6 +188,7 @@ function versListe(ligne: LigneBrute, replieesParId: Map<string, number>): Parco
     prixMin: ligne["prix_min"] as number | null,
     prixMax: ligne["prix_max"] as number | null,
     unitePrix: (ligne["unite_prix"] as string | null) ?? null,
+    prixNiveau: (ligne["prix_niveau"] as string | null) ?? null,
     modaliteAcces: (ligne["modalite_acces"] as ModaliteAcces | null) ?? null,
     dispoInter: (ligne["dispo_inter"] as boolean | null) ?? null,
     dispoIntra: (ligne["dispo_intra"] as boolean | null) ?? null,

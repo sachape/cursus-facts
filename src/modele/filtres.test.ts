@@ -32,6 +32,7 @@ const p = (partiel: Partial<ParcoursListe> = {}): ParcoursListe => ({
   prixMin: null,
   prixMax: null,
   unitePrix: null,
+  prixNiveau: null,
   modaliteAcces: null,
   dispoInter: null,
   dispoIntra: null,

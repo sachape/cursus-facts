@@ -81,6 +81,15 @@ export type EntreeCout = {
    * un lecteur qui compare des totaux doit le savoir sans avoir à le déduire.
    */
   unitePrix?: string | null;
+  /**
+   * Le palier tarifaire publié — « Année 1 », « 2e année, alternance ».
+   *
+   * Chez les écoles, le tarif n'est pas publié par programme mais par année
+   * d'études : la même ligne vaut pour tous les cursus de ce niveau. Nommer le
+   * palier est ce qui rend le montant vérifiable — sans lui, le lecteur ne peut
+   * pas retrouver d'où il sort dans la grille.
+   */
+  prixNiveau?: string | null;
   /** Vrai si le prix ou la modalité vient d'une règle, pas de l'organisme. */
   derive?: boolean;
   /**
@@ -208,7 +217,22 @@ export function conditionDuCout(entree: EntreeCout): Cout {
   if (entree.prix !== null && entree.prix > 0 && entree.unitePrix != null) {
     const condition = UNITES_CONDITION[entree.unitePrix];
     if (condition !== undefined) {
-      return { valeur: null, condition, derivation, cle: "session_collective" };
+      /*
+        Le palier vient EN TÊTE quand il est connu : c'est lui qui permet de
+        retrouver le montant dans la grille de l'organisme, donc de le
+        vérifier. « Montant par année » sans dire laquelle laisse le lecteur
+        devant trois lignes et aucun moyen de choisir.
+      */
+      const niveau = entree.prixNiveau?.trim();
+      return {
+        valeur: null,
+        condition:
+          niveau !== undefined && niveau !== ""
+            ? `Tarif « ${niveau} » — ${condition.charAt(0).toLowerCase()}${condition.slice(1)}`
+            : condition,
+        derivation,
+        cle: "session_collective",
+      };
     }
   }
 
@@ -253,6 +277,7 @@ export function coutDuParcours(p: {
   dispoInter: boolean | null;
   dispoIntra: boolean | null;
   unitePrix?: string | null;
+  prixNiveau?: string | null;
   etats?: Partial<Record<"prix", string>>;
   /** Nommer la règle : `derive` seul renverrait toujours à l'alternance. */
   regleDerivation?: "alternance" | "prix_sans_unite_lu_comme_total" | null;
@@ -262,6 +287,7 @@ export function coutDuParcours(p: {
   const cout = conditionDuCout({
     prix: montant,
     unitePrix: p.unitePrix ?? null,
+    prixNiveau: p.prixNiveau ?? null,
     modaliteAcces: p.modaliteAcces,
     formats: p.formats,
     categorie: p.organismeCategorie,

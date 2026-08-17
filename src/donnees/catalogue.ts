@@ -86,6 +86,8 @@ export type OffreSource = {
    * même filtre budget.
    */
   unitePrix?: UnitePrix | null;
+  /** Palier tarifaire publié par l'organisme — « Année 1 ». */
+  prixNiveau?: string | null;
   /**
    * Champs dont la valeur est conservée mais non reconfirmée.
    * Ils s'affichent avec leur valeur et passent en tête de file de collecte.
@@ -172,6 +174,7 @@ export type OffreNormalisee = Omit<
   dispoIntra: boolean | null;
   prixIntra: number | null;
   unitePrix: UnitePrix | null;
+  prixNiveau: string | null;
   aConfirmer: ChampInformation[];
   historique: ChangementValeur[];
 };
@@ -200,6 +203,7 @@ export function normaliserOffre(offre: OffreSource): OffreNormalisee {
     dispoIntra: offre.dispoIntra ?? null,
     prixIntra: offre.prixIntra ?? null,
     unitePrix: offre.unitePrix ?? null,
+    prixNiveau: offre.prixNiveau ?? null,
     aConfirmer: offre.aConfirmer ?? [],
     historique: offre.historique ?? [],
     domaineDeclare: domaineDeclareLibelle

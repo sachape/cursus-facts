@@ -95,6 +95,13 @@ export const COLONNES_REQUISES: Record<string, { colonne: string; type: string }
       ce qui a produit la faute : il faut que l'absence se voie.
     */
     { colonne: "unite_prix", type: "text check (unite_prix in ('total','annuel','mensuel','journalier','horaire'))" },
+    /*
+      Le palier tarifaire, tel que l'organisme l'écrit — « Année 1 », « 2e année,
+      alternance ». Chez les écoles le tarif n'est pas publié par programme mais
+      par année d'études : sans ce libellé, un montant annuel s'écrirait sur une
+      fiche sans qu'on puisse dire à quoi il correspond.
+    */
+    { colonne: "prix_niveau", type: "text" },
   ],
 };
 

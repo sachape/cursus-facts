@@ -133,3 +133,39 @@ describe("l'unité du montant est une condition", () => {
     expect(c.valeur).toBe("Gratuit");
   });
 });
+
+describe("le palier tarifaire rend le montant vérifiable", () => {
+  const base = {
+    modaliteAcces: null,
+    formats: [] as const,
+    categorie: "ecole" as const,
+    eligibleCpf: null,
+    dispoInter: true,
+    dispoIntra: null,
+  };
+
+  it("nomme le palier en tête de la condition", () => {
+    /*
+      « Montant par année » sans dire laquelle laisse le lecteur devant trois
+      lignes de grille et aucun moyen de choisir. Le palier est ce qui permet
+      de retrouver le montant chez l'organisme.
+    */
+    const c = conditionDuCout({ ...base, prix: 8600, unitePrix: "annuel", prixNiveau: "Année 1" });
+    expect(c.condition).toBe(
+      "Tarif « Année 1 » — montant par année d'études, pas pour le parcours entier",
+    );
+  });
+
+  it("retombe sur la condition d'unité seule quand le palier est inconnu", () => {
+    const c = conditionDuCout({ ...base, prix: 8600, unitePrix: "annuel", prixNiveau: null });
+    expect(c.condition).toBe("Montant par année d'études, pas pour le parcours entier");
+    expect(conditionDuCout({ ...base, prix: 8600, unitePrix: "annuel", prixNiveau: "  " }).condition)
+      .toBe("Montant par année d'études, pas pour le parcours entier");
+  });
+
+  it("ne dit rien du palier sur un total — il n'y a pas de grille", () => {
+    expect(
+      conditionDuCout({ ...base, prix: 1650, unitePrix: "total", prixNiveau: "Année 1" }).condition,
+    ).not.toContain("Année 1");
+  });
+});

@@ -124,6 +124,7 @@ function colonnesDe(
       c'est l'état dans lequel le catalogue a vécu jusqu'au 16 août 2026.
     */
     unite_prix: tete.unitePrix ?? null,
+    prix_niveau: tete.prixNiveau ?? null,
     source_modalite_acces: tete.sourceModalite ?? null,
     site_officiel: tete.url && tete.url !== "—" ? tete.url : null,
     source_information: tete.source,
