@@ -2869,7 +2869,7 @@
   "sousFamille": "École de commerce",
   "region": null,
   "url": "mba-esg.com",
-  "prix": null,
+  "prix": 10500,
   "duree": "1 à 2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -2890,7 +2890,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "annuel",
+  "prixNiveau": "MBA 1",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé dans la grille tarifaire de l'organisme, palier « MBA 1 ». MBA en 1 à 2 ans à partir de Bac+3 : la fiche décrit l'entrée du cursus, donc le MBA 1. Tarif en formation initiale. https://www.mba-esg.com/admission/financement — « Frais de scolarité annuels pour les formations en initial : \nMBA 1 : 10500€ »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 55,
@@ -3441,7 +3452,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "hetic.net",
-  "prix": null,
+  "prix": 9100,
   "duree": "5 ans",
   "volumeHoraire": null,
   "formats": [
@@ -3463,7 +3474,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "annuel",
+  "prixNiveau": "Année 1",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé dans la grille tarifaire de l'organisme, palier « Année 1 ». Cursus de 5 ans accessible sans prérequis : c'est le Programme Grande École de HETIC, dont la fiche décrit la 1re année. https://www.hetic.net/admissions/tarifs-formations — « Découvrir le Programme Grande Ecole \nAnnée 1\n9 100 € »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 65,
@@ -3473,7 +3495,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "hetic.net",
-  "prix": null,
+  "prix": 9900,
   "duree": "1 an",
   "volumeHoraire": null,
   "formats": [
@@ -3517,11 +3539,20 @@
     "valeurPrecedente": null,
     "le": "2026-08-17",
     "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. HETIC écrit « Digital » là où la fiche porte « Digitale ». Même programme, constaté sur https://www.hetic.net/formations/masters-digitaux-informatique/prepa-master-digitale"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé dans la grille tarifaire de l'organisme, palier « Année 1 ». Formation d'un an accessible à Bac+2 : c'est la Prépa Mastère Digital, dont la grille porte une seule année. Citation prise dans sa section, distincte de celle des Mastères. https://www.hetic.net/admissions/tarifs-formations — « Rentrée : Octobre\nAnnée 1\n9 900 € »"
    }
   ],
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-06",
-  "intituleOrganisme": "Prépa Mastère Digital"
+  "intituleOrganisme": "Prépa Mastère Digital",
+  "unitePrix": "annuel",
+  "prixNiveau": "Année 1",
+  "aConfirmer": []
  },
  {
   "id": 66,

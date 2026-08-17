@@ -1,0 +1,22 @@
+[
+ {
+  "id": 64,
+  "nom": "Cursus Grande École du web",
+  "url": "https://www.hetic.net/admissions/tarifs-formations",
+  "palier": "Année 1",
+  "montant": 9100,
+  "unite": "annuel",
+  "citation": "Découvrir le Programme Grande Ecole \nAnnée 1\n9 100 €",
+  "justification": "Cursus de 5 ans accessible sans prérequis : c'est le Programme Grande École de HETIC, dont la fiche décrit la 1re année."
+ },
+ {
+  "id": 65,
+  "nom": "Prépa Mastère Digitale",
+  "url": "https://www.hetic.net/admissions/tarifs-formations",
+  "palier": "Année 1",
+  "montant": 9900,
+  "unite": "annuel",
+  "citation": "Rentrée : Octobre\nAnnée 1\n9 900 €",
+  "justification": "Formation d'un an accessible à Bac+2 : c'est la Prépa Mastère Digital, dont la grille porte une seule année. Citation prise dans sa section, distincte de celle des Mastères."
+ }
+]

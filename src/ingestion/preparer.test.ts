@@ -226,7 +226,19 @@ describe("ce qui part en base respecte les invariants", () => {
       conclusions : un échec de collecte ne se conclut pas en silence de
       l'organisme.
     */
-    expect(total).toBe(2476);
+    /*
+      2 476 → 2 477. Neuf prix écrits le 17 août — quatre à l'IIM, deux chez
+      HETIC, un chez MBA ESG, relevés dans des GRILLES par année d'études, plus
+      deux ailleurs.
+
+      LA HAUSSE EST SANS RAPPORT AVEC LE NOMBRE DE PRIX ÉCRITS, et ce n'est pas
+      une anomalie : ce compteur porte sur les FICHES préparées, après
+      regroupement et retraits, quand les prix sont écrits sur les OFFRES
+      sources. Un prix posé sur une offre repliée dans une fiche fusionnée
+      n'ajoute rien au total. La même distinction que celle qui sépare 217
+      offres de 215 fiches.
+    */
+    expect(total).toBe(2477);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
