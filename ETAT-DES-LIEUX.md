@@ -16,6 +16,7 @@ rouvre toujours.
 | Conflits internes | Non commencé. Périmètre défini (§6). |
 | Design system | Fondations + carte + panneau + toolbar faits. `SaveButton` bloqué (§5). |
 | Collecte en profondeur | 9 fiches sur 232 vérifiées. Bloqué par l'appariement (§3). |
+| Invariants de rendu | **49 sur 49 au vert** depuis le 18 août, après six jours d'extinction silencieuse (§8). |
 
 ---
 
@@ -752,6 +753,63 @@ Deux conséquences pratiques :
 2. **Demander à voir des cas réels bat un compte-rendu de tests.** C'est
    l'exigence de voir cinq cas concrets qui a fait sortir le défaut INSEEC —
    pendant que 176 tests étaient au vert.
+
+### Septième occurrence : le garde-fou éteint pendant six jours — 18 août 2026
+
+Le 12 août, un commit Lovable a posé `src/routes/lovable/email/auth/webhook.ts`,
+qui déréférençait `process.env['LOVABLE_API_KEY']!` **au niveau module**. Le `!`
+est une assertion TypeScript : il fait taire le type, il ne fournit aucune
+valeur. Comme `routeTree.gen.ts` importe toutes les routes, l'exception tombait
+pendant l'évaluation du graphe de modules et **`vite dev` répondait 500 sur
+toutes les routes**. La clé n'est pas récupérable côté développeur : ce chemin
+est l'état normal en local, pas une erreur de configuration.
+
+Les invariants de rendu tournent uniquement au crochet de pré-poussée, contre ce
+serveur. Ils n'ont donc **pas pu s'exécuter une seule fois entre le 12 et le
+18 août** — pendant que trois commits continuaient d'en écrire de nouveaux
+(13 août : panneau mobile, hero ; 17 août : séparation accueil/catalogue).
+
+**La mesure.** Serveur réparé le 18 août : **22 échecs sur 49**. Vérifié contre
+`ac44d49`, avant les deux commits en cours : **les mêmes 22, à l'identique** —
+aucune régression du travail en cours, six jours d'assertions jamais exécutées.
+
+**Ce que le tri a séparé** — et c'est le point : la moitié des rouges ne
+décrivait rien de faux dans le produit.
+
+| Nature | Nombre | Exemple |
+|---|---|---|
+| Assertions périmées par la séparation | 14 | la liste cherchée sur `/`, où elle n'est plus |
+| Sélecteurs faux ou non stricts | 4 | `header a[href^='/']` attrapait aussi le `<header>` du hero : 10 liens pour 5 cibles |
+| Contrat réécrit depuis | 1 | l'indexation est passée aux adresses lisibles, le test décrivait les pages du plan |
+| **Défauts réels du produit** | **3** | ci-dessous |
+
+**Les trois vrais défauts, qu'aucun test vert ne signalait :**
+
+1. **Les appels du hero ne répondaient pas avant hydratation.** Portés par un
+   `onClick`, ils étaient inertes tant que React n'avait pas pris la main, alors
+   que le HTML du serveur est à l'écran et se laisse cliquer. Mesuré : clic
+   immédiat, l'adresse ne bouge pas ; clic après hydratation, elle mène au
+   catalogue ; le jumeau `<a>` de l'Editorial navigue dans les deux cas. Corrigé
+   en liens — c'est aussi le rôle de l'élément. Le test clique désormais **sans
+   attendre**, pour surveiller la course elle-même.
+2. **`/catalogue` ne servait aucun `h1`.** Le titre de page était resté dans le
+   hero de l'accueil quand la liste a déménagé. Zéro `h1` au serveur comme après
+   hydratation, sur la page la plus indexable du site. Le titre de liste porte le
+   sujet de la page : il en devient le `h1`, à apparence inchangée.
+3. **La promesse chiffrée du panneau mobile avait été supprimée** par le commit
+   Lovable `a61e431` (17 août) — dix lignes retirées, rien mis à la place.
+   L'invariant la réclamait ; restaurée.
+
+**Ce que ça enseigne, et qui ne se réduit pas à « réparer le hook ».** Un
+garde-fou qui ne peut plus s'exécuter ne devient pas silencieux : il devient
+**accumulateur**. Six jours ont produit 22 assertions dont personne ne savait si
+elles décrivaient le produit ou une intention. Le coût n'est pas l'échec, c'est
+le tri — et il n'a été possible que parce que chaque test portait son motif écrit
+à côté.
+
+**Le garde du hook était faux, aussi.** Il saute les invariants de rendu si
+`.env.local` est absent ; le fichier existait, sans la clé. Une garde qui teste
+la présence d'un fichier plutôt que celle de la variable ne garde rien.
 
 ---
 
