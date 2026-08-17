@@ -111,7 +111,7 @@ export const Route = createFileRoute("/catalogue")({
       page === undefined || loaderData === undefined
         ? 0
         : filtrer(loaderData, depuisParametres(match.search)).length;
-    const indexable = pageIndexable(page, nombre);
+    const indexable = pageIndexable();
 
     return {
     meta: [

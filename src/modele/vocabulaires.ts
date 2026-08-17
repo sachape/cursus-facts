@@ -12,7 +12,12 @@
  * du catalogue. Toute modification d'ordre doit être traitée comme un
  * changement de règle : publiée, datée, et vérifiée par les tests de parité.
  */
-import type { CategorieOrganisme, DomaineParcours } from "@/types/cursus";
+import type {
+  CategorieOrganisme,
+  DomaineParcours,
+  FormatParcours,
+  NiveauEntree,
+} from "@/types/cursus";
 
 /* -------------------------------------------------------------------------- */
 /* Domaines — un seul par parcours, parmi neuf                                */
@@ -183,6 +188,28 @@ export const SUJETS: readonly string[] = [
  * Elles évitent qu'un cours à 15 € et un mastère de deux ans se retrouvent
  * dans la même liste.
  */
+/*
+  LES MÊMES LIBELLÉS PARTOUT, ET DEPUIS UN SEUL ENDROIT.
+
+  Ces deux tables existaient en triple — panneau de filtres, contenu de fiche,
+  synthèse de comparaison — avec les mêmes valeurs, jusqu'au jour où l'une
+  aurait été corrigée seule. Les pages de croisement en auraient fait une
+  quatrième copie, et une page qui annonce « Distanciel » dans son titre et
+  « À distance » dans sa liste se lit comme deux pages.
+*/
+export const LIBELLES_FORMATS: Record<FormatParcours, string> = {
+  distanciel: "Distanciel",
+  presentiel: "Présentiel",
+  alternance: "Alternance",
+};
+
+export const LIBELLES_NIVEAUX: Record<NiveauEntree, string> = {
+  aucun_prerequis: "Aucun prérequis",
+  bac2: "Bac+2",
+  bac3: "Bac+3",
+  experience: "Expérience",
+};
+
 export const LIBELLES_CATEGORIES: Record<CategorieOrganisme, string> = {
   universite: "Universités",
   ecole: "Écoles",

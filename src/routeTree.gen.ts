@@ -23,6 +23,7 @@ import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
 import { Route as ApiIngestionRouteImport } from './routes/api/ingestion'
+import { Route as FormationsCombinaisonRouteImport } from './routes/formations.$combinaison'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as OrganismesIndexRouteImport } from './routes/organismes.index'
@@ -101,6 +102,11 @@ const ApiIngestionRoute = ApiIngestionRouteImport.update({
   path: '/api/ingestion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FormationsCombinaisonRoute = FormationsCombinaisonRouteImport.update({
+  id: '/formations/$combinaison',
+  path: '/formations/$combinaison',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
   id: '/guides/',
   path: '/guides/',
@@ -152,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/formations/$combinaison': typeof FormationsCombinaisonRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
@@ -175,6 +182,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/formations/$combinaison': typeof FormationsCombinaisonRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
@@ -199,6 +207,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/formations/$combinaison': typeof FormationsCombinaisonRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
   '/parcours/$slug': typeof ParcoursSlugRoute
@@ -224,6 +233,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/formations/$combinaison'
     | '/guides/$slug'
     | '/organismes/$slug'
     | '/parcours/$slug'
@@ -247,6 +257,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/formations/$combinaison'
     | '/guides/$slug'
     | '/organismes/$slug'
     | '/parcours/$slug'
@@ -270,6 +281,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/formations/$combinaison'
     | '/guides/$slug'
     | '/organismes/$slug'
     | '/parcours/$slug'
@@ -294,6 +306,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminSeedRoute: typeof AdminSeedRoute
   ApiIngestionRoute: typeof ApiIngestionRoute
+  FormationsCombinaisonRoute: typeof FormationsCombinaisonRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
   OrganismesSlugRoute: typeof OrganismesSlugRoute
   ParcoursSlugRoute: typeof ParcoursSlugRoute
@@ -403,6 +416,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiIngestionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/formations/$combinaison': {
+      id: '/formations/$combinaison'
+      path: '/formations/$combinaison'
+      fullPath: '/formations/$combinaison'
+      preLoaderRoute: typeof FormationsCombinaisonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guides/': {
       id: '/guides/'
       path: '/guides'
@@ -470,6 +490,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminSeedRoute: AdminSeedRoute,
   ApiIngestionRoute: ApiIngestionRoute,
+  FormationsCombinaisonRoute: FormationsCombinaisonRoute,
   GuidesSlugRoute: GuidesSlugRoute,
   OrganismesSlugRoute: OrganismesSlugRoute,
   ParcoursSlugRoute: ParcoursSlugRoute,

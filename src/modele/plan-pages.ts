@@ -1,35 +1,34 @@
 /**
- * Le plan de pages — quelles adresses filtrées méritent d'être indexées.
+ * Le plan de pages — ce qui décide qu'une adresse filtrée est indexable.
  *
- * NOINDEX PAR DÉFAUT, ET C'EST LA RÈGLE QUI COMPTE. Les filtres se combinent :
- * dix-huit critères produisent des milliers d'adresses valides, toutes servant
- * une variante du même contenu. Les laisser toutes indexables noierait les
- * pages qui comptent sous des centaines de pages faibles — le mécanisme qui a
- * coûté leur visibilité à tous les comparateurs à facettes.
+ * LA RÉPONSE EST DÉSORMAIS « JAMAIS », ET C'EST UN CHANGEMENT DE PHASE.
  *
- * Une adresse filtrée n'est donc indexable qu'à deux conditions cumulatives :
+ * Jusqu'ici, une poignée de croisements choisis échappaient au `noindex` par
+ * défaut et s'indexaient à leur adresse à paramètres — `/catalogue?cpf=1`.
+ * Depuis que les croisements ont une adresse lisible — `/formations/shopify-cpf`,
+ * voir `croisements.ts` — les deux formes serviraient le même contenu à deux
+ * adresses, ce qui est la définition du doublon. Une seule peut être indexable,
+ * et c'est celle qui se lit.
  *
- *  1. elle figure dans ce plan, à l'identique — un croisement choisi, pas un
- *     croisement possible ;
- *  2. elle franchit le seuil de données, mesuré à la lecture.
+ * CE QUI SUBSISTE ICI. Les entrées du plan gardent leur INTITULÉ : c'est lui
+ * qui remplace le titre générique en tête de liste quand on arrive sur un
+ * croisement connu depuis le site. Un libellé d'écran, plus une décision
+ * d'indexation.
  *
- * LE SEUIL SE MESURE, IL NE SE SUPPOSE PAS. Une page de croisement qui remonte
- * trois parcours n'a rien à dire de plus que le catalogue entier ; elle se
- * dégradera d'elle-même en `noindex` si le catalogue bouge, sans qu'on ait à
- * y penser. C'est la même logique que le seuil de profondeur de collecte : on
- * ne publie pas ce qu'on n'a pas encore.
+ * LA FAMILLE MANQUANTE, ET POURQUOI ELLE MANQUE. Un croisement par RÉGION a été
+ * envisagé — « formation e-commerce en Île-de-France ». Il n'existe pas, et ce
+ * n'est pas un oubli : le champ `lieu` est vide sur 173 fiches sur 215, et sur
+ * les 42 restantes il mélange des régions et des villes — « Île-de-France » à
+ * côté de « Paris », « Lyon », « Vieux-Lille », « Paris 15 », « En ligne ».
+ * La région la mieux fournie réunit six parcours : UNE combinaison au seuil.
+ * Une page unique ne fait pas une famille, et son maillage n'irait nulle part.
+ *
+ * Ce qui débloquerait cette famille n'est pas une route de plus, c'est un
+ * nettoyage de `lieu` en vocabulaire de régions — un chantier de collecte, à
+ * mener avant d'ouvrir la porte, pas après.
  */
 import type { ParametresFiltres } from "./filtres-url";
 import { memesFiltres, normaliserParametres } from "./filtres-url";
-
-/**
- * Nombre minimal de parcours pour qu'une page de croisement soit indexable.
- *
- * Huit : en deçà, la page tient sur moins d'un écran de résultats et
- * n'apprend rien qu'un filtre posé à la main n'apprendrait. Le chiffre est
- * discutable ; ce qui ne l'est pas, c'est qu'il existe et qu'il se mesure.
- */
-export const SEUIL_PAGE_INDEXABLE = 8;
 
 export type PagePlanifiee = {
   /** Les paramètres exacts, tels qu'ils seront écrits dans l'adresse. */
@@ -178,14 +177,14 @@ export function pagePlanifiee(recherche: Record<string, unknown>): PagePlanifiee
 }
 
 /**
- * Vrai si l'adresse mérite d'être indexée.
+ * Vrai si l'adresse filtrée mérite d'être indexée — donc jamais.
  *
- * Une adresse sans aucun filtre n'est pas concernée : c'est l'accueil, qui est
- * indexable pour d'autres raisons.
+ * La fonction subsiste plutôt que de disparaître, et c'est délibéré : elle est
+ * le seul endroit où cette décision se prend. La supprimer disperserait la
+ * règle dans les `head()` des routes, où personne n'irait la relire. Le seuil
+ * de données qu'elle appliquait vit maintenant dans `croisements.ts`, où il
+ * décide de l'EXISTENCE de la page et plus seulement de sa balise.
  */
-export function pageIndexable(
-  page: PagePlanifiee | undefined,
-  nombreResultats: number,
-): boolean {
-  return page !== undefined && nombreResultats >= SEUIL_PAGE_INDEXABLE;
+export function pageIndexable(): boolean {
+  return false;
 }

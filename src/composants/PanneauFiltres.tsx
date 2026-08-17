@@ -30,7 +30,11 @@ import {
   type Filtres,
   type TrancheDuree,
 } from "@/modele/filtres";
-import { LIBELLES_CATEGORIES } from "@/modele/vocabulaires";
+import {
+  LIBELLES_CATEGORIES,
+  LIBELLES_FORMATS,
+  LIBELLES_NIVEAUX,
+} from "@/modele/vocabulaires";
 import type { CategorieOrganisme, FormatParcours, NiveauEntree } from "@/types/cursus";
 import { FILTRES_CONDITION, LIBELLES_FILTRES_CONDITION } from "@/modele/condition-cout";
 import { IconeCategorie } from "./OrganizationMark";
@@ -61,19 +65,6 @@ const DELAI_SAISIE = 400;
 const PAS_OPTION = 40;
 const LIGNES_VISIBLES = 6;
 const HAUTEUR_LISTE = PAS_OPTION * LIGNES_VISIBLES;
-
-const LIBELLES_FORMATS: Record<FormatParcours, string> = {
-  distanciel: "Distanciel",
-  presentiel: "Présentiel",
-  alternance: "Alternance",
-};
-
-const LIBELLES_NIVEAUX: Record<NiveauEntree, string> = {
-  aucun_prerequis: "Aucun prérequis",
-  bac2: "Bac+2",
-  bac3: "Bac+3",
-  experience: "Expérience",
-};
 
 /** Le décompte, en badge aligné à droite plutôt qu'accolé au libellé. */
 function Badge({ children }: { children: React.ReactNode }) {

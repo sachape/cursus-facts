@@ -8,7 +8,7 @@ import {
   versParametres,
 } from "./filtres-url";
 import { auMoinsUnFiltre, FILTRES_VIDES, type Filtres } from "./filtres";
-import { PLAN_PAGES, pageIndexable, pagePlanifiee, SEUIL_PAGE_INDEXABLE } from "./plan-pages";
+import { PLAN_PAGES, pageIndexable, pagePlanifiee } from "./plan-pages";
 import { SUJETS_OUTILS, SUJET_GENERALISTE } from "./vocabulaires";
 
 const complet: Filtres = {
@@ -134,12 +134,17 @@ describe("plan de pages", () => {
     expect(pagePlanifiee({})).toBeUndefined();
   });
 
-  it("n'indexe une page planifiée qu'au-dessus du seuil de données", () => {
-    const page = pagePlanifiee({ cpf: "1" })!;
-    expect(pageIndexable(page, SEUIL_PAGE_INDEXABLE)).toBe(true);
-    expect(pageIndexable(page, SEUIL_PAGE_INDEXABLE - 1)).toBe(false);
-    // Une adresse hors plan n'est jamais indexable, quel que soit son volume.
-    expect(pageIndexable(undefined, 1000)).toBe(false);
+  it("N'INDEXE AUCUNE ADRESSE À PARAMÈTRES, planifiée ou non", () => {
+    /*
+      La règle a changé de nature avec les pages de croisement : un croisement
+      s'indexe maintenant à son adresse lisible — `/formations/shopify-cpf` —
+      et l'adresse à paramètres qui sert le même contenu redevient `noindex`
+      sans exception.
+
+      Deux adresses pour un contenu, c'est un doublon ; et le doublon serait
+      d'autant plus coûteux ici qu'il opposerait deux pages à nous.
+    */
+    expect(pageIndexable()).toBe(false);
   });
 
   it("décrit chaque page du plan par des paramètres déjà normalisés", () => {

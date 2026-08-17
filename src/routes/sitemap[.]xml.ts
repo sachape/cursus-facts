@@ -22,9 +22,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { chargerListe } from "@/donnees/requetes";
 import { regrouperParOrganisme } from "@/modele/organismes";
 import { GUIDES, indexIndexable } from "@/contenu/guides";
-import { PLAN_PAGES, SEUIL_PAGE_INDEXABLE } from "@/modele/plan-pages";
-import { adresseFiltre, depuisParametres } from "@/modele/filtres-url";
-import { filtrer } from "@/modele/filtres";
+import { croisements as croisementsGeneres } from "@/modele/croisements";
 
 const SITE = "https://formlist.fr";
 
@@ -88,17 +86,22 @@ export const Route = createFileRoute("/sitemap.xml")({
         ];
 
         /*
-          LES PAGES DE CROISEMENT SUIVENT LE MÊME SEUIL QUE LEUR BALISE.
+          LES PAGES DE CROISEMENT FORMENT LEUR PROPRE SECTION.
 
-          Une page annoncée au sitemap et servie en `noindex` envoie deux
-          signaux contradictoires : le sitemap invite à indexer, la page refuse.
-          Le seuil est donc mesuré ici aussi, sur le même catalogue et par la
-          même fonction de filtrage — deux calculs séparés finiraient par
-          diverger, et c'est précisément la faute que le produit traque.
+          Elles ne sont plus listées depuis le plan de pages à paramètres : ces
+          adresses-là sont redevenues `noindex` sans exception le jour où les
+          croisements ont pris une adresse lisible. Annoncer les deux formes
+          reviendrait à proposer deux adresses pour un même contenu, ce qui est
+          la définition du doublon.
+
+          AUCUN SEUIL N'EST RÉAPPLIQUÉ ICI, et c'est voulu : `croisementsGeneres`
+          ne rend que les combinaisons qui le franchissent déjà. Un second
+          calcul, écrit à côté, finirait par diverger du premier — la faute que
+          ce produit traque partout ailleurs.
         */
-        const croisements = PLAN_PAGES.filter(
-          (page) => filtrer(parcours, depuisParametres(page.parametres)).length >= SEUIL_PAGE_INDEXABLE,
-        ).map((page) => entree(adresseFiltre(page.parametres), "0.6", null));
+        const croisements = croisementsGeneres(parcours).map((c) =>
+          entree(`/formations/${c.slug}`, "0.6", null),
+        );
 
         const lignes = [
           ...VUES.map((v) => entree(v.chemin, v.priorite, null)),
