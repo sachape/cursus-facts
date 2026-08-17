@@ -286,7 +286,7 @@ function Accueil() {
           raccourci vers une liste vide est une promesse rompue au premier clic ;
           le nombre affiché est celui que la page d'arrivée montrera.
         */}
-        <ul className="flex flex-wrap justify-center gap-(--space-2)">
+        <ul className="mt-(--space-4) flex flex-wrap justify-center gap-(--space-2)">
           {raccourcis.map((r) => (
             <li key={r.libelle}>
               <Link
