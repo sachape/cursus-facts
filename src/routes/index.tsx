@@ -330,17 +330,35 @@ function Accueil() {
         retrait bas, quatre au-dessus de lui : un bouton seul au milieu du
         vide se lit comme une erreur de gabarit, pas comme une invitation.
       */}
-      <div className="text-center">
-        <Button
-          size="lg"
-          onClick={() => allerAuCatalogue()}
-        >
-          Voir les {formaterNombre(parcours.length)} parcours
-        </Button>
-      </div>
+      <div className="flex flex-col items-center gap-(--space-5) text-center">
+        <div className="flex flex-wrap justify-center gap-(--space-3)">
+          <Button size="lg" onClick={() => allerAuCatalogue()}>
+            Voir les {formaterNombre(parcours.length)} parcours
+          </Button>
+          <Button size="lg" variant="outline" onClick={() => naviguer({ to: "/aide-au-choix" })}>
+            Je ne sais pas quoi choisir
+          </Button>
+        </div>
 
-      <div className="-mx-(--space-6) my-(--space-12)">
-        <BandeOrganismes organismes={organismesBande} />
+        {/*
+          LES RACCOURCIS PORTENT LEUR DÉCOMPTE, ET DISPARAISSENT À ZÉRO. Un
+          raccourci vers une liste vide est une promesse rompue au premier clic ;
+          le nombre affiché est celui que la page d'arrivée montrera.
+        */}
+        <ul className="flex flex-wrap justify-center gap-(--space-2)">
+          {raccourcis.map((r) => (
+            <li key={r.libelle}>
+              <Link
+                to="/catalogue"
+                search={r.search}
+                className="inline-flex items-center gap-(--space-2) rounded-(--radius-full) border border-(--border-default) bg-(--surface-raised) px-(--space-4) py-(--space-2) t-body-sm text-(--text-secondary) transition-colors duration-(--motion-fast) hover:border-(--border-strong) hover:text-(--text-primary) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+              >
+                {r.libelle}
+                <span className="chiffre text-(--text-tertiary)">{formaterNombre(r.nombre)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {/*
@@ -353,13 +371,18 @@ function Accueil() {
         finissent par diverger — c'est le défaut que ce produit passe son temps
         à corriger ailleurs.
       */}
-      <CeQueNousComparons chiffres={chiffres} />
-      <QuestionsFrequentes chiffres={chiffres} />
-      <ExplorerLeCatalogue chiffres={chiffres} />
+      <PreuveParLeProduit parcours={parcours} />
+      <TroisPortes parcours={parcours} chiffres={chiffres} />
+      <PaysageDuCatalogue chiffres={chiffres} informationsVerifiees={informationsVerifiees} />
+      <OrganismesCouverts organismes={organismesBande} />
+      <PourquoiFiable chiffres={chiffres} />
+      <LesQuestions chiffres={chiffres} />
       <LesGuides />
       <LesRessources />
+      <Cloture parcours={parcours.length} />
     </div>
   );
+
 }
 
 /**
