@@ -14,6 +14,20 @@ import { expect, test, type Locator, type Page } from "@playwright/test";
 
 const BASE = process.env["URL_TEST"] ?? "http://localhost:4317";
 
+/*
+  LA LISTE N'EST PLUS SUR L'ACCUEIL. Depuis la séparation du 17 août, `/`
+  présente le produit et `/catalogue` porte les fiches, les filtres, le tri et
+  la barre de résultats. Tout test qui ouvre une carte, filtre ou trie part
+  d'ici — le `beforeEach` ci-dessous reste sur l'accueil, qui garde ses propres
+  invariants.
+*/
+const CATALOGUE = `${BASE}/catalogue`;
+
+/** Ouvre la vue de liste, prête à être cliquée. */
+async function ouvrirCatalogue(page: Page) {
+  await page.goto(CATALOGUE, { waitUntil: "networkidle" });
+}
+
 /** Rectangle d'un élément, en coordonnées de page. */
 async function boite(cible: Locator) {
   const b = await cible.boundingBox();
@@ -261,6 +275,8 @@ test("le pied du panneau reste visible et ne recouvre aucun contenu", async ({ p
     n'avait jamais cliqué au bon endroit. Le sélecteur descend maintenant dans
     la liste de résultats, la seule qui ouvre une fiche.
   */
+  await ouvrirCatalogue(page);
+
   for (const rang of [0, 1]) {
     await page.locator("main ul > li h3 a").nth(rang).click();
     const panneau = page.getByRole("dialog");
@@ -295,6 +311,8 @@ test("la barre d'actions du panneau tient en une ligne de boutons", async ({ pag
     doit faire rougir ce test, quelle que soit la raison qui l'a fait ajouter.
   */
   const fautifs: string[] = [];
+
+  await ouvrirCatalogue(page);
 
   for (const largeur of [1440, 1024, 768, 430, 390, 320]) {
     await page.setViewportSize({ width: largeur, height: 900 });
@@ -364,6 +382,7 @@ test("la requête de conteneur du pied décrit bien le panneau, pas la fenêtre"
     remontée sur la même ligne.
   */
   await page.setViewportSize({ width: 1440, height: 900 });
+  await ouvrirCatalogue(page);
   await page.locator("main ul > li h3 a").first().click();
   const panneau = page.getByRole("dialog");
   await expect(panneau).toBeVisible();
@@ -500,6 +519,8 @@ test("la synthèse de comparaison énonce des écarts, jamais des noms", async (
     et qu'aucun superlatif n'apparaît. C'est mécanique, et c'est le genre de
     dérive qu'une relecture humaine laisse passer parce qu'elle sonne juste.
   */
+  await ouvrirCatalogue(page);
+
   const noms: string[] = [];
   for (const rang of [0, 1]) {
     const carte = page.locator("main ul > li").nth(rang);
@@ -759,6 +780,7 @@ test("une fiche portant un champ non collecté n'affiche jamais un compteur plei
     Le seul contrôle qui l'attrape est celui-ci : lire les deux à l'écran, et
     refuser qu'ils se contredisent.
   */
+  await ouvrirCatalogue(page);
   await page.locator("main ul > li h3 a").first().click();
   const panneau = page.getByRole("dialog");
   await expect(panneau).toBeVisible();
@@ -1077,6 +1099,8 @@ test("aucune carte ne recouvre la barre de résultats, à toutes les largeurs", 
   */
   const fautifs: string[] = [];
 
+  await ouvrirCatalogue(page);
+
   for (const largeur of [1440, 1024, 960, 768, 430, 390]) {
     await page.setViewportSize({ width: largeur, height: 800 });
     await page.evaluate(() => window.scrollTo(0, 2600));
@@ -1267,7 +1291,7 @@ test("une comparaison s'enregistre, et le détour par la connexion n'en perd rie
     Le chemin connecté — insertion, confirmation, mesure — se vérifie en
     production, avec une vraie boîte mail.
   */
-  await page.goto(BASE, { waitUntil: "networkidle" });
+  await ouvrirCatalogue(page);
 
   // Composer une sélection de deux parcours depuis le catalogue.
   /*
@@ -1362,7 +1386,7 @@ test("aucune mesure ne part pendant les tests", async ({ page }) => {
     if (requete.url().includes("mixpanel.com")) versMixpanel.push(requete.url());
   });
 
-  await page.goto(BASE, { waitUntil: "networkidle" });
+  await ouvrirCatalogue(page);
 
   /*
     Les gestes sont EXIGÉS, pas tentés. Une première version les enveloppait
@@ -1381,11 +1405,19 @@ test("aucune mesure ne part pendant les tests", async ({ page }) => {
   await expect(option).toBeVisible();
   await option.click();
 
-  const champ = page.locator('input[type="search"], input[type="text"]').first();
+  /*
+    LA RECHERCHE EST RESTÉE SUR L'ACCUEIL. La séparation a laissé la liste au
+    catalogue et le champ au hero ; le geste se fait donc là où il existe,
+    plutôt que de supposer que les trois tiennent sur une seule page.
+  */
+  await page.goto(BASE, { waitUntil: "networkidle" });
+  const champ = page.getByRole("combobox").first();
   await expect(champ).toBeVisible();
   await champ.fill("shopify");
   await page.waitForTimeout(1200);
 
+  // L'ouverture d'une fiche, de retour sur la liste.
+  await ouvrirCatalogue(page);
   const lien = page.locator('a[href^="/parcours/"]').first();
   await expect(lien).toBeVisible();
   // Clic JS : `click()` ferait défiler la page, ce qu'un autre invariant mesure.
@@ -1480,7 +1512,7 @@ test("les actions d'une carte sont visibles sans survol", async ({ page }) => {
   */
   for (const largeur of [1280, 375]) {
     await page.setViewportSize({ width: largeur, height: 900 });
-    await page.goto(BASE, { waitUntil: "networkidle" });
+    await ouvrirCatalogue(page);
 
     const carte = page.locator("main li").filter({ has: page.locator('a[href^="/parcours/"]') }).first();
     await expect(carte).toBeVisible();
@@ -1515,7 +1547,7 @@ test("le signet et le lien couvrant ne se déclenchent pas l'un l'autre", async 
     Les deux sens sont vérifiés : le signet ne doit pas ouvrir la fiche, et le
     clic sur la carte ne doit pas sauvegarder.
   */
-  await page.goto(BASE, { waitUntil: "networkidle" });
+  await ouvrirCatalogue(page);
 
   const carte = page.locator("main li").filter({ has: page.locator('a[href^="/parcours/"]') }).first();
   const signet = carte.getByRole("button", { name: /Sauvegarder/ });
@@ -1536,7 +1568,7 @@ test("le signet et le lien couvrant ne se déclenchent pas l'un l'autre", async 
   expect(new URL(page.url()).searchParams.get("fiche")).toBeNull();
 
   // 2. Le clic sur la carte ouvre bien la fiche, et ne part pas en connexion.
-  await page.goto(BASE, { waitUntil: "networkidle" });
+  await ouvrirCatalogue(page);
   const titre = page
     .locator("main li")
     .filter({ has: page.locator('a[href^="/parcours/"]') })
@@ -1546,7 +1578,10 @@ test("le signet et le lien couvrant ne se déclenchent pas l'un l'autre", async 
   // Clic JS : `click()` ferait défiler la page, ce qu'un autre invariant mesure.
   await titre.evaluate((el: HTMLElement) => el.click());
   await page.waitForTimeout(800);
-  expect(new URL(page.url()).pathname).toBe("/");
+  // La fiche s'ouvre en panneau SUR la liste : l'adresse reste celle du
+  // catalogue, augmentée de `fiche=`. Un changement de chemin signalerait que
+  // le panneau a été remplacé par une navigation pleine page.
+  expect(new URL(page.url()).pathname).toBe("/catalogue");
   expect(new URL(page.url()).searchParams.get("fiche")).not.toBeNull();
 });
 
@@ -1660,7 +1695,7 @@ test("les listes de parcours rendent la même carte partout", async ({ page }) =
     });
   };
 
-  const explorateur = await geometrie(BASE);
+  const explorateur = await geometrie(CATALOGUE);
   expect(explorateur).not.toBeNull();
 
   // Un organisme du sitemap, donc réel — jamais un slug écrit en dur.
@@ -1847,6 +1882,7 @@ test("les prix inconnus sont inclus par défaut, et leur décompte s'affiche une
     code : que la case est bien cochée à l'arrivée, et que la masquer NOMME le
     nombre de fiches masquées au lieu de les faire disparaître en silence.
   */
+  await ouvrirCatalogue(page);
   await page.getByRole("button", { name: /^Budget/ }).first().click();
 
   const inclusion = page.getByRole("checkbox", { name: /prix n'est pas connu/ });
@@ -1963,7 +1999,7 @@ test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page 
     3. L'adresse rouvre la même liste — c'est le contrat du partage.
   */
   await page.goto(`${BASE}/methode`, { waitUntil: "networkidle" });
-  await page.goto(`${BASE}/`, { waitUntil: "networkidle" });
+  await ouvrirCatalogue(page);
 
   const groupe = page.getByRole("button", { name: /^Certification/ }).first();
   await groupe.click();
@@ -1981,7 +2017,7 @@ test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page 
   await expect(page).toHaveURL(/\/methode$/);
 
   // 3. L'adresse partagée rouvre la même liste, filtre appliqué.
-  await page.goto(`${BASE}/?certifiant=1`, { waitUntil: "networkidle" });
+  await page.goto(`${CATALOGUE}?certifiant=1`, { waitUntil: "networkidle" });
   await expect(page.getByRole("checkbox", { name: /Certifiant/ })).toBeChecked();
   expect(await page.getByRole("heading", { level: 2 }).first().innerText()).toBe(avecFiltre);
   expect(await resultats.count()).toBeGreaterThan(0);
@@ -2066,7 +2102,9 @@ test("le hero compte des informations vérifiées, et la date reste sur les fich
   expect(total.length).toBeGreaterThanOrEqual(3);
   expect(Number(total.at(-1))).toBeGreaterThan(0);
 
-  // La date, sur la ligne de provenance d'une fiche.
+  // La date, sur la ligne de provenance d'une fiche — donc dans le catalogue,
+  // que le hero ci-dessus ne porte plus.
+  await ouvrirCatalogue(page);
   await page.locator("main ul > li h3 a").first().click();
   const panneau = page.getByRole("dialog");
   await expect(panneau).toBeVisible();
