@@ -183,8 +183,16 @@ function Porte({
 }) {
   return (
     <Reveal className="border-t border-(--border-default) py-(--space-10) first:border-t-0">
+      {/*
+        `min-w-0` SUR LES DEUX ÉLÉMENTS, ET PAS SEULEMENT DANS LE GABARIT.
+        Un élément de grille vaut `min-width: auto` : il refuse de descendre
+        sous la largeur mini de son contenu. Le `minmax(0, …)` ci-dessous ne
+        désamorce le piège qu'au-delà de 900 px ; en dessous, la grille passe
+        à une colonne et l'aperçu imposait 332 px là où 272 étaient offerts.
+        Mesuré à 320 px : le document défilait sur 356 px.
+      */}
       <div className="grid items-center gap-(--space-8) min-[900px]:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] min-[900px]:gap-(--space-16)">
-        <div className={inverse ? "min-[900px]:order-2" : ""}>
+        <div className={`min-w-0 ${inverse ? "min-[900px]:order-2" : ""}`}>
           <p className="t-data-sm text-(--text-tertiary)">{numero}</p>
           <h3 className="mt-(--space-2) text-balance t-heading-1 text-(--text-primary) max-[767px]:t-heading-2">
             {titre}
@@ -194,7 +202,7 @@ function Porte({
           </p>
           <div className="mt-(--space-5)">{action}</div>
         </div>
-        <div className={inverse ? "min-[900px]:order-1" : ""}>{apercu}</div>
+        <div className={`min-w-0 ${inverse ? "min-[900px]:order-1" : ""}`}>{apercu}</div>
       </div>
     </Reveal>
   );
