@@ -129,6 +129,25 @@ function Accueil() {
   */
   const chiffres = useMemo(() => chiffresGuides(parcours, ""), [parcours]);
 
+  /*
+    Les raccourcis sous l'appel principal. Chacun porte le décompte qu'il
+    ouvrira, et ceux qui tombent à zéro ne s'affichent pas : un filtre dont le
+    rendement est nul se coche à l'aveugle et déçoit au premier clic.
+  */
+  const raccourcis = useMemo(
+    () =>
+      [
+        { libelle: "À distance", nombre: chiffres.distanciel, search: { format: "distanciel" } },
+        { libelle: "En alternance", nombre: chiffres.alternance, search: { format: "alternance" } },
+        { libelle: "Éligible CPF", nombre: chiffres.eligiblesCpf, search: { cpf: "1" } },
+        { libelle: "Certifiant", nombre: chiffres.certifiants, search: { certifiant: "1" } },
+        { libelle: "Sans frais", nombre: chiffres.sansFrais, search: { gratuit: "1" } },
+      ].filter((r) => r.nombre > 0),
+    [chiffres],
+  );
+
+
+
   const organismesBande = useMemo(() => {
     const parNom = new Map<string, { categorie: ParcoursListe["organismeCategorie"]; parcours: number }>();
     for (const p of parcours) {
