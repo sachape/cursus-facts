@@ -22,11 +22,22 @@ test.describe("séparation de l'accueil et du catalogue", () => {
     await expect(page.getByRole("link", { name: /Tous les domaines/ })).toHaveCount(0);
   });
 
-  test("le bouton de l'accueil mène au catalogue, avec la liste complète", async ({ page }) => {
+  test("l'appel de l'accueil mène au catalogue, sans attendre l'hydratation", async ({ page }) => {
+    /*
+      LE CLIC EST IMMÉDIAT, ET C'EST TOUT L'INTÉRÊT. Cet appel a été un
+      `<button onClick>` : mesuré le 18 août, un clic immédiat ne bougeait pas
+      l'adresse, un clic après hydratation menait bien au catalogue. Le HTML du
+      serveur s'affiche et se laisse cliquer bien avant que React n'attache
+      quoi que ce soit — sur lien lent, le premier geste du visiteur tombait
+      donc dans le vide, sans que rien ne rougisse.
+
+      Ne pas ajouter d'attente ici : c'est la course elle-même qu'on surveille.
+    */
     await page.goto("/");
-    const bouton = page.getByRole("button", { name: /Voir les .* parcours/ });
-    await expect(bouton).toBeVisible();
-    await bouton.click();
+    // Le premier du DOM est celui du hero ; l'Editorial porte le même libellé.
+    const appel = page.getByRole("link", { name: /Voir les .* parcours/ }).first();
+    await expect(appel).toBeVisible();
+    await appel.click();
     await expect(page).toHaveURL(/\/catalogue$/);
     /*
       La liste est là, et elle n'est pas vide. Un catalogue rendu à zéro rangée

@@ -379,11 +379,20 @@ function Accueil() {
       */}
       <div className="flex flex-col items-center gap-(--space-5) text-center">
         <div className="flex w-full flex-col gap-(--space-3) sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center">
-          <Button size="lg" className="w-full sm:w-auto" onClick={() => allerAuCatalogue()}>
-            Voir les {formaterNombre(parcours.length)} parcours
+          {/*
+            DES LIENS, PAS DES BOUTONS À onClick. Ces deux appels naviguent :
+            portés par un `onClick`, ils ne répondaient à rien tant que React
+            n'avait pas hydraté la page — le HTML du serveur est à l'écran et
+            se laisse cliquer bien avant. Mesuré : clic immédiat, l'adresse ne
+            bouge pas ; clic après hydratation, elle mène au catalogue.
+            Un `<a>` est traité par le navigateur lui-même, donc dès le
+            premier octet rendu. C'est aussi le rôle exact de l'élément.
+          */}
+          <Button size="lg" className="w-full sm:w-auto" asChild>
+            <Link to="/catalogue">Voir les {formaterNombre(parcours.length)} parcours</Link>
           </Button>
-          <Button size="lg" variant="outline" className="w-full sm:w-auto" onClick={() => naviguer({ to: "/aide-au-choix" })}>
-            Je ne sais pas quoi choisir
+          <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
+            <Link to="/aide-au-choix">Je ne sais pas quoi choisir</Link>
           </Button>
         </div>
 
