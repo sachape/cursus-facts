@@ -1,0 +1,81 @@
+[
+ {
+  "id": 219,
+  "nom": "Formation TikTok",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/tiktok/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "Formation tiktok\n1 650 €\nPaiement en 12 fois & éligible au CPF",
+   "urlSource": "https://www.livementor.com/formation/tiktok/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ },
+ {
+  "id": 89,
+  "nom": "Formation Marketing Digital",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/marketing-digital/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "Formation Marketing Digital\n1 650 €\nPaiement en 12 fois & éligible au CPF",
+   "urlSource": "https://www.livementor.com/formation/marketing-digital/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ },
+ {
+  "id": 96,
+  "nom": "Parcours Chef de projet e-commerce",
+  "organisme": "OpenClassrooms",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "aucune_page_rapprochee",
+  "pagesModele": [],
+  "requetesReseau": 9,
+  "trouve": false,
+  "proposition": null,
+  "motifEchec": "aucune_page_rapprochee",
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ }
+]

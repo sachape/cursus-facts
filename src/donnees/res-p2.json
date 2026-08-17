@@ -1,0 +1,95 @@
+[
+ {
+  "id": 213,
+  "nom": "Formation Copywriting",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/copywriting/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "Formation Copywriting\n1 650 €",
+   "urlSource": "https://www.livementor.com/formation/copywriting/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ },
+ {
+  "id": 214,
+  "nom": "Formation SEO",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/seo/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "Formation SEO\n1 650 €",
+   "urlSource": "https://www.livementor.com/formation/seo/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ },
+ {
+  "id": 215,
+  "nom": "Formation WordPress",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/wordpress/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "Formation WordPress\n1 650 €",
+   "urlSource": "https://www.livementor.com/formation/wordpress/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ }
+]

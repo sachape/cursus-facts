@@ -4224,7 +4224,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "livementor.com",
-  "prix": null,
+  "prix": 1650,
   "duree": "3 mois",
   "volumeHoraire": null,
   "formats": [
@@ -4247,7 +4247,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/marketing-digital/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — Formation Marketing Digital seule (paiement en 12 fois possible, éligible CPF). https://www.livementor.com/formation/marketing-digital/ — « Formation Marketing Digital\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 90,
@@ -8758,9 +8769,20 @@
   "sourceModalite": null,
   "duree": "3 mois",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1650,
   "id": 213,
-  "nom": "Formation Copywriting"
+  "nom": "Formation Copywriting",
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/copywriting/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — Formation Copywriting seule (3 mois), paiement en 12 fois possible. https://www.livementor.com/formation/copywriting/ — « Formation Copywriting\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "LiveMentor",
@@ -8793,9 +8815,20 @@
   "sourceModalite": null,
   "duree": "3 mois",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1650,
   "id": 214,
-  "nom": "Formation SEO"
+  "nom": "Formation SEO",
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/seo/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — Formation SEO seule (hors parcours SEO & SEA). https://www.livementor.com/formation/seo/ — « Formation SEO\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "LiveMentor",
@@ -8830,9 +8863,20 @@
   "sourceModalite": null,
   "duree": "3 mois",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1650,
   "id": 215,
-  "nom": "Formation WordPress"
+  "nom": "Formation WordPress",
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/wordpress/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — formation WordPress seule (3 mois), hors parcours WordPress & SEO. https://www.livementor.com/formation/wordpress/ — « Formation WordPress\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "LiveMentor",
@@ -8865,9 +8909,20 @@
   "sourceModalite": null,
   "duree": "3 mois",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1650,
   "id": 216,
-  "nom": "Formation Google Ads"
+  "nom": "Formation Google Ads",
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/google-ads/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — Formation SEA seule (paiement en 12 fois, éligible CPF). https://www.livementor.com/formation/google-ads/ — « Formation SEA\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "LiveMentor",
@@ -8900,9 +8955,20 @@
   "sourceModalite": null,
   "duree": "3 mois",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1650,
   "id": 217,
-  "nom": "Formation Instagram"
+  "nom": "Formation Instagram",
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/instagram/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme. https://www.livementor.com/formation/instagram/ — « Formation Instagram\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "LiveMentor",
@@ -8935,9 +9001,20 @@
   "sourceModalite": null,
   "duree": "3 mois",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1650,
   "id": 218,
-  "nom": "Formation Facebook"
+  "nom": "Formation Facebook",
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/facebook/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme. https://www.livementor.com/formation/facebook/ — « Formation facebook\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "LiveMentor",
@@ -8970,9 +9047,20 @@
   "sourceModalite": null,
   "duree": "3 mois",
   "volumeHoraire": null,
-  "prix": null,
+  "prix": 1650,
   "id": 219,
-  "nom": "Formation TikTok"
+  "nom": "Formation TikTok",
+  "unitePrix": "total",
+  "urlDetail": "https://www.livementor.com/formation/tiktok/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme. https://www.livementor.com/formation/tiktok/ — « Formation tiktok\n1 650 €\nPaiement en 12 fois & éligible au CPF »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "organisme": "OpenClassrooms",

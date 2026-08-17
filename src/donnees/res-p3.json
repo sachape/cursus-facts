@@ -1,0 +1,95 @@
+[
+ {
+  "id": 216,
+  "nom": "Formation Google Ads",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/google-ads/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "1 650 €",
+   "urlSource": "https://www.livementor.com/formation/google-ads/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ },
+ {
+  "id": 217,
+  "nom": "Formation Instagram",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/instagram/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "1 650 €",
+   "urlSource": "https://www.livementor.com/formation/instagram/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ },
+ {
+  "id": 218,
+  "nom": "Formation Facebook",
+  "organisme": "LiveMentor",
+  "strate": "formation_professionnelle",
+  "etatPrix": "non_collecte",
+  "prixActuel": null,
+  "voieDecouverte": "sitemap",
+  "pagesModele": [
+   {
+    "url": "https://www.livementor.com/formation/facebook/",
+    "role": "detail"
+   }
+  ],
+  "requetesReseau": 5,
+  "trouve": true,
+  "proposition": {
+   "champ": "prix",
+   "valeur": 1650,
+   "unite": "total",
+   "extrait": "Formation facebook\n1 650 €",
+   "urlSource": "https://www.livementor.com/formation/facebook/",
+   "role": "detail",
+   "attribution": null,
+   "derive": true
+  },
+  "motifEchec": null,
+  "cause": null,
+  "imputation": null,
+  "rejetsPrix": 0
+ }
+]

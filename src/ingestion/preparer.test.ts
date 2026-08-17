@@ -210,8 +210,23 @@ describe("ce qui part en base respecte les invariants", () => {
       sources. Un prix posé sur une offre repliée dans une fiche fusionnée
       n'ajoute rien au total. C'est la même distinction que celle qui sépare
       217 offres de 215 fiches.
+
+      2 468 → 2 476. Huit prix trouvés par le CRAWL PROFOND, qui part de la
+      fiche et cherche la page sur le site plutôt que de partir d'une adresse
+      devinée. Les huit formations LiveMentor sont à 1 650 €.
+
+      CE LOT CORRIGE UNE ERREUR DE MÉTHODE. La passe précédente avait conclu
+      que LiveMentor ne publiait aucun prix, après quatre pages testées à des
+      adresses reconstruites à la main — `/formation-seo`. Les vraies pages sont
+      en `/formation/seo/`. L'organisme publiait ; c'est notre façon de chercher
+      qui ne trouvait pas.
+
+      C'est exactement la distinction que le catalogue impose entre
+      `non_collecte` et `non_communique`, et elle vaut aussi pour nos
+      conclusions : un échec de collecte ne se conclut pas en silence de
+      l'organisme.
     */
-    expect(total).toBe(2468);
+    expect(total).toBe(2476);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {
