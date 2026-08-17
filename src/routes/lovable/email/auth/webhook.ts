@@ -80,11 +80,11 @@ const EMAIL_CONFIG: Omit<AuthEmailHandlerConfig, 'apiKey'> = {
 
 let handler: ReturnType<typeof createAuthEmailHandler> | undefined
 
-function getHandler() {
+function getHandler(): ReturnType<typeof createAuthEmailHandler> | undefined {
   if (handler) return handler
   const apiKey = process.env['LOVABLE_API_KEY']
   if (!apiKey) {
-    throw new Error('Missing Lovable API key')
+    return undefined
   }
   handler = createAuthEmailHandler({ ...EMAIL_CONFIG, apiKey })
   return handler
@@ -94,15 +94,14 @@ export const Route = createFileRoute("/lovable/email/auth/webhook")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        try {
-          const h = getHandler()
-          return await h(request)
-        } catch {
+        const h = getHandler()
+        if (!h) {
           return Response.json(
             { error: 'Server configuration error' },
             { status: 500 }
           )
         }
+        return await h(request)
       },
     },
   },
