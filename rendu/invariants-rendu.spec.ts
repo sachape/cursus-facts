@@ -1987,13 +1987,19 @@ test("un guide rend ses chiffres depuis le catalogue, et sort vers lui", async (
   const versCatalogue = page.getByRole("link", { name: "Ouvrir le comparateur" });
   await expect(versCatalogue).toBeVisible();
   await versCatalogue.click();
-  /* Le `h1` de l'explorateur vit dans son `header`, pas dans son `main` — celui-ci
-     ne porte que la colonne de résultats. Le rôle, lui, ne dépend pas du
-     placement. Délai élargi : c'est la route la plus lourde du produit et
-     `vite dev` la compile à la demande. */
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Comparez", {
-    timeout: 20_000,
-  });
+  /*
+    LA SORTIE ATTERRIT SUR LE CATALOGUE, ET IL SE NOMME. L'assertion attendait
+    « Comparez » — le titre du hero de l'accueil, du temps où la liste y vivait.
+    Depuis la séparation, la sortie mène à `/catalogue`, dont le `h1` est le
+    titre de liste : « Tous les parcours », ou l'intitulé du croisement.
+
+    Délai élargi : c'est la route la plus lourde du produit et `vite dev` la
+    compile à la demande.
+  */
+  await expect(page).toHaveURL(/\/catalogue$/, { timeout: 20_000 });
+  const titreListe = page.getByRole("heading", { level: 1 });
+  await expect(titreListe).toBeVisible({ timeout: 20_000 });
+  await expect(titreListe).not.toBeEmpty();
 });
 
 test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page }) => {
@@ -2021,7 +2027,9 @@ test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page 
   // 1. Le filtre est dans l'adresse.
   await expect(page).toHaveURL(/certifiant=1/);
   const resultats = page.locator("main section > ul > li, main ul > li");
-  const avecFiltre = await page.getByRole("heading", { level: 2 }).first().innerText();
+  // Le titre de liste est le `h1` du catalogue depuis qu'il porte le sujet de
+  // la page ; c'est lui qu'on compare de part et d'autre du partage.
+  const avecFiltre = await page.getByRole("heading", { level: 1 }).first().innerText();
 
   // 2. Le retour arrière quitte l'explorateur au lieu de défaire le filtre.
   await page.goBack();
@@ -2030,16 +2038,23 @@ test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page 
   // 3. L'adresse partagée rouvre la même liste, filtre appliqué.
   await page.goto(`${CATALOGUE}?certifiant=1`, { waitUntil: "networkidle" });
   await expect(page.getByRole("checkbox", { name: /Certifiant/ })).toBeChecked();
-  expect(await page.getByRole("heading", { level: 2 }).first().innerText()).toBe(avecFiltre);
+  expect(await page.getByRole("heading", { level: 1 }).first().innerText()).toBe(avecFiltre);
   expect(await resultats.count()).toBeGreaterThan(0);
 });
 
-test("seules les pages du plan échappent au noindex", async ({ page }) => {
+test("seules les adresses lisibles échappent au noindex", async ({ page }) => {
   /*
     Dix-huit critères qui se combinent produisent des milliers d'adresses
     servant des variantes du même contenu. Les laisser indexables noie les pages
     qui comptent — le mécanisme qui a coûté leur visibilité à tous les
     comparateurs à facettes.
+
+    CHANGEMENT DE PHASE, ET CE TEST DÉCRIVAIT L'ÉTAT D'AVANT. Une poignée de
+    croisements choisis s'indexaient jadis à leur adresse à paramètres,
+    `/catalogue?cpf=1`. Depuis que ces croisements ont une adresse lisible —
+    `/formations/<combinaison>` — les deux formes serviraient le même contenu à
+    deux adresses, ce qui est la définition du doublon. `pageIndexable()` vaut
+    donc `false` sans condition, et c'est la forme qui se lit qui s'indexe.
 
     Le contrôle porte sur le HTML SERVI, pas sur le code : c'est ce que le robot
     lit, et une balise posée côté client arriverait après lui.
@@ -2058,23 +2073,37 @@ test("seules les pages du plan échappent au noindex", async ({ page }) => {
   expect(accueil.noindex).toBe(false);
   expect(accueil.canonique).toBe("https://formlist.fr/");
 
-  // Une combinaison quelconque : noindex, et consolidée sur l'accueil.
-  const quelconque = await robots("/?niveau=bac2&format=presentiel");
-  expect(quelconque.noindex).toBe(true);
-  expect(quelconque.canonique).toBe("https://formlist.fr/");
+  // Le catalogue nu : indexable, canonique sur lui-même.
+  const catalogue = await robots("/catalogue");
+  expect(catalogue.noindex).toBe(false);
+  expect(catalogue.canonique).toBe("https://formlist.fr/catalogue");
 
-  // Une page du plan : indexable et auto-référente.
-  const planifiee = await robots("/?cpf=1");
-  expect(planifiee.noindex).toBe(false);
-  expect(planifiee.canonique).toBe("https://formlist.fr/?cpf=1");
+  // Une combinaison quelconque : noindex, et consolidée sur le catalogue.
+  const quelconque = await robots("/catalogue?niveau=bac2&format=presentiel");
+  expect(quelconque.noindex).toBe(true);
+  expect(quelconque.canonique).toBe("https://formlist.fr/catalogue");
 
   /*
-    Un filtre ajouté à une page du plan la fait retomber en noindex : le plan
-    liste des croisements CHOISIS, pas des croisements possibles.
+    Un croisement qui a sa page lisible ne s'indexe PLUS à son adresse à
+    paramètres. C'est le cœur du changement : `?cpf=1` était indexable et
+    auto-référent, il est aujourd'hui une variante de plus.
   */
-  const derivee = await robots("/?cpf=1&format=distanciel");
-  expect(derivee.noindex).toBe(true);
-  expect(derivee.canonique).toBe("https://formlist.fr/");
+  const ancienPlan = await robots("/catalogue?cpf=1");
+  expect(ancienPlan.noindex).toBe(true);
+  expect(ancienPlan.canonique).toBe("https://formlist.fr/catalogue");
+
+  /*
+    L'adresse lisible, elle, est indexable et sa propre référence. Le slug est
+    lu du sitemap — donc réel — plutôt qu'écrit en dur : une combinaison
+    renommée ferait passer un test qui ne vérifierait plus rien.
+  */
+  const sitemap = await (await page.request.get(`${BASE}/sitemap.xml`)).text();
+  const combinaison = sitemap.match(/\/formations\/([a-z0-9-]+)</)?.[1];
+  expect(combinaison, "aucune page de croisement au sitemap").toBeTruthy();
+
+  const lisible = await robots(`/formations/${combinaison}`);
+  expect(lisible.noindex).toBe(false);
+  expect(lisible.canonique).toBe(`https://formlist.fr/formations/${combinaison}`);
 });
 
 test("le hero compte des informations vérifiées, et la date reste sur les fiches", async ({

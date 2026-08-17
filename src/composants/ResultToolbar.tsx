@@ -137,9 +137,20 @@ export function ResultToolbar({
           ancree ? "border-(--border-subtle)" : "border-transparent"
         }`}
       >
-        <h2 className="m-0 shrink-0 t-heading-4 leading-[1.2] text-(--text-primary)">
+        {/*
+          `h1`, ET C'EST UNE CORRECTION. Le titre de page vivait dans le hero de
+          l'accueil ; la séparation du 17 août a déplacé la liste vers
+          `/catalogue` sans l'emmener, et la page la plus indexable du site
+          servait zéro `h1` — mesuré sur le HTML servi comme après hydratation.
+
+          Ce titre EST le sujet de la page : « Tous les parcours », ou
+          l'intitulé du croisement quand l'adresse en désigne un. Le niveau
+          change, pas l'apparence — `t-heading-4` continue de décider de la
+          taille, comme pour tout titre du système.
+        */}
+        <h1 className="m-0 shrink-0 t-heading-4 leading-[1.2] text-(--text-primary)">
           {titre} <CountBadge>{nombre}</CountBadge>
-        </h2>
+        </h1>
 
         <div className="flex shrink-0 items-center gap-(--space-4)">
           {comparateur}
