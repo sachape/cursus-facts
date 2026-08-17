@@ -559,7 +559,11 @@ function retenirPrix(
   */
   let attribution: number | null = null;
   if (page.role !== "detail") {
-    const verdict = attribuerExtrait(fiche.nom, page.texte, cite.extrait);
+    const verdict = attribuerExtrait(
+      [fiche.nom, ...(fiche.intituleOrganisme ? [fiche.intituleOrganisme] : [])],
+      page.texte,
+      cite.extrait,
+    );
     attribution = Number(verdict.score.toFixed(2));
     if (!verdict.attribue) return { ok: false, cause: "attribution_refusee" };
   }

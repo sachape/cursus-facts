@@ -62,8 +62,21 @@ export type VerdictAttribution = {
  * lequel la citation a déjà été vérifiée. Comparer à un texte retraité rendrait
  * l'introuvable, et le rejet porterait alors sur notre retraitement.
  */
+/**
+ * PLUSIEURS INTITULÉS, COMME POUR LA CORRESPONDANCE DE PAGE.
+ *
+ * Une page tarifs d'école étiquette ses lignes avec les intitulés DE L'ÉCOLE,
+ * pas avec les nôtres. Une fiche qui porte l'intitulé de son organisme — relevé
+ * et vérifié à la main — doit pouvoir être reconnue sur cette ligne, sinon
+ * l'alias ne sert qu'à moitié : la page est atteinte, le prix reste
+ * inattribuable.
+ *
+ * Le seuil ne bouge pas. On retient le meilleur des intitulés, et le verdict
+ * rend les mots manquants de CELUI-LÀ — sans quoi le diagnostic décrirait un
+ * intitulé qui n'a pas servi.
+ */
 export function attribuerExtrait(
-  nomParcours: string,
+  nomParcours: string | readonly string[],
   page: string,
   extrait: string,
   options: { seuil?: number; fenetre?: number } = {},
@@ -71,7 +84,15 @@ export function attribuerExtrait(
   const seuil = options.seuil ?? SEUIL_ATTRIBUTION;
   const fenetre = options.fenetre ?? FENETRE_ATTRIBUTION;
 
-  const attendus = motsCles(nomParcours);
+  const noms = (typeof nomParcours === "string" ? [nomParcours] : nomParcours).filter(
+    (n) => n.trim() !== "",
+  );
+  if (noms.length > 1) {
+    const verdicts = noms.map((nom) => attribuerExtrait(nom, page, extrait, options));
+    return verdicts.reduce((meilleur, v) => (v.score > meilleur.score ? v : meilleur));
+  }
+
+  const attendus = motsCles(noms[0] ?? "");
   // Un nom sans mot discriminant ne peut rien attester : on ne conclut pas.
   if (attendus.size === 0) {
     return { attribue: false, score: 0, manquants: [], contexte: null };
