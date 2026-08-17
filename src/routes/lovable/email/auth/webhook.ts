@@ -94,15 +94,14 @@ export const Route = createFileRoute("/lovable/email/auth/webhook")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        try {
-          const h = getHandler()
-          return await h(request)
-        } catch {
+        const h = getHandler()
+        if (!h) {
           return Response.json(
             { error: 'Server configuration error' },
             { status: 500 }
           )
         }
+        return await h(request)
       },
     },
   },
