@@ -1,0 +1,38 @@
+[
+ {
+  "id": 38,
+  "nom": "MSc Digital Marketing & Sales",
+  "organisme": "KEDGE Business School",
+  "url": "https://student.kedge.edu/programmes/digital-marketing-sales/admission-funding",
+  "issue": "page_illisible",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "http_404"
+ },
+ {
+  "id": 77,
+  "nom": "MBA E-Business",
+  "organisme": "Paris Digital School",
+  "url": "https://www.parisdigitalschool.com/formation-mba-e-business",
+  "issue": "releve",
+  "montant": 6000,
+  "unite": "total",
+  "condition": "frais de scolarité hors alternance (formation initiale ou continue), hors 60 € de frais de dossier",
+  "citation": "6 000 €\n Frais de scolarité (hors alternance)",
+  "motif": null
+ },
+ {
+  "id": 54,
+  "nom": "MBA Digital Marketing",
+  "organisme": "MBA ESG",
+  "url": "https://www.mba-esg.com/master-ebusiness.html",
+  "issue": "autre_parcours",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "score 0.33"
+ }
+]

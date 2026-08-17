@@ -1,0 +1,38 @@
+[
+ {
+  "id": 51,
+  "nom": "MSc in AI Marketing & Business",
+  "organisme": "EBS Paris",
+  "url": "https://www.ebs-paris.fr/ai-marketing-and-business/",
+  "issue": "releve",
+  "montant": 11500,
+  "unite": "total",
+  "condition": null,
+  "citation": "Frais de scolarité\n11 500€",
+  "motif": null
+ },
+ {
+  "id": 80,
+  "nom": "Titre Chargé de Marketing Digital et E-commerce",
+  "organisme": "EIMP — École Internationale de Management de Paris",
+  "url": "https://eimparis.com/filiere-marketing-communication/bachelor-marketing-digital-ecommerce/",
+  "issue": "autre_parcours",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "score 0.75"
+ },
+ {
+  "id": 60,
+  "nom": "Mastère Marketing et Communication Digitale",
+  "organisme": "IIM Digital School",
+  "url": "https://www.iim.fr/cursus/mastere-marketing-communication-digitale/",
+  "issue": "page_illisible",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "http_404"
+ }
+]

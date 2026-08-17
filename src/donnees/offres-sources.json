@@ -2146,7 +2146,7 @@
   "sousFamille": "École de commerce",
   "region": null,
   "url": "kedge.edu",
-  "prix": null,
+  "prix": 17500,
   "duree": "12 à 13 mois",
   "volumeHoraire": null,
   "formats": [
@@ -2167,7 +2167,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "total",
+  "urlDetail": "https://etudiant.kedge.edu/programmes/marketing-digital-data/admission-et-financement",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — Mastère Spécialisé®, 13 mois. https://etudiant.kedge.edu/programmes/marketing-digital-data/admission-et-financement — « Mastère Spécialisé®\n13 mois 350h de cours minimum\n17 500€ (*) »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 40,
@@ -2534,7 +2545,7 @@
   "sousFamille": "École de commerce",
   "region": null,
   "url": "devinci.fr",
-  "prix": null,
+  "prix": 12900,
   "duree": "1 an",
   "volumeHoraire": null,
   "formats": [
@@ -2555,7 +2566,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "total",
+  "urlDetail": "https://executive.devinci.fr/formations/mba-et-ms/mba-marketing-digital-et-intelligence-artificielle/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme. https://executive.devinci.fr/formations/mba-et-ms/mba-marketing-digital-et-intelligence-artificielle/ — « 12 900 € »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 48,
@@ -2597,7 +2619,7 @@
   "sousFamille": "École de commerce",
   "region": null,
   "url": "grenoble-em.com",
-  "prix": null,
+  "prix": 13250,
   "duree": "1 an",
   "volumeHoraire": null,
   "formats": [
@@ -2618,7 +2640,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "annuel",
+  "urlDetail": "https://www.grenoble-em.com/en/programs/msc-digital-marketing-and-data-analytics/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — programme en 2 ans, 1re année (campus Grenoble et Paris). https://www.grenoble-em.com/en/programs/msc-digital-marketing-and-data-analytics/ — « 2-year program: \n 1st year: €13,250\n 2nd year: €13,950 »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 50,
@@ -2660,7 +2693,7 @@
   "sousFamille": "École de commerce",
   "region": null,
   "url": "ebs-paris.fr",
-  "prix": null,
+  "prix": 11500,
   "duree": "1 à 2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -2688,8 +2721,17 @@
     "valeurPrecedente": "ebs-paris.com",
     "le": "2026-08-13",
     "motif": "Erreur de saisie. Le domaine .com ne résout pas ; .fr répond 200 et redirige vers www.ebs-paris.fr. Même organisme, même école, seule l'extension diffère. Constaté le 13 août 2026 par résolution DNS."
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme. https://www.ebs-paris.fr/ai-marketing-and-business/ — « Frais de scolarité\n11 500€ »"
    }
-  ]
+  ],
+  "unitePrix": "total",
+  "urlDetail": "https://www.ebs-paris.fr/ai-marketing-and-business/",
+  "aConfirmer": []
  },
  {
   "id": 52,
@@ -3741,7 +3783,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "parisdigitalschool.com",
-  "prix": null,
+  "prix": 6000,
   "duree": "1 à 2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -3763,7 +3805,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "total",
+  "urlDetail": "https://www.parisdigitalschool.com/formation-mba-e-business",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — frais de scolarité hors alternance (formation initiale ou continue), hors 60 € de frais de dossier. https://www.parisdigitalschool.com/formation-mba-e-business — « 6 000 €\n Frais de scolarité (hors alternance) »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 78,
@@ -4573,7 +4626,7 @@
   "sousFamille": "Organisme de formation",
   "region": null,
   "url": "Recherche web",
-  "prix": null,
+  "prix": 1600,
   "duree": null,
   "volumeHoraire": null,
   "formats": [
@@ -4595,7 +4648,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "total",
+  "urlDetail": "https://www.skills4all.com/formation/marketing-digital/",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé sur la page de l'organisme — tarif le plus bas du catalogue marketing digital (ex. Formation au Growth Hacking, 50 heures). https://www.skills4all.com/formation/marketing-digital/ — « 1 600,00  € \nFormation au Growth Hacking\n50 heures »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 100,

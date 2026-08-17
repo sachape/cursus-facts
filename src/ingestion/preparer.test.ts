@@ -199,8 +199,19 @@ describe("ce qui part en base respecte les invariants", () => {
       1 650 €, Studi 4 190 € — dont deux fiches portaient déjà leur durée : la
       hausse du compteur est inférieure au nombre de prix écrits, et c'est
       normal, il compte des informations et non des fiches.
+
+      2 466 → 2 468. Six prix de plus, relevés chez des écoles et des petits
+      organismes : KEDGE 17 500 €, Grenoble EM 13 250 €, De Vinci 12 900 €,
+      Paris Digital School 6 000 €, entre autres.
+
+      LA HAUSSE EST DEUX FOIS PLUS FAIBLE QUE LE NOMBRE DE PRIX ÉCRITS, et ce
+      n'est pas une anomalie : le compteur porte sur les FICHES préparées, après
+      regroupement et retraits, quand les prix sont écrits sur les OFFRES
+      sources. Un prix posé sur une offre repliée dans une fiche fusionnée
+      n'ajoute rien au total. C'est la même distinction que celle qui sépare
+      217 offres de 215 fiches.
     */
-    expect(total).toBe(2466);
+    expect(total).toBe(2468);
   });
 
   it("n'admet aucune fiche sans site officiel", () => {

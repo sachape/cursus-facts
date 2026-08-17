@@ -1,0 +1,38 @@
+[
+ {
+  "id": 39,
+  "nom": "Mastère Spécialisé Marketing Digital & Data",
+  "organisme": "KEDGE Business School",
+  "url": "https://etudiant.kedge.edu/programmes/marketing-digital-data/admission-et-financement",
+  "issue": "releve",
+  "montant": 17500,
+  "unite": "total",
+  "condition": "Mastère Spécialisé®, 13 mois",
+  "citation": "Mastère Spécialisé®\n13 mois 350h de cours minimum\n17 500€ (*)",
+  "motif": null
+ },
+ {
+  "id": 45,
+  "nom": "MBA Spécialisé Digital Marketing & Business",
+  "organisme": "EFAP",
+  "url": "https://www.efap.com/formation-communication/mba-marketing-digital",
+  "issue": "autre_parcours",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "score 0.60"
+ },
+ {
+  "id": 56,
+  "nom": "MSc Marketing Digital",
+  "organisme": "ESDES Lyon",
+  "url": "https://www.esdes.fr/accueil/programmes/tous-les-programmes/cycle-master-marketing-et-digital-business/",
+  "issue": "autre_parcours",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "score 0.33"
+ }
+]

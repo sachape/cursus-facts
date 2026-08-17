@@ -1,0 +1,38 @@
+[
+ {
+  "id": 46,
+  "nom": "MBA Marketing Digital et E-business (MBA MCI)",
+  "organisme": "De Vinci Executive Education",
+  "url": "https://executive.devinci.fr/master-marketing-digital-mbamci/",
+  "issue": "page_illisible",
+  "montant": null,
+  "unite": null,
+  "condition": null,
+  "citation": null,
+  "motif": "http_404"
+ },
+ {
+  "id": 47,
+  "nom": "MBA Marketing Digital et Intelligence Artificielle",
+  "organisme": "De Vinci Executive Education",
+  "url": "https://executive.devinci.fr/formations/mba-et-ms/mba-marketing-digital-et-intelligence-artificielle/",
+  "issue": "releve",
+  "montant": 12900,
+  "unite": "total",
+  "condition": null,
+  "citation": "12 900 €",
+  "motif": null
+ },
+ {
+  "id": 49,
+  "nom": "Mastère Spécialisé Digital Marketing & Data Analytics",
+  "organisme": "Grenoble École de Management",
+  "url": "https://www.grenoble-em.com/en/programs/msc-digital-marketing-and-data-analytics/",
+  "issue": "releve",
+  "montant": 13250,
+  "unite": "annuel",
+  "condition": "programme en 2 ans, 1re année (campus Grenoble et Paris)",
+  "citation": "2-year program: \n 1st year: €13,250\n 2nd year: €13,950",
+  "motif": null
+ }
+]
