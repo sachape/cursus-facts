@@ -870,7 +870,12 @@ html {
     chaque changement de taille du titre.
   */
   .hero-layout {
-    width: min(100% - 48px, 1680px);
+    /*
+      AUCUN RETRAIT PROPRE AU HERO SOUS 1024 px. Le conteneur de page porte
+      déjà `--space-6` de part et d'autre ; un `100% - 48px` s'y ajoutait et
+      le hero se retrouvait rentré de 24 px de plus que le reste de la page.
+    */
+    width: min(100%, 1680px);
     margin-inline: auto;
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -901,7 +906,7 @@ html {
   }
 
   .hero-title {
-    width: min(960px, calc(100% - 40px));
+    width: min(960px, 100%);
     margin-inline: auto;
     font-family: var(--font-display);
     font-size: var(--display-0-size);
@@ -945,7 +950,7 @@ html {
 
   @media (max-width: 767px) {
     .hero-title {
-      width: calc(100% - 32px);
+      width: 100%;
       /* `100vw` inclut la barre de défilement et déborde donc de la largeur
          réellement disponible. `100%` suffit et reste exact. */
       max-width: 100%;
