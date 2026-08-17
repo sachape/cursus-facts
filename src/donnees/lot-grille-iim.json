@@ -1,0 +1,42 @@
+[
+ {
+  "id": 58,
+  "nom": "Bachelor Communication Digitale et E-business",
+  "url": "https://www.iim.fr/admissions/tarifs-et-financement/",
+  "palier": "Année 1",
+  "montant": 8600,
+  "unite": "annuel",
+  "citation": "Année 1 : 8 600 €",
+  "justification": "Bachelor de 3 ans sans prérequis, campus de Paris La Défense porté par la fiche : la 1re année du cursus."
+ },
+ {
+  "id": 59,
+  "nom": "Mastère E-commerce, Data & IA",
+  "url": "https://www.iim.fr/admissions/tarifs-et-financement/",
+  "palier": "Années 4 & 5",
+  "montant": 9500,
+  "unite": "annuel",
+  "citation": "Années 4 & 5 : 9 500 €",
+  "justification": "Mastère de 2 ans entrant à Bac+3, donc années 4 et 5 du cursus. Campus non porté par la fiche : tarif le plus bas publié retenu, celui de Nantes & Montpellier en financement personnel."
+ },
+ {
+  "id": 60,
+  "nom": "Mastère Marketing et Communication Digitale",
+  "url": "https://www.iim.fr/admissions/tarifs-et-financement/",
+  "palier": "Années 4 & 5",
+  "montant": 9500,
+  "unite": "annuel",
+  "citation": "Années 4 & 5 : 9 500 €",
+  "justification": "Mastère de 2 ans entrant à Bac+3, donc années 4 et 5 du cursus. Campus non porté par la fiche : tarif le plus bas publié retenu, celui de Nantes & Montpellier en financement personnel."
+ },
+ {
+  "id": 61,
+  "nom": "Mastère Digital Marketing & Data Analytics",
+  "url": "https://www.iim.fr/admissions/tarifs-et-financement/",
+  "palier": "Années 4 & 5",
+  "montant": 9500,
+  "unite": "annuel",
+  "citation": "Années 4 & 5 : 9 500 €",
+  "justification": "Mastère de 2 ans entrant à Bac+3, donc années 4 et 5 du cursus. Campus non porté par la fiche : tarif le plus bas publié retenu, celui de Nantes & Montpellier en financement personnel."
+ }
+]

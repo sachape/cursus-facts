@@ -3083,7 +3083,7 @@
   "sousFamille": "École du digital",
   "region": "Paris La Défense",
   "url": "iim.fr",
-  "prix": null,
+  "prix": 8600,
   "duree": "3 ans",
   "volumeHoraire": 455,
   "formats": [
@@ -3140,11 +3140,20 @@
     "valeurPrecedente": null,
     "le": "2026-08-17",
     "motif": "Intitulé porté par l'organisme, relevé à la main pour le rapprochement de page. L'IIM a renommé le programme. La page de l'école mentionne l'ancien intitulé « Bachelor communication digitale » et le cursus couvre toujours le e-business. Vérifié sur https://www.iim.fr/cursus/bachelor-marketing-communication-digitale/"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé dans la grille tarifaire de l'organisme, palier « Année 1 ». Bachelor de 3 ans sans prérequis, campus de Paris La Défense porté par la fiche : la 1re année du cursus. https://www.iim.fr/admissions/tarifs-et-financement/ — « Année 1 : 8 600 € »"
    }
   ],
   "profondeur": "detail_verifie",
   "profondeurVerifieeLe": "2026-08-06",
-  "intituleOrganisme": "Bachelor Marketing & Communication digitale"
+  "intituleOrganisme": "Bachelor Marketing & Communication digitale",
+  "unitePrix": "annuel",
+  "prixNiveau": "Année 1",
+  "aConfirmer": []
  },
  {
   "id": 59,
@@ -3154,7 +3163,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "iim.fr",
-  "prix": null,
+  "prix": 9500,
   "duree": "2 ans",
   "volumeHoraire": 420,
   "formats": [
@@ -3192,10 +3201,19 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.iim.fr/cursus/mastere-ecommerce-data-ia/ — « Les étudiants se forment à la collecte, au traitement et à l’analyse de données massives à l’aide de logiciels et langages spécialisés comme Python, R, ou Power BI. »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé dans la grille tarifaire de l'organisme, palier « Années 4 & 5 ». Mastère de 2 ans entrant à Bac+3, donc années 4 et 5 du cursus. Campus non porté par la fiche : tarif le plus bas publié retenu, celui de Nantes & Montpellier en financement personnel. https://www.iim.fr/admissions/tarifs-et-financement/ — « Années 4 & 5 : 9 500 € »"
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "annuel",
+  "prixNiveau": "Années 4 & 5",
+  "aConfirmer": []
  },
  {
   "id": 60,
@@ -3205,7 +3223,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "iim.fr",
-  "prix": null,
+  "prix": 9500,
   "duree": "2 ans",
   "volumeHoraire": null,
   "formats": [
@@ -3226,7 +3244,18 @@
   "domaineDeclareLibelle": null,
   "competencesDeclarees": [],
   "classificationManuelle": false,
-  "modaliteAcces": null
+  "modaliteAcces": null,
+  "unitePrix": "annuel",
+  "prixNiveau": "Années 4 & 5",
+  "historique": [
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé dans la grille tarifaire de l'organisme, palier « Années 4 & 5 ». Mastère de 2 ans entrant à Bac+3, donc années 4 et 5 du cursus. Campus non porté par la fiche : tarif le plus bas publié retenu, celui de Nantes & Montpellier en financement personnel. https://www.iim.fr/admissions/tarifs-et-financement/ — « Années 4 & 5 : 9 500 € »"
+   }
+  ],
+  "aConfirmer": []
  },
  {
   "id": 61,
@@ -3236,7 +3265,7 @@
   "sousFamille": "École du digital",
   "region": null,
   "url": "iim.fr",
-  "prix": null,
+  "prix": 9500,
   "duree": "2 ans",
   "volumeHoraire": 420,
   "formats": [
@@ -3274,10 +3303,19 @@
     "valeurPrecedente": null,
     "le": "2026-08-06",
     "motif": "Extraction automatique depuis https://www.iim.fr/cursus/digital-marketing-data-analytics-bi-cursus-iimemlv/ — « Utiliser des outils techniques comme Excel, SQL et Python pour le traitement de données »"
+   },
+   {
+    "champ": "prix",
+    "valeurPrecedente": null,
+    "le": "2026-08-17",
+    "motif": "Relevé dans la grille tarifaire de l'organisme, palier « Années 4 & 5 ». Mastère de 2 ans entrant à Bac+3, donc années 4 et 5 du cursus. Campus non porté par la fiche : tarif le plus bas publié retenu, celui de Nantes & Montpellier en financement personnel. https://www.iim.fr/admissions/tarifs-et-financement/ — « Années 4 & 5 : 9 500 € »"
    }
   ],
   "profondeur": "detail_verifie",
-  "profondeurVerifieeLe": "2026-08-06"
+  "profondeurVerifieeLe": "2026-08-06",
+  "unitePrix": "annuel",
+  "prixNiveau": "Années 4 & 5",
+  "aConfirmer": []
  },
  {
   "id": 62,
