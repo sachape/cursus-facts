@@ -36,7 +36,6 @@ import { pageIndexable, pagePlanifiee } from "@/modele/plan-pages";
 import {
   auMoinsUnFiltre,
   compterDansPlage,
-  compterEcartesFauteInformation,
   compterPrixInconnu,
   filtrer,
   FILTRES_VIDES,
