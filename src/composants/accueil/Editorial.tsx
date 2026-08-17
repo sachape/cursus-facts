@@ -234,9 +234,11 @@ export function Cloture({ parcours }: { parcours: number }) {
             nous ne touchons aucune commission.
           </p>
 
-          <div className="mt-(--space-10) flex flex-wrap items-center justify-center gap-(--space-3)">
-            <BoutonLien to="/catalogue">Voir les {formaterNombre(parcours)} parcours</BoutonLien>
-            <BoutonLien to="/aide-au-choix" variante="contour">
+          <div className="mt-(--space-10) flex flex-col gap-(--space-3) sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
+            <BoutonLien to="/catalogue" className="w-full sm:w-auto">
+              Voir les {formaterNombre(parcours)} parcours
+            </BoutonLien>
+            <BoutonLien to="/aide-au-choix" variante="contour" className="w-full sm:w-auto">
               Être aidé dans le choix
             </BoutonLien>
           </div>
