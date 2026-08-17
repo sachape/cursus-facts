@@ -178,7 +178,7 @@ export function CeQueNousComparons({ chiffres }: { chiffres: ChiffresGuides }) {
           sépare d'un comparatif rémunéré à l'affiliation : la seule chose de
           cette page qu'un visiteur ne peut pas vérifier lui-même.
         */}
-        <aside className="self-start rounded-(--radius-lg) border border-(--accent-border) bg-(--accent-surface) p-(--space-6)">
+        <aside className="self-start rounded-(--carte-rayon) border border-(--accent-border) bg-(--accent-surface) p-(--space-6)">
           <p className="t-body font-medium text-(--text-primary)">Ce que nous ne faisons pas</p>
           <ul className="mt-(--space-4) flex flex-col gap-(--space-4) t-body-sm text-(--text-secondary)">
             <li>Aucune note, aucune étoile, aucun score de qualité.</li>
@@ -280,7 +280,7 @@ export function QuestionsFrequentes({ chiffres }: { chiffres: ChiffresGuides }) 
         {lignes.map((l) => (
           <div
             key={l.question}
-            className="grid gap-(--space-2) border-t border-(--border-subtle) py-(--space-8) min-[768px]:grid-cols-[10rem_1fr] min-[768px]:gap-(--space-10)"
+            className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-8) min-[768px]:grid-cols-[10rem_1fr] min-[768px]:gap-(--space-10)"
           >
             <p className="t-data-lg text-(--accent-default)">{l.chiffre}</p>
             <div className="max-w-[62ch]">
@@ -323,8 +323,24 @@ function Tuile({
       <span className="mt-(--space-1) block t-body-sm text-(--text-secondary)">{libelle}</span>
     </>
   );
+  /*
+    TROIS CORRECTIONS DE MATIÈRE, ET ELLES COMPTENT PLUS QUE LA MISE EN PAGE.
+
+    `--carte-rayon` (14 px) et non `--radius-lg` (8 px) : c'est le rayon des
+    cartes du catalogue, et un composant qui s'en écarte paraît plus anguleux,
+    donc plus bon marché, que le reste du produit.
+
+    `--border-default` et non `--border-subtle` : sur une section creusée, la
+    bordure subtile vaut `#e8ebec`, exactement la couleur du fond creusé. Le
+    bord de la tuile disparaissait dans la bande — un rectangle blanc sans
+    arête, ce qui est la définition même d'une carte fade.
+
+    `--elevation-2` AU REPOS, et non `--elevation-1` : cette dernière vaut
+    littéralement `none` dans les fondations. Deux versions de cette page ont
+    porté une ombre qui ne rendait rien.
+  */
   const base =
-    "block h-full rounded-(--radius-lg) border border-(--border-subtle) bg-(--surface-raised) p-(--space-5)";
+    "block h-full rounded-(--carte-rayon) border border-(--border-default) bg-(--surface-raised) p-(--space-5) shadow-(--elevation-2)";
   if (pagePlanifiee(parametres) === undefined) {
     return <li className={base}>{contenu}</li>;
   }
@@ -333,7 +349,7 @@ function Tuile({
       <Link
         to="/catalogue"
         search={parametres}
-        className={`group/tuile ${base} transition-[border-color,box-shadow,transform] duration-(--motion-fast) hover:border-(--accent-border) hover:shadow-(--elevation-2) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) motion-safe:hover:-translate-y-px`}
+        className={`group/tuile ${base} transition-[border-color,box-shadow,transform] duration-(--motion-fast) hover:border-(--accent-default) hover:shadow-(--elevation-3) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) motion-safe:hover:-translate-y-px`}
       >
         {contenu}
       </Link>
@@ -393,13 +409,13 @@ export function LesGuides() {
   return (
     <Section>
       <Titre>Ce qu&apos;il faut savoir avant de payer</Titre>
-      <ol className="mt-(--space-10) grid gap-x-(--space-12) min-[900px]:grid-cols-2">
+      <ol className="mt-(--space-6) grid gap-x-(--space-5) min-[900px]:grid-cols-2">
         {GUIDES.map((guide, i) => (
-          <li key={guide.slug} className="border-t border-(--border-subtle)">
+          <li key={guide.slug} className="mt-(--space-4)">
             <Link
               to="/guides/$slug"
               params={{ slug: guide.slug }}
-              className="group/guide flex gap-(--space-5) py-(--space-6) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
+              className="group/guide flex h-full gap-(--space-5) rounded-(--carte-rayon) border border-(--border-default) bg-(--surface-raised) p-(--space-6) shadow-(--elevation-2) transition-[border-color,box-shadow,transform] duration-(--motion-fast) hover:border-(--accent-default) hover:shadow-(--elevation-3) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) motion-safe:hover:-translate-y-px"
             >
               <span className="t-data text-(--text-tertiary)">
                 {String(i + 1).padStart(2, "0")}
