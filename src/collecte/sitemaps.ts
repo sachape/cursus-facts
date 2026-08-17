@@ -134,12 +134,33 @@ const MOTS_VIDES = new Set([
   "the", "of", "and", "to", "your", "creer", "creez",
 ]);
 
+/**
+ * Préfixes « e- » recollés avant le découpage.
+ *
+ * LE DÉCOUPAGE SUR LES NON-ALPHANUMÉRIQUES COUPE « e-commerce » EN DEUX, et le
+ * « e » tombe au filtre des mots courts : il ne reste que « commerce ». Écrit
+ * « ecommerce », le même mot survit entier. Les deux orthographes du même terme
+ * ne pouvaient donc jamais se rencontrer.
+ *
+ * Constaté le 17 août 2026 : « Mastère E-commerce, Data & IA » contre la page
+ * « Mastère Ecommerce, Data, & IA » — la même formation — marquait 0,67 et
+ * était rejetée comme un autre parcours. Sur un catalogue de e-commerce, ce mot
+ * est le plus fréquent du vocabulaire : le défaut frappait là où il coûte le
+ * plus cher.
+ *
+ * CE N'EST PAS UN ASSOUPLISSEMENT DU GARDE-FOU. Le seuil ne bouge pas ; on
+ * corrige une comparaison qui rendait faux sur deux graphies d'un mot
+ * identique. Une formation réellement différente marque toujours aussi bas.
+ */
+const PREFIXE_E = /\be[\s-]+(commerce|business|marketing|learning|merchandising|mail|reputation)\b/g;
+
 /** Réduit un texte à ses mots discriminants, pour le rapprochement. */
 export function motsCles(texte: string): Set<string> {
   const mots = texte
     .normalize("NFD")
     .replace(/[̀-ͯ]/g, "")
     .toLowerCase()
+    .replace(PREFIXE_E, "e$1")
     .split(/[^a-z0-9]+/)
     .filter((m) => m.length >= 3 && !MOTS_VIDES.has(m));
   return new Set(mots);

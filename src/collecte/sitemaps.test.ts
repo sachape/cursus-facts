@@ -50,6 +50,24 @@ describe("découverte par sitemaps", () => {
     expect(scoreRapprochement("Formation e-commerce", "https://x.fr/formation/marketing-digital")).toBeLessThan(0.6);
   });
 
+  it("rapproche les deux graphies de « e-commerce »", () => {
+    /*
+      Le découpage coupait « e-commerce » en « e » + « commerce », et le « e »
+      tombait au filtre des mots courts. « Mastère E-commerce, Data & IA » et
+      « Mastère Ecommerce, Data, & IA » — la même formation — marquaient 0,67.
+      Sur ce catalogue, c'est le mot le plus fréquent du vocabulaire.
+    */
+    expect(scoreRapprochement("Mastère E-commerce, Data & IA", "Mastère Ecommerce, Data, & IA")).toBe(1);
+    expect(scoreRapprochement("Bachelor E-business", "Bachelor Ebusiness")).toBe(1);
+  });
+
+  it("continue de rejeter une formation réellement différente", () => {
+    // Le seuil ne bouge pas : on corrige une comparaison, pas un garde-fou.
+    expect(
+      scoreRapprochement("Mastère E-commerce, Data & IA", "Bachelor Audiovisuel"),
+    ).toBeLessThan(0.6);
+  });
+
   it("laisse une URL non rapprochée plutôt que de la rattacher au hasard", () => {
     // Se tromper de rattachement écrirait les données d une formation sur la
     // fiche d une autre : une erreur invisible, bien pire qu une découverte en trop.
