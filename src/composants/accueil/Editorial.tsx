@@ -220,9 +220,9 @@ const ENGAGEMENTS = [
  */
 export function Cloture({ parcours }: { parcours: number }) {
   return (
-    <Section>
+    <section className="pb-(--space-8)">
       <Reveal>
-        <div className="border-y border-(--border-default) py-(--space-16) text-center max-[639px]:py-(--space-12)">
+        <div className="border-t border-(--border-default) py-(--space-16) text-center max-[639px]:py-(--space-12)">
           <p className="t-label text-(--text-tertiary)">10 · La position</p>
 
           <h2 className="mx-auto mt-(--space-6) max-w-[20ch] text-balance t-display-1 text-(--text-primary) max-[767px]:t-display-2">
@@ -259,6 +259,6 @@ export function Cloture({ parcours }: { parcours: number }) {
           </ul>
         </div>
       </Reveal>
-    </Section>
+    </section>
   );
 }
