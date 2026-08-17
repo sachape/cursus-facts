@@ -600,7 +600,12 @@ test("l'en-tête mobile centre son logo et rend le focus au burger", async ({ pa
       vue ne disparaisse. Un compteur global aurait aussi laissé passer un
       remplacement : quatre liens, dont un faux.
     */
-    for (const vue of ["Explorer", "Comparer", "Aide au choix", "Organismes"]) {
+    /*
+      « Explorer » est devenu « Le catalogue » à la séparation du 17 août.
+      Le libellé est mis à jour, pas retiré : c'est exactement ce que
+      l'assertion nommée est censée faire remarquer.
+    */
+    for (const vue of ["Le catalogue", "Comparer", "Aide au choix", "Organismes"]) {
       await expect(menu.getByRole("link", { name: vue, exact: true })).toBeVisible();
     }
 
@@ -1251,7 +1256,13 @@ test("la bande décélère à la mise en pause au lieu de s'arrêter net", async
     de fenêtre, et la bande est sous la ligne de flottaison : viser sa position
     de page déplaçait le pointeur hors de l'écran, sans que rien ne le signale.
   */
-  const section = page.locator("section").filter({ has: bande });
+  /*
+    LA SECTION LA PLUS PROCHE, pas « une section qui contient la bande » : ce
+    filtre en désignait deux, celle de la bande et celle qui l'enveloppe dans
+    l'accueil, et Playwright refusait de choisir. L'ancêtre immédiat nomme sans
+    ambiguïté l'élément dont on veut le rectangle.
+  */
+  const section = bande.locator("xpath=ancestor::section[1]");
   await section.scrollIntoViewIfNeeded();
   const zone = await boite(section);
   await page.mouse.move(zone.x + zone.width / 2, zone.y + zone.height / 2);

@@ -60,9 +60,19 @@ test.describe("séparation de l'accueil et du catalogue", () => {
       menaient tous deux à `/` : deux éléments de navigation pour une seule
       destination, dont l'un ne disait pas ce qu'il ouvrait.
     */
-    const cibles = await page.locator("header a[href^='/']").evaluateAll((liens) =>
+    /*
+      LA PORTÉE EST L'EN-TÊTE DU SITE, PAS TOUT `header` DE LA PAGE. Le hero
+      est lui aussi un `<header>` (`index.tsx`), et ses puces de raccourci
+      pointent toutes vers `/catalogue?…` : une fois la requête retirée, elles
+      s'effondraient en doublons et faisaient rougir ce test pour la seule
+      raison qu'elles existent. Mesuré : 10 liens pour 5 cibles, sans qu'aucune
+      entrée de navigation ne soit en cause.
+    */
+    const entete = page.getByRole("banner").first();
+    const cibles = await entete.locator("a[href^='/']").evaluateAll((liens) =>
       liens.map((l) => (l as HTMLAnchorElement).getAttribute("href")!.split("?")[0]),
     );
+    expect(cibles.length).toBeGreaterThan(0);
     expect(new Set(cibles).size).toBe(cibles.length);
   });
 

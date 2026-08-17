@@ -30,6 +30,7 @@ import { usePiegeFocus, useVerrouDefilement } from "./piege-focus";
 import { MotSymboleHorizontal, Symbole } from "./marque/Marques";
 import { MenuCompte } from "./MenuCompte";
 import { useAuth } from "./authentification";
+import { Route as RouteRacine } from "@/routes/__root";
 
 import { formaterNombre } from "@/modele/nombres";
 
@@ -183,6 +184,7 @@ function EspaceCompte({ fermer }: { fermer: () => void }) {
  */
 function PiedPanneau({ fermer }: { fermer: () => void }) {
   const { utilisateur, chargement, deconnecter } = useAuth();
+  const stats = RouteRacine.useLoaderData();
 
   return (
     <div className="shrink-0 border-t border-(--border-subtle) bg-(--surface-sunken) px-(--space-4) py-(--space-4)">
@@ -222,6 +224,16 @@ function PiedPanneau({ fermer }: { fermer: () => void }) {
         </div>
       )}
 
+      {/*
+        La promesse, chiffrée. Écrire ces nombres en dur les ferait mentir au
+        premier parcours ajouté — et c'est exactement le genre de promesse qu'un
+        visiteur vérifie.
+      */}
+      <p className="mt-(--space-4) t-caption text-(--text-tertiary)">
+        <span className="chiffre">{formaterNombre(stats.parcours)}</span> parcours de{" "}
+        <span className="chiffre">{formaterNombre(stats.organismes)}</span> organismes, vérifiés un
+        par un. Aucun lien affilié.
+      </p>
     </div>
   );
 }
