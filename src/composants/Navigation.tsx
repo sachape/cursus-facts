@@ -179,8 +179,7 @@ function EspaceCompte({ fermer }: { fermer: () => void }) {
  *
  * CE QUI REMPLIT LE VIDE EST CE QUI DISTINGUE LE PRODUIT, pas une décoration.
  * Le panneau montrait quatre entrées et un écran de blanc dessous ; la même
- * place porte désormais l'action de connexion et la promesse chiffrée — les
- * mêmes chiffres que le pied de page, lus sur le catalogue et jamais écrits.
+ * place porte désormais l'action de connexion.
  */
 function PiedPanneau({ fermer }: { fermer: () => void }) {
   const { utilisateur, chargement, deconnecter } = useAuth();
