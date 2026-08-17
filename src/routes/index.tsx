@@ -17,7 +17,7 @@ import type { DomaineParcours } from "@/types/cursus";
 import { chiffresGuides } from "@/modele/chiffres-guides";
 import { PreuveParLeProduit, TroisPortes } from "@/composants/accueil/Produit";
 import { OrganismesCouverts, PaysageDuCatalogue } from "@/composants/accueil/Catalogue";
-import { LesQuestions, PourquoiFiable } from "@/composants/accueil/Confiance";
+import { PourquoiFiable } from "@/composants/accueil/Confiance";
 import { Cloture, LesGuides, LesRessources } from "@/composants/accueil/Editorial";
 
 
@@ -395,7 +395,6 @@ function Accueil() {
       <PaysageDuCatalogue chiffres={chiffres} informationsVerifiees={informationsVerifiees} />
       <OrganismesCouverts organismes={organismesBande} />
       <PourquoiFiable chiffres={chiffres} />
-      <LesQuestions chiffres={chiffres} />
       <LesGuides />
       <LesRessources />
       <Cloture parcours={parcours.length} />

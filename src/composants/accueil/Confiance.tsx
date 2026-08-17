@@ -1,6 +1,5 @@
 /**
- * 06 — Pourquoi ces informations sont fiables, et 07 — les questions qu'on se
- * pose avant de choisir.
+ * 06 — Pourquoi ces informations sont fiables.
  *
  * LA MÉTHODE N'EST PAS UN ARGUMENT MARKETING, C'EST LA CONTREPARTIE. Ce produit
  * demande qu'on lui fasse confiance sur des faits qu'on ne va pas revérifier :
@@ -9,11 +8,10 @@
  * énonce les limites — le retirer rendrait les deux premiers moins crédibles,
  * pas plus.
  *
- * LES CHIFFRES DES QUESTIONS SORTENT DE `chiffresGuides`, la même fonction qui
- * alimente les guides. Deux calculs séparés finiraient par diverger, et c'est
- * la page la moins lue qui mentirait sans qu'on le voie.
+ * LE BLOC « LES QUESTIONS » A ÉTÉ RETIRÉ : ses quatre chiffres redisaient ce que
+ * les guides développent déjà, une section plus bas. Répéter une réponse deux
+ * fois sur la même page allonge la lecture sans rien ajouter.
  */
-import { Link } from "@tanstack/react-router";
 import type { ChiffresGuides } from "@/modele/chiffres-guides";
 import { formaterNombre } from "@/modele/nombres";
 import {
@@ -21,7 +19,7 @@ import {
   LIBELLES_CHAMPS_INFORMATION,
   type ChampInformation,
 } from "@/types/cursus";
-import { Entete, LienAction, Reveal, Section, Titre } from "./pieces";
+import { Entete, LienAction, Reveal, Section } from "./pieces";
 
 /* -------------------------------------------------------------------------- */
 /* 06 — La méthode                                                            */
@@ -142,115 +140,6 @@ export function PourquoiFiable({ chiffres }: { chiffres: ChiffresGuides }) {
           </aside>
         </Reveal>
       </div>
-    </Section>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/* 07 — Les questions qu'on se pose                                           */
-/* -------------------------------------------------------------------------- */
-
-/**
- * Quatre questions, quatre réponses chiffrées.
- *
- * LE CHIFFRE PORTE LA RÉPONSE, ET IL EST DANS LA MARGE : on lit le chiffre,
- * puis la question, puis la phrase. C'est l'ordre dans lequel la question se
- * pose. Chaque réponse mène au guide qui la développe — un chiffre sans son
- * explication laisse la personne exactement où elle était.
- */
-export function LesQuestions({ chiffres }: { chiffres: ChiffresGuides }) {
-  const euros = (v: number | null) => (v === null ? "" : `${formaterNombre(v)} €`);
-
-  const lignes: {
-    chiffre: string;
-    question: string;
-    reponse: React.ReactNode;
-    guide?: string;
-  }[] = [
-    {
-      chiffre: chiffres.medianePayant === null ? "" : euros(chiffres.medianePayant),
-      question: "Combien coûte une formation e-commerce ?",
-      reponse:
-        chiffres.medianePayant === null ? (
-          <>Les tarifs relevés sont publiés sur chaque fiche, avec leur source.</>
-        ) : (
-          <>
-            C&apos;est la médiane des parcours payants, de{" "}
-            <span className="chiffre">{euros(chiffres.prixMinPayant)}</span> à{" "}
-            <span className="chiffre">{euros(chiffres.prixMaxPayant)}</span>.
-          </>
-        ),
-      guide: "combien-coute-formation-ecommerce",
-    },
-    {
-      chiffre: formaterNombre(chiffres.eligiblesCpf),
-      question: "Peut-on la financer avec le CPF ?",
-      reponse: (
-        <>
-          parcours déclarent l&apos;éligibilité, et{" "}
-          <span className="chiffre">{formaterNombre(chiffres.alternance)}</span> existent en
-          alternance, régime dans lequel l&apos;alternant ne paie pas sa formation.
-        </>
-      ),
-      guide: "financer-formation-ecommerce",
-    },
-    {
-      chiffre: formaterNombre(chiffres.certifiants),
-      question: "Que valent les sigles RNCP et RS ?",
-      reponse: (
-        <>
-          parcours portent un code enregistré au Répertoire national ou au Répertoire spécifique,
-          condition nécessaire à la plupart des financements.
-        </>
-      ),
-      guide: "rncp-rs-qualiopi-comprendre",
-    },
-    {
-      chiffre: formaterNombre(chiffres.sansFrais),
-      question: "Existe-t-il des formations sans frais ?",
-      reponse: (
-        <>
-          parcours ne coûtent rien à l&apos;apprenant, et{" "}
-          <span className="chiffre">{formaterNombre(chiffres.accesPartiel)}</span> sont gratuits en
-          partie.
-        </>
-      ),
-    },
-  ];
-
-  return (
-    <Section>
-      <Reveal>
-        <Titre>Les questions qu&apos;on se pose avant de choisir</Titre>
-      </Reveal>
-
-      <dl className="mt-(--space-10) flex flex-col">
-        {lignes.map((l, i) => (
-          <Reveal key={l.question} delai={i * 40}>
-            <div className="grid gap-(--space-2) border-t border-(--border-default) py-(--space-7) min-[768px]:grid-cols-[10.5rem_1.1fr_1.4fr] min-[768px]:gap-(--space-10)">
-              <p className="whitespace-nowrap t-display-1 tabular-nums text-(--accent-default) max-[767px]:t-display-2">
-                {l.chiffre}
-              </p>
-              <dt className="t-heading-3 text-(--text-primary)">{l.question}</dt>
-              <dd className="t-body text-(--text-secondary) max-[767px]:mt-(--space-2)">
-                {l.reponse}
-                {l.guide !== undefined && (
-                  <>
-                    {" "}
-                    <Link
-                      to="/guides/$slug"
-                      params={{ slug: l.guide }}
-                      className="rounded-(--radius-sm) text-(--accent-default) underline underline-offset-2 hover:text-(--accent-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong)"
-                    >
-                      Le guide
-                    </Link>
-                  </>
-                )}
-              </dd>
-            </div>
-          </Reveal>
-        ))}
-      </dl>
     </Section>
   );
 }
