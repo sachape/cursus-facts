@@ -80,11 +80,11 @@ const EMAIL_CONFIG: Omit<AuthEmailHandlerConfig, 'apiKey'> = {
 
 let handler: ReturnType<typeof createAuthEmailHandler> | undefined
 
-function getHandler() {
+function getHandler(): ReturnType<typeof createAuthEmailHandler> | undefined {
   if (handler) return handler
   const apiKey = process.env['LOVABLE_API_KEY']
   if (!apiKey) {
-    throw new Error('Missing Lovable API key')
+    return undefined
   }
   handler = createAuthEmailHandler({ ...EMAIL_CONFIG, apiKey })
   return handler
