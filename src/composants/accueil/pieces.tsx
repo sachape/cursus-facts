@@ -219,11 +219,13 @@ export function BoutonLien({
   to,
   search,
   variante = "plein",
+  className = "",
   children,
 }: {
   to: string;
   search?: Record<string, string>;
   variante?: "plein" | "contour" | "clair";
+  className?: string;
   children: React.ReactNode;
 }) {
   const styles: Record<string, string> = {
@@ -237,8 +239,7 @@ export function BoutonLien({
     <Link
       to={to}
       {...(search === undefined ? {} : { search })}
-
-      className={`inline-flex h-(--bouton-hauteur-tactile) items-center gap-(--space-2) rounded-(--radius-md) px-(--space-6) t-body-sm font-medium transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) ${styles[variante]}`}
+      className={`inline-flex h-(--bouton-hauteur-tactile) items-center justify-center gap-(--space-2) rounded-(--radius-md) px-(--space-6) t-body-sm font-medium transition-colors duration-(--motion-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--border-strong) ${styles[variante]} ${className}`}
     >
       {children}
     </Link>
