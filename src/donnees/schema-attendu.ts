@@ -71,9 +71,28 @@ export const COLONNES_REQUISES: Record<string, { colonne: string; type: string }
     { colonne: "modifie_le", type: "timestamptz not null default now()" },
   ],
   notifications_envoyees: [
-    { colonne: "alerte_id", type: "uuid not null references alertes(id) on delete cascade" },
+    {
+      colonne: "alerte_id",
+      type: "uuid references alertes(id) on delete cascade",
+    },
+    {
+      colonne: "abonnement_id",
+      type: "uuid references abonnements(id) on delete cascade",
+    },
     { colonne: "historique_id", type: "uuid not null references historique_champs(id)" },
     { colonne: "envoye_le", type: "timestamptz not null default now()" },
+    {
+      colonne: "",
+      type: "CHECK : exactement une source (alerte_id IS NOT NULL) <> (abonnement_id IS NOT NULL)",
+    },
+    {
+      colonne: "",
+      type: "UNIQUE partiel (alerte_id, historique_id) WHERE alerte_id IS NOT NULL",
+    },
+    {
+      colonne: "",
+      type: "UNIQUE partiel (abonnement_id, historique_id) WHERE abonnement_id IS NOT NULL",
+    },
   ],
   parcours: [
     { colonne: "profondeur", type: "text not null default 'catalogue_seul'" },
