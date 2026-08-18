@@ -116,6 +116,20 @@ describe("qui reçoit", () => {
     expect(preparer([surDuree], [prixSeul])).toEqual([]);
   });
 
+  it("N'ÉCRIT AU VISITEUR QUE SUR LE PRIX", () => {
+    /*
+      LA CASE PROMET LE PRIX, ET RIEN D'AUTRE. Lui écrire sur la durée, le
+      programme ou la certification serait tenir une promesse qu'il n'a pas
+      faite — et lui donner la meilleure raison de se désabonner.
+
+      Le compte, lui, a créé son alerte depuis une fiche : geste explicite,
+      promesse plus large. Le même changement traite donc les deux autrement.
+    */
+    const surDuree = { ...CHANGEMENT, id: "h9", champ: "duree", valeurNouvelle: "6 mois" };
+    const notifications = preparer([surDuree], [ALERTE, ABONNEMENT]);
+    expect(notifications.map((n) => n.destinataire.type)).toEqual(["alerte"]);
+  });
+
   it("ignore un parcours que le destinataire ne suit pas", () => {
     const ailleurs = { ...CHANGEMENT, id: "h3", parcoursId: "parcours-inconnu" };
     expect(preparer([ailleurs], [ALERTE, ABONNEMENT])).toEqual([]);

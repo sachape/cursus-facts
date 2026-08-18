@@ -30,6 +30,19 @@ export const CHAMPS_SURVEILLES = [
 
 export type ChampSurveille = (typeof CHAMPS_SURVEILLES)[number];
 
+/**
+ * Ce qu'un visiteur du comparatif a réellement demandé.
+ *
+ * LA CASE PROMET LE PRIX, ET RIEN D'AUTRE : « Je souhaite être informé si le
+ * PRIX de ces formations change. » Lui écrire sur la durée, le programme ou la
+ * certification serait tenir une promesse qu'il n'a pas faite — et fournirait
+ * la meilleure raison de se désabonner : recevoir ce qu'on n'a pas demandé.
+ *
+ * Une alerte de compte, elle, est créée depuis une fiche avec ses quatre
+ * champs : le geste est explicite, la promesse est plus large.
+ */
+export const CHAMPS_CONSENTEMENT_COMPARATIF: readonly string[] = ["cout_apprenant"];
+
 /** Une ligne de `historique_champs`, réduite à ce qui décide. */
 export type ChangementHistorique = {
   id: string;
@@ -111,7 +124,10 @@ function concerne(destinataire: Destinataire, changement: ChangementHistorique):
     // Une alerte peut restreindre à moins de champs que le défaut, jamais plus.
     return destinataire.champsSurveilles.includes(changement.champ);
   }
-  return destinataire.parcoursIds.includes(changement.parcoursId);
+  return (
+    destinataire.parcoursIds.includes(changement.parcoursId) &&
+    CHAMPS_CONSENTEMENT_COMPARATIF.includes(changement.champ)
+  );
 }
 
 /** Clé d'idempotence : un destinataire n'est prévenu qu'une fois par changement. */

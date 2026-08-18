@@ -90,40 +90,72 @@ export async function envoyerAlertes(db: Client, cle: string | undefined): Promi
   if (changements.length === 0) return vide;
 
   /*
-    LES ALERTES DE COMPTE SEULEMENT, POUR L'INSTANT. Les visiteurs consentants
-    ne peuvent pas encore être suivis : `notifications_envoyees.alerte_id` est
-    NOT NULL vers `alertes`, donc leur envoi ne pourrait pas être enregistré, et
-    ils seraient renotifiés à chaque ingestion. Écrire sans pouvoir tracer est
-    pire que ne pas écrire — la migration ouvre ce chemin, pas ce fichier.
-  */
-  const { data: alertes, error: erreurAlertes } = await db
-    .from("alertes")
-    .select("id, parcours_id, champs_surveilles, active, profils ( email )")
-    .eq("active", true);
-  if (erreurAlertes) throw new Error(`Lecture des alertes : ${erreurAlertes.message}`);
+    DEUX SOURCES D'ABONNEMENT, ET ELLES NE SE RESSEMBLENT PAS.
 
-  const destinataires: Destinataire[] = (alertes ?? [])
-    .map((a) => ({
+    Un compte suit UN parcours avec ses champs ; un visiteur a coché la case du
+    comparatif et suit les parcours qu'il comparait. Le module de sélection les
+    distingue par leur `type`, parce que c'est là que se joue l'idempotence :
+    l'envoi de l'un s'enregistre sous `alerte_id`, celui de l'autre sous
+    `abonnement_id`, et les deux index uniques rendent le doublon impossible en
+    base — pas seulement improbable dans le code.
+  */
+  const [
+    { data: alertes, error: erreurAlertes },
+    { data: abonnements, error: erreurAbonnements },
+  ] = await Promise.all([
+    db.from("alertes").select("id, parcours_id, champs_surveilles, active, profils ( email )").eq("active", true),
+    /*
+      Le désabonnement est filtré EN BASE autant que dans le module : une
+      requête qui ramènerait les désabonnés ferait dépendre leur protection
+      d'un filtre applicatif, et un filtre s'oublie. La règle est appliquée
+      deux fois, volontairement.
+    */
+    db.from("abonnements").select("id, email, parcours_ids, consentement, desabonne_le, jeton_desabonnement").eq("consentement", true).is("desabonne_le", null),
+  ]);
+  if (erreurAlertes) throw new Error(`Lecture des alertes : ${erreurAlertes.message}`);
+  if (erreurAbonnements) throw new Error(`Lecture des abonnements : ${erreurAbonnements.message}`);
+
+  const destinataires: Destinataire[] = [
+    ...(alertes ?? []).map((a) => ({
       type: "alerte" as const,
       id: a.id,
       email: (a.profils as { email?: string } | null)?.email ?? "",
       parcoursId: a.parcours_id,
       champsSurveilles: a.champs_surveilles,
       active: a.active,
-    }))
-    .filter((d) => d.email !== "");
+    })),
+    ...(abonnements ?? []).map((b) => ({
+      type: "abonnement" as const,
+      id: b.id,
+      email: b.email,
+      parcoursIds: b.parcours_ids,
+      consentement: b.consentement,
+      desabonneLe: b.desabonne_le,
+    })),
+  ].filter((d) => d.email.trim() !== "");
+
+  const jetonParAbonnement = new Map(
+    (abonnements ?? []).map((b) => [b.id, b.jeton_desabonnement]),
+  );
 
   if (destinataires.length === 0) return vide;
 
   const { data: envoyees, error: erreurEnvoyees } = await db
     .from("notifications_envoyees")
-    .select("alerte_id, historique_id");
+    .select("alerte_id, abonnement_id, historique_id");
   if (erreurEnvoyees) throw new Error(`Lecture des envois : ${erreurEnvoyees.message}`);
 
+  /*
+    UNE LIGNE PORTE L'UNE OU L'AUTRE SOURCE, jamais les deux — la contrainte
+    CHECK l'impose. On lit donc les deux colonnes et on ignore celle qui est
+    nulle, plutôt que de supposer laquelle est renseignée.
+  */
   const dejaEnvoyees = new Set(
-    (envoyees ?? [])
-      .filter((e) => e.alerte_id !== null)
-      .map((e) => cleEnvoi("alerte", e.alerte_id!, e.historique_id)),
+    (envoyees ?? []).flatMap((e) => {
+      if (e.alerte_id !== null) return [cleEnvoi("alerte", e.alerte_id, e.historique_id)];
+      if (e.abonnement_id !== null) return [cleEnvoi("abonnement", e.abonnement_id, e.historique_id)];
+      return [];
+    }),
   );
 
   const notifications = notificationsAPreparer({ changements, destinataires, dejaEnvoyees });
@@ -169,10 +201,29 @@ export async function envoyerAlertes(db: Client, cle: string | undefined): Promi
         url: `${SITE}/parcours/${slug}`,
       }));
 
+    /*
+      LE JETON N'EST PAS L'IDENTIFIANT, SAUF POUR UNE ALERTE. Une alerte de
+      compte se désabonne par son propre id — déjà un UUID imprévisible, et il
+      ne désigne qu'elle. Un abonnement porte un `jeton_desabonnement` distinct,
+      justement pour que son identifiant de ligne ne circule pas par email.
+
+      Sans jeton, on N'ENVOIE PAS : un email dont le lien de désabonnement ne
+      fonctionne pas est pire que pas d'email du tout.
+    */
+    const jeton =
+      notification.destinataire.type === "alerte"
+        ? notification.destinataire.id
+        : jetonParAbonnement.get(notification.destinataire.id);
+
+    if (jeton === undefined) {
+      console.error("[alertes] jeton de désabonnement introuvable", notification.destinataire.id);
+      rapport.emailsEchoues += 1;
+      continue;
+    }
+
     const donnees: DonneesChangement = {
       parcours,
-      // Le jeton de désabonnement d'une alerte de compte est l'alerte elle-même.
-      urlDesabonnement: `${SITE}/desabonnement/${notification.destinataire.id}`,
+      urlDesabonnement: `${SITE}/desabonnement/${jeton}`,
       envoyeLe,
     };
 
@@ -210,21 +261,26 @@ export async function envoyerAlertes(db: Client, cle: string | undefined): Promi
         rendrait un échec définitif : la clé d'idempotence existerait, et la
         prochaine passe considérerait la personne comme prévenue.
       */
+      const source =
+        notification.destinataire.type === "alerte"
+          ? { alerte_id: notification.destinataire.id }
+          : { abonnement_id: notification.destinataire.id };
+
       const { error } = await db.from("notifications_envoyees").insert(
-        notification.changements.map((c) => ({
-          alerte_id: notification.destinataire.id,
-          historique_id: c.id,
-        })),
+        notification.changements.map((c) => ({ ...source, historique_id: c.id })),
       );
       if (error) {
         // L'email EST parti : on le signale, mais on ne le compte pas en échec.
         console.error("[alertes] envoi non enregistré, doublon possible", error);
       }
 
-      await db
-        .from("alertes")
-        .update({ derniere_notification: new Date().toISOString() })
-        .eq("id", notification.destinataire.id);
+      // `derniere_notification` n'existe que sur une alerte de compte.
+      if (notification.destinataire.type === "alerte") {
+        await db
+          .from("alertes")
+          .update({ derniere_notification: new Date().toISOString() })
+          .eq("id", notification.destinataire.id);
+      }
 
       rapport.emailsEnvoyes += 1;
     } catch (erreur) {
