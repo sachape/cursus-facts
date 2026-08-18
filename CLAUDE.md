@@ -344,9 +344,10 @@ TypeScript ne signale rien : `string[]` est parfaitement `truthy`.
 
 ## Dette connue, tracée
 
-- **Éligibilité CPF** : 164 fiches à `cpf: 0`. Le booléen ne distingue pas
-  « vérifié non éligible » de « non vérifié ». Non corrigé faute de moyen
-  déterministe de trancher — corriger par déduction violerait l'invariant 2.
+- **Éligibilité CPF** : 170 offres à `cpf: 0`, 49 à `1`, 17 à `null`. Le champ porte bien trois états
+  (`0 | 1 | null`) : c'est la donnée qui est sur le mauvais. Un `0` non constaté
+  vaut « non vérifié », et compte pourtant comme information vérifiée
+  (`estRenseigne`). Corriger par déduction violerait l'invariant 2.
 - **La fusion ne se déclenche jamais** sur le catalogue actuel (192 fiches
   autonomes, 3 ambiguës, 0 fusion). La règle reste couverte par des cas
   construits dans `regroupement.test.ts`.

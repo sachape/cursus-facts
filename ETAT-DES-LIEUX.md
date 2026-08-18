@@ -380,7 +380,7 @@ l'organisme est faux, quelle que soit la main qui l'a écrit.
 |---|---|---|
 | Fiches sans URL de site officiel | **14** | Toutes des créateurs indépendants. Plafond déclaré dans `scripts/invariants.ts`, **ne peut que décroître**. |
 | Prix déclassés en `a_confirmer` | **59** | Restaurés après l'incident du 3 août, en attente de reconfirmation par lecture. |
-| Éligibilité CPF | 164 fiches à `cpf: 0` | Le booléen ne distingue pas « vérifié non éligible » de « non vérifié ». Corriger par déduction violerait l'invariant 2. **Prochain chantier de collecte, après la phase 2** — voir ci-dessous. |
+| Éligibilité CPF | 170 offres à `cpf: 0` · 49 à `1` · 17 à `null` | Le champ porte bien trois états (`0 | 1 | null`) — c'est la DONNÉE qui est sur le mauvais : un `0` non constaté vaut « non vérifié ». Il compte pourtant comme information vérifiée (`estRenseigne`). Corriger par déduction violerait l'invariant 2. **Prochain chantier de collecte, après la phase 2** — voir ci-dessous. |
 | Profondeur du catalogue | 9 / 232 | Bloquée par l'appariement (§3). |
 | Fusion jamais déclenchée | 0 fusion | Règle couverte par des cas construits dans `regroupement.test.ts`. |
 | Intitulés désignant une famille | ~17 candidats | Non traités **par motif** : « Formlist Grande École » ressemble au patron et est un produit unique. Seule la lecture tranche. |
@@ -408,9 +408,28 @@ inférer l'éligibilité depuis le prix, la certification ou l'organisme
 violerait l'invariant 2, et c'est exactement le raccourci qui a coûté les 61
 prix effacés du 3 août.
 
-Le préalable technique est de séparer les deux états, comme `provenance.ts` l'a
-fait pour les valeurs à confirmer : un booléen ne peut pas porter trois
-significations. À trancher au moment d'ouvrir le chantier, pas avant.
+**Aucun préalable technique — vérifié le 18 août.** La première rédaction de
+cette note annonçait qu'il fallait d'abord séparer « vérifié non éligible » de
+« non vérifié ». C'était faux, et écrit sans avoir ouvert le code : le troisième
+état existe déjà de bout en bout. `cpf` vaut `0 | 1 | null` dans le catalogue,
+`preparer.ts:107` propage le `null`, `filtres.ts:426` le traite à part et
+`chiffres-guides.ts` le compte sous `cpfNonTranche`. La structure est bonne, ce
+sont les **données** qui sont sur le mauvais état. C'est un chantier de collecte
+pur.
+
+**Ce que la note taisait, et qui est plus grave que le filtre.**
+`completude.ts` renvoie `offre.cpf` tel quel, et `estRenseigne` compte vrai pour
+tout ce qui n'est ni `null` ni `undefined` — donc **`cpf: 0` compte comme une
+information vérifiée**. Jusqu'à 170 fiches portent ainsi un champ compté au
+numérateur sans qu'aucune page n'ait été lue : le code-barres et le total
+d'informations vérifiées les incluent.
+
+L'écart est **connu et tracé** — le commentaire de `completude.ts` le dit
+explicitement et refuse de le corriger par déduction, ce qui est la bonne
+décision. Mais il place cette dette dans la même famille que le compteur qui a
+menti six jours et que `certificationCourte()` : une valeur qui affirme un
+contrôle qui n'a pas eu lieu. C'est ce qui en fait une priorité, plus encore que
+le filtre.
 
 ---
 
