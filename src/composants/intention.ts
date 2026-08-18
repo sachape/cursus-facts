@@ -25,6 +25,12 @@ const PEREMPTION_MS = 60 * 60 * 1000;
 /** Ce qu'une personne déconnectée a tenté de faire. */
 export type Intention =
   | { type: "sauvegarder"; cible: "parcours" | "organisme"; cibleId: string }
+  /*
+    Suivre les changements d'un parcours. Même raison d'être que « sauvegarder »
+    : qui clique en étant déconnecté veut suivre, pas créer un compte. Sans
+    reprise, le compte créé ne sert à rien et le geste est perdu.
+  */
+  | { type: "suivre"; parcoursId: string }
   | {
       type: "enregistrer-comparaison";
       /**

@@ -133,8 +133,8 @@ export type SourceVue = (typeof SOURCES_VUE)[number];
  * le signale, et l'on comparera un avant à un après en croyant regarder deux
  * populations.
  *
- * `alerte` est réservé : la fonctionnalité n'existe pas encore, la valeur est
- * inscrite pour que le jour venu elle ne soit pas inventée à la hâte.
+ * `alerte` a été réservé avant d'exister, puis occupé par le suivi de parcours
+ * le 18 août 2026 — sans être renommé, donc sans couper la série en deux.
  */
 export const DECLENCHEURS = ["sauvegarde", "comparaison", "alerte", "direct"] as const;
 
@@ -144,6 +144,8 @@ export type Declencheur = (typeof DECLENCHEURS)[number];
 export function declencheurDe(intention: string | null): Declencheur {
   if (intention === "sauvegarder") return "sauvegarde";
   if (intention === "enregistrer-comparaison") return "comparaison";
+  // La valeur était réservée depuis le début ; le suivi de parcours l'occupe.
+  if (intention === "suivre") return "alerte";
   /* Aucune intention en attente : la personne est venue créer un compte pour
      elle-même, et non parce qu'un geste le lui a demandé. */
   return "direct";

@@ -19,6 +19,7 @@ import { chargerListe } from "@/donnees/requetes";
 import { CHAMPS_INFORMATION } from "@/types/cursus";
 import { FournisseurAuth } from "@/composants/authentification";
 import { FournisseurSauvegardes } from "@/composants/sauvegardes";
+import { FournisseurAlertes } from "@/composants/alertes-suivi";
 import { RepriseIntention } from "@/composants/RepriseIntention";
 
 /** Adresse canonique du site. Une seule source pour les métadonnées. */
@@ -190,6 +191,7 @@ function RootComponent() {
       */}
       <FournisseurAuth>
       <FournisseurSauvegardes>
+      <FournisseurAlertes>
       <FournisseurComparaison>
         {/* Rejoue l'intention dès qu'une session apparaît, connexion directe
             comme retour de confirmation. Monté ici : il lui faut les
@@ -205,6 +207,7 @@ function RootComponent() {
           <BarreComparaison />
         </div>
       </FournisseurComparaison>
+      </FournisseurAlertes>
       </FournisseurSauvegardes>
       </FournisseurAuth>
     </QueryClientProvider>

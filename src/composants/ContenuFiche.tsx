@@ -13,6 +13,7 @@
  * repousserait le coût hors de vue et dégraderait la fiche.
  */
 import { useEffect, useState } from "react";
+import { BoutonSuivi } from "./BoutonSuivi";
 import { lienCorrection } from "@/modele/contact";
 import { Link } from "@tanstack/react-router";
 import type { ParcoursFiche, ParcoursListe } from "@/donnees/requetes";
@@ -174,6 +175,9 @@ function Provenance({ p }: { p: ParcoursFiche }) {
         </span>
         <span aria-hidden="true">·</span>
         <span>Vérifié le {formaterDate(p.dateVerification)}</span>
+        <span aria-hidden="true">·</span>
+        {/* L'offre de suivi arrive après la date : c'est elle qui la motive. */}
+        <BoutonSuivi parcoursId={p.slug} libelle={p.nom} />
         <span aria-hidden="true">·</span>
         <button
           type="button"

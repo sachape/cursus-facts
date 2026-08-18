@@ -22,6 +22,7 @@ import { useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "./authentification";
 import { useSauvegardes } from "./sauvegardes";
+import { useAlertesSuivies } from "./alertes-suivi";
 import { useComparaison } from "./comparaison";
 import { reprendreIntention } from "./intention";
 import { declencheurDe, mesurer } from "./mesure";
@@ -29,6 +30,7 @@ import { declencheurDe, mesurer } from "./mesure";
 export function RepriseIntention() {
   const { utilisateur } = useAuth();
   const { sauvegarder } = useSauvegardes();
+  const { estSuivi, basculer: basculerSuivi } = useAlertesSuivies();
   const { selection, remplacer } = useComparaison();
   /*
     La sélection passe par une référence plutôt que par une dépendance de
@@ -78,6 +80,16 @@ export function RepriseIntention() {
       }
 
       /*
+        Suivre : on ne BASCULE pas, on active. Rejouer un basculement défaire
+        le suivi si la personne l'avait déjà activé entre-temps — depuis un
+        autre onglet, ou avant de créer son compte.
+      */
+      if (intention.type === "suivre") {
+        if (!estSuivi(intention.parcoursId)) await basculerSuivi(intention.parcoursId);
+        return;
+      }
+
+      /*
         La contrainte de deux à quatre parcours est portée par la base. On la
         vérifie ici aussi : une intention périmée peut porter une sélection qui
         n'est plus valable, et laisser l'insertion échouer donnerait une erreur
@@ -110,7 +122,7 @@ export function RepriseIntention() {
       });
       if (error === null) mesurer("comparaison_enregistree", { nombre_parcours: ids.length });
     })();
-  }, [utilisateur, sauvegarder, remplacer]);
+  }, [utilisateur, sauvegarder, remplacer, estSuivi, basculerSuivi]);
 
   return null;
 }
