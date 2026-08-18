@@ -11,6 +11,13 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { preparerIngestion, type Preparation } from "./preparer";
+import {
+  changementsEntre,
+  etatSuiviDepuis,
+  type EtatsChamps,
+  type SourceSuivi,
+} from "@/modele/historique";
+import type { CategorieOrganisme } from "@/types/cursus";
 
 /**
  * Nombre maximal de fiches retirées en une passe, sans forçage.
@@ -65,6 +72,98 @@ export type RapportIngestion = {
 
 type Client = SupabaseClient<Database>;
 
+/** Les colonnes strictement nécessaires au diff — rien de plus ne se lit. */
+const COLONNES_SUIVI =
+  "slug, prix_min, prix_max, modalite_acces, unite_prix, prix_niveau, formats, " +
+  "eligible_cpf, dispo_inter, dispo_intra, duree, certification, programme, etats, " +
+  "organismes ( categorie )";
+
+/** Les états de complétude, quelle que soit la forme du JSON stocké. */
+export function etatsChamps(brut: unknown): EtatsChamps {
+  if (brut === null || typeof brut !== "object") return {};
+  const source = brut as Record<string, unknown>;
+  const lire = (cle: string) => (typeof source[cle] === "string" ? (source[cle] as string) : null);
+  return {
+    cout_apprenant: lire("cout_apprenant") ?? lire("prix"),
+    duree: lire("duree"),
+    programme: lire("programme"),
+    certification: lire("certification"),
+  };
+}
+
+/**
+ * Les titres de modules, quelle que soit leur forme.
+ *
+ * L'ingestion écrit `[{ titre }]` ; d'anciennes lignes portent des chaînes
+ * nues. Le diff ne doit pas voir une différence là où seul le CONTENANT a
+ * changé — ce serait un email pour une migration de format.
+ */
+export function titresProgramme(brut: unknown): string[] | null {
+  if (!Array.isArray(brut) || brut.length === 0) return null;
+  return brut.map((entree) =>
+    typeof entree === "string" ? entree : String((entree as { titre?: unknown })?.titre ?? ""),
+  );
+}
+
+export function sourceDepuisColonnes(
+  colonnes: Record<string, unknown>,
+  categorie: CategorieOrganisme,
+): SourceSuivi {
+  const nombre = (cle: string) =>
+    typeof colonnes[cle] === "number" ? (colonnes[cle] as number) : null;
+  const chaine = (cle: string) =>
+    typeof colonnes[cle] === "string" ? (colonnes[cle] as string) : null;
+
+  return {
+    prixMin: nombre("prix_min"),
+    prixMax: nombre("prix_max"),
+    modaliteAcces: (colonnes["modalite_acces"] ?? null) as SourceSuivi["modaliteAcces"],
+    formats: (colonnes["formats"] ?? []) as SourceSuivi["formats"],
+    organismeCategorie: categorie,
+    eligibleCpf: typeof colonnes["eligible_cpf"] === "boolean" ? colonnes["eligible_cpf"] : null,
+    dispoInter: typeof colonnes["dispo_inter"] === "boolean" ? colonnes["dispo_inter"] : null,
+    dispoIntra: typeof colonnes["dispo_intra"] === "boolean" ? colonnes["dispo_intra"] : null,
+    unitePrix: chaine("unite_prix"),
+    prixNiveau: chaine("prix_niveau"),
+    etats: etatsChamps(colonnes["etats"]),
+    duree: chaine("duree"),
+    certification: chaine("certification"),
+    programme: titresProgramme(colonnes["programme"]),
+  };
+}
+
+/** L'état d'avant, par slug. Les fiches absentes de la base n'y figurent pas. */
+async function lireEtatSuivi(
+  db: Client,
+  slugs: readonly string[],
+): Promise<Map<string, { source: SourceSuivi; etats: EtatsChamps }>> {
+  const etat = new Map<string, { source: SourceSuivi; etats: EtatsChamps }>();
+
+  // Par tranches : une clause `in` de plusieurs centaines de slugs dépasse la
+  // longueur d'URL admise par la passerelle.
+  const TRANCHE = 100;
+  for (let debut = 0; debut < slugs.length; debut += TRANCHE) {
+    const { data, error } = await db
+      .from("parcours")
+      .select(COLONNES_SUIVI)
+      .in("slug", slugs.slice(debut, debut + TRANCHE));
+
+    if (error) throw new Error(`Lecture de l'état précédent : ${error.message}`);
+
+    for (const ligne of (data ?? []) as unknown as Array<Record<string, unknown>>) {
+      const categorie = (ligne["organismes"] as { categorie?: CategorieOrganisme } | null)
+        ?.categorie;
+      if (categorie === undefined) continue;
+      etat.set(String(ligne["slug"]), {
+        source: sourceDepuisColonnes(ligne, categorie),
+        etats: etatsChamps(ligne["etats"]),
+      });
+    }
+  }
+
+  return etat;
+}
+
 /**
  * Écrit une préparation en base.
  *
@@ -87,6 +186,23 @@ export async function ecrireIngestion(
     if (error) throw new Error(`Création des organismes : ${error.message}`);
     for (const o of data ?? []) idParNom.set(o.nom, o.id);
   }
+
+  /*
+    2 bis. L'ÉTAT D'AVANT, LU AVANT D'ÉCRIRE.
+
+    L'upsert écrase sans rien lire : après lui, l'ancienne valeur n'existe nulle
+    part. C'est pour ça que cette lecture est ici et pas ailleurs — c'est le
+    dernier instant où le « avant » est encore observable.
+
+    Une fiche absente de la base n'a pas d'avant : elle ne produit aucun
+    changement. Une création n'est pas une modification, et prévenir de la
+    « nouveauté » d'un parcours que personne ne suivait encore n'a pas de sens.
+  */
+  const categorieParNom = new Map(preparation.organismes.map((o) => [o.nom, o.categorie]));
+  const avantParSlug = await lireEtatSuivi(
+    db,
+    preparation.fiches.map((f) => f.slug),
+  );
 
   // 2. Parcours — une ligne par fiche, rapprochées par slug.
   const lignes = preparation.fiches.map((fiche) => ({
@@ -128,6 +244,39 @@ export async function ecrireIngestion(
   }
 
   const idParSlug = new Map(ecrits.map((p) => [p.slug, p.id]));
+
+  /*
+    2 ter. L'HISTORIQUE — écrit APRÈS l'upsert, et seulement pour ce qui l'a été.
+
+    L'ordre n'est pas cosmétique : consigner un changement que l'écriture aurait
+    ensuite refusé annoncerait par email une valeur qui n'est pas en base. On
+    n'inscrit donc que les slugs réellement revenus de l'upsert.
+  */
+  const changements = preparation.fiches.flatMap((fiche) => {
+    const avant = avantParSlug.get(fiche.slug);
+    // Ni fiche nouvelle, ni fiche dont l'écriture a été coupée.
+    if (avant === undefined || !idParSlug.has(fiche.slug)) return [];
+
+    const categorie = categorieParNom.get(fiche.organismeNom);
+    if (categorie === undefined) return [];
+
+    const apres = sourceDepuisColonnes(fiche.colonnes, categorie);
+    return changementsEntre(
+      fiche.slug,
+      { valeurs: etatSuiviDepuis(avant.source), etats: avant.etats },
+      { valeurs: etatSuiviDepuis(apres), etats: etatsChamps(fiche.colonnes["etats"]) },
+    );
+  });
+
+  if (changements.length > 0) {
+    // Par lots, comme les parcours : la passerelle coupe les requêtes longues.
+    for (let debut = 0; debut < changements.length; debut += TAILLE_LOT) {
+      const { error } = await db
+        .from("historique_champs")
+        .insert(changements.slice(debut, debut + TAILLE_LOT));
+      if (error) throw new Error(`Écriture de l'historique : ${error.message}`);
+    }
+  }
 
   // 3. Repli d'arbitrage — les fiches restent distinctes et consultables, mais
   //    n'occupent qu'une seule entrée dans la liste.

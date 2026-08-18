@@ -13,6 +13,8 @@
  * `prix_min` n'change rien à ce qu'on lit. C'est le patron du §8 : écrire
  * l'invariant sur la restitution, jamais sur le calcul.
  */
+import { coutDuParcours } from "./condition-cout";
+import { libellePrixQualifie } from "./modalite-acces";
 
 /** L'origine d'un changement, telle que la contrainte de la table l'exige. */
 export const ORIGINE_INGESTION = "extraction_automatique";
@@ -98,6 +100,44 @@ export function changementsEntre(
   }
 
   return lignes;
+}
+
+/**
+ * Ce qu'il faut pour reconstituer les quatre valeurs affichées.
+ *
+ * Une seule forme pour les DEUX côtés du diff — la ligne lue en base et la
+ * ligne préparée par l'ingestion. Deux projections différentes finiraient par
+ * diverger, et le diff annoncerait des changements qui n'en sont pas.
+ */
+export type SourceSuivi = {
+  prixMin: number | null;
+  prixMax: number | null;
+  modaliteAcces: Parameters<typeof coutDuParcours>[0]["modaliteAcces"];
+  formats: readonly Parameters<typeof coutDuParcours>[0]["formats"][number][];
+  organismeCategorie: Parameters<typeof coutDuParcours>[0]["organismeCategorie"];
+  eligibleCpf: boolean | null;
+  dispoInter: boolean | null;
+  dispoIntra: boolean | null;
+  unitePrix: string | null;
+  prixNiveau: string | null;
+  etats: EtatsChamps & Partial<Record<"prix", string>>;
+  duree: string | null;
+  certification: string | null;
+  /** Les titres des modules, quelle que soit leur forme en base. */
+  programme: readonly string[] | null;
+};
+
+/** Les quatre valeurs suivies, telles qu'un visiteur les lirait. */
+export function etatSuiviDepuis(source: SourceSuivi): EtatSuivi {
+  const cout = coutDuParcours(source);
+  return {
+    coutApprenant:
+      cout.valeur ??
+      libellePrixQualifie(cout.montant, source.prixMax, source.modaliteAcces, source.unitePrix),
+    duree: source.duree,
+    programme: resumerProgramme(source.programme),
+    certification: source.certification,
+  };
 }
 
 /**
