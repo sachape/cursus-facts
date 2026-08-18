@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      abonnements: {
+        Row: {
+          consentement: boolean
+          consentement_le: string | null
+          cree_le: string
+          desabonne_le: string | null
+          email: string
+          id: string
+          jeton_desabonnement: string
+          parcours_ids: string[]
+          source: string
+        }
+        Insert: {
+          consentement?: boolean
+          consentement_le?: string | null
+          cree_le?: string
+          desabonne_le?: string | null
+          email: string
+          id?: string
+          jeton_desabonnement?: string
+          parcours_ids?: string[]
+          source: string
+        }
+        Update: {
+          consentement?: boolean
+          consentement_le?: string | null
+          cree_le?: string
+          desabonne_le?: string | null
+          email?: string
+          id?: string
+          jeton_desabonnement?: string
+          parcours_ids?: string[]
+          source?: string
+        }
+        Relationships: []
+      }
       alertes: {
         Row: {
           active: boolean

@@ -1,0 +1,2 @@
+CREATE POLICY "Aucun accès anonyme" ON public.abonnements FOR ALL TO anon USING (false) WITH CHECK (false);
+CREATE POLICY "Aucun accès authentifié" ON public.abonnements FOR ALL TO authenticated USING (false) WITH CHECK (false);
