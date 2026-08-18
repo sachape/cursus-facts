@@ -200,24 +200,34 @@ export type Database = {
       }
       notifications_envoyees: {
         Row: {
-          alerte_id: string
+          abonnement_id: string | null
+          alerte_id: string | null
           envoye_le: string
           historique_id: string
           id: string
         }
         Insert: {
-          alerte_id: string
+          abonnement_id?: string | null
+          alerte_id?: string | null
           envoye_le?: string
           historique_id: string
           id?: string
         }
         Update: {
-          alerte_id?: string
+          abonnement_id?: string | null
+          alerte_id?: string | null
           envoye_le?: string
           historique_id?: string
           id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "notifications_envoyees_abonnement_id_fkey"
+            columns: ["abonnement_id"]
+            isOneToOne: false
+            referencedRelation: "abonnements"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "notifications_envoyees_alerte_id_fkey"
             columns: ["alerte_id"]
