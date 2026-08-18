@@ -121,7 +121,9 @@ export async function envoyerAlertes(db: Client, cle: string | undefined): Promi
   if (erreurEnvoyees) throw new Error(`Lecture des envois : ${erreurEnvoyees.message}`);
 
   const dejaEnvoyees = new Set(
-    (envoyees ?? []).map((e) => cleEnvoi("alerte", e.alerte_id, e.historique_id)),
+    (envoyees ?? [])
+      .filter((e) => e.alerte_id !== null)
+      .map((e) => cleEnvoi("alerte", e.alerte_id!, e.historique_id)),
   );
 
   const notifications = notificationsAPreparer({ changements, destinataires, dejaEnvoyees });
