@@ -47,6 +47,15 @@ export type DonneesComparatif = {
 const NON_COMMUNIQUE = "Non communiqué";
 
 /**
+ * Plafond de l'objet, en caractères.
+ *
+ * Gmail coupe autour de 70 sur bureau et 35 sur mobile, sans dire qu'il coupe.
+ * Abréger nous-mêmes n'a de sens que si le TOTAL tient : la première version
+ * plafonnait chaque nom et laissait passer 98 caractères à deux parcours.
+ */
+const LIMITE_OBJET = 70;
+
+/**
  * L'objet, avec les intitulés abrégés.
  *
  * Un objet qui déborde est tronqué par le client de messagerie au milieu d'un
@@ -57,15 +66,27 @@ const NON_COMMUNIQUE = "Non communiqué";
 export function objetComparatif(lignes: LigneComparatif[]): string {
   if (lignes.length === 0) return "Votre comparatif";
 
-  const abreger = (nom: string) => (nom.length <= 38 ? nom : `${nom.slice(0, 37).trimEnd()}…`);
-  const [premier, second, ...reste] = lignes;
+  const prefixe = "Votre comparatif — ";
+  const abreger = (nom: string, max: number) =>
+    nom.length <= max ? nom : `${nom.slice(0, max - 1).trimEnd()}…`;
 
-  if (lignes.length === 1) return `Votre comparatif — ${abreger(premier!.nom)}`;
-  if (lignes.length === 2) {
-    return `Votre comparatif — ${abreger(premier!.nom)} et ${abreger(second!.nom)}`;
+  const [premier] = lignes;
+  if (lignes.length === 1) {
+    return prefixe + abreger(premier!.nom, LIMITE_OBJET - prefixe.length);
   }
-  const autres = reste.length + 1;
-  return `Votre comparatif — ${abreger(premier!.nom)} et ${autres} autres`;
+
+  /*
+    UN SEUL NOM AU-DELÀ D'UN PARCOURS, et le reste annoncé en nombre.
+
+    Nommer les deux tenait sur le papier et donnait 98 caractères en pratique —
+    mesuré sur un envoi réel. Deux noms abrégés assez court pour tenir ne se
+    lisent plus ; un nom entier suivi de « et 2 autres » se lit, et dit la même
+    chose. La contrainte est le PLAFOND TOTAL, jamais la longueur d'un nom
+    isolé : c'est l'erreur que la première version faisait.
+  */
+  const autres = lignes.length - 1;
+  const suffixe = autres === 1 ? " et 1 autre" : ` et ${autres} autres`;
+  return prefixe + abreger(premier!.nom, LIMITE_OBJET - prefixe.length - suffixe.length) + suffixe;
 }
 
 /** Échappement HTML. Toute valeur dynamique y passe, sans exception. */

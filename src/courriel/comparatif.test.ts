@@ -39,7 +39,7 @@ describe("objet", () => {
     );
   });
 
-  it("annonce le reste plutôt que de le taire, au-delà de deux", () => {
+  it("annonce le reste plutôt que de le taire", () => {
     const objet = objetComparatif([
       { ...LIGNE, nom: "Amazon Incubator" },
       { ...LIGNE, nom: "Licence pro" },
@@ -49,10 +49,31 @@ describe("objet", () => {
     expect(objet).toBe("Votre comparatif — Amazon Incubator et 3 autres");
   });
 
+  it("accorde le singulier à deux parcours", () => {
+    const objet = objetComparatif([{ ...LIGNE, nom: "Amazon Incubator" }, LIGNE]);
+    expect(objet).toBe("Votre comparatif — Amazon Incubator et 1 autre");
+  });
+
   it("abrège en le signalant, plutôt que de laisser le client tronquer", () => {
-    const objet = objetComparatif([LIGNE]);
+    // Un nom qui dépasse à lui seul le budget : l'abréviation doit se voir.
+    const objet = objetComparatif([
+      { ...LIGNE, nom: "Mastère Spécialisé Marketing Digital & Data appliqué au commerce" },
+    ]);
     expect(objet).toContain("…");
-    expect(objet.length).toBeLessThan(60);
+    expect(objet.length).toBeLessThanOrEqual(70);
+  });
+
+  it("tient sous le plafond QUEL QUE SOIT le nombre de parcours", () => {
+    /*
+      LA RÉGRESSION QUE CE TEST FERME. La première version plafonnait chaque nom
+      sans plafonner le total : mesuré sur un envoi réel, deux parcours donnaient
+      98 caractères, soit un objet tronqué par Gmail sans le dire.
+    */
+    const long = { ...LIGNE, nom: "Mastère Spécialisé Marketing Digital & Data appliqué au commerce" };
+    for (const nombre of [1, 2, 3, 4]) {
+      const objet = objetComparatif(Array.from({ length: nombre }, () => long));
+      expect(objet.length, `${nombre} parcours → « ${objet} »`).toBeLessThanOrEqual(70);
+    }
   });
 });
 
