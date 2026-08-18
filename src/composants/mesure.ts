@@ -52,6 +52,18 @@ export const EVENEMENTS = [
   "comparaison_ajoutee",
   "comparaison_lancee",
   "comparaison_enregistree",
+  /*
+    AUCUNE PROPRIÉTÉ NE PORTE L'ADRESSE. Ni en clair, ni hachée, ni son domaine.
+    Une adresse dans un outil de mesure y reste, s'exporte, et se retrouve dans
+    des intégrations qu'on n'a pas choisies — pour une information qui vit déjà
+    dans `abonnements`, où elle est protégée par RLS.
+
+    Le consentement est un événement DISTINCT de la demande d'envoi : les deux
+    coïncident souvent, et c'est justement l'écart entre les deux qui dit si la
+    case est cochée par adhésion ou par inadvertance.
+  */
+  "comparatif_envoi_demande",
+  "comparatif_consentement_donne",
   // Être guidé
   "aide_au_choix_demarree",
   "aide_au_choix_question_repondue",

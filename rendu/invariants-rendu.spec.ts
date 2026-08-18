@@ -2002,6 +2002,50 @@ test("un guide rend ses chiffres depuis le catalogue, et sort vers lui", async (
   await expect(titreListe).not.toBeEmpty();
 });
 
+test("la capture d'adresse ne promet rien avant d'avoir agi", async ({ page }) => {
+  /*
+    CE BLOC A MENTI. Son `onSubmit` se réduisait à `setEnvoye(true)` : aucun
+    appel réseau, aucune adresse conservée, et l'écran affirmait « Vous recevrez
+    cette comparaison ». Le pire cas d'une confirmation, c'est qu'elle soit
+    fausse — la personne attend un email qui ne partira jamais, et rien ne le
+    lui dira.
+
+    ON NE SOUMET PAS ICI, ET C'EST DÉLIBÉRÉ. Cette suite s'exécute aussi contre
+    la production (`URL_TEST`) : soumettre y écrirait une ligne réelle en base
+    et consommerait un envoi. Le test porte donc sur ce qui se vérifie sans
+    conséquence — l'état AVANT le geste.
+  */
+  await ouvrirCatalogue(page);
+  const cartes = page.locator("main li").filter({ has: page.locator('a[href^="/parcours/"]') });
+  for (const rang of [0, 1]) {
+    await cartes.nth(rang).getByRole("button", { name: /^Comparer$/ }).click();
+  }
+
+  await page.goto(`${BASE}/comparer`, { waitUntil: "networkidle" });
+
+  const titre = page.getByRole("heading", { name: /Recevoir cette comparaison/ });
+  /*
+    Absent quand la configuration manque, et c'est le comportement voulu : un
+    bouton qui échouerait toujours vaut moins qu'un bouton qui n'existe pas.
+  */
+  if ((await titre.count()) === 0) return;
+
+  await expect(titre).toBeVisible();
+
+  // Aucune confirmation tant que rien n'a été demandé.
+  await expect(page.getByText(/C'est envoyé/)).toHaveCount(0);
+  await expect(page.getByRole("alert")).toHaveCount(0);
+
+  /*
+    LA CASE N'EST PAS COCHÉE D'AVANCE. Une case pré-cochée n'enregistre pas un
+    consentement, elle enregistre une inattention — et c'est cette ligne-là
+    qu'on invoquerait plus tard pour justifier d'avoir écrit à quelqu'un.
+  */
+  const consentement = page.getByRole("checkbox", { name: /informé si le prix/ });
+  await expect(consentement).toBeVisible();
+  await expect(consentement).not.toBeChecked();
+});
+
 test("la recherche du catalogue filtre en place, sans quitter la liste", async ({ page }) => {
   /*
     DEUX CHAMPS DE MÊME APPARENCE, DEUX CONTRATS. Celui du hero est une porte

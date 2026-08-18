@@ -32,6 +32,7 @@ import { LIBELLES_DOMAINES } from "@/modele/vocabulaires";
 import { DEFINITIONS_MODALITES, libellePrixQualifie } from "@/modele/modalite-acces";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { configurationCourriel, envoyerComparatif } from "@/courriel/envoi.functions";
 
 export const Route = createFileRoute("/comparer")({
   loader: () => chargerListe(),
@@ -430,7 +431,9 @@ function Comparer() {
         décider. Les lignes en relief sont celles où les parcours diffèrent réellement.
       </p>
 
-      <BlocEmail />
+      {/* Les slugs des fiches RÉELLEMENT chargées : le serveur reconstruira le
+          contenu à partir d'eux, il n'accepte aucun texte venu du client. */}
+      <BlocEmail slugs={fiches.map((f) => f.slug)} />
 
       {/*
         Le panneau se superpose au tableau, qui reste monté : refermer rend la
@@ -451,39 +454,119 @@ function Comparer() {
  * Pas de demande de brochure, pas de formulaire commercial : la contrepartie
  * annoncée est un suivi factuel des changements, et rien d'autre.
  */
-function BlocEmail() {
+function BlocEmail({ slugs }: { slugs: string[] }) {
   const [email, setEmail] = useState("");
-  const [envoye, setEnvoye] = useState(false);
+  const [consentement, setConsentement] = useState(false);
+  const [etat, setEtat] = useState<"repos" | "envoi" | "envoye">("repos");
+  const [erreur, setErreur] = useState<string | null>(null);
+  /*
+    `null` tant que le serveur n'a pas répondu : on n'affiche NI le bloc, NI son
+    absence. Afficher puis retirer un formulaire ferait clignoter la page, et
+    l'afficher par défaut proposerait un envoi qui échouerait toujours.
+  */
+  const [actif, setActif] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let vivant = true;
+    configurationCourriel()
+      .then((c) => vivant && setActif(c.actif))
+      .catch(() => vivant && setActif(false));
+    return () => {
+      vivant = false;
+    };
+  }, []);
+
+  if (actif !== true) return null;
 
   return (
     <section className="mt-10 rounded-(--radius-md) border border-(--border-subtle) p-5">
       <h2 className="font-titre text-base font-medium">Recevoir cette comparaison par email</h2>
-      {envoye ? (
+
+      {etat === "envoye" ? (
         <p className="mt-2 t-body-sm text-(--text-secondary)">
-          C&apos;est noté. Vous recevrez cette comparaison à l&apos;adresse indiquée.
+          C&apos;est envoyé. Si rien n&apos;arrive d&apos;ici quelques minutes, pensez à regarder
+          vos indésirables.
         </p>
       ) : (
         <form
-          className="mt-3 flex flex-wrap gap-2"
-          onSubmit={(e) => {
+          className="mt-3"
+          onSubmit={async (e) => {
             e.preventDefault();
-            setEnvoye(true);
+            setErreur(null);
+            setEtat("envoi");
+            mesurer("comparatif_envoi_demande", { nombre_parcours: slugs.length });
+            // Le plan des propriétés est une liste fermée : on réutilise le
+            // compteur existant plutôt que d'inventer un champ pour l'occasion.
+            if (consentement) mesurer("comparatif_consentement_donne", { nombre_parcours: slugs.length });
+
+            /*
+              L'ÉTAT NE PASSE À « ENVOYÉ » QUE SUR UN SUCCÈS SERVEUR. Cette
+              fonction affichait autrefois une confirmation sans rien appeler :
+              la personne attendait un email qui n'arrivait jamais, et rien
+              nulle part ne le signalait. Un échec doit se voir.
+            */
+            try {
+              const resultat = await envoyerComparatif({
+                data: { email, consentement, slugs },
+              });
+              if (resultat.statut === "ok") return setEtat("envoye");
+              setEtat("repos");
+              setErreur(
+                resultat.statut === "non_configure"
+                  ? "L'envoi par email est momentanément indisponible."
+                  : resultat.raison,
+              );
+            } catch {
+              setEtat("repos");
+              setErreur("L'email n'a pas pu être envoyé. Réessayez plus tard.");
+            }
           }}
         >
-          <Input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="vous@exemple.fr"
-            aria-label="Votre adresse email"
-            className="max-w-xs"
-          />
-          <Button type="submit">Recevoir la comparaison</Button>
+          <div className="flex flex-wrap gap-2">
+            <Input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="vous@exemple.fr"
+              aria-label="Votre adresse email"
+              className="max-w-xs"
+              disabled={etat === "envoi"}
+            />
+            <Button type="submit" disabled={etat === "envoi"}>
+              {etat === "envoi" ? "Envoi…" : "Recevoir la comparaison"}
+            </Button>
+          </div>
+
+          {/*
+            NON PRÉ-COCHÉE, et le libellé dit exactement ce qu'on fera. Une case
+            cochée d'avance n'est pas un consentement : elle enregistre une
+            inattention. Décochée, l'adresse ne sert qu'à cet envoi.
+          */}
+          <label className="mt-3 flex items-start gap-2 t-caption text-(--text-secondary)">
+            <input
+              type="checkbox"
+              checked={consentement}
+              onChange={(e) => setConsentement(e.target.checked)}
+              className="mt-0.5"
+            />
+            <span>Je souhaite être informé si le prix de ces formations change.</span>
+          </label>
+
+          {erreur !== null && (
+            <p
+              role="alert"
+              className="mt-3 rounded-(--radius-md) border border-(--status-error) bg-(--status-error-bg) p-(--space-3) t-body-sm text-(--status-error)"
+            >
+              {erreur}
+            </p>
+          )}
         </form>
       )}
+
       <p className="mt-3 t-caption text-(--text-secondary)">
-        Vous serez prévenu si l&apos;un de ces prix ou programmes change. Aucun démarchage.
+        Votre adresse ne sert qu&apos;à cet envoi, sauf si vous cochez la case ci-dessus. Aucun
+        démarchage, aucune revente.
       </p>
     </section>
   );

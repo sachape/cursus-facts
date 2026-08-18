@@ -24,6 +24,8 @@ const PLAN = [
   "comparaison_ajoutee",
   "comparaison_lancee",
   "comparaison_enregistree",
+  "comparatif_envoi_demande",
+  "comparatif_consentement_donne",
   "aide_au_choix_demarree",
   "aide_au_choix_question_repondue",
   "aide_au_choix_terminee",

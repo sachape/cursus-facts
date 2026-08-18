@@ -23,6 +23,7 @@ import { Route as RessourcesRouteImport } from './routes/ressources'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AdminSeedRouteImport } from './routes/admin/seed'
 import { Route as ApiIngestionRouteImport } from './routes/api/ingestion'
+import { Route as DesabonnementJetonRouteImport } from './routes/desabonnement.$jeton'
 import { Route as FormationsCombinaisonRouteImport } from './routes/formations.$combinaison'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
@@ -102,6 +103,11 @@ const ApiIngestionRoute = ApiIngestionRouteImport.update({
   path: '/api/ingestion',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesabonnementJetonRoute = DesabonnementJetonRouteImport.update({
+  id: '/desabonnement/$jeton',
+  path: '/desabonnement/$jeton',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FormationsCombinaisonRoute = FormationsCombinaisonRouteImport.update({
   id: '/formations/$combinaison',
   path: '/formations/$combinaison',
@@ -158,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/desabonnement/$jeton': typeof DesabonnementJetonRoute
   '/formations/$combinaison': typeof FormationsCombinaisonRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
@@ -182,6 +189,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/desabonnement/$jeton': typeof DesabonnementJetonRoute
   '/formations/$combinaison': typeof FormationsCombinaisonRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
@@ -207,6 +215,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin/seed': typeof AdminSeedRoute
   '/api/ingestion': typeof ApiIngestionRoute
+  '/desabonnement/$jeton': typeof DesabonnementJetonRoute
   '/formations/$combinaison': typeof FormationsCombinaisonRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/organismes/$slug': typeof OrganismesSlugRoute
@@ -233,6 +242,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/desabonnement/$jeton'
     | '/formations/$combinaison'
     | '/guides/$slug'
     | '/organismes/$slug'
@@ -257,6 +267,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/desabonnement/$jeton'
     | '/formations/$combinaison'
     | '/guides/$slug'
     | '/organismes/$slug'
@@ -281,6 +292,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin/seed'
     | '/api/ingestion'
+    | '/desabonnement/$jeton'
     | '/formations/$combinaison'
     | '/guides/$slug'
     | '/organismes/$slug'
@@ -306,6 +318,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   AdminSeedRoute: typeof AdminSeedRoute
   ApiIngestionRoute: typeof ApiIngestionRoute
+  DesabonnementJetonRoute: typeof DesabonnementJetonRoute
   FormationsCombinaisonRoute: typeof FormationsCombinaisonRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
   OrganismesSlugRoute: typeof OrganismesSlugRoute
@@ -416,6 +429,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiIngestionRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/desabonnement/$jeton': {
+      id: '/desabonnement/$jeton'
+      path: '/desabonnement/$jeton'
+      fullPath: '/desabonnement/$jeton'
+      preLoaderRoute: typeof DesabonnementJetonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/formations/$combinaison': {
       id: '/formations/$combinaison'
       path: '/formations/$combinaison'
@@ -490,6 +510,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   AdminSeedRoute: AdminSeedRoute,
   ApiIngestionRoute: ApiIngestionRoute,
+  DesabonnementJetonRoute: DesabonnementJetonRoute,
   FormationsCombinaisonRoute: FormationsCombinaisonRoute,
   GuidesSlugRoute: GuidesSlugRoute,
   OrganismesSlugRoute: OrganismesSlugRoute,
