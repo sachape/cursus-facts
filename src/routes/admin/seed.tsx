@@ -108,6 +108,24 @@ function PageSeed() {
           <Ligne terme="Fiches retirées" valeur={resultat.fichesRetirees.length} />
           <Ligne terme="Arbitrages en attente" valeur={resultat.arbitragesEnAttente} />
           <Ligne terme="Informations vérifiées" valeur={resultat.informationsVerifiees} />
+
+          {/*
+            LES ALERTES SONT RAPPORTÉES ICI, ET UN REFUS SE LIT EN TOUTES
+            LETTRES. C'est le seul endroit où l'on saura qu'un envoi n'a pas eu
+            lieu : personne ne réclame un email qu'il ignore attendre.
+          */}
+          {"refus" in resultat.alertes && resultat.alertes.refus !== null ? (
+            <p className="mt-4 rounded-(--radius-md) border border-(--status-error) bg-(--status-error-bg) p-(--space-3) t-body-sm text-(--status-error)">
+              Alertes : {resultat.alertes.refus}
+            </p>
+          ) : (
+            "emailsEnvoyes" in resultat.alertes && (
+              <>
+                <Ligne terme="Alertes envoyées" valeur={resultat.alertes.emailsEnvoyes} />
+                <Ligne terme="Alertes en échec" valeur={resultat.alertes.emailsEchoues} />
+              </>
+            )
+          )}
           {/*
             LES RETRAITS SONT NOMMÉS, PAS SEULEMENT COMPTÉS. C'est la seule
             opération de l'ingestion qui détruit : un compteur dirait « 22 » sans

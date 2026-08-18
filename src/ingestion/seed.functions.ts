@@ -14,6 +14,7 @@
  * d'organismes qu'un seed rejoué à l'aveugle effacerait.
  */
 import { createServerFn } from "@tanstack/react-start";
+import type { RapportAlertes } from "@/courriel/alertes.server";
 
 export type ResultatSeed =
   | { statut: "refuse"; raison: string }
@@ -28,6 +29,8 @@ export type ResultatSeed =
       fichesRetirees: string[];
       arbitragesEnAttente: number;
       informationsVerifiees: number;
+      /** Ce que l'envoi des alertes a produit dans la foulée. */
+      alertes: RapportAlertes | { refus: string };
     };
 
 type EntreeSeed = { jeton: string; ecraser?: boolean };
@@ -59,5 +62,27 @@ export const lancerIngestion = createServerFn({ method: "POST" })
     }
 
     const rapport = await ecrireIngestion(supabaseAdmin);
-    return { statut: "ok", ...rapport };
+
+    /*
+      LES ALERTES PARTENT ICI, ET NULLE PART AILLEURS.
+
+      Les valeurs ne changent QUE quand l'ingestion tourne : notifier dans la
+      foulée ne demande aucun job planifié, et surtout aucun second chemin vers
+      le même envoi — deux chemins, c'est un doublon le jour où l'idempotence a
+      le moindre trou.
+
+      Un échec d'envoi ne fait PAS échouer l'ingestion. Le catalogue est écrit,
+      c'est le résultat qui compte ; les alertes se rattrapent d'elles-mêmes à
+      la passe suivante, puisqu'elles comparent l'historique aux envois faits.
+    */
+    let alertes: RapportAlertes | { refus: string } = { refus: "non tenté" };
+    try {
+      const { envoyerAlertes } = await import("@/courriel/alertes.server");
+      alertes = await envoyerAlertes(supabaseAdmin, process.env["RESEND_API_KEY"]);
+    } catch (erreur) {
+      console.error("[seed] envoi des alertes en échec", erreur);
+      alertes = { refus: "Envoi des alertes en échec — le catalogue, lui, est écrit." };
+    }
+
+    return { statut: "ok", ...rapport, alertes };
   });

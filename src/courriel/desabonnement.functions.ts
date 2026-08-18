@@ -49,13 +49,44 @@ export const desabonner = createServerFn({ method: "POST" })
       // Zéro ligne touchée : soit le jeton n'existe pas, soit c'est déjà fait.
       if ((lignes?.length ?? 0) > 0) return { statut: "ok" };
 
-      const { data: connu } = await supabaseAdmin
-        .from("abonnements")
-        .select("id")
-        .eq("jeton_desabonnement", data.jeton)
-        .maybeSingle();
+      /*
+        DEUX SOURCES D'ABONNEMENT, DONC DEUX ENDROITS OÙ CHERCHER. Un visiteur
+        porte un `jeton_desabonnement` dans `abonnements` ; une alerte de compte
+        n'en a pas — c'est son propre identifiant qui sert de jeton, puisqu'il
+        est déjà un UUID imprévisible et qu'il ne désigne qu'elle.
 
-      return connu === null ? { statut: "introuvable" } : { statut: "ok" };
+        Sans ce second chemin, le lien de désabonnement des alertes répondait
+        « ce lien n'est plus valide » : un email obligatoirement muni d'une
+        sortie, dont la sortie ne fonctionnait pas.
+      */
+      const { data: alertes, error: erreurAlerte } = await supabaseAdmin
+        .from("alertes")
+        .update({ active: false })
+        .eq("id", data.jeton)
+        .eq("active", true)
+        .select("id");
+
+      if (erreurAlerte !== null) {
+        console.error("[courriel] désactivation d'alerte refusée", erreurAlerte);
+        return { statut: "echec" };
+      }
+      if ((alertes?.length ?? 0) > 0) return { statut: "ok" };
+
+      /*
+        Zéro ligne touchée des deux côtés : soit le jeton n'existe pas, soit le
+        désabonnement a déjà eu lieu. On répond « c'est fait » dans le second
+        cas — un lien recliqué ne doit pas inquiéter.
+      */
+      const [{ data: abonnement }, { data: alerte }] = await Promise.all([
+        supabaseAdmin
+          .from("abonnements")
+          .select("id")
+          .eq("jeton_desabonnement", data.jeton)
+          .maybeSingle(),
+        supabaseAdmin.from("alertes").select("id").eq("id", data.jeton).maybeSingle(),
+      ]);
+
+      return abonnement === null && alerte === null ? { statut: "introuvable" } : { statut: "ok" };
     } catch (erreur) {
       console.error("[courriel] désabonnement, échec inattendu", erreur);
       return { statut: "echec" };
