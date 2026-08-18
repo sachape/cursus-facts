@@ -374,6 +374,13 @@
   --recherche-texte: 17px;
   --recherche-interligne: 24px;
 
+  /*
+    La recherche de la VUE DE LISTE, distincte de celle du hero ci-dessus.
+    Celle du hero promet une destination et occupe 1040 px ; celle-ci filtre la
+    liste posée sous elle et doit rester un outil, pas l'événement de la page.
+  */
+  --recherche-liste-largeur: 560px;
+
   --recherche-hauteur-mobile: 56px;
   --recherche-rayon-mobile: 12px;
   --recherche-padding-mobile: 16px;

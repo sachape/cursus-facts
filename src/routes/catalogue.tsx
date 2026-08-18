@@ -566,32 +566,45 @@ function Catalogue() {
       */}
 
       {/*
-        LA RECHERCHE DE LA VUE DE LISTE, ET ELLE NE MÈNE NULLE PART.
+        L'EN-TÊTE DE PAGE, ET LA RECHERCHE DEDANS.
 
-        Celle du hero est une porte d'entrée : elle emmène ailleurs. Celle-ci
-        filtre la liste SUR PLACE — la saisie rejoint `q` dans l'adresse, la
-        liste se restreint, le décompte suit, et une puce de retrait apparaît.
-        Deux champs de même apparence, deux contrats : d'où le placement, au-
-        dessus de ce qu'elle filtre et non dans un hero.
+        PREMIÈRE VERSION REFUSÉE, ET LE MOTIF VAUT D'ÊTRE ÉCRIT. Le champ du
+        hero a d'abord été posé tel quel : 68 px de haut, 1040 px de large,
+        collé sous la navigation et sans rien au-dessus de lui. Il se lisait
+        comme l'événement de la page alors qu'il n'en est qu'un outil, et la
+        page n'annonçait plus ce qu'elle était.
 
-        PLEINE LARGEUR, PAS DANS LA COLONNE DE FILTRES. Sous 960 px cette
-        colonne se replie derrière un bouton « Filtres » fermé au chargement :
-        un champ de recherche posé dedans serait invisible sur mobile, c'est-à-
-        dire là où chercher remplace le plus souvent filtrer.
+        Trois corrections, une cause commune — un composant de hero réemployé
+        sans être requalifié : `compact` le ramène à la hauteur d'un bouton,
+        `--recherche-liste-largeur` à celle d'un outil, et le titre lui rend un
+        contexte. Une recherche se lit par rapport à ce qu'elle cherche.
 
-        Le champ était absent depuis la séparation du 17 août — le filtrage
-        plein texte, l'anti-rebond, les suggestions et la puce de retrait
-        existaient tous, seul le champ n'avait pas été posé.
+        PAS DANS LA COLONNE DE FILTRES. Sous 960 px cette colonne se replie
+        derrière un bouton « Filtres » fermé au chargement : un champ posé
+        dedans serait invisible sur mobile, c'est-à-dire là où chercher
+        remplace le plus souvent filtrer.
+
+        Elle ne mène nulle part — celle du hero est une porte d'entrée, celle-ci
+        filtre la liste SUR PLACE. Deux champs de même famille, deux contrats.
       */}
-      <div className="mb-(--space-6)">
-        <RechercheHero
-          valeur={saisie}
-          modifier={setSaisie}
-          suggestions={suggestions}
-          champRef={champRecherche}
-          placeholderPersonnalise="Filtrer la liste : un parcours, un organisme, un domaine…"
-        />
-      </div>
+      <header className="pt-(--space-8) pb-(--space-8)">
+        <h1 className="t-heading-2 text-(--text-primary)">Le catalogue</h1>
+        <p className="mt-(--space-2) max-w-(--lecture-largeur-max) t-body-sm text-(--text-secondary)">
+          <span className="chiffre">{formaterNombre(parcours.length)}</span> formations e-commerce,
+          comparées sur des informations relevées à la source. Aucune note, aucun classement par
+          qualité.
+        </p>
+        <div className="mt-(--space-6) max-w-(--recherche-liste-largeur)">
+          <RechercheHero
+            compact
+            valeur={saisie}
+            modifier={setSaisie}
+            suggestions={suggestions}
+            champRef={champRecherche}
+            placeholderPersonnalise="Filtrer la liste…"
+          />
+        </div>
+      </header>
 
       <OngletsDomaines
         onglets={onglets}

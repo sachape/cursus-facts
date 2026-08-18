@@ -2022,9 +2022,12 @@ test("la recherche du catalogue filtre en place, sans quitter la liste", async (
     LE DÉCOMPTE DU TITRE, PAS LES RANGÉES RENDUES. La liste est paginée à 25 :
     compter les `li` mesure la taille d'une page, jamais l'effet d'un filtre —
     mesuré, 25 avant comme après, sur un filtre qui fonctionnait.
+
+    Le décompte vit sur le titre de la BARRE, un `h2` : le `h1` est celui de
+    l'en-tête de page, qui nomme le catalogue et ne bouge pas avec le filtre.
   */
   const compte = async () => {
-    const titre = await page.getByRole("heading", { level: 1 }).first().innerText();
+    const titre = await page.locator("main").getByRole("heading", { level: 2 }).first().innerText();
     return Number(titre.replace(/[^\d]/g, ""));
   };
 
@@ -2082,9 +2085,10 @@ test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page 
   // 1. Le filtre est dans l'adresse.
   await expect(page).toHaveURL(/certifiant=1/);
   const resultats = page.locator("main section > ul > li, main ul > li");
-  // Le titre de liste est le `h1` du catalogue depuis qu'il porte le sujet de
-  // la page ; c'est lui qu'on compare de part et d'autre du partage.
-  const avecFiltre = await page.getByRole("heading", { level: 1 }).first().innerText();
+  // Le titre de la barre — un `h2` — porte l'état de la liste et son décompte ;
+  // c'est lui qu'on compare de part et d'autre du partage, pas le `h1` de
+  // l'en-tête, qui nomme le catalogue et ne varie pas.
+  const avecFiltre = await page.locator("main").getByRole("heading", { level: 2 }).first().innerText();
 
   // 2. Le retour arrière quitte l'explorateur au lieu de défaire le filtre.
   await page.goBack();
@@ -2093,7 +2097,9 @@ test("un filtre entre dans l'adresse, sans empiler d'historique", async ({ page 
   // 3. L'adresse partagée rouvre la même liste, filtre appliqué.
   await page.goto(`${CATALOGUE}?certifiant=1`, { waitUntil: "networkidle" });
   await expect(page.getByRole("checkbox", { name: /Certifiant/ })).toBeChecked();
-  expect(await page.getByRole("heading", { level: 1 }).first().innerText()).toBe(avecFiltre);
+  expect(
+    await page.locator("main").getByRole("heading", { level: 2 }).first().innerText(),
+  ).toBe(avecFiltre);
   expect(await resultats.count()).toBeGreaterThan(0);
 });
 
