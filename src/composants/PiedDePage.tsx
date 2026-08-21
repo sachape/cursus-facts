@@ -59,11 +59,22 @@ const COLONNES = [
          ne font pas partie du catalogue et ne s'explorent pas comme lui. Les
          ranger à côté des parcours suggérerait qu'elles se comparent. */
       { to: "/ressources", libelle: "Ressources gratuites" },
-      /* Sa place est ici et non dans « Explorer » : un organisme qui veut être
-         référencé ne cherche pas à explorer le catalogue, il cherche à
-         comprendre ce qu'il est. */
-      { to: "/ajouter-un-organisme", libelle: "Ajouter un organisme" },
     ],
+  },
+  /*
+    CONTRIBUER — SÉPARÉE DE « COMPRENDRE », ET CE N'EST PAS UN RÉÉQUILIBRAGE.
+
+    « Ajouter un organisme » et « Signaler une correction » vivaient sous
+    « Comprendre », qui portait cinq entrées contre quatre. Le déséquilibre
+    n'était que le symptôme : ces deux entrées ne s'adressent pas à quelqu'un
+    qui cherche à comprendre le produit, mais à quelqu'un qui veut y PARTICIPER
+    — un organisme qui demande son référencement, un visiteur qui a repéré une
+    erreur. Deux intentions distinctes rangées sous un même titre restent
+    invisibles ; nommées, elles s'adressent enfin à qui elles concernent.
+  */
+  {
+    titre: "Contribuer",
+    liens: [{ to: "/ajouter-un-organisme", libelle: "Ajouter un organisme" }],
     externes: [{ href: CORRECTION, libelle: "Signaler une correction" }],
   },
 ] as const;
@@ -127,11 +138,15 @@ export function PiedDePage() {
           className="mx-auto grid max-w-(--contenu-largeur-max) gap-(--space-8) px-(--space-6) min-[768px]:grid-cols-(--pied-colonnes)"
           style={{ "--pied-colonnes": `repeat(${COLONNES.length + 1}, minmax(0, 1fr))` } as React.CSSProperties}
         >
+          {/*
+            LE MOT-SYMBOLE SEUL. La phrase qui l'accompagnait — « comparateur
+            indépendant… » — est descendue dans la barre inférieure, où elle
+            clôt le pied au lieu de l'ouvrir. L'écrire aux deux endroits la
+            répétait à trente centimètres d'intervalle, ce qui l'affaiblit :
+            une promesse redite dans le même bloc se lit comme un slogan.
+          */}
           <div>
             <MotSymboleHorizontal className="h-(--space-8) w-auto text-(--text-primary)" />
-            <p className="mt-(--space-3) max-w-56 t-caption text-(--text-tertiary)">
-              Comparateur indépendant de formations e-commerce en France
-            </p>
           </div>
 
           {COLONNES.map((colonne) => (
@@ -180,13 +195,26 @@ export function PiedDePage() {
         chaque organisme, et les chiffres clés de l'accueil (qui, eux, disent
         « dernière vérification » et non « catalogue vérifié »).
 
-        Le nom seul suffit à gauche : la promesse est déjà écrite deux fois
-        au-dessus, sous le mot-symbole et dans le bandeau.
+        L'ANNÉE EST CALCULÉE, JAMAIS ÉCRITE. « © 2026 » figé devient faux le
+        1er janvier, et un pied de page qui affiche la mauvaise année est le
+        premier signe qu'un site n'est plus tenu — sur un produit dont
+        l'argument est la fraîcheur des informations, c'est le pire endroit où
+        laisser une valeur périmée.
+
+        LA MENTION D'AFFILIATION A QUITTÉ CETTE BARRE, et elle n'a pas disparu :
+        `PiedFiche` la porte au moment du clic sortant, à côté du lien vers le
+        site de l'organisme — là où elle informe une décision plutôt que de
+        décorer un pied. Elle figure aussi dans le bandeau ci-dessus et dans le
+        panneau de navigation mobile. Vérifié avant retrait.
       */}
       <div className="border-t border-(--border-subtle) bg-(--surface-page) py-(--space-6)">
-        <div className="mx-auto flex max-w-(--contenu-largeur-max) flex-wrap items-center justify-between gap-(--space-3) px-(--space-6) t-caption text-(--text-tertiary)">
-          <p>Formlist</p>
-          <p>Aucun lien de cette page n&apos;est affilié.</p>
+        {/*
+          Sous 768 px : deux lignes centrées. Côte à côte, les deux mentions
+          tiennent sur 320 px en se coupant au milieu d'un mot.
+        */}
+        <div className="mx-auto flex max-w-(--contenu-largeur-max) flex-col items-center gap-(--space-2) px-(--space-6) text-center t-caption text-(--text-tertiary) min-[768px]:flex-row min-[768px]:justify-between min-[768px]:gap-(--space-3) min-[768px]:text-left">
+          <p>© {new Date().getFullYear()} Formlist</p>
+          <p>Comparateur indépendant de formations e-commerce en France</p>
         </div>
       </div>
     </footer>
